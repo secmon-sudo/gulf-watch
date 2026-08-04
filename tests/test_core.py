@@ -6,7 +6,7 @@ import os
 import sys
 import tempfile
 import unittest
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -450,6 +450,74 @@ class TestReportAttribution(unittest.TestCase):
         self.assertTrue(STOPPED.search("Finnair Suspends Doha and Dubai Flights"))
         self.assertFalse(STOPPED.search(
             "Airlines resume some Middle East flights but disruption continues"))
+
+
+class TestBackfillResume(unittest.TestCase):
+    """OpenSky's daily allowance is far smaller than a baseline harvest, so the
+    harvest must span days. These guard the two ways that goes wrong silently.
+    """
+
+    def setUp(self):
+        from src import backfill
+        self.bf = backfill
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.patches = [
+            mock.patch("src.db.DB_PATH", self.tmp.name),
+            mock.patch.dict(os.environ, {"OPENSKY_CLIENT_ID": "x",
+                                         "OPENSKY_CLIENT_SECRET": "y"}),
+        ]
+        for p in self.patches:
+            p.start()
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        for p in self.patches:
+            p.stop()
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def test_slices_tile_the_window_without_gaps(self):
+        t0, t1 = 1762000000, 1762000000 + 30 * 86400
+        sl = self.bf._slices(t0, t1)
+        self.assertEqual(sl[0][0], t0)
+        self.assertEqual(sl[-1][1], t1)
+        for (_, prev), (nxt, _) in zip(sl, sl[1:]):
+            self.assertEqual(prev, nxt)
+
+    def test_finished_slices_are_not_refetched(self):
+        """A resumed run must skip what already landed, or every day of
+        harvesting spends its whole allowance re-fetching day one."""
+        start, end = "2025-11-01", "2025-11-15"
+        t0 = int(datetime.fromisoformat(start).replace(
+            tzinfo=timezone.utc).timestamp())
+        t1 = int(datetime.fromisoformat(end).replace(
+            tzinfo=timezone.utc).timestamp())
+        slices = self.bf._slices(t0, t1)
+        for a, b in slices:
+            self.conn.execute(
+                "INSERT INTO backfill_progress VALUES ('OTHH',?,?,0,'t')",
+                (str(a), str(b)))
+        self.conn.commit()
+
+        with mock.patch("src.opensky.OpenSky.departures") as dep, \
+                mock.patch("src.opensky.OpenSky.arrivals") as arr:
+            res = self.bf.harvest(start, end, ["OTHH"])
+            dep.assert_not_called()
+            arr.assert_not_called()
+        self.assertEqual(res["remaining"], 0)
+
+    def test_interrupted_harvest_never_freezes_a_partial_baseline(self):
+        """The dangerous one. A baseline built from a fraction of the window
+        understates the routes it reached and omits the rest, and every
+        published number is measured against it."""
+        from src.opensky import RateLimited
+        with mock.patch("src.opensky.OpenSky.departures",
+                        side_effect=RateLimited(84288)), \
+                mock.patch.object(self.bf, "freeze") as freeze:
+            rc = self.bf.main(["--start", "2025-11-01", "--end", "2025-11-15",
+                               "--airports", "OTHH"])
+        freeze.assert_not_called()
+        self.assertEqual(rc, 1)
 
 
 if __name__ == "__main__":

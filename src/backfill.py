@@ -45,11 +45,16 @@ def _slices(t0: int, t1: int) -> list[tuple[int, int]]:
     return out
 
 
-def harvest(start: str, end: str) -> dict:
+def harvest(start: str, end: str, airports: list[str] | None = None) -> dict:
     """Fetch every slice not already recorded as done.
 
     Returns {"legs", "done", "remaining"}. `remaining` > 0 means OpenSky cut us
     off; run again tomorrow and it picks up where it stopped.
+
+    `airports` narrows the harvest. Worth using: measured over a real 48h
+    ingest, 7 of the 15 configured airports returned zero flights -- OpenSky
+    simply has no receiver coverage over Kuwait, Saudi Arabia, Iraq or Iran.
+    Harvesting them spends about half the daily allowance to learn nothing.
     """
     conn = db.connect()
     api = OpenSky()
@@ -66,7 +71,13 @@ def harvest(start: str, end: str) -> dict:
 
     done = {(r["airport"], r["window_start"], r["window_end"]) for r in conn.execute(
         "SELECT airport, window_start, window_end FROM backfill_progress")}
-    todo = [(icao, a, b) for icao in config.airports() for a, b in _slices(t0, t1)
+    picked = airports or list(config.airports())
+    unknown = [a for a in picked if a not in config.airports()]
+    if unknown:
+        LOG.error("not in config/airports.yml: %s", ", ".join(unknown))
+        return {"legs": 0, "done": 0, "remaining": -1}
+
+    todo = [(icao, a, b) for icao in picked for a, b in _slices(t0, t1)
             if (icao, str(a), str(b)) not in done]
     if not todo:
         LOG.info("nothing left to harvest for %s..%s", start, end)
@@ -143,13 +154,19 @@ def main(argv=None) -> int:
     ap.add_argument("--start", default=config.BASELINE_START)
     ap.add_argument("--end", default=config.BASELINE_END)
     ap.add_argument("--freeze-only", action="store_true")
+    ap.add_argument("--airports", default=None,
+                    help="comma-separated ICAO list; default is every airport "
+                         "in config. Narrowing to the ones OpenSky can "
+                         "actually see roughly halves the harvest.")
     args = ap.parse_args(argv)
 
     if args.freeze_only:
         freeze(args.start, args.end)
         return 0
 
-    result = harvest(args.start, args.end)
+    picked = ([a.strip().upper() for a in args.airports.split(",") if a.strip()]
+              if args.airports else None)
+    result = harvest(args.start, args.end, picked)
     if result["remaining"] != 0:
         # Freezing here would write a baseline built from whatever fraction
         # arrived and present it as the frozen reference. Every route we never
