@@ -1,21 +1,22 @@
 name: ingest
 
-# Once a day: pull the last 48h from OpenSky, rebuild the rollups, score
-# coverage, run stop/resume detection, regenerate the static JSON, commit both
-# the SQLite file and public/, then redeploy Pages.
+# Pull the last 48h from OpenSky, rebuild the rollups, score coverage, run
+# stop/resume detection, regenerate the static JSON, commit both the SQLite
+# file and public/, then redeploy Pages.
 #
-# Daily, not 3-hourly, for two reasons that agree with each other. Analysis is
-# anchored on the last settled UTC day (config.SETTLE_LAG_DAYS), so eight runs
-# a day compute the same answer eight times. And measured against a real
-# account, roughly 85 requests exhaust OpenSky's daily allowance -- one
-# all-airports pass costs ~52, so 3-hourly polling overruns the budget about
-# fivefold and would spend most of the day rate limited.
+# Manual only, by choice: the operator triggers this when they want a reading,
+# rather than having it spend the OpenSky allowance on a timer. The schedule
+# block is left out rather than commented out, so nothing fires by accident.
 #
-# 05:00 UTC: yesterday has closed and OpenSky's publication lag has caught up.
+# If you ever want it scheduled, add:
+#   schedule:
+#     - cron: "0 5 * * *"
+# Daily, not hourly. Analysis is anchored on the last settled UTC day
+# (config.SETTLE_LAG_DAYS), so extra runs recompute the same answer, and
+# measured against a real account ~85 requests exhaust the daily allowance
+# while one all-airports pass costs ~52.
 
 on:
-  schedule:
-    - cron: "0 5 * * *"
   workflow_dispatch:
     inputs:
       hours:

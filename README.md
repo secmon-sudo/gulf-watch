@@ -10,8 +10,8 @@ no paid API keys. Total running cost: zero.
 
 ```
 OpenSky (OAuth2)  ─┐
-adsb.lol / a.live ─┼─► GitHub Actions ETL ─► SQLite in repo ─► static JSON ─► GitHub Pages
-EASA CZIB pages   ─┘         (daily)          (git = history)     /v1/*.json
+adsb.lol / a.live ─┼─►    ETL, on demand   ─► SQLite in repo ─► static JSON ─► report.html
+EASA CZIB pages   ─┘      (local or Actions)   (git = history)     + /v1/*.json
 ```
 
 ---
@@ -93,13 +93,19 @@ https://<user>.github.io/<repo>/v1/status.json
 
 ### 4. Let it run
 
-The `ingest` workflow runs once a day at 05:00 UTC, commits the updated SQLite
-file and regenerated JSON, and Pages redeploys.
+Nothing runs on a timer. The `ingest` workflow is manual — Actions → **ingest**
+→ Run workflow — and so is everything else. Locally the same thing is:
 
-Daily rather than hourly on purpose. Analysis is anchored on the last settled
-UTC day, so extra runs recompute the same answer -- and measured against a real
-account, ~85 requests exhaust OpenSky's daily allowance while one all-airports
-pass costs ~52. Polling harder just spends the day rate limited.
+```bash
+python -m src.ingest          # pull flights, score coverage, detect stops
+python -m src.report          # write public/report.html
+```
+
+Deliberate rather than unfinished. Analysis is anchored on the last settled UTC
+day, so repeated runs recompute the same answer, and ~85 requests exhaust
+OpenSky's daily allowance while one all-airports pass costs ~52. A timer would
+spend the budget whether or not anyone was reading. To schedule it anyway, add
+a `schedule:` block back to `.github/workflows/ingest.yml`.
 
 ### Try it without credentials
 
