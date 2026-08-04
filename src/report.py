@@ -4,17 +4,24 @@
     python -m src.report --no-news       # skip the news sweep (faster, offline)
     python -m src.report --days 14       # wider observation window
 
-Two sources answer the same question from different sides, because neither is
-enough on its own:
+Four sources, read in that order of authority, because no one of them answers
+the question alone:
 
-  ADS-B  tells you what actually flew, but only where volunteers run receivers.
-         Measured live, that is good over the UAE, Qatar, Bahrain and Jordan
-         and effectively blind over Saudi Arabia, Kuwait, Iraq and Iran.
-  News   tells you what was announced, everywhere, but only for carriers big
-         enough to be written about, and an announcement is not an observation.
+  ADS-B     what actually flew -- but only where volunteers run receivers.
+            Measured: strong over the UAE, Qatar, Bahrain and Jordan, and
+            effectively blind over Saudi Arabia, Kuwait, Iraq and Iran.
+  Schedule  what the carrier still intends to fly, everywhere, independent of
+            receivers. Also the denominator: 719 departures means nothing
+            until you know how many were timetabled.
+  News      what was announced -- everywhere, but only for carriers big enough
+            to be written about. An announcement is not an observation.
+  Web       last resort, only where the other three are silent. Never changes
+            a state; attaches a cited note so the reader can go and look.
 
-Every cell in the report says which of the two it came from. A carrier we
-cannot see and nobody wrote about is reported as unknown, not as stopped.
+Observation outranks announcement throughout. A carrier seen flying is flying
+whatever the press says; a carrier we cannot see but whose timetable still
+stands is unknown, not stopped -- turning a coverage gap into a suspension is
+the failure this report is built to avoid.
 """
 
 from __future__ import annotations
@@ -748,8 +755,10 @@ def render(data: dict) -> str:
   <div class="eyebrow">GulfWatch · elle çalıştırılan rapor</div>
   <h1>Ortadoğu havayolu operasyonları</h1>
   <p class="sub prose">İzlenen Körfez ve Levant havalimanlarında hangi
-  havayolunun hâlâ uçtuğu — hem <b>uydudan gözlemlenen uçuş verisiyle</b> hem de
-  <b>basında çıkan duyurularla</b>. Veriler <b>{_e(data['as_of_day'])}</b>
+  havayolunun hâlâ uçtuğu. Dört kaynak sırayla okunuyor:
+  <b>gözlemlenen uçuş verisi</b>, <b>yayımlanmış tarifeler</b>,
+  <b>basın</b>, ve hiçbiri konuşmuyorsa <b>web araması</b>.
+  Veriler <b>{_e(data['as_of_day'])}</b>
   gününe ait; gözlem penceresi {_e(d1)} → {_e(d2)} ({data['days']} gün).
   Basın taraması son {data["news_days"]} günle sınırlı.
   Rapor {_e(gen)} tarihinde üretildi.</p>
@@ -796,9 +805,18 @@ def render(data: dict) -> str:
       Tarifede sefer durması uçuşun gerçekleştiği anlamına gelmez; günlük
       iptaller tarifeye yansımaz.</div></div>
     <div class="card"><div class="hd"><span class="fir">Basın</span></div>
-      <div class="place">Google News üzerinden havayolunun adının geçtiği
-      başlıklar. <b>Ne duyurulduğunu</b> gösterir — her yerde, ama yalnızca
-      hakkında yazılacak kadar büyük havayolları için. Duyuru gözlem değildir.</div></div>
+      <div class="place">Google News üzerinden havayolunun adının geçtiği,
+      son {data["news_days"]} güne ait başlıklar. <b>Ne duyurulduğunu</b>
+      gösterir — her yerde, ama yalnızca hakkında yazılacak kadar büyük
+      havayolları için. Başlıkları bir dil modeli okuyor: "X tarifesini
+      koruyor, Y iptal ediyor" gibi cümlelerde eylemi doğru havayoluna
+      bağlayabilmek için. Duyuru gözlem değildir.</div></div>
+    <div class="card"><div class="hd"><span class="fir">Web araması</span></div>
+      <div class="place"><b>Son çare.</b> Yalnızca ilk üç kaynağın da sessiz
+      kaldığı havayolları için çalışır ve <b>durumu değiştirmez</b> — sadece
+      kaynaklı bir not ekler. En zayıf kaynak: model enum'dan seçmek yerine
+      düz metin yazar, yani yanılabilir. Yanındaki numaralar kaynak
+      bağlantılarıdır, kontrol için oradalar.</div></div>
   </div>
   <p class="sub prose">Bir çelişki olduğunda <b>gözlem duyuruyu yener.</b> Uçarken
   görülen bir havayolu, basın “kesti” dese bile “Durdurdu” sayılmaz; “Kısmen
@@ -853,6 +871,14 @@ def render(data: dict) -> str:
   kesenler, sonra hakkında bilgi olmayanlar. <b>Sefer</b> sütunu gözlem
   penceresinde izlenen havalimanlarında sayılan iniş/kalkış sayısı;
   <b>Nerede</b> sütunu bunun havalimanlarına dağılımı.</p>
+  <p class="sub prose"><b>Gözlenen / tarifeli</b> sütunu asıl cevabı verir:
+  havayolunun izlenen havalimanları arasında gerçekten uçtuğu haftalık sefer
+  sayısı, tarifesinde planladığı sayıya bölünmüş. %100'e yakınsa tarifesini
+  uyguluyor; düşükse fiilen kesmiş demektir. İki taraf da <b>aynı şehir
+  çiftlerini</b> sayar, yoksa uzun menzilli havayolları haksız yere düşük
+  görünür. Kapsama testini geçen gün sayısı {MIN_RATIO_DAYS}'in altındaysa
+  yüzde <b>yayınlanmaz</b> — iki ham sayı gösterilir, çünkü birkaç günlük
+  veriden haftalık oran çıkarmak tahminden ibarettir.</p>
   <div class="scroll"><table>
     <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
       <th class="num">Sefer</th><th>Nerede görüldü</th>
@@ -892,7 +918,12 @@ def render(data: dict) -> str:
     <dt>Basın</dt><dd>Google News RSS. Başlıkta havayolunun adı geçen haberler
       süzülür; anahtar kelimeyle sınıflandırılır. Karar vermez, okumanız için
       bağlantıyı önünüze koyar.</dd>
-    <dt>Uyarılar</dt><dd>EASA Çatışma Bölgesi Bilgi Bültenleri (CZIB).</dd>
+    <dt>Web araması</dt><dd>Mistral web arama aracı. Yalnızca diğer üç kaynağın
+      da sessiz kaldığı havayolları için, çalıştırma başına en fazla
+      {MAX_WEB_SEARCHES} sorgu. Durumu değiştirmez, kaynaklı not ekler.</dd>
+    <dt>Uyarılar</dt><dd>EASA Çatışma Bölgesi Bilgi Bültenleri (CZIB). Bülten
+      metinleri bir dil modeliyle tek cümleye indiriliyor; özet değişmesi için
+      bültenin kendisinin değişmesi gerekir.</dd>
   </dl>
 </section>
 
