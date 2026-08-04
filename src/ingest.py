@@ -18,7 +18,7 @@ import time
 from datetime import datetime, timedelta, timezone
 
 from . import advisories, config, corroborate, db, firwatch, metrics, notify, suspensions
-from .opensky import OpenSky
+from .opensky import OpenSky, RateLimited
 from .parse import normalise
 
 logging.basicConfig(
@@ -54,9 +54,21 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
     airports = pick_airports(started.hour, all_airports)
 
     total = 0
+    exhausted = False
     for icao in airports:
+        if exhausted:
+            break
         for direction, fetch in (("dep", api.departures), ("arr", api.arrivals)):
-            raw = fetch(icao, begin, end)
+            try:
+                raw = fetch(icao, begin, end)
+            except RateLimited as exc:
+                # The next run re-reads the same 48 hours and upserts, so what
+                # we miss here is picked up rather than lost. Keep going: the
+                # FIR sampler, the advisories and the publish step cost no
+                # OpenSky credits.
+                LOG.warning("%s -- skipping the rest of the OpenSky fetches", exc)
+                exhausted = True
+                break
             rows = [r for r in (normalise(x, carriers, "opensky") for x in raw) if r]
             total += db.upsert_flights(conn, rows)
             LOG.info("%s %s: %s raw -> %s matched", icao, direction, len(raw), len(rows))

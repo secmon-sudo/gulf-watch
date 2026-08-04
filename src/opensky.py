@@ -36,6 +36,22 @@ API = "https://opensky-network.org/api"
 PARTITION_DAYS = 2
 DAY = 24 * 3600
 
+# A 429 carrying a retry-after longer than this means the daily allowance is
+# gone, not that we are briefly going too fast. Sleeping it off is not an
+# option -- OpenSky hands out retry-afters of 20+ hours -- so the caller is
+# told instead and decides whether to stop.
+MAX_SLEEPABLE_WAIT = 900
+
+
+class RateLimited(RuntimeError):
+    """The daily OpenSky allowance is exhausted."""
+
+    def __init__(self, retry_after: int):
+        self.retry_after = retry_after
+        super().__init__(
+            f"OpenSky daily allowance exhausted; retry in {retry_after}s "
+            f"({retry_after / 3600:.1f}h)")
+
 
 class OpenSky:
     def __init__(self, client_id: str | None = None, client_secret: str | None = None):
@@ -107,8 +123,14 @@ class OpenSky:
                 return []
             if resp.status_code == 429:
                 wait = int(resp.headers.get("X-Rate-Limit-Retry-After-Seconds", 60))
+                if wait > MAX_SLEEPABLE_WAIT:
+                    # Capping the sleep and retrying just burns four more
+                    # rejections and then returns [], which a caller cannot
+                    # distinguish from "no flights here". For the backfill that
+                    # difference is the whole baseline.
+                    raise RateLimited(wait)
                 LOG.warning("rate limited, sleeping %ss", wait)
-                time.sleep(min(wait, 300))
+                time.sleep(wait)
                 continue
             if resp.status_code >= 500:
                 time.sleep(2 ** i)

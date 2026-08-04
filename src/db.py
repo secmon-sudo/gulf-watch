@@ -118,6 +118,19 @@ CREATE TABLE IF NOT EXISTS evidence (
     PRIMARY KEY (suspension_id, url)
 );
 
+-- Which backfill slices have actually landed. OpenSky's daily allowance is far
+-- smaller than a full baseline harvest, so the harvest must survive being cut
+-- off and resumed tomorrow -- and freeze() must be able to tell whether it is
+-- looking at a complete window or a fragment.
+CREATE TABLE IF NOT EXISTS backfill_progress (
+    airport      TEXT NOT NULL,
+    window_start TEXT NOT NULL,
+    window_end   TEXT NOT NULL,
+    legs         INTEGER,
+    done_at      TEXT,
+    PRIMARY KEY (airport, window_start, window_end)
+);
+
 CREATE TABLE IF NOT EXISTS run_log (
     started_at TEXT PRIMARY KEY,
     kind       TEXT,

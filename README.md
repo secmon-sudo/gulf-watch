@@ -11,7 +11,7 @@ no paid API keys. Total running cost: zero.
 ```
 OpenSky (OAuth2)  ─┐
 adsb.lol / a.live ─┼─► GitHub Actions ETL ─► SQLite in repo ─► static JSON ─► GitHub Pages
-EASA CZIB pages   ─┘        (every 3h)         (git = history)     /v1/*.json
+EASA CZIB pages   ─┘         (daily)          (git = history)     /v1/*.json
 ```
 
 ---
@@ -59,8 +59,20 @@ period. "12 flights a week" is not information; "12 against a baseline of 21"
 is.
 
 Actions → **backfill-baseline** → Run workflow. Defaults to 2025-11-01 →
-2026-01-31. It takes a few hours and burns most of a day's OpenSky credits.
-Run it once.
+2026-01-31.
+
+**This does not finish in one run.** Measured against a real account, ~85
+requests exhaust OpenSky's daily allowance, and a 92-day baseline across 13
+airports needs ~1200. The harvest is therefore resumable: each 7-day slice is
+recorded in `backfill_progress` as it lands, a rate limit stops the run
+cleanly, and re-running picks up exactly where it left off. Expect to run it
+once a day for about two weeks — or narrow the scope (fewer airports, shorter
+window) and finish in a few days.
+
+The baseline is frozen only when every slice is in. A partial harvest is left
+unfrozen on purpose: a baseline built from a fraction of the window understates
+the routes it did reach several-fold and silently omits the rest, and every
+number the project publishes is measured against it.
 
 Locally:
 
@@ -81,8 +93,13 @@ https://<user>.github.io/<repo>/v1/status.json
 
 ### 4. Let it run
 
-The `ingest` workflow runs every 3 hours, commits the updated SQLite file and
-regenerated JSON, and Pages redeploys.
+The `ingest` workflow runs once a day at 05:00 UTC, commits the updated SQLite
+file and regenerated JSON, and Pages redeploys.
+
+Daily rather than hourly on purpose. Analysis is anchored on the last settled
+UTC day, so extra runs recompute the same answer -- and measured against a real
+account, ~85 requests exhaust OpenSky's daily allowance while one all-airports
+pass costs ~52. Polling harder just spends the day rate limited.
 
 ### Try it without credentials
 
@@ -273,5 +290,5 @@ src/publish.py          static JSON API generation
 src/notify.py           optional Telegram push on stop/resume events
 public/index.html       dashboard, reads the same JSON
 tests/test_core.py      23 tests, including the outage-vs-suspension guard
-.github/workflows/      ingest (3h), backfill-baseline (manual), pages
+.github/workflows/      ingest (daily), backfill-baseline (manual), pages
 ```

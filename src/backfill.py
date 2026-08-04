@@ -28,7 +28,7 @@ import time
 from datetime import datetime, timedelta, timezone
 
 from . import config, db
-from .opensky import OpenSky
+from .opensky import OpenSky, RateLimited
 from .parse import normalise
 
 logging.basicConfig(level=logging.INFO,
@@ -36,7 +36,21 @@ logging.basicConfig(level=logging.INFO,
 LOG = logging.getLogger("gulfwatch.backfill")
 
 
-def harvest(start: str, end: str) -> int:
+def _slices(t0: int, t1: int) -> list[tuple[int, int]]:
+    out, cursor = [], t0
+    while cursor < t1:
+        stop = min(cursor + 7 * 24 * 3600, t1)
+        out.append((cursor, stop))
+        cursor = stop
+    return out
+
+
+def harvest(start: str, end: str) -> dict:
+    """Fetch every slice not already recorded as done.
+
+    Returns {"legs", "done", "remaining"}. `remaining` > 0 means OpenSky cut us
+    off; run again tomorrow and it picks up where it stopped.
+    """
     conn = db.connect()
     api = OpenSky()
     if not api.authenticated:
@@ -44,27 +58,54 @@ def harvest(start: str, end: str) -> int:
             "Backfill needs an authenticated OpenSky client. Create an API "
             "client at opensky-network.org and set OPENSKY_CLIENT_ID/SECRET."
         )
-        return 0
+        return {"legs": 0, "done": 0, "remaining": -1}
 
     t0 = int(datetime.fromisoformat(start).replace(tzinfo=timezone.utc).timestamp())
     t1 = int(datetime.fromisoformat(end).replace(tzinfo=timezone.utc).timestamp())
     carriers = config.carriers()
-    total = 0
 
-    for icao in config.airports():
-        cursor = t0
-        while cursor < t1:
-            stop = min(cursor + 7 * 24 * 3600, t1)
+    done = {(r["airport"], r["window_start"], r["window_end"]) for r in conn.execute(
+        "SELECT airport, window_start, window_end FROM backfill_progress")}
+    todo = [(icao, a, b) for icao in config.airports() for a, b in _slices(t0, t1)
+            if (icao, str(a), str(b)) not in done]
+    if not todo:
+        LOG.info("nothing left to harvest for %s..%s", start, end)
+        return {"legs": 0, "done": len(done), "remaining": 0}
+
+    LOG.info("%s slices to fetch (%s already done)", len(todo), len(done))
+    total = completed = 0
+
+    for icao, a, b in todo:
+        try:
+            legs = 0
             for fetch in (api.departures, api.arrivals):
-                raw = fetch(icao, cursor, stop)
+                raw = fetch(icao, a, b)
                 rows = [r for r in (normalise(x, carriers, "opensky") for x in raw) if r]
-                total += db.upsert_flights(conn, rows)
+                legs += db.upsert_flights(conn, rows)
                 time.sleep(2.0)
-            LOG.info("%s %s..%s -> running total %s", icao,
-                     datetime.utcfromtimestamp(cursor).date(),
-                     datetime.utcfromtimestamp(stop).date(), total)
-            cursor = stop
-    return total
+        except RateLimited as exc:
+            # Stop cleanly. The slice is deliberately NOT marked done, so the
+            # next run refetches it whole rather than trusting a half of it.
+            LOG.warning("%s -- stopping with %s slices left; rerun after the "
+                        "window resets and it resumes here",
+                        exc, len(todo) - completed)
+            return {"legs": total, "done": len(done) + completed,
+                    "remaining": len(todo) - completed}
+
+        conn.execute(
+            """INSERT OR REPLACE INTO backfill_progress
+               (airport, window_start, window_end, legs, done_at)
+               VALUES (?,?,?,?,?)""",
+            (icao, str(a), str(b), legs,
+             datetime.now(tz=timezone.utc).isoformat(timespec="seconds")))
+        conn.commit()
+        total += legs
+        completed += 1
+        LOG.info("%s %s..%s -> %s legs (%s/%s slices)", icao,
+                 datetime.utcfromtimestamp(a).date(),
+                 datetime.utcfromtimestamp(b).date(), legs, completed, len(todo))
+
+    return {"legs": total, "done": len(done) + completed, "remaining": 0}
 
 
 def freeze(start: str, end: str) -> int:
@@ -104,8 +145,23 @@ def main(argv=None) -> int:
     ap.add_argument("--freeze-only", action="store_true")
     args = ap.parse_args(argv)
 
-    if not args.freeze_only:
-        harvest(args.start, args.end)
+    if args.freeze_only:
+        freeze(args.start, args.end)
+        return 0
+
+    result = harvest(args.start, args.end)
+    if result["remaining"] != 0:
+        # Freezing here would write a baseline built from whatever fraction
+        # arrived and present it as the frozen reference. Every route we never
+        # reached would silently have no baseline at all, and the ones we did
+        # reach would be divided by the full window's weeks, understating them
+        # several-fold. A missing baseline is recoverable; a confidently wrong
+        # one poisons every number the project publishes.
+        LOG.error("harvest incomplete (%s slices left) -- NOT freezing the "
+                  "baseline. Rerun this command to resume, then it freezes "
+                  "automatically.", result["remaining"])
+        return 1
+
     freeze(args.start, args.end)
     return 0
 
