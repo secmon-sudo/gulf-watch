@@ -2,7 +2,7 @@
 
     python -m src.report                 # writes public/report.html
     python -m src.report --no-news       # skip the news sweep (faster, offline)
-    python -m src.report --days 14
+    python -m src.report --days 14       # wider observation window
 
 Two sources answer the same question from different sides, because neither is
 enough on its own:
@@ -27,6 +27,7 @@ import sys
 import time
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 from . import advisories, config, db, firwatch, metrics, schedules
@@ -52,6 +53,10 @@ AMBIGUOUS_SHORT = {
     "qatar", "british", "american", "japan", "kuwait", "saudi", "china",
     "middle east", "egypt", "turkish", "gulf", "emirates", "oman", "royal",
 }
+
+# How old a headline may be and still describe the situation now. Unbounded,
+# Google happily answers with February suspension notices in August.
+NEWS_MAX_AGE_DAYS = 30
 
 # Words that mean the article is about the region rather than this carrier.
 GENERIC = re.compile(r"\b(which airlines|airlines (?:have|suspend|resume|cancel)|"
@@ -79,6 +84,59 @@ def activity(conn, days: int) -> dict:
             if icao in airports:
                 seen[r["carrier"]][icao] += r["n"]
     return {"since": since, "until": until, "seen": seen}
+
+
+def airport_view(conn, days: int, tracked: dict) -> list[dict]:
+    """Per airport: is anything still moving there, and on whose word.
+
+    The carrier table answers "is this airline flying". This answers the other
+    half — "is this airport still being served" — which is otherwise buried in
+    a column of three-letter codes.
+    """
+    since = (metrics.reference_day() - timedelta(days=days - 1)).isoformat()
+    until = metrics.reference_day().isoformat()
+    seen: dict[str, set] = defaultdict(set)
+    legs: dict[str, int] = defaultdict(int)
+    for r in conn.execute(
+            """SELECT carrier, dep_icao, arr_icao, COUNT(*) n FROM flight
+               WHERE is_freight = 0 AND dep_date BETWEEN ? AND ?
+                 AND carrier IS NOT NULL
+               GROUP BY carrier, dep_icao, arr_icao""", (since, until)):
+        for icao in (r["dep_icao"], r["arr_icao"]):
+            if icao in config.airports():
+                legs[icao] += r["n"]
+                if r["carrier"] in tracked:
+                    seen[icao].add(r["carrier"])
+
+    sched_w: dict[str, int] = defaultdict(int)
+    sched_c: dict[str, set] = defaultdict(set)
+    for r in conn.execute(
+            "SELECT dep_iata, arr_iata, carrier, weekly FROM route_schedule "
+            "WHERE weekly > 0"):
+        for iata in (r["dep_iata"], r["arr_iata"]):
+            sched_w[iata] += r["weekly"]
+            sched_c[iata].add(r["carrier"])
+
+    out = []
+    for icao, cfg in config.airports().items():
+        iata = cfg["iata"]
+        n, sw = legs.get(icao, 0), sched_w.get(iata, 0)
+        if n:
+            state = "acik"
+        elif sw:
+            state = "tarifeli"
+        else:
+            state = "durgun"
+        out.append({
+            "icao": icao, "iata": iata, "city": cfg["city"],
+            "country": cfg.get("country"), "legs": n, "state": state,
+            "carriers_seen": len(seen.get(icao, ())),
+            "sched_weekly": sw,
+            "carriers_sched": len({c for c in sched_c.get(iata, ()) if c in tracked}),
+        })
+    rank = {"durgun": 0, "tarifeli": 1, "acik": 2}
+    out.sort(key=lambda a: (rank[a["state"]], -a["legs"]))
+    return out
 
 
 def baseline_weekly(conn) -> dict[str, float]:
@@ -117,15 +175,32 @@ def _aliases(name: str) -> set[str]:
     return out
 
 
-def carrier_news(name: str, limit: int = 4) -> list[dict]:
-    """Headlines that name this carrier, newest first.
+def _age_days(published: str) -> int | None:
+    try:
+        return (datetime.now(tz=timezone.utc)
+                - parsedate_to_datetime(published)).days
+    except (TypeError, ValueError):
+        return None
 
-    Google News answers a carrier query with regional round-ups far more often
-    than with anything about the carrier, so anything that does not name it in
-    the title is dropped rather than attributed to it.
+
+def carrier_news(name: str, limit: int = 2, max_age: int = NEWS_MAX_AGE_DAYS) -> list[dict]:
+    """Recent headlines that name this carrier.
+
+    Two filters, and the project was wrong without either.
+
+    Recency: an unbounded query answers "is Saudia flying" with a suspension
+    notice from five months ago. Measured, the top results were 134 to 157 days
+    old and were setting today's verdict. `when:Nd` bounds it at the source and
+    the publication date is re-checked here, because the operator ignores it
+    often enough to matter.
+
+    Attribution: Google answers a carrier query with regional round-ups far
+    more often than with anything about the carrier, so a headline that does
+    not name it is dropped rather than credited to it.
     """
     items = _news(f'"{name}" flights suspended OR cancelled OR resumed '
-                  f'Middle East OR Gulf OR Dubai OR Doha OR Qatar', limit=10)
+                  f'Middle East OR Gulf OR Dubai OR Doha OR Qatar '
+                  f'when:{max_age}d', limit=12)
     keys = _aliases(name)
     out = []
     for it in items:
@@ -133,12 +208,15 @@ def carrier_news(name: str, limit: int = 4) -> list[dict]:
         low = title.lower()
         if not any(k in low for k in keys) or GENERIC.search(title):
             continue
+        age = _age_days(it.get("published"))
+        if age is None or age > max_age:
+            continue
+        it["age_days"] = age
         it["signal"] = ("resumed" if RESUMED.search(title)
                         else "stopped" if STOPPED.search(title) else "mentioned")
         out.append(it)
-        if len(out) >= limit:
-            break
-    return out
+    out.sort(key=lambda x: x["age_days"])
+    return out[:limit]
 
 
 def verdict(seen_at: dict, sched: dict | None, news: list[dict]) -> tuple[str, str]:
@@ -177,7 +255,7 @@ def verdict(seen_at: dict, sched: dict | None, news: list[dict]) -> tuple[str, s
                        "demek değildir")
 
 
-def collect(days: int, with_news: bool) -> dict:
+def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS) -> dict:
     conn = db.connect()
     ref = metrics.reference_day()
     act = activity(conn, days)
@@ -189,7 +267,7 @@ def collect(days: int, with_news: bool) -> dict:
     for code, cfg in sorted(carriers.items(), key=lambda kv: kv[1]["name"]):
         news = []
         if with_news:
-            news = carrier_news(cfg["name"])
+            news = carrier_news(cfg["name"], max_age=news_days)
             time.sleep(1.2)          # be polite to Google News
             LOG.info("%s: %s headlines", code, len(news))
         seen_at = dict(act["seen"].get(code, {}))
@@ -210,10 +288,12 @@ def collect(days: int, with_news: bool) -> dict:
         "baseline_ready": bool(base),
         "carriers": rows,
         "airports": config.airports(),
+        "airport_view": airport_view(conn, days, carriers),
         "firs": firwatch.summary(conn, days=7),
         "schedule_coverage": schedules.coverage(conn),
         "advisories": advisories.current(conn),
         "with_news": with_news,
+        "news_days": news_days,
     }
 
 
@@ -358,9 +438,38 @@ def _e(s) -> str:
     return html.escape(str(s if s is not None else ""))
 
 
+def _gun(n: int) -> str:
+    return "bugün" if n == 0 else "dün" if n == 1 else f"{n} gün önce"
+
+
 def _pill(state: str) -> str:
     return (f'<span class="pill s-{state}"><span class="dot"></span>'
             f'{STATE_LABEL[state]}</span>')
+
+
+AP_STATE = {"acik": ("flying", "Trafik var"),
+            "tarifeli": ("scheduled", "Tarifeli, gözlenemiyor"),
+            "durgun": ("stopped", "Durgun")}
+
+
+def _airport_rows(data: dict) -> str:
+    out = []
+    for a in data["airport_view"]:
+        cls, label = AP_STATE[a["state"]]
+        row_cls = ' class="r-stopped"' if a["state"] == "durgun" else ""
+        out.append(
+            f'<tr{row_cls}>'
+            f'<td><span class="code">{_e(a["iata"])}</span> '
+            f'<span class="name">{_e(a["city"])}</span>'
+            f'<div class="meta">{_e(a["icao"])} {_e(a["country"] or "")}</div></td>'
+            f'<td><span class="pill s-{cls}"><span class="dot"></span>{label}</span></td>'
+            f'<td class="num">{a["legs"] or "—"}</td>'
+            f'<td class="num">{a["carriers_seen"] or "—"}</td>'
+            f'<td class="num">{a["sched_weekly"] or "—"}'
+            + (f'<div class="meta">{a["carriers_sched"]} havayolu</div>'
+               if a["carriers_sched"] else "")
+            + '</td></tr>')
+    return "".join(out)
 
 
 def _rows(data: dict) -> str:
@@ -373,7 +482,8 @@ def _rows(data: dict) -> str:
         heads = "".join(
             f'<div class="head"><span class="tag s-{h["signal"]}">'
             f'{_e(SIGNAL_LABEL[h["signal"]])}</span>'
-            f'<a href="{_e(h["url"])}" target="_blank" rel="noopener">{_e(h["title"])}</a></div>'
+            f'<a href="{_e(h["url"])}" target="_blank" rel="noopener">{_e(h["title"])}</a>'
+            f'<span class="meta"> · {_gun(h["age_days"])}</span></div>'
             for h in c["news"])
         heads = f'<div class="heads">{heads}</div>' if heads else (
             '<div class="heads"><div class="head meta">basında ilgili haber yok</div></div>')
@@ -425,7 +535,8 @@ def render(data: dict) -> str:
         + '</div><div class="who">'
         + (" ".join(_e(c["carrier"]) for c in f["carriers"]) or "—")
         + "</div></div>"
-        for f in sorted(data["firs"], key=lambda x: -x["total_transits"]))
+        for f in sorted(data["firs"], key=lambda x: -x["total_transits"])
+        if f["total_transits"] or f.get("czib_watch"))
 
     adv = "".join(
         f'<div class="head"><span class="tag s-partial">{_e(a["ref"])}</span>'
@@ -444,6 +555,7 @@ def render(data: dict) -> str:
   havayolunun hâlâ uçtuğu — hem <b>uydudan gözlemlenen uçuş verisiyle</b> hem de
   <b>basında çıkan duyurularla</b>. Veriler <b>{_e(data['as_of_day'])}</b>
   gününe ait; gözlem penceresi {_e(d1)} → {_e(d2)} ({data['days']} gün).
+  Basın taraması son {data["news_days"]} günle sınırlı.
   Rapor {_e(gen)} tarihinde üretildi.</p>
 </header>
 
@@ -524,6 +636,18 @@ def render(data: dict) -> str:
     ve İran üzerinde ADS-B kapsaması çok zayıf; bir havayolu oralarda pekâlâ
     uçuyor olup burada hiç sefer göstermeyebilir. Bu yüzden görülmeyen her
     havayolu otomatik olarak “Bilinmiyor” sayılır, “Durdurdu” değil.</p></div>
+</section>
+
+<section>
+  <h2>Havalimanları</h2>
+  <p class="sub prose">Sorunun diğer yarısı: <i>bu havalimanına hâlâ uçuluyor
+  mu?</i> Önce sorunlular. <b>Tarifeli</b> olanlar ADS-B kapsamımızın dışında —
+  uçuş verisi göremiyoruz ama havayolları tarifelerinde sefer tutuyor.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Havalimanı</th><th>Durum</th><th class="num">Gözlenen sefer</th>
+      <th class="num">Havayolu</th><th class="num">Tarifede/hafta</th></tr></thead>
+    <tbody>{_airport_rows(data)}</tbody>
+  </table></div>
 </section>
 
 <section>

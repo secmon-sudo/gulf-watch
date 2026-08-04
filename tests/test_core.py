@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from datetime import date, datetime, timedelta, timezone
+from email.utils import format_datetime
 from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -518,6 +519,39 @@ class TestBackfillResume(unittest.TestCase):
                                "--airports", "OTHH"])
         freeze.assert_not_called()
         self.assertEqual(rc, 1)
+
+
+class TestNewsRecency(unittest.TestCase):
+    """A five-month-old suspension notice must not set today's verdict.
+
+    Measured against live Google News: an unbounded carrier query returned
+    headlines 134 to 157 days old at the top of the results, and those were
+    deciding whether a carrier read Stopped today.
+    """
+
+    def _item(self, age_days, title="Saudia suspends flights"):
+        when = datetime.now(timezone.utc) - timedelta(days=age_days)
+        return {"title": title, "url": "http://x", "stance": "supports",
+                "published": format_datetime(when)}
+
+    def test_stale_headlines_are_dropped(self):
+        from src import report
+        with mock.patch("src.report._news", return_value=[
+                self._item(150), self._item(200)]):
+            self.assertEqual(report.carrier_news("Saudia"), [])
+
+    def test_recent_headlines_are_kept_newest_first(self):
+        from src import report
+        with mock.patch("src.report._news", return_value=[
+                self._item(20), self._item(2), self._item(150)]):
+            got = report.carrier_news("Saudia")
+        self.assertEqual([g["age_days"] for g in got], [2, 20])
+
+    def test_query_bounds_recency_at_the_source(self):
+        from src import report
+        with mock.patch("src.report._news", return_value=[]) as news:
+            report.carrier_news("Saudia", max_age=30)
+        self.assertIn("when:30d", news.call_args[0][0])
 
 
 if __name__ == "__main__":
