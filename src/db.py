@@ -118,6 +118,33 @@ CREATE TABLE IF NOT EXISTS evidence (
     PRIMARY KEY (suspension_id, url)
 );
 
+-- Published schedules from AirLabs, cached because the free tier allows 1000
+-- requests a month and a timetable changes far more slowly than that.
+--
+-- This is the answer to the airports OpenSky cannot see. ADS-B says what flew
+-- and is blind over Kuwait, Saudi Arabia, Iraq and Iran; a schedule says what
+-- the carrier still intends to fly, everywhere, regardless of receivers.
+CREATE TABLE IF NOT EXISTS route_schedule (
+    dep_iata   TEXT NOT NULL,
+    arr_iata   TEXT NOT NULL,
+    carrier    TEXT NOT NULL,          -- ICAO operator designator
+    weekly     INTEGER,                -- scheduled departures per week
+    flights    INTEGER,                -- distinct flight designators
+    codeshare  INTEGER DEFAULT 0,
+    fetched_at TEXT,
+    PRIMARY KEY (dep_iata, arr_iata, carrier)
+);
+
+-- Pairs we have asked about, so an empty answer ("nobody flies this") is
+-- distinguishable from one we never asked.
+CREATE TABLE IF NOT EXISTS schedule_probe (
+    dep_iata   TEXT NOT NULL,
+    arr_iata   TEXT NOT NULL,
+    routes     INTEGER,
+    fetched_at TEXT,
+    PRIMARY KEY (dep_iata, arr_iata)
+);
+
 -- Which backfill slices have actually landed. OpenSky's daily allowance is far
 -- smaller than a full baseline harvest, so the harvest must survive being cut
 -- off and resumed tomorrow -- and freeze() must be able to tell whether it is

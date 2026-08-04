@@ -29,7 +29,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import advisories, config, db, firwatch, metrics
+from . import advisories, config, db, firwatch, metrics, schedules
 from .corroborate import _news
 
 logging.basicConfig(level=logging.INFO,
@@ -141,22 +141,40 @@ def carrier_news(name: str, limit: int = 4) -> list[dict]:
     return out
 
 
-def verdict(seen_at: dict, news: list[dict]) -> tuple[str, str]:
-    """(durum, gerekçe). Gözlem duyuruyu yener: ADS-B haberin önündedir."""
+def verdict(seen_at: dict, sched: dict | None, news: list[dict]) -> tuple[str, str]:
+    """(durum, gerekçe) — üç kaynaktan.
+
+    Sıralama: gözlem > tarife > haber. Uçtuğu görülen bir havayolu, basın ne
+    derse desin uçuyordur; görülmeyen ama tarifesi duran bir havayolu için
+    'durdurdu' demek, kapsama boşluğunu kesintiye dönüştürmek olur.
+    """
+    kesinti = any(x["signal"] == "stopped" for x in news)
+    haftalik = (sched or {}).get("weekly") or 0
+    nerede = ", ".join(sorted((sched or {}).get("airports", {})))
+
     if seen_at:
         n = sum(seen_at.values())
-        if any(x["signal"] == "stopped" for x in news):
+        if kesinti:
             return "partial", (f"{n} sefer havada görüldü, ancak basın bazı "
                                f"hatlarının kesildiğini bildiriyor")
         return "flying", f"{n} sefer havada görüldü, kesinti bildirimi yok"
-    if any(x["signal"] == "stopped" for x in news):
-        return "stopped", ("hiç görülmedi ve basın uçuşların durdurulduğunu "
-                           "bildiriyor — iki kaynak da aynı yönde")
+
+    if haftalik:
+        if kesinti:
+            return "partial", (f"kapsamamız dışında, ama tarifesinde haftada "
+                               f"{haftalik} sefer duruyor ({nerede}); basın bazı "
+                               f"hatlarının kesildiğini bildiriyor")
+        return "scheduled", (f"ADS-B kapsamamız dışında uçuyor; tarifesinde "
+                             f"haftada {haftalik} sefer duruyor ({nerede})")
+
+    if kesinti:
+        return "stopped", ("ne havada görüldü ne tarifesinde sefer var, üstelik "
+                           "basın durdurduğunu bildiriyor — üç kaynak da aynı yönde")
     if any(x["signal"] == "resumed" for x in news):
-        return "unknown", ("hiç görülmedi, ama basın uçuşların yeniden "
+        return "unknown", ("görülmedi ve tarifesinde sefer yok, ama basın yeniden "
                            "başladığını yazıyor — çelişki")
-    return "unknown", ("kapsama alanımızda görülmedi ve hakkında haber yok — "
-                       "bu 'durdurdu' demek değildir")
+    return "unknown", ("hiçbir kaynakta izine rastlanmadı — bu 'durdurdu' "
+                       "demek değildir")
 
 
 def collect(days: int, with_news: bool) -> dict:
@@ -164,6 +182,7 @@ def collect(days: int, with_news: bool) -> dict:
     ref = metrics.reference_day()
     act = activity(conn, days)
     base = baseline_weekly(conn)
+    sched_by_carrier = schedules.by_carrier(conn)
     carriers = config.tracked_carriers()
 
     rows = []
@@ -174,12 +193,13 @@ def collect(days: int, with_news: bool) -> dict:
             time.sleep(1.2)          # be polite to Google News
             LOG.info("%s: %s headlines", code, len(news))
         seen_at = dict(act["seen"].get(code, {}))
-        state, why = verdict(seen_at, news)
+        sched = sched_by_carrier.get(code)
+        state, why = verdict(seen_at, sched, news)
         rows.append({"code": code, "name": cfg["name"],
                      "iata": cfg.get("iata"), "country": cfg.get("country"),
                      "seen_at": seen_at, "legs": sum(seen_at.values()),
                      "baseline": base.get(code), "news": news,
-                     "state": state, "why": why})
+                     "sched": sched, "state": state, "why": why})
 
     return {
         "generated_at": datetime.now(tz=timezone.utc),
@@ -191,6 +211,7 @@ def collect(days: int, with_news: bool) -> dict:
         "carriers": rows,
         "airports": config.airports(),
         "firs": firwatch.summary(conn, days=7),
+        "schedule_coverage": schedules.coverage(conn),
         "advisories": advisories.current(conn),
         "with_news": with_news,
     }
@@ -199,7 +220,8 @@ def collect(days: int, with_news: bool) -> dict:
 # --- Render ----------------------------------------------------------------
 
 STATE_LABEL = {"flying": "Uçuyor", "partial": "Kısmen kesti",
-               "stopped": "Durdurdu", "unknown": "Bilinmiyor"}
+               "scheduled": "Tarifede var", "stopped": "Durdurdu",
+               "unknown": "Bilinmiyor"}
 
 SIGNAL_LABEL = {"stopped": "kesinti", "resumed": "yeniden başladı",
                 "mentioned": "ilgili"}
@@ -210,6 +232,7 @@ CSS = """
   --bg:#F4F6F8; --panel:#FFFFFF; --rule:#DDE3E9;
   --accent:#2D6A9F; --accent-soft:#E7EFF6;
   --flying:#2F7D6B; --partial:#B0761C; --stopped:#B0433A; --unknown:#7A8794;
+  --scheduled:#2D6A9F;
   --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
@@ -217,16 +240,19 @@ CSS = """
   :root{ --ink:#E4EAF0; --ink-2:#A9B5C2; --ink-3:#76838F;
     --bg:#0F141A; --panel:#161D25; --rule:#25303B;
     --accent:#6FA8D6; --accent-soft:#1B2733;
-    --flying:#5FB89F; --partial:#D9A445; --stopped:#DE7268; --unknown:#76838F; }
+    --flying:#5FB89F; --partial:#D9A445; --stopped:#DE7268; --unknown:#76838F;
+    --scheduled:#6FA8D6; }
 }
 :root[data-theme="dark"]{ --ink:#E4EAF0; --ink-2:#A9B5C2; --ink-3:#76838F;
   --bg:#0F141A; --panel:#161D25; --rule:#25303B;
   --accent:#6FA8D6; --accent-soft:#1B2733;
-  --flying:#5FB89F; --partial:#D9A445; --stopped:#DE7268; --unknown:#76838F; }
+  --flying:#5FB89F; --partial:#D9A445; --stopped:#DE7268; --unknown:#76838F;
+    --scheduled:#6FA8D6; }
 :root[data-theme="light"]{ --ink:#10161D; --ink-2:#3C4854; --ink-3:#6B7887;
   --bg:#F4F6F8; --panel:#FFFFFF; --rule:#DDE3E9;
   --accent:#2D6A9F; --accent-soft:#E7EFF6;
-  --flying:#2F7D6B; --partial:#B0761C; --stopped:#B0433A; --unknown:#7A8794; }
+  --flying:#2F7D6B; --partial:#B0761C; --stopped:#B0433A; --unknown:#7A8794;
+  --scheduled:#2D6A9F; }
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
@@ -291,6 +317,7 @@ tr:last-child td{border-bottom:none}
 .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
 .s-flying{color:var(--flying)} .s-partial{color:var(--partial)}
 .s-stopped{color:var(--stopped)} .s-unknown{color:var(--unknown)}
+.s-scheduled{color:var(--scheduled)}
 tr.r-stopped td{background:color-mix(in srgb,var(--stopped) 6%,transparent)}
 tr.r-partial td{background:color-mix(in srgb,var(--partial) 6%,transparent)}
 
@@ -339,7 +366,7 @@ def _pill(state: str) -> str:
 def _rows(data: dict) -> str:
     ap = data["airports"]
     out = []
-    order = {"stopped": 0, "partial": 1, "unknown": 2, "flying": 3}
+    order = {"stopped": 0, "partial": 1, "unknown": 2, "scheduled": 3, "flying": 4}
     for c in sorted(data["carriers"], key=lambda r: (order[r["state"]], -r["legs"])):
         at = " ".join(f'{ap[i]["iata"]}·{n}' for i, n in
                       sorted(c["seen_at"].items(), key=lambda kv: -kv[1])) or "—"
@@ -350,6 +377,13 @@ def _rows(data: dict) -> str:
             for h in c["news"])
         heads = f'<div class="heads">{heads}</div>' if heads else (
             '<div class="heads"><div class="head meta">basında ilgili haber yok</div></div>')
+        sc = c.get("sched") or {}
+        sched_cell = "—"
+        if sc.get("weekly"):
+            detay = " ".join(f"{k}·{v}" for k, v in
+                             sorted(sc["airports"].items(), key=lambda kv: -kv[1]))
+            sched_cell = (f'<b>{sc["weekly"]}</b>/hafta'
+                          + (f'<div class="at">{_e(detay)}</div>' if detay else ""))
         cls = f' class="r-{c["state"]}"' if c["state"] in ("stopped", "partial") else ""
         out.append(
             f'<tr{cls}>'
@@ -359,6 +393,7 @@ def _rows(data: dict) -> str:
             f'<td>{_pill(c["state"])}<div class="why">{_e(c["why"])}</div></td>'
             f'<td class="num">{c["legs"] or "—"}</td>'
             f'<td class="at">{_e(at)}</td>'
+            f'<td class="num">{sched_cell}</td>'
             f'</tr>')
     return "".join(out)
 
@@ -423,6 +458,8 @@ def render(data: dict) -> str:
       <span class="v s-partial">{n('partial')}</span><span class="n">uçuyor ama hat kesmiş</span></div>
     <div class="stat"><span class="k">Durdurdu</span>
       <span class="v s-stopped">{n('stopped')}</span><span class="n">görülmedi + basın doğruluyor</span></div>
+    <div class="stat"><span class="k">Tarifede var</span>
+      <span class="v s-scheduled">{n('scheduled')}</span><span class="n">kapsama dışı, tarifesi duruyor</span></div>
     <div class="stat"><span class="k">Bilinmiyor</span>
       <span class="v s-unknown">{n('unknown')}</span><span class="n">iki kaynak da sessiz</span></div>
     <div class="stat"><span class="k">Kapsama</span>
@@ -443,6 +480,12 @@ def render(data: dict) -> str:
       alıcılardan toplanıyor. <b>Ne uçtuğunu</b> gösterir — ama yalnızca alıcı
       bulunan yerlerde. BAE, Katar, Bahreyn ve Ürdün'de kapsama güçlü;
       <b>Suudi Arabistan, Kuveyt, Irak ve İran'da neredeyse hiç yok.</b></div></div>
+    <div class="card"><div class="hd"><span class="fir">Tarife</span></div>
+      <div class="place">Havayollarının yayımladığı uçuş tarifeleri (AirLabs).
+      <b>Ne uçurmayı planladığını</b> gösterir — alıcıdan bağımsız, yani
+      <b>ADS-B'nin kör olduğu Kuveyt, Suudi Arabistan, Irak ve İran'da da.</b>
+      Tarifede sefer durması uçuşun gerçekleştiği anlamına gelmez; günlük
+      iptaller tarifeye yansımaz.</div></div>
     <div class="card"><div class="hd"><span class="fir">Basın</span></div>
       <div class="place">Google News üzerinden havayolunun adının geçtiği
       başlıklar. <b>Ne duyurulduğunu</b> gösterir — her yerde, ama yalnızca
@@ -461,14 +504,19 @@ def render(data: dict) -> str:
         <td>Hâlâ uçuyor, ama bazı hatlarını kestiği bildiriliyor. Çatışma
         döneminde en yaygın durum bu.</td>
         <td class="why">ADS-B'de sefer var + basında kesinti haberi var</td></tr>
+      <tr><td>{_pill('scheduled')}</td>
+        <td>ADS-B'de görülmedi ama tarifesinde sefer duruyor. Genellikle
+        kapsama dışındaki bir havalimanına (Riyad, Cidde, Kuveyt, Bağdat…)
+        uçuyor demektir.</td>
+        <td class="why">ADS-B'de sefer yok + tarifede sefer var</td></tr>
       <tr class="r-stopped"><td>{_pill('stopped')}</td>
-        <td>Hiç görülmedi <b>ve</b> basın durdurduğunu yazıyor. Yalnızca iki
-        kaynak aynı yönü gösterdiğinde bu etiket verilir.</td>
-        <td class="why">ADS-B'de sefer yok + basında kesinti haberi var</td></tr>
+        <td>Ne görüldü, ne tarifesinde sefer var, üstelik basın durdurduğunu
+        yazıyor. Üç kaynağın da aynı yönü gösterdiği tek durum.</td>
+        <td class="why">üç kaynak da aynı yönde</td></tr>
       <tr><td>{_pill('unknown')}</td>
-        <td>Ne görüldü ne de hakkında yazıldı. <b>Bu “durdurdu” demek
-        değildir</b> — büyük ihtimalle kapsama alanımızın dışında uçuyor.</td>
-        <td class="why">iki kaynak da sessiz</td></tr>
+        <td>Üç kaynağın hiçbirinde izine rastlanmadı. <b>Bu “durdurdu” demek
+        değildir</b> — izlediğimiz havalimanlarına hiç uçmuyor da olabilir.</td>
+        <td class="why">üç kaynak da sessiz</td></tr>
     </tbody>
   </table></div>
   <div class="notice"><span class="t">En önemli uyarı</span>
@@ -486,7 +534,8 @@ def render(data: dict) -> str:
   <b>Nerede</b> sütunu bunun havalimanlarına dağılımı.</p>
   <div class="scroll"><table>
     <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
-      <th class="num">Sefer</th><th>Nerede görüldü</th></tr></thead>
+      <th class="num">Sefer</th><th>Nerede görüldü</th>
+      <th class="num">Tarifede</th></tr></thead>
     <tbody>{_rows(data)}</tbody>
   </table></div>
 </section>
@@ -516,6 +565,9 @@ def render(data: dict) -> str:
       alıcı ağı: BAE, Katar, Bahreyn ve Ürdün'de güçlü; Suudi Arabistan,
       Kuveyt, Irak ve İran'da zayıf ya da yok.</dd>
     <dt>Canlı ADS-B</dt><dd>adsb.lol ve airplanes.live, ODbL 1.0 lisansı.</dd>
+    <dt>Tarife</dt><dd>AirLabs — ücretsiz katman, aylık 1.000 sorgu. Yanıt 50
+      kayıtta kırpıldığı için şehir çifti bazında sorgulanır ve önbelleğe
+      alınır. Yalnızca ADS-B'nin kör olduğu havalimanları için harcanır.</dd>
     <dt>Basın</dt><dd>Google News RSS. Başlıkta havayolunun adı geçen haberler
       süzülür; anahtar kelimeyle sınıflandırılır. Karar vermez, okumanız için
       bağlantıyı önünüze koyar.</dd>
