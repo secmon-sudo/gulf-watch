@@ -30,7 +30,7 @@ from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-from . import advisories, classify, config, db, firwatch, metrics, schedules
+from . import advisories, classify, config, db, firwatch, metrics, schedules, websearch
 from .corroborate import _news
 
 logging.basicConfig(level=logging.INFO,
@@ -57,6 +57,10 @@ AMBIGUOUS_SHORT = {
 # How old a headline may be and still describe the situation now. Unbounded,
 # Google happily answers with February suspension notices in August.
 NEWS_MAX_AGE_DAYS = 30
+
+# Web searches per run. Only carriers with no ADS-B, no schedule and no
+# headline reach this, and there are rarely more than a handful.
+MAX_WEB_SEARCHES = 6
 
 # Words that mean the article is about the region rather than this carrier.
 GENERIC = re.compile(r"\b(which airlines|airlines (?:have|suspend|resume|cancel)|"
@@ -301,6 +305,17 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
                      "baseline": base.get(code), "news": news,
                      "sched": sched, "state": state, "why": why})
 
+    # Last resort, and only for the rows that would otherwise say nothing at
+    # all. A search costs far more than a headline lookup and is weaker
+    # evidence, so it is spent where the report is genuinely blank.
+    silent = [r for r in rows if r["state"] == "unknown"]
+    if use_llm and silent:
+        agent_id = websearch.agent()
+        for r in silent[:MAX_WEB_SEARCHES]:
+            got = websearch.resolve(conn, r["code"], r["name"], agent_id)
+            if got:
+                r["note"] = got
+
     return {
         "generated_at": datetime.now(tz=timezone.utc),
         "as_of_day": ref.isoformat(),
@@ -510,6 +525,13 @@ def _rows(data: dict) -> str:
             f'<a href="{_e(h["url"])}" target="_blank" rel="noopener">{_e(h["title"])}</a>'
             f'<span class="meta"> · {_gun(h["age_days"])}</span></div>'
             for h in c["news"])
+        note = c.get("note")
+        if note:
+            kaynaklar = " ".join(
+                f'<a href="{_e(u)}" target="_blank" rel="noopener">[{i + 1}]</a>'
+                for i, u in enumerate(note["sources"][:4]))
+            heads += (f'<div class="head"><span class="tag s-mentioned">web</span>'
+                      f'{_e(note["note"])} {kaynaklar}</div>')
         heads = f'<div class="heads">{heads}</div>' if heads else (
             '<div class="heads"><div class="head meta">basında ilgili haber yok</div></div>')
         sc = c.get("sched") or {}

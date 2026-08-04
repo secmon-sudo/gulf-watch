@@ -161,6 +161,18 @@ CREATE TABLE IF NOT EXISTS headline_class (
     PRIMARY KEY (url, carrier)
 );
 
+-- Web-search notes, for carriers the other three sources say nothing about.
+-- Keyed by day: unlike a headline, a search has no stable identity, so the
+-- honest cache key is "what the web said about this carrier today".
+CREATE TABLE IF NOT EXISTS carrier_note (
+    carrier   TEXT NOT NULL,
+    day       TEXT NOT NULL,
+    note      TEXT,
+    sources   TEXT,              -- newline-separated URLs
+    model     TEXT,
+    PRIMARY KEY (carrier, day)
+);
+
 -- Which backfill slices have actually landed. OpenSky's daily allowance is far
 -- smaller than a full baseline harvest, so the harvest must survive being cut
 -- off and resumed tomorrow -- and freeze() must be able to tell whether it is
