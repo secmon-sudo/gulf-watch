@@ -3,6 +3,7 @@
 Run: python -m pytest tests -q   (or: python tests/test_core.py)
 """
 import os
+import pathlib
 import sys
 import tempfile
 import unittest
@@ -552,6 +553,71 @@ class TestNewsRecency(unittest.TestCase):
         with mock.patch("src.report._news", return_value=[]) as news:
             report.carrier_news("Saudia", max_age=30)
         self.assertIn("when:30d", news.call_args[0][0])
+
+
+class TestHeadlineClassification(unittest.TestCase):
+    """The model reads headlines. It must never be able to invent geography,
+    and it must never make the report irreproducible."""
+
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _reply(self, payload):
+        r = mock.Mock()
+        r.status_code = 200
+        r.raise_for_status = mock.Mock()
+        r.json.return_value = {"choices": [{"message": {
+            "content": __import__("json").dumps(payload)}}]}
+        return r
+
+    def test_invented_airport_codes_are_dropped(self):
+        from src import classify
+        # Asked for free-form codes the model answered "KUW" for Kuwait, which
+        # is not a real IATA code. Anything outside the configured set goes.
+        with mock.patch.dict(os.environ, {"MISTRAL_API_KEY": "k"}), \
+                mock.patch("src.classify.requests.post", return_value=self._reply(
+                    {"action": "stopped", "airports": ["BAH", "KUW", "XXX"],
+                     "why": "cancellations"})):
+            got = classify.classify(self.conn, "UAE", "Emirates",
+                                    {"url": "u1", "title": "t"})
+        self.assertEqual(got["airports"], ["BAH"])
+
+    def test_unknown_action_falls_back_to_regex(self):
+        from src import classify
+        with mock.patch.dict(os.environ, {"MISTRAL_API_KEY": "k"}), \
+                mock.patch("src.classify.requests.post", return_value=self._reply(
+                    {"action": "banana", "airports": []})):
+            self.assertIsNone(classify.classify(
+                self.conn, "UAE", "Emirates", {"url": "u2", "title": "t"}))
+
+    def test_second_run_is_cached_not_re_asked(self):
+        """An uncached call makes the same report give different answers on
+        the same data, which is the one property this project cannot trade."""
+        from src import classify
+        with mock.patch.dict(os.environ, {"MISTRAL_API_KEY": "k"}), \
+                mock.patch("src.classify.requests.post", return_value=self._reply(
+                    {"action": "resumed", "airports": [], "why": "back"})) as post:
+            first = classify.classify(self.conn, "RJA", "Royal Jordanian",
+                                      {"url": "u3", "title": "t"})
+            second = classify.classify(self.conn, "RJA", "Royal Jordanian",
+                                       {"url": "u3", "title": "t"})
+        self.assertEqual(post.call_count, 1)
+        self.assertEqual(first["action"], second["action"])
+        self.assertTrue(second["cached"])
+
+    def test_no_key_means_no_opinion(self):
+        from src import classify
+        with mock.patch.dict(os.environ, {}, clear=True), \
+                mock.patch("src.classify.config.ROOT", pathlib.Path("/nonexistent")), \
+                mock.patch("src.classify.requests.post") as post:
+            self.assertIsNone(classify.classify(
+                self.conn, "UAE", "Emirates", {"url": "u4", "title": "t"}))
+            post.assert_not_called()
 
 
 if __name__ == "__main__":

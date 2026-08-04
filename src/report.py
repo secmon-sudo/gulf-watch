@@ -30,7 +30,7 @@ from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-from . import advisories, config, db, firwatch, metrics, schedules
+from . import advisories, classify, config, db, firwatch, metrics, schedules
 from .corroborate import _news
 
 logging.basicConfig(level=logging.INFO,
@@ -227,14 +227,17 @@ def verdict(seen_at: dict, sched: dict | None, news: list[dict]) -> tuple[str, s
     'durdurdu' demek, kapsama boşluğunu kesintiye dönüştürmek olur.
     """
     kesinti = any(x["signal"] == "stopped" for x in news)
+    vurulan = sorted({a for x in news if x["signal"] == "stopped"
+                      for a in (x.get("airports") or [])})
+    nere = f" ({', '.join(vurulan)})" if vurulan else ""
     haftalik = (sched or {}).get("weekly") or 0
     nerede = ", ".join(sorted((sched or {}).get("airports", {})))
 
     if seen_at:
         n = sum(seen_at.values())
         if kesinti:
-            return "partial", (f"{n} sefer havada görüldü, ancak basın bazı "
-                               f"hatlarının kesildiğini bildiriyor")
+            return "partial", (f"{n} sefer havada görüldü, ancak basın "
+                               f"hat kesintisi bildiriyor{nere}")
         return "flying", f"{n} sefer havada görüldü, kesinti bildirimi yok"
 
     if haftalik:
@@ -255,8 +258,25 @@ def verdict(seen_at: dict, sched: dict | None, news: list[dict]) -> tuple[str, s
                        "demek değildir")
 
 
-def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS) -> dict:
+def enrich(conn, code: str, name: str, news: list[dict]) -> None:
+    """Let the model re-read each headline. Regex stays as the fallback."""
+    for h in news:
+        got = classify.classify(conn, code, name, h)
+        if not got:
+            h["source"] = "regex"
+            continue
+        h["source"] = "llm"
+        h["airports"] = got["airports"]
+        h["why_llm"] = got["why"]
+        h["signal"] = {"stopped": "stopped", "resumed": "resumed",
+                       "unaffected": "unaffected",
+                       "unclear": "mentioned"}[got["action"]]
+
+
+def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
+            use_llm: bool = True) -> dict:
     conn = db.connect()
+    use_llm = use_llm and classify.available()
     ref = metrics.reference_day()
     act = activity(conn, days)
     base = baseline_weekly(conn)
@@ -268,6 +288,8 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS) -> d
         news = []
         if with_news:
             news = carrier_news(cfg["name"], max_age=news_days)
+            if use_llm:
+                enrich(conn, code, cfg["name"], news)
             time.sleep(1.2)          # be polite to Google News
             LOG.info("%s: %s headlines", code, len(news))
         seen_at = dict(act["seen"].get(code, {}))
@@ -294,6 +316,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS) -> d
         "advisories": advisories.current(conn),
         "with_news": with_news,
         "news_days": news_days,
+        "use_llm": use_llm,
     }
 
 
@@ -304,7 +327,7 @@ STATE_LABEL = {"flying": "Uçuyor", "partial": "Kısmen kesti",
                "unknown": "Bilinmiyor"}
 
 SIGNAL_LABEL = {"stopped": "kesinti", "resumed": "yeniden başladı",
-                "mentioned": "ilgili"}
+                "unaffected": "etkilenmedi", "mentioned": "ilgili"}
 
 CSS = """
 :root{
@@ -398,6 +421,8 @@ tr:last-child td{border-bottom:none}
 .s-flying{color:var(--flying)} .s-partial{color:var(--partial)}
 .s-stopped{color:var(--stopped)} .s-unknown{color:var(--unknown)}
 .s-scheduled{color:var(--scheduled)}
+.s-unaffected{color:var(--flying)}
+.s-mentioned{color:var(--unknown)}
 tr.r-stopped td{background:color-mix(in srgb,var(--stopped) 6%,transparent)}
 tr.r-partial td{background:color-mix(in srgb,var(--partial) 6%,transparent)}
 
@@ -714,10 +739,12 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=7)
     ap.add_argument("--no-news", action="store_true")
+    ap.add_argument("--no-llm", action="store_true")
     ap.add_argument("--out", default=None)
     args = ap.parse_args(argv)
 
-    data = collect(args.days, with_news=not args.no_news)
+    data = collect(args.days, with_news=not args.no_news,
+                   use_llm=not args.no_llm)
     path = Path(args.out or (config.PUBLIC_DIR / "report.html"))
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(render(data), encoding="utf-8")

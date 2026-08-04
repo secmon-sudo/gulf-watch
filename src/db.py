@@ -145,6 +145,22 @@ CREATE TABLE IF NOT EXISTS schedule_probe (
     PRIMARY KEY (dep_iata, arr_iata)
 );
 
+-- LLM headline classifications, cached by (url, carrier).
+--
+-- Cached for two reasons. Quota is the lesser one: the same report re-run must
+-- give the same answer, and an uncached model call makes the report
+-- irreproducible -- which is the one property this project cannot trade away.
+CREATE TABLE IF NOT EXISTS headline_class (
+    url           TEXT NOT NULL,
+    carrier       TEXT NOT NULL,
+    action        TEXT,              -- stopped | resumed | unaffected | unclear
+    airports      TEXT,              -- comma-separated IATA, validated
+    why           TEXT,
+    model         TEXT,
+    classified_at TEXT,
+    PRIMARY KEY (url, carrier)
+);
+
 -- Which backfill slices have actually landed. OpenSky's daily allowance is far
 -- smaller than a full baseline harvest, so the harvest must survive being cut
 -- off and resumed tomorrow -- and freeze() must be able to tell whether it is
