@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-04T10:40:40+00:00",
-  "as_of_day": "2026-08-04",
+  "generated_at": "2026-08-04T10:52:30+00:00",
+  "as_of_day": "2026-08-03",
   "coverage": {
-    "day": "2026-08-04",
-    "control_flights": 0,
-    "median_28d": 0.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "day": "2026-08-03",
+    "control_flights": 634,
+    "median_28d": 272.0,
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -43,35 +43,18 @@
       "czib_watch": true,
       "carriers": [
         {
-          "carrier": "QTR",
-          "transits": 1
-        },
-        {
-          "carrier": "MEA",
-          "transits": 1
-        },
-        {
           "carrier": "KNE",
           "transits": 1
         }
       ],
-      "total_transits": 3
+      "total_transits": 1
     },
     {
       "fir": "LLLL",
       "name": "Tel Aviv FIR",
       "czib_watch": true,
-      "carriers": [
-        {
-          "carrier": "QTR",
-          "transits": 2
-        },
-        {
-          "carrier": "UAE",
-          "transits": 1
-        }
-      ],
-      "total_transits": 3
+      "carriers": [],
+      "total_transits": 0
     },
     {
       "fir": "OKAC",
@@ -86,27 +69,27 @@
       "czib_watch": false,
       "carriers": [
         {
-          "carrier": "FDB",
-          "transits": 3
+          "carrier": "ABY",
+          "transits": 4
         },
         {
           "carrier": "QTR",
-          "transits": 2
+          "transits": 1
         },
         {
           "carrier": "GFA",
-          "transits": 2
+          "transits": 1
+        },
+        {
+          "carrier": "FDB",
+          "transits": 1
         },
         {
           "carrier": "ETD",
-          "transits": 2
-        },
-        {
-          "carrier": "ABY",
-          "transits": 2
+          "transits": 1
         }
       ],
-      "total_transits": 11
+      "total_transits": 8
     },
     {
       "fir": "OTDF",
@@ -122,15 +105,19 @@
       "carriers": [
         {
           "carrier": "UAE",
-          "transits": 8
+          "transits": 9
         },
         {
           "carrier": "ETD",
-          "transits": 8
+          "transits": 7
         },
         {
           "carrier": "FDB",
           "transits": 3
+        },
+        {
+          "carrier": "QTR",
+          "transits": 2
         },
         {
           "carrier": "ABY",
@@ -141,15 +128,11 @@
           "transits": 1
         },
         {
-          "carrier": "QTR",
-          "transits": 1
-        },
-        {
           "carrier": "MSR",
           "transits": 1
         }
       ],
-      "total_transits": 24
+      "total_transits": 25
     },
     {
       "fir": "OOMM",
@@ -158,22 +141,14 @@
       "carriers": [
         {
           "carrier": "UAE",
-          "transits": 9
+          "transits": 10
         },
         {
           "carrier": "ETD",
-          "transits": 8
+          "transits": 7
         },
         {
           "carrier": "OMA",
-          "transits": 4
-        },
-        {
-          "carrier": "FDB",
-          "transits": 3
-        },
-        {
-          "carrier": "ABY",
           "transits": 2
         },
         {
@@ -181,18 +156,31 @@
           "transits": 1
         },
         {
+          "carrier": "QTR",
+          "transits": 1
+        },
+        {
           "carrier": "MSR",
+          "transits": 1
+        },
+        {
+          "carrier": "ABY",
           "transits": 1
         }
       ],
-      "total_transits": 28
+      "total_transits": 23
     },
     {
       "fir": "OEJD",
       "name": "Jeddah FIR",
       "czib_watch": false,
-      "carriers": [],
-      "total_transits": 0
+      "carriers": [
+        {
+          "carrier": "KNE",
+          "transits": 2
+        }
+      ],
+      "total_transits": 2
     },
     {
       "fir": "OJAC",
@@ -200,7 +188,19 @@
       "czib_watch": false,
       "carriers": [
         {
+          "carrier": "SVA",
+          "transits": 1
+        },
+        {
+          "carrier": "RJA",
+          "transits": 1
+        },
+        {
           "carrier": "QTR",
+          "transits": 1
+        },
+        {
+          "carrier": "PGT",
           "transits": 1
         },
         {
@@ -208,7 +208,7 @@
           "transits": 1
         }
       ],
-      "total_transits": 2
+      "total_transits": 5
     }
   ]
 }

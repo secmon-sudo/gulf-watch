@@ -137,7 +137,7 @@ def first_flight_after(counts: dict[str, int], start: str) -> str | None:
 # --- The state machine -----------------------------------------------------
 
 def detect(conn, day: date | None = None) -> dict:
-    day = day or metrics.today_utc()
+    day = day or metrics.reference_day()
     cov = _coverage_map(conn)
     if cov.get(day.isoformat(), "ok") != "ok":
         LOG.warning("coverage not ok for %s; suspension state left untouched", day)

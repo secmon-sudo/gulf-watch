@@ -41,6 +41,18 @@ BASELINE_END = os.environ.get("GULFWATCH_BASELINE_END", "2026-01-31")
 # arriving OpenSky data is picked up instead of lost.
 INGEST_LOOKBACK_HOURS = 48
 
+# How far back the last *settled* UTC day is. Everything analytical -- coverage
+# scoring, route status, stop/resume detection -- is anchored here rather than
+# on "now".
+#
+# The current day is always structurally incomplete: at 10:00 UTC only 40% of
+# it has happened, and OpenSky publishes with a further lag on top of that.
+# Scoring it against a median of complete days makes coverage read `outage` on
+# essentially every run, which suppresses every alert and freezes the stop
+# detector -- a monitor that has collected the data and refuses to say
+# anything. Raise this if your OpenSky data settles more slowly.
+SETTLE_LAG_DAYS = 1
+
 # ADS-B position quality floor for FIR overflight counting. The Gulf has heavy
 # GNSS jamming/spoofing; low-integrity positions must not be counted.
 MIN_NIC = 7

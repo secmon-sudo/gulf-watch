@@ -6,7 +6,7 @@ import os
 import sys
 import tempfile
 import unittest
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -320,6 +320,54 @@ class TestSuspensionEvents(unittest.TestCase):
         self.conn.commit()
         self.susp.detect(self.conn, self.today)
         self.assertEqual(self.susp.report(self.conn)["active"], [])
+
+
+class TestOpenSkyWindowing(unittest.TestCase):
+    """OpenSky partitions the airport endpoints by UTC day and allows two.
+
+    The cap is not a duration, so splitting on elapsed time is what fails: a
+    48h window is legal at midnight and a 400 at every other hour. Requests
+    must be cut on UTC midnight instead. Getting this wrong collected nothing
+    at all -- every backfill chunk and every default 48h ingest was rejected.
+    """
+
+    def _chunks(self, begin, end):
+        from src.opensky import DAY, PARTITION_DAYS
+        out, cur = [], begin
+        while cur < end:
+            stop = min(cur - (cur % DAY) + PARTITION_DAYS * DAY, end)
+            out.append((cur, stop))
+            cur = stop
+        return out
+
+    def _utc_days(self, a, b):
+        from src.opensky import DAY
+        edges = list(range(a, b, DAY)) + [b - 1]
+        return {datetime.utcfromtimestamp(t).date() for t in edges}
+
+    def test_no_chunk_spans_more_than_two_utc_days(self):
+        from src.opensky import DAY
+        # Start on an awkward offset (13:47 UTC) so chunks never align by luck,
+        # and cover a full baseline window.
+        base = (1785000000 // DAY) * DAY + 13 * 3600 + 47 * 60
+        for span_days in (1, 2, 3, 7, 92):
+            end = base + span_days * DAY
+            chunks = self._chunks(base, end)
+            self.assertTrue(chunks, f"{span_days}d produced no chunks")
+            for a, b in chunks:
+                self.assertLessEqual(
+                    len(self._utc_days(a, b)), 2,
+                    f"{span_days}d: chunk {a}..{b} spans 3+ UTC partitions")
+
+    def test_chunks_tile_the_range_without_gaps_or_overlap(self):
+        from src.opensky import DAY
+        base = (1785000000 // DAY) * DAY + 13 * 3600 + 47 * 60
+        end = base + 7 * DAY
+        chunks = self._chunks(base, end)
+        self.assertEqual(chunks[0][0], base)
+        self.assertEqual(chunks[-1][1], end)
+        for (_, prev_end), (next_start, _) in zip(chunks, chunks[1:]):
+            self.assertEqual(prev_end, next_start)
 
 
 class TestNotify(unittest.TestCase):

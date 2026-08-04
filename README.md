@@ -180,6 +180,14 @@ enable the airport-closure check.
 week. A daily count is mostly day-of-week noise dressed up as a trend. Every
 figure is departures per rolling 7 days per `(carrier, origin, destination)`.
 
+**The API is one day behind, deliberately.** Every payload carries `as_of_day`,
+and it is yesterday, not today. Today is always structurally incomplete — at
+10:00 UTC only 40% of it has happened, and OpenSky publishes with a further lag
+on top. Scored against a median of complete days, today reads as an outage on
+every single run, which suppresses every alert and freezes the stop detector.
+A monitor that has the data and refuses to speak is worse than one that is a
+day late. Tune with `SETTLE_LAG_DAYS` in `config.py`.
+
 **Coverage integrity gates everything.** ADS-B coverage comes from volunteer
 receivers. A receiver going offline and an airline suspending a route look
 identical in the raw data. A control group of carriers that will certainly keep

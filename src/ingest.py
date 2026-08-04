@@ -68,13 +68,15 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
     fir_result = {} if skip_fir else firwatch.sample(conn, only_czib=False)
     czib_changes = advisories.fetch(conn)
 
-    coverage = metrics.score_coverage(conn, started.date())
+    # Score the last settled day, not the half-finished one we are standing in.
+    ref = metrics.reference_day()
+    coverage = metrics.score_coverage(conn, ref)
 
     # Stop/resume detection runs after coverage is scored for today, because it
     # refuses to touch state on a bad-coverage day.
-    events = suspensions.detect(conn, started.date())
+    events = suspensions.detect(conn, ref)
     corro = corroborate.enrich(conn) if events["opened"] else {"checked": 0}
-    notify.announce(events, started.date().isoformat())
+    notify.announce(events, ref.isoformat())
 
     detail = (f"legs={total} coverage={coverage['verdict']}"
               f"({coverage['score']}) stopped={events['opened']} "

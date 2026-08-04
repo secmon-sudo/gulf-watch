@@ -24,8 +24,17 @@ TOKEN_URL = (
 )
 API = "https://opensky-network.org/api"
 
-# OpenSky rejects windows longer than 7 days on the airport endpoints.
-MAX_WINDOW = 7 * 24 * 3600
+# The airport endpoints are partitioned by UTC day and a single request may
+# touch at most two partitions:
+#
+#   "You can only query across 2 partitions (days). Your query will naturally
+#    spill into the 3rd..."
+#
+# This is not a duration cap. 36 hours is fine if it lands inside two UTC days;
+# 48 hours fails whenever it clips a third, which is almost always. Chunks must
+# therefore be cut on UTC midnight, not on "now minus N hours".
+PARTITION_DAYS = 2
+DAY = 24 * 3600
 
 
 class OpenSky:
@@ -104,6 +113,12 @@ class OpenSky:
             if resp.status_code >= 500:
                 time.sleep(2 ** i)
                 continue
+            if resp.status_code == 400:
+                # A malformed window. Retrying sends the same one, and losing
+                # this airport is better than losing the whole run.
+                LOG.error("opensky rejected %s %s: %s", path, params,
+                          resp.text[:200].strip())
+                return []
             resp.raise_for_status()
         LOG.error("giving up on %s %s", path, params)
         return []
@@ -117,12 +132,15 @@ class OpenSky:
         return self._windowed("/flights/arrival", icao, begin, end)
 
     def _windowed(self, path: str, icao: str, begin: int, end: int) -> list[dict]:
-        """Split any request longer than the 7-day cap into legal chunks."""
+        """Split a request into chunks that each touch at most two UTC days."""
         out: list[dict] = []
         cursor = int(begin)
         end = int(end)
         while cursor < end:
-            stop = min(cursor + MAX_WINDOW, end)
+            # Anchor on the UTC day the chunk starts in, then take two whole
+            # partitions from there. Cutting on elapsed time instead lets a
+            # chunk straddle three days and OpenSky answers 400.
+            stop = min(cursor - (cursor % DAY) + PARTITION_DAYS * DAY, end)
             chunk = self._get(path, {"airport": icao, "begin": cursor, "end": stop})
             if isinstance(chunk, list):
                 out.extend(chunk)

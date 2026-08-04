@@ -6,13 +6,15 @@ normal, which is the entire question.
 
     python -m src.backfill --start 2025-11-01 --end 2026-01-31
 
-This walks the chosen window in 7-day chunks (OpenSky's hard cap on the airport
-endpoints) for every configured airport, then freezes mean weekly departures
-per route into the `baseline` table.
+This walks the chosen window for every configured airport, then freezes mean
+weekly departures per route into the `baseline` table. The 7-day loop below is
+just outer bookkeeping: OpenSky's airport endpoints are partitioned by UTC day
+and refuse any request touching more than two of them, so opensky.py subdivides
+each chunk again into 2-day requests.
 
-Budget: 13 airports x 2 directions x 13 weeks = ~340 requests. Spread over a
-couple of hours with the built-in pacing. Authenticated accounts have ample
-credits for this; anonymous ones do not, so authenticate first.
+Budget: 13 airports x 2 directions x ~46 two-day slices over a 92-day window
+= ~1200 requests, paced at 2s. Expect a couple of hours. Authenticated accounts
+have the credits for this; there is no anonymous option any more.
 
     python -m src.backfill --freeze-only   # recompute from already-ingested legs
 """

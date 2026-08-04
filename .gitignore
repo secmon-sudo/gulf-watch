@@ -4,6 +4,10 @@ __pycache__/
 .venv/
 .claude/settings.local.json
 
+# OpenSky API client secret. Belongs in GitHub Actions secrets, never in git.
+credentials.json
+.env
+
 # data/gulfwatch.db is committed on purpose -- git is the history layer.
 # The WAL sidecars are not.
 data/*.db-wal

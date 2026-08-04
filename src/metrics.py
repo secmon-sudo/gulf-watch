@@ -18,6 +18,14 @@ def today_utc() -> date:
     return datetime.now(tz=timezone.utc).date()
 
 
+def reference_day() -> date:
+    """The most recent UTC day whose data has settled.
+
+    Analysis anchors here, not on today. See config.SETTLE_LAG_DAYS.
+    """
+    return today_utc() - timedelta(days=config.SETTLE_LAG_DAYS)
+
+
 # --- Rollups ---------------------------------------------------------------
 
 def rebuild_daily(conn: sqlite3.Connection, since: str | None = None) -> None:
@@ -169,7 +177,7 @@ def silent_days(conn: sqlite3.Connection, key: tuple, day: date, limit: int = 14
 
 def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     """The main analytical output: every baselined route, scored."""
-    day = day or today_utc()
+    day = day or reference_day()
     coverage = score_coverage(conn, day)
     current = rolling_weekly(conn, day)
     base = load_baseline(conn)
