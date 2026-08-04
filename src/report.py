@@ -142,18 +142,21 @@ def carrier_news(name: str, limit: int = 4) -> list[dict]:
 
 
 def verdict(seen_at: dict, news: list[dict]) -> tuple[str, str]:
-    """(state, why). ADS-B outranks news: observation beats announcement."""
+    """(durum, gerekçe). Gözlem duyuruyu yener: ADS-B haberin önündedir."""
     if seen_at:
         n = sum(seen_at.values())
-        where = ", ".join(sorted(seen_at))
         if any(x["signal"] == "stopped" for x in news):
-            return "partial", f"seen on {n} legs at {where}, but reporting says some routes are cut"
-        return "flying", f"seen on {n} legs at {where}"
+            return "partial", (f"{n} sefer havada görüldü, ancak basın bazı "
+                               f"hatlarının kesildiğini bildiriyor")
+        return "flying", f"{n} sefer havada görüldü, kesinti bildirimi yok"
     if any(x["signal"] == "stopped" for x in news):
-        return "stopped", "not seen, and reporting says flights are suspended"
+        return "stopped", ("hiç görülmedi ve basın uçuşların durdurulduğunu "
+                           "bildiriyor — iki kaynak da aynı yönde")
     if any(x["signal"] == "resumed" for x in news):
-        return "unknown", "not seen, though reporting says flights resumed"
-    return "unknown", "not seen in our coverage, and nothing reported"
+        return "unknown", ("hiç görülmedi, ama basın uçuşların yeniden "
+                           "başladığını yazıyor — çelişki")
+    return "unknown", ("kapsama alanımızda görülmedi ve hakkında haber yok — "
+                       "bu 'durdurdu' demek değildir")
 
 
 def collect(days: int, with_news: bool) -> dict:
@@ -195,8 +198,11 @@ def collect(days: int, with_news: bool) -> dict:
 
 # --- Render ----------------------------------------------------------------
 
-STATE_LABEL = {"flying": "Flying", "partial": "Partly cut",
-               "stopped": "Stopped", "unknown": "Unknown"}
+STATE_LABEL = {"flying": "Uçuyor", "partial": "Kısmen kesti",
+               "stopped": "Durdurdu", "unknown": "Bilinmiyor"}
+
+SIGNAL_LABEL = {"stopped": "kesinti", "resumed": "yeniden başladı",
+                "mentioned": "ilgili"}
 
 CSS = """
 :root{
@@ -338,10 +344,12 @@ def _rows(data: dict) -> str:
         at = " ".join(f'{ap[i]["iata"]}·{n}' for i, n in
                       sorted(c["seen_at"].items(), key=lambda kv: -kv[1])) or "—"
         heads = "".join(
-            f'<div class="head"><span class="tag s-{h["signal"]}">{_e(h["signal"])}</span>'
+            f'<div class="head"><span class="tag s-{h["signal"]}">'
+            f'{_e(SIGNAL_LABEL[h["signal"]])}</span>'
             f'<a href="{_e(h["url"])}" target="_blank" rel="noopener">{_e(h["title"])}</a></div>'
             for h in c["news"])
-        heads = f'<div class="heads">{heads}</div>' if heads else ""
+        heads = f'<div class="heads">{heads}</div>' if heads else (
+            '<div class="heads"><div class="head meta">basında ilgili haber yok</div></div>')
         cls = f' class="r-{c["state"]}"' if c["state"] in ("stopped", "partial") else ""
         out.append(
             f'<tr{cls}>'
@@ -359,23 +367,20 @@ def render(data: dict) -> str:
     cov = data["coverage"]
     cs = data["carriers"]
     n = lambda s: sum(1 for c in cs if c["state"] == s)  # noqa: E731
-    gen = data["generated_at"].strftime("%Y-%m-%d %H:%M UTC")
+    gen = data["generated_at"].strftime("%d.%m.%Y %H:%M UTC")
+    d1, d2 = data["window"]
 
     warn = []
     if not data["baseline_ready"]:
         warn.append(
-            "<b>No baseline yet.</b> Until <code>backfill-baseline</code> "
-            "completes, this report can say whether a carrier was seen flying, "
-            "but not whether it is flying <i>less than it used to</i>. "
-            "Frequency comparisons appear here once the reference period lands.")
+            "<b>Referans dönem henüz yok.</b> <code>backfill-baseline</code> "
+            "tamamlanana kadar bu rapor bir havayolunun <i>uçup uçmadığını</i> "
+            "söyleyebilir, ama <i>eskisinden az uçup uçmadığını</i> söyleyemez. "
+            "Çatışma öncesi dönemin verisi indiğinde frekans karşılaştırması "
+            "(“haftada 12 sefer, normalde 21”) bu tabloya eklenecek.")
     if not data["with_news"]:
-        warn.append("<b>News sweep skipped.</b> Carriers outside ADS-B coverage "
-                    "have no second source in this run.")
-    warn.append(
-        "<b>Absence is not proof.</b> ADS-B coverage is thin to nonexistent over "
-        "Saudi Arabia, Kuwait, Iraq and Iran, so a carrier can be flying there and "
-        "still show no legs here. Rows read <i>Stopped</i> only when reporting "
-        "agrees; otherwise they read <i>Unknown</i>.")
+        warn.append("<b>Haber taraması atlandı.</b> Bu çalıştırmada ADS-B "
+                    "kapsamı dışındaki havayolları için ikinci kaynak yok.")
 
     fircards = "".join(
         f'<div class="card"><div class="hd"><span class="fir">{_e(f["fir"])}</span>'
@@ -389,84 +394,142 @@ def render(data: dict) -> str:
 
     adv = "".join(
         f'<div class="head"><span class="tag s-partial">{_e(a["ref"])}</span>'
-        f'<a href="{_e(a["url"])}" target="_blank" rel="noopener">{_e(a["title"] or a["ref"])}</a>'
-        f' <span class="meta">issued {_e(a["revision"])} · valid to {_e(a["valid_to"])}</span>'
-        f"</div>" for a in data["advisories"]) or '<p class="sub">None recorded.</p>'
+        f'<a href="{_e(a["url"])}" target="_blank" rel="noopener">'
+        f'{_e(a["title"] or a["ref"])}</a>'
+        f' <span class="meta">yayım {_e(a["revision"])} · geçerlilik {_e(a["valid_to"])}</span>'
+        f"</div>" for a in data["advisories"]) or '<p class="sub">Kayıtlı bülten yok.</p>'
 
-    return f"""<title>GulfWatch — operator report {_e(data['as_of_day'])}</title>
+    return f"""<title>GulfWatch — Ortadoğu havayolu operasyon raporu {_e(data['as_of_day'])}</title>
 <style>{CSS}</style>
 <div class="wrap">
 <header>
-  <div class="eyebrow">GulfWatch · manual run</div>
-  <h1>Middle East carrier operations</h1>
-  <p class="sub prose">Whether each tracked carrier is still operating at the
-  monitored Gulf and Levant airports, from ADS-B observation and from reporting.
-  Data as of <b>{_e(data['as_of_day'])}</b>; observation window
-  {_e(data['window'][0])} → {_e(data['window'][1])} ({data['days']} days).
-  Generated {_e(gen)}.</p>
+  <div class="eyebrow">GulfWatch · elle çalıştırılan rapor</div>
+  <h1>Ortadoğu havayolu operasyonları</h1>
+  <p class="sub prose">İzlenen Körfez ve Levant havalimanlarında hangi
+  havayolunun hâlâ uçtuğu — hem <b>uydudan gözlemlenen uçuş verisiyle</b> hem de
+  <b>basında çıkan duyurularla</b>. Veriler <b>{_e(data['as_of_day'])}</b>
+  gününe ait; gözlem penceresi {_e(d1)} → {_e(d2)} ({data['days']} gün).
+  Rapor {_e(gen)} tarihinde üretildi.</p>
 </header>
 
 <section>
+  <h2>Tek bakışta</h2>
   <div class="band">
-    <div class="stat"><span class="k">Carriers</span><span class="v">{len(cs)}</span>
-      <span class="n">tracked</span></div>
-    <div class="stat"><span class="k">Flying</span>
-      <span class="v s-flying">{n('flying')}</span><span class="n">seen on ADS-B</span></div>
-    <div class="stat"><span class="k">Partly cut</span>
-      <span class="v s-partial">{n('partial')}</span><span class="n">seen, routes reported cut</span></div>
-    <div class="stat"><span class="k">Stopped</span>
-      <span class="v s-stopped">{n('stopped')}</span><span class="n">unseen + reported</span></div>
-    <div class="stat"><span class="k">Unknown</span>
-      <span class="v s-unknown">{n('unknown')}</span><span class="n">no signal either way</span></div>
-    <div class="stat"><span class="k">Coverage</span>
-      <span class="v">{cov['score']}</span><span class="n">{_e(cov['verdict'])} · {cov['control_flights']} control legs</span></div>
+    <div class="stat"><span class="k">Havayolu</span><span class="v">{len(cs)}</span>
+      <span class="n">izlenen toplam</span></div>
+    <div class="stat"><span class="k">Uçuyor</span>
+      <span class="v s-flying">{n('flying')}</span><span class="n">havada görüldü, kesinti yok</span></div>
+    <div class="stat"><span class="k">Kısmen kesti</span>
+      <span class="v s-partial">{n('partial')}</span><span class="n">uçuyor ama hat kesmiş</span></div>
+    <div class="stat"><span class="k">Durdurdu</span>
+      <span class="v s-stopped">{n('stopped')}</span><span class="n">görülmedi + basın doğruluyor</span></div>
+    <div class="stat"><span class="k">Bilinmiyor</span>
+      <span class="v s-unknown">{n('unknown')}</span><span class="n">iki kaynak da sessiz</span></div>
+    <div class="stat"><span class="k">Kapsama</span>
+      <span class="v">{cov['score']}</span>
+      <span class="n">{_e(cov['verdict'])} · {cov['control_flights']} kontrol seferi</span></div>
   </div>
-  {"".join(f'<div class="notice"><span class="t">Read this first</span><p>{w}</p></div>' for w in warn)}
+  {"".join(f'<div class="notice"><span class="t">Önce bunu okuyun</span><p>{w}</p></div>' for w in warn)}
 </section>
 
 <section>
-  <h2>Carriers</h2>
+  <h2>Bu rapor nasıl okunur</h2>
+  <p class="sub prose">Soru şu: <i>bu havayolu Ortadoğu uçuşlarını kesti mi?</i>
+  Tek bir kaynak bunu güvenilir cevaplayamıyor, o yüzden iki kaynak
+  birbirine karşı okunuyor.</p>
+  <div class="cards">
+    <div class="card"><div class="hd"><span class="fir">Uçuş verisi</span></div>
+      <div class="place">Uçakların yayınladığı ADS-B sinyalleri, gönüllü
+      alıcılardan toplanıyor. <b>Ne uçtuğunu</b> gösterir — ama yalnızca alıcı
+      bulunan yerlerde. BAE, Katar, Bahreyn ve Ürdün'de kapsama güçlü;
+      <b>Suudi Arabistan, Kuveyt, Irak ve İran'da neredeyse hiç yok.</b></div></div>
+    <div class="card"><div class="hd"><span class="fir">Basın</span></div>
+      <div class="place">Google News üzerinden havayolunun adının geçtiği
+      başlıklar. <b>Ne duyurulduğunu</b> gösterir — her yerde, ama yalnızca
+      hakkında yazılacak kadar büyük havayolları için. Duyuru gözlem değildir.</div></div>
+  </div>
+  <p class="sub prose">Bir çelişki olduğunda <b>gözlem duyuruyu yener.</b> Uçarken
+  görülen bir havayolu, basın “kesti” dese bile “Durdurdu” sayılmaz; “Kısmen
+  kesti” olur. Durumların anlamı:</p>
   <div class="scroll"><table>
-    <thead><tr><th>Code</th><th>Carrier &amp; reporting</th><th>Status</th>
-      <th class="num">Legs</th><th>Seen at</th></tr></thead>
+    <thead><tr><th>Durum</th><th>Ne demek</th><th>Nasıl karar verildi</th></tr></thead>
+    <tbody>
+      <tr><td>{_pill('flying')}</td>
+        <td>Havayolu izlenen havalimanlarında uçarken görüldü ve kesinti
+        bildirimi yok.</td><td class="why">ADS-B'de sefer var, basında kesinti haberi yok</td></tr>
+      <tr class="r-partial"><td>{_pill('partial')}</td>
+        <td>Hâlâ uçuyor, ama bazı hatlarını kestiği bildiriliyor. Çatışma
+        döneminde en yaygın durum bu.</td>
+        <td class="why">ADS-B'de sefer var + basında kesinti haberi var</td></tr>
+      <tr class="r-stopped"><td>{_pill('stopped')}</td>
+        <td>Hiç görülmedi <b>ve</b> basın durdurduğunu yazıyor. Yalnızca iki
+        kaynak aynı yönü gösterdiğinde bu etiket verilir.</td>
+        <td class="why">ADS-B'de sefer yok + basında kesinti haberi var</td></tr>
+      <tr><td>{_pill('unknown')}</td>
+        <td>Ne görüldü ne de hakkında yazıldı. <b>Bu “durdurdu” demek
+        değildir</b> — büyük ihtimalle kapsama alanımızın dışında uçuyor.</td>
+        <td class="why">iki kaynak da sessiz</td></tr>
+    </tbody>
+  </table></div>
+  <div class="notice"><span class="t">En önemli uyarı</span>
+    <p><b>Veri yokluğu, uçuş yokluğu değildir.</b> Suudi Arabistan, Kuveyt, Irak
+    ve İran üzerinde ADS-B kapsaması çok zayıf; bir havayolu oralarda pekâlâ
+    uçuyor olup burada hiç sefer göstermeyebilir. Bu yüzden görülmeyen her
+    havayolu otomatik olarak “Bilinmiyor” sayılır, “Durdurdu” değil.</p></div>
+</section>
+
+<section>
+  <h2>Havayolları</h2>
+  <p class="sub prose">Önce dikkat gerektirenler: durduranlar, sonra kısmen
+  kesenler, sonra hakkında bilgi olmayanlar. <b>Sefer</b> sütunu gözlem
+  penceresinde izlenen havalimanlarında sayılan iniş/kalkış sayısı;
+  <b>Nerede</b> sütunu bunun havalimanlarına dağılımı.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
+      <th class="num">Sefer</th><th>Nerede görüldü</th></tr></thead>
     <tbody>{_rows(data)}</tbody>
   </table></div>
 </section>
 
 <section>
-  <h2>Overflights, last 7 days</h2>
-  <p class="sub prose">Distinct aircraft sampled inside each FIR from live ADS-B,
-  after discarding positions whose navigation integrity was too low to trust —
-  the Gulf sees sustained GNSS interference. <b>CZIB</b> marks airspace EASA
-  tells operators to avoid.</p>
+  <h2>Hava sahası geçişleri · son 7 gün</h2>
+  <p class="sub prose">Her uçuş bilgi bölgesinin (FIR) içinde canlı ADS-B ile
+  sayılan farklı uçak sayısı. Körfez'de sürekli GPS karıştırması olduğu için
+  konum doğruluğu düşük sinyaller sayıma katılmadan eleniyor.
+  <b>CZIB</b> etiketi, EASA'nın operatörlere “kaçının” dediği hava sahasını
+  gösterir — oradan geçen trafik ayrıca dikkate değerdir.</p>
   <div class="cards">{fircards}</div>
 </section>
 
 <section>
-  <h2>EASA conflict-zone bulletins</h2>
+  <h2>EASA çatışma bölgesi bültenleri</h2>
+  <p class="sub prose">Avrupa Havacılık Emniyeti Ajansı'nın yürürlükteki
+  uyarıları. Bir bültenin yeniden yayımlanması ya da geçerlilik süresinin
+  uzatılması, başlı başına bir sinyaldir.</p>
   <div class="heads">{adv}</div>
 </section>
 
 <section>
-  <h2>Sources</h2>
+  <h2>Kaynaklar</h2>
   <dl class="src">
-    <dt>Flights</dt><dd>OpenSky Network — non-commercial use. Volunteer receiver
-      coverage, strong over the UAE, Qatar, Bahrain and Jordan; thin to absent
-      over Saudi Arabia, Kuwait, Iraq and Iran.</dd>
-    <dt>Live ADS-B</dt><dd>adsb.lol and airplanes.live, ODbL 1.0.</dd>
-    <dt>Reporting</dt><dd>Google News RSS. Headline keyword matching, filtered to
-      items naming the carrier. It hands you the link; it does not decide.</dd>
-    <dt>Advisories</dt><dd>EASA Conflict Zone Information Bulletins.</dd>
+    <dt>Uçuş verisi</dt><dd>OpenSky Network — ticari olmayan kullanım. Gönüllü
+      alıcı ağı: BAE, Katar, Bahreyn ve Ürdün'de güçlü; Suudi Arabistan,
+      Kuveyt, Irak ve İran'da zayıf ya da yok.</dd>
+    <dt>Canlı ADS-B</dt><dd>adsb.lol ve airplanes.live, ODbL 1.0 lisansı.</dd>
+    <dt>Basın</dt><dd>Google News RSS. Başlıkta havayolunun adı geçen haberler
+      süzülür; anahtar kelimeyle sınıflandırılır. Karar vermez, okumanız için
+      bağlantıyı önünüze koyar.</dd>
+    <dt>Uyarılar</dt><dd>EASA Çatışma Bölgesi Bilgi Bültenleri (CZIB).</dd>
   </dl>
 </section>
 
 <footer>
-  <p>Absence of data is never evidence of absence of flights. Codeshares and wet
-  leases are invisible to ADS-B: a flight marketed by one carrier and operated by
-  another counts as the operator.</p>
-  <p>This is a personal research tool, not an operational decision-making system.
-  For flight planning the sources are the AIP, the NOTAM system, and your
-  operator's own risk assessment.</p>
+  <p>Veri yokluğu hiçbir zaman uçuş yokluğunun kanıtı değildir. Ortak sefer
+  (codeshare) ve kiralık uçuşlar ADS-B'de görünmez: bir havayolunun sattığı
+  ama başka bir şirketin uçurduğu sefer, uçuran şirkete yazılır.</p>
+  <p>Bu bir kişisel araştırma aracıdır, operasyonel karar sistemi değildir.
+  Gerçek uçuş planlaması için kaynaklar AIP, NOTAM sistemi ve operatörün kendi
+  risk değerlendirmesidir.</p>
 </footer>
 </div>"""
 
