@@ -43,9 +43,12 @@ OPENSKY_CLIENT_ID
 OPENSKY_CLIENT_SECRET
 ```
 
-Anonymous access technically works but the rate limits make the baseline
-backfill impossible. Feeding a receiver to OpenSky raises the daily credit
-allowance considerably if you ever need more headroom.
+There is no anonymous fallback. OpenSky now answers `403` on the flights
+endpoints without a token, so without these two secrets the monitor collects no
+flight history at all — FIR sampling and the EASA scrape still run, but the
+question this project exists to answer goes unanswered. Feeding a receiver to
+OpenSky raises the daily credit allowance considerably if you need more
+headroom.
 
 Optional, for push alerts: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 

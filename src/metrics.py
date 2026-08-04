@@ -76,8 +76,15 @@ def score_coverage(conn: sqlite3.Connection, day: date) -> dict:
     counts = [r["n"] for r in history if r["n"] > 0]
     median = statistics.median(counts) if counts else 0.0
 
-    if median <= 0:
-        score, verdict = 1.0, "ok"      # no history yet; don't cry wolf
+    if median <= 0 and today_n > 0:
+        score, verdict = 1.0, "ok"      # cold start, but traffic is flowing
+    elif median <= 0:
+        # No reference period AND nothing visible today: we are blind, not
+        # healthy. Blind must never read as ok -- suspensions.detect() only
+        # touches state on ok days, so this is the one line standing between a
+        # broken OpenSky credential and a feed announcing that every carrier in
+        # the Gulf has stopped flying.
+        score, verdict = 0.0, "outage"
     else:
         score = min(today_n / median, 1.5)
         if score >= config.COVERAGE_OK:

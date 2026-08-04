@@ -76,6 +76,26 @@ class TestCoverageGate(unittest.TestCase):
             "ingested_at": 0,
         }
 
+    def test_seeing_nothing_at_all_is_never_ok(self):
+        """An empty database is blindness, not health.
+
+        Reachable in production: the OpenSky credential breaks, ingest keeps
+        running because a 403 no longer aborts it, and after 28 days the
+        trailing window is empty. If that scored `ok`, detect() would run
+        against total silence and open a suspension for every carrier.
+        """
+        cov = metrics.score_coverage(self.conn, date.today())
+        self.assertEqual(cov["verdict"], "outage")
+        self.assertNotEqual(cov["verdict"], "ok")
+
+    def test_cold_start_with_traffic_is_ok(self):
+        # No history yet, but flights are arriving: that is a first run, not an
+        # outage, and it must not suppress everything.
+        today = date.today()
+        db.upsert_flights(self.conn, [self._leg("UAE", today, i) for i in range(10)])
+        cov = metrics.score_coverage(self.conn, today)
+        self.assertEqual(cov["verdict"], "ok")
+
     def test_outage_is_not_reported_as_suspension(self):
         """The core safety property: sensors going dark must not look like war."""
         today = date.today()

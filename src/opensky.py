@@ -36,6 +36,7 @@ class OpenSky:
         self.session.headers["User-Agent"] = "gulfwatch/1.0 (personal research)"
         self._token: str | None = None
         self._token_expires = 0.0
+        self._auth_failed = False
 
     @property
     def authenticated(self) -> bool:
@@ -63,6 +64,9 @@ class OpenSky:
         return {"Authorization": f"Bearer {self._token}"}
 
     def _get(self, path: str, params: dict[str, Any], attempts: int = 4) -> Any:
+        # Once OpenSky has refused us there is no point asking 25 more times.
+        if self._auth_failed:
+            return []
         url = f"{API}{path}"
         for i in range(attempts):
             resp = self.session.get(
@@ -72,6 +76,25 @@ class OpenSky:
                 return resp.json()
             if resp.status_code == 404:
                 # OpenSky returns 404 for "no flights in this window"
+                return []
+            if resp.status_code in (401, 403):
+                # Not a transient failure and not something a retry fixes. Do
+                # not let it kill the run: the FIR sampler, the EASA scrape and
+                # the publish step need no OpenSky credentials and still have
+                # useful work to do. Today's coverage score will fall to
+                # `outage` on its own, which is the honest outcome.
+                self._auth_failed = True
+                if self.authenticated:
+                    LOG.error(
+                        "OpenSky rejected our credentials (%s). Check "
+                        "OPENSKY_CLIENT_ID / OPENSKY_CLIENT_SECRET. No flight "
+                        "history will be collected this run.", resp.status_code)
+                else:
+                    LOG.error(
+                        "OpenSky refused an anonymous request (%s). Anonymous "
+                        "access to the flights endpoints is closed -- set "
+                        "OPENSKY_CLIENT_ID / OPENSKY_CLIENT_SECRET. No flight "
+                        "history will be collected this run.", resp.status_code)
                 return []
             if resp.status_code == 429:
                 wait = int(resp.headers.get("X-Rate-Limit-Retry-After-Seconds", 60))

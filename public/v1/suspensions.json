@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-08-04T10:40:40+00:00",
+  "as_of_day": "2026-08-04",
+  "coverage": {
+    "day": "2026-08-04",
+    "control_flights": 0,
+    "median_28d": 0.0,
+    "score": 0.0,
+    "verdict": "outage"
+  },
+  "attribution": {
+    "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
+    "live_adsb": "adsb.lol and airplanes.live, ODbL 1.0",
+    "advisories": "EASA Conflict Zone Information Bulletins",
+    "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
+  },
+  "thresholds_days": {
+    "route": 7,
+    "station": 10,
+    "region": 21
+  },
+  "reading_note": "started_on is the first silent day, not an announcement date. confidence=observed means ADS-B silence only; corroborated means reporting agrees; contradicted means reporting says they are flying and you should trust the reporting over this feed.",
+  "summary": {
+    "carriers_with_any_stop": 0,
+    "region_stops": 0,
+    "station_stops": 0,
+    "route_stops": 0,
+    "resumed_last_30d": 0
+  },
+  "active": [],
+  "recently_resumed": []
+}

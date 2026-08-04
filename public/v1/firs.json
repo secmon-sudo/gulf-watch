@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-08-04T10:40:40+00:00",
+  "as_of_day": "2026-08-04",
+  "coverage": {
+    "day": "2026-08-04",
+    "control_flights": 0,
+    "median_28d": 0.0,
+    "score": 0.0,
+    "verdict": "outage"
+  },
+  "attribution": {
+    "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
+    "live_adsb": "adsb.lol and airplanes.live, ODbL 1.0",
+    "advisories": "EASA Conflict Zone Information Bulletins",
+    "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
+  },
+  "window_days": 7,
+  "firs": [
+    {
+      "fir": "OIIX",
+      "name": "Tehran FIR",
+      "czib_watch": true,
+      "carriers": [],
+      "total_transits": 0
+    },
+    {
+      "fir": "ORBB",
+      "name": "Baghdad FIR",
+      "czib_watch": true,
+      "carriers": [],
+      "total_transits": 0
+    },
+    {
+      "fir": "OLBB",
+      "name": "Beirut FIR",
+      "czib_watch": true,
+      "carriers": [],
+      "total_transits": 0
+    },
+    {
+      "fir": "OSTT",
+      "name": "Damascus FIR",
+      "czib_watch": true,
+      "carriers": [
+        {
+          "carrier": "QTR",
+          "transits": 1
+        },
+        {
+          "carrier": "MEA",
+          "transits": 1
+        },
+        {
+          "carrier": "KNE",
+          "transits": 1
+        }
+      ],
+      "total_transits": 3
+    },
+    {
+      "fir": "LLLL",
+      "name": "Tel Aviv FIR",
+      "czib_watch": true,
+      "carriers": [
+        {
+          "carrier": "QTR",
+          "transits": 2
+        },
+        {
+          "carrier": "UAE",
+          "transits": 1
+        }
+      ],
+      "total_transits": 3
+    },
+    {
+      "fir": "OKAC",
+      "name": "Kuwait FIR",
+      "czib_watch": false,
+      "carriers": [],
+      "total_transits": 0
+    },
+    {
+      "fir": "OBBB",
+      "name": "Bahrain FIR",
+      "czib_watch": false,
+      "carriers": [
+        {
+          "carrier": "FDB",
+          "transits": 3
+        },
+        {
+          "carrier": "QTR",
+          "transits": 2
+        },
+        {
+          "carrier": "GFA",
+          "transits": 2
+        },
+        {
+          "carrier": "ETD",
+          "transits": 2
+        },
+        {
+          "carrier": "ABY",
+          "transits": 2
+        }
+      ],
+      "total_transits": 11
+    },
+    {
+      "fir": "OTDF",
+      "name": "Doha FIR",
+      "czib_watch": false,
+      "carriers": [],
+      "total_transits": 0
+    },
+    {
+      "fir": "OMAE",
+      "name": "Emirates FIR",
+      "czib_watch": false,
+      "carriers": [
+        {
+          "carrier": "UAE",
+          "transits": 8
+        },
+        {
+          "carrier": "ETD",
+          "transits": 8
+        },
+        {
+          "carrier": "FDB",
+          "transits": 3
+        },
+        {
+          "carrier": "ABY",
+          "transits": 2
+        },
+        {
+          "carrier": "SVA",
+          "transits": 1
+        },
+        {
+          "carrier": "QTR",
+          "transits": 1
+        },
+        {
+          "carrier": "MSR",
+          "transits": 1
+        }
+      ],
+      "total_transits": 24
+    },
+    {
+      "fir": "OOMM",
+      "name": "Muscat FIR",
+      "czib_watch": false,
+      "carriers": [
+        {
+          "carrier": "UAE",
+          "transits": 9
+        },
+        {
+          "carrier": "ETD",
+          "transits": 8
+        },
+        {
+          "carrier": "OMA",
+          "transits": 4
+        },
+        {
+          "carrier": "FDB",
+          "transits": 3
+        },
+        {
+          "carrier": "ABY",
+          "transits": 2
+        },
+        {
+          "carrier": "SVA",
+          "transits": 1
+        },
+        {
+          "carrier": "MSR",
+          "transits": 1
+        }
+      ],
+      "total_transits": 28
+    },
+    {
+      "fir": "OEJD",
+      "name": "Jeddah FIR",
+      "czib_watch": false,
+      "carriers": [],
+      "total_transits": 0
+    },
+    {
+      "fir": "OJAC",
+      "name": "Amman FIR",
+      "czib_watch": false,
+      "carriers": [
+        {
+          "carrier": "QTR",
+          "transits": 1
+        },
+        {
+          "carrier": "FDB",
+          "transits": 1
+        }
+      ],
+      "total_transits": 2
+    }
+  ]
+}
