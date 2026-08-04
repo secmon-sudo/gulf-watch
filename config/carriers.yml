@@ -43,7 +43,7 @@ carriers:
     name: Emirates
     iata: EK
     country: AE
-    tracked: false
+    tracked: true
     control: true
     cargo_flightnum_min: 9000
 
@@ -177,3 +177,34 @@ carriers:
     country: NL
     tracked: false
     control: true
+
+  # --- Long-haul carriers serving the Gulf (added for the operator report) ---
+  AAL:
+    name: American Airlines
+    iata: AA
+    country: US
+    tracked: true
+
+  JAL:
+    name: Japan Airlines
+    iata: JL
+    country: JP
+    tracked: true
+
+  CCA:
+    name: Air China
+    iata: CA
+    country: CN
+    tracked: true
+
+  CES:
+    name: China Eastern
+    iata: MU
+    country: CN
+    tracked: true
+
+  CSN:
+    name: China Southern
+    iata: CZ
+    country: CN
+    tracked: true

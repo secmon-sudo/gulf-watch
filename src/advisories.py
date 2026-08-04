@@ -130,7 +130,7 @@ def fetch(conn) -> list[dict]:
 
 def current(conn) -> list[dict]:
     rows = conn.execute(
-        "SELECT ref, revision, valid_to, url, last_seen FROM advisory "
+        "SELECT ref, title, revision, valid_to, url, last_seen FROM advisory "
         "WHERE source='easa_czib' ORDER BY ref"
     ).fetchall()
     return [dict(r) for r in rows]

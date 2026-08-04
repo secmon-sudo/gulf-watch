@@ -413,5 +413,44 @@ class TestNotify(unittest.TestCase):
             self.assertFalse(notify.announce(self.EVENTS, "2026-08-04"))
 
 
+class TestReportAttribution(unittest.TestCase):
+    """A headline gets attributed to a carrier, or the carrier reads Stopped.
+
+    Both guards here failed against live Google News output.
+    """
+
+    def test_generic_regional_headlines_attach_to_nobody(self):
+        from src.report import _aliases
+        # "air" is inside "airspace"/"airlines", so first-word matching pinned
+        # region-wide stories onto Air Algerie and Air China and reported them
+        # stopped on evidence about nobody in particular.
+        for headline in (
+            "Airspace closed, airlines halt flights as US, Israel attack",
+            "Middle East flight disruption: regional airlines continue suspensions",
+        ):
+            low = headline.lower()
+            for name in ("Air Algerie", "Air China", "Qatar Airways",
+                         "Middle East Airlines", "British Airways"):
+                self.assertFalse(
+                    any(k in low for k in _aliases(name)),
+                    f"{name} wrongly matched {headline!r}")
+
+    def test_carrier_named_in_headline_is_attributed(self):
+        from src.report import _aliases
+        low = "Emirates and Etihad extend Bahrain and Kuwait flight cancellations".lower()
+        for name in ("Emirates", "Etihad Airways"):
+            self.assertTrue(any(k in low for k in _aliases(name)), name)
+
+    def test_suspension_the_noun_counts_as_stopped(self):
+        from src.report import STOPPED
+        # The stem is suspenSion, so a "suspend\w*" pattern misses every
+        # "Extends Flight Suspensions" headline and reads it as a mere mention.
+        self.assertTrue(STOPPED.search(
+            "China Southern Extends Middle East Flight Suspensions into 2027"))
+        self.assertTrue(STOPPED.search("Finnair Suspends Doha and Dubai Flights"))
+        self.assertFalse(STOPPED.search(
+            "Airlines resume some Middle East flights but disruption continues"))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

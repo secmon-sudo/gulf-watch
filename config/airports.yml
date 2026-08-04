@@ -16,6 +16,8 @@ airports:
   OMSJ: {iata: SHJ, name: Sharjah Intl,      city: Sharjah,   country: AE, lat: 25.328, lon: 55.517, priority: 2}
   OJAI: {iata: AMM, name: Queen Alia Intl,   city: Amman,     country: JO, lat: 31.723, lon: 35.993, priority: 2}
   OLBA: {iata: BEY, name: Beirut Rafic Hariri, city: Beirut,  country: LB, lat: 33.821, lon: 35.488, priority: 2}
+  ORER: {iata: EBL, name: Erbil Intl,       city: Erbil,     country: IQ, lat: 36.238, lon: 43.963, priority: 2}
+  OEAB: {iata: AHB, name: Abha Intl,         city: Abha,      country: SA, lat: 18.240, lon: 42.657, priority: 2}
   ORBI: {iata: BGW, name: Baghdad Intl,      city: Baghdad,   country: IQ, lat: 33.263, lon: 44.235, priority: 2}
   OIIE: {iata: IKA, name: Imam Khomeini Intl, city: Tehran,   country: IR, lat: 35.416, lon: 51.152, priority: 2}
 
