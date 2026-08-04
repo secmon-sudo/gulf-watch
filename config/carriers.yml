@@ -1,0 +1,179 @@
+# GulfWatch carrier registry
+# Key = ICAO 3-letter callsign prefix (this is what appears in ADS-B callsigns,
+# NOT the IATA code). Callsign "QTR8" -> QTR -> Qatar Airways.
+#
+# tracked:  appears in the published API and alerting
+# control:  used only for coverage-health scoring (must be a carrier that is
+#           near-certain to keep flying; if THESE disappear it is a data
+#           outage, not a war event)
+# cargo_flightnum_min: flight numbers >= this value are treated as freight and
+#           excluded from passenger frequency counts. null = no split.
+
+carriers:
+  # --- Turkey ---
+  PGT:
+    name: Pegasus Airlines
+    iata: PC
+    country: TR
+    tracked: true
+
+  # --- UAE ---
+  ETD:
+    name: Etihad Airways
+    iata: EY
+    country: AE
+    tracked: true
+    cargo_flightnum_min: 9000
+  FDB:
+    name: flydubai
+    iata: FZ
+    country: AE
+    tracked: true
+  ABY:
+    name: Air Arabia (Sharjah)
+    iata: G9
+    country: AE
+    tracked: true
+  ABG:
+    name: Air Arabia Abu Dhabi
+    iata: "3L"
+    country: AE
+    tracked: true
+  UAE:
+    name: Emirates
+    iata: EK
+    country: AE
+    tracked: false
+    control: true
+    cargo_flightnum_min: 9000
+
+  # --- Saudi Arabia ---
+  SVA:
+    name: Saudia
+    iata: SV
+    country: SA
+    tracked: true
+    cargo_flightnum_min: 900
+  KNE:
+    name: flynas
+    iata: XY
+    country: SA
+    tracked: true
+
+  # --- Qatar ---
+  QTR:
+    name: Qatar Airways
+    iata: QR
+    country: QA
+    tracked: true
+    control: true
+    # QR Cargo operates under the same QTR callsign, typically 8xxx series.
+    cargo_flightnum_min: 8000
+
+  # --- Bahrain / Oman / Kuwait / Jordan / Lebanon ---
+  GFA:
+    name: Gulf Air
+    iata: GF
+    country: BH
+    tracked: true
+  OMA:
+    name: Oman Air
+    iata: WY
+    country: OM
+    tracked: true
+  KAC:
+    name: Kuwait Airways
+    iata: KU
+    country: KW
+    tracked: true
+  RJA:
+    name: Royal Jordanian
+    iata: RJ
+    country: JO
+    tracked: true
+  MEA:
+    name: Middle East Airlines
+    iata: ME
+    country: LB
+    tracked: true
+
+  # --- North Africa ---
+  MSR:
+    name: EgyptAir
+    iata: MS
+    country: EG
+    tracked: true
+  MSX:
+    name: EgyptAir Cargo
+    iata: MS
+    country: EG
+    tracked: false
+    freight_only: true
+  RBG:
+    name: Air Arabia Egypt
+    iata: E5
+    country: EG
+    tracked: true
+  DAH:
+    name: Air Algerie
+    iata: AH
+    country: DZ
+    tracked: true
+  RAM:
+    name: Royal Air Maroc
+    iata: AT
+    country: MA
+    tracked: true
+  MAC:
+    name: Air Arabia Maroc
+    iata: "3O"
+    country: MA
+    tracked: false
+
+  # --- Europe ---
+  BAW:
+    name: British Airways
+    iata: BA
+    country: GB
+    tracked: true
+  FIN:
+    name: Finnair
+    iata: AY
+    country: FI
+    tracked: true
+  IBE:
+    name: Iberia
+    iata: IB
+    country: ES
+    tracked: true
+  IBS:
+    name: Iberia Express
+    iata: I2
+    country: ES
+    tracked: false
+
+  # --- Control group only (never alerted on, used to detect ADS-B outages) ---
+  THY:
+    name: Turkish Airlines
+    iata: TK
+    country: TR
+    tracked: false
+    control: true
+  DLH:
+    name: Lufthansa
+    iata: LH
+    country: DE
+    tracked: false
+    control: true
+  AFR:
+    name: Air France
+    iata: AF
+    country: FR
+    tracked: false
+    control: true
+  KLM:
+    name: KLM
+    iata: KL
+    country: NL
+    tracked: false
+    control: true

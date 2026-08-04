@@ -1,0 +1,46 @@
+name: pages
+
+# Deploys public/ to GitHub Pages.
+#
+# Note the workflow_call trigger: a commit pushed by GITHUB_TOKEN does NOT
+# trigger other workflows, so the `push` trigger below would never fire for
+# the commits that ingest makes. ingest.yml therefore calls this workflow
+# directly. The push trigger is only for hand edits to public/index.html.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deployments race. Do not cancel one in flight -- a half
+# deployed API is worse than a slightly stale one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

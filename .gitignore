@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.claude/settings.local.json
+
+# data/gulfwatch.db is committed on purpose -- git is the history layer.
+# The WAL sidecars are not.
+data/*.db-wal
+data/*.db-shm

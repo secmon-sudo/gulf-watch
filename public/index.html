@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GulfWatch — Middle East airline operations monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E6E9E5;      /* chart stock */
+  --panel:#F3F5F1;
+  --ink:#15181A;
+  --muted:#5C6A6B;
+  --hairline:#A6B1AE;
+  --airway:#0B6E8C;     /* enroute airway cyan */
+  --restricted:#B4145F; /* chart magenta: prohibited/restricted airspace */
+  --caution:#9A5E06;
+  --clear:#1F6B4A;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.5;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+
+/* ---- masthead ------------------------------------------------------- */
+header{border-bottom:1.5px solid var(--ink);padding:26px 0 14px;margin-bottom:0}
+.brand{
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;
+  font-size:clamp(38px,7vw,64px);letter-spacing:.02em;line-height:.92;
+  text-transform:uppercase;margin:0;
+}
+.brand span{color:var(--restricted)}
+.tag{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted);margin-top:8px;
+  display:flex;flex-wrap:wrap;gap:6px 20px;
+}
+
+/* ---- signature: restricted airspace band ---------------------------- */
+.band{
+  border:1.5px solid var(--restricted);border-top:none;
+  background:
+    repeating-linear-gradient(-45deg,
+      color-mix(in srgb,var(--restricted) 13%,transparent) 0 3px,
+      transparent 3px 11px);
+  padding:14px 16px 16px;
+}
+.band-title{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--restricted);font-weight:600;
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+}
+.band-title em{font-style:normal;color:var(--muted);letter-spacing:.05em;font-weight:400}
+.firs{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.fir{
+  background:var(--panel);border:1px solid var(--restricted);
+  padding:8px 12px;min-width:132px;
+}
+.fir b{
+  display:block;font-family:"Barlow Condensed",sans-serif;font-weight:600;
+  font-size:22px;letter-spacing:.03em;line-height:1;
+}
+.fir small{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  color:var(--muted);letter-spacing:.06em;margin-top:3px;text-transform:uppercase;
+}
+.fir .n{
+  font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:600;
+  margin-top:7px;color:var(--restricted);
+}
+.fir .n.zero{color:var(--clear)}
+
+/* ---- coverage integrity --------------------------------------------- */
+.integrity{
+  display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+  border:1.5px solid var(--ink);border-top:none;padding:12px 16px;background:var(--panel);
+}
+.integrity .label{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+}
+.meter{flex:1;min-width:180px;height:9px;background:#D3D8D3;position:relative;border:1px solid var(--hairline)}
+.meter i{position:absolute;inset:0 auto 0 0;background:var(--clear);display:block}
+.meter.warn i{background:var(--caution)}
+.meter.bad i{background:var(--restricted)}
+.verdict{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;letter-spacing:.06em}
+
+/* ---- sections -------------------------------------------------------- */
+h2{
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;text-transform:uppercase;
+  letter-spacing:.05em;font-size:26px;margin:44px 0 4px;
+}
+h2 + p{margin:0 0 16px;color:var(--muted);font-size:13.5px;max-width:64ch}
+
+/* ---- flight progress strips ------------------------------------------ */
+.strips{display:grid;gap:5px}
+.strip{
+  display:grid;
+  grid-template-columns:52px minmax(150px,1.4fr) 96px 1fr 108px;
+  align-items:center;gap:14px;
+  background:var(--panel);border:1px solid var(--hairline);
+  border-left:5px solid var(--hairline);padding:9px 14px;
+}
+.strip.NORMAL{border-left-color:var(--clear)}
+.strip.REDUCED{border-left-color:var(--caution)}
+.strip.MINIMAL{border-left-color:var(--restricted)}
+.strip.SUSPENDED{border-left-color:var(--restricted);background:
+  repeating-linear-gradient(-45deg,
+    color-mix(in srgb,var(--restricted) 9%,var(--panel)) 0 3px,
+    var(--panel) 3px 10px);}
+.strip.UNKNOWN{border-left-color:var(--hairline);opacity:.6}
+.code{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:14px;letter-spacing:.06em}
+.who{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:500;letter-spacing:.02em}
+.who em{
+  font-style:normal;display:block;font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;color:var(--muted);letter-spacing:.06em;
+}
+.freq{font-family:"IBM Plex Mono",monospace;font-size:14px;white-space:nowrap}
+.freq s{color:var(--muted);text-decoration:none}
+.bar{height:7px;background:#D3D8D3;position:relative;border:1px solid var(--hairline)}
+.bar i{position:absolute;inset:0 auto 0 0;display:block;background:var(--airway)}
+.bar.low i{background:var(--caution)}
+.bar.out i{background:var(--restricted)}
+.state{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+  letter-spacing:.11em;text-align:right;
+}
+.state.NORMAL{color:var(--clear)}
+.state.REDUCED{color:var(--caution)}
+.state.MINIMAL,.state.SUSPENDED{color:var(--restricted)}
+.state.UNKNOWN{color:var(--muted)}
+
+/* ---- endpoints ------------------------------------------------------- */
+.api{border:1.5px solid var(--ink);background:var(--panel);padding:16px 18px;margin-top:16px}
+.api ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:4px}
+.api a{
+  font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--airway);
+  text-decoration:none;border-bottom:1px solid transparent;
+}
+.api a:hover,.api a:focus-visible{border-bottom-color:var(--airway)}
+:focus-visible{outline:2px solid var(--airway);outline-offset:2px}
+
+/* ---- stop ledger: the headline answer ------------------------------- */
+.ledger{display:grid;gap:5px}
+.stop{
+  display:grid;grid-template-columns:56px minmax(200px,1fr) 210px 112px;gap:14px;align-items:center;
+  background:var(--panel);border:1px solid var(--restricted);
+  border-left:5px solid var(--restricted);padding:11px 14px;
+}
+.stop.resumed{border-color:var(--clear);border-left-color:var(--clear)}
+.stop .who{font-size:20px}
+.stop .when{font-family:"IBM Plex Mono",monospace;font-size:12px;line-height:1.4;white-space:nowrap}
+.stop .when span{white-space:normal}
+.stop .when b{font-weight:600}
+.stop .when span{display:block;color:var(--muted);font-size:11px;letter-spacing:.04em}
+.dur{
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:30px;
+  line-height:1;text-align:right;color:var(--restricted);
+}
+.stop.resumed .dur{color:var(--clear);font-size:22px}
+.dur small{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-top:3px}
+.scope{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.11em;text-transform:uppercase;padding:1px 6px;margin-right:6px;
+  border:1px solid currentColor;
+}
+.scope.region{color:var(--restricted)}
+.scope.station{color:var(--caution)}
+.scope.route{color:var(--muted)}
+.conf{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;color:var(--muted)}
+.conf.contradicted{color:var(--caution);font-weight:600}
+.ev{grid-column:1/-1;margin:6px 0 0;padding:0;list-style:none}
+.ev li{font-size:11.5px;line-height:1.45}
+.ev a{color:var(--airway);text-decoration:none;border-bottom:1px solid transparent}
+.ev a:hover,.ev a:focus-visible{border-bottom-color:var(--airway)}
+@media (max-width:720px){
+  .stop{grid-template-columns:52px 1fr;row-gap:8px}
+  .stop .when,.stop .dur{grid-column:1/-1;text-align:left}
+}
+
+footer{
+  margin-top:48px;padding-top:16px;border-top:1px solid var(--hairline);
+  font-size:12px;color:var(--muted);max-width:74ch;
+}
+.empty{
+  font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);
+  border:1px dashed var(--hairline);padding:18px;background:var(--panel);
+}
+
+@media (max-width:720px){
+  .strip{grid-template-columns:46px 1fr 88px;grid-template-areas:"c w f";row-gap:8px}
+  .strip .bar{grid-column:1/-1;grid-area:auto}
+  .strip .state{grid-column:1/-1;text-align:left}
+}
+@media (prefers-reduced-motion:no-preference){
+  .strip,.fir{animation:in .32s ease-out backwards}
+  @keyframes in{from{opacity:0;transform:translateY(4px)}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 class="brand">Gulf<span>Watch</span></h1>
+    <div class="tag">
+      <span id="stamp">loading…</span>
+      <span id="scope"></span>
+      <span>ADS-B derived · not for operational use</span>
+    </div>
+  </header>
+
+  <!-- signature: restricted airspace band, drawn in chart magenta -->
+  <section class="band" aria-labelledby="firh">
+    <div class="band-title" id="firh">
+      Conflict-zone FIRs <em>— aircraft observed inside, last 7 days</em>
+    </div>
+    <div class="firs" id="firs"></div>
+  </section>
+
+  <section class="integrity">
+    <span class="label">Coverage integrity</span>
+    <span class="meter" id="meter"><i style="width:0"></i></span>
+    <span class="verdict" id="verdict">—</span>
+  </section>
+
+
+  <h2>Stopped operations</h2>
+  <p id="stophint">Carriers that have gone silent for longer than the threshold
+     for their scope, dated from their last observed flight. Silent days during
+     a coverage outage are not counted.</p>
+  <div class="ledger" id="stops"></div>
+
+  <h2>Back in the air</h2>
+  <p>Services observed operating again after a stop, in the last 30 days.</p>
+  <div class="ledger" id="resumed"></div>
+
+  <h2>Carriers</h2>
+  <p>Weekly departures against a frozen pre-escalation baseline. A carrier only
+     reads SUSPENDED after three consecutive silent days, and nothing is scored
+     at all while coverage integrity is bad.</p>
+  <div class="strips" id="carriers"></div>
+
+  <h2>Open alerts</h2>
+  <p id="alerthint">Routes that dropped below their baseline.</p>
+  <div class="strips" id="alerts"></div>
+
+  <section class="api">
+    <div class="band-title" style="color:var(--ink)">API</div>
+    <ul>
+      <li><a href="v1/status.json">v1/status.json</a> — every carrier, current vs baseline</li>
+      <li><a href="v1/suspensions.json">v1/suspensions.json</a> — who stopped, when, for how long, and who came back</li>
+      <li><a href="v1/alerts.json">v1/alerts.json</a> — suspended and reduced routes</li>
+      <li><a href="v1/airlines/index.json">v1/airlines/{ICAO}.json</a> — one carrier, route by route</li>
+      <li><a href="v1/airports/index.json">v1/airports/{ICAO}.json</a> — one airport, who is still serving it</li>
+      <li><a href="v1/firs.json">v1/firs.json</a> — overflight counts per FIR</li>
+      <li><a href="v1/advisories.json">v1/advisories.json</a> — EASA CZIB state</li>
+      <li><a href="v1/health.json">v1/health.json</a> — data span, last runs, baseline readiness</li>
+    </ul>
+  </section>
+
+  <footer id="attrib"></footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const pct = (a,b) => b>0 ? Math.min(a/b,1)*100 : 0;
+
+async function get(p){ const r = await fetch(p,{cache:"no-store"});
+  if(!r.ok) throw new Error(p+" "+r.status); return r.json(); }
+
+function stripRow(o){
+  const el = document.createElement("div");
+  el.className = "strip " + o.status;
+  const p = pct(o.now, o.base);
+  const cls = o.status==="NORMAL" ? "" : (o.status==="REDUCED" ? "low" : "out");
+  el.innerHTML = `
+    <span class="code">${o.code}</span>
+    <span class="who">${o.name}<em>${o.sub}</em></span>
+    <span class="freq">${o.now}<s> / ${o.base}</s> wk</span>
+    <span class="bar ${cls}"><i style="width:${p.toFixed(1)}%"></i></span>
+    <span class="state ${o.status}">${o.status}</span>`;
+  return el;
+}
+
+
+function stopRow(e, resumed){
+  const el = document.createElement("div");
+  el.className = "stop" + (resumed ? " resumed" : "");
+  const ev = (e.evidence||[]).filter(x=>x.url).slice(0,3);
+  const conf = e.confidence === "contradicted"
+    ? "reporting says they are flying — trust the reporting"
+    : e.confidence === "corroborated" ? "corroborated by reporting"
+    : "ADS-B silence only, unconfirmed";
+  el.innerHTML = `
+    <span class="code">${e.carrier}</span>
+    <span class="who">${e.carrier_name}
+      <em><span class="scope ${e.scope}">${e.scope}</span>${e.detail}</em></span>
+    <span class="when">
+      ${resumed ? `<b>back ${e.resumed_on}</b>` : `<b>since ${e.started_on}</b>`}
+      <span>last flight ${e.last_flight_on || "unknown"} · ${e.baseline_weekly}/wk before</span>
+      <span class="conf ${e.confidence}">${resumed ? "" : conf}</span>
+    </span>
+    <span class="dur">${e.days_stopped ?? "?"}<small>days stopped</small></span>`;
+  if(ev.length && !resumed){
+    const ul = document.createElement("ul");
+    ul.className = "ev";
+    ul.innerHTML = ev.map(x =>
+      `<li><a href="${x.url}" target="_blank" rel="noopener">${x.title}</a></li>`).join("");
+    el.append(ul);
+  }
+  return el;
+}
+
+function empty(msg){ const d=document.createElement("div");
+  d.className="empty"; d.textContent=msg; return d; }
+
+(async () => {
+  let status, alerts, firs, stops;
+  try {
+    [status, alerts, firs, stops] = await Promise.all([
+      get("v1/status.json"), get("v1/alerts.json"), get("v1/firs.json"),
+      get("v1/suspensions.json")]);
+  } catch (e) {
+    $("#stamp").textContent = "No data published yet";
+    $("#carriers").append(empty(
+      "Run the baseline backfill, then the ingest workflow. Endpoints appear here once public/v1 is generated."));
+    return;
+  }
+
+  $("#stamp").textContent = "Generated " + status.generated_at.replace("T"," ").replace("+00:00","Z");
+  $("#scope").textContent =
+    `${status.summary.carriers_tracked} carriers · ${status.summary.routes_tracked} routes`
+    + ` · ${status.summary.carriers_with_a_stop} stopped`;
+
+  // coverage
+  const c = status.coverage;
+  const m = $("#meter");
+  m.className = "meter " + (c.verdict==="ok" ? "" : c.verdict==="degraded" ? "warn" : "bad");
+  m.firstElementChild.style.width = Math.min(c.score,1)*100 + "%";
+  $("#verdict").textContent = c.verdict.toUpperCase() + "  " + c.score;
+  $("#verdict").style.color = c.verdict==="ok" ? "var(--clear)"
+    : c.verdict==="degraded" ? "var(--caution)" : "var(--restricted)";
+
+  // FIR band
+  const watched = (firs.firs||[]).filter(f => f.czib_watch);
+  const host = $("#firs");
+  if(!watched.length){
+    host.append(empty("No FIR samples yet. The ingest job writes these."));
+  } else {
+    watched.forEach(f => {
+      const d = document.createElement("div");
+      d.className = "fir";
+      d.innerHTML = `<b>${f.fir}</b><small>${f.name}</small>
+        <div class="n ${f.total_transits?'':'zero'}">${f.total_transits} tracked aircraft</div>`;
+      host.append(d);
+    });
+  }
+
+  // stopped operations
+  const sh = $("#stops");
+  const shown = stops.active.filter(e => !e.superseded_by);
+  if(status.coverage.verdict !== "ok"){
+    $("#stophint").textContent =
+      "Stop detection is paused while ADS-B coverage is below threshold.";
+    sh.append(empty("Showing the last known state. No new stops are being opened."));
+  }
+  if(!shown.length){
+    sh.append(empty("No carrier has stopped a service beyond its threshold."));
+  } else {
+    shown.forEach(e => sh.append(stopRow(e, false)));
+  }
+
+  const rh = $("#resumed");
+  if(!stops.recently_resumed.length){
+    rh.append(empty("Nothing has come back in the last 30 days."));
+  } else {
+    stops.recently_resumed.forEach(e => rh.append(stopRow(e, true)));
+  }
+
+  // carriers
+  const ch = $("#carriers");
+  status.carriers.forEach(x => ch.append(stripRow({
+    code: x.carrier, name: x.name, sub: `${x.iata||"--"} · ${x.country||""} · ${x.routes_total} routes`,
+    now: x.weekly_frequency, base: x.baseline_weekly, status: x.status })));
+
+  // alerts
+  const ah = $("#alerts");
+  if(alerts.suppressed){
+    $("#alerthint").textContent = alerts.suppression_reason;
+    ah.append(empty("Alerting is held back until coverage recovers."));
+  } else if(!alerts.alerts.length){
+    ah.append(empty("Nothing below baseline. All tracked routes are operating normally."));
+  } else {
+    alerts.alerts.forEach(a => ah.append(stripRow({
+      code: a.carrier, name: a.carrier_name,
+      sub: a.route + (a.silent_days ? ` · silent ${a.silent_days}d` : ""),
+      now: a.weekly_frequency, base: a.baseline_weekly, status: a.status })));
+  }
+
+  $("#attrib").textContent = Object.values(status.attribution).join(" · ");
+})();
+</script>
+</body>
+</html>

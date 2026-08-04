@@ -1,0 +1,87 @@
+# Airports polled via OpenSky /flights/departure and /flights/arrival.
+# Each airport = 2 API calls per ingest window. Keep the list tight; every
+# entry costs OpenSky credits.
+#
+# priority 1 = polled every run, 2 = polled every 4th run.
+
+airports:
+  OTHH: {iata: DOH, name: Hamad Intl,        city: Doha,      country: QA, lat: 25.273, lon: 51.608, priority: 1}
+  OBBI: {iata: BAH, name: Bahrain Intl,      city: Manama,    country: BH, lat: 26.271, lon: 50.634, priority: 1}
+  OMDB: {iata: DXB, name: Dubai Intl,        city: Dubai,     country: AE, lat: 25.253, lon: 55.365, priority: 1}
+  OMAA: {iata: AUH, name: Zayed Intl,        city: Abu Dhabi, country: AE, lat: 24.433, lon: 54.651, priority: 1}
+  OKBK: {iata: KWI, name: Kuwait Intl,       city: Kuwait,    country: KW, lat: 29.227, lon: 47.969, priority: 1}
+  OERK: {iata: RUH, name: King Khalid Intl,  city: Riyadh,    country: SA, lat: 24.958, lon: 46.699, priority: 2}
+  OEJN: {iata: JED, name: King Abdulaziz,    city: Jeddah,    country: SA, lat: 21.680, lon: 39.157, priority: 2}
+  OOMS: {iata: MCT, name: Muscat Intl,       city: Muscat,    country: OM, lat: 23.593, lon: 58.284, priority: 2}
+  OMSJ: {iata: SHJ, name: Sharjah Intl,      city: Sharjah,   country: AE, lat: 25.328, lon: 55.517, priority: 2}
+  OJAI: {iata: AMM, name: Queen Alia Intl,   city: Amman,     country: JO, lat: 31.723, lon: 35.993, priority: 2}
+  OLBA: {iata: BEY, name: Beirut Rafic Hariri, city: Beirut,  country: LB, lat: 33.821, lon: 35.488, priority: 2}
+  ORBI: {iata: BGW, name: Baghdad Intl,      city: Baghdad,   country: IQ, lat: 33.263, lon: 44.235, priority: 2}
+  OIIE: {iata: IKA, name: Imam Khomeini Intl, city: Tehran,   country: IR, lat: 35.416, lon: 51.152, priority: 2}
+
+# Rough FIR envelopes for overflight / avoidance counting.
+# These are DELIBERATE APPROXIMATIONS (convex bounding polygons, not the real
+# FIR boundaries). Good enough for "is anyone still crossing Tehran FIR"
+# trend work; replace with proper ICAO FIR GeoJSON before quoting exact counts.
+# See README -> "Upgrading the FIR layer".
+firs:
+  OIIX:
+    name: Tehran FIR
+    country: IR
+    czib_watch: true
+    bbox: [24.0, 43.5, 40.0, 63.5]
+  ORBB:
+    name: Baghdad FIR
+    country: IQ
+    czib_watch: true
+    bbox: [29.0, 38.7, 37.4, 48.6]
+  OLBB:
+    name: Beirut FIR
+    country: LB
+    czib_watch: true
+    bbox: [33.0, 34.5, 34.8, 36.7]
+  OSTT:
+    name: Damascus FIR
+    country: SY
+    czib_watch: true
+    bbox: [32.3, 35.6, 37.4, 42.4]
+  LLLL:
+    name: Tel Aviv FIR
+    country: IL
+    czib_watch: true
+    bbox: [29.4, 34.2, 33.4, 35.7]
+  OKAC:
+    name: Kuwait FIR
+    country: KW
+    czib_watch: false
+    bbox: [28.5, 46.5, 30.1, 48.5]
+  OBBB:
+    name: Bahrain FIR
+    country: BH
+    czib_watch: false
+    bbox: [24.0, 50.0, 27.5, 53.0]
+  OTDF:
+    name: Doha FIR
+    country: QA
+    czib_watch: false
+    bbox: [24.6, 50.7, 26.2, 51.9]
+  OMAE:
+    name: Emirates FIR
+    country: AE
+    czib_watch: false
+    bbox: [22.6, 51.5, 26.5, 56.6]
+  OOMM:
+    name: Muscat FIR
+    country: OM
+    czib_watch: false
+    bbox: [16.6, 52.0, 26.6, 60.0]
+  OEJD:
+    name: Jeddah FIR
+    country: SA
+    czib_watch: false
+    bbox: [16.3, 34.5, 32.2, 47.0]
+  OJAC:
+    name: Amman FIR
+    country: JO
+    czib_watch: false
+    bbox: [29.1, 34.9, 33.4, 39.3]

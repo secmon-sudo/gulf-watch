@@ -1,0 +1,90 @@
+name: backfill-baseline
+
+# One-time harvest of the frozen pre-escalation reference period. Nothing in
+# this project means anything without it: "12 flights a week" is not
+# information, "12 against a baseline of 21" is.
+#
+# Manual only. It runs for hours and burns most of a day's OpenSky credits.
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "Baseline window start (YYYY-MM-DD)"
+        default: "2025-11-01"
+      end:
+        description: "Baseline window end (YYYY-MM-DD)"
+        default: "2026-01-31"
+      freeze_only:
+        description: "Skip the harvest, just recompute from legs already ingested"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Must never run alongside an ingest -- both write the same SQLite file.
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    # GitHub caps a job at 6 hours. The harvest paces itself with 2s sleeps
+    # across ~340 requests plus OpenSky's own backoff.
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Backfill
+        env:
+          OPENSKY_CLIENT_ID: ${{ secrets.OPENSKY_CLIENT_ID }}
+          OPENSKY_CLIENT_SECRET: ${{ secrets.OPENSKY_CLIENT_SECRET }}
+        run: |
+          python -m src.backfill \
+            --start "${{ inputs.start }}" \
+            --end "${{ inputs.end }}" \
+            ${{ inputs.freeze_only && '--freeze-only' || '' }}
+
+      - name: Publish JSON
+        run: python -m src.publish
+
+      - name: Checkpoint WAL
+        run: |
+          python - <<'PY'
+          import sqlite3
+          c = sqlite3.connect("data/gulfwatch.db")
+          c.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+          c.close()
+          PY
+
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gulfwatch.db public
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            exit 0
+          fi
+          git commit -m "backfill: baseline ${{ inputs.start }}..${{ inputs.end }}"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+  deploy:
+    needs: backfill
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml

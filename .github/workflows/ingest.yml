@@ -1,0 +1,103 @@
+name: ingest
+
+# Every 3 hours: pull the last 48h from OpenSky, rebuild the rollups, score
+# coverage, run stop/resume detection, regenerate the static JSON, commit both
+# the SQLite file and public/, then redeploy Pages.
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: "Lookback window in hours"
+        default: "48"
+      all_airports:
+        description: "Poll every airport, not just priority 1"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Two runs writing the same SQLite file and pushing the same branch will
+# collide. Queue them instead; a skipped run just means a wider lookback next
+# time, which the 48h re-read already handles.
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Ingest
+        env:
+          OPENSKY_CLIENT_ID: ${{ secrets.OPENSKY_CLIENT_ID }}
+          OPENSKY_CLIENT_SECRET: ${{ secrets.OPENSKY_CLIENT_SECRET }}
+          FAA_CLIENT_ID: ${{ secrets.FAA_CLIENT_ID }}
+          FAA_CLIENT_SECRET: ${{ secrets.FAA_CLIENT_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -m src.ingest \
+            --hours "${{ inputs.hours || '48' }}" \
+            ${{ inputs.all_airports && '--all-airports' || '' }}
+
+      - name: Publish JSON
+        run: python -m src.publish
+
+      - name: Checkpoint WAL
+        # The db is committed to the repo; the -wal sidecar is not. Fold it in
+        # so the committed file is complete on its own.
+        run: |
+          python - <<'PY'
+          import sqlite3
+          c = sqlite3.connect("data/gulfwatch.db")
+          c.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+          c.close()
+          PY
+
+      - name: Commit
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gulfwatch.db public
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "ingest: $(date -u +%Y-%m-%dT%H:%MZ)"
+          # Another run may have landed while we were fetching.
+          for attempt in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+              git push origin "HEAD:${GITHUB_REF_NAME}" && break
+            echo "push attempt $attempt failed, retrying"
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: ingest
+    if: needs.ingest.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
