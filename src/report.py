@@ -62,6 +62,11 @@ NEWS_MAX_AGE_DAYS = 30
 # headline reach this, and there are rarely more than a handful.
 MAX_WEB_SEARCHES = 6
 
+# Coverage-passing days needed before an observed-vs-scheduled percentage is
+# worth printing. Fewer than this and the report shows the two raw numbers and
+# withholds the ratio.
+MIN_RATIO_DAYS = 5
+
 # Words that mean the article is about the region rather than this carrier.
 GENERIC = re.compile(r"\b(which airlines|airlines (?:have|suspend|resume|cancel)|"
                      r"list of|roundup|factbox)\b", re.I)
@@ -140,6 +145,70 @@ def airport_view(conn, days: int, tracked: dict) -> list[dict]:
         })
     rank = {"durgun": 0, "tarifeli": 1, "acik": 2}
     out.sort(key=lambda a: (rank[a["state"]], -a["legs"]))
+    return out
+
+
+def observed_vs_scheduled(conn, days: int) -> dict[str, dict]:
+    """Departures per week between monitored airports: flown vs timetabled.
+
+    The denominator the report was missing. "719 departures observed" says
+    nothing on its own; "719 against 1014 scheduled" is the answer to whether
+    a carrier has cut back, and unlike a historical baseline it is available
+    today and describes what the airline currently intends to fly.
+
+    Both sides are restricted to monitored-to-monitored city pairs, because
+    that is the only universe both sources cover. Counting a Dubai-London
+    departure ADS-B saw against a timetable that was never asked about London
+    would understate every carrier with long-haul routes.
+    """
+    iata = {k: v["iata"] for k, v in config.airports().items()}
+    since = (metrics.reference_day() - timedelta(days=days - 1)).isoformat()
+    until = metrics.reference_day().isoformat()
+
+    # Divide by the days that actually hold data, not by the width of the
+    # window. Ingest is daily and the history is short, so a nominal 7-day
+    # window can contain two days of flights -- scaling those to a week over
+    # seven understated every carrier threefold and would have published
+    # Qatar Airways at 11% of its timetable instead of about 60%.
+    # Only days the coverage gate passed, and only if there are enough of
+    # them. With two or three days of thin history a weekly figure is an
+    # extrapolation with error wider than the signal -- Qatar Airways came out
+    # at 17% of its timetable on a base whose complete days you can count on
+    # one hand. Below the floor the report shows both raw numbers and no
+    # percentage, which is the honest shape of "not enough data yet".
+    covered = conn.execute(
+        """SELECT COUNT(DISTINCT f.dep_date) n FROM flight f
+           JOIN coverage c ON c.day = f.dep_date
+           WHERE f.dep_date BETWEEN ? AND ? AND c.verdict = 'ok'""",
+        (since, until)).fetchone()["n"]
+    if not covered:
+        return {}
+    trustworthy = covered >= MIN_RATIO_DAYS
+
+    obs: dict[str, int] = defaultdict(int)
+    for r in conn.execute(
+            """SELECT carrier, dep_icao, arr_icao, COUNT(*) n FROM flight
+               WHERE is_freight = 0 AND dep_date BETWEEN ? AND ?
+                 AND carrier IS NOT NULL AND dep_icao <> arr_icao
+               GROUP BY carrier, dep_icao, arr_icao""", (since, until)):
+        if r["dep_icao"] in iata and r["arr_icao"] in iata:
+            obs[r["carrier"]] += r["n"]
+
+    sch: dict[str, int] = defaultdict(int)
+    monitored = set(iata.values())
+    for r in conn.execute(
+            "SELECT carrier, dep_iata, arr_iata, weekly FROM route_schedule"):
+        if r["dep_iata"] in monitored and r["arr_iata"] in monitored:
+            sch[r["carrier"]] += r["weekly"] or 0
+
+    out = {}
+    for code in set(obs) | set(sch):
+        flown = round(obs[code] * 7 / covered, 1)
+        planned = sch[code]
+        out[code] = {"observed": flown, "scheduled": planned,
+                     "ratio": (round(flown / planned, 2)
+                               if planned and trustworthy else None),
+                     "days_covered": covered, "trustworthy": trustworthy}
     return out
 
 
@@ -277,6 +346,51 @@ def enrich(conn, code: str, name: str, news: list[dict]) -> None:
                        "unclear": "mentioned"}[got["action"]]
 
 
+def diff_since_last(conn, rows: list[dict]) -> dict:
+    """What moved since the previous run, and record today for the next one.
+
+    A snapshot answers "where do things stand". An operator watching a
+    conflict needs the other question — what changed — and the history to
+    answer it is already in the database.
+    """
+    today = metrics.reference_day().isoformat()
+    prev_day = conn.execute(
+        "SELECT MAX(day) d FROM report_state WHERE day < ?", (today,)).fetchone()["d"]
+
+    changes: list[dict] = []
+    if prev_day:
+        before = {r["carrier"]: r for r in conn.execute(
+            "SELECT carrier, state, airports FROM report_state WHERE day=?",
+            (prev_day,))}
+        for r in rows:
+            was = before.get(r["code"])
+            if not was:
+                continue
+            now_ap = set(r["seen_at"])
+            was_ap = {a for a in (was["airports"] or "").split(",") if a}
+            iata = {k: v["iata"] for k, v in config.airports().items()}
+            if was["state"] != r["state"]:
+                changes.append({"carrier": r["code"], "name": r["name"],
+                                "kind": "durum", "was": STATE_LABEL[was["state"]],
+                                "now": STATE_LABEL[r["state"]]})
+            gone = sorted(iata.get(a, a) for a in was_ap - now_ap)
+            new = sorted(iata.get(a, a) for a in now_ap - was_ap)
+            if gone:
+                changes.append({"carrier": r["code"], "name": r["name"],
+                                "kind": "kayboldu", "was": ", ".join(gone), "now": ""})
+            if new:
+                changes.append({"carrier": r["code"], "name": r["name"],
+                                "kind": "geri döndü", "was": "", "now": ", ".join(new)})
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO report_state (day, carrier, state, legs, airports)
+           VALUES (?,?,?,?,?)""",
+        [(today, r["code"], r["state"], r["legs"], ",".join(sorted(r["seen_at"])))
+         for r in rows])
+    conn.commit()
+    return {"since": prev_day, "changes": changes}
+
+
 def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
             use_llm: bool = True) -> dict:
     conn = db.connect()
@@ -285,6 +399,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
     act = activity(conn, days)
     base = baseline_weekly(conn)
     sched_by_carrier = schedules.by_carrier(conn)
+    ratios = observed_vs_scheduled(conn, days)
     carriers = config.tracked_carriers()
 
     rows = []
@@ -303,7 +418,8 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
                      "iata": cfg.get("iata"), "country": cfg.get("country"),
                      "seen_at": seen_at, "legs": sum(seen_at.values()),
                      "baseline": base.get(code), "news": news,
-                     "sched": sched, "state": state, "why": why})
+                     "sched": sched, "ratio": ratios.get(code),
+                     "state": state, "why": why})
 
     # Last resort, and only for the rows that would otherwise say nothing at
     # all. A search costs far more than a headline lookup and is weaker
@@ -316,8 +432,11 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
             if got:
                 r["note"] = got
 
+    delta = diff_since_last(conn, rows)
+
     return {
         "generated_at": datetime.now(tz=timezone.utc),
+        "delta": delta,
         "as_of_day": ref.isoformat(),
         "window": (act["since"], act["until"]),
         "days": days,
@@ -534,13 +653,18 @@ def _rows(data: dict) -> str:
                       f'{_e(note["note"])} {kaynaklar}</div>')
         heads = f'<div class="heads">{heads}</div>' if heads else (
             '<div class="heads"><div class="head meta">basında ilgili haber yok</div></div>')
-        sc = c.get("sched") or {}
+        rt = c.get("ratio") or {}
         sched_cell = "—"
-        if sc.get("weekly"):
-            detay = " ".join(f"{k}·{v}" for k, v in
-                             sorted(sc["airports"].items(), key=lambda kv: -kv[1]))
-            sched_cell = (f'<b>{sc["weekly"]}</b>/hafta'
-                          + (f'<div class="at">{_e(detay)}</div>' if detay else ""))
+        if rt.get("scheduled"):
+            if rt.get("ratio") is not None:
+                pct = int(rt["ratio"] * 100)
+                cls = ("flying" if pct >= 80 else "partial" if pct >= 30 else "stopped")
+                sched_cell = (f'<b class="s-{cls}">%{pct}</b>'
+                              f'<div class="meta">{rt["observed"]:.0f} / {rt["scheduled"]}'
+                              f' hafta</div>')
+            else:
+                sched_cell = (f'{rt["observed"]:.0f} / <b>{rt["scheduled"]}</b>'
+                              f'<div class="meta">oran için veri yetersiz</div>')
         cls = f' class="r-{c["state"]}"' if c["state"] in ("stopped", "partial") else ""
         out.append(
             f'<tr{cls}>'
@@ -561,6 +685,29 @@ def render(data: dict) -> str:
     n = lambda s: sum(1 for c in cs if c["state"] == s)  # noqa: E731
     gen = data["generated_at"].strftime("%d.%m.%Y %H:%M UTC")
     d1, d2 = data["window"]
+
+    d = data["delta"]
+    if not d["since"]:
+        delta_html = ""
+    elif not d["changes"]:
+        delta_html = (f'<section><h2>Son rapordan beri</h2>'
+                      f'<p class="sub prose">{_e(d["since"])} tarihli rapora göre '
+                      f'durum değişikliği yok.</p></section>')
+    else:
+        satir = "".join(
+            f'<tr><td><span class="code">{_e(c["carrier"])}</span> '
+            f'<span class="name">{_e(c["name"])}</span></td>'
+            f'<td>{_e(c["kind"])}</td>'
+            f'<td class="at">{_e(c["was"] or "—")}</td>'
+            f'<td class="at">{_e(c["now"] or "—")}</td></tr>'
+            for c in d["changes"])
+        delta_html = (
+            f'<section><h2>Son rapordan beri</h2>'
+            f'<p class="sub prose">{_e(d["since"])} tarihli rapora göre değişenler. '
+            f'Anlık durum tablosu aşağıda; burası sadece <b>hareket edenler</b>.</p>'
+            f'<div class="scroll"><table><thead><tr><th>Havayolu</th><th>Ne oldu</th>'
+            f'<th>Önce</th><th>Sonra</th></tr></thead><tbody>{satir}</tbody></table></div>'
+            f'</section>')
 
     warn = []
     if not data["baseline_ready"]:
@@ -590,7 +737,9 @@ def render(data: dict) -> str:
         f'<a href="{_e(a["url"])}" target="_blank" rel="noopener">'
         f'{_e(a["title"] or a["ref"])}</a>'
         f' <span class="meta">yayım {_e(a["revision"])} · geçerlilik {_e(a["valid_to"])}</span>'
-        f"</div>" for a in data["advisories"]) or '<p class="sub">Kayıtlı bülten yok.</p>'
+        + (f'<div class="why" style="max-width:70ch">{_e(a["summary"])}</div>'
+           if a.get("summary") else "")
+        + "</div>" for a in data["advisories"]) or '<p class="sub">Kayıtlı bülten yok.</p>'
 
     return f"""<title>GulfWatch — Ortadoğu havayolu operasyon raporu {_e(data['as_of_day'])}</title>
 <style>{CSS}</style>
@@ -628,6 +777,7 @@ def render(data: dict) -> str:
   {"".join(f'<div class="notice"><span class="t">Önce bunu okuyun</span><p>{w}</p></div>' for w in warn)}
 </section>
 
+{delta_html}
 <section>
   <h2>Bu rapor nasıl okunur</h2>
   <p class="sub prose">Soru şu: <i>bu havayolu Ortadoğu uçuşlarını kesti mi?</i>
@@ -706,7 +856,7 @@ def render(data: dict) -> str:
   <div class="scroll"><table>
     <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
       <th class="num">Sefer</th><th>Nerede görüldü</th>
-      <th class="num">Tarifede</th></tr></thead>
+      <th class="num">Gözlenen / tarifeli</th></tr></thead>
     <tbody>{_rows(data)}</tbody>
   </table></div>
 </section>

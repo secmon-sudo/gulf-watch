@@ -81,6 +81,8 @@ CREATE TABLE IF NOT EXISTS advisory (
     url        TEXT,
     first_seen TEXT,
     last_seen  TEXT,
+    summary      TEXT,             -- plain-language reading of the bulletin
+    summary_hash TEXT,             -- body_hash the summary was written from
     PRIMARY KEY (source, ref)
 );
 
@@ -173,6 +175,17 @@ CREATE TABLE IF NOT EXISTS carrier_note (
     PRIMARY KEY (carrier, day)
 );
 
+-- One row per carrier per report run. The report is a snapshot; what an
+-- operator actually wants is the difference between two of them.
+CREATE TABLE IF NOT EXISTS report_state (
+    day      TEXT NOT NULL,
+    carrier  TEXT NOT NULL,
+    state    TEXT,
+    legs     INTEGER,
+    airports TEXT,             -- comma-separated IATA seen at
+    PRIMARY KEY (day, carrier)
+);
+
 -- Which backfill slices have actually landed. OpenSky's daily allowance is far
 -- smaller than a full baseline harvest, so the harvest must survive being cut
 -- off and resumed tomorrow -- and freeze() must be able to tell whether it is
@@ -195,12 +208,26 @@ CREATE TABLE IF NOT EXISTS run_log (
 """
 
 
+# Columns added after databases were already in the wild. CREATE TABLE IF NOT
+# EXISTS will not add a column to a table that already exists, so a committed
+# db would silently keep the old shape and every write would fail.
+MIGRATIONS = [
+    ("advisory", "summary", "TEXT"),
+    ("advisory", "summary_hash", "TEXT"),
+]
+
+
 def connect(path: Path | None = None) -> sqlite3.Connection:
     path = Path(path or DB_PATH)
     path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(path)
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
+    for table, column, decl in MIGRATIONS:
+        have = {r["name"] for r in conn.execute(f"PRAGMA table_info({table})")}
+        if column not in have:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {decl}")
+    conn.commit()
     return conn
 
 

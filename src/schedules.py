@@ -54,17 +54,17 @@ def _key() -> str | None:
 
 
 def pairs() -> list[tuple[str, str]]:
-    """Both directions between every blind airport and every visible one.
+    """Every ordered pair among the monitored airports.
 
-    Only where we are blind. Spending a capped monthly allowance on city pairs
-    ADS-B already reports would buy nothing.
+    Originally only blind-to-visible, on the reasoning that ADS-B already
+    covers the rest. That was right for "who serves Kuwait" and wrong for the
+    question the report actually needs a denominator for: 719 observed
+    departures means nothing without the number that was scheduled. Comparing
+    the two requires both sides to count the same universe, so every monitored
+    city pair is probed and the ratio is taken over exactly those.
     """
-    out = []
-    for blind in BLIND:
-        for seen in SEEING:
-            out.append((blind, seen))
-            out.append((seen, blind))
-    return out
+    every = BLIND + SEEING
+    return [(a, b) for a in every for b in every if a != b]
 
 
 def _fetch(dep: str, arr: str, key: str) -> list[dict] | None:

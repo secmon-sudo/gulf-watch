@@ -620,5 +620,52 @@ class TestHeadlineClassification(unittest.TestCase):
             post.assert_not_called()
 
 
+class TestChangeTracking(unittest.TestCase):
+    """A snapshot says where things stand; an operator needs what moved."""
+
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _rows(self, state, seen):
+        return [{"code": "ETD", "name": "Etihad Airways", "state": state,
+                 "legs": sum(seen.values()), "seen_at": seen}]
+
+    def test_first_run_reports_nothing_and_records_state(self):
+        from src import report
+        out = report.diff_since_last(self.conn, self._rows("flying", {"OMDB": 5}))
+        self.assertIsNone(out["since"])
+        self.assertEqual(out["changes"], [])
+        self.assertEqual(
+            self.conn.execute("SELECT COUNT(*) n FROM report_state").fetchone()["n"], 1)
+
+    def test_state_change_and_dropped_airport_are_both_reported(self):
+        from src import report
+        self.conn.execute(
+            "INSERT INTO report_state VALUES ('2000-01-01','ETD','flying',9,'OMDB,OBBI')")
+        self.conn.commit()
+        out = report.diff_since_last(self.conn, self._rows("partial", {"OMDB": 5}))
+        kinds = {c["kind"] for c in out["changes"]}
+        self.assertIn("durum", kinds)
+        self.assertIn("kayboldu", kinds)
+        gone = [c for c in out["changes"] if c["kind"] == "kayboldu"][0]
+        self.assertEqual(gone["was"], "BAH")     # OBBI -> its IATA code
+
+    def test_a_returning_airport_is_reported(self):
+        from src import report
+        self.conn.execute(
+            "INSERT INTO report_state VALUES ('2000-01-01','ETD','flying',9,'OMDB')")
+        self.conn.commit()
+        out = report.diff_since_last(
+            self.conn, self._rows("flying", {"OMDB": 5, "OKBK": 2}))
+        back = [c for c in out["changes"] if c["kind"] == "geri döndü"]
+        self.assertEqual(len(back), 1)
+        self.assertEqual(back[0]["now"], "KWI")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
