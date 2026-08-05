@@ -50,8 +50,6 @@ question this project exists to answer goes unanswered. Feeding a receiver to
 OpenSky raises the daily credit allowance considerably if you need more
 headroom.
 
-Optional, for push alerts: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
-
 ### 2. Build the baseline — do this first
 
 Nothing in this project means anything without a pre-escalation reference
@@ -293,7 +291,6 @@ src/corroborate.py      Google News RSS + FAA NOTAM corroboration
 src/firwatch.py         FIR overflight sampling
 src/advisories.py       EASA CZIB scrape + revision-change detection
 src/publish.py          static JSON API generation
-src/notify.py           optional Telegram push on stop/resume events
 public/index.html       dashboard, reads the same JSON
 tests/test_core.py      23 tests, including the outage-vs-suspension guard
 .github/workflows/      ingest (daily), backfill-baseline (manual), pages

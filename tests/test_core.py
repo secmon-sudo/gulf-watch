@@ -13,7 +13,7 @@ from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src import config, db, metrics, notify  # noqa: E402
+from src import config, db, metrics  # noqa: E402
 from src.parse import is_freight, parse_callsign  # noqa: E402
 
 
@@ -370,49 +370,6 @@ class TestOpenSkyWindowing(unittest.TestCase):
         self.assertEqual(chunks[-1][1], end)
         for (_, prev_end), (next_start, _) in zip(chunks, chunks[1:]):
             self.assertEqual(prev_end, next_start)
-
-
-class TestNotify(unittest.TestCase):
-    EVENTS = {
-        "opened_events": [{"scope": "station", "carrier": "MEA", "detail": "OMDB",
-                           "started_on": "2026-07-15", "days_stopped": 20,
-                           "baseline_weekly": 5.2}],
-        "resumed_events": [{"scope": "route", "carrier": "KAC", "detail": "OKBK-OBBI",
-                            "resumed_on": "2026-08-01", "days_stopped": 14}],
-    }
-
-    def test_message_names_carrier_scope_and_dates(self):
-        msg = notify.format_message(self.EVENTS, "2026-08-04")
-        for token in ("MEA", "OMDB", "2026-07-15", "20d", "5.2",
-                      "KAC", "OKBK-OBBI", "14d", "STOPPED", "RESUMED"):
-            self.assertIn(token, msg)
-
-    def test_long_list_is_truncated(self):
-        many = {"opened_events": [dict(self.EVENTS["opened_events"][0]) for _ in range(30)],
-                "resumed_events": []}
-        msg = notify.format_message(many, "2026-08-04")
-        self.assertIn(f"...and {30 - notify.MAX_LINES} more", msg)
-        self.assertLess(len(msg), 4096)
-
-    def test_unconfigured_is_a_silent_no_op(self):
-        with mock.patch.dict(os.environ, {}, clear=True), \
-                mock.patch("src.notify.requests.post") as post:
-            self.assertFalse(notify.send("hi"))
-            post.assert_not_called()
-
-    def test_nothing_happened_sends_nothing(self):
-        with mock.patch("src.notify.send") as send:
-            self.assertFalse(notify.announce(
-                {"opened_events": [], "resumed_events": []}, "2026-08-04"))
-            send.assert_not_called()
-
-    def test_telegram_outage_does_not_break_the_run(self):
-        import requests as _rq
-        env = {"TELEGRAM_BOT_TOKEN": "t", "TELEGRAM_CHAT_ID": "1"}
-        with mock.patch.dict(os.environ, env, clear=True), \
-                mock.patch("src.notify.requests.post",
-                           side_effect=_rq.RequestException("boom")):
-            self.assertFalse(notify.announce(self.EVENTS, "2026-08-04"))
 
 
 class TestReportAttribution(unittest.TestCase):

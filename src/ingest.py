@@ -17,7 +17,7 @@ import sys
 import time
 from datetime import datetime, timedelta, timezone
 
-from . import advisories, config, corroborate, db, firwatch, metrics, notify, suspensions
+from . import advisories, config, corroborate, db, firwatch, metrics, suspensions
 from .opensky import OpenSky, RateLimited
 from .parse import normalise
 
@@ -88,7 +88,6 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
     # refuses to touch state on a bad-coverage day.
     events = suspensions.detect(conn, ref)
     corro = corroborate.enrich(conn) if events["opened"] else {"checked": 0}
-    notify.announce(events, ref.isoformat())
 
     detail = (f"legs={total} coverage={coverage['verdict']}"
               f"({coverage['score']}) stopped={events['opened']} "
