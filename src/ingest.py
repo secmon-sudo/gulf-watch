@@ -17,7 +17,8 @@ import sys
 import time
 from datetime import datetime, timedelta, timezone
 
-from . import advisories, config, corroborate, db, firwatch, metrics, schedules, suspensions
+from . import (advisories, config, corroborate, db, firwatch, flightboard,
+               metrics, schedules, suspensions)
 from .opensky import OpenSky, RateLimited
 from .parse import normalise
 
@@ -90,6 +91,11 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
     # cost nothing. It stops by itself when the quota is gone.
     sched = schedules.refresh(conn)
 
+    # Boards for the seven airports no receiver covers. Written to their own
+    # table, never to `flight`, so a listing can never be counted as a
+    # sighting by the coverage score or by stop detection.
+    board = flightboard.sample(conn)
+
     # Score the last settled day, not the half-finished one we are standing in.
     ref = metrics.reference_day()
     coverage = metrics.score_coverage(conn, ref)
@@ -103,7 +109,10 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
               f"({coverage['score']}) stopped={events['opened']} "
               f"resumed={events['resumed']} czib_changes={len(czib_changes)} "
               f"sched={sched['fetched']}"
-              + ("(no key)" if sched["no_key"] else ""))
+              + ("(no key)" if sched["no_key"] else "")
+              + f" board={board['written']}"
+              + (f" FLAGGED[{','.join(board['flagged'])}]"
+                 if board["flagged"] else ""))
     conn.execute(
         "INSERT OR REPLACE INTO run_log (started_at, kind, ok, detail) VALUES (?,?,?,?)",
         (started.isoformat(timespec="seconds"), "ingest", 1, detail),

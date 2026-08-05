@@ -372,6 +372,80 @@ class TestOpenSkyWindowing(unittest.TestCase):
             self.assertEqual(prev_end, next_start)
 
 
+class TestFlightBoardGuard(unittest.TestCase):
+    """The board endpoint is undocumented. When it breaks it will not error,
+    it will return an empty list -- which without a guard reads as "every
+    carrier stopped serving Baghdad overnight". These pin that it cannot.
+    """
+
+    def setUp(self):
+        from src import flightboard
+        self.fb = flightboard
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.patches = [mock.patch("src.db.DB_PATH", self.tmp.name),
+                        mock.patch("src.flightboard.time.sleep")]
+        for p in self.patches:
+            p.start()
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        for p in self.patches:
+            p.stop()
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _history(self, counts, airport="ORBI"):
+        for i, n in enumerate(counts):
+            day = f"2026-07-{10 + i:02d}"
+            self.conn.execute(
+                "INSERT INTO board_probe (airport, day, flights, verdict) "
+                "VALUES (?,?,?,?)", (airport, day, n, "ok"))
+        self.conn.commit()
+
+    def test_a_sudden_zero_is_the_source_failing_not_an_empty_sky(self):
+        self._history([50, 48, 52, 49])
+        verdict, median = self.fb._verdict(self.conn, "ORBI", "2026-07-20", 0)
+        self.assertEqual(verdict, "empty")
+        self.assertEqual(median, 49.5)
+
+    def test_a_collapse_short_of_zero_is_also_flagged(self):
+        self._history([50, 48, 52, 49])
+        verdict, _ = self.fb._verdict(self.conn, "ORBI", "2026-07-20", 4)
+        self.assertEqual(verdict, "thin")
+
+    def test_a_real_drop_that_is_not_a_collapse_still_reads_ok(self):
+        self._history([50, 48, 52, 49])
+        verdict, _ = self.fb._verdict(self.conn, "ORBI", "2026-07-20", 30)
+        self.assertEqual(verdict, "ok")
+
+    def test_zero_means_nothing_before_there_is_history_to_judge_it_by(self):
+        self._history([50, 48])          # under MIN_HISTORY_DAYS
+        verdict, _ = self.fb._verdict(self.conn, "ORBI", "2026-07-20", 0)
+        self.assertEqual(verdict, "unproven")
+
+    def test_a_total_request_failure_records_no_count_at_all(self):
+        """A zero written on a network failure would poison the median that
+        every later day is judged against."""
+        with mock.patch.object(self.fb, "_fetch", return_value=None):
+            out = self.fb.sample(self.conn)
+        rows = self.conn.execute("SELECT COUNT(*) n FROM board_probe").fetchone()["n"]
+        self.assertEqual(rows, 0)
+        self.assertEqual(out["written"], 0)
+        self.assertTrue(all(f.endswith(":failed") for f in out["flagged"]))
+
+    def test_board_rows_never_land_in_the_flight_table(self):
+        """A board listing is not a sighting; merging the two would let the
+        coverage score and stop detection treat a timetable as observation."""
+        flights = [{"carrier": {"fs": "EK", "name": "Emirates", "flightNumber": "941"},
+                    "airport": {"fs": "DXB"}, "arrivalTime": {"time24": "11:15"}}]
+        with mock.patch.object(self.fb, "_fetch", return_value=flights):
+            self.fb.sample(self.conn)
+        self.assertEqual(
+            self.conn.execute("SELECT COUNT(*) n FROM flight").fetchone()["n"], 0)
+        self.assertGreater(
+            self.conn.execute("SELECT COUNT(*) n FROM board_flight").fetchone()["n"], 0)
+
+
 class TestReportAttribution(unittest.TestCase):
     """A headline gets attributed to a carrier, or the carrier reads Stopped.
 

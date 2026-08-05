@@ -205,6 +205,34 @@ CREATE TABLE IF NOT EXISTS run_log (
     ok         INTEGER,
     detail     TEXT
 );
+
+-- Arrival/departure boards for the airports no ADS-B receiver covers. Kept
+-- out of `flight` on purpose: those rows are transponder observations with an
+-- icao24 address, these are a published board with no aircraft identity, and
+-- merging them would let a board entry be counted as a sighting.
+CREATE TABLE IF NOT EXISTS board_flight (
+    airport    TEXT NOT NULL,          -- ICAO of the blind airport
+    direction  TEXT NOT NULL,          -- arr | dep
+    day        TEXT NOT NULL,          -- YYYY-MM-DD UTC
+    carrier    TEXT NOT NULL,          -- ICAO, mapped from the board's IATA
+    flight_no  TEXT NOT NULL,
+    other_iata TEXT,                   -- the far end of the leg
+    sched_time TEXT,
+    fetched_at TEXT,
+    PRIMARY KEY (airport, direction, day, carrier, flight_no)
+);
+
+-- One row per airport per day, so an empty board can be told from an empty
+-- sky. Without this a broken endpoint reads as "every carrier stopped".
+CREATE TABLE IF NOT EXISTS board_probe (
+    airport    TEXT NOT NULL,
+    day        TEXT NOT NULL,
+    flights    INTEGER NOT NULL,
+    median     REAL,                   -- of prior days, for the comparison
+    verdict    TEXT,                   -- ok | thin | empty | unproven
+    fetched_at TEXT,
+    PRIMARY KEY (airport, day)
+);
 """
 
 

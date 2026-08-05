@@ -37,7 +37,8 @@ from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-from . import advisories, classify, config, db, firwatch, metrics, schedules, websearch
+from . import (advisories, classify, config, db, firwatch, flightboard,
+               metrics, schedules, websearch)
 from .corroborate import _news
 
 logging.basicConfig(level=logging.INFO,
@@ -508,6 +509,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "carriers_cfg": carriers,
         "airport_view": airport_view(conn, days, carriers),
         "blind_news": blind_news(news_days) if with_news else [],
+        "boards": flightboard.by_airport(conn),
         "firs": firwatch.summary(conn, days=7),
         "schedule_coverage": schedules.coverage(conn),
         "advisories": advisories.current(conn),
@@ -657,6 +659,10 @@ tr.r-partial td{background:color-mix(in srgb,var(--partial) 6%,transparent)}
 .watch{color:var(--stopped);font-family:var(--mono);font-size:10px;
   letter-spacing:.1em;text-transform:uppercase}
 
+.notice-inline{border-left:3px solid var(--stopped);
+  background:color-mix(in srgb,var(--stopped) 8%,transparent);
+  padding:10px 14px;font-size:13.5px;max-width:78ch}
+
 ul.blind-news{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:9px}
 ul.blind-news li{font-size:13.5px;line-height:1.45}
 ul.blind-news a{text-decoration:none;border-bottom:1px solid transparent}
@@ -738,6 +744,80 @@ def _who(a: dict, cfg: dict) -> str:
     tag = ("" if a["legs"] else
            '<div class="meta">tarifeye göre — uçuş verisi yok</div>')
     return f'<div class="who-list">{chips}</div>{tag}'
+
+
+BOARD_VERDICT = {
+    "ok": ("flying", "Tahta okundu"),
+    "thin": ("partial", "Tahta çöktü — veri şüpheli"),
+    "empty": ("stopped", "Tahta boş döndü — KAYNAK ARIZASI"),
+    "unproven": ("unknown", "Geçmiş yetersiz"),
+}
+
+
+def _boards_section(data: dict) -> str:
+    """What the published boards say for the airports we cannot observe.
+
+    The verdict column is the point. This endpoint is undocumented and the
+    realistic way it fails is by returning an empty list rather than an error,
+    which would otherwise render as every carrier having stopped overnight.
+    An `empty` or `thin` verdict therefore reads as a fault in the source and
+    says so in those words, rather than as a finding about traffic.
+    """
+    boards = data.get("boards") or []
+    if not boards:
+        return ""
+    ap = data["airports"]
+    rows = []
+    for b in boards:
+        cls, label = BOARD_VERDICT.get(b["verdict"], ("unknown", b["verdict"]))
+        cfg = ap.get(b["airport"], {})
+        broken = b["verdict"] in ("empty", "thin")
+        chips = "".join(f'<span class="who-chip">{_e(c)}</span>'
+                        for c in b["carriers"][:14])
+        row_cls = ' class="r-stopped"' if broken else ""
+        median = "—" if b["median"] is None else round(b["median"])
+        # A flagged board's carrier list is withheld rather than shown short:
+        # a half-fetched list read as "these are the ones still flying" is
+        # exactly the inference the verdict exists to block.
+        who = (f'<div class="who-list">{chips}</div>'
+               if chips and not broken else '<span class="meta">—</span>')
+        rows.append(
+            f'<tr{row_cls}>'
+            f'<td><span class="code">{_e(cfg.get("iata", b["airport"]))}</span> '
+            f'<span class="name">{_e(cfg.get("city", ""))}</span>'
+            f'<div class="meta">{_e(b["airport"])}</div></td>'
+            f'<td><span class="pill s-{cls}"><span class="dot"></span>{label}</span></td>'
+            f'<td class="num">{b["flights"]}</td>'
+            f'<td class="num">{median}</td>'
+            f'<td>{who}</td>'
+            '</tr>')
+    flagged = [b for b in boards if b["verdict"] in ("empty", "thin")]
+    warn = ""
+    if flagged:
+        names = ", ".join(_e(ap.get(b["airport"], {}).get("city", b["airport"]))
+                          for b in flagged)
+        warn = (f'<div class="notice-inline"><b>Dikkat: {names}</b> için tahta '
+                f'beklenenin çok altında veri döndürdü. Bu <i>trafik yok</i> '
+                f'demek değildir — büyük ihtimalle kaynak arızası. O '
+                f'havalimanları bugünkü okumadan çıkarılmıştır.</div>')
+    return f"""
+<section>
+  <h2>Kör havalimanları — varış/kalkış tahtası</h2>
+  <p class="sub prose">ADS-B'nin göremediği yedi havalimanı için yayımlanmış
+  tahta (FlightStats). Bu bir <b>liste</b>dir, transponder görüntüsü değil —
+  o yüzden ayrı tabloda tutulur ve uçuş verisiyle asla toplanmaz.
+  <b>Medyan</b> sütunu önceki günlerin ortancası; bugünkü sayı onun çok
+  altına düşerse kaynağın arızalandığı varsayılır, havayollarının uçmayı
+  bıraktığı değil. Geçmiş {flightboard.MIN_HISTORY_DAYS} günden azken hiçbir
+  yargıya varılmaz.</p>
+  {warn}
+  <div class="tablewrap"><table>
+    <thead><tr><th>Havalimanı</th><th>Durum</th><th class="num">Kayıt</th>
+      <th class="num">Medyan</th><th>Tahtada görünen havayolları</th></tr></thead>
+    <tbody>{"".join(rows)}</tbody>
+  </table></div>
+</section>
+"""
 
 
 def _blind_news_section(data: dict) -> str:
@@ -1014,6 +1094,7 @@ def render(data: dict) -> str:
   </table></div>
 </section>
 
+{_boards_section(data)}
 {_blind_news_section(data)}
 
 <section>
