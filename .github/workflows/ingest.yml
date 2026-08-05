@@ -61,6 +61,10 @@ jobs:
           OPENSKY_CLIENT_SECRET: ${{ secrets.OPENSKY_CLIENT_SECRET }}
           FAA_CLIENT_ID: ${{ secrets.FAA_CLIENT_ID }}
           FAA_CLIENT_SECRET: ${{ secrets.FAA_CLIENT_SECRET }}
+          # Now actually read: ingest calls schedules.refresh(), which is the
+          # only thing that keeps the timetable for the ADS-B-blind airports
+          # from freezing. Without the key it logs a warning and skips.
+          AIRLABS_API_KEY: ${{ secrets.AIRLABS_API_KEY }}
         run: |
           python -m src.ingest \
             --hours "${{ inputs.hours || '48' }}" \

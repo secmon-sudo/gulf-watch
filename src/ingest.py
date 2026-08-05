@@ -17,7 +17,7 @@ import sys
 import time
 from datetime import datetime, timedelta, timezone
 
-from . import advisories, config, corroborate, db, firwatch, metrics, suspensions
+from . import advisories, config, corroborate, db, firwatch, metrics, schedules, suspensions
 from .opensky import OpenSky, RateLimited
 from .parse import normalise
 
@@ -80,6 +80,16 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
     fir_result = {} if skip_fir else firwatch.sample(conn, only_czib=False)
     czib_changes = advisories.fetch(conn)
 
+    # The timetable layer. It costs no OpenSky credits and it is the only
+    # source that says anything at all about Kuwait, Riyadh, Jeddah, Erbil,
+    # Abha, Baghdad and Tehran, where every ADS-B receiver returns zero.
+    #
+    # refresh() only asks about pairs it has not seen in a week, so running
+    # this on every ingest is self-limiting: 210 pairs a week is ~900 of the
+    # free tier's 1000 monthly requests, and repeated runs inside the week
+    # cost nothing. It stops by itself when the quota is gone.
+    sched = schedules.refresh(conn)
+
     # Score the last settled day, not the half-finished one we are standing in.
     ref = metrics.reference_day()
     coverage = metrics.score_coverage(conn, ref)
@@ -91,7 +101,9 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
 
     detail = (f"legs={total} coverage={coverage['verdict']}"
               f"({coverage['score']}) stopped={events['opened']} "
-              f"resumed={events['resumed']} czib_changes={len(czib_changes)}")
+              f"resumed={events['resumed']} czib_changes={len(czib_changes)} "
+              f"sched={sched['fetched']}"
+              + ("(no key)" if sched["no_key"] else ""))
     conn.execute(
         "INSERT OR REPLACE INTO run_log (started_at, kind, ok, detail) VALUES (?,?,?,?)",
         (started.isoformat(timespec="seconds"), "ingest", 1, detail),
