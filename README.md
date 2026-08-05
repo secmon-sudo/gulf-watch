@@ -96,6 +96,7 @@ Nothing runs on a timer. The `ingest` workflow is manual — Actions → **inges
 
 ```bash
 python -m src.ingest          # pull flights, score coverage, detect stops
+python -m src.publish         # regenerate public/v1/*.json -- the dashboard reads these
 python -m src.report          # write public/index.html, the site front page
 ```
 
