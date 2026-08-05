@@ -19,6 +19,11 @@ on:
         description: "Skip the harvest, just recompute from legs already ingested"
         type: boolean
         default: false
+      airports:
+        description: "ICAO list to harvest. The default is the set OpenSky can
+          actually see; the seven omitted ones returned zero flights each over a
+          real 48h ingest and cost about half the daily allowance to learn it."
+        default: "OMDB,OTHH,OMSJ,OJAI,OMAA,OBBI,OLBA,OOMS"
 
 permissions:
   contents: write
@@ -54,6 +59,7 @@ jobs:
           python -m src.backfill \
             --start "${{ inputs.start }}" \
             --end "${{ inputs.end }}" \
+            --airports "${{ inputs.airports }}" \
             ${{ inputs.freeze_only && '--freeze-only' || '' }}
 
       - name: Publish JSON
