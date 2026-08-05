@@ -55,12 +55,24 @@ jobs:
         env:
           OPENSKY_CLIENT_ID: ${{ secrets.OPENSKY_CLIENT_ID }}
           OPENSKY_CLIENT_SECRET: ${{ secrets.OPENSKY_CLIENT_SECRET }}
+        # Exit 2 is "allowance exhausted, resume tomorrow" -- the expected
+        # outcome on every run but the last, and the slices that did land must
+        # still be published and committed. Letting the step fail there aborted
+        # the job before the Commit step and threw the day's harvest away.
+        # Any other non-zero code is a real failure and still stops the job.
         run: |
+          rc=0
           python -m src.backfill \
             --start "${{ inputs.start }}" \
             --end "${{ inputs.end }}" \
             --airports "${{ inputs.airports }}" \
-            ${{ inputs.freeze_only && '--freeze-only' || '' }}
+            ${{ inputs.freeze_only && '--freeze-only' || '' }} || rc=$?
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 2 ]; then
+            echo "::error::backfill failed with exit $rc"
+            exit "$rc"
+          fi
+          [ "$rc" -eq 2 ] && echo "::notice::allowance exhausted; committing what landed and resuming next run"
+          exit 0
 
       - name: Publish JSON
         run: python -m src.publish

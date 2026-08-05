@@ -476,7 +476,9 @@ class TestBackfillResume(unittest.TestCase):
             rc = self.bf.main(["--start", "2025-11-01", "--end", "2025-11-15",
                                "--airports", "OTHH"])
         freeze.assert_not_called()
-        self.assertEqual(rc, 1)
+        # Not 1: an unhandled exception exits 1 too, and the workflow has to
+        # tell "allowance ran out, commit what landed" from "this broke".
+        self.assertEqual(rc, self.bf.EXIT_INCOMPLETE)
 
 
 class TestNewsRecency(unittest.TestCase):

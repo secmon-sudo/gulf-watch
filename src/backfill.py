@@ -35,6 +35,12 @@ logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 LOG = logging.getLogger("gulfwatch.backfill")
 
+# "Stopped early, resume tomorrow" -- the expected outcome on every run but the
+# last. It needs its own code because an unhandled exception also exits 1, and
+# a caller has to be able to tell "the allowance ran out, keep what landed"
+# from "this broke, do not trust the db".
+EXIT_INCOMPLETE = 2
+
 
 def _slices(t0: int, t1: int) -> list[tuple[int, int]]:
     out, cursor = [], t0
@@ -177,7 +183,7 @@ def main(argv=None) -> int:
         LOG.error("harvest incomplete (%s slices left) -- NOT freezing the "
                   "baseline. Rerun this command to resume, then it freezes "
                   "automatically.", result["remaining"])
-        return 1
+        return EXIT_INCOMPLETE
 
     freeze(args.start, args.end)
     return 0

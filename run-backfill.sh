@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
 export OPENSKY_CLIENT_ID="$(python3 -c 'import json;print(json.load(open("credentials.json"))["clientId"])')"
 export OPENSKY_CLIENT_SECRET="$(python3 -c 'import json;print(json.load(open("credentials.json"))["clientSecret"])')"
 
-# Exit 1 means "stopped early, resume tomorrow", which is the expected outcome
+# Exit 2 means "stopped early, resume tomorrow", which is the expected outcome
 # most days -- don't let set -e treat it as a failure before the summary runs.
 rc=0
 python3 -m src.backfill \
