@@ -69,6 +69,23 @@ jobs:
       - name: Publish JSON
         run: python -m src.publish
 
+      - name: Report
+        # public/report.html is committed and served by Pages, so it has to be
+        # regenerated here or the site shows a fresh JSON API beside a stale
+        # report. Runs before the WAL checkpoint because report.py writes back
+        # to the db -- it caches headline classifications.
+        #
+        # Without MISTRAL_API_KEY, classify.available() is false and headline
+        # reading falls back to keyword matching; the run still completes.
+        #
+        # AIRLABS_API_KEY is deliberately not passed. report.py only reads the
+        # cached route_schedule table -- schedules.refresh(), the one function
+        # that calls the AirLabs API, has no caller anywhere in the repo. The
+        # key would do nothing here.
+        env:
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+        run: python -m src.report
+
       - name: Checkpoint WAL
         # The db is committed to the repo; the -wal sidecar is not. Fold it in
         # so the committed file is complete on its own.
