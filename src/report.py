@@ -308,6 +308,51 @@ def carrier_news(name: str, limit: int = 2, max_age: int = NEWS_MAX_AGE_DAYS) ->
     return out[:limit]
 
 
+def blind_news(max_age: int = NEWS_MAX_AGE_DAYS, per_airport: int = 3) -> list[dict]:
+    """Headlines about the airports no receiver can see.
+
+    Seven of fifteen airports return zero ADS-B -- measured, and confirmed
+    against the keyless aggregators too, which share the same volunteer
+    receiver geography. For those, "did anyone stop flying here" cannot be
+    answered by observation at all, and the timetable only says what is
+    still *planned*.
+
+    So we ask the press directly, by airport rather than by carrier. A
+    carrier-name query returns regional round-ups; an airport query returns
+    the thing itself -- "Etihad, Emirates, Air Arabia, flydubai cancel Kuwait
+    flights" names four carriers in one headline, which no per-carrier query
+    surfaced.
+
+    This decides nothing, deliberately. It hands over dated, linked headlines
+    for a human to read, the same contract corroborate.py works under.
+    """
+    out = []
+    for icao in schedules.BLIND:
+        cfg = next((c for i, c in config.airports().items()
+                    if c["iata"] == icao or i == icao), None)
+        if not cfg:
+            continue
+        city = cfg["city"]
+        items = _news(f'"{city}" airport flights suspended OR cancelled '
+                      f'OR resumed OR halted when:{max_age}d', limit=8)
+        hits = []
+        for it in items:
+            if city.lower() not in it["title"].lower():
+                continue          # regional round-up that never names the place
+            age = _age_days(it.get("published"))
+            if age is None or age > max_age:
+                continue
+            it["age_days"] = age
+            it["signal"] = ("resumed" if RESUMED.search(it["title"])
+                            else "stopped" if STOPPED.search(it["title"])
+                            else "mentioned")
+            hits.append(it)
+        hits.sort(key=lambda x: x["age_days"])
+        LOG.info("%s (%s): %s headlines", icao, city, len(hits))
+        out.append({"iata": icao, "city": city, "items": hits[:per_airport]})
+    return out
+
+
 def verdict(seen_at: dict, sched: dict | None, news: list[dict]) -> tuple[str, str]:
     """(durum, gerekçe) — üç kaynaktan.
 
@@ -462,6 +507,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "airports": config.airports(),
         "carriers_cfg": carriers,
         "airport_view": airport_view(conn, days, carriers),
+        "blind_news": blind_news(news_days) if with_news else [],
         "firs": firwatch.summary(conn, days=7),
         "schedule_coverage": schedules.coverage(conn),
         "advisories": advisories.current(conn),
@@ -611,6 +657,12 @@ tr.r-partial td{background:color-mix(in srgb,var(--partial) 6%,transparent)}
 .watch{color:var(--stopped);font-family:var(--mono);font-size:10px;
   letter-spacing:.1em;text-transform:uppercase}
 
+ul.blind-news{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:9px}
+ul.blind-news li{font-size:13.5px;line-height:1.45}
+ul.blind-news a{text-decoration:none;border-bottom:1px solid transparent}
+ul.blind-news a:hover,ul.blind-news a:focus-visible{border-bottom-color:var(--accent)}
+ul.blind-news .meta{display:block;margin-top:2px}
+
 .who-list{display:flex;flex-wrap:wrap;gap:4px;max-width:34ch}
 .who-chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
   padding:1px 5px;border:1px solid var(--rule);border-radius:2px;
@@ -686,6 +738,45 @@ def _who(a: dict, cfg: dict) -> str:
     tag = ("" if a["legs"] else
            '<div class="meta">tarifeye göre — uçuş verisi yok</div>')
     return f'<div class="who-list">{chips}</div>{tag}'
+
+
+def _blind_news_section(data: dict) -> str:
+    """Press coverage for the airports observation cannot reach.
+
+    Rendered as links and dates, never as a verdict: this is the only part of
+    the report where nothing can be checked against a flight, so it has to be
+    obvious that a human is being asked to read rather than told an answer.
+    """
+    blocks = [b for b in data.get("blind_news") or [] if b["items"]]
+    if not blocks:
+        return ""
+    cards = []
+    for b in blocks:
+        items = "".join(
+            f'<li><a href="{_e(it["url"])}" target="_blank" rel="noopener">'
+            f'{_e(it["title"])}</a>'
+            f'<span class="meta">{_gun(it["age_days"])}'
+            + (f' · <span class="tag s-{it["signal"]}">'
+               f'{_e(SIGNAL_LABEL[it["signal"]])}</span>'
+               if it["signal"] != "mentioned" else "")
+            + '</span></li>'
+            for it in b["items"])
+        cards.append(
+            f'<div class="card"><div class="hd"><b>{_e(b["iata"])}</b> '
+            f'<span class="name">{_e(b["city"])}</span></div>'
+            f'<ul class="blind-news">{items}</ul></div>')
+    return f"""
+<section>
+  <h2>Kör havalimanları — basından</h2>
+  <p class="sub prose">Bu yedi havalimanında ADS-B alıcısı yok: uçuş verisi
+  <b>hiç</b> gelmiyor, dolayısıyla "durdu mu" sorusu gözlemle
+  cevaplanamıyor. Tarife ne <i>planlandığını</i> söyler, basın ne
+  <i>olduğunu</i>. Aşağısı karar değil, okumanız için bağlantı — havayolu
+  adıyla değil havalimanı adıyla arandı, çünkü tek bir manşet çoğu zaman
+  birkaç havayolunu birden adlandırıyor.</p>
+  <div class="cards">{"".join(cards)}</div>
+</section>
+"""
 
 
 def _rows(data: dict) -> str:
@@ -922,6 +1013,8 @@ def render(data: dict) -> str:
     <tbody>{_airport_rows(data)}</tbody>
   </table></div>
 </section>
+
+{_blind_news_section(data)}
 
 <section>
   <h2>Havayolları</h2>
