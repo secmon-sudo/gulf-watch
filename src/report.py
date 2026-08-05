@@ -1,6 +1,6 @@
 """Operator report. Run it by hand when you want to know where things stand.
 
-    python -m src.report                 # writes public/report.html
+    python -m src.report                 # writes public/index.html, the site front page
     python -m src.report --no-news       # skip the news sweep (faster, offline)
     python -m src.report --days 14       # wider observation window
 
@@ -476,7 +476,7 @@ CSS = """
   --bg:#F4F6F8; --panel:#FFFFFF; --rule:#DDE3E9;
   --accent:#2D6A9F; --accent-soft:#E7EFF6;
   --flying:#2F7D6B; --partial:#B0761C; --stopped:#B0433A; --unknown:#7A8794;
-  --scheduled:#2D6A9F;
+  --scheduled:#2D6A9F; --restricted:#B4145F;
   --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
@@ -485,18 +485,18 @@ CSS = """
     --bg:#0F141A; --panel:#161D25; --rule:#25303B;
     --accent:#6FA8D6; --accent-soft:#1B2733;
     --flying:#5FB89F; --partial:#D9A445; --stopped:#DE7268; --unknown:#76838F;
-    --scheduled:#6FA8D6; }
+    --scheduled:#6FA8D6; --restricted:#E8608F; }
 }
 :root[data-theme="dark"]{ --ink:#E4EAF0; --ink-2:#A9B5C2; --ink-3:#76838F;
   --bg:#0F141A; --panel:#161D25; --rule:#25303B;
   --accent:#6FA8D6; --accent-soft:#1B2733;
   --flying:#5FB89F; --partial:#D9A445; --stopped:#DE7268; --unknown:#76838F;
-    --scheduled:#6FA8D6; }
+    --scheduled:#6FA8D6; --restricted:#E8608F; }
 :root[data-theme="light"]{ --ink:#10161D; --ink-2:#3C4854; --ink-3:#6B7887;
   --bg:#F4F6F8; --panel:#FFFFFF; --rule:#DDE3E9;
   --accent:#2D6A9F; --accent-soft:#E7EFF6;
   --flying:#2F7D6B; --partial:#B0761C; --stopped:#B0433A; --unknown:#7A8794;
-  --scheduled:#2D6A9F; }
+  --scheduled:#2D6A9F; --restricted:#B4145F; }
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
@@ -507,6 +507,16 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
 h1,h2,h3{text-wrap:balance;margin:0}
 h1{font-family:var(--mono);font-size:clamp(21px,3.4vw,29px);font-weight:600;
   letter-spacing:.10em;text-transform:uppercase}
+/* The masthead the dashboard has carried since the start. Now that the report
+   is the front page, it wears the same one. */
+.brand{
+  font-family:"Barlow Condensed",var(--sans);font-weight:600;
+  font-size:clamp(38px,7vw,64px);letter-spacing:.02em;line-height:.92;
+  text-transform:uppercase;margin:0;
+}
+.brand span{color:var(--restricted)}
+.deck{font-family:var(--mono);font-size:clamp(13px,1.8vw,16px);font-weight:600;
+  letter-spacing:.10em;text-transform:uppercase;color:var(--ink-2);margin-top:2px}
 h2{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.16em;
   text-transform:uppercase;color:var(--ink-3);
   padding-bottom:8px;border-bottom:1px solid var(--rule)}
@@ -514,7 +524,10 @@ h3{font-size:16px;font-weight:600}
 p{margin:0}
 a{color:var(--accent)}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--ink-3)}
+  text-transform:uppercase;color:var(--ink-3);
+  display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.sibling{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+.sibling:hover,.sibling:focus-visible{border-bottom-color:var(--accent)}
 .sub{color:var(--ink-2);margin-top:10px}
 section{display:flex;flex-direction:column;gap:16px}
 header{display:flex;flex-direction:column;gap:6px;
@@ -748,12 +761,19 @@ def render(data: dict) -> str:
            if a.get("summary") else "")
         + "</div>" for a in data["advisories"]) or '<p class="sub">Kayıtlı bülten yok.</p>'
 
-    return f"""<title>GulfWatch — Ortadoğu havayolu operasyon raporu {_e(data['as_of_day'])}</title>
+    return f"""<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GulfWatch — Ortadoğu havayolu operasyon raporu {_e(data['as_of_day'])}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
 <style>{CSS}</style>
 <div class="wrap">
 <header>
-  <div class="eyebrow">GulfWatch · elle çalıştırılan rapor</div>
-  <h1>Ortadoğu havayolu operasyonları</h1>
+  <h1 class="brand">Gulf<span>Watch</span></h1>
+  <div class="deck">Ortadoğu havayolu operasyonları</div>
+  <div class="eyebrow">Elle çalıştırılan rapor
+    <a class="sibling" href="dashboard.html">Pano ve JSON API →</a></div>
   <p class="sub prose">İzlenen Körfez ve Levant havalimanlarında hangi
   havayolunun hâlâ uçtuğu. Dört kaynak sırayla okunuyor:
   <b>gözlemlenen uçuş verisi</b>, <b>yayımlanmış tarifeler</b>,
@@ -948,7 +968,10 @@ def main(argv=None) -> int:
 
     data = collect(args.days, with_news=not args.no_news,
                    use_llm=not args.no_llm)
-    path = Path(args.out or (config.PUBLIC_DIR / "report.html"))
+    # The report is the front page: it is the one artefact that explains what
+    # every number rests on. The JSON dashboard sits beside it at
+    # dashboard.html for the at-a-glance read and the API index.
+    path = Path(args.out or (config.PUBLIC_DIR / "index.html"))
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(render(data), encoding="utf-8")
     LOG.info("wrote %s", path)

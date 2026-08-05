@@ -10,7 +10,7 @@ no paid API keys. Total running cost: zero.
 
 ```
 OpenSky (OAuth2)  ─┐
-adsb.lol / a.live ─┼─►    ETL, on demand   ─► SQLite in repo ─► static JSON ─► report.html
+adsb.lol / a.live ─┼─►    ETL, on demand   ─► SQLite in repo ─► static JSON ─► index.html
 EASA CZIB pages   ─┘      (local or Actions)   (git = history)     + /v1/*.json
 ```
 
@@ -96,7 +96,7 @@ Nothing runs on a timer. The `ingest` workflow is manual — Actions → **inges
 
 ```bash
 python -m src.ingest          # pull flights, score coverage, detect stops
-python -m src.report          # write public/report.html
+python -m src.report          # write public/index.html, the site front page
 ```
 
 Deliberate rather than unfinished. Analysis is anchored on the last settled UTC
