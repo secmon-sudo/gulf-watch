@@ -59,6 +59,15 @@ jobs:
       - name: Publish JSON
         run: python -m src.publish
 
+      - name: Report
+        # Same reason as ingest.yml: public/report.html is committed and served,
+        # so a run that lands the baseline has to rebuild it too. This is the
+        # run that matters most -- it is the one that turns "12 flights a week"
+        # into "12 against a baseline of 21" everywhere the report says it.
+        env:
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+        run: python -m src.report
+
       - name: Checkpoint WAL
         run: |
           python - <<'PY'
