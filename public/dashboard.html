@@ -509,20 +509,40 @@ function empty(msg){ const d=document.createElement("div");
   // stopped operations
   const sh = $("#stops");
   const shown = stops.active.filter(e => !e.superseded_by);
-  if(status.coverage.verdict !== "ok"){
+  // Both can be true at once. The missing baseline is the harder blocker --
+  // coverage merely pauses detection, no baseline means it never ran -- so it
+  // wins the hint, and whichever is shown must not be overwritten below.
+  if(!health.baseline_ready){
+    $("#stophint").textContent =
+      "Stop detection is not running yet: suspensions.detect() skips every "
+      + "carrier and route whose baseline is under its floor, and the baseline "
+      + "is still empty. The backfill has to finish first.";
+  } else if(status.coverage.verdict !== "ok"){
     $("#stophint").textContent =
       "Stop detection is paused while ADS-B coverage is below threshold.";
     sh.append(empty("Showing the last known state. No new stops are being opened."));
   }
   if(!shown.length){
-    sh.append(empty("No carrier has stopped a service beyond its threshold."));
+    // An empty ledger means one of two very different things. Without a
+    // baseline, suspensions.detect() skips every scope before it looks at a
+    // single day of silence -- so "nothing found" is not a finding, and
+    // saying otherwise is the confidently-wrong output this project exists
+    // to avoid.
+    sh.append(empty(health.baseline_ready
+      ? "No carrier has stopped a service beyond its threshold."
+      : "Nothing has been checked yet. Stop detection needs the baseline to "
+      + "run at all — every carrier is skipped until the backfill completes, "
+      + "so this is not the same as saying no one has stopped."));
   } else {
     shown.forEach(e => sh.append(stopRow(e, false)));
   }
 
   const rh = $("#resumed");
   if(!stops.recently_resumed.length){
-    rh.append(empty("Nothing has come back in the last 30 days."));
+    rh.append(empty(health.baseline_ready
+      ? "Nothing has come back in the last 30 days."
+      : "Not checked — a resume can only be seen against a stop, and no stop "
+      + "is being opened yet."));
   } else {
     stops.recently_resumed.forEach(e => rh.append(stopRow(e, true)));
   }

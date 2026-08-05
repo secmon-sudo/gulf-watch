@@ -111,7 +111,7 @@ def airport_view(conn, days: int, tracked: dict) -> list[dict]:
     """
     since = (metrics.reference_day() - timedelta(days=days - 1)).isoformat()
     until = metrics.reference_day().isoformat()
-    seen: dict[str, set] = defaultdict(set)
+    seen: dict[str, dict] = defaultdict(lambda: defaultdict(int))
     legs: dict[str, int] = defaultdict(int)
     for r in conn.execute(
             """SELECT carrier, dep_icao, arr_icao, COUNT(*) n FROM flight
@@ -122,16 +122,21 @@ def airport_view(conn, days: int, tracked: dict) -> list[dict]:
             if icao in config.airports():
                 legs[icao] += r["n"]
                 if r["carrier"] in tracked:
-                    seen[icao].add(r["carrier"])
+                    seen[icao][r["carrier"]] += r["n"]
 
     sched_w: dict[str, int] = defaultdict(int)
     sched_c: dict[str, set] = defaultdict(set)
+    # Per carrier, not just the count: on the airports ADS-B cannot see, the
+    # timetable is the only thing that can name who is still serving them.
+    sched_by: dict[str, dict] = defaultdict(lambda: defaultdict(float))
     for r in conn.execute(
             "SELECT dep_iata, arr_iata, carrier, weekly FROM route_schedule "
             "WHERE weekly > 0"):
         for iata in (r["dep_iata"], r["arr_iata"]):
             sched_w[iata] += r["weekly"]
             sched_c[iata].add(r["carrier"])
+            if r["carrier"] in tracked:
+                sched_by[iata][r["carrier"]] += r["weekly"]
 
     out = []
     for icao, cfg in config.airports().items():
@@ -149,6 +154,10 @@ def airport_view(conn, days: int, tracked: dict) -> list[dict]:
             "carriers_seen": len(seen.get(icao, ())),
             "sched_weekly": sw,
             "carriers_sched": len({c for c in sched_c.get(iata, ()) if c in tracked}),
+            # Who, not how many. Observed traffic where we have it, the
+            # timetable where we do not -- the row's state says which.
+            "who": sorted(seen[icao].items(), key=lambda kv: -kv[1]) if n
+                   else sorted(sched_by.get(iata, {}).items(), key=lambda kv: -kv[1]),
         })
     rank = {"durgun": 0, "tarifeli": 1, "acik": 2}
     out.sort(key=lambda a: (rank[a["state"]], -a["legs"]))
@@ -451,6 +460,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "baseline_ready": bool(base),
         "carriers": rows,
         "airports": config.airports(),
+        "carriers_cfg": carriers,
         "airport_view": airport_view(conn, days, carriers),
         "firs": firwatch.summary(conn, days=7),
         "schedule_coverage": schedules.coverage(conn),
@@ -601,6 +611,11 @@ tr.r-partial td{background:color-mix(in srgb,var(--partial) 6%,transparent)}
 .watch{color:var(--stopped);font-family:var(--mono);font-size:10px;
   letter-spacing:.1em;text-transform:uppercase}
 
+.who-list{display:flex;flex-wrap:wrap;gap:4px;max-width:34ch}
+.who-chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  padding:1px 5px;border:1px solid var(--rule);border-radius:2px;
+  color:var(--ink-2);background:var(--bg);cursor:help}
+
 dl.src{display:grid;grid-template-columns:auto 1fr;gap:7px 18px;font-size:13.5px;
   margin:0}
 dl.src dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
@@ -647,8 +662,30 @@ def _airport_rows(data: dict) -> str:
             f'<td class="num">{a["sched_weekly"] or "—"}'
             + (f'<div class="meta">{a["carriers_sched"]} havayolu</div>'
                if a["carriers_sched"] else "")
-            + '</td></tr>')
+            + '</td>'
+            f'<td>{_who(a, data["carriers_cfg"])}</td>'
+            '</tr>')
     return "".join(out)
+
+
+def _who(a: dict, cfg: dict) -> str:
+    """The carriers serving this airport, named rather than counted.
+
+    On a scheduled-but-unobservable airport this is the whole answer the row
+    has: ADS-B sees nothing, so the timetable is the only thing that can say
+    who is still flying there. Marked as such, because a timetable is an
+    intention and observed traffic is a fact.
+    """
+    if not a["who"]:
+        return '<span class="meta">—</span>'
+    chips = "".join(
+        f'<span class="who-chip" title="{_e(cfg.get(c, {}).get("name", c))} — '
+        f'{"gözlenen sefer" if a["legs"] else "tarifede haftalık"}: {round(n)}">'
+        f'{_e(c)}</span>'
+        for c, n in a["who"])
+    tag = ("" if a["legs"] else
+           '<div class="meta">tarifeye göre — uçuş verisi yok</div>')
+    return f'<div class="who-list">{chips}</div>{tag}'
 
 
 def _rows(data: dict) -> str:
@@ -880,7 +917,8 @@ def render(data: dict) -> str:
   uçuş verisi göremiyoruz ama havayolları tarifelerinde sefer tutuyor.</p>
   <div class="scroll"><table>
     <thead><tr><th>Havalimanı</th><th>Durum</th><th class="num">Gözlenen sefer</th>
-      <th class="num">Havayolu</th><th class="num">Tarifede/hafta</th></tr></thead>
+      <th class="num">Havayolu</th><th class="num">Tarifede/hafta</th>
+      <th>Kimler uçuyor</th></tr></thead>
     <tbody>{_airport_rows(data)}</tbody>
   </table></div>
 </section>
