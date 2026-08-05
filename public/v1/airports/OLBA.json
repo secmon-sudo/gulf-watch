@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-04T10:52:30+00:00",
-  "as_of_day": "2026-08-03",
+  "generated_at": "2026-08-05T10:56:36+00:00",
+  "as_of_day": "2026-08-04",
   "coverage": {
-    "day": "2026-08-03",
-    "control_flights": 634,
-    "median_28d": 272.0,
-    "score": 1.5,
-    "verdict": "ok"
+    "day": "2026-08-04",
+    "control_flights": 118,
+    "median_28d": 536,
+    "score": 0.22,
+    "verdict": "outage"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -19,13 +19,14 @@
   "name": "Beirut Rafic Hariri",
   "city": "Beirut",
   "country": "LB",
-  "weekly_frequency": 13,
+  "weekly_frequency": 14,
   "baseline_weekly": 0.0,
   "carriers_operating": [
     "ABY",
     "MEA",
     "PGT",
-    "QTR"
+    "QTR",
+    "UAE"
   ],
   "carriers_absent": [],
   "carriers_stopped": [],
@@ -39,7 +40,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -50,7 +51,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -61,7 +62,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -72,7 +73,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -83,7 +84,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -94,7 +95,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -105,7 +106,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -116,7 +117,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -127,7 +128,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -138,7 +139,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -149,7 +150,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -160,7 +161,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -171,7 +172,18 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
+      "silent_days": 0
+    },
+    {
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "origin": "OMDB",
+      "destination": "OLBA",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0
     }
   ]

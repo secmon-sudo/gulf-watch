@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-04T10:52:30+00:00",
-  "as_of_day": "2026-08-03",
+  "generated_at": "2026-08-05T10:56:36+00:00",
+  "as_of_day": "2026-08-04",
   "coverage": {
-    "day": "2026-08-03",
-    "control_flights": 634,
-    "median_28d": 272.0,
-    "score": 1.5,
-    "verdict": "ok"
+    "day": "2026-08-04",
+    "control_flights": 118,
+    "median_28d": 536,
+    "score": 0.22,
+    "verdict": "outage"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -18,13 +18,13 @@
   "name": "Etihad Airways",
   "iata": "EY",
   "country": "AE",
-  "weekly_frequency": 81,
+  "weekly_frequency": 82,
   "baseline_weekly": 0.0,
-  "routes_total": 54,
+  "routes_total": 55,
   "routes_suspended": 0,
   "routes_reduced": 0,
   "ratio": null,
-  "status": "NEW",
+  "status": "UNKNOWN",
   "operating": true,
   "stopped": {
     "any": false,
@@ -44,7 +44,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -55,7 +55,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -66,7 +66,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -77,7 +77,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -88,7 +88,7 @@
       "weekly_frequency": 3,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -99,7 +99,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -110,7 +110,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -121,7 +121,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -132,7 +132,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -143,7 +143,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -154,7 +154,7 @@
       "weekly_frequency": 3,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -165,7 +165,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -176,7 +176,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -187,7 +187,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -198,7 +198,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -209,7 +209,7 @@
       "weekly_frequency": 3,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -220,7 +220,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -231,7 +231,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -242,7 +242,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -253,7 +253,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -264,7 +264,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -275,7 +275,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -286,7 +286,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -297,7 +297,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -308,7 +308,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -319,7 +319,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -330,7 +330,18 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OMAA",
+      "destination": "LGKS",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -341,7 +352,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -352,7 +363,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -363,7 +374,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -374,7 +385,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -385,7 +396,7 @@
       "weekly_frequency": 3,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -396,7 +407,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -407,7 +418,7 @@
       "weekly_frequency": 3,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -418,7 +429,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -429,7 +440,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -440,7 +451,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -451,7 +462,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -462,7 +473,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -473,7 +484,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -484,7 +495,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -495,7 +506,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -506,7 +517,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -517,7 +528,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -528,7 +539,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -539,7 +550,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -550,7 +561,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -561,7 +572,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -572,7 +583,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -583,7 +594,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -594,7 +605,7 @@
       "weekly_frequency": 4,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -605,7 +616,7 @@
       "weekly_frequency": 2,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -616,7 +627,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     },
     {
@@ -627,7 +638,7 @@
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0
     }
   ],
