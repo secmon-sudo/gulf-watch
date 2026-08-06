@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-05T10:56:36+00:00",
-  "as_of_day": "2026-08-04",
+  "generated_at": "2026-08-06T13:44:15+00:00",
+  "as_of_day": "2026-08-05",
   "coverage": {
-    "day": "2026-08-04",
-    "control_flights": 118,
-    "median_28d": 536,
-    "score": 0.22,
+    "day": "2026-08-05",
+    "control_flights": 0,
+    "median_28d": 327.0,
+    "score": 0.0,
     "verdict": "outage"
   },
   "attribution": {
