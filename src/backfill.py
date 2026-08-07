@@ -16,7 +16,7 @@ Budget: 13 airports x 2 directions x ~46 two-day slices over a 92-day window
 = ~1200 requests, paced at 2s. Expect a couple of hours. Authenticated accounts
 have the credits for this; there is no anonymous option any more.
 
-    python -m src.backfill --freeze-only   # recompute from already-ingested legs
+    python -m src.backfill --freeze-only   # recompute from the daily rollups
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ import sys
 import time
 from datetime import datetime, timedelta, timezone
 
-from . import config, db
+from . import config, db, metrics
 from .opensky import OpenSky, RateLimited
 from .parse import normalise
 
@@ -40,6 +40,12 @@ LOG = logging.getLogger("gulfwatch.backfill")
 # a caller has to be able to tell "the allowance ran out, keep what landed"
 # from "this broke, do not trust the db".
 EXIT_INCOMPLETE = 2
+
+# Raw legs younger than this are never pruned: coverage scoring reads a 28-day
+# median off them and ingest rebuilds its rollups over 45. The baseline window
+# sits months back, so this only ever guards against being pointed at a window
+# that overlaps live data.
+RAW_RETENTION_DAYS = 60
 
 
 def _slices(t0: int, t1: int) -> list[tuple[int, int]]:
@@ -125,18 +131,73 @@ def harvest(start: str, end: str, airports: list[str] | None = None) -> dict:
     return {"legs": total, "done": len(done) + completed, "remaining": 0}
 
 
+def compact(start: str, end: str) -> dict:
+    """Fold a harvested window into daily_route and drop its raw legs.
+
+    The database is committed to a public git repository, and SQLite is a
+    binary file git cannot delta-compress: every run stores a whole fresh
+    copy. Measured 2026-08-07 at 32 of 104 slices, 127,338 of 130,120 legs sat
+    in the baseline window, `flight` and its three indexes were 19.5MB of a
+    20.1MB file, and the file had gone 1.6MB -> 20MB in three days. Left
+    alone that reaches ~65MB at the full 104 slices -- past GitHub's 50MB
+    warning, within sight of the 100MB hard limit, with several hundred MB of
+    history behind it.
+
+    What the analysis actually reads is departures per route per day, which is
+    what daily_route holds; freeze() derives the baseline from it. So the
+    harvest is kept in the shape everything uses and the raw legs go.
+
+    Only ever call this on a COMPLETE harvest. Pruning between runs would
+    break the deduplication the `flight` primary key provides: the airports
+    are harvested individually but fly to each other, so a Sharjah-Dubai leg
+    arrives twice, once from Dubai's arrivals and once from Sharjah's
+    departures. While both copies are rows they collapse onto one
+    (icao24, first_seen). Fold the first away and the second re-lands as a
+    new row and is counted a second time.
+
+    Recent days are never touched either. score_coverage() counts raw legs
+    over a 28-day median and report.py reads them for the activity window, so
+    the retention floor sits well clear of both.
+    """
+    cutoff = (datetime.now(tz=timezone.utc).date()
+              - timedelta(days=RAW_RETENTION_DAYS)).isoformat()
+    if end >= cutoff:
+        LOG.warning("not compacting %s..%s: inside the %s-day raw retention "
+                    "window (cutoff %s)", start, end, RAW_RETENTION_DAYS, cutoff)
+        return {"rolled_up": 0, "pruned": 0}
+
+    conn = db.connect()
+    metrics.rebuild_daily(conn, since=start, until=end)
+    rolled = conn.execute(
+        "SELECT COUNT(*) n FROM daily_route WHERE day BETWEEN ? AND ?",
+        (start, end)).fetchone()["n"]
+    pruned = conn.execute(
+        "DELETE FROM flight WHERE dep_date BETWEEN ? AND ?", (start, end)).rowcount
+    conn.commit()
+    conn.execute("VACUUM")
+    conn.close()
+    LOG.info("compacted %s..%s: %s rollup rows kept, %s raw legs dropped",
+             start, end, rolled, pruned)
+    return {"rolled_up": rolled, "pruned": pruned}
+
+
 def freeze(start: str, end: str) -> int:
-    """Collapse the window into mean weekly departures per route."""
+    """Collapse the window into mean weekly departures per route.
+
+    Reads the daily rollup rather than the raw legs. The two give the same
+    answer -- daily_route is grouped from exactly this window's rows under
+    exactly this filter -- but only the rollup survives compact(), which drops
+    the raw legs once they are folded in.
+    """
     conn = db.connect()
     days = (datetime.fromisoformat(end) - datetime.fromisoformat(start)).days + 1
     weeks = max(days / 7.0, 1.0)
 
     rows = conn.execute(
-        """SELECT carrier, dep_icao, arr_icao, COUNT(*) AS n,
-                  COUNT(DISTINCT dep_date) AS active_days
-           FROM flight
-           WHERE is_freight = 0 AND dep_date BETWEEN ? AND ?
-             AND dep_icao IS NOT NULL AND arr_icao IS NOT NULL
+        """SELECT carrier, dep_icao, arr_icao, SUM(departures) AS n,
+                  COUNT(DISTINCT day) AS active_days
+           FROM daily_route
+           WHERE day BETWEEN ? AND ?
            GROUP BY carrier, dep_icao, arr_icao
            HAVING n >= 2""",
         (start, end),
@@ -185,6 +246,10 @@ def main(argv=None) -> int:
                   "automatically.", result["remaining"])
         return EXIT_INCOMPLETE
 
+    # Order matters: fold the window into daily_route and drop the raw legs
+    # only now that every slice has landed and the flight table has deduped
+    # them, then freeze off the rollup.
+    compact(args.start, args.end)
     freeze(args.start, args.end)
     return 0
 

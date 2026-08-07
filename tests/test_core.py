@@ -555,6 +555,120 @@ class TestBackfillResume(unittest.TestCase):
         self.assertEqual(rc, self.bf.EXIT_INCOMPLETE)
 
 
+class TestCompaction(unittest.TestCase):
+    """The harvested window is kept as rollups and its raw legs dropped, so
+    the committed database stops growing without bound. The baseline must come
+    out identical either way -- otherwise compaction quietly rewrites history.
+    """
+
+    def setUp(self):
+        from src import backfill
+        self.bf = backfill
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.patch = mock.patch("src.db.DB_PATH", self.tmp.name)
+        self.patch.start()
+        self.conn = db.connect(self.tmp.name)
+        # Two routes over two weeks, plus freight that must never count.
+        rows = []
+        for i in range(14):
+            day = (date(2025, 11, 1) + timedelta(days=i)).isoformat()
+            for j in range(3):
+                rows.append({"icao24": f"a{i}{j}", "first_seen": 1762000000 + i * 86400 + j,
+                             "last_seen": None, "callsign": f"QTR{j}", "carrier": "QTR",
+                             "flight_number": j, "dep_icao": "OTHH", "arr_icao": "OMDB",
+                             "is_freight": 0, "dep_date": day, "source": "opensky",
+                             "ingested_at": 0})
+            rows.append({"icao24": f"f{i}", "first_seen": 1762000000 + i * 86400 + 9,
+                         "last_seen": None, "callsign": "QTR9", "carrier": "QTR",
+                         "flight_number": 9, "dep_icao": "OTHH", "arr_icao": "OMDB",
+                         "is_freight": 1, "dep_date": day, "source": "opensky",
+                         "ingested_at": 0})
+        db.upsert_flights(self.conn, rows)
+        self.conn.commit()
+
+    def tearDown(self):
+        self.patch.stop()
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _freeze_rows(self):
+        return {(r["carrier"], r["dep_icao"], r["arr_icao"]):
+                (r["weekly_freq"], r["sample_days"])
+                for r in self.conn.execute("SELECT * FROM baseline")}
+
+    def test_baseline_is_identical_before_and_after_compaction(self):
+        from src import metrics
+        metrics.rebuild_daily(self.conn, since="2025-11-01", until="2025-11-14")
+        self.bf.freeze("2025-11-01", "2025-11-14")
+        before = self._freeze_rows()
+
+        self.bf.compact("2025-11-01", "2025-11-14")
+        self.bf.freeze("2025-11-01", "2025-11-14")
+        self.assertEqual(self._freeze_rows(), before)
+        self.assertEqual(before[("QTR", "OTHH", "OMDB")][1], 14)   # freight excluded
+
+    def test_compaction_drops_the_raw_legs_it_rolled_up(self):
+        self.bf.compact("2025-11-01", "2025-11-14")
+        left = self.conn.execute("SELECT COUNT(*) n FROM flight").fetchone()["n"]
+        kept = self.conn.execute("SELECT COUNT(*) n FROM daily_route").fetchone()["n"]
+        self.assertEqual(left, 0)
+        self.assertEqual(kept, 14)
+
+    def test_recent_days_are_never_pruned(self):
+        """Coverage scoring reads a 28-day median straight off the raw legs;
+        pruning into that window would score the network as blind."""
+        today = date.today()
+        recent = [{"icao24": "r1", "first_seen": 1, "last_seen": None,
+                   "callsign": "UAE1", "carrier": "UAE", "flight_number": 1,
+                   "dep_icao": "OMDB", "arr_icao": "OTHH", "is_freight": 0,
+                   "dep_date": today.isoformat(), "source": "opensky",
+                   "ingested_at": 0}]
+        db.upsert_flights(self.conn, recent)
+        self.conn.commit()
+        out = self.bf.compact("2025-11-01", today.isoformat())
+        self.assertEqual(out["pruned"], 0)
+        self.assertTrue(self.conn.execute(
+            "SELECT COUNT(*) n FROM flight").fetchone()["n"])
+
+    def test_a_later_ingest_rebuild_does_not_erase_compacted_days(self):
+        """ingest rebuilds daily_route over a trailing window. If that reached
+        back over pruned days it would delete rollups it cannot regenerate."""
+        from src import metrics
+        self.bf.compact("2025-11-01", "2025-11-14")
+        metrics.rebuild_daily(self.conn, since=date.today().isoformat())
+        self.assertEqual(self.conn.execute(
+            "SELECT COUNT(*) n FROM daily_route").fetchone()["n"], 14)
+
+    def test_an_incomplete_harvest_is_never_compacted(self):
+        """Pruning between runs would break the dedup the flight primary key
+        gives us: these airports fly to each other, so the same leg arrives
+        from two airports' fetches and collapses onto one row only while both
+        copies are still rows. Fold the first away and the second is counted
+        twice."""
+        with mock.patch.object(self.bf, "harvest",
+                               return_value={"legs": 0, "done": 1, "remaining": 7}), \
+                mock.patch.object(self.bf, "compact") as compact, \
+                mock.patch.object(self.bf, "freeze") as freeze:
+            rc = self.bf.main(["--start", "2025-11-01", "--end", "2025-11-14"])
+        compact.assert_not_called()
+        freeze.assert_not_called()
+        self.assertEqual(rc, self.bf.EXIT_INCOMPLETE)
+
+    def test_a_complete_harvest_compacts_before_it_freezes(self):
+        """Reversed, freeze() would read a rollup that has not been written
+        for the days whose legs are about to be dropped."""
+        calls = []
+        with mock.patch.object(self.bf, "harvest",
+                               return_value={"legs": 9, "done": 8, "remaining": 0}), \
+                mock.patch.object(self.bf, "compact",
+                                  side_effect=lambda *a: calls.append("compact")), \
+                mock.patch.object(self.bf, "freeze",
+                                  side_effect=lambda *a: calls.append("freeze")):
+            rc = self.bf.main(["--start", "2025-11-01", "--end", "2025-11-14"])
+        self.assertEqual(calls, ["compact", "freeze"])
+        self.assertEqual(rc, 0)
+
+
 class TestNewsRecency(unittest.TestCase):
     """A five-month-old suspension notice must not set today's verdict.
 

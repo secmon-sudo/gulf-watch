@@ -28,16 +28,32 @@ def reference_day() -> date:
 
 # --- Rollups ---------------------------------------------------------------
 
-def rebuild_daily(conn: sqlite3.Connection, since: str | None = None) -> None:
-    """Recompute daily_route from the flight table."""
+def rebuild_daily(conn: sqlite3.Connection, since: str | None = None,
+                  until: str | None = None) -> None:
+    """Recompute daily_route from the flight table.
+
+    Bounded at both ends so one window can be folded in on its own. The
+    backfill needs that: it drops each harvested window's raw legs once they
+    are rolled up, so a rebuild reaching wider than the legs still present
+    would erase the days whose legs are already gone.
+    """
     where = "WHERE is_freight = 0 AND dep_icao IS NOT NULL AND arr_icao IS NOT NULL"
     params: list = []
+    bounds: list[str] = []
+    dparams: list = []
     if since:
         where += " AND dep_date >= ?"
         params.append(since)
+        bounds.append("day >= ?")
+        dparams.append(since)
+    if until:
+        where += " AND dep_date <= ?"
+        params.append(until)
+        bounds.append("day <= ?")
+        dparams.append(until)
     conn.execute(
-        "DELETE FROM daily_route" + (" WHERE day >= ?" if since else ""),
-        params[:1] if since else [],
+        "DELETE FROM daily_route" + (" WHERE " + " AND ".join(bounds) if bounds else ""),
+        dparams,
     )
     conn.execute(
         f"""

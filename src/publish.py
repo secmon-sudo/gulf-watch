@@ -219,14 +219,19 @@ def build(out: Path | None = None) -> dict:
     last = conn.execute(
         "SELECT started_at, detail FROM run_log ORDER BY started_at DESC LIMIT 5"
     ).fetchall()
+    # From the rollup, not the raw legs: backfill.compact() drops a harvested
+    # window's rows once they are folded into daily_route, so COUNT(*) on
+    # `flight` would report the retention window and call it the dataset.
     span = conn.execute(
-        "SELECT MIN(dep_date) a, MAX(dep_date) b, COUNT(*) n FROM flight"
+        "SELECT MIN(day) a, MAX(day) b, SUM(departures) n FROM daily_route"
     ).fetchone()
+    raw_kept = conn.execute("SELECT COUNT(*) n FROM flight").fetchone()["n"]
     baseline_rows = conn.execute("SELECT COUNT(*) n FROM baseline").fetchone()["n"]
     _write(out / "health.json", {
         **env,
-        "database": {"flight_legs": span["n"], "first_day": span["a"],
-                     "last_day": span["b"], "baseline_routes": baseline_rows},
+        "database": {"flight_legs": span["n"] or 0, "first_day": span["a"],
+                     "last_day": span["b"], "raw_legs_retained": raw_kept,
+                     "baseline_routes": baseline_rows},
         "baseline_ready": baseline_rows > 0,
         "recent_runs": [dict(r) for r in last],
     })
