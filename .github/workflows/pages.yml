@@ -34,7 +34,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # The branch tip, not github.sha. Called from ingest/backfill, github.sha
+      # is the commit the run was dispatched at -- but the caller's Commit step
+      # pushes the fresh public/ *after* that, so checking out the default ref
+      # deploys the previous run's output and the site sits permanently one run
+      # behind. Measured 2026-08-06: the API served a status.json generated
+      # 27 hours earlier than the one already committed.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/configure-pages@v5
 
