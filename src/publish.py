@@ -219,18 +219,27 @@ def build(out: Path | None = None) -> dict:
     last = conn.execute(
         "SELECT started_at, detail FROM run_log ORDER BY started_at DESC LIMIT 5"
     ).fetchall()
-    # From the rollup, not the raw legs: backfill.compact() drops a harvested
-    # window's rows once they are folded into daily_route, so COUNT(*) on
-    # `flight` would report the retention window and call it the dataset.
-    span = conn.execute(
+    # Two numbers, because after backfill.compact() there are genuinely two.
+    # The rollup is the durable record and what every analysis reads; the raw
+    # legs are whatever has not been folded away yet. A single "flight_legs"
+    # counted one table and would have meant different things on either side
+    # of a compaction, which is the kind of quietly shifting figure this
+    # report exists to avoid. The span covers both, so it stays right in both
+    # states.
+    roll = conn.execute(
         "SELECT MIN(day) a, MAX(day) b, SUM(departures) n FROM daily_route"
     ).fetchone()
-    raw_kept = conn.execute("SELECT COUNT(*) n FROM flight").fetchone()["n"]
+    raw = conn.execute(
+        "SELECT MIN(dep_date) a, MAX(dep_date) b, COUNT(*) n FROM flight"
+    ).fetchone()
+    days = [d for d in (roll["a"], roll["b"], raw["a"], raw["b"]) if d]
     baseline_rows = conn.execute("SELECT COUNT(*) n FROM baseline").fetchone()["n"]
     _write(out / "health.json", {
         **env,
-        "database": {"flight_legs": span["n"] or 0, "first_day": span["a"],
-                     "last_day": span["b"], "raw_legs_retained": raw_kept,
+        "database": {"route_departures": roll["n"] or 0,
+                     "raw_legs_retained": raw["n"],
+                     "first_day": min(days) if days else None,
+                     "last_day": max(days) if days else None,
                      "baseline_routes": baseline_rows},
         "baseline_ready": baseline_rows > 0,
         "recent_runs": [dict(r) for r in last],
