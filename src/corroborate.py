@@ -49,7 +49,16 @@ _session = requests.Session()
 _session.headers["User-Agent"] = "gulfwatch/1.0 (personal research)"
 
 
-def _news(query: str, limit: int = 6) -> list[dict]:
+def _news(query: str, limit: int = 6) -> list[dict] | None:
+    """Headlines for a query. None means the source did not answer.
+
+    None and [] must stay distinguishable. Google News answers a datacenter IP
+    with 503 often enough to matter -- on 2026-08-06 every one of ~35 queries
+    from the Actions runner failed, where the same queries returned results
+    from a home connection minutes later. Returning [] there made the report
+    read "no news about Kuwait" when the truth was "nobody was asked", and it
+    dropped the whole press section without saying so.
+    """
     url = f"{NEWS_RSS}?{urllib.parse.urlencode({'q': query, 'hl': 'en-US', 'gl': 'US', 'ceid': 'US:en'})}"
     try:
         resp = _session.get(url, timeout=25)
@@ -57,7 +66,7 @@ def _news(query: str, limit: int = 6) -> list[dict]:
         root = ET.fromstring(resp.content)
     except (requests.RequestException, ET.ParseError) as exc:
         LOG.warning("news lookup failed for %r: %s", query, exc)
-        return []
+        return None
 
     out = []
     for item in list(root.iterfind(".//item"))[:limit]:
@@ -132,6 +141,8 @@ def enrich(conn, max_lookups: int = 12) -> dict:
 
         query = f'"{name}"{where} (suspend OR suspended OR halt OR resume OR flights)'
         items = _news(query)
+        if items is None:
+            continue    # the source did not answer; leave the confidence alone
         checked += 1
 
         stances = set()

@@ -588,6 +588,65 @@ class TestNewsRecency(unittest.TestCase):
         self.assertIn("when:30d", news.call_args[0][0])
 
 
+class TestNewsSourceFailure(unittest.TestCase):
+    """A source that did not answer must never read as a source that found
+    nothing.
+
+    Measured 2026-08-06: every Google News query from the Actions runner
+    returned 503 while the same queries worked elsewhere. The report logged
+    "0 headlines" for each and dropped the whole press section, so the page
+    said nothing was reported about Kuwait when nothing had been asked.
+    """
+
+    def _item(self, title="Kuwait airport halts flights"):
+        when = datetime.now(timezone.utc) - timedelta(days=2)
+        return {"title": title, "url": "http://x", "stance": "supports",
+                "published": format_datetime(when)}
+
+    def test_a_failed_lookup_is_none_not_an_empty_list(self):
+        from src import corroborate
+        with mock.patch.object(corroborate._session, "get",
+                               side_effect=corroborate.requests.RequestException("503")):
+            self.assertIsNone(corroborate._news("anything"))
+
+    def test_carrier_lookup_passes_the_failure_up(self):
+        from src import report
+        with mock.patch("src.report._news", return_value=None):
+            self.assertIsNone(report.carrier_news("Saudia"))
+        with mock.patch("src.report._news", return_value=[]):
+            self.assertEqual(report.carrier_news("Saudia"), [])
+
+    def test_verdict_says_the_press_was_not_asked(self):
+        from src import report
+        _, gerekce = report.verdict({}, None, None)
+        self.assertIn("yanıt vermedi", gerekce)
+        _, bulunamadi = report.verdict({}, None, [])
+        self.assertNotIn("yanıt vermedi", bulunamadi)
+
+    def test_blind_airport_failure_is_flagged_not_silently_empty(self):
+        from src import report
+        with mock.patch("src.report._news", return_value=None):
+            blocks = report.blind_news()
+        self.assertTrue(blocks)
+        self.assertTrue(all(b["failed"] and not b["items"] for b in blocks))
+
+    def test_the_press_section_survives_a_dead_source(self):
+        """Returning "" here is what hid the outage on 2026-08-06."""
+        from src import report
+        html = report._blind_news_section(
+            {"blind_news": [{"iata": "KWI", "city": "Kuwait",
+                             "items": [], "failed": True}]})
+        self.assertIn("Kör havalimanları", html)
+        self.assertIn("sorulamadığı", html)
+
+    def test_no_section_when_there_is_genuinely_no_news(self):
+        from src import report
+        html = report._blind_news_section(
+            {"blind_news": [{"iata": "KWI", "city": "Kuwait",
+                             "items": [], "failed": False}]})
+        self.assertEqual(html, "")
+
+
 class TestHeadlineClassification(unittest.TestCase):
     """The model reads headlines. It must never be able to invent geography,
     and it must never make the report irreproducible."""

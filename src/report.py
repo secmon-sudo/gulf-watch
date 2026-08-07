@@ -273,8 +273,9 @@ def _age_days(published: str) -> int | None:
         return None
 
 
-def carrier_news(name: str, limit: int = 2, max_age: int = NEWS_MAX_AGE_DAYS) -> list[dict]:
-    """Recent headlines that name this carrier.
+def carrier_news(name: str, limit: int = 2,
+                 max_age: int = NEWS_MAX_AGE_DAYS) -> list[dict] | None:
+    """Recent headlines that name this carrier. None if the source did not answer.
 
     Two filters, and the project was wrong without either.
 
@@ -291,6 +292,8 @@ def carrier_news(name: str, limit: int = 2, max_age: int = NEWS_MAX_AGE_DAYS) ->
     items = _news(f'"{name}" flights suspended OR cancelled OR resumed '
                   f'Middle East OR Gulf OR Dubai OR Doha OR Qatar '
                   f'when:{max_age}d', limit=12)
+    if items is None:
+        return None
     keys = _aliases(name)
     out = []
     for it in items:
@@ -336,6 +339,10 @@ def blind_news(max_age: int = NEWS_MAX_AGE_DAYS, per_airport: int = 3) -> list[d
         city = cfg["city"]
         items = _news(f'"{city}" airport flights suspended OR cancelled '
                       f'OR resumed OR halted when:{max_age}d', limit=8)
+        if items is None:
+            LOG.info("%s (%s): source did not answer", icao, city)
+            out.append({"iata": icao, "city": city, "items": [], "failed": True})
+            continue
         hits = []
         for it in items:
             if city.lower() not in it["title"].lower():
@@ -350,17 +357,26 @@ def blind_news(max_age: int = NEWS_MAX_AGE_DAYS, per_airport: int = 3) -> list[d
             hits.append(it)
         hits.sort(key=lambda x: x["age_days"])
         LOG.info("%s (%s): %s headlines", icao, city, len(hits))
-        out.append({"iata": icao, "city": city, "items": hits[:per_airport]})
+        out.append({"iata": icao, "city": city, "items": hits[:per_airport],
+                    "failed": False})
     return out
 
 
-def verdict(seen_at: dict, sched: dict | None, news: list[dict]) -> tuple[str, str]:
+def verdict(seen_at: dict, sched: dict | None,
+            news: list[dict] | None) -> tuple[str, str]:
     """(durum, gerekçe) — üç kaynaktan.
 
     Sıralama: gözlem > tarife > haber. Uçtuğu görülen bir havayolu, basın ne
     derse desin uçuyordur; görülmeyen ama tarifesi duran bir havayolu için
     'durdurdu' demek, kapsama boşluğunu kesintiye dönüştürmek olur.
+
+    `news=None` "basına sorulamadı" demektir, "basında haber yok" değil. Fark
+    yalnızca üç kaynağın da sessiz kaldığı satırda görünür: orada gerekçe
+    kaynağın cevap vermediğini söylemek zorunda, yoksa rapor sormadığı bir
+    soruya cevap vermiş gibi okunur.
     """
+    haber_var = news is not None
+    news = news or []
     kesinti = any(x["signal"] == "stopped" for x in news)
     vurulan = sorted({a for x in news if x["signal"] == "stopped"
                       for a in (x.get("airports") or [])})
@@ -389,6 +405,10 @@ def verdict(seen_at: dict, sched: dict | None, news: list[dict]) -> tuple[str, s
     if any(x["signal"] == "resumed" for x in news):
         return "unknown", ("görülmedi ve tarifesinde sefer yok, ama basın yeniden "
                            "başladığını yazıyor — çelişki")
+    if not haber_var:
+        return "unknown", ("ne havada görüldü ne tarifesinde sefer var; basın "
+                           "kaynağı bu çalıştırmada yanıt vermedi, yani basına "
+                           "sorulamadı — bu 'durdurdu' demek değildir")
     return "unknown", ("hiçbir kaynakta izine rastlanmadı — bu 'durdurdu' "
                        "demek değildir")
 
@@ -465,21 +485,26 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
     carriers = config.tracked_carriers()
 
     rows = []
+    news_failures = 0
     for code, cfg in sorted(carriers.items(), key=lambda kv: kv[1]["name"]):
         news = []
         if with_news:
             news = carrier_news(cfg["name"], max_age=news_days)
-            if use_llm:
-                enrich(conn, code, cfg["name"], news)
+            if news is None:
+                news_failures += 1
+                LOG.info("%s: source did not answer", code)
+            else:
+                if use_llm:
+                    enrich(conn, code, cfg["name"], news)
+                LOG.info("%s: %s headlines", code, len(news))
             time.sleep(1.2)          # be polite to Google News
-            LOG.info("%s: %s headlines", code, len(news))
         seen_at = dict(act["seen"].get(code, {}))
         sched = sched_by_carrier.get(code)
         state, why = verdict(seen_at, sched, news)
         rows.append({"code": code, "name": cfg["name"],
                      "iata": cfg.get("iata"), "country": cfg.get("country"),
                      "seen_at": seen_at, "legs": sum(seen_at.values()),
-                     "baseline": base.get(code), "news": news,
+                     "baseline": base.get(code), "news": news or [],
                      "sched": sched, "ratio": ratios.get(code),
                      "state": state, "why": why})
 
@@ -493,6 +518,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
             got = websearch.resolve(conn, r["code"], r["name"], agent_id)
             if got:
                 r["note"] = got
+            time.sleep(3)   # 2026-08-06: back-to-back calls got 429 on the 4th
 
     delta = diff_since_last(conn, rows)
 
@@ -515,6 +541,8 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "advisories": advisories.current(conn),
         "with_news": with_news,
         "news_days": news_days,
+        "news_failures": news_failures,
+        "news_asked": len(rows) if with_news else 0,
         "use_llm": use_llm,
     }
 
@@ -827,8 +855,10 @@ def _blind_news_section(data: dict) -> str:
     the report where nothing can be checked against a flight, so it has to be
     obvious that a human is being asked to read rather than told an answer.
     """
-    blocks = [b for b in data.get("blind_news") or [] if b["items"]]
-    if not blocks:
+    all_blocks = data.get("blind_news") or []
+    blocks = [b for b in all_blocks if b["items"]]
+    failed = [b for b in all_blocks if b.get("failed")]
+    if not blocks and not failed:
         return ""
     cards = []
     for b in blocks:
@@ -845,6 +875,18 @@ def _blind_news_section(data: dict) -> str:
             f'<div class="card"><div class="hd"><b>{_e(b["iata"])}</b> '
             f'<span class="name">{_e(b["city"])}</span></div>'
             f'<ul class="blind-news">{items}</ul></div>')
+
+    # A dead source is reported, not hidden. Dropping the section left the
+    # reader unable to tell "basında bir şey yok" from "basına sorulamadı",
+    # and those two mean opposite things for an airport nothing else can see.
+    uyari = ""
+    if failed:
+        yerler = ", ".join(f'{_e(b["iata"])} ({_e(b["city"])})' for b in failed)
+        uyari = (f'<div class="notice"><span class="t">Kaynak yanıt vermedi</span>'
+                 f'<p>Bu çalıştırmada {len(failed)} havalimanı için basın '
+                 f'sorgusu HTTP hatası döndürdü: {yerler}. Buralar hakkında '
+                 f'<i>haber çıkmadığı</i> anlamına gelmez — <i>sorulamadığı</i> '
+                 f'anlamına gelir.</p></div>')
     return f"""
 <section>
   <h2>Kör havalimanları — basından</h2>
@@ -854,6 +896,7 @@ def _blind_news_section(data: dict) -> str:
   <i>olduğunu</i>. Aşağısı karar değil, okumanız için bağlantı — havayolu
   adıyla değil havalimanı adıyla arandı, çünkü tek bir manşet çoğu zaman
   birkaç havayolunu birden adlandırıyor.</p>
+  {uyari}
   <div class="cards">{"".join(cards)}</div>
 </section>
 """
@@ -948,6 +991,16 @@ def render(data: dict) -> str:
     if not data["with_news"]:
         warn.append("<b>Haber taraması atlandı.</b> Bu çalıştırmada ADS-B "
                     "kapsamı dışındaki havayolları için ikinci kaynak yok.")
+    elif data.get("news_failures"):
+        # Atlanmakla yanıtsız kalmak aynı şey değil, ve ikisi de "haber yok"
+        # değil. Kaynak sustuğunda rapor bunu söylemek zorunda.
+        warn.append(
+            f'<b>Basın kaynağı {data["news_failures"]}/{data["news_asked"]} '
+            f'havayolu sorgusunda yanıt vermedi.</b> Google News RSS HTTP '
+            f'hatası döndürdü; o satırlarda "kesinti bildirimi yok" ifadesi '
+            f'<i>sorulup bulunamadığı</i> değil, <i>sorulamadığı</i> anlamına '
+            f'gelir. Aynı sorgular başka bir ağdan çalışıyor, yani bu '
+            f'çalıştırmaya özgü geçici bir arıza.')
 
     fircards = "".join(
         f'<div class="card"><div class="hd"><span class="fir">{_e(f["fir"])}</span>'
@@ -1038,7 +1091,8 @@ def render(data: dict) -> str:
       gösterir — her yerde, ama yalnızca hakkında yazılacak kadar büyük
       havayolları için. Başlıkları bir dil modeli okuyor: "X tarifesini
       koruyor, Y iptal ediyor" gibi cümlelerde eylemi doğru havayoluna
-      bağlayabilmek için. Duyuru gözlem değildir.</div></div>
+      bağlayabilmek için. Duyuru gözlem değildir. Kaynak yanıt vermezse rapor
+      bunu en üstte söyler; sessizce “haber yok”a çevirmez.</div></div>
     <div class="card"><div class="hd"><span class="fir">Web araması</span></div>
       <div class="place"><b>Son çare.</b> Yalnızca ilk üç kaynağın da sessiz
       kaldığı havayolları için çalışır ve <b>durumu değiştirmez</b> — sadece
