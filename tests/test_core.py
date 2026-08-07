@@ -739,10 +739,16 @@ class TestNewsSourceFailure(unittest.TestCase):
 
     def test_blind_airport_failure_is_flagged_not_silently_empty(self):
         from src import report
-        with mock.patch("src.report._news", return_value=None):
-            blocks = report.blind_news()
-        self.assertTrue(blocks)
-        self.assertTrue(all(b["failed"] and not b["items"] for b in blocks))
+        tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        conn = db.connect(tmp.name)
+        try:
+            with mock.patch("src.report._news", return_value=None):
+                blocks = report.blind_news(conn)
+            self.assertTrue(blocks)
+            self.assertTrue(all(b["failed"] and not b["items"] for b in blocks))
+        finally:
+            conn.close()
+            os.unlink(tmp.name)
 
     def test_the_press_section_survives_a_dead_source(self):
         """Returning "" here is what hid the outage on 2026-08-06."""
@@ -759,6 +765,64 @@ class TestNewsSourceFailure(unittest.TestCase):
             {"blind_news": [{"iata": "KWI", "city": "Kuwait",
                              "items": [], "failed": False}]})
         self.assertEqual(html, "")
+
+
+class TestHeadlineCache(unittest.TestCase):
+    """When the press source is down the report shows the last set it did
+    answer with, dated. That is a reading aid, never evidence: a headline that
+    could not be re-checked today must not be able to move a carrier's state.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _item(self, title="Kuwait airport halts flights", age=1):
+        when = datetime.now(timezone.utc) - timedelta(days=age)
+        return {"title": title, "url": "http://x", "published": format_datetime(when),
+                "stance": "supports", "age_days": age, "signal": "stopped"}
+
+    def test_a_good_run_is_remembered_and_a_dead_one_recalls_it(self):
+        from src import report
+        report._remember(self.conn, "airport", "KWI", [self._item()])
+        got = report._recall(self.conn, "airport", "KWI")
+        self.assertEqual(len(got["items"]), 1)
+        self.assertEqual(got["age_days"], 0)
+
+    def test_nothing_to_recall_reads_as_nothing(self):
+        from src import report
+        self.assertIsNone(report._recall(self.conn, "carrier", "QTR"))
+        report._remember(self.conn, "carrier", "QTR", [])
+        self.assertIsNone(report._recall(self.conn, "carrier", "QTR"))
+
+    def test_a_cached_stop_headline_never_sets_the_state(self):
+        """The whole point. verdict() sees None, not the cached items."""
+        from src import report
+        report._remember(self.conn, "carrier", "SVA", [self._item("Saudia suspends")])
+        state, why = report.verdict({}, None, None)
+        self.assertEqual(state, "unknown")
+        self.assertIn("yanıt vermedi", why)
+
+    def test_the_newest_good_answer_replaces_the_older_one(self):
+        from src import report
+        report._remember(self.conn, "airport", "KWI", [self._item("old")])
+        report._remember(self.conn, "airport", "KWI",
+                         [self._item("new"), self._item("newer")])
+        got = report._recall(self.conn, "airport", "KWI")
+        self.assertEqual([i["title"] for i in got["items"]], ["new", "newer"])
+
+    def test_cached_items_render_marked_as_stale(self):
+        from src import report
+        html = report._blind_news_section({"blind_news": [
+            {"iata": "KWI", "city": "Kuwait", "items": [], "failed": True,
+             "stale": {"items": [self._item()], "age_days": 3}}]})
+        self.assertIn("arşiv", html)
+        self.assertIn("önce alındı", html)
+        self.assertIn("bugün doğrulanmadılar", html)
 
 
 class TestHeadlineClassification(unittest.TestCase):

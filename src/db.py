@@ -175,6 +175,20 @@ CREATE TABLE IF NOT EXISTS carrier_note (
     PRIMARY KEY (carrier, day)
 );
 
+-- The last set of headlines the press source actually returned for a subject.
+-- Google News refuses datacenter IPs often enough that a run can come back
+-- with nothing for every query; without this the report has only the outage
+-- to show. Cached items are displayed with their age and never feed a
+-- carrier's state -- a stale headline setting today's verdict is the exact
+-- failure this project keeps having.
+CREATE TABLE IF NOT EXISTS headline_cache (
+    subject    TEXT NOT NULL,      -- carrier ICAO code, or airport IATA
+    kind       TEXT NOT NULL,      -- carrier | airport
+    fetched_at TEXT NOT NULL,
+    payload    TEXT NOT NULL,      -- JSON list of the kept items
+    PRIMARY KEY (subject, kind)
+);
+
 -- One row per carrier per report run. The report is a snapshot; what an
 -- operator actually wants is the difference between two of them.
 CREATE TABLE IF NOT EXISTS report_state (

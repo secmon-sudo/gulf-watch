@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import logging
 import re
 import sys
@@ -312,7 +313,40 @@ def carrier_news(name: str, limit: int = 2,
     return out[:limit]
 
 
-def blind_news(max_age: int = NEWS_MAX_AGE_DAYS, per_airport: int = 3) -> list[dict]:
+def _remember(conn, kind: str, subject: str, items: list[dict]) -> None:
+    """Keep the last set the source did answer with."""
+    conn.execute(
+        """INSERT OR REPLACE INTO headline_cache (subject, kind, fetched_at, payload)
+           VALUES (?,?,?,?)""",
+        (subject, kind,
+         datetime.now(tz=timezone.utc).isoformat(timespec="seconds"),
+         json.dumps(items)))
+    conn.commit()
+
+
+def _recall(conn, kind: str, subject: str) -> dict | None:
+    """The last answered set for this subject, with its age in days.
+
+    Shown when the source is down, never fed to verdict(). A headline that
+    could not be re-checked today is a link worth reading, not evidence of
+    what is true today -- deciding a carrier is stopped off a cached headline
+    is the same mistake as deciding it off a five-month-old one.
+    """
+    row = conn.execute(
+        "SELECT fetched_at, payload FROM headline_cache WHERE subject=? AND kind=?",
+        (subject, kind)).fetchone()
+    if not row:
+        return None
+    items = json.loads(row["payload"])
+    if not items:
+        return None
+    age = (datetime.now(tz=timezone.utc)
+           - datetime.fromisoformat(row["fetched_at"])).days
+    return {"items": items, "age_days": age}
+
+
+def blind_news(conn, max_age: int = NEWS_MAX_AGE_DAYS,
+               per_airport: int = 3) -> list[dict]:
     """Headlines about the airports no receiver can see.
 
     Seven of fifteen airports return zero ADS-B -- measured, and confirmed
@@ -340,8 +374,11 @@ def blind_news(max_age: int = NEWS_MAX_AGE_DAYS, per_airport: int = 3) -> list[d
         items = _news(f'"{city}" airport flights suspended OR cancelled '
                       f'OR resumed OR halted when:{max_age}d', limit=8)
         if items is None:
-            LOG.info("%s (%s): source did not answer", icao, city)
-            out.append({"iata": icao, "city": city, "items": [], "failed": True})
+            stale = _recall(conn, "airport", icao)
+            LOG.info("%s (%s): source did not answer%s", icao, city,
+                     f" (showing {len(stale['items'])} cached)" if stale else "")
+            out.append({"iata": icao, "city": city, "items": [],
+                        "failed": True, "stale": stale})
             continue
         hits = []
         for it in items:
@@ -357,8 +394,10 @@ def blind_news(max_age: int = NEWS_MAX_AGE_DAYS, per_airport: int = 3) -> list[d
             hits.append(it)
         hits.sort(key=lambda x: x["age_days"])
         LOG.info("%s (%s): %s headlines", icao, city, len(hits))
-        out.append({"iata": icao, "city": city, "items": hits[:per_airport],
-                    "failed": False})
+        kept = hits[:per_airport]
+        _remember(conn, "airport", icao, kept)
+        out.append({"iata": icao, "city": city, "items": kept,
+                    "failed": False, "stale": None})
     return out
 
 
@@ -487,24 +526,31 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
     rows = []
     news_failures = 0
     for code, cfg in sorted(carriers.items(), key=lambda kv: kv[1]["name"]):
-        news = []
+        news, stale = [], None
         if with_news:
             news = carrier_news(cfg["name"], max_age=news_days)
             if news is None:
                 news_failures += 1
-                LOG.info("%s: source did not answer", code)
+                stale = _recall(conn, "carrier", code)
+                LOG.info("%s: source did not answer%s", code,
+                         f" (showing {len(stale['items'])} cached)" if stale else "")
             else:
                 if use_llm:
                     enrich(conn, code, cfg["name"], news)
+                _remember(conn, "carrier", code, news)
                 LOG.info("%s: %s headlines", code, len(news))
             time.sleep(1.2)          # be polite to Google News
         seen_at = dict(act["seen"].get(code, {}))
         sched = sched_by_carrier.get(code)
+        # `stale` deliberately does not reach verdict(): it is shown, not
+        # counted. news is still None here, so the row reads "sorulamadı".
         state, why = verdict(seen_at, sched, news)
         rows.append({"code": code, "name": cfg["name"],
                      "iata": cfg.get("iata"), "country": cfg.get("country"),
                      "seen_at": seen_at, "legs": sum(seen_at.values()),
                      "baseline": base.get(code), "news": news or [],
+                     "stale": stale if news is None else None,
+                     "news_failed": with_news and news is None,
                      "sched": sched, "ratio": ratios.get(code),
                      "state": state, "why": why})
 
@@ -534,7 +580,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "airports": config.airports(),
         "carriers_cfg": carriers,
         "airport_view": airport_view(conn, days, carriers),
-        "blind_news": blind_news(news_days) if with_news else [],
+        "blind_news": blind_news(conn, news_days) if with_news else [],
         "boards": flightboard.by_airport(conn),
         "firs": firwatch.summary(conn, days=7),
         "schedule_coverage": schedules.coverage(conn),
@@ -691,6 +737,7 @@ tr.r-partial td{background:color-mix(in srgb,var(--partial) 6%,transparent)}
   background:color-mix(in srgb,var(--stopped) 8%,transparent);
   padding:10px 14px;font-size:13.5px;max-width:78ch}
 
+.card.stale{opacity:.75}
 ul.blind-news{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:9px}
 ul.blind-news li{font-size:13.5px;line-height:1.45}
 ul.blind-news a{text-decoration:none;border-bottom:1px solid transparent}
@@ -720,6 +767,13 @@ def _e(s) -> str:
 
 def _gun(n: int) -> str:
     return "bugün" if n == 0 else "dün" if n == 1 else f"{n} gün önce"
+
+
+def _alindi(n: int) -> str:
+    """When a cached set was fetched. _gun() already carries its own "önce",
+    so reusing it here produced "bugün önce alındı"."""
+    return ("bugün alındı" if n == 0 else
+            "dün alındı" if n == 1 else f"{n} gün önce alındı")
 
 
 def _pill(state: str) -> str:
@@ -886,7 +940,25 @@ def _blind_news_section(data: dict) -> str:
                  f'<p>Bu çalıştırmada {len(failed)} havalimanı için basın '
                  f'sorgusu HTTP hatası döndürdü: {yerler}. Buralar hakkında '
                  f'<i>haber çıkmadığı</i> anlamına gelmez — <i>sorulamadığı</i> '
-                 f'anlamına gelir.</p></div>')
+                 f'anlamına gelir. Arşivde kaydı olanlar aşağıda, alındıkları '
+                 f'tarihle birlikte; bugün doğrulanmadılar.</p></div>')
+
+    # Cached sets for the airports that could not be asked. Marked by age and
+    # kept visually apart from a live answer, because for these seven nothing
+    # else can corroborate them.
+    for b in failed:
+        if not b.get("stale"):
+            continue
+        items = "".join(
+            f'<li><a href="{_e(it["url"])}" target="_blank" rel="noopener">'
+            f'{_e(it["title"])}</a>'
+            f'<span class="meta">{_alindi(b["stale"]["age_days"])}</span>'
+            f'</li>' for it in b["stale"]["items"])
+        cards.append(
+            f'<div class="card stale"><div class="hd"><b>{_e(b["iata"])}</b> '
+            f'<span class="name">{_e(b["city"])}</span>'
+            f'<span class="tag s-mentioned">arşiv</span></div>'
+            f'<ul class="blind-news">{items}</ul></div>')
     return f"""
 <section>
   <h2>Kör havalimanları — basından</h2>
@@ -922,8 +994,21 @@ def _rows(data: dict) -> str:
                 for i, u in enumerate(note["sources"][:4]))
             heads += (f'<div class="head"><span class="tag s-mentioned">web</span>'
                       f'{_e(note["note"])} {kaynaklar}</div>')
+        stale = c.get("stale")
+        if stale:
+            heads += "".join(
+                f'<div class="head"><span class="tag s-mentioned">eski</span>'
+                f'<a href="{_e(h["url"])}" target="_blank" rel="noopener">'
+                f'{_e(h["title"])}</a>'
+                f'<span class="meta"> · {_alindi(stale["age_days"])},'
+                f' bugün doğrulanamadı</span></div>'
+                for h in stale["items"])
+        # "basında ilgili haber yok" is a claim about the press. Only make it
+        # when the press was actually reachable.
+        empty = ('kaynak yanıt vermedi, arşivde de kayıt yok'
+                 if c.get("news_failed") else 'basında ilgili haber yok')
         heads = f'<div class="heads">{heads}</div>' if heads else (
-            '<div class="heads"><div class="head meta">basında ilgili haber yok</div></div>')
+            f'<div class="heads"><div class="head meta">{empty}</div></div>')
         rt = c.get("ratio") or {}
         sched_cell = "—"
         if rt.get("scheduled"):
@@ -1092,7 +1177,10 @@ def render(data: dict) -> str:
       havayolları için. Başlıkları bir dil modeli okuyor: "X tarifesini
       koruyor, Y iptal ediyor" gibi cümlelerde eylemi doğru havayoluna
       bağlayabilmek için. Duyuru gözlem değildir. Kaynak yanıt vermezse rapor
-      bunu en üstte söyler; sessizce “haber yok”a çevirmez.</div></div>
+      bunu en üstte söyler; sessizce “haber yok”a çevirmez. O durumda en son
+      cevap alınan başlıklar <b>“arşiv”</b> etiketiyle ve alındıkları tarihle
+      gösterilir — okumanız için, çünkü <b>durumu değiştirmezler:</b> bugün
+      doğrulanamayan bir başlık bugünün kararını veremez.</div></div>
     <div class="card"><div class="hd"><span class="fir">Web araması</span></div>
       <div class="place"><b>Son çare.</b> Yalnızca ilk üç kaynağın da sessiz
       kaldığı havayolları için çalışır ve <b>durumu değiştirmez</b> — sadece
@@ -1203,7 +1291,9 @@ def render(data: dict) -> str:
       alınır. Yalnızca ADS-B'nin kör olduğu havalimanları için harcanır.</dd>
     <dt>Basın</dt><dd>Google News RSS. Başlıkta havayolunun adı geçen haberler
       süzülür; anahtar kelimeyle sınıflandırılır. Karar vermez, okumanız için
-      bağlantıyı önünüze koyar.</dd>
+      bağlantıyı önünüze koyar. Kaynak veri merkezi IP'lerine aralıklı olarak
+      HTTP hatası döndürüyor; cevap alınan son başlıklar saklanır ve kesinti
+      gününde arşiv olarak, tarihiyle gösterilir.</dd>
     <dt>Web araması</dt><dd>Mistral web arama aracı. Yalnızca diğer üç kaynağın
       da sessiz kaldığı havayolları için, çalıştırma başına en fazla
       {MAX_WEB_SEARCHES} sorgu. Durumu değiştirmez, kaynaklı not ekler.</dd>
