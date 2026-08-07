@@ -4,9 +4,30 @@ name: backfill-baseline
 # this project means anything without it: "12 flights a week" is not
 # information, "12 against a baseline of 21" is.
 #
-# Manual only. It runs for hours and burns most of a day's OpenSky credits.
+# It runs for hours and burns most of a day's OpenSky credits. Dispatch it by
+# hand any time; it also carries a TEMPORARY daily schedule, below, purely to
+# get the finite harvest finished. Delete that block when the baseline freezes.
 
 on:
+  # TEMPORARY -- delete this block once the baseline is frozen.
+  #
+  # The harvest is a finite job, not a report: OpenSky's allowance covers ~16
+  # of the 104 slices a day, so it needs one run a day for about a week and
+  # then never again. Dispatching that by hand is what was actually costing
+  # days. This is not the timer the project deliberately does not have -- the
+  # report still only runs when asked.
+  #
+  # 11:00 UTC because the allowance resets at ~10:44: measured twice, run 1
+  # reported 23.8h left at 10:56 and run 2 reported 21.0h left at 13:44, and
+  # both land on the same wall-clock time, so the reset is a fixed daily one
+  # rather than 24h from whenever the last run started.
+  #
+  # A run after the harvest completes is harmless -- there are no slices left
+  # to fetch, compact() finds nothing to fold, and freeze() rewrites the same
+  # baseline -- but it is still a run doing nothing. Delete the block.
+  schedule:
+    - cron: "0 11 * * *"
+
   workflow_dispatch:
     inputs:
       start:
@@ -20,10 +41,11 @@ on:
         type: boolean
         default: false
       airports:
-        description: "ICAO list to harvest. The default is the set OpenSky can
-          actually see; the seven omitted ones returned zero flights each over a
-          real 48h ingest and cost about half the daily allowance to learn it."
-        default: "OMDB,OTHH,OMSJ,OJAI,OMAA,OBBI,OLBA,OOMS"
+        description: "ICAO list to harvest. Leave blank for the set OpenSky can
+          actually see -- the seven it omits returned zero flights each over a
+          real 48h ingest and cost about half the daily allowance to learn it.
+          'all' forces every airport in config."
+        default: ""
 
 permissions:
   contents: write
@@ -60,13 +82,21 @@ jobs:
         # still be published and committed. Letting the step fail there aborted
         # the job before the Commit step and threw the day's harvest away.
         # Any other non-zero code is a real failure and still stops the job.
+        #
+        # The flags are built rather than interpolated straight in: a schedule
+        # event carries no inputs at all -- GitHub does not apply the
+        # workflow_dispatch defaults to it -- so `--start ""` is what a cron
+        # run would have passed. Omitting the flag instead lets argparse fall
+        # back to config.BASELINE_START/END, which hold the same dates.
         run: |
           rc=0
-          python -m src.backfill \
-            --start "${{ inputs.start }}" \
-            --end "${{ inputs.end }}" \
-            --airports "${{ inputs.airports }}" \
-            ${{ inputs.freeze_only && '--freeze-only' || '' }} || rc=$?
+          args=()
+          if [ -n "${{ inputs.start }}" ];    then args+=(--start "${{ inputs.start }}"); fi
+          if [ -n "${{ inputs.end }}" ];      then args+=(--end "${{ inputs.end }}"); fi
+          if [ -n "${{ inputs.airports }}" ]; then args+=(--airports "${{ inputs.airports }}"); fi
+          if [ "${{ inputs.freeze_only }}" = "true" ]; then args+=(--freeze-only); fi
+          echo "backfill args: ${args[*]:-<config defaults>}"
+          python -m src.backfill "${args[@]}" || rc=$?
           if [ "$rc" -ne 0 ] && [ "$rc" -ne 2 ]; then
             echo "::error::backfill failed with exit $rc"
             exit "$rc"
@@ -104,7 +134,10 @@ jobs:
             echo "nothing changed"
             exit 0
           fi
-          git commit -m "backfill: baseline ${{ inputs.start }}..${{ inputs.end }}"
+          # Same reason as the Backfill step: a scheduled run carries no inputs.
+          window="${{ inputs.start }}..${{ inputs.end }}"
+          if [ "$window" = ".." ]; then window="default window"; fi
+          git commit -m "backfill: baseline $window"
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
 

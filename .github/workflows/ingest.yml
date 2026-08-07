@@ -83,9 +83,10 @@ jobs:
         # reading falls back to keyword matching; the run still completes.
         #
         # AIRLABS_API_KEY is deliberately not passed. report.py only reads the
-        # cached route_schedule table -- schedules.refresh(), the one function
-        # that calls the AirLabs API, has no caller anywhere in the repo. The
-        # key would do nothing here.
+        # cached route_schedule table; the one function that calls the AirLabs
+        # API is schedules.refresh(), and that runs in the Ingest step above
+        # (src/ingest.py), which is where the key is passed. The key would do
+        # nothing here.
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: python -m src.report

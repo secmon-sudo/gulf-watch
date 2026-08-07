@@ -639,6 +639,30 @@ class TestCompaction(unittest.TestCase):
         self.assertEqual(self.conn.execute(
             "SELECT COUNT(*) n FROM daily_route").fetchone()["n"], 14)
 
+    def test_the_default_airport_set_skips_the_blind_ones(self):
+        """A scheduled run passes no inputs at all, so this default is what a
+        cron harvest actually uses. Getting it wrong spends half the daily
+        allowance on airports measured to return zero."""
+        from src import schedules
+        picked = self.bf.observable_airports()
+        self.assertEqual(len(picked), 8)
+        iata = {config.airports()[i]["iata"] for i in picked}
+        self.assertFalse(iata & set(schedules.BLIND))
+
+    def test_compacting_twice_does_not_destroy_the_rollup(self):
+        """A second run over a finished window finds no raw legs. Rebuilding
+        the range from them would clear the rollup and regenerate nothing,
+        leaving freeze() with an empty baseline."""
+        self.bf.compact("2025-11-01", "2025-11-14")
+        first = self.conn.execute(
+            "SELECT COUNT(*) n FROM daily_route").fetchone()["n"]
+        out = self.bf.compact("2025-11-01", "2025-11-14")
+        self.assertEqual(out, {"rolled_up": 0, "pruned": 0})
+        self.assertEqual(self.conn.execute(
+            "SELECT COUNT(*) n FROM daily_route").fetchone()["n"], first)
+        self.bf.freeze("2025-11-01", "2025-11-14")
+        self.assertTrue(self._freeze_rows())
+
     def test_an_incomplete_harvest_is_never_compacted(self):
         """Pruning between runs would break the dedup the flight primary key
         gives us: these airports fly to each other, so the same leg arrives

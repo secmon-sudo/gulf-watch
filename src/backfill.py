@@ -27,7 +27,7 @@ import sys
 import time
 from datetime import datetime, timedelta, timezone
 
-from . import config, db, metrics
+from . import config, db, metrics, schedules
 from .opensky import OpenSky, RateLimited
 from .parse import normalise
 
@@ -46,6 +46,20 @@ EXIT_INCOMPLETE = 2
 # sits months back, so this only ever guards against being pointed at a window
 # that overlaps live data.
 RAW_RETENTION_DAYS = 60
+
+
+def observable_airports() -> list[str]:
+    """The airports OpenSky can actually see.
+
+    Derived from schedules.BLIND rather than written out again, because it was
+    written out again: the same eight ICAO codes sat in run-backfill.sh and in
+    the workflow's input default, and the workflow's scheduled trigger passes
+    no inputs at all -- so the list has to come from somewhere that a cron run
+    reaches too. Harvesting the other seven costs about half the daily
+    allowance and returns zero flights, measured over a real 48h ingest.
+    """
+    return [icao for icao, cfg in config.airports().items()
+            if cfg["iata"] not in schedules.BLIND]
 
 
 def _slices(t0: int, t1: int) -> list[tuple[int, int]]:
@@ -167,6 +181,18 @@ def compact(start: str, end: str) -> dict:
         return {"rolled_up": 0, "pruned": 0}
 
     conn = db.connect()
+    raw = conn.execute(
+        "SELECT COUNT(*) n FROM flight WHERE dep_date BETWEEN ? AND ?",
+        (start, end)).fetchone()["n"]
+    if not raw:
+        # Already folded in. rebuild_daily() clears the range before it
+        # regenerates it, so running again with no legs left to read would
+        # delete the rollup and leave freeze() nothing to freeze.
+        LOG.info("nothing to compact for %s..%s: raw legs already folded in",
+                 start, end)
+        conn.close()
+        return {"rolled_up": 0, "pruned": 0}
+
     metrics.rebuild_daily(conn, since=start, until=end)
     rolled = conn.execute(
         "SELECT COUNT(*) n FROM daily_route WHERE day BETWEEN ? AND ?",
@@ -222,17 +248,21 @@ def main(argv=None) -> int:
     ap.add_argument("--end", default=config.BASELINE_END)
     ap.add_argument("--freeze-only", action="store_true")
     ap.add_argument("--airports", default=None,
-                    help="comma-separated ICAO list; default is every airport "
-                         "in config. Narrowing to the ones OpenSky can "
-                         "actually see roughly halves the harvest.")
+                    help="comma-separated ICAO list. Defaults to the airports "
+                         "OpenSky can actually see, which roughly halves the "
+                         "harvest; pass 'all' for every airport in config.")
     args = ap.parse_args(argv)
 
     if args.freeze_only:
         freeze(args.start, args.end)
         return 0
 
-    picked = ([a.strip().upper() for a in args.airports.split(",") if a.strip()]
-              if args.airports else None)
+    if not args.airports:
+        picked = observable_airports()
+    elif args.airports.strip().lower() == "all":
+        picked = None
+    else:
+        picked = [a.strip().upper() for a in args.airports.split(",") if a.strip()]
     result = harvest(args.start, args.end, picked)
     if result["remaining"] != 0:
         # Freezing here would write a baseline built from whatever fraction

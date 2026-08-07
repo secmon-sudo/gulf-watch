@@ -15,9 +15,9 @@ export OPENSKY_CLIENT_SECRET="$(python3 -c 'import json;print(json.load(open("cr
 # Exit 2 means "stopped early, resume tomorrow", which is the expected outcome
 # most days -- don't let set -e treat it as a failure before the summary runs.
 rc=0
-python3 -m src.backfill \
-  --start 2025-11-01 --end 2026-01-31 \
-  --airports OMDB,OTHH,OMSJ,OJAI,OMAA,OBBI,OLBA,OOMS || rc=$?
+# The airport list is the default now, derived from schedules.BLIND, so it is
+# not spelled out here as well; the dates come from config.
+python3 -m src.backfill || rc=$?
 
 python3 - <<'PY'
 from src import db
