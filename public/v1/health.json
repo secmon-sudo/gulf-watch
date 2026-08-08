@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-07T11:49:24+00:00",
-  "as_of_day": "2026-08-06",
+  "generated_at": "2026-08-08T11:33:53+00:00",
+  "as_of_day": "2026-08-07",
   "coverage": {
-    "day": "2026-08-06",
+    "day": "2026-08-07",
     "control_flights": 0,
     "median_28d": 327.0,
     "score": 0.0,
@@ -16,7 +16,7 @@
   },
   "database": {
     "route_departures": 1334,
-    "raw_legs_retained": 137284,
+    "raw_legs_retained": 138118,
     "first_day": "2025-10-31",
     "last_day": "2026-08-04",
     "baseline_routes": 0
