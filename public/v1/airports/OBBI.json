@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-08T11:33:53+00:00",
-  "as_of_day": "2026-08-07",
+  "generated_at": "2026-08-09T11:33:47+00:00",
+  "as_of_day": "2026-08-08",
   "coverage": {
-    "day": "2026-08-07",
+    "day": "2026-08-08",
     "control_flights": 0,
     "median_28d": 327.0,
     "score": 0.0,
@@ -19,7 +19,7 @@
   "name": "Bahrain Intl",
   "city": "Manama",
   "country": "BH",
-  "weekly_frequency": 99,
+  "weekly_frequency": 98,
   "baseline_weekly": 0.0,
   "carriers_operating": [
     "ABY",
@@ -212,17 +212,6 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "LIRF",
-      "weekly_frequency": 1,
-      "baseline_weekly": 0.0,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0
-    },
-    {
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "origin": "OBBI",
-      "destination": "OBBI",
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,

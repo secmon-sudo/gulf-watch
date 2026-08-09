@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-08T11:33:53+00:00",
-  "as_of_day": "2026-08-07",
+  "generated_at": "2026-08-09T11:33:47+00:00",
+  "as_of_day": "2026-08-08",
   "coverage": {
-    "day": "2026-08-07",
+    "day": "2026-08-08",
     "control_flights": 0,
     "median_28d": 327.0,
     "score": 0.0,
@@ -19,7 +19,7 @@
   "name": "Dubai Intl",
   "city": "Dubai",
   "country": "AE",
-  "weekly_frequency": 471,
+  "weekly_frequency": 470,
   "baseline_weekly": 0.0,
   "carriers_operating": [
     "FDB",
@@ -449,17 +449,6 @@
       "carrier_name": "flynas",
       "origin": "OMDB",
       "destination": "LTCG",
-      "weekly_frequency": 1,
-      "baseline_weekly": 0.0,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0
-    },
-    {
-      "carrier": "MSR",
-      "carrier_name": "EgyptAir",
-      "origin": "CYYZ",
-      "destination": "OMDB",
       "weekly_frequency": 1,
       "baseline_weekly": 0.0,
       "ratio": null,
