@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-09T11:33:47+00:00",
-  "as_of_day": "2026-08-08",
+  "generated_at": "2026-08-10T05:53:15+00:00",
+  "as_of_day": "2026-08-09",
   "coverage": {
-    "day": "2026-08-08",
+    "day": "2026-08-09",
     "control_flights": 0,
     "median_28d": 327.0,
     "score": 0.0,
@@ -23,6 +23,10 @@
   },
   "baseline_ready": false,
   "recent_runs": [
+    {
+      "started_at": "2026-08-10T05:52:03+00:00",
+      "detail": "legs=0 coverage=outage(0.0) stopped=0 resumed=0 czib_changes=0 sched=0 board=1979"
+    },
     {
       "started_at": "2026-08-04T11:21:30+00:00",
       "detail": "legs=0 coverage=ok(1.5) stopped=0 resumed=0 czib_changes=0"

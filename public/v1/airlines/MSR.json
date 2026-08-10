@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-09T11:33:47+00:00",
-  "as_of_day": "2026-08-08",
+  "generated_at": "2026-08-10T05:53:15+00:00",
+  "as_of_day": "2026-08-09",
   "coverage": {
-    "day": "2026-08-08",
+    "day": "2026-08-09",
     "control_flights": 0,
     "median_28d": 327.0,
     "score": 0.0,
@@ -18,9 +18,9 @@
   "name": "EgyptAir",
   "iata": "MS",
   "country": "EG",
-  "weekly_frequency": 8,
+  "weekly_frequency": 7,
   "baseline_weekly": 0.0,
-  "routes_total": 8,
+  "routes_total": 7,
   "routes_suspended": 0,
   "routes_reduced": 0,
   "ratio": null,
@@ -36,17 +36,6 @@
     "confidence": null
   },
   "routes": [
-    {
-      "carrier": "MSR",
-      "carrier_name": "EgyptAir",
-      "origin": "GMMN",
-      "destination": "OMSJ",
-      "weekly_frequency": 1,
-      "baseline_weekly": 0.0,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0
-    },
     {
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
