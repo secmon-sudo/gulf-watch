@@ -156,6 +156,7 @@ CREATE TABLE IF NOT EXISTS headline_class (
     url           TEXT NOT NULL,
     carrier       TEXT NOT NULL,
     action        TEXT,              -- stopped | resumed | unaffected | unclear
+                                     --   | irrelevant (not about this region)
     airports      TEXT,              -- comma-separated IATA, validated
     why           TEXT,
     model         TEXT,

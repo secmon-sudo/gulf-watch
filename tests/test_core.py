@@ -761,6 +761,52 @@ class TestNewsSourceFailure(unittest.TestCase):
         _, bulunamadi = report.verdict({}, None, [])
         self.assertNotIn("yanıt vermedi", bulunamadi)
 
+    def test_a_headline_from_another_continent_cannot_stop_a_carrier(self):
+        """The 2026-08-09 report's only STOPPED verdict, in full: Air China was
+        published as having stopped because "Air China launches regular flights
+        on the Beijing - Bishkek - Beijing route" came back classified
+        `stopped`. Neither seen nor timetabled here, one label was the whole
+        case."""
+        from src import report
+        haber = [{"signal": "stopped", "airports": [],
+                  "title": "Air China launches regular flights on the "
+                           "Beijing - Bishkek - Beijing route - open.kg"}]
+        durum, _ = report.verdict({}, None, haber)
+        self.assertEqual(durum, "unknown")
+
+    def test_an_it_outage_is_not_a_resumption_either(self):
+        from src import report
+        haber = [{"signal": "resumed", "airports": [],
+                  "title": "American Airlines resumes flights after IT issue "
+                           "forced brief nationwide halt - Reuters"}]
+        _, gerekce = report.verdict({}, None, haber)
+        self.assertNotIn("çelişki", gerekce)
+
+    def test_a_headline_naming_a_watched_place_still_counts(self):
+        from src import report
+        for haber in (
+            # the classifier tied it to our airports
+            [{"signal": "stopped", "airports": ["BAH", "KWI"],
+              "title": "Emirates flights remain suspended"}],
+            # no classifier answer, but the headline names the place itself
+            [{"signal": "stopped", "airports": [],
+              "title": "5 airlines suspend flights to and from Riyadh"}],
+            [{"signal": "stopped", "airports": [],
+              "title": "China Southern extends Middle East flight suspensions"}],
+        ):
+            durum, _ = report.verdict({"OMDB": 4}, None, haber)
+            self.assertEqual(durum, "partial", haber[0]["title"])
+
+    def test_the_publisher_name_is_not_evidence_of_where(self):
+        """Google appends " - Publisher" to every title, and the publishers are
+        Gulf News and timeoutriyadh.com."""
+        from src import report
+        haber = [{"signal": "stopped", "airports": [],
+                  "title": "Airline cuts two long-haul routes until 2027 "
+                           "- Gulf News"}]
+        durum, _ = report.verdict({"OMDB": 4}, None, haber)
+        self.assertEqual(durum, "flying")
+
     def test_blind_airport_failure_is_flagged_not_silently_empty(self):
         from src import report
         tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
@@ -904,6 +950,25 @@ class TestHeadlineClassification(unittest.TestCase):
         self.assertEqual(first["action"], second["action"])
         self.assertTrue(second["cached"])
 
+    def test_a_prompt_change_retires_the_cached_answers(self):
+        """Otherwise the run that teaches the model to say "irrelevant" keeps
+        serving the answer the old prompt gave for the same headline."""
+        from src import classify
+        self.conn.execute(
+            """INSERT INTO headline_class
+               (url, carrier, action, airports, why, model, classified_at)
+               VALUES ('u9','CCA','stopped','','route launch not mentioned',
+                       'ministral-3b-latest','2026-08-04T18:58:32+00:00')""")
+        self.conn.commit()
+        with mock.patch.dict(os.environ, {"MISTRAL_API_KEY": "k"}), \
+                mock.patch("src.classify.requests.post") as post:
+            post.return_value = self._reply(
+                {"action": "irrelevant", "airports": [], "why": "route launch"})
+            got = classify.classify(self.conn, "CCA", "Air China",
+                                    {"url": "u9", "title": "Air China launches"})
+            post.assert_called_once()
+        self.assertEqual(got["action"], "irrelevant")
+
     def test_no_key_means_no_opinion(self):
         from src import classify
         with mock.patch.dict(os.environ, {}, clear=True), \
@@ -929,9 +994,20 @@ class TestChangeTracking(unittest.TestCase):
         return [{"code": "ETD", "name": "Etihad Airways", "state": state,
                  "legs": sum(seen.values()), "seen_at": seen}]
 
+    def _yesterday(self, airports, verdict="ok"):
+        """A previous report, and whether anyone could see on that day."""
+        self.conn.execute(
+            "INSERT INTO report_state VALUES ('2000-01-01','ETD','flying',9,?)",
+            (airports,))
+        self.conn.execute(
+            "INSERT INTO coverage (day, control_flights, median_28d, score, verdict)"
+            " VALUES ('2000-01-01', 300, 300.0, 1.0, ?)", (verdict,))
+        self.conn.commit()
+
     def test_first_run_reports_nothing_and_records_state(self):
         from src import report
-        out = report.diff_since_last(self.conn, self._rows("flying", {"OMDB": 5}))
+        out = report.diff_since_last(
+            self.conn, self._rows("flying", {"OMDB": 5}), True)
         self.assertIsNone(out["since"])
         self.assertEqual(out["changes"], [])
         self.assertEqual(
@@ -939,10 +1015,9 @@ class TestChangeTracking(unittest.TestCase):
 
     def test_state_change_and_dropped_airport_are_both_reported(self):
         from src import report
-        self.conn.execute(
-            "INSERT INTO report_state VALUES ('2000-01-01','ETD','flying',9,'OMDB,OBBI')")
-        self.conn.commit()
-        out = report.diff_since_last(self.conn, self._rows("partial", {"OMDB": 5}))
+        self._yesterday("OMDB,OBBI")
+        out = report.diff_since_last(
+            self.conn, self._rows("partial", {"OMDB": 5}), True)
         kinds = {c["kind"] for c in out["changes"]}
         self.assertIn("durum", kinds)
         self.assertIn("kayboldu", kinds)
@@ -951,14 +1026,35 @@ class TestChangeTracking(unittest.TestCase):
 
     def test_a_returning_airport_is_reported(self):
         from src import report
-        self.conn.execute(
-            "INSERT INTO report_state VALUES ('2000-01-01','ETD','flying',9,'OMDB')")
-        self.conn.commit()
+        self._yesterday("OMDB")
         out = report.diff_since_last(
-            self.conn, self._rows("flying", {"OMDB": 5, "OKBK": 2}))
+            self.conn, self._rows("flying", {"OMDB": 5, "OKBK": 2}), True)
         back = [c for c in out["changes"] if c["kind"] == "geri döndü"]
         self.assertEqual(len(back), 1)
         self.assertEqual(back[0]["now"], "KWI")
+
+    def test_a_blind_day_reports_no_airport_movement(self):
+        """The window loses its tail when nobody looks. That is not a departure
+        that stopped, and six carriers were reported as having lost airports on
+        exactly such a day."""
+        from src import report
+        self._yesterday("OMDB,OBBI")
+        out = report.diff_since_last(
+            self.conn, self._rows("partial", {"OMDB": 5}), False)
+        kinds = {c["kind"] for c in out["changes"]}
+        self.assertIn("durum", kinds)          # the press still moves a state
+        self.assertNotIn("kayboldu", kinds)
+        self.assertFalse(out["airports_compared"])
+
+    def test_a_blind_day_is_not_compared_against_afterwards_either(self):
+        """Yesterday was blind, today can see: its shrunken airport list would
+        read as everyone returning at once."""
+        from src import report
+        self._yesterday("OMDB", verdict="outage")
+        out = report.diff_since_last(
+            self.conn, self._rows("flying", {"OMDB": 5, "OKBK": 2}), True)
+        self.assertEqual([c["kind"] for c in out["changes"]], [])
+        self.assertFalse(out["airports_compared"])
 
 
 if __name__ == "__main__":

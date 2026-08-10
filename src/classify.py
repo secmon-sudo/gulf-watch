@@ -34,7 +34,14 @@ LOG = logging.getLogger("gulfwatch.classify")
 API = "https://api.mistral.ai/v1/chat/completions"
 MODEL = os.environ.get("MISTRAL_MODEL", "ministral-3b-latest")
 
-ACTIONS = {"stopped", "resumed", "unaffected", "unclear"}
+# Bump when _prompt() changes what an answer means. The cache is keyed on the
+# headline, so without this a headline keeps the answer the old prompt gave:
+# the run that added "irrelevant" would still have shown Air China's Bishkek
+# route launch as `stopped`, because that answer was already on file.
+PROMPT_VERSION = 2
+STAMP = f"{MODEL}@v{PROMPT_VERSION}"
+
+ACTIONS = {"stopped", "resumed", "unaffected", "unclear", "irrelevant"}
 
 
 def _key() -> str | None:
@@ -63,12 +70,20 @@ def _prompt() -> str:
 The carrier is already known to appear in the headline.
 
 Return ONLY JSON:
-{{"action":"stopped"|"resumed"|"unaffected"|"unclear","airports":[...],"why":"<8 words"}}
+{{"action":"stopped"|"resumed"|"unaffected"|"unclear"|"irrelevant","airports":[...],"why":"<8 words"}}
 
-action = what the headline says about THIS carrier, not about others named in
-  it. If it says this carrier maintains or keeps its schedule while OTHERS
-  cancel -> "unaffected". If the headline is about the region generally and
-  says nothing specific about this carrier -> "unclear".
+action = what the headline says about THIS carrier's flights to, from or over
+  the Middle East, not about others named in it. If it says this carrier
+  maintains or keeps its schedule while OTHERS cancel -> "unaffected". If the
+  headline is about the region generally and says nothing specific about this
+  carrier -> "unclear".
+
+  "irrelevant" is a real answer and often the right one. Use it when the
+  headline is not about this carrier's Middle East service at all: a route
+  launch or suspension somewhere else entirely, an IT outage, financial
+  results, an incident, an aircraft order, a review. Do not stretch such a
+  headline into "stopped" or "resumed" -- answering "irrelevant" is how the
+  report avoids reporting a Beijing route launch as a Gulf suspension.
 
 airports = ONLY codes from this list, for places the headline explicitly ties
 to this carrier. Use the exact code. Empty list if none apply.
@@ -79,8 +94,8 @@ def classify(conn, carrier: str, name: str, headline: dict) -> dict | None:
     """Cached classification. None means "no answer, use the regex signal"."""
     url = headline.get("url") or ""
     cached = conn.execute(
-        "SELECT action, airports, why FROM headline_class WHERE url=? AND carrier=?",
-        (url, carrier)).fetchone()
+        "SELECT action, airports, why FROM headline_class "
+        "WHERE url=? AND carrier=? AND model=?", (url, carrier, STAMP)).fetchone()
     if cached:
         return {"action": cached["action"],
                 "airports": [a for a in (cached["airports"] or "").split(",") if a],
@@ -119,7 +134,7 @@ def classify(conn, carrier: str, name: str, headline: dict) -> dict | None:
         """INSERT OR REPLACE INTO headline_class
            (url, carrier, action, airports, why, model, classified_at)
            VALUES (?,?,?,?,?,?,?)""",
-        (url, carrier, action, ",".join(airports), why, MODEL,
+        (url, carrier, action, ",".join(airports), why, STAMP,
          datetime.now(tz=timezone.utc).isoformat(timespec="seconds")))
     conn.commit()
     return {"action": action, "airports": airports, "why": why, "cached": False}

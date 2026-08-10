@@ -80,6 +80,32 @@ MIN_RATIO_DAYS = 5
 GENERIC = re.compile(r"\b(which airlines|airlines (?:have|suspend|resume|cancel)|"
                      r"list of|roundup|factbox)\b", re.I)
 
+REGION_WORDS = re.compile(r"\b(middle east|gulf|arabian|persian)\b", re.I)
+
+
+def _region_tied(h: dict) -> bool:
+    """Is this headline about the airspace we watch?
+
+    A headline only gets to move a carrier's state if it is. The model is asked
+    what a headline says about a carrier and it answers that question even when
+    the headline is about somewhere else entirely: "Air China launches regular
+    flights on the Beijing - Bishkek route" came back as `stopped`, with the
+    reason "route launch not mentioned", and because Air China is neither seen
+    nor timetabled here that single answer published it as STOPPED. A US IT
+    outage did the same for American Airlines.
+
+    Tied means: the classifier bound it to one of our airports, or -- when
+    there was no classifier answer -- the headline literally names one of our
+    cities or the region. The publisher suffix Google appends is cut off first,
+    or every story from Gulf News and timeoutriyadh.com would qualify.
+    """
+    if h.get("airports"):
+        return True
+    text = h.get("title", "").rsplit(" - ", 1)[0].lower()
+    if REGION_WORDS.search(text):
+        return True
+    return any(a["city"].lower() in text for a in config.airports().values())
+
 
 # --- Data ------------------------------------------------------------------
 
@@ -416,7 +442,9 @@ def verdict(seen_at: dict, sched: dict | None,
     """
     haber_var = news is not None
     news = news or []
-    kesinti = any(x["signal"] == "stopped" for x in news)
+    # Only headlines about this region decide anything -- see _region_tied.
+    # The rest stay in the table as links, tagged for what they are.
+    kesinti = any(x["signal"] == "stopped" and _region_tied(x) for x in news)
     vurulan = sorted({a for x in news if x["signal"] == "stopped"
                       for a in (x.get("airports") or [])})
     nere = f" ({', '.join(vurulan)})" if vurulan else ""
@@ -441,7 +469,7 @@ def verdict(seen_at: dict, sched: dict | None,
     if kesinti:
         return "stopped", ("ne havada görüldü ne tarifesinde sefer var, üstelik "
                            "basın durdurduğunu bildiriyor — üç kaynak da aynı yönde")
-    if any(x["signal"] == "resumed" for x in news):
+    if any(x["signal"] == "resumed" and _region_tied(x) for x in news):
         return "unknown", ("görülmedi ve tarifesinde sefer yok, ama basın yeniden "
                            "başladığını yazıyor — çelişki")
     if not haber_var:
@@ -464,19 +492,32 @@ def enrich(conn, code: str, name: str, news: list[dict]) -> None:
         h["why_llm"] = got["why"]
         h["signal"] = {"stopped": "stopped", "resumed": "resumed",
                        "unaffected": "unaffected",
-                       "unclear": "mentioned"}[got["action"]]
+                       "unclear": "mentioned",
+                       "irrelevant": "irrelevant"}[got["action"]]
 
 
-def diff_since_last(conn, rows: list[dict]) -> dict:
+def diff_since_last(conn, rows: list[dict], coverage_ok: bool) -> dict:
     """What moved since the previous run, and record today for the next one.
 
     A snapshot answers "where do things stand". An operator watching a
     conflict needs the other question — what changed — and the history to
     answer it is already in the database.
+
+    Airport gains and losses are only compared between two days that both
+    passed the coverage gate. On 2026-08-10 the OpenSky allowance was spent
+    before the run, so the seven-day window lost a day off its tail and gained
+    nothing: six carriers were reported as having "kayboldu" from Bahrain and
+    Doha on a day nobody had looked. A carrier's state can still change on a
+    blind day — the press moves it — but an airport disappearing from a window
+    that stopped being filled is an artefact of the window, not a departure
+    that stopped.
     """
     today = metrics.reference_day().isoformat()
     prev_day = conn.execute(
         "SELECT MAX(day) d FROM report_state WHERE day < ?", (today,)).fetchone()["d"]
+    ok_days = {r["day"] for r in conn.execute(
+        "SELECT day FROM coverage WHERE verdict = 'ok'")}
+    compare_airports = coverage_ok and prev_day in ok_days
 
     changes: list[dict] = []
     if prev_day:
@@ -494,6 +535,8 @@ def diff_since_last(conn, rows: list[dict]) -> dict:
                 changes.append({"carrier": r["code"], "name": r["name"],
                                 "kind": "durum", "was": STATE_LABEL[was["state"]],
                                 "now": STATE_LABEL[r["state"]]})
+            if not compare_airports:
+                continue
             gone = sorted(iata.get(a, a) for a in was_ap - now_ap)
             new = sorted(iata.get(a, a) for a in now_ap - was_ap)
             if gone:
@@ -509,7 +552,8 @@ def diff_since_last(conn, rows: list[dict]) -> dict:
         [(today, r["code"], r["state"], r["legs"], ",".join(sorted(r["seen_at"])))
          for r in rows])
     conn.commit()
-    return {"since": prev_day, "changes": changes}
+    return {"since": prev_day, "changes": changes,
+            "airports_compared": compare_airports}
 
 
 def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
@@ -566,7 +610,8 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
                 r["note"] = got
             time.sleep(3)   # 2026-08-06: back-to-back calls got 429 on the 4th
 
-    delta = diff_since_last(conn, rows)
+    coverage = metrics.score_coverage(conn, ref)
+    delta = diff_since_last(conn, rows, coverage["verdict"] == "ok")
 
     return {
         "generated_at": datetime.now(tz=timezone.utc),
@@ -574,7 +619,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "as_of_day": ref.isoformat(),
         "window": (act["since"], act["until"]),
         "days": days,
-        "coverage": metrics.score_coverage(conn, ref),
+        "coverage": coverage,
         "baseline_ready": bool(base),
         "carriers": rows,
         "airports": config.airports(),
@@ -600,7 +645,8 @@ STATE_LABEL = {"flying": "Uçuyor", "partial": "Kısmen kesti",
                "unknown": "Bilinmiyor"}
 
 SIGNAL_LABEL = {"stopped": "kesinti", "resumed": "yeniden başladı",
-                "unaffected": "etkilenmedi", "mentioned": "ilgili"}
+                "unaffected": "etkilenmedi", "mentioned": "ilgili",
+                "irrelevant": "bu bölgeyle ilgisiz"}
 
 CSS = """
 :root{
@@ -709,6 +755,7 @@ tr:last-child td{border-bottom:none}
 .s-scheduled{color:var(--scheduled)}
 .s-unaffected{color:var(--flying)}
 .s-mentioned{color:var(--unknown)}
+.s-irrelevant{color:var(--unknown)}
 tr.r-stopped td{background:color-mix(in srgb,var(--stopped) 6%,transparent)}
 tr.r-partial td{background:color-mix(in srgb,var(--partial) 6%,transparent)}
 
@@ -849,6 +896,10 @@ def _boards_section(data: dict) -> str:
     if not boards:
         return ""
     ap = data["airports"]
+    # Before MIN_HISTORY_DAYS there is no median for any airport, so the column
+    # was seven rows of "—" next to seven "Geçmiş yetersiz" pills saying the
+    # same thing twice. Draw it once it holds a number.
+    show_median = any(b["median"] is not None for b in boards)
     rows = []
     for b in boards:
         cls, label = BOARD_VERDICT.get(b["verdict"], ("unknown", b["verdict"]))
@@ -857,7 +908,8 @@ def _boards_section(data: dict) -> str:
         chips = "".join(f'<span class="who-chip">{_e(c)}</span>'
                         for c in b["carriers"][:14])
         row_cls = ' class="r-stopped"' if broken else ""
-        median = "—" if b["median"] is None else round(b["median"])
+        median = ("" if not show_median else
+                  f'<td class="num">{"—" if b["median"] is None else round(b["median"])}</td>')
         # A flagged board's carrier list is withheld rather than shown short:
         # a half-fetched list read as "these are the ones still flying" is
         # exactly the inference the verdict exists to block.
@@ -870,9 +922,24 @@ def _boards_section(data: dict) -> str:
             f'<div class="meta">{_e(b["airport"])}</div></td>'
             f'<td><span class="pill s-{cls}"><span class="dot"></span>{label}</span></td>'
             f'<td class="num">{b["flights"]}</td>'
-            f'<td class="num">{median}</td>'
+            f'{median}'
             f'<td>{who}</td>'
             '</tr>')
+    if show_median:
+        medyan_th = '<th class="num">Medyan</th>'
+        medyan_notu = (
+            '<b>Medyan</b> sütunu önceki günlerin ortancası; bugünkü sayı onun '
+            'çok altına düşerse kaynağın arızalandığı varsayılır, '
+            'havayollarının uçmayı bıraktığı değil.')
+    else:
+        medyan_th = ""
+        medyan_notu = (
+            f'Bugünkü sayının çok altına düştüğü zaman kaynak arızası sayılacağı '
+            f'<b>medyan</b> sütunu henüz yok: karşılaştırma '
+            f'{flightboard.MIN_HISTORY_DAYS} günlük geçmiş biriktiğinde açılır, '
+            f'o güne kadar buradaki sayılar yalnızca ham kayıt adedidir ve '
+            f'hiçbir yargıya dayanak değildir.')
+
     flagged = [b for b in boards if b["verdict"] in ("empty", "thin")]
     warn = ""
     if flagged:
@@ -888,14 +955,11 @@ def _boards_section(data: dict) -> str:
   <p class="sub prose">ADS-B'nin göremediği yedi havalimanı için yayımlanmış
   tahta (FlightStats). Bu bir <b>liste</b>dir, transponder görüntüsü değil —
   o yüzden ayrı tabloda tutulur ve uçuş verisiyle asla toplanmaz.
-  <b>Medyan</b> sütunu önceki günlerin ortancası; bugünkü sayı onun çok
-  altına düşerse kaynağın arızalandığı varsayılır, havayollarının uçmayı
-  bıraktığı değil. Geçmiş {flightboard.MIN_HISTORY_DAYS} günden azken hiçbir
-  yargıya varılmaz.</p>
+  {medyan_notu}</p>
   {warn}
   <div class="tablewrap"><table>
     <thead><tr><th>Havalimanı</th><th>Durum</th><th class="num">Kayıt</th>
-      <th class="num">Medyan</th><th>Tahtada görünen havayolları</th></tr></thead>
+      {medyan_th}<th>Tahtada görünen havayolları</th></tr></thead>
     <tbody>{"".join(rows)}</tbody>
   </table></div>
 </section>
@@ -974,8 +1038,22 @@ def _blind_news_section(data: dict) -> str:
 """
 
 
+def _ratio_ready(data: dict) -> bool:
+    """Does the observed/scheduled column have anything to say yet?
+
+    Below MIN_RATIO_DAYS it had a cell for every carrier and a number for none
+    of them: twenty rows of "0 / 819 — oran için veri yetersiz", where the zero
+    is not a finding but a coverage gap. A column that cannot be read is worse
+    than a missing one, so it is left out entirely until a percentage can be
+    published, and the section says so in one line instead of twenty.
+    """
+    return any((c.get("ratio") or {}).get("ratio") is not None
+               for c in data["carriers"])
+
+
 def _rows(data: dict) -> str:
     ap = data["airports"]
+    show_ratio = _ratio_ready(data)
     out = []
     order = {"stopped": 0, "partial": 1, "unknown": 2, "scheduled": 3, "flying": 4}
     for c in sorted(data["carriers"], key=lambda r: (order[r["state"]], -r["legs"])):
@@ -1009,18 +1087,21 @@ def _rows(data: dict) -> str:
                  if c.get("news_failed") else 'basında ilgili haber yok')
         heads = f'<div class="heads">{heads}</div>' if heads else (
             f'<div class="heads"><div class="head meta">{empty}</div></div>')
-        rt = c.get("ratio") or {}
-        sched_cell = "—"
-        if rt.get("scheduled"):
+        ratio_cell = ""
+        if show_ratio:
+            rt = c.get("ratio") or {}
+            sched_cell = "—"
             if rt.get("ratio") is not None:
                 pct = int(rt["ratio"] * 100)
                 cls = ("flying" if pct >= 80 else "partial" if pct >= 30 else "stopped")
                 sched_cell = (f'<b class="s-{cls}">%{pct}</b>'
-                              f'<div class="meta">{rt["observed"]:.0f} / {rt["scheduled"]}'
-                              f' hafta</div>')
-            else:
-                sched_cell = (f'{rt["observed"]:.0f} / <b>{rt["scheduled"]}</b>'
-                              f'<div class="meta">oran için veri yetersiz</div>')
+                              f'<div class="meta">haftada {rt["observed"]:.0f} / '
+                              f'{rt["scheduled"]}, izlenen çiftlerde</div>')
+            elif rt.get("scheduled"):
+                sched_cell = (f'<span class="meta">tarifede haftada '
+                              f'{rt["scheduled"]}; gözlem oranı için gün sayısı '
+                              f'yetersiz</span>')
+            ratio_cell = f'<td class="num">{sched_cell}</td>'
         cls = f' class="r-{c["state"]}"' if c["state"] in ("stopped", "partial") else ""
         out.append(
             f'<tr{cls}>'
@@ -1030,7 +1111,7 @@ def _rows(data: dict) -> str:
             f'<td>{_pill(c["state"])}<div class="why">{_e(c["why"])}</div></td>'
             f'<td class="num">{c["legs"] or "—"}</td>'
             f'<td class="at">{_e(at)}</td>'
-            f'<td class="num">{sched_cell}</td>'
+            f'{ratio_cell}'
             f'</tr>')
     return "".join(out)
 
@@ -1043,12 +1124,19 @@ def render(data: dict) -> str:
     d1, d2 = data["window"]
 
     d = data["delta"]
+    # Say which comparison was actually made. Silence here reads as "nothing
+    # moved", and on a blind day the airport columns were not compared at all.
+    kapali = ("" if d.get("airports_compared") else
+              ' Bugün kapsama testi geçilmediği için <b>havalimanı '
+              'kayıp/kazanç satırları üretilmedi</b> — boş bir pencereden '
+              'düşen havalimanı, uçmayı bırakmış havayolu demek değildir. '
+              'Aşağıdakiler yalnızca durum değişiklikleridir.')
     if not d["since"]:
         delta_html = ""
     elif not d["changes"]:
         delta_html = (f'<section><h2>Son rapordan beri</h2>'
                       f'<p class="sub prose">{_e(d["since"])} tarihli rapora göre '
-                      f'durum değişikliği yok.</p></section>')
+                      f'durum değişikliği yok.{kapali}</p></section>')
     else:
         satir = "".join(
             f'<tr><td><span class="code">{_e(c["carrier"])}</span> '
@@ -1060,7 +1148,8 @@ def render(data: dict) -> str:
         delta_html = (
             f'<section><h2>Son rapordan beri</h2>'
             f'<p class="sub prose">{_e(d["since"])} tarihli rapora göre değişenler. '
-            f'Anlık durum tablosu aşağıda; burası sadece <b>hareket edenler</b>.</p>'
+            f'Anlık durum tablosu aşağıda; burası sadece <b>hareket edenler</b>.'
+            f'{kapali}</p>'
             f'<div class="scroll"><table><thead><tr><th>Havayolu</th><th>Ne oldu</th>'
             f'<th>Önce</th><th>Sonra</th></tr></thead><tbody>{satir}</tbody></table></div>'
             f'</section>')
@@ -1086,6 +1175,34 @@ def render(data: dict) -> str:
             f'<i>sorulup bulunamadığı</i> değil, <i>sorulamadığı</i> anlamına '
             f'gelir. Aynı sorgular başka bir ağdan çalışıyor, yani bu '
             f'çalıştırmaya özgü geçici bir arıza.')
+
+    # The observed/scheduled column carries two numbers that look like the
+    # Sefer column beside it and are not: that one is every leg counted at
+    # every monitored airport over the window, this one is scaled to a week and
+    # restricted to the city pairs both sources cover. Emirates read 332 and 35
+    # side by side with nothing saying why.
+    if _ratio_ready(data):
+        oran_th = ('<th class="num">Gözlenen / tarifeli'
+                   '<div class="meta">Sefer sütunuyla aynı şey değil: haftaya '
+                   'ölçeklenmiş ve yalnızca izlenen şehir çiftleri</div></th>')
+        oran_aciklama = (
+            '<p class="sub prose"><b>Gözlenen / tarifeli</b> sütunu asıl cevabı '
+            'verir: havayolunun izlenen havalimanları arasında gerçekten uçtuğu '
+            'haftalık sefer sayısı, tarifesinde planladığı sayıya bölünmüş. '
+            "%100'e yakınsa tarifesini uyguluyor; düşükse fiilen kesmiş "
+            'demektir. İki taraf da <b>aynı şehir çiftlerini</b> sayar, yoksa '
+            'uzun menzilli havayolları haksız yere düşük görünür — bu yüzden '
+            'soldaki <b>Sefer</b> sütunundan küçüktür, o sütun bütün '
+            'havalimanlarındaki bütün seferleri sayar.</p>')
+    else:
+        oran_th = ""
+        oran_aciklama = (
+            f'<p class="sub prose"><b>Gözlenen / tarifeli</b> sütunu bu raporda '
+            f'yok. Havayolunun uçtuğu haftalık seferi tarifesine bölen o '
+            f'oran, ancak kapsama testini geçen {MIN_RATIO_DAYS} gün biriktiğinde '
+            f'yayımlanır; altındaki her sayı birkaç günlük veriden haftalık '
+            f'frekans uydurmak olur. Şu an geçen gün sayısı yetersiz, o yüzden '
+            f'sütun boş hücrelerle çizilmek yerine hiç çizilmiyor.</p>')
 
     fircards = "".join(
         f'<div class="card"><div class="hd"><span class="fir">{_e(f["fir"])}</span>'
@@ -1176,7 +1293,12 @@ def render(data: dict) -> str:
       gösterir — her yerde, ama yalnızca hakkında yazılacak kadar büyük
       havayolları için. Başlıkları bir dil modeli okuyor: "X tarifesini
       koruyor, Y iptal ediyor" gibi cümlelerde eylemi doğru havayoluna
-      bağlayabilmek için. Duyuru gözlem değildir. Kaynak yanıt vermezse rapor
+      bağlayabilmek için. Model bir başlığı bu bölgeyle ilgisiz bulursa
+      <b>“bu bölgeyle ilgisiz”</b> etiketiyle görünür ve <b>durumu
+      değiştirmez</b>; bir havayolunu ancak izlediğimiz bir havalimanını ya da
+      bölgeyi adlandıran başlık “kesti” sayabilir — yoksa başka bir kıtadaki
+      hat açılışı burada kesinti diye okunur. Duyuru gözlem değildir.
+      Kaynak yanıt vermezse rapor
       bunu en üstte söyler; sessizce “haber yok”a çevirmez. O durumda en son
       cevap alınan başlıklar <b>“arşiv”</b> etiketiyle ve alındıkları tarihle
       gösterilir — okumanız için, çünkü <b>durumu değiştirmezler:</b> bugün
@@ -1245,18 +1367,10 @@ def render(data: dict) -> str:
   kesenler, sonra hakkında bilgi olmayanlar. <b>Sefer</b> sütunu gözlem
   penceresinde izlenen havalimanlarında sayılan iniş/kalkış sayısı;
   <b>Nerede</b> sütunu bunun havalimanlarına dağılımı.</p>
-  <p class="sub prose"><b>Gözlenen / tarifeli</b> sütunu asıl cevabı verir:
-  havayolunun izlenen havalimanları arasında gerçekten uçtuğu haftalık sefer
-  sayısı, tarifesinde planladığı sayıya bölünmüş. %100'e yakınsa tarifesini
-  uyguluyor; düşükse fiilen kesmiş demektir. İki taraf da <b>aynı şehir
-  çiftlerini</b> sayar, yoksa uzun menzilli havayolları haksız yere düşük
-  görünür. Kapsama testini geçen gün sayısı {MIN_RATIO_DAYS}'in altındaysa
-  yüzde <b>yayınlanmaz</b> — iki ham sayı gösterilir, çünkü birkaç günlük
-  veriden haftalık oran çıkarmak tahminden ibarettir.</p>
+  {oran_aciklama}
   <div class="scroll"><table>
     <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
-      <th class="num">Sefer</th><th>Nerede görüldü</th>
-      <th class="num">Gözlenen / tarifeli</th></tr></thead>
+      <th class="num">Sefer</th><th>Nerede görüldü</th>{oran_th}</tr></thead>
     <tbody>{_rows(data)}</tbody>
   </table></div>
 </section>
