@@ -1,0 +1,108 @@
+{
+  "generated_at": "2026-08-11T11:47:36+00:00",
+  "as_of_day": "2026-08-10",
+  "coverage": {
+    "day": "2026-08-10",
+    "control_flights": 0,
+    "median_28d": 327.0,
+    "score": 0.0,
+    "verdict": "outage"
+  },
+  "attribution": {
+    "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
+    "live_adsb": "adsb.lol and airplanes.live, ODbL 1.0",
+    "advisories": "EASA Conflict Zone Information Bulletins",
+    "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
+  },
+  "carrier": "CCA",
+  "name": "Air China",
+  "iata": "CA",
+  "country": "CN",
+  "weekly_frequency": 0,
+  "baseline_weekly": 2.7,
+  "routes_total": 6,
+  "routes_suspended": 0,
+  "routes_reduced": 0,
+  "ratio": 0.0,
+  "status": "UNKNOWN",
+  "operating": true,
+  "stopped": {
+    "any": false,
+    "scope": null,
+    "airports_dropped": [],
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
+  },
+  "routes": [
+    {
+      "carrier": "CCA",
+      "carrier_name": "Air China",
+      "origin": "EGLL",
+      "destination": "OMDB",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.3,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "CCA",
+      "carrier_name": "Air China",
+      "origin": "OMDB",
+      "destination": "EGLL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.1,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "CCA",
+      "carrier_name": "Air China",
+      "origin": "OMDB",
+      "destination": "RJAA",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.2,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "CCA",
+      "carrier_name": "Air China",
+      "origin": "OMDB",
+      "destination": "ZBAA",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.1,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "CCA",
+      "carrier_name": "Air China",
+      "origin": "RJAA",
+      "destination": "OMDB",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.1,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "CCA",
+      "carrier_name": "Air China",
+      "origin": "ZGSZ",
+      "destination": "OMDB",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.9,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    }
+  ],
+  "stop_events": [],
+  "resumed": []
+}

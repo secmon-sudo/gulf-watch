@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-08-11T11:47:36+00:00",
+  "as_of_day": "2026-08-10",
+  "coverage": {
+    "day": "2026-08-10",
+    "control_flights": 0,
+    "median_28d": 327.0,
+    "score": 0.0,
+    "verdict": "outage"
+  },
+  "attribution": {
+    "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
+    "live_adsb": "adsb.lol and airplanes.live, ODbL 1.0",
+    "advisories": "EASA Conflict Zone Information Bulletins",
+    "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
+  },
+  "airport": "OKBK",
+  "iata": "KWI",
+  "name": "Kuwait Intl",
+  "city": "Kuwait",
+  "country": "KW",
+  "weekly_frequency": 0,
+  "baseline_weekly": 110.6,
+  "carriers_operating": [],
+  "carriers_absent": [],
+  "carriers_stopped": [],
+  "resumed_recently": [],
+  "routes": [
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OKBK",
+      "destination": "OMSJ",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.5,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.5,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OKBK",
+      "destination": "OMAA",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.1,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OKBK",
+      "destination": "OMDB",
+      "weekly_frequency": 0,
+      "baseline_weekly": 2.7,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 2.7,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "origin": "OBBI",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.2,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "origin": "OKBK",
+      "destination": "OBBI",
+      "weekly_frequency": 0,
+      "baseline_weekly": 9.1,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "OBBI",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.1,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "OKBK",
+      "destination": "OBBI",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.8,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "OKBK",
+      "destination": "OMDB",
+      "weekly_frequency": 0,
+      "baseline_weekly": 10.6,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "OKBK",
+      "destination": "OTHH",
+      "weekly_frequency": 0,
+      "baseline_weekly": 3.9,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "OMDB",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 10.5,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "OTHH",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.2,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "MEA",
+      "carrier_name": "Middle East Airlines",
+      "origin": "OKBK",
+      "destination": "OTHH",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.1,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "MSR",
+      "carrier_name": "EgyptAir",
+      "origin": "OTHH",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.1,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "origin": "OKBK",
+      "destination": "OTHH",
+      "weekly_frequency": 0,
+      "baseline_weekly": 12.3,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "origin": "OTHH",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 12.2,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "origin": "OKBK",
+      "destination": "OMDB",
+      "weekly_frequency": 0,
+      "baseline_weekly": 11.0,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    },
+    {
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "origin": "OMDB",
+      "destination": "OKBK",
+      "weekly_frequency": 0,
+      "baseline_weekly": 11.0,
+      "ratio": 0.0,
+      "status": "UNKNOWN",
+      "silent_days": 14
+    }
+  ]
+}
