@@ -101,7 +101,12 @@ def build(out: Path | None = None) -> dict:
         # baseline. Summing the rest would compare this week against months
         # nobody watched -- Middle East Airlines' baseline rests on 13 of 92
         # days at Beirut, and it flew more in two observed days this month.
-        if r["baseline_trusted"]:
+        # Everything known about the carrier, comparable or not -- the
+        # denominator of the share test below.
+        c["_known"] = c.get("_known", 0.0) + r["weekly_frequency"] + r["baseline_weekly"]
+        if r["comparable"]:
+            c["_comparable"] = (c.get("_comparable", 0.0)
+                                + r["weekly_frequency"] + r["baseline_weekly"])
             # Kept as a matched pair. weekly_frequency counts every route we
             # saw; only this subset has something to be divided by, and the
             # ratio below uses the subset on both sides.
@@ -117,7 +122,15 @@ def build(out: Path | None = None) -> dict:
     for code, c in by_carrier.items():
         c["baseline_weekly"] = round(c["baseline_weekly"], 1)
         c["observed_days"] = report["observed_days"]
-        if not c["routes_baselined"]:
+        known = c.pop("_known", 0.0)
+        share = (c.pop("_comparable", 0.0) / known) if known else 0.0
+        c["comparable_share"] = round(share, 3)
+        if share < config.MIN_COMPARABLE_SHARE:
+            # A ratio built on a sliver of the network is a statement about the
+            # sliver. Etihad's comparable subset is 12 routes of 100.
+            c["weekly_scaled"] = None
+            status, ratio = metrics.classify(c["weekly_frequency"], 0.0)
+        elif not c["routes_baselined"]:
             # Nothing to compare against. classify() calls this NEW when the
             # carrier is flying, which the dashboard labels NO BASELINE.
             c["weekly_scaled"] = None

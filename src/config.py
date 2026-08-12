@@ -63,6 +63,25 @@ MIN_BASELINE_COVERAGE = 0.75
 # Sharjah 0.7x; Abu Dhabi 18x, Amman 49x, Beirut 81x. Nothing sits near 3.
 MAX_BASELINE_CONTROL_DRIFT = 3.0
 
+# Coverage is not the only way a baseline fails to support a ratio. A route
+# expected to fly less than once a week cannot be judged over a seven-day
+# window: the expected count is under one departure, so seeing none or two
+# swings the percentage across the whole scale. Measured 2026-08-12, this
+# excludes 569 of 1163 trusted routes -- half of them -- carrying 2.9% of the
+# weekly departures. Nearly free in coverage, and it is where the noise lives.
+MIN_BASELINE_WEEKLY = 1.0
+
+# And a carrier-level ratio must be about the carrier, not about a sliver of
+# it. Etihad had 12 comparable routes of 100 and would have published the
+# Doha-Abu Dhabi shuttle as the state of Etihad. Measured as the comparable
+# share of everything known about the carrier -- traffic seen plus traffic
+# expected, so a carrier that is genuinely flying nothing still qualifies on
+# its baseline alone and can still read SUSPENDED. Measured 2026-08-12:
+# Emirates 97%, Qatar 96%, British Airways 96%, Kuwait 84%, Pegasus 73%,
+# against Kuwait's neighbours Oman 36%, EgyptAir 19%, Etihad 5%, Royal
+# Jordanian 1%. Nothing sits between 42% and 73%.
+MIN_COMPARABLE_SHARE = 0.6
+
 # Baseline window (frozen, pre-escalation). Change and re-run backfill if you
 # want a different reference period.
 BASELINE_START = os.environ.get("GULFWATCH_BASELINE_START", "2025-11-01")

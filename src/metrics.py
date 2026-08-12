@@ -456,8 +456,12 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
         bl = float(base.get(key, 0.0))
         bl_trusted = baseline_trusted(dep, arr, bl_days, bl_floor,
                                       monitored, bl_drift)
+        # Coverage says the baseline was collected; this says it is big enough
+        # to divide by. Under one departure a week, a seven-day window expects
+        # less than one flight and the ratio is noise either way.
+        comparable = bl_trusted and bl >= config.MIN_BASELINE_WEEKLY
 
-        if not bl_trusted:
+        if not comparable:
             # Treated exactly like having no baseline, because that is what an
             # unobserved reference period is. classify() renders it NEW when
             # the carrier is flying, which the dashboard labels NO BASELINE.
@@ -487,11 +491,12 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
             "origin": dep,
             "destination": arr,
             "weekly_frequency": int(raw),
-            "weekly_scaled": round(raw * scale, 1) if (enough and bl_trusted) else None,
+            "weekly_scaled": round(raw * scale, 1) if (enough and comparable) else None,
             "baseline_weekly": round(bl, 1),
             "baseline_days": max(bl_days["dep"].get(dep, 0),
                                  bl_days["arr"].get(arr, 0)) if bl_span else 0,
             "baseline_trusted": bl_trusted,
+            "comparable": comparable,
             "ratio": ratio,
             "status": status,
             "silent_days": quiet,

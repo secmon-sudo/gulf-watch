@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T13:22:19+00:00",
+  "generated_at": "2026-08-12T13:38:49+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -33,6 +33,7 @@
   "routes_suspended": 0,
   "routes_reduced": 0,
   "observed_days": 2,
+  "comparable_share": 1.0,
   "ratio": null,
   "status": "UNKNOWN",
   "operating": true,
@@ -56,6 +57,7 @@
       "baseline_weekly": 6.5,
       "baseline_days": 88,
       "baseline_trusted": true,
+      "comparable": true,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
@@ -71,6 +73,7 @@
       "baseline_weekly": 6.4,
       "baseline_days": 88,
       "baseline_trusted": true,
+      "comparable": true,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
