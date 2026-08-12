@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -18,22 +18,47 @@
   "name": "Air Arabia (Sharjah)",
   "iata": "G9",
   "country": "AE",
-  "weekly_frequency": 2,
+  "weekly_frequency": 157,
   "baseline_weekly": 549.8,
-  "routes_total": 101,
-  "routes_suspended": 0,
-  "routes_reduced": 0,
-  "ratio": 0.004,
-  "status": "UNKNOWN",
+  "routes_total": 114,
+  "routes_suspended": 47,
+  "routes_reduced": 44,
+  "ratio": 0.286,
+  "status": "MINIMAL",
   "operating": true,
   "stopped": {
-    "any": false,
-    "scope": null,
-    "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "any": true,
+    "scope": "station",
+    "airports_dropped": [
+      "EPMO",
+      "HECA",
+      "OKBK",
+      "OMRK",
+      "ORMM",
+      "VGEG",
+      "VOYK"
+    ],
+    "routes_dropped": [
+      "EPMO-OMSJ",
+      "HECA-OMSJ",
+      "OKBK-OMSJ",
+      "OMFJ-OMSJ",
+      "OMRK-OMSJ",
+      "OMSJ-EPMO",
+      "OMSJ-HE13",
+      "OMSJ-LGKN",
+      "OMSJ-OKBK",
+      "OMSJ-OMRK",
+      "OMSJ-ORMM",
+      "OMSJ-VGEG",
+      "OMSJ-VOYK",
+      "ORMM-OMSJ",
+      "VGEG-OMSJ",
+      "WMKK-OMSJ"
+    ],
+    "since": "2025-11-21",
+    "days_stopped": 263,
+    "confidence": "observed"
   },
   "routes": [
     {
@@ -41,22 +66,33 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "EDDM",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 3.0,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.337,
+      "status": "REDUCED",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "EGKK",
+      "destination": "OMSJ",
+      "weekly_frequency": 3,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "EPKK",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 7.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 0.271,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -66,7 +102,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -77,7 +113,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 2.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -85,121 +121,154 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "EPWA",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 5.8,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 0.173,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "HEBA",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 2.174,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "HECA",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 1.8,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 0.571,
+      "status": "REDUCED",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "LGAV",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 5.7,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.175,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "LIME",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 7.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.141,
+      "status": "MINIMAL",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "LIRF",
+      "destination": "OMSJ",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "LKPR",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 2.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 0.847,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "LOWW",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 5.8,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 0.346,
+      "status": "REDUCED",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "LTCG",
+      "destination": "OMSJ",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "LTFJ",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 5.2,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 0.19,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "LTFM",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 5.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.37,
+      "status": "REDUCED",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OBBI",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 4,
       "baseline_weekly": 13.8,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.29,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OEDF",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 6.667,
+      "status": "NORMAL",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OJAI",
+      "destination": "OMSJ",
+      "weekly_frequency": 6,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -209,8 +278,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OLBA",
+      "destination": "OMSJ",
+      "weekly_frequency": 4,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -220,7 +300,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -231,7 +311,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -242,7 +322,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.7,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -253,7 +333,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -261,22 +341,33 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "EDDM",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 2.7,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.365,
+      "status": "REDUCED",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "EGKK",
+      "weekly_frequency": 2,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "EPKK",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 7.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.266,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -286,7 +377,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -297,7 +388,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -308,7 +399,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 2.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -316,11 +407,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "EPWA",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 5.6,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.355,
+      "status": "REDUCED",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -330,7 +421,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -338,44 +429,44 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "HE15",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 6.667,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "HE37",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 0.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 2.632,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "HEAZ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 6.667,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "HEBA",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 3.774,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -385,8 +476,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "HEGS",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -396,19 +498,30 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
+      "destination": "HKNW",
+      "weekly_frequency": 2,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
       "destination": "LGAV",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 4.6,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.219,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -418,7 +531,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -426,66 +539,99 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "LIME",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 6.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.153,
+      "status": "MINIMAL",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "LIRF",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "LKBE",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "LKPR",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 2.6,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.386,
+      "status": "REDUCED",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "LOWW",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 5.9,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.337,
+      "status": "REDUCED",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "LTCG",
+      "weekly_frequency": 2,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "LTFJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 5.6,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.355,
+      "status": "REDUCED",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "LTFM",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 6.7,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.149,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "OBBI",
-      "weekly_frequency": 0,
+      "weekly_frequency": 5,
       "baseline_weekly": 20.9,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.24,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -495,29 +641,18 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "status": "SUSPENDED",
+      "silent_days": 8
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "OEDR",
-      "weekly_frequency": 0,
-      "baseline_weekly": 12.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
-    },
-    {
-      "carrier": "ABY",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "origin": "OMSJ",
-      "destination": "OENR",
       "weekly_frequency": 1,
-      "baseline_weekly": 0.0,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "baseline_weekly": 12.1,
+      "ratio": 0.083,
+      "status": "MINIMAL",
       "silent_days": 0
     },
     {
@@ -528,8 +663,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "OJAI",
+      "weekly_frequency": 7,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -539,8 +685,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "OLBA",
+      "weekly_frequency": 3,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -550,7 +707,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -561,7 +718,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -569,11 +726,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 6,
       "baseline_weekly": 38.6,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.156,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -583,30 +740,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
-      "destination": "OOYB",
-      "weekly_frequency": 1,
-      "baseline_weekly": 0.0,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0
-    },
-    {
-      "carrier": "ABY",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "origin": "OMSJ",
       "destination": "OPMT",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 6.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.156,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -616,7 +762,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -627,7 +773,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -635,11 +781,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "OTHH",
-      "weekly_frequency": 0,
+      "weekly_frequency": 6,
       "baseline_weekly": 39.8,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.151,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -649,7 +795,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -660,7 +806,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -671,7 +817,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -679,11 +825,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "UGTB",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 4.7,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.424,
+      "status": "REDUCED",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -693,7 +839,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -704,7 +850,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -712,11 +858,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "VABB",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 11.8,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.254,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -726,7 +872,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -737,7 +883,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 4.0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -748,7 +894,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -756,11 +902,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "VGZR",
-      "weekly_frequency": 0,
+      "weekly_frequency": 5,
       "baseline_weekly": 26.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.189,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -770,7 +916,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -778,11 +924,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "VIDP",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 12.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.165,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -792,7 +938,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -800,22 +946,22 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "VNKT",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 10.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.296,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "VOBL",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 0.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 5.263,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -825,7 +971,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -833,11 +979,22 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "VOCI",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 12.2,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.245,
+      "status": "MINIMAL",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "OMSJ",
+      "destination": "VOMM",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -847,7 +1004,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -855,11 +1012,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "VOTV",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 11.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 0.27,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -869,7 +1026,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -877,22 +1034,22 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "VTBS",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 17.0,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 0.118,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OMSJ",
       "destination": "WMKK",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 5.9,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.171,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -902,7 +1059,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -910,11 +1067,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OPMT",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 6.2,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.162,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -924,7 +1081,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -932,11 +1089,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OTHH",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 6,
       "baseline_weekly": 40.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.148,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -946,7 +1103,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -954,11 +1111,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "UGTB",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 4.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.668,
+      "status": "REDUCED",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -968,7 +1125,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -979,7 +1136,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -987,11 +1144,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "VAJJ",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 11.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.263,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -1001,7 +1158,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -1012,7 +1169,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -1023,7 +1180,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -1031,11 +1188,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "VGZR",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 8,
       "baseline_weekly": 26.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.307,
+      "status": "REDUCED",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -1045,7 +1202,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -1053,33 +1210,33 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "VIDP",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 11.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.27,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "VNKT",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 10.3,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.29,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "VOBL",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 5.7,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.175,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -1089,7 +1246,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -1097,11 +1254,22 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "VOCI",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 11.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.263,
+      "status": "MINIMAL",
+      "silent_days": 0
+    },
+    {
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "origin": "VOMM",
+      "destination": "OMSJ",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -1111,7 +1279,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -1119,22 +1287,22 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "VOTV",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 3,
       "baseline_weekly": 10.3,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 0.29,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "VTBS",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 4,
       "baseline_weekly": 16.6,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.241,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "ABY",
@@ -1144,10 +1312,425 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 184,
+      "scope": "station",
+      "scope_key": "ABY|OKBK",
+      "carrier": "ABY",
+      "detail": "OKBK",
+      "baseline_weekly": 11.0,
+      "last_flight_on": "2025-12-06",
+      "started_on": "2025-12-07",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 247,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 187,
+      "scope": "station",
+      "scope_key": "ABY|VGEG",
+      "carrier": "ABY",
+      "detail": "VGEG",
+      "baseline_weekly": 5.5,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 188,
+      "scope": "station",
+      "scope_key": "ABY|VOYK",
+      "carrier": "ABY",
+      "detail": "VOYK",
+      "baseline_weekly": 5.5,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 182,
+      "scope": "station",
+      "scope_key": "ABY|EPMO",
+      "carrier": "ABY",
+      "detail": "EPMO",
+      "baseline_weekly": 4.6,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 185,
+      "scope": "station",
+      "scope_key": "ABY|OMRK",
+      "carrier": "ABY",
+      "detail": "OMRK",
+      "baseline_weekly": 3.1,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 186,
+      "scope": "station",
+      "scope_key": "ABY|ORMM",
+      "carrier": "ABY",
+      "detail": "ORMM",
+      "baseline_weekly": 2.3,
+      "last_flight_on": "2025-12-05",
+      "started_on": "2025-12-06",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 248,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 183,
+      "scope": "station",
+      "scope_key": "ABY|HECA",
+      "carrier": "ABY",
+      "detail": "HECA",
+      "baseline_weekly": 2.1,
+      "last_flight_on": "2026-01-29",
+      "started_on": "2026-01-30",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 193,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 5,
+      "scope": "route",
+      "scope_key": "ABY|OKBK|OMSJ",
+      "carrier": "ABY",
+      "detail": "OKBK-OMSJ",
+      "baseline_weekly": 5.5,
+      "last_flight_on": "2025-12-06",
+      "started_on": "2025-12-07",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 247,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 11,
+      "scope": "route",
+      "scope_key": "ABY|OMSJ|OKBK",
+      "carrier": "ABY",
+      "detail": "OMSJ-OKBK",
+      "baseline_weekly": 5.5,
+      "last_flight_on": "2025-12-06",
+      "started_on": "2025-12-07",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 247,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 15,
+      "scope": "route",
+      "scope_key": "ABY|OMSJ|VOYK",
+      "carrier": "ABY",
+      "detail": "OMSJ-VOYK",
+      "baseline_weekly": 5.5,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 18,
+      "scope": "route",
+      "scope_key": "ABY|WMKK|OMSJ",
+      "carrier": "ABY",
+      "detail": "WMKK-OMSJ",
+      "baseline_weekly": 5.5,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 14,
+      "scope": "route",
+      "scope_key": "ABY|OMSJ|VGEG",
+      "carrier": "ABY",
+      "detail": "OMSJ-VGEG",
+      "baseline_weekly": 4.0,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 8,
+      "scope": "route",
+      "scope_key": "ABY|OMSJ|EPMO",
+      "carrier": "ABY",
+      "detail": "OMSJ-EPMO",
+      "baseline_weekly": 2.4,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 3,
+      "scope": "route",
+      "scope_key": "ABY|EPMO|OMSJ",
+      "carrier": "ABY",
+      "detail": "EPMO-OMSJ",
+      "baseline_weekly": 2.2,
+      "last_flight_on": "2026-01-29",
+      "started_on": "2026-01-30",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 193,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 4,
+      "scope": "route",
+      "scope_key": "ABY|HECA|OMSJ",
+      "carrier": "ABY",
+      "detail": "HECA-OMSJ",
+      "baseline_weekly": 1.8,
+      "last_flight_on": "2026-01-26",
+      "started_on": "2026-01-27",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 196,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 7,
+      "scope": "route",
+      "scope_key": "ABY|OMRK|OMSJ",
+      "carrier": "ABY",
+      "detail": "OMRK-OMSJ",
+      "baseline_weekly": 1.8,
+      "last_flight_on": "2026-01-26",
+      "started_on": "2026-01-27",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 196,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 9,
+      "scope": "route",
+      "scope_key": "ABY|OMSJ|HE13",
+      "carrier": "ABY",
+      "detail": "OMSJ-HE13",
+      "baseline_weekly": 1.8,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 10,
+      "scope": "route",
+      "scope_key": "ABY|OMSJ|LGKN",
+      "carrier": "ABY",
+      "detail": "OMSJ-LGKN",
+      "baseline_weekly": 1.8,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 6,
+      "scope": "route",
+      "scope_key": "ABY|OMFJ|OMSJ",
+      "carrier": "ABY",
+      "detail": "OMFJ-OMSJ",
+      "baseline_weekly": 1.7,
+      "last_flight_on": "2025-11-20",
+      "started_on": "2025-11-21",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 263,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 17,
+      "scope": "route",
+      "scope_key": "ABY|VGEG|OMSJ",
+      "carrier": "ABY",
+      "detail": "VGEG-OMSJ",
+      "baseline_weekly": 1.4,
+      "last_flight_on": "2026-01-28",
+      "started_on": "2026-01-29",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 194,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 12,
+      "scope": "route",
+      "scope_key": "ABY|OMSJ|OMRK",
+      "carrier": "ABY",
+      "detail": "OMSJ-OMRK",
+      "baseline_weekly": 1.3,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 16,
+      "scope": "route",
+      "scope_key": "ABY|ORMM|OMSJ",
+      "carrier": "ABY",
+      "detail": "ORMM-OMSJ",
+      "baseline_weekly": 1.2,
+      "last_flight_on": "2025-12-05",
+      "started_on": "2025-12-06",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 248,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 13,
+      "scope": "route",
+      "scope_key": "ABY|OMSJ|ORMM",
+      "carrier": "ABY",
+      "detail": "OMSJ-ORMM",
+      "baseline_weekly": 1.1,
+      "last_flight_on": "2025-12-02",
+      "started_on": "2025-12-03",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 251,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "evidence": [],
+      "superseded_by": "station"
+    }
+  ],
   "resumed": []
 }

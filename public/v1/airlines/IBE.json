@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -21,19 +21,25 @@
   "weekly_frequency": 0,
   "baseline_weekly": 11.8,
   "routes_total": 2,
-  "routes_suspended": 0,
+  "routes_suspended": 2,
   "routes_reduced": 0,
   "ratio": 0.0,
-  "status": "UNKNOWN",
-  "operating": true,
+  "status": "SUSPENDED",
+  "operating": false,
   "stopped": {
-    "any": false,
-    "scope": null,
-    "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "any": true,
+    "scope": "region",
+    "airports_dropped": [
+      "LEMD",
+      "OTHH"
+    ],
+    "routes_dropped": [
+      "LEMD-OTHH",
+      "OTHH-LEMD"
+    ],
+    "since": "2026-01-31",
+    "days_stopped": 192,
+    "confidence": "corroborated"
   },
   "routes": [
     {
@@ -44,7 +50,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -55,10 +61,137 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 268,
+      "scope": "region",
+      "scope_key": "IBE",
+      "carrier": "IBE",
+      "detail": "all monitored airports",
+      "baseline_weekly": 11.8,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "corroborated",
+      "carrier_name": "Iberia",
+      "evidence": [
+        {
+          "source": "news",
+          "title": "Iberia Suspending Havana Flights As Cuba Energy Crisis Worsens - Aviation Week",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOMVpOVkt0NU15OWw4S2xFVktYN0FsUDJqWGtZR2ZNc2ZzZmlLWV9hdGF6a0tOQ21yVmM1WlNGWlJsZ0lZRUdRSlFvUWhpUlRpUC1nS3E4V25vSU9yMkZQZnJKMmhDc1hhVTZnZmROZUVlcVIzWVU1aXgzZzNTaFkzTDhITVp0ZW1PNUZNQlh5RlZFa1o4ZUxIX2hoR2RqZWlrczl1Ty1XbmU5R3B1R2liSE9fRjdlMVE?oc=5",
+          "published": "Wed, 22 Apr 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "How to Make the Most of Economy Class on Iberia Airlines - NerdWallet",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPX01tX21kdGR4NHltdWstdUtyMXNkalNoVC05RHFwQWZWSHFuOENZSTR5czFBSkljVXViWnRyVWVhNmJpS3B4M2xlRjd4SUZpWVNhVVVLNXVybHB2UGc4SjhPcHN5ODdIaDhnU1prMkcxV0QtVFNhelcxd2Q2aF9SWC1oWQ?oc=5",
+          "published": "Tue, 14 Jul 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Avios launches handy new tool to help you find British Airways, Iberia and Aer Lingus award seats faster - thepointsguy.com",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1JSFV5c0t4cFhsWHB5TkZWOS00SlFGdDlLU01pTlR5RGQtWmRCck9RN2NXSzNUdmtkNEtTc0tHYlVMcnl0bnFLbmFvU01fQV83dWxDNHp2T2EtUUFweVdLWnRSLWp2Ukc4bEo4?oc=5",
+          "published": "Tue, 11 Aug 2026 21:23:14 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Cuba: Iberia Airlines suspends direct flights in major blow to Havana - Newsweek",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPNWNDWE9pb2VoYWI3Y0JuOVFNLVlGSFFIenI1cG9mQUhNZnFuU055REdwR1lKTDg0bkxTS3R5eUpMaTcydjEwTXRRbWVaMXI5WWh0NzJ2aHVxazBGTk8wYmVUX09QSHFkZVFEano2bjBDeExzaU1OaHZaTEJHUGJhRkgwSU9seU0xOHFvNk81Si1uYmhhVFE?oc=5",
+          "published": "Tue, 02 Jun 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Iberia planning special eclipse flight for 12 August - Flightradar24",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOV2NSQjNHdXRHcXZPeS1kTGlEajlhY3BXM2RsY3hCT1pieTRkX3ZoVWhKbGItSUdIbFRIbkxlc2FsMldTY3VSeHJEUWJtelJrUTFwT1Rlcktpengta19ycmdDaDRuT0hkc1Bxdm5YekRscnkwVkd2UDg0djJYUW9UajNkbnZQcEZjNGE1UGpuU3dtS2VhR2xXSkMzRFVHVDh4RFN5Nll4MjZTT3J4ejl0YnZVNkJYOGU0eFN4NFMtLXc?oc=5",
+          "published": "Sat, 08 Aug 2026 18:29:10 GMT",
+          "stance": "unclear"
+        }
+      ],
+      "superseded_by": null
+    },
+    {
+      "id": 215,
+      "scope": "station",
+      "scope_key": "IBE|LEMD",
+      "carrier": "IBE",
+      "detail": "LEMD",
+      "baseline_weekly": 11.8,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Iberia",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 216,
+      "scope": "station",
+      "scope_key": "IBE|OTHH",
+      "carrier": "IBE",
+      "detail": "OTHH",
+      "baseline_weekly": 11.8,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Iberia",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 68,
+      "scope": "route",
+      "scope_key": "IBE|LEMD|OTHH",
+      "carrier": "IBE",
+      "detail": "LEMD-OTHH",
+      "baseline_weekly": 6.0,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Iberia",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 69,
+      "scope": "route",
+      "scope_key": "IBE|OTHH|LEMD",
+      "carrier": "IBE",
+      "detail": "OTHH-LEMD",
+      "baseline_weekly": 5.8,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Iberia",
+      "evidence": [],
+      "superseded_by": "region"
+    }
+  ],
   "resumed": []
 }

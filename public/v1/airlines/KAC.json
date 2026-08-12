@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -21,19 +21,32 @@
   "weekly_frequency": 0,
   "baseline_weekly": 39.6,
   "routes_total": 30,
-  "routes_suspended": 0,
+  "routes_suspended": 30,
   "routes_reduced": 0,
   "ratio": 0.0,
-  "status": "UNKNOWN",
-  "operating": true,
+  "status": "SUSPENDED",
+  "operating": false,
   "stopped": {
-    "any": false,
-    "scope": null,
-    "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "any": true,
+    "scope": "region",
+    "airports_dropped": [
+      "OBBI",
+      "OKBK",
+      "OMDB",
+      "OTHH",
+      "VIDP"
+    ],
+    "routes_dropped": [
+      "OBBI-OKBK",
+      "OKBK-OBBI",
+      "OKBK-OMDB",
+      "OKBK-OTHH",
+      "OMDB-OKBK",
+      "OTHH-OKBK"
+    ],
+    "since": "2025-12-06",
+    "days_stopped": 248,
+    "confidence": "contradicted"
   },
   "routes": [
     {
@@ -44,7 +57,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -55,7 +68,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -66,7 +79,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -77,7 +90,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -88,7 +101,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -99,7 +112,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -110,7 +123,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -121,7 +134,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -132,7 +145,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -143,7 +156,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 10.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -154,7 +167,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 3.9,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -165,7 +178,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -176,7 +189,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -187,7 +200,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -198,7 +211,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 10.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -209,7 +222,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -220,7 +233,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -231,7 +244,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -242,7 +255,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -253,7 +266,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -264,7 +277,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -275,7 +288,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -286,7 +299,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -297,7 +310,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -308,7 +321,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -319,7 +332,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -330,7 +343,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -341,7 +354,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -352,7 +365,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -363,10 +376,335 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 270,
+      "scope": "region",
+      "scope_key": "KAC",
+      "carrier": "KAC",
+      "detail": "all monitored airports",
+      "baseline_weekly": 40.0,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "contradicted",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [
+        {
+          "source": "news",
+          "title": "Kuwait Airport News | Kuwait Flights Updates | Ticket Price & Airport Rules | Kuwait News Today San Patrignano (MoxFHDUXNS) - Mshale",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1nN1V5a1JhZ1poLU5Bb0RveURNNmpoZjlCMm5IOXl1dVQyZldRSzQyZW5XbVBaaElfMkJJclZMZ3ZtMGZmc3BzOHZpWGF6eVdWV2FaU3FkLTc4TkU?oc=5",
+          "published": "Tue, 11 Aug 2026 10:58:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Emirates flights to Bahrain and Kuwait remain suspended as Etihad and Qatar Airways resume operations - thenationalnews.com",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPZFA0ak1rRTlzR0ttYjhNcmQzaEtlQzRZV2RxaWZiRW9wMkZnTGJhX1FrY0lXYU5MLW1zSUdtNU01bURwbUpUU1hRVTZmellRMWc2Y2YxbWJCUlB6OE90TjdqaXFJZE1oS2QzTk01dDJ3Y29NV0pORXB1bjE5S28yU1dDOWNEaW50NGNZXzRfNWRwYWppQlZmWmhHS1pnZ1MxTUplcUR3?oc=5",
+          "published": "Sun, 09 Aug 2026 07:00:00 GMT",
+          "stance": "contradicts"
+        },
+        {
+          "source": "news",
+          "title": "Kuwait Airways reschedules most flights after country attacked by Iran - The Times of Israel",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUHNRYW04RzNDVG1tVzBQVnJaeEdxSGxkdXI1dkczM1RfV3BVTVJmM1VFMEhLMG5PRFNJc3Q5azRNQThWcXRoOG1JbmoyYUIxX2JCOF94Snp1X2ZMcjJKelltSGc5QjFGa1lqcW8ySUd1dFVxUlN3eHNUcUU0VTl4NEJORjVhTU81YkpCMGlXT2ViRjF3VE4tVDlJWTdNNUR0b19EeGF6eHlCY3Q3X2hxQ2JUekYya3c?oc=5",
+          "published": "Sat, 18 Jul 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Kuwait Airways Begins Phased Return Of Flights From Terminal 4 - Aviation Week",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOY2phSDREczNvcTFPRzM4WTQza2ozMUg1WEZ6c2w0OVRwSkxKVnFvaVpXNm9jc0tod0xFVFNpYzVtRTAtQjhXckpkQ1F2MWw5bjFDRnFTU1ROaVRvcXdjcy11V2FueUk4THZ6MkYtQzNtenJmOEVLZWxtVmdpRXVnakRsMlMwdjVxV1R4Zkw1YXNKLWtlNVpzb0owbzBRd29sbE45WTh4QWRsSjV4YjBPd1RpamJzdw?oc=5",
+          "published": "Mon, 11 May 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Dubai and Middle East flight disruption: regional airlines resume some routes while international airlines extend suspensions - cntravellerme.com",
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPSXhhYWM3ano3Vi1wa3BhdVRfRnRwS3c4MjFJTUNWSkgzM3VFS2xHYklVWEdfclB1bnhLNEpYTWlqbVR2ckVyWm9oYUY5WXFpdkozMmNQaWY4S3A5X2hibHBuT20xU3dUbl9oaUl2S1VPOWloc25kLVNEcjdsdlZmbWxQY2RIdG5DTEhSRGR6ZTItdHBTTDBsc0JneVJ4WmwtZTdfa1RVVGRPd0ZraVV5MHJHYVVjbmgyQ3Q2QkdjWVo3dVp4NEJlek42Y3dPZ1FjZ2JMYzd5NjFXTUVqaC1OaHowYTZuWUptR01VQmJsb0pyUQ?oc=5",
+          "published": "Mon, 10 Aug 2026 08:20:21 GMT",
+          "stance": "contradicts"
+        }
+      ],
+      "superseded_by": null
+    },
+    {
+      "id": 222,
+      "scope": "station",
+      "scope_key": "KAC|OKBK",
+      "carrier": "KAC",
+      "detail": "OKBK",
+      "baseline_weekly": 33.0,
+      "last_flight_on": "2025-12-07",
+      "started_on": "2025-12-08",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 246,
+      "status": "active",
+      "confidence": "contradicted",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [
+        {
+          "source": "news",
+          "title": "Kuwait Airways launches direct Georgia flights - connectingtravel.com",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQT2RqRXl3RXJvbDIxMDRHLTJJQzdEV2xhVXhqY3FldDZoTGQ5NHhrb180bXk5Y0FTRENOQUZaeU1SY1VtWW4taWZrUUxOZWNqdXQyRzk0MHBQcHVZdVB0ZDlEbG5NVHVNT3ZZVFZtR1NhN19KY1pCNlA2bnNRNm14SU1haWNYams?oc=5",
+          "published": "Wed, 05 Aug 2026 07:13:09 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Kuwait Airport News | Kuwait Flights Updates | Ticket Price & Airport Rules | Kuwait News Today San Patrignano (MoxFHDUXNS) - Mshale",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1nN1V5a1JhZ1poLU5Bb0RveURNNmpoZjlCMm5IOXl1dVQyZldRSzQyZW5XbVBaaElfMkJJclZMZ3ZtMGZmc3BzOHZpWGF6eVdWV2FaU3FkLTc4TkU?oc=5",
+          "published": "Tue, 11 Aug 2026 10:58:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Emirates flights to Bahrain and Kuwait remain suspended as Etihad and Qatar Airways resume operations - thenationalnews.com",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPZFA0ak1rRTlzR0ttYjhNcmQzaEtlQzRZV2RxaWZiRW9wMkZnTGJhX1FrY0lXYU5MLW1zSUdtNU01bURwbUpUU1hRVTZmellRMWc2Y2YxbWJCUlB6OE90TjdqaXFJZE1oS2QzTk01dDJ3Y29NV0pORXB1bjE5S28yU1dDOWNEaW50NGNZXzRfNWRwYWppQlZmWmhHS1pnZ1MxTUplcUR3?oc=5",
+          "published": "Sun, 09 Aug 2026 07:00:00 GMT",
+          "stance": "contradicts"
+        },
+        {
+          "source": "news",
+          "title": "Kuwait Airways reschedules most flights after country attacked by Iran - The Times of Israel",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUHNRYW04RzNDVG1tVzBQVnJaeEdxSGxkdXI1dkczM1RfV3BVTVJmM1VFMEhLMG5PRFNJc3Q5azRNQThWcXRoOG1JbmoyYUIxX2JCOF94Snp1X2ZMcjJKelltSGc5QjFGa1lqcW8ySUd1dFVxUlN3eHNUcUU0VTl4NEJORjVhTU81YkpCMGlXT2ViRjF3VE4tVDlJWTdNNUR0b19EeGF6eHlCY3Q3X2hxQ2JUekYya3c?oc=5",
+          "published": "Sat, 18 Jul 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Kuwait Airways says most flights rescheduled as airspace closed - middleeasteye.net",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPWHpjT00wck5xUGhhUFlRSTFFU1cxQUtjMFVMUnBubDJYaUNyOEozUzlad3QwVWZXRjRDeWFLdl9sdEhqbDFweU1DdmlQZkNlSVBSZkZHekFwZEtYR0xRQVlPQi1BTmtjM2FaQVcwaGtvY2pSUjBrWjhUZlpZMFM0aTJPSTg5UnhDUTBIaDJyejZYWkRmbzY4Zml5SktJb09oTm5FUk9NUlF4N2ZGVmRpdTlOeFBPNGZ1?oc=5",
+          "published": "Sat, 18 Jul 2026 07:00:00 GMT",
+          "stance": "unclear"
+        }
+      ],
+      "superseded_by": "region"
+    },
+    {
+      "id": 219,
+      "scope": "station",
+      "scope_key": "KAC|OMDB",
+      "carrier": "KAC",
+      "detail": "OMDB",
+      "baseline_weekly": 25.6,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "contradicted",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [
+        {
+          "source": "news",
+          "title": "Emirates flights to Bahrain and Kuwait remain suspended as Etihad and Qatar Airways resume operations - thenationalnews.com",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPZFA0ak1rRTlzR0ttYjhNcmQzaEtlQzRZV2RxaWZiRW9wMkZnTGJhX1FrY0lXYU5MLW1zSUdtNU01bURwbUpUU1hRVTZmellRMWc2Y2YxbWJCUlB6OE90TjdqaXFJZE1oS2QzTk01dDJ3Y29NV0pORXB1bjE5S28yU1dDOWNEaW50NGNZXzRfNWRwYWppQlZmWmhHS1pnZ1MxTUplcUR3?oc=5",
+          "published": "Sun, 09 Aug 2026 07:00:00 GMT",
+          "stance": "contradicts"
+        },
+        {
+          "source": "news",
+          "title": "Kuwait Airways reschedules most flights after country attacked by Iran - The Times of Israel",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUHNRYW04RzNDVG1tVzBQVnJaeEdxSGxkdXI1dkczM1RfV3BVTVJmM1VFMEhLMG5PRFNJc3Q5azRNQThWcXRoOG1JbmoyYUIxX2JCOF94Snp1X2ZMcjJKelltSGc5QjFGa1lqcW8ySUd1dFVxUlN3eHNUcUU0VTl4NEJORjVhTU81YkpCMGlXT2ViRjF3VE4tVDlJWTdNNUR0b19EeGF6eHlCY3Q3X2hxQ2JUekYya3c?oc=5",
+          "published": "Sat, 18 Jul 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Dubai and Middle East flight disruption: regional airlines resume some routes while international airlines extend suspensions - cntravellerme.com",
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPSXhhYWM3ano3Vi1wa3BhdVRfRnRwS3c4MjFJTUNWSkgzM3VFS2xHYklVWEdfclB1bnhLNEpYTWlqbVR2ckVyWm9oYUY5WXFpdkozMmNQaWY4S3A5X2hibHBuT20xU3dUbl9oaUl2S1VPOWloc25kLVNEcjdsdlZmbWxQY2RIdG5DTEhSRGR6ZTItdHBTTDBsc0JneVJ4WmwtZTdfa1RVVGRPd0ZraVV5MHJHYVVjbmgyQ3Q2QkdjWVo3dVp4NEJlek42Y3dPZ1FjZ2JMYzd5NjFXTUVqaC1OaHowYTZuWUptR01VQmJsb0pyUQ?oc=5",
+          "published": "Mon, 10 Aug 2026 08:20:21 GMT",
+          "stance": "contradicts"
+        },
+        {
+          "source": "news",
+          "title": "Flying To Bahrain Or Kuwait? Emirates Is Still Suspended, But Etihad And Qatar Airways Are Back - curlytales.com",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQZHFfLXp0ZmFVN0IwbnE3a3pLalJuTGxfYzV4M19MTk1aeDgzY0cxLW1oRFB2MkUyUm13S1lMbFNsM3Rvb215Mm5tZS1NYWNlN2M2R2hCTHlPbERLSTZna1JWRzE5bXVuRGZtRnlpQ0ZCazhCNkF3UEtfOEJEa1lSVU5mWTh1YVBPakVjT0tNUjNCLXdVdFFqQlBYUTgyQVFsNkhrUGdBY005TzE3VUViMFpmTnhZZWtKOURtX2lxQlRlZHZRSjJKVDQzZ0haUjhzdFHSAdcBQVVfeXFMUEJaMHg0Y1RBVk1sNlk2TVpDTExZMlB4bTctWEZHNmF2YkI2Q2dhR1VXNlRrMnNxcTlVZnRtY3hTQ20xVFAwNVBoanNlcTBvUllkdmxGYWo0dkxwWW9hR0VRRG9IQU5lTmtmMVZSRTA3MzRpdldSR3BBQUpiUHpQVzZCS0E3bTRMbWRwZTF4Wkp5YXpHU3hpZWE5aWw4UTRtVWhkVHNmaUNZMjk4MmZfVGZnVUpuQnpYQUlMN2E3ZzhJY1NTMnBSaUZNTXRoZHpISGZPRzk1OFU?oc=5",
+          "published": "Mon, 10 Aug 2026 07:49:09 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Gulf airline schedules shift as Etihad and Qatar Airways resume Bahrain and Kuwait operations - Aviation Business Middle East",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOcDFNeXU1Zk5LaHlfNzdyWU5SQl81NHBGLWp4OVN2VG5mbnNoOWF0OTZoWFFWWGhmaWJHVlJMeURaLUlDdmpDZ1NwV3c3VWZ4bFV2UHNWSWtJcXpiRElWNXVqd1pyaDBya0E0MkViOEppc1p4SlZFZ29LT2I4Ui1tRXhYUXpfZVphVzZjUFo2N1hUbDF0SXNpdk9RVlRHYVNINnlGbVRGOWdBbkQyLXdWc3BfdUFyMW1xRmZETnh3ak1ILWFOeTZXajdkYkVlQQ?oc=5",
+          "published": "Mon, 10 Aug 2026 07:04:11 GMT",
+          "stance": "contradicts"
+        }
+      ],
+      "superseded_by": "region"
+    },
+    {
+      "id": 220,
+      "scope": "station",
+      "scope_key": "KAC|OTHH",
+      "carrier": "KAC",
+      "detail": "OTHH",
+      "baseline_weekly": 10.9,
+      "last_flight_on": "2026-01-29",
+      "started_on": "2026-01-30",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 193,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 221,
+      "scope": "station",
+      "scope_key": "KAC|OBBI",
+      "carrier": "KAC",
+      "detail": "OBBI",
+      "baseline_weekly": 3.8,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 223,
+      "scope": "station",
+      "scope_key": "KAC|VIDP",
+      "carrier": "KAC",
+      "detail": "VIDP",
+      "baseline_weekly": 2.3,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 74,
+      "scope": "route",
+      "scope_key": "KAC|OKBK|OMDB",
+      "carrier": "KAC",
+      "detail": "OKBK-OMDB",
+      "baseline_weekly": 10.6,
+      "last_flight_on": "2025-12-06",
+      "started_on": "2025-12-07",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 247,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 76,
+      "scope": "route",
+      "scope_key": "KAC|OMDB|OKBK",
+      "carrier": "KAC",
+      "detail": "OMDB-OKBK",
+      "baseline_weekly": 10.5,
+      "last_flight_on": "2025-12-07",
+      "started_on": "2025-12-08",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 246,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 77,
+      "scope": "route",
+      "scope_key": "KAC|OTHH|OKBK",
+      "carrier": "KAC",
+      "detail": "OTHH-OKBK",
+      "baseline_weekly": 5.2,
+      "last_flight_on": "2025-12-06",
+      "started_on": "2025-12-07",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 247,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 75,
+      "scope": "route",
+      "scope_key": "KAC|OKBK|OTHH",
+      "carrier": "KAC",
+      "detail": "OKBK-OTHH",
+      "baseline_weekly": 3.9,
+      "last_flight_on": "2025-12-06",
+      "started_on": "2025-12-07",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 247,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 73,
+      "scope": "route",
+      "scope_key": "KAC|OKBK|OBBI",
+      "carrier": "KAC",
+      "detail": "OKBK-OBBI",
+      "baseline_weekly": 1.8,
+      "last_flight_on": "2025-12-06",
+      "started_on": "2025-12-07",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 247,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 72,
+      "scope": "route",
+      "scope_key": "KAC|OBBI|OKBK",
+      "carrier": "KAC",
+      "detail": "OBBI-OKBK",
+      "baseline_weekly": 1.1,
+      "last_flight_on": "2025-12-05",
+      "started_on": "2025-12-06",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 248,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": "region"
+    }
+  ],
   "resumed": []
 }

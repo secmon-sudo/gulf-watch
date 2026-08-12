@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -22,8 +22,61 @@
   "weekly_frequency": 0,
   "baseline_weekly": 110.6,
   "carriers_operating": [],
-  "carriers_absent": [],
-  "carriers_stopped": [],
+  "carriers_absent": [
+    "ABY",
+    "ETD",
+    "FDB",
+    "GFA",
+    "KAC",
+    "MEA",
+    "MSR",
+    "QTR",
+    "UAE"
+  ],
+  "carriers_stopped": [
+    {
+      "carrier": "KAC",
+      "name": "Kuwait Airways",
+      "since": "2025-12-08",
+      "days_stopped": 246,
+      "confidence": "contradicted"
+    },
+    {
+      "carrier": "QTR",
+      "name": "Qatar Airways",
+      "since": "2025-12-08",
+      "days_stopped": 246,
+      "confidence": "contradicted"
+    },
+    {
+      "carrier": "UAE",
+      "name": "Emirates",
+      "since": "2025-12-08",
+      "days_stopped": 246,
+      "confidence": "observed"
+    },
+    {
+      "carrier": "GFA",
+      "name": "Gulf Air",
+      "since": "2025-12-08",
+      "days_stopped": 246,
+      "confidence": "observed"
+    },
+    {
+      "carrier": "ABY",
+      "name": "Air Arabia (Sharjah)",
+      "since": "2025-12-07",
+      "days_stopped": 247,
+      "confidence": "observed"
+    },
+    {
+      "carrier": "FDB",
+      "name": "flydubai",
+      "since": "2025-12-07",
+      "days_stopped": 247,
+      "confidence": "observed"
+    }
+  ],
   "resumed_recently": [],
   "routes": [
     {
@@ -34,7 +87,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -45,7 +98,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -56,7 +109,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -67,7 +120,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 2.7,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -78,7 +131,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 2.7,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -89,7 +142,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -100,7 +153,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 9.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -111,7 +164,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -122,7 +175,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -133,7 +186,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 10.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -144,7 +197,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 3.9,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -155,7 +208,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 10.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -166,7 +219,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -177,7 +230,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -188,7 +241,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -199,7 +252,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 12.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -210,7 +263,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 12.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -221,7 +274,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 11.0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -232,7 +285,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 11.0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     }
   ]

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -23,10 +23,10 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "routes_total": 3,
-      "routes_suspended": 0,
+      "routes_suspended": 3,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": {
         "any": false,
@@ -43,22 +43,47 @@
       "name": "Air Arabia (Sharjah)",
       "iata": "G9",
       "country": "AE",
-      "weekly_frequency": 2,
+      "weekly_frequency": 157,
       "baseline_weekly": 549.8,
-      "routes_total": 101,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.004,
-      "status": "UNKNOWN",
+      "routes_total": 114,
+      "routes_suspended": 47,
+      "routes_reduced": 44,
+      "ratio": 0.286,
+      "status": "MINIMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "EPMO",
+          "HECA",
+          "OKBK",
+          "OMRK",
+          "ORMM",
+          "VGEG",
+          "VOYK"
+        ],
+        "routes_dropped": [
+          "EPMO-OMSJ",
+          "HECA-OMSJ",
+          "OKBK-OMSJ",
+          "OMFJ-OMSJ",
+          "OMRK-OMSJ",
+          "OMSJ-EPMO",
+          "OMSJ-HE13",
+          "OMSJ-LGKN",
+          "OMSJ-OKBK",
+          "OMSJ-OMRK",
+          "OMSJ-ORMM",
+          "OMSJ-VGEG",
+          "OMSJ-VOYK",
+          "ORMM-OMSJ",
+          "VGEG-OMSJ",
+          "WMKK-OMSJ"
+        ],
+        "since": "2025-11-21",
+        "days_stopped": 263,
+        "confidence": "observed"
       }
     },
     {
@@ -69,19 +94,23 @@
       "weekly_frequency": 0,
       "baseline_weekly": 2.7,
       "routes_total": 6,
-      "routes_suspended": 0,
+      "routes_suspended": 6,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "OMDB"
+        ],
+        "routes_dropped": [
+          "OMDB-ZBAA"
+        ],
+        "since": "2026-01-21",
+        "days_stopped": 202,
+        "confidence": "observed"
       }
     },
     {
@@ -92,19 +121,25 @@
       "weekly_frequency": 0,
       "baseline_weekly": 11.7,
       "routes_total": 4,
-      "routes_suspended": 0,
+      "routes_suspended": 4,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "operating": true,
+      "status": "SUSPENDED",
+      "operating": false,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "region",
+        "airports_dropped": [
+          "KPHL",
+          "OTHH"
+        ],
+        "routes_dropped": [
+          "KPHL-OTHH",
+          "OTHH-KPHL"
+        ],
+        "since": "2026-01-31",
+        "days_stopped": 192,
+        "confidence": "contradicted"
       }
     },
     {
@@ -115,19 +150,30 @@
       "weekly_frequency": 0,
       "baseline_weekly": 63.4,
       "routes_total": 17,
-      "routes_suspended": 0,
+      "routes_suspended": 17,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "operating": true,
+      "status": "SUSPENDED",
+      "operating": false,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "region",
+        "airports_dropped": [
+          "EGLL",
+          "OBBI",
+          "OMDB",
+          "OTHH"
+        ],
+        "routes_dropped": [
+          "EGLL-OBBI",
+          "EGLL-OMDB",
+          "EGLL-OTHH",
+          "OMDB-EGLL",
+          "OTHH-EGLL"
+        ],
+        "since": "2026-01-31",
+        "days_stopped": 192,
+        "confidence": "contradicted"
       }
     },
     {
@@ -138,10 +184,10 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.3,
       "routes_total": 5,
-      "routes_suspended": 0,
+      "routes_suspended": 5,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": {
         "any": false,
@@ -161,19 +207,27 @@
       "weekly_frequency": 0,
       "baseline_weekly": 10.1,
       "routes_total": 15,
-      "routes_suspended": 0,
+      "routes_suspended": 15,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "operating": true,
+      "status": "SUSPENDED",
+      "operating": false,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "region",
+        "airports_dropped": [
+          "OMDB",
+          "OTHH",
+          "ZGSZ"
+        ],
+        "routes_dropped": [
+          "OMDB-OMDB",
+          "OMDB-ZGSZ",
+          "ZGSZ-OMDB"
+        ],
+        "since": "2026-01-28",
+        "days_stopped": 195,
+        "confidence": "contradicted"
       }
     },
     {
@@ -181,22 +235,27 @@
       "name": "EgyptAir",
       "iata": "MS",
       "country": "EG",
-      "weekly_frequency": 1,
+      "weekly_frequency": 14,
       "baseline_weekly": 8.6,
-      "routes_total": 24,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.116,
-      "status": "UNKNOWN",
+      "routes_total": 31,
+      "routes_suspended": 18,
+      "routes_reduced": 1,
+      "ratio": 1.628,
+      "status": "NORMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "HE13"
+        ],
+        "routes_dropped": [
+          "HECA-OMDB",
+          "OMDB-HE13"
+        ],
+        "since": "2026-01-27",
+        "days_stopped": 196,
+        "confidence": "observed"
       }
     },
     {
@@ -204,22 +263,73 @@
       "name": "Emirates",
       "iata": "EK",
       "country": "AE",
-      "weekly_frequency": 2,
+      "weekly_frequency": 333,
       "baseline_weekly": 1627.5,
-      "routes_total": 246,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.001,
-      "status": "UNKNOWN",
+      "routes_total": 260,
+      "routes_suspended": 98,
+      "routes_reduced": 136,
+      "ratio": 0.205,
+      "status": "MINIMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "HE13",
+          "HTDA",
+          "LIPV",
+          "LPAR",
+          "OBBI",
+          "OKBK",
+          "ORMM",
+          "RCPO",
+          "UUDD",
+          "VEBA",
+          "VOYK",
+          "VVNB",
+          "WSAP"
+        ],
+        "routes_dropped": [
+          "HECA-OMDB",
+          "HTDA-OMDB",
+          "LPAR-OMDB",
+          "LTFM-OMDB",
+          "OBBI-OMDB",
+          "OKBK-OMDB",
+          "OMDB-EBMB",
+          "OMDB-FABB",
+          "OMDB-HE13",
+          "OMDB-HTDA",
+          "OMDB-LFHN",
+          "OMDB-LGKN",
+          "OMDB-LIPV",
+          "OMDB-LPAR",
+          "OMDB-OBBI",
+          "OMDB-OKBK",
+          "OMDB-ORMM",
+          "OMDB-RCPO",
+          "OMDB-SBSJ",
+          "OMDB-UUDD",
+          "OMDB-VAJJ",
+          "OMDB-VEBA",
+          "OMDB-VOYK",
+          "OMDB-VVGL",
+          "OMDB-VVNB",
+          "OMDB-WSAP",
+          "OMDB-WSSS",
+          "OMDB-Z19O",
+          "OPLA-OMDB",
+          "ORMM-OMDB",
+          "RJBB-OMDB",
+          "UUDD-OMDB",
+          "VABB-OMDB",
+          "VOTV-OMDB",
+          "VVNB-OMDB",
+          "WMKK-OMDB"
+        ],
+        "since": "2025-12-04",
+        "days_stopped": 250,
+        "confidence": "observed"
       }
     },
     {
@@ -227,22 +337,24 @@
       "name": "Etihad Airways",
       "iata": "EY",
       "country": "AE",
-      "weekly_frequency": 1,
+      "weekly_frequency": 149,
       "baseline_weekly": 47.6,
-      "routes_total": 63,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.021,
-      "status": "UNKNOWN",
+      "routes_total": 100,
+      "routes_suspended": 16,
+      "routes_reduced": 3,
+      "ratio": 3.13,
+      "status": "NORMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
+        "any": true,
+        "scope": "route",
         "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "routes_dropped": [
+          "UUEE-OMAA"
+        ],
+        "since": "2026-01-24",
+        "days_stopped": 199,
+        "confidence": "observed"
       }
     },
     {
@@ -253,19 +365,27 @@
       "weekly_frequency": 0,
       "baseline_weekly": 12.7,
       "routes_total": 5,
-      "routes_suspended": 0,
+      "routes_suspended": 5,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "operating": true,
+      "status": "SUSPENDED",
+      "operating": false,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "region",
+        "airports_dropped": [
+          "EFHK",
+          "OMDB",
+          "OTHH"
+        ],
+        "routes_dropped": [
+          "EFHK-OMDB",
+          "OMDB-EFHK",
+          "OTHH-EFHK"
+        ],
+        "since": "2026-01-30",
+        "days_stopped": 193,
+        "confidence": "contradicted"
       }
     },
     {
@@ -273,22 +393,43 @@
       "name": "Gulf Air",
       "iata": "GF",
       "country": "BH",
-      "weekly_frequency": 0,
+      "weekly_frequency": 105,
       "baseline_weekly": 255.2,
-      "routes_total": 72,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
+      "routes_total": 81,
+      "routes_suspended": 30,
+      "routes_reduced": 27,
+      "ratio": 0.411,
+      "status": "REDUCED",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "KJFK",
+          "OKBK",
+          "OPLA",
+          "VOYK"
+        ],
+        "routes_dropped": [
+          "KJFK-OBBI",
+          "LCLK-OBBI",
+          "LIRF-OBBI",
+          "OBBI-EDDF",
+          "OBBI-EDDM",
+          "OBBI-LFPG",
+          "OBBI-LGAV",
+          "OBBI-LIMC",
+          "OBBI-LTFM",
+          "OBBI-OKBK",
+          "OBBI-RPLL",
+          "OBBI-VOYK",
+          "OBBI-WSAP",
+          "OKBK-OBBI",
+          "OPLA-OBBI"
+        ],
+        "since": "2025-12-06",
+        "days_stopped": 248,
+        "confidence": "observed"
       }
     },
     {
@@ -299,19 +440,25 @@
       "weekly_frequency": 0,
       "baseline_weekly": 11.8,
       "routes_total": 2,
-      "routes_suspended": 0,
+      "routes_suspended": 2,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "operating": true,
+      "status": "SUSPENDED",
+      "operating": false,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "region",
+        "airports_dropped": [
+          "LEMD",
+          "OTHH"
+        ],
+        "routes_dropped": [
+          "LEMD-OTHH",
+          "OTHH-LEMD"
+        ],
+        "since": "2026-01-31",
+        "days_stopped": 192,
+        "confidence": "corroborated"
       }
     },
     {
@@ -322,19 +469,25 @@
       "weekly_frequency": 0,
       "baseline_weekly": 12.9,
       "routes_total": 2,
-      "routes_suspended": 0,
+      "routes_suspended": 2,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "operating": true,
+      "status": "SUSPENDED",
+      "operating": false,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "region",
+        "airports_dropped": [
+          "OTHH",
+          "RJTT"
+        ],
+        "routes_dropped": [
+          "OTHH-RJTT",
+          "RJTT-OTHH"
+        ],
+        "since": "2026-01-30",
+        "days_stopped": 193,
+        "confidence": "corroborated"
       }
     },
     {
@@ -345,19 +498,32 @@
       "weekly_frequency": 0,
       "baseline_weekly": 39.6,
       "routes_total": 30,
-      "routes_suspended": 0,
+      "routes_suspended": 30,
       "routes_reduced": 0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "operating": true,
+      "status": "SUSPENDED",
+      "operating": false,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "region",
+        "airports_dropped": [
+          "OBBI",
+          "OKBK",
+          "OMDB",
+          "OTHH",
+          "VIDP"
+        ],
+        "routes_dropped": [
+          "OBBI-OKBK",
+          "OKBK-OBBI",
+          "OKBK-OMDB",
+          "OKBK-OTHH",
+          "OMDB-OKBK",
+          "OTHH-OKBK"
+        ],
+        "since": "2025-12-06",
+        "days_stopped": 248,
+        "confidence": "contradicted"
       }
     },
     {
@@ -365,22 +531,27 @@
       "name": "Middle East Airlines",
       "iata": "ME",
       "country": "LB",
-      "weekly_frequency": 0,
+      "weekly_frequency": 75,
       "baseline_weekly": 6.0,
-      "routes_total": 15,
-      "routes_suspended": 0,
+      "routes_total": 51,
+      "routes_suspended": 9,
       "routes_reduced": 0,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
+      "ratio": 12.5,
+      "status": "NORMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "Z19O"
+        ],
+        "routes_dropped": [
+          "OMDB-Z19O",
+          "OTHH-Z19O"
+        ],
+        "since": "2026-01-14",
+        "days_stopped": 209,
+        "confidence": "observed"
       }
     },
     {
@@ -388,22 +559,29 @@
       "name": "Oman Air",
       "iata": "WY",
       "country": "OM",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 16.0,
-      "routes_total": 32,
-      "routes_suspended": 0,
+      "routes_total": 33,
+      "routes_suspended": 32,
       "routes_reduced": 0,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
+      "ratio": 0.062,
+      "status": "MINIMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "OBBI",
+          "OMDB"
+        ],
+        "routes_dropped": [
+          "OTHH-VOCI",
+          "VIDP-OMDB",
+          "VOCI-OMDB"
+        ],
+        "since": "2026-01-30",
+        "days_stopped": 193,
+        "confidence": "observed"
       }
     },
     {
@@ -411,22 +589,26 @@
       "name": "Pegasus Airlines",
       "iata": "PC",
       "country": "TR",
-      "weekly_frequency": 0,
+      "weekly_frequency": 27,
       "baseline_weekly": 53.3,
-      "routes_total": 17,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
+      "routes_total": 24,
+      "routes_suspended": 7,
+      "routes_reduced": 7,
+      "ratio": 0.507,
+      "status": "REDUCED",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
+        "any": true,
+        "scope": "route",
         "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "routes_dropped": [
+          "LTAI-OMSJ",
+          "OMDB-LTAI",
+          "OMSJ-LTAI"
+        ],
+        "since": "2026-01-29",
+        "days_stopped": 194,
+        "confidence": "observed"
       }
     },
     {
@@ -434,22 +616,96 @@
       "name": "Qatar Airways",
       "iata": "QR",
       "country": "QA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 451,
       "baseline_weekly": 1948.0,
-      "routes_total": 290,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.001,
-      "status": "UNKNOWN",
+      "routes_total": 311,
+      "routes_suspended": 120,
+      "routes_reduced": 148,
+      "ratio": 0.232,
+      "status": "MINIMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "EDDH",
+          "FABB",
+          "HTDA",
+          "LBSF",
+          "LDZA",
+          "LDZB",
+          "LGKN",
+          "LIPZ",
+          "LMML",
+          "LPAR",
+          "LTFJ",
+          "NZAA",
+          "OKBK",
+          "ORMM",
+          "SBSJ",
+          "VEBA",
+          "VOYK",
+          "VVNB",
+          "WSAP",
+          "WSSS",
+          "Z19O"
+        ],
+        "routes_dropped": [
+          "EDDH-OTHH",
+          "HTDA-OTHH",
+          "KATL-OTHH",
+          "KIAH-OTHH",
+          "LBSF-OTHH",
+          "LDZA-OTHH",
+          "LDZB-OTHH",
+          "LHBP-OTHH",
+          "LIPZ-OTHH",
+          "LMML-OTHH",
+          "LTFJ-OTHH",
+          "NZAA-OTHH",
+          "OBBI-OTHH",
+          "OKBK-OTHH",
+          "ORMM-OTHH",
+          "OTHH-EBMB",
+          "OTHH-EDDH",
+          "OTHH-FABB",
+          "OTHH-FAGM",
+          "OTHH-FAHG",
+          "OTHH-HE13",
+          "OTHH-HTDA",
+          "OTHH-LBSF",
+          "OTHH-LDZA",
+          "OTHH-LDZB",
+          "OTHH-LGKN",
+          "OTHH-LIPV",
+          "OTHH-LIPZ",
+          "OTHH-LMML",
+          "OTHH-LPAR",
+          "OTHH-LTFJ",
+          "OTHH-NZAA",
+          "OTHH-OEDF",
+          "OTHH-OKBK",
+          "OTHH-OMDW",
+          "OTHH-ORMM",
+          "OTHH-SBSJ",
+          "OTHH-UUEE",
+          "OTHH-VEBA",
+          "OTHH-VECC",
+          "OTHH-VOYK",
+          "OTHH-VVGL",
+          "OTHH-VVNB",
+          "OTHH-WSAP",
+          "OTHH-WSSS",
+          "OTHH-YBBN",
+          "OTHH-YPAD",
+          "OTHH-Z19O",
+          "VVNB-OTHH",
+          "WMKK-OTHH",
+          "WSSS-OTHH"
+        ],
+        "since": "2025-12-06",
+        "days_stopped": 248,
+        "confidence": "contradicted"
       }
     },
     {
@@ -457,22 +713,24 @@
       "name": "Royal Air Maroc",
       "iata": "AT",
       "country": "MA",
-      "weekly_frequency": 0,
+      "weekly_frequency": 5,
       "baseline_weekly": 4.2,
-      "routes_total": 11,
-      "routes_suspended": 0,
+      "routes_total": 15,
+      "routes_suspended": 11,
       "routes_reduced": 0,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
+      "ratio": 1.19,
+      "status": "NORMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
+        "any": true,
+        "scope": "route",
         "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "routes_dropped": [
+          "KJFK-OTHH"
+        ],
+        "since": "2026-01-22",
+        "days_stopped": 201,
+        "confidence": "observed"
       }
     },
     {
@@ -480,22 +738,24 @@
       "name": "Royal Jordanian",
       "iata": "RJ",
       "country": "JO",
-      "weekly_frequency": 1,
+      "weekly_frequency": 107,
       "baseline_weekly": 15.5,
-      "routes_total": 55,
-      "routes_suspended": 0,
+      "routes_total": 108,
+      "routes_suspended": 49,
       "routes_reduced": 0,
-      "ratio": 0.065,
-      "status": "UNKNOWN",
+      "ratio": 6.903,
+      "status": "NORMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
+        "any": true,
+        "scope": "route",
         "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "routes_dropped": [
+          "KORD-OMDB"
+        ],
+        "since": "2026-01-30",
+        "days_stopped": 193,
+        "confidence": "observed"
       }
     },
     {
@@ -503,22 +763,24 @@
       "name": "Saudia",
       "iata": "SV",
       "country": "SA",
-      "weekly_frequency": 0,
+      "weekly_frequency": 4,
       "baseline_weekly": 9.1,
-      "routes_total": 23,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
+      "routes_total": 25,
+      "routes_suspended": 21,
+      "routes_reduced": 1,
+      "ratio": 0.44,
+      "status": "REDUCED",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
+        "any": true,
+        "scope": "route",
         "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "routes_dropped": [
+          "OMDB-LTFM"
+        ],
+        "since": "2026-01-28",
+        "days_stopped": 195,
+        "confidence": "observed"
       }
     },
     {
@@ -526,22 +788,56 @@
       "name": "flydubai",
       "iata": "FZ",
       "country": "AE",
-      "weekly_frequency": 1,
+      "weekly_frequency": 97,
       "baseline_weekly": 403.1,
-      "routes_total": 83,
-      "routes_suspended": 0,
-      "routes_reduced": 0,
-      "ratio": 0.002,
-      "status": "UNKNOWN",
+      "routes_total": 88,
+      "routes_suspended": 57,
+      "routes_reduced": 17,
+      "ratio": 0.241,
+      "status": "MINIMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "EPKK",
+          "EPPO",
+          "EPWA",
+          "EVRA",
+          "LBSF",
+          "LIRP",
+          "LKPR",
+          "LOWS",
+          "LROP",
+          "OKBK",
+          "ORMM"
+        ],
+        "routes_dropped": [
+          "EPKK-OMDB",
+          "EPPO-OMDB",
+          "EVRA-OMDB",
+          "EYVI-OMDB",
+          "LBSF-OMDB",
+          "LICZ-OMDB",
+          "LIRP-OMDB",
+          "LKPR-OMDB",
+          "LOWS-OMDB",
+          "LYBE-OMDB",
+          "OKBK-OMDB",
+          "OMDB-EPKK",
+          "OMDB-EPWA",
+          "OMDB-LIRP",
+          "OMDB-LKPR",
+          "OMDB-LOWS",
+          "OMDB-LQVI",
+          "OMDB-LROP",
+          "OMDB-OKBK",
+          "ORMM-OMDB",
+          "VIDP-OMDB"
+        ],
+        "since": "2025-12-07",
+        "days_stopped": 247,
+        "confidence": "observed"
       }
     },
     {
@@ -549,32 +845,38 @@
       "name": "flynas",
       "iata": "XY",
       "country": "SA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 3,
       "baseline_weekly": 14.0,
-      "routes_total": 28,
-      "routes_suspended": 0,
+      "routes_total": 30,
+      "routes_suspended": 27,
       "routes_reduced": 0,
-      "ratio": 0.071,
-      "status": "UNKNOWN",
+      "ratio": 0.214,
+      "status": "MINIMAL",
       "operating": true,
       "stopped": {
-        "any": false,
-        "scope": null,
-        "airports_dropped": [],
-        "routes_dropped": [],
-        "since": null,
-        "days_stopped": 0,
-        "confidence": null
+        "any": true,
+        "scope": "station",
+        "airports_dropped": [
+          "LTFJ",
+          "OEDR"
+        ],
+        "routes_dropped": [
+          "LTFJ-OMDB",
+          "OMDB-OEDR"
+        ],
+        "since": "2026-01-30",
+        "days_stopped": 193,
+        "confidence": "observed"
       }
     }
   ],
   "summary": {
     "carriers_tracked": 24,
-    "routes_tracked": 1149,
-    "routes_suspended": 0,
-    "routes_reduced": 0,
-    "carriers_with_a_stop": 0,
-    "stations_dropped": 0,
+    "routes_tracked": 1360,
+    "routes_suspended": 631,
+    "routes_reduced": 384,
+    "carriers_with_a_stop": 22,
+    "stations_dropped": 84,
     "resumed_last_30d": 0
   }
 }

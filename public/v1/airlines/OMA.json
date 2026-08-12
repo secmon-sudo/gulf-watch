@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -18,22 +18,29 @@
   "name": "Oman Air",
   "iata": "WY",
   "country": "OM",
-  "weekly_frequency": 0,
+  "weekly_frequency": 1,
   "baseline_weekly": 16.0,
-  "routes_total": 32,
-  "routes_suspended": 0,
+  "routes_total": 33,
+  "routes_suspended": 32,
   "routes_reduced": 0,
-  "ratio": 0.0,
-  "status": "UNKNOWN",
+  "ratio": 0.062,
+  "status": "MINIMAL",
   "operating": true,
   "stopped": {
-    "any": false,
-    "scope": null,
-    "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "any": true,
+    "scope": "station",
+    "airports_dropped": [
+      "OBBI",
+      "OMDB"
+    ],
+    "routes_dropped": [
+      "OTHH-VOCI",
+      "VIDP-OMDB",
+      "VOCI-OMDB"
+    ],
+    "since": "2026-01-30",
+    "days_stopped": 193,
+    "confidence": "observed"
   },
   "routes": [
     {
@@ -44,7 +51,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -55,7 +62,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -66,7 +73,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -77,7 +84,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.0,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -88,7 +95,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -99,7 +106,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -110,7 +117,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -121,7 +128,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -132,8 +139,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "status": "SUSPENDED",
+      "silent_days": 9
     },
     {
       "carrier": "OMA",
@@ -143,7 +150,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -154,7 +161,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -165,7 +172,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -176,7 +183,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -187,7 +194,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -198,7 +205,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -209,7 +216,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -220,7 +227,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -231,7 +238,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -242,7 +249,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -253,8 +260,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "OMA",
+      "carrier_name": "Oman Air",
+      "origin": "VIDP",
+      "destination": "OJAI",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "OMA",
@@ -264,7 +282,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -275,7 +293,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -286,7 +304,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -297,7 +315,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -308,7 +326,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -319,7 +337,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -330,7 +348,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.6,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -341,8 +359,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
       "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "status": "SUSPENDED",
+      "silent_days": 9
     },
     {
       "carrier": "OMA",
@@ -352,7 +370,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -363,7 +381,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -374,7 +392,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -385,10 +403,101 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 229,
+      "scope": "station",
+      "scope_key": "OMA|OMDB",
+      "carrier": "OMA",
+      "detail": "OMDB",
+      "baseline_weekly": 7.7,
+      "last_flight_on": "2026-01-29",
+      "started_on": "2026-01-30",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 193,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Oman Air",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 228,
+      "scope": "station",
+      "scope_key": "OMA|OBBI",
+      "carrier": "OMA",
+      "detail": "OBBI",
+      "baseline_weekly": 2.4,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Oman Air",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 84,
+      "scope": "route",
+      "scope_key": "OMA|OTHH|VOCI",
+      "carrier": "OMA",
+      "detail": "OTHH-VOCI",
+      "baseline_weekly": 1.8,
+      "last_flight_on": "2026-01-29",
+      "started_on": "2026-01-30",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 193,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Oman Air",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 85,
+      "scope": "route",
+      "scope_key": "OMA|VIDP|OMDB",
+      "carrier": "OMA",
+      "detail": "VIDP-OMDB",
+      "baseline_weekly": 1.8,
+      "last_flight_on": "2026-01-29",
+      "started_on": "2026-01-30",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 193,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Oman Air",
+      "evidence": [],
+      "superseded_by": "station"
+    },
+    {
+      "id": 86,
+      "scope": "route",
+      "scope_key": "OMA|VOCI|OMDB",
+      "carrier": "OMA",
+      "detail": "VOCI-OMDB",
+      "baseline_weekly": 1.6,
+      "last_flight_on": "2026-01-29",
+      "started_on": "2026-01-30",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 193,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Oman Air",
+      "evidence": [],
+      "superseded_by": "station"
+    }
+  ],
   "resumed": []
 }

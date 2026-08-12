@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -15,14 +15,18 @@
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
   "database": {
-    "route_departures": 70442,
-    "raw_legs_retained": 2791,
+    "route_departures": 72007,
+    "raw_legs_retained": 5601,
     "first_day": "2025-10-31",
-    "last_day": "2026-08-04",
+    "last_day": "2026-08-12",
     "baseline_routes": 1161
   },
   "baseline_ready": true,
   "recent_runs": [
+    {
+      "started_at": "2026-08-12T12:05:14+00:00",
+      "detail": "legs=3073 coverage=ok(1.5) stopped=270 resumed=0 czib_changes=0 sched=210 board=1905"
+    },
     {
       "started_at": "2026-08-10T11:55:12+00:00",
       "detail": "legs=0 coverage=outage(0.0) stopped=0 resumed=0 czib_changes=0 sched=0 board=1979"

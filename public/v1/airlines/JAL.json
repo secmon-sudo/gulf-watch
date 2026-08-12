@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -21,19 +21,25 @@
   "weekly_frequency": 0,
   "baseline_weekly": 12.9,
   "routes_total": 2,
-  "routes_suspended": 0,
+  "routes_suspended": 2,
   "routes_reduced": 0,
   "ratio": 0.0,
-  "status": "UNKNOWN",
-  "operating": true,
+  "status": "SUSPENDED",
+  "operating": false,
   "stopped": {
-    "any": false,
-    "scope": null,
-    "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "any": true,
+    "scope": "region",
+    "airports_dropped": [
+      "OTHH",
+      "RJTT"
+    ],
+    "routes_dropped": [
+      "OTHH-RJTT",
+      "RJTT-OTHH"
+    ],
+    "since": "2026-01-30",
+    "days_stopped": 193,
+    "confidence": "corroborated"
   },
   "routes": [
     {
@@ -44,7 +50,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.5,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -55,10 +61,137 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 269,
+      "scope": "region",
+      "scope_key": "JAL",
+      "carrier": "JAL",
+      "detail": "all monitored airports",
+      "baseline_weekly": 12.9,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "corroborated",
+      "carrier_name": "Japan Airlines",
+      "evidence": [
+        {
+          "source": "news",
+          "title": "ANA cuts North America and Europe route surcharges to ¥55,000 - The Japan Times",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOVFk1VVJxT2htd2hyajNkVFBzM1EtVHBWWTJYaVAyWFJGamJ3YnJ3S3RnWVJ0Y3dEZS00bXdPME5oSmYwQV8zRFlHZ2ZrVGVCX0ZRNl9aTVJDaXlEbW5xQXpNbWQ3azU4a1lXRVJmMmt4MmpYM0FYODV0VmhmVzBZMHdVSkRnaGs4NEFtZDN2Ym4?oc=5",
+          "published": "Wed, 12 Aug 2026 02:14:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "A new chapter for Chicago: American to launch nonstop service to Tokyo - American Airlines",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPaFlkaGpMZ08wRmN6UVZxaC1Ib1JsZkVXRkRzb1BYRHpHWGtWWGpQRmxudlg3MUZla0t4X1QtZFRYb3AwYU50Znd0WVpqYWk2OTY4cXI4NHBMQXMtV0xVbG9LNmV0amRMVG1vT0oxNGFac3RNb1p2OWUtSW5LNFFUUmZUN1l2a01acW91VGZHTnBrVXBzcE9Ydjdmcmx0bHRKNVpnVE9QS0dnUmd3NGhSSFI2SkRkNXZDSDluSWhCN0xkaFE5ekZ5ZUxtSlVJNDJmaGc?oc=5",
+          "published": "Wed, 01 Jul 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Japanese Airlines Halt Flights as Typhoon Chan-hom Nears Tokyo - Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZzFqcExvbHBESHhYMFZjaVBMY1dzOWs1eTk0c1JJNkw5Q0kwVmJsS3I5MkdpZ0c2Q3o1ODBwRGtsRTgxQi13dXJvQjlEV3NYWlBmaXhseHJmUS1iV3BRUmdNc3VnYTBWWFhwYy1vSEExRW5zaVFEVW1UR2FQa0hWYm14NThCdFdzcUVLb1JXa3VYRnpFR09XVXZJQXAtMF9kemFkQUJTYmttUC0zWlZ6ZDRNTQ?oc=5",
+          "published": "Tue, 11 Aug 2026 07:40:36 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "More flights to Japan added from San Diego airport - NBC 7 San Diego",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNd3hablA4OC1jVlVsUVg4eDBURkZmdkgtRFNsenI4T2dNUmUzWTM4eEp5bUNudmJSRmx5SXc0Y0dlVTg3ZlE0Tlp3TVBFTzdEeUtWWXNPYkpCejZrdFhoSkh5S2FNd0cwc2FndXBoNlJiMFZ2UDNWUTNMTHlpLTh5eGhuOHB3cmxBdUs5OGV4N0tqV1Rrd000MTNvaFl1TXPSAacBQVVfeXFMTWxjLUc3N2pOcUVDaVhyYlY4MkhoRGV1cnMyOHNwVDUyUU9GdDY5bjJscGJNTmhpUG43bmZ3SlRyZHVkWkNaYVhfdXRuUWJEeFBzS2VVZk1aZFdSRXUwM3pIYy1JUkNvMTA5MEtpZEhLalk4NnR3LU55UWhjMjFXd0d3QWY1SUtGelY2VWVrX1ZsREhtcV80SGtqbkE2cm9oejh6Z09jSjQ?oc=5",
+          "published": "Thu, 25 Jun 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "The Points Collector’s Guide to Japan Airlines - NerdWallet",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5SY0otZ0tHcGxqN294T0lzTHU3SUt1QnhDYktBb2hTQUJtTUdqMGxLRGFlYlFZNnk0S0NmSWVLYTJpYlZyYzl5VVpKMEtyN01KbzcyWmJ5ZmxuTkRpUjFudk9pMGlPUS1MVXZ0Sw?oc=5",
+          "published": "Thu, 06 Aug 2026 14:09:16 GMT",
+          "stance": "unclear"
+        }
+      ],
+      "superseded_by": null
+    },
+    {
+      "id": 217,
+      "scope": "station",
+      "scope_key": "JAL|OTHH",
+      "carrier": "JAL",
+      "detail": "OTHH",
+      "baseline_weekly": 12.9,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Japan Airlines",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 218,
+      "scope": "station",
+      "scope_key": "JAL|RJTT",
+      "carrier": "JAL",
+      "detail": "RJTT",
+      "baseline_weekly": 12.9,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Japan Airlines",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 70,
+      "scope": "route",
+      "scope_key": "JAL|OTHH|RJTT",
+      "carrier": "JAL",
+      "detail": "OTHH-RJTT",
+      "baseline_weekly": 6.5,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Japan Airlines",
+      "evidence": [],
+      "superseded_by": "region"
+    },
+    {
+      "id": 71,
+      "scope": "route",
+      "scope_key": "JAL|RJTT|OTHH",
+      "carrier": "JAL",
+      "detail": "RJTT-OTHH",
+      "baseline_weekly": 6.4,
+      "last_flight_on": "2026-01-29",
+      "started_on": "2026-01-30",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 193,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Japan Airlines",
+      "evidence": [],
+      "superseded_by": "region"
+    }
+  ],
   "resumed": []
 }

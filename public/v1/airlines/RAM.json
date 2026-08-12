@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -18,22 +18,24 @@
   "name": "Royal Air Maroc",
   "iata": "AT",
   "country": "MA",
-  "weekly_frequency": 0,
+  "weekly_frequency": 5,
   "baseline_weekly": 4.2,
-  "routes_total": 11,
-  "routes_suspended": 0,
+  "routes_total": 15,
+  "routes_suspended": 11,
   "routes_reduced": 0,
-  "ratio": 0.0,
-  "status": "UNKNOWN",
+  "ratio": 1.19,
+  "status": "NORMAL",
   "operating": true,
   "stopped": {
-    "any": false,
-    "scope": null,
+    "any": true,
+    "scope": "route",
     "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "routes_dropped": [
+      "KJFK-OTHH"
+    ],
+    "since": "2026-01-22",
+    "days_stopped": 201,
+    "confidence": "observed"
   },
   "routes": [
     {
@@ -44,8 +46,30 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "RAM",
+      "carrier_name": "Royal Air Maroc",
+      "origin": "GMMN",
+      "destination": "OMDB",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
+    },
+    {
+      "carrier": "RAM",
+      "carrier_name": "Royal Air Maroc",
+      "origin": "GMMN",
+      "destination": "OTHH",
+      "weekly_frequency": 2,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "RAM",
@@ -55,7 +79,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -66,7 +90,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -77,7 +101,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -88,7 +112,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -99,7 +123,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -110,8 +134,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "RAM",
+      "carrier_name": "Royal Air Maroc",
+      "origin": "OMDB",
+      "destination": "GMMN",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "RAM",
@@ -121,7 +156,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -132,8 +167,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "RAM",
+      "carrier_name": "Royal Air Maroc",
+      "origin": "OTHH",
+      "destination": "GMMN",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "RAM",
@@ -143,7 +189,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -154,10 +200,29 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 141,
+      "scope": "route",
+      "scope_key": "RAM|KJFK|OTHH",
+      "carrier": "RAM",
+      "detail": "KJFK-OTHH",
+      "baseline_weekly": 1.1,
+      "last_flight_on": "2026-01-21",
+      "started_on": "2026-01-22",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 201,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Royal Air Maroc",
+      "evidence": [],
+      "superseded_by": null
+    }
+  ],
   "resumed": []
 }

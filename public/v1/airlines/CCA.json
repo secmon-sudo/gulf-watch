@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -21,19 +21,23 @@
   "weekly_frequency": 0,
   "baseline_weekly": 2.7,
   "routes_total": 6,
-  "routes_suspended": 0,
+  "routes_suspended": 6,
   "routes_reduced": 0,
   "ratio": 0.0,
-  "status": "UNKNOWN",
+  "status": "SUSPENDED",
   "operating": true,
   "stopped": {
-    "any": false,
-    "scope": null,
-    "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "any": true,
+    "scope": "station",
+    "airports_dropped": [
+      "OMDB"
+    ],
+    "routes_dropped": [
+      "OMDB-ZBAA"
+    ],
+    "since": "2026-01-21",
+    "days_stopped": 202,
+    "confidence": "observed"
   },
   "routes": [
     {
@@ -44,7 +48,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -55,7 +59,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -66,7 +70,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -77,7 +81,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -88,7 +92,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -99,10 +103,47 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 193,
+      "scope": "station",
+      "scope_key": "CCA|OMDB",
+      "carrier": "CCA",
+      "detail": "OMDB",
+      "baseline_weekly": 2.9,
+      "last_flight_on": "2026-01-25",
+      "started_on": "2026-01-26",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 197,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air China",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 24,
+      "scope": "route",
+      "scope_key": "CCA|OMDB|ZBAA",
+      "carrier": "CCA",
+      "detail": "OMDB-ZBAA",
+      "baseline_weekly": 1.1,
+      "last_flight_on": "2026-01-20",
+      "started_on": "2026-01-21",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 202,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Air China",
+      "evidence": [],
+      "superseded_by": "station"
+    }
+  ],
   "resumed": []
 }

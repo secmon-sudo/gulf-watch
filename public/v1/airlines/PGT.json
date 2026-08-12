@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-11T11:47:36+00:00",
-  "as_of_day": "2026-08-10",
+  "generated_at": "2026-08-12T12:10:57+00:00",
+  "as_of_day": "2026-08-11",
   "coverage": {
-    "day": "2026-08-10",
-    "control_flights": 0,
+    "day": "2026-08-11",
+    "control_flights": 629,
     "median_28d": 327.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -18,22 +18,26 @@
   "name": "Pegasus Airlines",
   "iata": "PC",
   "country": "TR",
-  "weekly_frequency": 0,
+  "weekly_frequency": 27,
   "baseline_weekly": 53.3,
-  "routes_total": 17,
-  "routes_suspended": 0,
-  "routes_reduced": 0,
-  "ratio": 0.0,
-  "status": "UNKNOWN",
+  "routes_total": 24,
+  "routes_suspended": 7,
+  "routes_reduced": 7,
+  "ratio": 0.507,
+  "status": "REDUCED",
   "operating": true,
   "stopped": {
-    "any": false,
-    "scope": null,
+    "any": true,
+    "scope": "route",
     "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "routes_dropped": [
+      "LTAI-OMSJ",
+      "OMDB-LTAI",
+      "OMSJ-LTAI"
+    ],
+    "since": "2026-01-29",
+    "days_stopped": 194,
+    "confidence": "observed"
   },
   "routes": [
     {
@@ -44,7 +48,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -55,8 +59,19 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "origin": "LTAI",
+      "destination": "OJAI",
+      "weekly_frequency": 2,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
@@ -66,7 +81,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -77,63 +92,96 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "origin": "LTCG",
+      "destination": "OJAI",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "LTFJ",
       "destination": "OBBI",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 2.3,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 0.439,
+      "status": "REDUCED",
+      "silent_days": 0
+    },
+    {
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "origin": "LTFJ",
+      "destination": "OJAI",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
+    },
+    {
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "origin": "LTFJ",
+      "destination": "OLBA",
+      "weekly_frequency": 4,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "LTFJ",
       "destination": "OMAA",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 2.174,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "LTFJ",
       "destination": "OMDB",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 5.7,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.175,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "LTFJ",
       "destination": "OMSJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 7.9,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.253,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "LTFJ",
       "destination": "OTHH",
-      "weekly_frequency": 0,
+      "weekly_frequency": 2,
       "baseline_weekly": 7.7,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 8
+      "ratio": 0.26,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
@@ -143,30 +191,63 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
+    },
+    {
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "origin": "OJAI",
+      "destination": "LTAI",
+      "weekly_frequency": 2,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
+    },
+    {
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "origin": "OJAI",
+      "destination": "LTCG",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
+    },
+    {
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "origin": "OJAI",
+      "destination": "LTFJ",
+      "weekly_frequency": 1,
+      "baseline_weekly": 0.0,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "OLBA",
       "destination": "LTFJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 4,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 8.696,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "OMAA",
       "destination": "LTFJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 14
+      "ratio": 6.667,
+      "status": "NORMAL",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
@@ -176,7 +257,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -184,11 +265,11 @@
       "carrier_name": "Pegasus Airlines",
       "origin": "OMDB",
       "destination": "LTFJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 6.1,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.164,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
@@ -198,7 +279,7 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
       "ratio": 0.0,
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "silent_days": 14
     },
     {
@@ -206,24 +287,79 @@
       "carrier_name": "Pegasus Airlines",
       "origin": "OMSJ",
       "destination": "LTFJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 8.8,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.114,
+      "status": "MINIMAL",
+      "silent_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "OTHH",
       "destination": "LTFJ",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "baseline_weekly": 7.4,
-      "ratio": 0.0,
-      "status": "UNKNOWN",
-      "silent_days": 7
+      "ratio": 0.136,
+      "status": "MINIMAL",
+      "silent_days": 0
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 87,
+      "scope": "route",
+      "scope_key": "PGT|LTAI|OMSJ",
+      "carrier": "PGT",
+      "detail": "LTAI-OMSJ",
+      "baseline_weekly": 1.4,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Pegasus Airlines",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 89,
+      "scope": "route",
+      "scope_key": "PGT|OMSJ|LTAI",
+      "carrier": "PGT",
+      "detail": "OMSJ-LTAI",
+      "baseline_weekly": 1.4,
+      "last_flight_on": "2026-01-30",
+      "started_on": "2026-01-31",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 192,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Pegasus Airlines",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 88,
+      "scope": "route",
+      "scope_key": "PGT|OMDB|LTAI",
+      "carrier": "PGT",
+      "detail": "OMDB-LTAI",
+      "baseline_weekly": 1.1,
+      "last_flight_on": "2026-01-28",
+      "started_on": "2026-01-29",
+      "detected_on": "2026-08-11",
+      "resumed_on": null,
+      "days_stopped": 194,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Pegasus Airlines",
+      "evidence": [],
+      "superseded_by": null
+    }
+  ],
   "resumed": []
 }
