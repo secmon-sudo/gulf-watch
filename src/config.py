@@ -32,6 +32,20 @@ SUSPENSION_CONFIRM_DAYS = 3
 COVERAGE_OK = 0.70
 COVERAGE_DEGRADED = 0.40      # below this -> all alerts suppressed
 
+# How far back each run re-judges coverage. A day's flights can arrive after
+# the day was first scored -- ingest reads 48h, the backfill writes months --
+# and a verdict that is never revisited goes stale. 14 covers the lookback with
+# room to spare; older days no longer change.
+COVERAGE_RESCORE_DAYS = 14
+
+# How many of the 7 rolling days must have passed the coverage gate before a
+# current-vs-baseline ratio is published at all. Below this the traffic we hold
+# is scaled up from too little: on 2026-08-12 the window held 2 observed days,
+# and dividing two days of flying by a seven-day baseline read Qatar Airways at
+# 23% of normal when it was running at about 80%. Matches the floor
+# report.observed_vs_scheduled has always applied to its own ratio.
+MIN_OBSERVED_DAYS = 5
+
 # Baseline window (frozen, pre-escalation). Change and re-run backfill if you
 # want a different reference period.
 BASELINE_START = os.environ.get("GULFWATCH_BASELINE_START", "2025-11-01")

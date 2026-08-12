@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:33:22+00:00",
+  "generated_at": "2026-08-12T12:50:27+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -7,6 +7,12 @@
     "median_28d": 327.0,
     "score": 1.5,
     "verdict": "ok"
+  },
+  "observation": {
+    "window_days": 7,
+    "observed_days": 2,
+    "min_observed_days": 5,
+    "ratios_published": false
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -19,12 +25,14 @@
   "iata": "XY",
   "country": "SA",
   "weekly_frequency": 3,
+  "weekly_scaled": null,
   "baseline_weekly": 14.0,
   "routes_total": 30,
-  "routes_suspended": 26,
-  "routes_reduced": 1,
-  "ratio": 0.214,
-  "status": "MINIMAL",
+  "routes_suspended": 0,
+  "routes_reduced": 0,
+  "observed_days": 2,
+  "ratio": null,
+  "status": "UNKNOWN",
   "operating": true,
   "stopped": {
     "any": false,
@@ -42,10 +50,12 @@
       "origin": "EDDB",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -53,10 +63,12 @@
       "origin": "HECA",
       "destination": "OBBI",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -64,10 +76,12 @@
       "origin": "HECA",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.8,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -75,10 +89,12 @@
       "origin": "HECA",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -86,10 +102,12 @@
       "origin": "LFML",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -97,10 +115,12 @@
       "origin": "LTCG",
       "destination": "OMDB",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -108,10 +128,12 @@
       "origin": "LTFJ",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.2,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -119,10 +141,12 @@
       "origin": "LTFJ",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -130,10 +154,12 @@
       "origin": "LTFM",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -141,10 +167,12 @@
       "origin": "OBBI",
       "destination": "VABB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -152,10 +180,12 @@
       "origin": "OJAI",
       "destination": "OMDB",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -163,10 +193,12 @@
       "origin": "OMDB",
       "destination": "EBBR",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -174,10 +206,12 @@
       "origin": "OMDB",
       "destination": "EDDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -185,10 +219,12 @@
       "origin": "OMDB",
       "destination": "HE13",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -196,10 +232,12 @@
       "origin": "OMDB",
       "destination": "HE15",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -207,10 +245,12 @@
       "origin": "OMDB",
       "destination": "HEAZ",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -218,10 +258,12 @@
       "origin": "OMDB",
       "destination": "LFML",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -229,10 +271,12 @@
       "origin": "OMDB",
       "destination": "LTFJ",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.6,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -240,10 +284,12 @@
       "origin": "OMDB",
       "destination": "LTFM",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -251,10 +297,12 @@
       "origin": "OMDB",
       "destination": "OEDR",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 4.9,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -262,10 +310,12 @@
       "origin": "OMDB",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -273,10 +323,12 @@
       "origin": "OMDW",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -284,10 +336,12 @@
       "origin": "OTHH",
       "destination": "HE15",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "MINIMAL",
-      "silent_days": 1
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -295,10 +349,12 @@
       "origin": "OTHH",
       "destination": "LTFM",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -306,10 +362,12 @@
       "origin": "OTHH",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -317,10 +375,12 @@
       "origin": "UGTB",
       "destination": "OBBI",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -328,10 +388,12 @@
       "origin": "UGTB",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -339,10 +401,12 @@
       "origin": "UGTB",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -350,10 +414,12 @@
       "origin": "VIDP",
       "destination": "OBBI",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -361,10 +427,12 @@
       "origin": "VIDP",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     }
   ],
   "stop_events": [],

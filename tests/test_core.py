@@ -229,6 +229,124 @@ class TestGnssIntegrity(unittest.TestCase):
         self.assertFalse(position_is_trustworthy({**good, "lat": None}))
 
 
+class _Clock:
+    """A fake clock that never advances on its own, so a burst stays a burst."""
+
+    def __init__(self):
+        self.now = 1000.0
+        self.slept = []
+
+    def monotonic(self):
+        return self.now
+
+    def sleep(self, seconds):
+        self.slept.append(seconds)
+        self.now += seconds
+
+
+class _Resp:
+    def __init__(self, status, payload=None):
+        self.status_code = status
+        self._payload = payload or {}
+
+    def json(self):
+        return self._payload
+
+
+class TestBackendPacing(unittest.TestCase):
+    """The spacing that keeps adsb.lol from 429ing halfway through a sweep.
+
+    This is the failure that does not look like one: when both backends are
+    exhausted _get() returns an empty list, firwatch records a FIR with no
+    carriers, and that reads exactly like empty airspace.
+    """
+
+    def setUp(self):
+        # Reload rather than reach into module state, so the test asserts on
+        # timing alone and would still fail -- on the timing -- against any
+        # implementation that lets the burst through.
+        import importlib
+        from src import adsb_live
+        self.adsb = importlib.reload(adsb_live)
+        self.clock = _Clock()
+        self.time_patch = mock.patch.object(self.adsb, "time", self.clock)
+        self.time_patch.start()
+
+    def tearDown(self):
+        self.time_patch.stop()
+
+    def _serve(self, responses):
+        """Answer each request from `responses`, keyed by backend name.
+
+        A backend the test says nothing about answers 503, so adding one to
+        BACKENDS does not silently change what a test is asserting.
+        """
+        calls = []
+
+        def fake_get(url, **kw):
+            name = next(n for n, base, _ in self.adsb.BACKENDS if url.startswith(base))
+            calls.append((self.clock.now, name))
+            return responses.get(name, _Resp(503))
+
+        return calls, mock.patch.object(self.adsb._session, "get", fake_get)
+
+    def test_successive_calls_to_one_backend_are_spaced(self):
+        ok = {"adsblol": _Resp(200, {"ac": [{"hex": "abc"}]})}
+        calls, patch = self._serve(ok)
+        with patch:
+            for _ in range(4):
+                backend, ac = self.adsb.point(25.25, 55.36, 250)
+                self.assertEqual(backend, "adsblol")
+                self.assertEqual(len(ac), 1)
+
+        # One request a second is what airplanes.live asks for in writing and
+        # what adsb.lol throttles below. Asserted as that contract rather than
+        # against whatever constant the module happens to name, so this fails
+        # on the timing for any implementation that lets the burst through.
+        one_per_second = 1.0
+        gaps = [b[0] - a[0] for a, b in zip(calls, calls[1:])]
+        self.assertEqual(len(calls), 4)
+        for gap in gaps:
+            self.assertGreaterEqual(
+                gap, one_per_second,
+                f"calls {gap:.3f}s apart -- that is the burst that got adsb.lol "
+                "to 429 on 6 of 12 FIR points on 2026-08-10")
+
+    def test_first_call_does_not_wait(self):
+        calls, patch = self._serve({"adsblol": _Resp(200, {"ac": []})})
+        with patch:
+            self.adsb.point(25.25, 55.36, 250)
+        self.assertEqual(self.clock.slept, [])
+
+    def test_fallback_is_not_delayed_by_the_pacing(self):
+        # Each backend is paced on its own clock, so falling through to a
+        # backend we have not called costs nothing. The old code slept 1.1s
+        # here for no reason.
+        calls, patch = self._serve({
+            "adsblol": _Resp(429),
+            "airplaneslive": _Resp(200, {"ac": [{"hex": "abc"}]}),
+        })
+        with patch:
+            backend, ac = self.adsb.point(25.25, 55.36, 250)
+        self.assertEqual(backend, "airplaneslive")
+        self.assertEqual(len(ac), 1)
+        self.assertEqual([n for _, n in calls], ["adsblol", "airplaneslive"])
+        self.assertEqual(self.clock.slept, [])
+
+    def test_all_backends_down_reports_nothing_not_empty_airspace(self):
+        calls, patch = self._serve({
+            "adsblol": _Resp(429), "airplaneslive": _Resp(503),
+        })
+        with patch:
+            backend, ac = self.adsb.point(25.25, 55.36, 250)
+        # firwatch keys its log line off this: "none" is the tell that the
+        # zero below it is a source failure and not empty sky.
+        self.assertEqual(backend, "none")
+        self.assertEqual(ac, [])
+
+
+
+
 class TestSuspensionEvents(unittest.TestCase):
     """The stop/resume state machine, including the ways it must NOT fire."""
 
@@ -1134,6 +1252,130 @@ class TestChangeTracking(unittest.TestCase):
             self.conn, self._rows("flying", {"OMDB": 5, "OKBK": 2}), True)
         self.assertEqual([c["kind"] for c in out["changes"]], [])
         self.assertFalse(out["airports_compared"])
+
+
+class TestBlindWeekEndToEnd(unittest.TestCase):
+    """The 2026-08-12 shape, run through the whole pipeline at once.
+
+    Three separate defects shipped that day and every one of them passed its
+    own unit tests. What none of them was asked was the composed question:
+    given a frozen baseline, a months-long hole where nobody looked, and a week
+    where the allowance was spent, does the pipeline claim anything?
+
+    It must not. Not a suspension, not a SUSPENDED status, not an alert.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.today = date.today()
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _leg(self, carrier, day, i):
+        return {
+            "icao24": f"bb{i:05x}", "first_seen": 1700000000 + i * 60,
+            "last_seen": None, "callsign": f"{carrier}{i}", "carrier": carrier,
+            "flight_number": i, "dep_icao": "OMDB", "arr_icao": "OTHH",
+            "is_freight": 0, "dep_date": day.isoformat(), "source": "t",
+            "ingested_at": 0,
+        }
+
+    def _build(self):
+        """A baseline window, then a 120-day hole, then a mostly-blind week."""
+        from src import suspensions
+        rows, i = [], 0
+
+        # 1. The frozen reference period: everyone flying, every day observed.
+        base_end = self.today - timedelta(days=127)
+        for off in range(30):
+            d = base_end - timedelta(days=off)
+            for _ in range(10):
+                i += 1
+                rows.append(self._leg("UAE", d, i))
+            for _ in range(3):
+                i += 1
+                rows.append(self._leg("GFA", d, i))
+
+        # 2. A 120-day hole. No flights, and -- the point -- no coverage rows,
+        #    because no run ever looked. This is Feb-Jul 2026.
+
+        # 3. The last week: controls flying on two days only. The other five
+        #    are the allowance-exhausted days, seen by nobody.
+        observed = [self.today, self.today - timedelta(days=1)]
+        for d in observed:
+            for _ in range(10):
+                i += 1
+                rows.append(self._leg("UAE", d, i))
+
+        db.upsert_flights(self.conn, rows)
+        metrics.rebuild_daily(self.conn)
+        self.conn.execute(
+            "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,30,'a','b')")
+        self.conn.execute(
+            "INSERT INTO baseline VALUES ('UAE','OMDB','OTHH',70,30,'a','b')")
+
+        # Score only the days a run would have scored: the baseline window and
+        # the two days of the last week that produced data.
+        for off in range(30):
+            metrics.score_coverage(self.conn, base_end - timedelta(days=off))
+        for d in observed:
+            metrics.score_coverage(self.conn, d)
+        self.conn.commit()
+        return suspensions
+
+    def test_a_hole_in_the_calendar_claims_nothing(self):
+        suspensions = self._build()
+
+        cov = metrics.coverage_map(self.conn)
+        self.assertEqual(metrics.verdict_for(cov, (self.today - timedelta(days=60)).isoformat()),
+                         metrics.NEVER_OBSERVED,
+                         "a day in the hole must be named, not defaulted")
+
+        # GFA has not flown since the baseline window -- 127 days ago -- but
+        # nobody looked for 120 of them.
+        events = suspensions.detect(self.conn, self.today)
+        self.assertEqual(
+            events["opened"], 0,
+            "the hole between baseline and observation was read as evidence; "
+            "this is the 270-suspension failure of 2026-08-12")
+
+        report = metrics.route_report(self.conn, self.today)
+        self.assertEqual(report["observed_days"], 2)
+        self.assertFalse(report["ratios_published"])
+        for r in report["routes"]:
+            self.assertEqual(
+                r["status"], "UNKNOWN",
+                f"{r['carrier']} was scored on a window we barely saw")
+            self.assertIsNone(r["ratio"])
+        self.assertEqual(metrics.alerts_from(report), [])
+
+    def test_it_starts_answering_once_we_have_looked(self):
+        """The same pipeline must not be permanently mute -- observe, and it speaks."""
+        suspensions = self._build()
+        # Five observed days of controls flying, GFA absent throughout.
+        rows, i = [], 90000
+        for off in range(5):
+            d = self.today - timedelta(days=off)
+            for _ in range(10):
+                i += 1
+                rows.append(self._leg("UAE", d, i))
+        db.upsert_flights(self.conn, rows)
+        metrics.rebuild_daily(self.conn)
+        for off in range(5):
+            metrics.score_coverage(self.conn, self.today - timedelta(days=off))
+        self.conn.commit()
+
+        report = metrics.route_report(self.conn, self.today)
+        self.assertGreaterEqual(report["observed_days"], config.MIN_OBSERVED_DAYS)
+        self.assertTrue(report["ratios_published"])
+        uae = [r for r in report["routes"] if r["carrier"] == "UAE"][0]
+        self.assertEqual(uae["status"], "NORMAL",
+                         "scaling five observed days to a week should land on baseline")
+        gfa = [r for r in report["routes"] if r["carrier"] == "GFA"][0]
+        self.assertIn(gfa["status"], ("SUSPENDED", "MINIMAL"))
 
 
 if __name__ == "__main__":

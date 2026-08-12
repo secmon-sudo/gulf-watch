@@ -52,6 +52,15 @@ def _envelope(report: dict) -> dict:
         "generated_at": datetime.now(tz=timezone.utc).isoformat(timespec="seconds"),
         "as_of_day": report["day"],
         "coverage": report["coverage"],
+        # How much of the rolling window we actually saw. Every ratio in the
+        # payload is scaled by this, and withheld entirely when it is short --
+        # a reader who cannot see it cannot tell a cut from our own downtime.
+        "observation": {
+            "window_days": report["window_days"],
+            "observed_days": report["observed_days"],
+            "min_observed_days": report["min_observed_days"],
+            "ratios_published": report["ratios_published"],
+        },
         "attribution": ATTRIBUTION,
     }
 
@@ -78,12 +87,14 @@ def build(out: Path | None = None) -> dict:
             "iata": carriers.get(r["carrier"], {}).get("iata"),
             "country": carriers.get(r["carrier"], {}).get("country"),
             "weekly_frequency": 0,
+            "weekly_scaled": 0.0,
             "baseline_weekly": 0.0,
             "routes_total": 0,
             "routes_suspended": 0,
             "routes_reduced": 0,
         })
         c["weekly_frequency"] += r["weekly_frequency"]
+        c["weekly_scaled"] += r["weekly_scaled"] or 0.0
         c["baseline_weekly"] += r["baseline_weekly"]
         c["routes_total"] += 1
         if r["status"] == "SUSPENDED":
@@ -93,7 +104,14 @@ def build(out: Path | None = None) -> dict:
 
     for code, c in by_carrier.items():
         c["baseline_weekly"] = round(c["baseline_weekly"], 1)
-        status, ratio = metrics.classify(c["weekly_frequency"], c["baseline_weekly"])
+        c["observed_days"] = report["observed_days"]
+        if report["ratios_published"]:
+            # Compare like with like: the scaled week against a weekly baseline.
+            c["weekly_scaled"] = round(c["weekly_scaled"], 1)
+            status, ratio = metrics.classify(c["weekly_scaled"], c["baseline_weekly"])
+        else:
+            c["weekly_scaled"] = None
+            status, ratio = "UNKNOWN", None
         c["ratio"] = ratio
         c["status"] = status if report["coverage"]["verdict"] == "ok" else "UNKNOWN"
 

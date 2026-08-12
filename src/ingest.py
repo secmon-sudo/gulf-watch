@@ -98,6 +98,15 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
 
     # Score the last settled day, not the half-finished one we are standing in.
     ref = metrics.reference_day()
+
+    # And re-judge the days behind it. A day's flights routinely arrive after
+    # the day was first scored -- this run reads 48h back, the backfill writes
+    # whole months -- and until now that first verdict was never revisited.
+    # 2026-08-10 sat marked `outage` with 554 control flights in the table.
+    # Everything downstream now gates on coverage, so a stale verdict silently
+    # deletes a day we can see.
+    rescored = metrics.rescore_recent(conn, ref)
+
     coverage = metrics.score_coverage(conn, ref)
 
     # Stop/resume detection runs after coverage is scored for today, because it
@@ -106,7 +115,8 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
     corro = corroborate.enrich(conn) if events["opened"] else {"checked": 0}
 
     detail = (f"legs={total} coverage={coverage['verdict']}"
-              f"({coverage['score']}) stopped={events['opened']} "
+              f"({coverage['score']}) rescored={len(rescored)} "
+              f"stopped={events['opened']} "
               f"resumed={events['resumed']} czib_changes={len(czib_changes)} "
               f"sched={sched['fetched']}"
               + ("(no key)" if sched["no_key"] else "")

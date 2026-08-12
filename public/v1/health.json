@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:33:22+00:00",
+  "generated_at": "2026-08-12T12:50:27+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -7,6 +7,12 @@
     "median_28d": 327.0,
     "score": 1.5,
     "verdict": "ok"
+  },
+  "observation": {
+    "window_days": 7,
+    "observed_days": 2,
+    "min_observed_days": 5,
+    "ratios_published": false
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",

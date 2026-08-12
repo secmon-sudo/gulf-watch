@@ -74,7 +74,13 @@ MAX_WEB_SEARCHES = 6
 # Coverage-passing days needed before an observed-vs-scheduled percentage is
 # worth printing. Fewer than this and the report shows the two raw numbers and
 # withholds the ratio.
-MIN_RATIO_DAYS = 5
+#
+# Shared with the JSON API rather than duplicated. This rule was written here
+# first and metrics.route_report went without it for months, which is how the
+# API came to publish Qatar Airways at 23% of baseline off two observed days
+# while this report withheld the same figure as unsupportable. One constant,
+# one answer.
+MIN_RATIO_DAYS = config.MIN_OBSERVED_DAYS
 
 # Words that mean the article is about the region rather than this carrier.
 GENERIC = re.compile(r"\b(which airlines|airlines (?:have|suspend|resume|cancel)|"
@@ -1342,7 +1348,14 @@ def render(data: dict) -> str:
     <p><b>Veri yokluğu, uçuş yokluğu değildir.</b> Suudi Arabistan, Kuveyt, Irak
     ve İran üzerinde ADS-B kapsaması çok zayıf; bir havayolu oralarda pekâlâ
     uçuyor olup burada hiç sefer göstermeyebilir. Bu yüzden görülmeyen her
-    havayolu otomatik olarak “Bilinmiyor” sayılır, “Durdurdu” değil.</p></div>
+    havayolu otomatik olarak “Bilinmiyor” sayılır, “Durdurdu” değil.</p>
+    <p>Aynı kural <b>güne</b> de uygulanır. Her gün üç halden birindedir:
+    <b>bakıldı ve veri sağlam</b>, <b>bakıldı ama alıcılar zayıftı</b>, ya da
+    <b>hiç bakılmadı</b>. Yalnızca ilki sessizlik sayılır — bir havayolunun
+    “kaç gündür görünmediği” yalnızca baktığımız günlerden hesaplanır, ve
+    haftalık sefer sayıları yalnızca o günlere göre ölçeklenir. Baktığımız gün
+    sayısı {MIN_RATIO_DAYS}’in altındaysa oran hiç yayımlanmaz. Bu ayrımın olmadığı
+    bir sürüm, verinin bittiği yeri uçuşların bittiği yer sanmıştı.</p></div>
 </section>
 
 <section>

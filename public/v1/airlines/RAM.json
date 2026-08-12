@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:33:22+00:00",
+  "generated_at": "2026-08-12T12:50:27+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -7,6 +7,12 @@
     "median_28d": 327.0,
     "score": 1.5,
     "verdict": "ok"
+  },
+  "observation": {
+    "window_days": 7,
+    "observed_days": 2,
+    "min_observed_days": 5,
+    "ratios_published": false
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -19,12 +25,14 @@
   "iata": "AT",
   "country": "MA",
   "weekly_frequency": 5,
+  "weekly_scaled": null,
   "baseline_weekly": 4.2,
   "routes_total": 15,
-  "routes_suspended": 11,
+  "routes_suspended": 0,
   "routes_reduced": 0,
-  "ratio": 1.19,
-  "status": "NORMAL",
+  "observed_days": 2,
+  "ratio": null,
+  "status": "UNKNOWN",
   "operating": true,
   "stopped": {
     "any": false,
@@ -42,10 +50,12 @@
       "origin": "CYUL",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.4,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -53,10 +63,12 @@
       "origin": "GMMN",
       "destination": "OMDB",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -64,10 +76,12 @@
       "origin": "GMMN",
       "destination": "OTHH",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -75,10 +89,12 @@
       "origin": "GOBD",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -86,10 +102,12 @@
       "origin": "KIAD",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.4,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -97,10 +115,12 @@
       "origin": "KJFK",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -108,10 +128,12 @@
       "origin": "KJFK",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -119,10 +141,12 @@
       "origin": "KMIA",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -130,10 +154,12 @@
       "origin": "OMDB",
       "destination": "GBYD",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -141,10 +167,12 @@
       "origin": "OMDB",
       "destination": "GMMN",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -152,10 +180,12 @@
       "origin": "OMDB",
       "destination": "GOBD",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.9,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -163,10 +193,12 @@
       "origin": "OTHH",
       "destination": "CYUL",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -174,10 +206,12 @@
       "origin": "OTHH",
       "destination": "GMMN",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -185,10 +219,12 @@
       "origin": "OTHH",
       "destination": "KIAD",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -196,10 +232,12 @@
       "origin": "OTHH",
       "destination": "KJFK",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.7,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     }
   ],
   "stop_events": [],

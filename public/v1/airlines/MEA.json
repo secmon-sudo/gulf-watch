@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:33:22+00:00",
+  "generated_at": "2026-08-12T12:50:27+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -7,6 +7,12 @@
     "median_28d": 327.0,
     "score": 1.5,
     "verdict": "ok"
+  },
+  "observation": {
+    "window_days": 7,
+    "observed_days": 2,
+    "min_observed_days": 5,
+    "ratios_published": false
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -19,12 +25,14 @@
   "iata": "ME",
   "country": "LB",
   "weekly_frequency": 75,
+  "weekly_scaled": null,
   "baseline_weekly": 6.0,
   "routes_total": 51,
-  "routes_suspended": 9,
+  "routes_suspended": 0,
   "routes_reduced": 0,
-  "ratio": 12.5,
-  "status": "NORMAL",
+  "observed_days": 2,
+  "ratio": null,
+  "status": "UNKNOWN",
   "operating": true,
   "stopped": {
     "any": false,
@@ -42,10 +50,12 @@
       "origin": "EBBR",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -53,10 +63,12 @@
       "origin": "EBMB",
       "destination": "OJAI",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -64,10 +76,12 @@
       "origin": "EBMB",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -75,10 +89,12 @@
       "origin": "EDDB",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -86,10 +102,12 @@
       "origin": "EDDF",
       "destination": "OLBA",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -97,10 +115,12 @@
       "origin": "EDDL",
       "destination": "OLBA",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -108,10 +128,12 @@
       "origin": "EGLL",
       "destination": "OLBA",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -119,10 +141,12 @@
       "origin": "EGLL",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -130,10 +154,12 @@
       "origin": "HECA",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -141,10 +167,12 @@
       "origin": "LCLK",
       "destination": "OLBA",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -152,10 +180,12 @@
       "origin": "LEBL",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -163,10 +193,12 @@
       "origin": "LEMD",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -174,10 +206,12 @@
       "origin": "LFMN",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -185,10 +219,12 @@
       "origin": "LFPG",
       "destination": "OLBA",
       "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -196,10 +232,12 @@
       "origin": "LGAV",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -207,10 +245,12 @@
       "origin": "LGMK",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -218,10 +258,12 @@
       "origin": "LIMC",
       "destination": "OJAI",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -229,10 +271,12 @@
       "origin": "LIRF",
       "destination": "OLBA",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -240,10 +284,12 @@
       "origin": "LSGG",
       "destination": "OJAI",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -251,10 +297,12 @@
       "origin": "LSGG",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -262,10 +310,12 @@
       "origin": "LTFM",
       "destination": "OLBA",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 20.0,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -273,10 +323,12 @@
       "origin": "OJAI",
       "destination": "LFPG",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -284,10 +336,12 @@
       "origin": "OJAI",
       "destination": "LTFM",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -295,10 +349,12 @@
       "origin": "OJAI",
       "destination": "OLBA",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -306,10 +362,12 @@
       "origin": "OKBK",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -317,10 +375,12 @@
       "origin": "OLBA",
       "destination": "EBBR",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -328,10 +388,12 @@
       "origin": "OLBA",
       "destination": "EDDB",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -339,10 +401,12 @@
       "origin": "OLBA",
       "destination": "EDDF",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 6.667,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -350,10 +414,12 @@
       "origin": "OLBA",
       "destination": "EDDL",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -361,10 +427,12 @@
       "origin": "OLBA",
       "destination": "EGLL",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -372,10 +440,12 @@
       "origin": "OLBA",
       "destination": "HEEM",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -383,10 +453,12 @@
       "origin": "OLBA",
       "destination": "LCLK",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 13.043,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -394,10 +466,12 @@
       "origin": "OLBA",
       "destination": "LEBL",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -405,10 +479,12 @@
       "origin": "OLBA",
       "destination": "LFMN",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -416,10 +492,12 @@
       "origin": "OLBA",
       "destination": "LFPG",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -427,10 +505,12 @@
       "origin": "OLBA",
       "destination": "LGAV",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 6.667,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -438,10 +518,12 @@
       "origin": "OLBA",
       "destination": "LIRF",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -449,10 +531,12 @@
       "origin": "OLBA",
       "destination": "LTFM",
       "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 0.4,
-      "ratio": 10.526,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -460,10 +544,12 @@
       "origin": "OLBA",
       "destination": "OJAI",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -471,10 +557,12 @@
       "origin": "OLBA",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -482,10 +570,12 @@
       "origin": "OLBA",
       "destination": "OMAA",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -493,10 +583,12 @@
       "origin": "OLBA",
       "destination": "OMDB",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -504,10 +596,12 @@
       "origin": "OLBA",
       "destination": "OTHH",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -515,10 +609,12 @@
       "origin": "OLBA",
       "destination": "UGTB",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -526,10 +622,12 @@
       "origin": "OMAA",
       "destination": "OLBA",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -537,10 +635,12 @@
       "origin": "OMDB",
       "destination": "OLBA",
       "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 13.043,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -548,10 +648,12 @@
       "origin": "OMDB",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -559,10 +661,12 @@
       "origin": "OMDB",
       "destination": "Z19O",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.0,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -570,10 +674,12 @@
       "origin": "OTHH",
       "destination": "OLBA",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -581,10 +687,12 @@
       "origin": "OTHH",
       "destination": "Z19O",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.4,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -592,10 +700,12 @@
       "origin": "UGTB",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     }
   ],
   "stop_events": [],

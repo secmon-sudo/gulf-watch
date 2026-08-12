@@ -7,11 +7,14 @@ data, and conflating them is how a monitor loses its credibility.
 
 from __future__ import annotations
 
+import logging
 import sqlite3
 import statistics
 from datetime import date, datetime, timedelta, timezone
 
 from . import config
+
+LOG = logging.getLogger("gulfwatch.metrics")
 
 
 def today_utc() -> date:
@@ -134,13 +137,19 @@ def score_coverage(conn: sqlite3.Connection, day: date) -> dict:
 
 # --- Frequency -------------------------------------------------------------
 
+WINDOW_DAYS = 7
+
+
 def rolling_weekly(conn: sqlite3.Connection, day: date) -> dict[tuple, int]:
     """Departures in the trailing 7 days per (carrier, dep, arr).
+
+    Raw counts, deliberately: this reports what was seen, and route_report
+    scales it by how many of the seven days were actually observed.
 
     Weekly, not daily, on purpose: a large share of these routes run 2-4x per
     week, so a daily count is mostly day-of-week noise.
     """
-    start = (day - timedelta(days=6)).isoformat()
+    start = (day - timedelta(days=WINDOW_DAYS - 1)).isoformat()
     rows = conn.execute(
         """SELECT carrier, dep_icao, arr_icao, SUM(departures) AS n
            FROM daily_route WHERE day BETWEEN ? AND ?
@@ -172,9 +181,62 @@ def classify(current: float, baseline: float) -> tuple[str, float | None]:
     return status, round(ratio, 3)
 
 
+# A day with no coverage row is not a quiet day, it is a day nobody looked at.
+# Three separate bugs came from letting a missing row default to "ok", so the
+# state has a name and callers ask for it rather than inferring it.
+NEVER_OBSERVED = "never_observed"
+
+
 def coverage_map(conn: sqlite3.Connection) -> dict[str, str]:
     return {r["day"]: r["verdict"]
             for r in conn.execute("SELECT day, verdict FROM coverage").fetchall()}
+
+
+def verdict_for(cov: dict[str, str], day: str) -> str:
+    """The coverage verdict for `day`, naming the absent case instead of hiding it."""
+    return cov.get(day, NEVER_OBSERVED)
+
+
+def was_observed(cov: dict[str, str], day: str) -> bool:
+    """True only if we looked at `day` and what we saw passed the gate."""
+    return cov.get(day) == "ok"
+
+
+def observed_days(cov: dict[str, str], day: date, window: int) -> list[str]:
+    """Which of the `window` days ending on `day` we actually observed."""
+    return [d for d in ((day - timedelta(days=o)).isoformat() for o in range(window))
+            if was_observed(cov, d)]
+
+
+def rescore_recent(conn: sqlite3.Connection, day: date,
+                   days: int | None = None) -> list[tuple[str, str, str]]:
+    """Re-judge coverage for recent days, because their data can arrive later.
+
+    score_coverage only ever wrote a verdict for the run's own reference day.
+    Ingest reads a 48h window and the backfill writes months at a time, so a
+    day routinely gains its flights after it was already judged -- and the
+    judgement was never revisited. Measured 2026-08-12: 2026-08-10 held 1147
+    flight rows and 554 control flights while its coverage row still read
+    `control_flights=0, verdict=outage`, written when the allowance was spent.
+
+    That was harmless while nothing consulted the table. It is not harmless now
+    that silence is gated on it: a stale `outage` permanently excludes a day we
+    can see perfectly well.
+    """
+    days = days or config.COVERAGE_RESCORE_DAYS
+    changed = []
+    for offset in range(days):
+        d = day - timedelta(days=offset)
+        row = conn.execute("SELECT verdict FROM coverage WHERE day = ?",
+                           (d.isoformat(),)).fetchone()
+        before = row["verdict"] if row else NEVER_OBSERVED
+        after = score_coverage(conn, d)["verdict"]
+        if after != before:
+            changed.append((d.isoformat(), before, after))
+    conn.commit()
+    for d, before, after in changed:
+        LOG.info("coverage rescored %s: %s -> %s", d, before, after)
+    return changed
 
 
 def silent_days(conn: sqlite3.Connection, key: tuple, day: date,
@@ -228,15 +290,34 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     tracked = set(config.tracked_carriers())
     cov = coverage_map(conn)          # read once, not once per route
 
+    # The rolling window is seven calendar days; how many of them we actually
+    # saw is a different number, and every ratio below depends on it. Comparing
+    # traffic from two observed days against a seven-day baseline is not a
+    # measurement of a cut, it is a measurement of our own downtime -- on
+    # 2026-08-12 it published Qatar Airways, Air Arabia and flydubai at 20-30%
+    # of normal while all three were flying about their usual schedule.
+    seen = observed_days(cov, day, WINDOW_DAYS)
+    enough = len(seen) >= config.MIN_OBSERVED_DAYS
+    scale = WINDOW_DAYS / len(seen) if seen else None
+
     keys = set(base) | set(current)
     routes = []
     for key in sorted(keys):
         carrier, dep, arr = key
         if carrier not in tracked:
             continue
-        cur = float(current.get(key, 0))
+        raw = float(current.get(key, 0))
         bl = float(base.get(key, 0.0))
-        status, ratio = classify(cur, bl)
+
+        if enough:
+            # Scale what we saw up to a full week before comparing.
+            status, ratio = classify(raw * scale, bl)
+        else:
+            # Withhold rather than publish a percentage the window cannot
+            # carry. The raw count and observed_days still go out, so a reader
+            # can see exactly what the silence rests on.
+            status, ratio = "UNKNOWN", None
+
         quiet = silent_days(conn, key, day, cov=cov) if status == "SUSPENDED" else 0
 
         # A route is only *called* suspended after it has been quiet long
@@ -252,16 +333,22 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
             "carrier_name": carriers.get(carrier, {}).get("name", carrier),
             "origin": dep,
             "destination": arr,
-            "weekly_frequency": int(cur),
+            "weekly_frequency": int(raw),
+            "weekly_scaled": round(raw * scale, 1) if enough else None,
             "baseline_weekly": round(bl, 1),
             "ratio": ratio,
             "status": status,
             "silent_days": quiet,
+            "observed_days": len(seen),
         })
 
     return {
         "day": day.isoformat(),
         "coverage": coverage,
+        "observed_days": len(seen),
+        "window_days": WINDOW_DAYS,
+        "min_observed_days": config.MIN_OBSERVED_DAYS,
+        "ratios_published": enough,
         "routes": routes,
     }
 

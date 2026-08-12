@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:33:22+00:00",
+  "generated_at": "2026-08-12T12:50:27+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -7,6 +7,12 @@
     "median_28d": 327.0,
     "score": 1.5,
     "verdict": "ok"
+  },
+  "observation": {
+    "window_days": 7,
+    "observed_days": 2,
+    "min_observed_days": 5,
+    "ratios_published": false
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -19,12 +25,14 @@
   "iata": "CZ",
   "country": "CN",
   "weekly_frequency": 0,
+  "weekly_scaled": null,
   "baseline_weekly": 10.1,
   "routes_total": 15,
-  "routes_suspended": 15,
+  "routes_suspended": 0,
   "routes_reduced": 0,
-  "ratio": 0.0,
-  "status": "SUSPENDED",
+  "observed_days": 2,
+  "ratio": null,
+  "status": "UNKNOWN",
   "operating": true,
   "stopped": {
     "any": false,
@@ -42,10 +50,12 @@
       "origin": "EGLL",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.9,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -53,10 +63,12 @@
       "origin": "EGLL",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -64,10 +76,12 @@
       "origin": "ELLX",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -75,10 +89,12 @@
       "origin": "LEMD",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -86,10 +102,12 @@
       "origin": "LHBP",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -97,10 +115,12 @@
       "origin": "NZAA",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -108,10 +128,12 @@
       "origin": "OMDB",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.7,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -119,10 +141,12 @@
       "origin": "OMDB",
       "destination": "RCPO",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -130,10 +154,12 @@
       "origin": "OMDB",
       "destination": "RCTP",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -141,10 +167,12 @@
       "origin": "OMDB",
       "destination": "ZGSZ",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -152,10 +180,12 @@
       "origin": "OTHH",
       "destination": "NZAA",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -163,10 +193,12 @@
       "origin": "OTHH",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.6,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -174,10 +206,12 @@
       "origin": "RJTT",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -185,10 +219,12 @@
       "origin": "ZGSZ",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.6,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -196,10 +232,12 @@
       "origin": "ZGSZ",
       "destination": "OTHH",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.6,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     }
   ],
   "stop_events": [],

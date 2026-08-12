@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:33:22+00:00",
+  "generated_at": "2026-08-12T12:50:27+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -7,6 +7,12 @@
     "median_28d": 327.0,
     "score": 1.5,
     "verdict": "ok"
+  },
+  "observation": {
+    "window_days": 7,
+    "observed_days": 2,
+    "min_observed_days": 5,
+    "ratios_published": false
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -19,12 +25,14 @@
   "iata": "MS",
   "country": "EG",
   "weekly_frequency": 14,
+  "weekly_scaled": null,
   "baseline_weekly": 8.6,
   "routes_total": 31,
-  "routes_suspended": 18,
-  "routes_reduced": 1,
-  "ratio": 1.628,
-  "status": "NORMAL",
+  "routes_suspended": 0,
+  "routes_reduced": 0,
+  "observed_days": 2,
+  "ratio": null,
+  "status": "UNKNOWN",
   "operating": true,
   "stopped": {
     "any": false,
@@ -42,10 +50,12 @@
       "origin": "EDDM",
       "destination": "OMSJ",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -53,10 +63,12 @@
       "origin": "HECA",
       "destination": "OBBI",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -64,10 +76,12 @@
       "origin": "HECA",
       "destination": "OLBA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -75,10 +89,12 @@
       "origin": "HECA",
       "destination": "OMDB",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 1.6,
-      "ratio": 0.625,
-      "status": "REDUCED",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -86,10 +102,12 @@
       "origin": "HECA",
       "destination": "OMSJ",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.5,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -97,10 +115,12 @@
       "origin": "HECA",
       "destination": "OTHH",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.5,
-      "ratio": 2.174,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -108,10 +128,12 @@
       "origin": "LEBL",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -119,10 +141,12 @@
       "origin": "LEMD",
       "destination": "OMDB",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.6,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -130,10 +154,12 @@
       "origin": "LEMD",
       "destination": "OMSJ",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -141,10 +167,12 @@
       "origin": "OBBI",
       "destination": "HE15",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.2,
-      "ratio": 4.348,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -152,10 +180,12 @@
       "origin": "OBBI",
       "destination": "HECA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -163,10 +193,12 @@
       "origin": "OJAI",
       "destination": "HEAZ",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -174,10 +206,12 @@
       "origin": "OMAA",
       "destination": "HECA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -185,10 +219,12 @@
       "origin": "OMDB",
       "destination": "FAOR",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -196,10 +232,12 @@
       "origin": "OMDB",
       "destination": "HE12",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -207,10 +245,12 @@
       "origin": "OMDB",
       "destination": "HE13",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -218,10 +258,12 @@
       "origin": "OMDB",
       "destination": "HE15",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -229,10 +271,12 @@
       "origin": "OMDB",
       "destination": "HE37",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.4,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -240,10 +284,12 @@
       "origin": "OMDB",
       "destination": "HEAZ",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 6.667,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -251,10 +297,12 @@
       "origin": "OMDB",
       "destination": "HECA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 6.667,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -262,10 +310,12 @@
       "origin": "OMDB",
       "destination": "LEMD",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -273,10 +323,12 @@
       "origin": "OMSJ",
       "destination": "HE13",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.4,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -284,10 +336,12 @@
       "origin": "OMSJ",
       "destination": "HE37",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -295,10 +349,12 @@
       "origin": "OMSJ",
       "destination": "HECA",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -306,10 +362,12 @@
       "origin": "OTHH",
       "destination": "EGCC",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.3,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -317,10 +375,12 @@
       "origin": "OTHH",
       "destination": "HE13",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.6,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -328,10 +388,12 @@
       "origin": "OTHH",
       "destination": "HE15",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 6.667,
-      "status": "NORMAL",
-      "silent_days": 0
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -339,10 +401,12 @@
       "origin": "OTHH",
       "destination": "HE37",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -350,10 +414,12 @@
       "origin": "OTHH",
       "destination": "HECA",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -361,10 +427,12 @@
       "origin": "OTHH",
       "destination": "HEEM",
       "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "ratio": null,
-      "status": "NEW",
-      "silent_days": 0
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -372,10 +440,12 @@
       "origin": "OTHH",
       "destination": "OKBK",
       "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 0.1,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 3
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     }
   ],
   "stop_events": [],

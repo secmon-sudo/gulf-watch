@@ -102,8 +102,9 @@ def _daily_counts(conn, scope: str, key: str) -> dict[str, int]:
 
 
 def _coverage_map(conn) -> dict[str, str]:
-    return {r["day"]: r["verdict"]
-            for r in conn.execute("SELECT day, verdict FROM coverage").fetchall()}
+    # One definition of "did we look", shared with metrics, so the two modules
+    # that measure silence cannot drift apart on what an absent day means.
+    return metrics.coverage_map(conn)
 
 
 def silence(counts: dict[str, int], cov: dict[str, str], day: date) -> dict:
@@ -127,7 +128,7 @@ def silence(counts: dict[str, int], cov: dict[str, str], day: date) -> dict:
     for offset in range(MAX_LOOKBACK):
         d = day - timedelta(days=offset)
         key = d.isoformat()
-        if cov.get(key) != "ok":
+        if not metrics.was_observed(cov, key):
             skipped += 1
             continue
         if counts.get(key, 0) > 0:
@@ -148,7 +149,7 @@ def first_flight_after(counts: dict[str, int], start: str) -> str | None:
 def detect(conn, day: date | None = None) -> dict:
     day = day or metrics.reference_day()
     cov = _coverage_map(conn)
-    if cov.get(day.isoformat(), "ok") != "ok":
+    if not metrics.was_observed(cov, day.isoformat()):
         LOG.warning("coverage not ok for %s; suspension state left untouched", day)
         return {"opened": 0, "resumed": 0, "skipped": True,
                 "opened_events": [], "resumed_events": []}
