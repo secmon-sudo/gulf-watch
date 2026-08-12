@@ -112,13 +112,22 @@ def silence(counts: dict[str, int], cov: dict[str, str], day: date) -> dict:
     Days with bad coverage are skipped entirely -- they do not count as silence
     and they do not reset it. This is the difference between "they stopped on
     the 14th" and "our receivers died on the 14th".
+
+    A day with NO coverage row is skipped for the same reason, and this is not
+    a detail. It used to default to "ok", which read a day nobody looked at as
+    a day that was looked at and found empty. The baseline harvest ends
+    2026-01-31 and observation began 2026-08-01, so every scope had a silent
+    stretch of about 190 unlooked-at days behind it. On 2026-08-12, the first
+    run whose coverage gate passed, that opened 270 suspensions at once --
+    7 whole carriers "stopped" since January, at `confidence: observed`, off a
+    hole in the calendar. Absent is not empty.
     """
     silent = skipped = 0
     last_flight = None
     for offset in range(MAX_LOOKBACK):
         d = day - timedelta(days=offset)
         key = d.isoformat()
-        if cov.get(key, "ok") != "ok":
+        if cov.get(key) != "ok":
             skipped += 1
             continue
         if counts.get(key, 0) > 0:

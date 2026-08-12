@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:10:57+00:00",
+  "generated_at": "2026-08-12T12:24:01+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -27,15 +27,13 @@
   "status": "REDUCED",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "OMDB-LTFM"
-    ],
-    "since": "2026-01-28",
-    "days_stopped": 195,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -314,25 +312,6 @@
       "silent_days": 14
     }
   ],
-  "stop_events": [
-    {
-      "id": 143,
-      "scope": "route",
-      "scope_key": "SVA|OMDB|LTFM",
-      "carrier": "SVA",
-      "detail": "OMDB-LTFM",
-      "baseline_weekly": 1.4,
-      "last_flight_on": "2026-01-27",
-      "started_on": "2026-01-28",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 195,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Saudia",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

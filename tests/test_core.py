@@ -180,8 +180,6 @@ class TestGnssIntegrity(unittest.TestCase):
         self.assertFalse(position_is_trustworthy({**good, "lat": None}))
 
 
-
-
 class TestSuspensionEvents(unittest.TestCase):
     """The stop/resume state machine, including the ways it must NOT fire."""
 
@@ -234,6 +232,38 @@ class TestSuspensionEvents(unittest.TestCase):
             self.conn.execute("UPDATE coverage SET verdict='outage' WHERE day=?",
                               ((self.today - timedelta(days=bad)).isoformat(),))
         self.conn.commit()
+
+    def test_a_day_nobody_looked_at_is_not_a_silent_day(self):
+        """The 2026-08-12 blow-up: 270 stops opened out of a hole in the data.
+
+        The baseline harvest ends 2026-01-31 and observation began 2026-08-01.
+        Every day in between has no coverage row because no run ever covered
+        it. Defaulting those to "ok" made ~190 unobserved days read as ~190
+        days of proven silence, which is past every threshold, so whole
+        carriers were published as STOPPED since January at confidence
+        `observed`.
+        """
+        from src.suspensions import silence
+        today = date(2026, 8, 12)
+        last_seen = date(2026, 1, 31)
+
+        # Flew every day of the baseline window, and it was observed.
+        counts = {(last_seen - timedelta(days=i)).isoformat(): 3
+                  for i in range(30)}
+        cov = {d: "ok" for d in counts}
+        # Then a six-month hole nobody looked at -- no coverage rows at all.
+        # Then three observed days this month with no flight on them.
+        for i in range(3):
+            cov[(today - timedelta(days=i)).isoformat()] = "ok"
+
+        s = silence(counts, cov, today)
+        self.assertEqual(
+            s["silent_days"], 3,
+            "unobserved days were counted as silence -- that is the bug that "
+            "published 270 suspensions off a gap in the calendar")
+        self.assertEqual(s["last_flight_on"], last_seen.isoformat())
+        # The hole is reported as what it is, rather than as evidence.
+        self.assertGreater(s["coverage_days_skipped"], 150)
 
     def test_opens_with_correct_start_date(self):
         self._fill(silent_for=11)

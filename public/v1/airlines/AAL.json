@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:10:57+00:00",
+  "generated_at": "2026-08-12T12:24:01+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -25,21 +25,15 @@
   "routes_reduced": 0,
   "ratio": 0.0,
   "status": "SUSPENDED",
-  "operating": false,
+  "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "region",
-    "airports_dropped": [
-      "KPHL",
-      "OTHH"
-    ],
-    "routes_dropped": [
-      "KPHL-OTHH",
-      "OTHH-KPHL"
-    ],
-    "since": "2026-01-31",
-    "days_stopped": 192,
-    "confidence": "contradicted"
+    "any": false,
+    "scope": null,
+    "airports_dropped": [],
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -87,133 +81,6 @@
       "silent_days": 14
     }
   ],
-  "stop_events": [
-    {
-      "id": 264,
-      "scope": "region",
-      "scope_key": "AAL",
-      "carrier": "AAL",
-      "detail": "all monitored airports",
-      "baseline_weekly": 11.8,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "American Airlines",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Blue Grass Airport offers 18 direct flights this summer. Here's where you can go - Lexington Herald Leader",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB4aEpIenotc3U5WUNWaGJWbzltS01NTnU0RWNicWV6STJtblh6Z3V0R1ZnTUU0bEVOOTVsT2VtLXl2Z0pLbHpjTHQ5VUpxRDkydktIUUltaDJ1UWxoeXNWTVdUeFEtVnZvODV1SNIBbEFVX3lxTE40Y0FwU2xMTUVkSlN6RDRpLXV3cUFsNTQzdXpJcHlKdnJXZHBKU2lrUC12MXp4S1N3aWhtZGJRTktPOHRlNTZnVnF0TTNKTlg4WlllOElMNjZ3UHM0NG1Cb3dqczhZRTBMVmJRUg?oc=5",
-          "published": "Wed, 12 Aug 2026 09:44:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "American Airlines flights resume after being halted due to an IT problem, airline says - CNN",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBMOGF5Wm9KemxRR2JiemtOZ1dIazFvUDZhWllKUnVqaXRsZFhDU1N5dlhEUW5OLTZSLWhiT05HTGx1eFlsQjVtTDE5TnhpYjhWa2MxS29mS2RqRnB5bjVXcHFwZnFvcERyS2pJR2FaTHJfMHpP?oc=5",
-          "published": "Tue, 28 Jul 2026 07:00:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "American Airlines flights resume after brief IT outage led to nationwide ground stop - ABC News - Breaking News, Latest News and Videos",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNeVBualA4LWNuZkc4eTZybC1GdlJFbHo5QV9EWDY5MEFUYTVncjFQdElhYVVYNktKdERYeXY5WWxWeWwxS0Y2ZXd0cVFsZnUxYi1QeU50Sm8zbHZVek5URXRHckpEQUhIXzNJUDhZdzN2NkQ5cm84X0t1ZnZWYk81b0d5MUIzM3lhSWdGdGFrSV9RYjdaOS0yeUdzNm1yMEdSRzBDb9IBqgFBVV95cUxOc2JMNVZ2TXN0RVNJcXRMVXgwMWw0bTdGQnFLcDF3eEJtSndBYTRoSjM2RWwxeUJIdXhNX3ZJWlpFUVB3MjZQcWRoZVBPOXMxYUVaVjk4QmRlZDA4Znl3c1lyOV9RdWQ1QW55bUw1dGVDdHJCYzRabk0xc2VxdU1jSktQX2hyQWhkTHdvYzBPcTJXaUdUclVpTHN0ZTFGbUZhblFENEtlSDBwQQ?oc=5",
-          "published": "Tue, 28 Jul 2026 07:00:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "American Airlines will stop upgrading elite flyers to business from coach on long domestic flights - CNBC",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxORlNIOXAtUmR1VXBRU19oUFJ4cGRyX0JxNjByb0dHNHJNOEtoN0Rlb1lMdnM3OWxfTUxVNzFGUThPajh3azAxZHZSZnllVjlkMGM5ZDRKT3NSbEc1WFR6Vm9YNnZjX2FUc21sYTJGOUxkVTJHQmdmLXVNTzR6ckRxZjl3ZDY3ckRfMGRNaFJWT0hSb215cVHSAZsBQVVfeXFMUGlmZFZKVzBYbHlOdVF3Y3VjTENqbkRIdHRrLWNRcmRqaWY1VUMwZGpxZFdwWE96YzlfTFFpc1pLNnJOVEUxdERrZVA4NWhVNnBmNzhKTGh3Z1ZVRUdNckxiUndEN2ttTWhmQi1oSy1MVjQxdDVvdjhJUV9GQ2o3a2xTTU5XYjFOaVRTcHRXWnBnUFZlWTNqVGoxUWs?oc=5",
-          "published": "Thu, 06 Aug 2026 19:55:20 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "American Airlines Suspends 100% Of Flights On This International Route: Here's Why - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNblR2b19wTmd1STJBUy1NZmVVVnBtMUVqVWdfQVJGd0xaZkFQWU1yd3FxSlpVLWx1RnRFN3VlVE5IXzBKZDROYWUzeHJFZ0xUVDVnYzVRS1Z5NXFrd3ZrZl9mX3ZuR0tDWHdyMTBGN3FFaXNZdFMwRjZVWDJNLU5mN3FhcTc?oc=5",
-          "published": "Sat, 08 Aug 2026 22:00:11 GMT",
-          "stance": "supports"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 180,
-      "scope": "station",
-      "scope_key": "AAL|OTHH",
-      "carrier": "AAL",
-      "detail": "OTHH",
-      "baseline_weekly": 11.8,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "American Airlines",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 181,
-      "scope": "station",
-      "scope_key": "AAL|KPHL",
-      "carrier": "AAL",
-      "detail": "KPHL",
-      "baseline_weekly": 10.9,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "American Airlines",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 1,
-      "scope": "route",
-      "scope_key": "AAL|KPHL|OTHH",
-      "carrier": "AAL",
-      "detail": "KPHL-OTHH",
-      "baseline_weekly": 5.5,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "American Airlines",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 2,
-      "scope": "route",
-      "scope_key": "AAL|OTHH|KPHL",
-      "carrier": "AAL",
-      "detail": "OTHH-KPHL",
-      "baseline_weekly": 5.3,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "American Airlines",
-      "evidence": [],
-      "superseded_by": "region"
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

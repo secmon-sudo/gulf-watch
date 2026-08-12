@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:10:57+00:00",
+  "generated_at": "2026-08-12T12:24:01+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -28,7 +28,7 @@
       "name": "Air Arabia (Sharjah)",
       "status": "MINIMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/ABY.json"
     },
     {
@@ -36,23 +36,23 @@
       "name": "Air China",
       "status": "SUSPENDED",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/CCA.json"
     },
     {
       "carrier": "AAL",
       "name": "American Airlines",
       "status": "SUSPENDED",
-      "operating": false,
-      "stopped": true,
+      "operating": true,
+      "stopped": false,
       "href": "airlines/AAL.json"
     },
     {
       "carrier": "BAW",
       "name": "British Airways",
       "status": "SUSPENDED",
-      "operating": false,
-      "stopped": true,
+      "operating": true,
+      "stopped": false,
       "href": "airlines/BAW.json"
     },
     {
@@ -67,8 +67,8 @@
       "carrier": "CSN",
       "name": "China Southern",
       "status": "SUSPENDED",
-      "operating": false,
-      "stopped": true,
+      "operating": true,
+      "stopped": false,
       "href": "airlines/CSN.json"
     },
     {
@@ -76,7 +76,7 @@
       "name": "EgyptAir",
       "status": "NORMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/MSR.json"
     },
     {
@@ -84,7 +84,7 @@
       "name": "Emirates",
       "status": "MINIMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/UAE.json"
     },
     {
@@ -92,15 +92,15 @@
       "name": "Etihad Airways",
       "status": "NORMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/ETD.json"
     },
     {
       "carrier": "FIN",
       "name": "Finnair",
       "status": "SUSPENDED",
-      "operating": false,
-      "stopped": true,
+      "operating": true,
+      "stopped": false,
       "href": "airlines/FIN.json"
     },
     {
@@ -108,31 +108,31 @@
       "name": "Gulf Air",
       "status": "REDUCED",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/GFA.json"
     },
     {
       "carrier": "IBE",
       "name": "Iberia",
       "status": "SUSPENDED",
-      "operating": false,
-      "stopped": true,
+      "operating": true,
+      "stopped": false,
       "href": "airlines/IBE.json"
     },
     {
       "carrier": "JAL",
       "name": "Japan Airlines",
       "status": "SUSPENDED",
-      "operating": false,
-      "stopped": true,
+      "operating": true,
+      "stopped": false,
       "href": "airlines/JAL.json"
     },
     {
       "carrier": "KAC",
       "name": "Kuwait Airways",
       "status": "SUSPENDED",
-      "operating": false,
-      "stopped": true,
+      "operating": true,
+      "stopped": false,
       "href": "airlines/KAC.json"
     },
     {
@@ -140,7 +140,7 @@
       "name": "Middle East Airlines",
       "status": "NORMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/MEA.json"
     },
     {
@@ -148,7 +148,7 @@
       "name": "Oman Air",
       "status": "MINIMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/OMA.json"
     },
     {
@@ -156,7 +156,7 @@
       "name": "Pegasus Airlines",
       "status": "REDUCED",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/PGT.json"
     },
     {
@@ -164,7 +164,7 @@
       "name": "Qatar Airways",
       "status": "MINIMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/QTR.json"
     },
     {
@@ -172,7 +172,7 @@
       "name": "Royal Air Maroc",
       "status": "NORMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/RAM.json"
     },
     {
@@ -180,7 +180,7 @@
       "name": "Royal Jordanian",
       "status": "NORMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/RJA.json"
     },
     {
@@ -188,7 +188,7 @@
       "name": "Saudia",
       "status": "REDUCED",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/SVA.json"
     },
     {
@@ -196,7 +196,7 @@
       "name": "flydubai",
       "status": "MINIMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/FDB.json"
     },
     {
@@ -204,7 +204,7 @@
       "name": "flynas",
       "status": "MINIMAL",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/KNE.json"
     }
   ]

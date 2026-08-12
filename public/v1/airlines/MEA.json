@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:10:57+00:00",
+  "generated_at": "2026-08-12T12:24:01+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -27,18 +27,13 @@
   "status": "NORMAL",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "station",
-    "airports_dropped": [
-      "Z19O"
-    ],
-    "routes_dropped": [
-      "OMDB-Z19O",
-      "OTHH-Z19O"
-    ],
-    "since": "2026-01-14",
-    "days_stopped": 209,
-    "confidence": "observed"
+    "any": false,
+    "scope": null,
+    "airports_dropped": [],
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -603,61 +598,6 @@
       "silent_days": 0
     }
   ],
-  "stop_events": [
-    {
-      "id": 226,
-      "scope": "station",
-      "scope_key": "MEA|Z19O",
-      "carrier": "MEA",
-      "detail": "Z19O",
-      "baseline_weekly": 3.4,
-      "last_flight_on": "2026-01-13",
-      "started_on": "2026-01-14",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 209,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Middle East Airlines",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 80,
-      "scope": "route",
-      "scope_key": "MEA|OMDB|Z19O",
-      "carrier": "MEA",
-      "detail": "OMDB-Z19O",
-      "baseline_weekly": 2.0,
-      "last_flight_on": "2026-01-13",
-      "started_on": "2026-01-14",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 209,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Middle East Airlines",
-      "evidence": [],
-      "superseded_by": "station"
-    },
-    {
-      "id": 81,
-      "scope": "route",
-      "scope_key": "MEA|OTHH|Z19O",
-      "carrier": "MEA",
-      "detail": "OTHH-Z19O",
-      "baseline_weekly": 1.4,
-      "last_flight_on": "2026-01-13",
-      "started_on": "2026-01-14",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 209,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Middle East Airlines",
-      "evidence": [],
-      "superseded_by": "station"
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

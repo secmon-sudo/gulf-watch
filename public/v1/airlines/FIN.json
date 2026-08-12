@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:10:57+00:00",
+  "generated_at": "2026-08-12T12:24:01+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -25,23 +25,15 @@
   "routes_reduced": 0,
   "ratio": 0.0,
   "status": "SUSPENDED",
-  "operating": false,
+  "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "region",
-    "airports_dropped": [
-      "EFHK",
-      "OMDB",
-      "OTHH"
-    ],
-    "routes_dropped": [
-      "EFHK-OMDB",
-      "OMDB-EFHK",
-      "OTHH-EFHK"
-    ],
-    "since": "2026-01-30",
-    "days_stopped": 193,
-    "confidence": "contradicted"
+    "any": false,
+    "scope": null,
+    "airports_dropped": [],
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -100,169 +92,6 @@
       "silent_days": 14
     }
   ],
-  "stop_events": [
-    {
-      "id": 267,
-      "scope": "region",
-      "scope_key": "FIN",
-      "carrier": "FIN",
-      "detail": "all monitored airports",
-      "baseline_weekly": 12.7,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "Finnair",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Finnair Will Resume Service to Toronto With Nonstop Flights From Helsinki Next Year - Upgraded Points",
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFAzR1ZtdHFDbkFSYWQzS0JYdDdiQ1NKdUVQQXQxaDBzeGJNZk9peHVIaWY5VjN5ZjBsNWZHREF3cGh4RWdMNXIxakZidzhkMzZlazI2ZDFOSUFBTS1rMnBocFZGckg0MUp3N0g3cERfYw?oc=5",
-          "published": "Wed, 10 Jun 2026 07:00:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Finnair Suspends Doha and Dubai Flights Until March 28 | - airinsight.com",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE00VE43eEp4a19tM2Fwd3NfZTFYM2Nja3VwSjlFeVRBaWJlclF2M1ozZXQ4enk2MEtBN0hWSS1KSE5UOTRndnREaDh5LWR1QXRFek8ycG1pSGlrZzg?oc=5",
-          "published": "Wed, 04 Mar 2026 08:00:00 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Massive 24-Hour Flights: Finnair's 10 New Ultra-Long Routes In 2026 [Full List] - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQYkdlelROZWMxR1BpcVUtX1ZxVTczYUZTVGdQdlFaN1FNQW1JWjU4TTZ6WXIzMUFJVnVzNlBNdzlUSWF1NmloSTFRdGYySHNxYWxDX0xTU3JxemQ1OXc2cW53M0xaQk42R3p4QThjMlFDWmJEMTJESkxwLTRuUV9vTXhZa2kyakoxeTZwZmdkTDNKYnd5Zmc?oc=5",
-          "published": "Thu, 21 May 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Finnair To Launch A350 Service To Melbourne - Aviation Week",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOdDZiQVhSdDhsZktiUEtxbG51YnlURW1mZFc3NTFrbXpHLU9mWnlITXhLX3dPdDZnN1owLW15amRpTTRKLXJOME9KWWRoQjR0Ny1TVjNXMEF1bVlwVHlONFpyV0NfX1JRcDYwU1Bma19zbzdpQmJwMlVoLXpvRzRPTVJOWkt1MjQ2Qmk5SnQxQ2M5Smg1TFhLeVd3?oc=5",
-          "published": "Thu, 18 Dec 2025 08:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Finnair benefits from SAS retreat and Middle East disruption - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNdlZVN3BoQUlka2dlRkdHN0JxQUFHWlg1WWNpVnhiS2lEclBfb0VNZURCN3I5bEtCbDFMM3pmNkkzYlRGWnp5cFJKZzlxMFhQWWRyVjJ5Q1BkQmtuMDRhN1ZUZjlDUk5uREZoVWdaTVF2aDJJMEQtOEJZUjhuQTZNdndXUm9na0xjczhrcXRBd0FLamlWaldaNG1RLXk?oc=5",
-          "published": "Mon, 27 Apr 2026 07:00:00 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 208,
-      "scope": "station",
-      "scope_key": "FIN|EFHK",
-      "carrier": "FIN",
-      "detail": "EFHK",
-      "baseline_weekly": 12.1,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 209,
-      "scope": "station",
-      "scope_key": "FIN|OMDB",
-      "carrier": "FIN",
-      "detail": "OMDB",
-      "baseline_weekly": 8.8,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 210,
-      "scope": "station",
-      "scope_key": "FIN|OTHH",
-      "carrier": "FIN",
-      "detail": "OTHH",
-      "baseline_weekly": 4.1,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 50,
-      "scope": "route",
-      "scope_key": "FIN|EFHK|OMDB",
-      "carrier": "FIN",
-      "detail": "EFHK-OMDB",
-      "baseline_weekly": 5.0,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 52,
-      "scope": "route",
-      "scope_key": "FIN|OTHH|EFHK",
-      "carrier": "FIN",
-      "detail": "OTHH-EFHK",
-      "baseline_weekly": 3.6,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 51,
-      "scope": "route",
-      "scope_key": "FIN|OMDB|EFHK",
-      "carrier": "FIN",
-      "detail": "OMDB-EFHK",
-      "baseline_weekly": 3.5,
-      "last_flight_on": "2026-01-29",
-      "started_on": "2026-01-30",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 193,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": "region"
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:10:57+00:00",
+  "generated_at": "2026-08-12T12:24:01+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -27,15 +27,13 @@
   "status": "NORMAL",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "UUEE-OMAA"
-    ],
-    "since": "2026-01-24",
-    "days_stopped": 199,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -1139,25 +1137,6 @@
       "silent_days": 14
     }
   ],
-  "stop_events": [
-    {
-      "id": 28,
-      "scope": "route",
-      "scope_key": "ETD|UUEE|OMAA",
-      "carrier": "ETD",
-      "detail": "UUEE-OMAA",
-      "baseline_weekly": 1.1,
-      "last_flight_on": "2026-01-23",
-      "started_on": "2026-01-24",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 199,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Etihad Airways",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

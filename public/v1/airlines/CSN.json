@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:10:57+00:00",
+  "generated_at": "2026-08-12T12:24:01+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -25,23 +25,15 @@
   "routes_reduced": 0,
   "ratio": 0.0,
   "status": "SUSPENDED",
-  "operating": false,
+  "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "region",
-    "airports_dropped": [
-      "OMDB",
-      "OTHH",
-      "ZGSZ"
-    ],
-    "routes_dropped": [
-      "OMDB-OMDB",
-      "OMDB-ZGSZ",
-      "ZGSZ-OMDB"
-    ],
-    "since": "2026-01-28",
-    "days_stopped": 195,
-    "confidence": "contradicted"
+    "any": false,
+    "scope": null,
+    "airports_dropped": [],
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -210,169 +202,6 @@
       "silent_days": 14
     }
   ],
-  "stop_events": [
-    {
-      "id": 266,
-      "scope": "region",
-      "scope_key": "CSN",
-      "carrier": "CSN",
-      "detail": "all monitored airports",
-      "baseline_weekly": 10.4,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "China Southern",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Airlines are struggling but China's 'Big Three' face a tougher year than most - CNBC",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZkJBSWNlamZ4SnY4Qkd3RC1LZXNJWEdXMHJfQlUzbUhlcEVfWEtpREtRdXFtYVNDY2RGOWJMcGFyRWhnWlAtaVZGV0k2bzZKd1RES09XcE1wV0V0S2UyM0F5MzRkZGt1bTBLdDlvdVI1bzZzbjN2ZVpES3ZjdG5aYXJKcXlrNjBaXy1XNW9ZdGZCQzFNVkoxWUpHOUNkZw?oc=5",
-          "published": "Thu, 21 May 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "China’s state airlines are aviation’s unlikely losers from war - The Japan Times",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOM2hfTDVHa0hrVnY1N29fdXZyd1NUT0lXV3JGUFc3VV9KVmpTaFBfaTlfT3M2eUw0SmMyMXpIdkRPaHozZVRNNTBSUm9tV2s4ZW5zaXlnWlJFeHpkUHpycE9VZkRyd1RHYXVQaXpIR1duTEdYeWlxeDJMMmJIeHdQS1J6Qy1FbDdjLUtMalZ2YTRxRDdBNWc?oc=5",
-          "published": "Thu, 02 Apr 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "China cancels flights, issues evacuation orders as Typhoon Dolphin makes landfall - France 24",
-          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPOVhRb2duUFplZEoweDBQRzZqSFFHYXY4WldsVTNXUVl2SnBqNG15M3M3ZDRrTklaRm1rT3hJTVNOMmRxX3oxcnR1eC10eEVxQl82eGEwMzk2SC1GYXlwQXJJMG5BalEtZGdQWF83V2RZaVBvMmlETUw0ZURoeldLNHdsZ1duUDgyNWV5SXBVaGdzbWttdWRFR3E2OGxhTURGTTBBZURTWGRpOWlNN1V5SkZ0NlhRazA?oc=5",
-          "published": "Sun, 09 Aug 2026 05:35:12 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "China Cancels Flights, Suspends Rail Services on Typhoon Dolphin - Bloomberg.com",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPdnpKUF9vNjh4a1hDV0pzOGxfakcybE5WRURIMC1kb3lSNkdFd2dLdFkwcXFoN0lkM3RqcS1Mc2kzRE9pcXRsQUN3d3pwSXZFd0VYVUh4bDVSRXI4TEwyS19qSGZ3TXhJQWI1alJXNVV1dDVGMi1vLUlLYWstT3Q2Ynppb0F2aDIwSDZFemQtcTAzbkE5Z0xJZHpnTEt1N2hMMGJpMVNPUXBPdlNyVWw3YVJ3?oc=5",
-          "published": "Sat, 08 Aug 2026 07:40:55 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "China Southern Airlines: Flights at Shanghai's two major airports are expected to largely resume normal operations after 16:00. - 富途牛牛",
-          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOWWNQV3QxdTRzall0R2JmbjVQRkpPbHJ1R01ZcUVnN1lmbGIzNlZac3Q0S1JzYWNFY0hadzFBWkdVWmt5M3lzLS1kbmhkWUlyc1RXNVhrZ2k0b3NCM2Q2SV85YmVHTERsVEc4Zjh3VUlzaHpfRjJPZUNXcTAwWGpQUFdtbW5QMUxUYjhJRkFGOWgwS3BPdmVLWF8yM1VPalFfSDRYUlFJT3I?oc=5",
-          "published": "Mon, 10 Aug 2026 08:53:33 GMT",
-          "stance": "contradicts"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 194,
-      "scope": "station",
-      "scope_key": "CSN|OMDB",
-      "carrier": "CSN",
-      "detail": "OMDB",
-      "baseline_weekly": 9.5,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "China Southern",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 196,
-      "scope": "station",
-      "scope_key": "CSN|ZGSZ",
-      "carrier": "CSN",
-      "detail": "ZGSZ",
-      "baseline_weekly": 5.5,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "China Southern",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 195,
-      "scope": "station",
-      "scope_key": "CSN|OTHH",
-      "carrier": "CSN",
-      "detail": "OTHH",
-      "baseline_weekly": 3.2,
-      "last_flight_on": "2026-01-29",
-      "started_on": "2026-01-30",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 193,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "China Southern",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 27,
-      "scope": "route",
-      "scope_key": "CSN|ZGSZ|OMDB",
-      "carrier": "CSN",
-      "detail": "ZGSZ-OMDB",
-      "baseline_weekly": 2.6,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "China Southern",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 26,
-      "scope": "route",
-      "scope_key": "CSN|OMDB|ZGSZ",
-      "carrier": "CSN",
-      "detail": "OMDB-ZGSZ",
-      "baseline_weekly": 2.3,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "China Southern",
-      "evidence": [],
-      "superseded_by": "region"
-    },
-    {
-      "id": 25,
-      "scope": "route",
-      "scope_key": "CSN|OMDB|OMDB",
-      "carrier": "CSN",
-      "detail": "OMDB-OMDB",
-      "baseline_weekly": 1.7,
-      "last_flight_on": "2026-01-27",
-      "started_on": "2026-01-28",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 195,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "China Southern",
-      "evidence": [],
-      "superseded_by": "region"
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

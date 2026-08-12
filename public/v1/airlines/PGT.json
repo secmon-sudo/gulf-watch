@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:10:57+00:00",
+  "generated_at": "2026-08-12T12:24:01+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -27,17 +27,13 @@
   "status": "REDUCED",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "LTAI-OMSJ",
-      "OMDB-LTAI",
-      "OMSJ-LTAI"
-    ],
-    "since": "2026-01-29",
-    "days_stopped": 194,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -305,61 +301,6 @@
       "silent_days": 0
     }
   ],
-  "stop_events": [
-    {
-      "id": 87,
-      "scope": "route",
-      "scope_key": "PGT|LTAI|OMSJ",
-      "carrier": "PGT",
-      "detail": "LTAI-OMSJ",
-      "baseline_weekly": 1.4,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Pegasus Airlines",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 89,
-      "scope": "route",
-      "scope_key": "PGT|OMSJ|LTAI",
-      "carrier": "PGT",
-      "detail": "OMSJ-LTAI",
-      "baseline_weekly": 1.4,
-      "last_flight_on": "2026-01-30",
-      "started_on": "2026-01-31",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 192,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Pegasus Airlines",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 88,
-      "scope": "route",
-      "scope_key": "PGT|OMDB|LTAI",
-      "carrier": "PGT",
-      "detail": "OMDB-LTAI",
-      "baseline_weekly": 1.1,
-      "last_flight_on": "2026-01-28",
-      "started_on": "2026-01-29",
-      "detected_on": "2026-08-11",
-      "resumed_on": null,
-      "days_stopped": 194,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Pegasus Airlines",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }
