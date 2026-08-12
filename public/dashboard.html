@@ -185,7 +185,7 @@ h2 + p{margin:0 0 16px;color:var(--muted);font-size:13.5px;max-width:64ch}
 .strips{display:grid;gap:5px}
 .strip{
   display:grid;
-  grid-template-columns:52px minmax(150px,1.4fr) 96px 1fr 108px;
+  grid-template-columns:52px minmax(150px,1.4fr) 118px 1fr 108px;
   align-items:center;gap:14px;
   background:var(--panel);border:1px solid var(--hairline);
   border-left:5px solid var(--hairline);padding:9px 14px;
@@ -324,6 +324,23 @@ footer{
     <span class="verdict" id="verdict">—</span>
   </section>
 
+  <section class="integrity">
+    <span class="label">Days observed</span>
+    <span class="meter" id="obsmeter"><i style="width:0"></i></span>
+    <span class="verdict" id="obsverdict">—</span>
+  </section>
+
+  <section class="notice" id="fewdays" hidden>
+    <span class="t">Read this first</span>
+    <p><b>Frequency comparisons are withheld.</b> <span id="fewdaystext"></span>
+       A week's traffic measured over a couple of observed days is not a small
+       sample, it is a different quantity: divide it by a seven-day baseline and
+       every carrier looks cut in half by our own downtime. The observed counts
+       are still shown, the bars are left empty rather than drawn against a
+       ratio the window cannot support, and every carrier reads UNKNOWN until
+       enough days accumulate.</p>
+  </section>
+
   <a class="readout" href="./">
     <span>
       <b>← Tam rapor — Ortadoğu havayolu operasyonları</b>
@@ -355,9 +372,12 @@ footer{
   <div class="ledger" id="resumed"></div>
 
   <h2>Carriers</h2>
-  <p>Weekly departures against a frozen pre-escalation baseline. A carrier only
-     reads SUSPENDED after three consecutive silent days, and nothing is scored
-     at all while coverage integrity is bad.</p>
+  <p>Weekly departures against a frozen pre-escalation baseline. Traffic is
+     scaled to the days we actually observed before it is compared, so the left
+     figure is a full week only when enough of the week was seen — otherwise it
+     is the raw count, labelled with the days behind it, and no bar is drawn.
+     A carrier only reads SUSPENDED after three consecutive <i>observed</i>
+     silent days; blind days neither confirm a suspension nor clear one.</p>
   <div class="legend">
     <span><i style="background:var(--clear)"></i>Normal</span>
     <span><i style="background:var(--caution)"></i>Reduced</span>
@@ -400,19 +420,31 @@ async function get(p){ const r = await fetch(p,{cache:"no-store"});
 // of what it means, so it is relabelled here. The JSON keeps NEW.
 const STATE_LABEL = { NEW: "NO BASELINE" };
 
+// A bar is a claim about proportion, so it may only be drawn from the two
+// numbers that are actually comparable: traffic scaled to the days we observed,
+// against a weekly baseline. Feeding it the raw observed count instead -- which
+// this page did until 2026-08-12 -- draws Qatar Airways at 23% of normal on a
+// week we only saw two days of, and Etihad at over 100% on the same window,
+// both under a pill reading UNKNOWN. Empty track when we cannot compare.
 function stripRow(o){
   const el = document.createElement("div");
   el.className = "strip " + o.status;
   const nobase = !(o.base > 0);
-  const p = pct(o.now, o.base);
+  const unmeasured = o.scaled == null;
+  const blank = nobase || unmeasured;
+  const p = pct(o.scaled, o.base);
   const cls = o.status==="NORMAL" ? "" : (o.status==="REDUCED" ? "low" : "out");
+  const title = nobase ? "no baseline to compare against"
+    : unmeasured ? `only ${o.observed} of ${o.window} days observed -- not enough to scale a week`
+    : `${o.now} observed, ${o.scaled}/wk once scaled to ${o.observed} observed days`;
   el.innerHTML = `
     <span class="code">${o.code}</span>
     <span class="who">${o.name}<em>${o.sub}</em></span>
-    <span class="freq">${o.now}<s> / ${nobase ? "—" : o.base}</s> wk</span>
-    <span class="bar ${nobase ? "none" : cls}"
-          ${nobase ? 'title="no baseline to compare against"' : ""}
-      >${nobase ? "" : `<i style="width:${p.toFixed(1)}%"></i>`}</span>
+    <span class="freq">${blank
+      ? `${o.now}<s> seen · ${o.observed}d</s>`
+      : `${o.scaled}<s> / ${o.base}</s> wk`}</span>
+    <span class="bar ${blank ? "none" : cls}" title="${title}"
+      >${blank ? "" : `<i style="width:${p.toFixed(1)}%"></i>`}</span>
     <span class="state ${o.status}">${STATE_LABEL[o.status] || o.status}</span>`;
   return el;
 }
@@ -481,6 +513,24 @@ function empty(msg){ const d=document.createElement("div");
   ].map(([label, n, tone]) =>
     `<div class="stat ${n > 0 ? tone : ""}"><b>${n}</b><small>${label}</small></div>`
   ).join("");
+
+  // How much of the rolling window we actually saw. Coverage integrity answers
+  // "was today any good"; this answers "how many days is the comparison built
+  // on", and without it a withheld ratio looks like a broken page.
+  const obs = status.observation || { window_days: 7, observed_days: 0,
+                                      min_observed_days: 5, ratios_published: false };
+  const om = $("#obsmeter");
+  om.className = "meter " + (obs.ratios_published ? "" : "warn");
+  om.firstElementChild.style.width =
+    Math.min(obs.observed_days / obs.window_days, 1) * 100 + "%";
+  $("#obsverdict").textContent = `${obs.observed_days} / ${obs.window_days} DAYS`;
+  $("#obsverdict").style.color =
+    obs.ratios_published ? "var(--clear)" : "var(--caution)";
+
+  $("#fewdays").hidden = obs.ratios_published;
+  $("#fewdaystext").textContent =
+    `We observed ${obs.observed_days} of the last ${obs.window_days} days; `
+    + `${obs.min_observed_days} are needed before a ratio is published.`;
 
   // coverage
   const c = status.coverage;
@@ -551,7 +601,8 @@ function empty(msg){ const d=document.createElement("div");
   const ch = $("#carriers");
   status.carriers.forEach(x => ch.append(stripRow({
     code: x.carrier, name: x.name, sub: `${x.iata||"--"} · ${x.country||""} · ${x.routes_total} routes`,
-    now: x.weekly_frequency, base: x.baseline_weekly, status: x.status })));
+    now: x.weekly_frequency, scaled: x.weekly_scaled, base: x.baseline_weekly,
+    observed: obs.observed_days, window: obs.window_days, status: x.status })));
 
   // alerts
   const ah = $("#alerts");
@@ -564,7 +615,8 @@ function empty(msg){ const d=document.createElement("div");
     alerts.alerts.forEach(a => ah.append(stripRow({
       code: a.carrier, name: a.carrier_name,
       sub: a.route + (a.silent_days ? ` · silent ${a.silent_days}d` : ""),
-      now: a.weekly_frequency, base: a.baseline_weekly, status: a.status })));
+      now: a.weekly_frequency, scaled: a.weekly_scaled, base: a.baseline_weekly,
+      observed: obs.observed_days, window: obs.window_days, status: a.status })));
   }
 
   $("#attrib").textContent = Object.values(status.attribution).join(" · ");

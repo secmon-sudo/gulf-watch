@@ -375,8 +375,10 @@ def alerts_from(report: dict) -> list[dict]:
             "route": f"{r['origin']}-{r['destination']}",
             "status": r["status"],
             "weekly_frequency": r["weekly_frequency"],
+            "weekly_scaled": r["weekly_scaled"],
             "baseline_weekly": r["baseline_weekly"],
             "silent_days": r["silent_days"],
+            "observed_days": r["observed_days"],
         })
     order = {"critical": 0, "high": 1, "medium": 2}
     return sorted(out, key=lambda a: (order[a["severity"]], -a["baseline_weekly"]))
