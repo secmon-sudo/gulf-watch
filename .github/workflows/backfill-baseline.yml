@@ -5,29 +5,11 @@ name: backfill-baseline
 # information, "12 against a baseline of 21" is.
 #
 # It runs for hours and burns most of a day's OpenSky credits. Dispatch it by
-# hand any time; it also carries a TEMPORARY daily schedule, below, purely to
-# get the finite harvest finished. Delete that block when the baseline freezes.
+# hand. The 104-slice harvest of 2025-11-01..2026-01-31 completed on
+# 2026-08-11 and the baseline is frozen, so a run now has nothing to fetch --
+# what remains is re-harvesting a different window on purpose.
 
 on:
-  # TEMPORARY -- delete this block once the baseline is frozen.
-  #
-  # The harvest is a finite job, not a report: OpenSky's allowance covers ~16
-  # of the 104 slices a day, so it needs one run a day for about a week and
-  # then never again. Dispatching that by hand is what was actually costing
-  # days. This is not the timer the project deliberately does not have -- the
-  # report still only runs when asked.
-  #
-  # 11:00 UTC because the allowance resets at ~10:44: measured twice, run 1
-  # reported 23.8h left at 10:56 and run 2 reported 21.0h left at 13:44, and
-  # both land on the same wall-clock time, so the reset is a fixed daily one
-  # rather than 24h from whenever the last run started.
-  #
-  # A run after the harvest completes is harmless -- there are no slices left
-  # to fetch, compact() finds nothing to fold, and freeze() rewrites the same
-  # baseline -- but it is still a run doing nothing. Delete the block.
-  schedule:
-    - cron: "0 11 * * *"
-
   workflow_dispatch:
     inputs:
       start:
