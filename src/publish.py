@@ -87,15 +87,27 @@ def build(out: Path | None = None) -> dict:
             "iata": carriers.get(r["carrier"], {}).get("iata"),
             "country": carriers.get(r["carrier"], {}).get("country"),
             "weekly_frequency": 0,
+            "weekly_frequency_baselined": 0,
             "weekly_scaled": 0.0,
             "baseline_weekly": 0.0,
             "routes_total": 0,
+            "routes_baselined": 0,
             "routes_suspended": 0,
             "routes_reduced": 0,
         })
         c["weekly_frequency"] += r["weekly_frequency"]
         c["weekly_scaled"] += r["weekly_scaled"] or 0.0
-        c["baseline_weekly"] += r["baseline_weekly"]
+        # Only routes whose reference period was actually observed contribute a
+        # baseline. Summing the rest would compare this week against months
+        # nobody watched -- Middle East Airlines' baseline rests on 13 of 92
+        # days at Beirut, and it flew more in two observed days this month.
+        if r["baseline_trusted"]:
+            # Kept as a matched pair. weekly_frequency counts every route we
+            # saw; only this subset has something to be divided by, and the
+            # ratio below uses the subset on both sides.
+            c["weekly_frequency_baselined"] += r["weekly_frequency"]
+            c["baseline_weekly"] += r["baseline_weekly"]
+            c["routes_baselined"] += 1
         c["routes_total"] += 1
         if r["status"] == "SUSPENDED":
             c["routes_suspended"] += 1
@@ -105,7 +117,12 @@ def build(out: Path | None = None) -> dict:
     for code, c in by_carrier.items():
         c["baseline_weekly"] = round(c["baseline_weekly"], 1)
         c["observed_days"] = report["observed_days"]
-        if report["ratios_published"]:
+        if not c["routes_baselined"]:
+            # Nothing to compare against. classify() calls this NEW when the
+            # carrier is flying, which the dashboard labels NO BASELINE.
+            c["weekly_scaled"] = None
+            status, ratio = metrics.classify(c["weekly_frequency"], 0.0)
+        elif report["ratios_published"]:
             # Compare like with like: the scaled week against a weekly baseline.
             c["weekly_scaled"] = round(c["weekly_scaled"], 1)
             status, ratio = metrics.classify(c["weekly_scaled"], c["baseline_weekly"])

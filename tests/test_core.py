@@ -141,7 +141,8 @@ class TestCoverageGate(unittest.TestCase):
         db.upsert_flights(self.conn, rows)
         metrics.rebuild_daily(self.conn)
         self.conn.execute(
-            "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,28,'x','y')")
+            "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,28,?,?)",
+            ((today - timedelta(days=28)).isoformat(), today.isoformat()))
         self.conn.commit()
 
         # Score every day in the window, not just today. Each ingest scores its
@@ -180,7 +181,8 @@ class TestCoverageGate(unittest.TestCase):
         db.upsert_flights(self.conn, rows)
         metrics.rebuild_daily(self.conn)
         self.conn.execute(
-            "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,28,'x','y')")
+            "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,28,?,?)",
+            ((today - timedelta(days=28)).isoformat(), today.isoformat()))
         for off in range(29):
             metrics.score_coverage(self.conn, today - timedelta(days=off))
         # The two days before today were blind, exactly as 2026-08-04..10 were.
@@ -391,7 +393,8 @@ class TestSuspensionEvents(unittest.TestCase):
         db.upsert_flights(self.conn, rows)
         metrics.rebuild_daily(self.conn)
         self.conn.execute(
-            "INSERT INTO baseline VALUES ('GFA','OBBI','OMDB',21,28,'a','b')")
+            "INSERT INTO baseline VALUES ('GFA','OBBI','OMDB',21,28,?,?)",
+            ((self.today - timedelta(days=28)).isoformat(), self.today.isoformat()))
         for off in range(29):
             d = self.today - timedelta(days=off)
             metrics.score_coverage(self.conn, d)
@@ -1313,9 +1316,11 @@ class TestBlindWeekEndToEnd(unittest.TestCase):
         db.upsert_flights(self.conn, rows)
         metrics.rebuild_daily(self.conn)
         self.conn.execute(
-            "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,30,'a','b')")
+            "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,30,?,?)",
+            ((base_end - timedelta(days=29)).isoformat(), base_end.isoformat()))
         self.conn.execute(
-            "INSERT INTO baseline VALUES ('UAE','OMDB','OTHH',70,30,'a','b')")
+            "INSERT INTO baseline VALUES ('UAE','OMDB','OTHH',70,30,?,?)",
+            ((base_end - timedelta(days=29)).isoformat(), base_end.isoformat()))
 
         # Score only the days a run would have scored: the baseline window and
         # the two days of the last week that produced data.

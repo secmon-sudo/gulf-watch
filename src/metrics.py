@@ -166,6 +166,145 @@ def load_baseline(conn: sqlite3.Connection) -> dict[tuple, float]:
     return {(r["carrier"], r["dep_icao"], r["arr_icao"]): r["weekly_freq"] for r in rows}
 
 
+def baseline_airport_days(conn: sqlite3.Connection
+                          ) -> tuple[dict[str, dict[str, int]], int]:
+    """Days of the baseline window each airport was seen on, per direction.
+
+    The reference period has the same problem as the present: it was harvested
+    through whatever coverage existed at the time, and nothing recorded which
+    of its days were observed. Counted across the frozen 92-day window as
+    either endpoint, the monitored airports split cleanly: Doha, Dubai,
+    Bahrain and Sharjah on 88 days, Abu Dhabi on 87, then Kuwait on 37, Amman
+    on 24, Beirut on 17, and the seven no receiver covers on 0.
+
+    A baseline built on the bottom half is not a low baseline, it is an
+    unmeasured one, and dividing today's better-covered traffic by it reads as
+    growth. Middle East Airlines flew 89 legs through Beirut in three months of
+    the reference window and 174 in two observed days of August; published as a
+    ratio that is 4000% of normal, which lands in NORMAL and hides the defect
+    rather than showing it.
+
+    route-level `sample_days` cannot answer this: a route flying twice a week
+    honestly has 26 active days in 92. Observability is a property of the
+    airport and of the direction fetched, which is why both are returned --
+    see baseline_trusted() for why collapsing them is wrong.
+    """
+    win = conn.execute(
+        "SELECT window_start, window_end FROM baseline LIMIT 1").fetchone()
+    if not win or not win["window_start"]:
+        return {"dep": {}, "arr": {}}, 0
+    start, end = win["window_start"], win["window_end"]
+    try:
+        span = (datetime.fromisoformat(end) - datetime.fromisoformat(start)).days + 1
+    except (TypeError, ValueError):
+        # freeze() only ever writes ISO dates, so this means a hand-edited or
+        # half-migrated row. Fall back to trusting the baseline rather than
+        # blanking the whole site off a malformed string, but say so.
+        LOG.warning("baseline window is not a date range (%r..%r); "
+                    "cannot judge its coverage", start, end)
+        return {"dep": {}, "arr": {}}, 0
+    days: dict[str, dict[str, int]] = {"dep": {}, "arr": {}}
+    for side, col in (("dep", "dep_icao"), ("arr", "arr_icao")):
+        days[side] = {r["a"]: r["d"] for r in conn.execute(
+            f"""SELECT {col} AS a, COUNT(DISTINCT day) AS d FROM daily_route
+                WHERE day BETWEEN ? AND ? GROUP BY {col}""", (start, end))}
+    return days, span
+
+
+def baseline_control_drift(conn: sqlite3.Connection, cov: dict[str, str],
+                           day: date) -> dict[str, float]:
+    """Per airport: control traffic seen now, over control traffic in the baseline.
+
+    Day counts alone cannot finish the job. Abu Dhabi's arrival fetch ran on 85
+    of 92 baseline days and still returned 6.6 arrivals a day at a hub now
+    showing 52 -- the fetch ran, the receivers did not deliver. Volume is what
+    exposes that, but comparing an airport's own volume then against now is
+    circular: it cannot tell coverage that improved from traffic that grew.
+
+    The control carriers break the circle. They are already chosen for exactly
+    this property -- operators whose disappearance means the sensors failed
+    rather than the war escalated -- so a large jump in *their* rate at one
+    airport is a statement about our receivers, not about aviation. Measured
+    2026-08-12: Dubai 0.7x, Doha 0.8x, Sharjah 0.7x, against Abu Dhabi 18x,
+    Amman 49x and Beirut 81x. Emirates and Qatar did not grow eighty-fold.
+
+    One-sided on purpose. A ratio below 1 means today is thinner than the
+    baseline, which is a finding about today and is what the coverage gate and
+    the ratio itself are for. Only an inflated present impeaches the past.
+    """
+    controls = list(config.control_carriers())
+    if not controls:
+        return {}
+    marks = ",".join("?" for _ in controls)
+    win = conn.execute(
+        "SELECT window_start, window_end FROM baseline LIMIT 1").fetchone()
+    if not win or not win["window_start"]:
+        return {}
+    try:
+        span = (datetime.fromisoformat(win["window_end"])
+                - datetime.fromisoformat(win["window_start"])).days + 1
+    except (TypeError, ValueError):
+        return {}
+
+    seen = observed_days(cov, day, WINDOW_DAYS)
+    if not seen:
+        return {}
+    marks_days = ",".join("?" for _ in seen)
+
+    def rates(sql, params, divisor):
+        out: dict[str, float] = {}
+        for r in conn.execute(sql, params):
+            out[r["a"]] = out.get(r["a"], 0.0) + (r["n"] or 0) / divisor
+        return out
+
+    then = now = {}
+    then = rates(
+        f"""SELECT dep_icao AS a, SUM(departures) n FROM daily_route
+            WHERE day BETWEEN ? AND ? AND carrier IN ({marks}) GROUP BY a
+            UNION ALL
+            SELECT arr_icao AS a, SUM(departures) n FROM daily_route
+            WHERE day BETWEEN ? AND ? AND carrier IN ({marks}) GROUP BY a""",
+        [win["window_start"], win["window_end"], *controls,
+         win["window_start"], win["window_end"], *controls], span)
+    now = rates(
+        f"""SELECT dep_icao AS a, SUM(departures) n FROM daily_route
+            WHERE day IN ({marks_days}) AND carrier IN ({marks}) GROUP BY a
+            UNION ALL
+            SELECT arr_icao AS a, SUM(departures) n FROM daily_route
+            WHERE day IN ({marks_days}) AND carrier IN ({marks}) GROUP BY a""",
+        [*seen, *controls, *seen, *controls], len(seen))
+
+    drift: dict[str, float] = {}
+    for a in set(then) | set(now):
+        b = then.get(a, 0.0)
+        # No control traffic at all in the baseline: nothing to anchor to, so
+        # it cannot be vouched for.
+        drift[a] = (now.get(a, 0.0) / b) if b > 0 else float("inf")
+    return drift
+
+
+def baseline_trusted(dep: str, arr: str, bl_days: dict[str, dict[str, int]],
+                     floor: float, monitored: set[str],
+                     drift: dict[str, float]) -> bool:
+    """Could this route have entered the baseline at all?
+
+    The harvest fetched departures and arrivals separately at each monitored
+    airport, so direction is not decoration. A leg out of Abu Dhabi to a
+    non-monitored airport could only ever arrive through the Abu Dhabi
+    *departure* fetch, which ran on 43 of 92 days -- while Abu Dhabi as an
+    arrival was seen on 87, because the other end was Dubai or Doha. Taking the
+    better of the two numbers trusts a baseline that was never collected.
+    """
+    def ok(airport: str, side: str) -> bool:
+        if airport not in monitored:
+            return False
+        if bl_days[side].get(airport, 0) < floor:
+            return False
+        return drift.get(airport, float("inf")) <= config.MAX_BASELINE_CONTROL_DRIFT
+
+    return ok(dep, "dep") or ok(arr, "arr")
+
+
 def classify(current: float, baseline: float) -> tuple[str, float | None]:
     if baseline <= 0:
         return ("NEW" if current > 0 else "UNKNOWN"), None
@@ -300,6 +439,13 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     enough = len(seen) >= config.MIN_OBSERVED_DAYS
     scale = WINDOW_DAYS / len(seen) if seen else None
 
+    # The same question asked of the reference period. An airport we barely saw
+    # back then cannot anchor a percentage now.
+    bl_days, bl_span = baseline_airport_days(conn)
+    bl_floor = bl_span * config.MIN_BASELINE_COVERAGE
+    monitored = set(config.airports())
+    bl_drift = baseline_control_drift(conn, cov, day)
+
     keys = set(base) | set(current)
     routes = []
     for key in sorted(keys):
@@ -308,8 +454,15 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
             continue
         raw = float(current.get(key, 0))
         bl = float(base.get(key, 0.0))
+        bl_trusted = baseline_trusted(dep, arr, bl_days, bl_floor,
+                                      monitored, bl_drift)
 
-        if enough:
+        if not bl_trusted:
+            # Treated exactly like having no baseline, because that is what an
+            # unobserved reference period is. classify() renders it NEW when
+            # the carrier is flying, which the dashboard labels NO BASELINE.
+            status, ratio = classify(raw, 0.0)
+        elif enough:
             # Scale what we saw up to a full week before comparing.
             status, ratio = classify(raw * scale, bl)
         else:
@@ -334,8 +487,11 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
             "origin": dep,
             "destination": arr,
             "weekly_frequency": int(raw),
-            "weekly_scaled": round(raw * scale, 1) if enough else None,
+            "weekly_scaled": round(raw * scale, 1) if (enough and bl_trusted) else None,
             "baseline_weekly": round(bl, 1),
+            "baseline_days": max(bl_days["dep"].get(dep, 0),
+                                 bl_days["arr"].get(arr, 0)) if bl_span else 0,
+            "baseline_trusted": bl_trusted,
             "ratio": ratio,
             "status": status,
             "silent_days": quiet,
@@ -349,6 +505,8 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
         "window_days": WINDOW_DAYS,
         "min_observed_days": config.MIN_OBSERVED_DAYS,
         "ratios_published": enough,
+        "baseline_window_days": bl_span,
+        "baseline_min_days": round(bl_floor, 1),
         "routes": routes,
     }
 

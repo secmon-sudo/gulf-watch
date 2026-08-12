@@ -46,6 +46,23 @@ COVERAGE_RESCORE_DAYS = 14
 # report.observed_vs_scheduled has always applied to its own ratio.
 MIN_OBSERVED_DAYS = 5
 
+# The same test applied to the reference period. A route's baseline is only
+# usable if one of its monitored endpoints was actually being seen across the
+# window it was harvested from -- as a fraction of that window's length.
+# Measured over the frozen 2025-11-01..2026-01-31 window, the monitored
+# airports split cleanly either side of this: Doha, Dubai, Bahrain and Sharjah
+# on 88 of 92 days and Abu Dhabi on 87, then Kuwait on 37, Amman on 24, Beirut
+# on 17 and the blind seven on 0. Dividing today's traffic by a baseline from
+# an airport nobody was watching reads as growth, not as the gap it is.
+MIN_BASELINE_COVERAGE = 0.75
+
+# Day counts miss the airport whose fetch ran and came back nearly empty. The
+# control carriers settle it: their rate at an airport now, over their rate
+# there in the baseline window. Stable by construction, so a large jump is a
+# statement about our receivers. Measured 2026-08-12: Dubai 0.7x, Doha 0.8x,
+# Sharjah 0.7x; Abu Dhabi 18x, Amman 49x, Beirut 81x. Nothing sits near 3.
+MAX_BASELINE_CONTROL_DRIFT = 3.0
+
 # Baseline window (frozen, pre-escalation). Change and re-run backfill if you
 # want a different reference period.
 BASELINE_START = os.environ.get("GULFWATCH_BASELINE_START", "2025-11-01")
