@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:24:01+00:00",
+  "generated_at": "2026-08-12T12:33:22+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -21,8 +21,8 @@
   "weekly_frequency": 333,
   "baseline_weekly": 1627.5,
   "routes_total": 260,
-  "routes_suspended": 98,
-  "routes_reduced": 136,
+  "routes_suspended": 89,
+  "routes_reduced": 145,
   "ratio": 0.205,
   "status": "MINIMAL",
   "operating": true,
@@ -45,7 +45,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -67,7 +67,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -330,8 +330,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 3.3,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "UAE",
@@ -353,7 +353,7 @@
       "baseline_weekly": 1.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -496,7 +496,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -507,7 +507,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -562,7 +562,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -639,7 +639,7 @@
       "baseline_weekly": 1.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -650,7 +650,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -705,7 +705,7 @@
       "baseline_weekly": 10.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -716,7 +716,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -738,7 +738,7 @@
       "baseline_weekly": 11.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -782,7 +782,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -804,7 +804,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -815,7 +815,7 @@
       "baseline_weekly": 1.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -859,7 +859,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -903,7 +903,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -947,7 +947,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1013,7 +1013,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1057,7 +1057,7 @@
       "baseline_weekly": 1.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1079,7 +1079,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1090,7 +1090,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1101,7 +1101,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1123,7 +1123,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1134,7 +1134,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1178,7 +1178,7 @@
       "baseline_weekly": 2.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1189,7 +1189,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1200,7 +1200,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1244,7 +1244,7 @@
       "baseline_weekly": 1.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1255,7 +1255,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1266,7 +1266,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1299,7 +1299,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1310,7 +1310,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1320,8 +1320,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.0,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -1365,7 +1365,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1420,7 +1420,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1464,7 +1464,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1475,7 +1475,7 @@
       "baseline_weekly": 1.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1519,7 +1519,7 @@
       "baseline_weekly": 1.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1541,7 +1541,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1552,7 +1552,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1585,7 +1585,7 @@
       "baseline_weekly": 2.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1617,8 +1617,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.5,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -1640,7 +1640,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1662,7 +1662,7 @@
       "baseline_weekly": 2.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1673,7 +1673,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1684,7 +1684,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1727,8 +1727,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.6,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -1772,7 +1772,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1783,7 +1783,7 @@
       "baseline_weekly": 10.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1794,7 +1794,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1827,7 +1827,7 @@
       "baseline_weekly": 11.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1849,7 +1849,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1870,8 +1870,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "UAE",
@@ -1882,7 +1882,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1893,7 +1893,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1904,7 +1904,7 @@
       "baseline_weekly": 1.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1915,7 +1915,7 @@
       "baseline_weekly": 2.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -1980,8 +1980,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "UAE",
@@ -2003,7 +2003,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2013,8 +2013,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.9,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -2036,7 +2036,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2047,7 +2047,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2058,7 +2058,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2069,7 +2069,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2080,7 +2080,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2091,7 +2091,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2102,7 +2102,7 @@
       "baseline_weekly": 7.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2113,7 +2113,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2124,7 +2124,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2135,7 +2135,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2157,7 +2157,7 @@
       "baseline_weekly": 1.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2168,7 +2168,7 @@
       "baseline_weekly": 2.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2178,8 +2178,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.8,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "UAE",
@@ -2190,7 +2190,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2223,7 +2223,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2245,7 +2245,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2300,7 +2300,7 @@
       "baseline_weekly": 17.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2322,7 +2322,7 @@
       "baseline_weekly": 1.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2333,7 +2333,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2344,7 +2344,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2355,7 +2355,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2399,7 +2399,7 @@
       "baseline_weekly": 16.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2410,7 +2410,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2421,7 +2421,7 @@
       "baseline_weekly": 2.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2476,7 +2476,7 @@
       "baseline_weekly": 1.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2487,7 +2487,7 @@
       "baseline_weekly": 1.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2509,7 +2509,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2520,7 +2520,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2531,7 +2531,7 @@
       "baseline_weekly": 2.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2630,7 +2630,7 @@
       "baseline_weekly": 7.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2641,7 +2641,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2652,7 +2652,7 @@
       "baseline_weekly": 2.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2673,8 +2673,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 9.0,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -2773,7 +2773,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2784,7 +2784,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2795,7 +2795,7 @@
       "baseline_weekly": 2.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2817,7 +2817,7 @@
       "baseline_weekly": 15.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",

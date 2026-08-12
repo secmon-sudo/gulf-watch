@@ -172,9 +172,34 @@ def classify(current: float, baseline: float) -> tuple[str, float | None]:
     return status, round(ratio, 3)
 
 
-def silent_days(conn: sqlite3.Connection, key: tuple, day: date, limit: int = 14) -> int:
-    """Consecutive days with zero departures, walking backwards from `day`."""
+def coverage_map(conn: sqlite3.Connection) -> dict[str, str]:
+    return {r["day"]: r["verdict"]
+            for r in conn.execute("SELECT day, verdict FROM coverage").fetchall()}
+
+
+def silent_days(conn: sqlite3.Connection, key: tuple, day: date,
+                limit: int = 14, cov: dict[str, str] | None = None) -> int:
+    """Consecutive OBSERVED days with zero departures, walking back from `day`.
+
+    Only days that passed the coverage gate are counted. A day we did not look
+    at is skipped: it neither counts as silence nor resets it, which is the
+    same rule suspensions.silence() applies and for the same reason.
+
+    Without that rule this counted blind days as proven silence. Measured on
+    2026-08-12: of the 14 days behind the reference day, 3 had passed the gate,
+    7 were `outage` (the backfill had spent the OpenSky allowance, so every
+    carrier logged zero) and 4 had no coverage row at all. With
+    SUSPENSION_CONFIRM_DAYS at 3, a carrier missing from one observed day plus
+    two blind ones was published as SUSPENDED -- the field the JSON API leads
+    with. The whole project turns on not making that mistake.
+
+    The walk still spans `limit` calendar days rather than `limit` observed
+    ones. Reaching further back to make up the shortfall would answer a
+    question about last fortnight with traffic from a different month.
+    """
     carrier, dep, arr = key
+    if cov is None:
+        cov = coverage_map(conn)
     rows = conn.execute(
         """SELECT day, departures FROM daily_route
            WHERE carrier=? AND dep_icao=? AND arr_icao=? AND day <= ? AND day >= ?""",
@@ -185,6 +210,8 @@ def silent_days(conn: sqlite3.Connection, key: tuple, day: date, limit: int = 14
     n = 0
     for offset in range(limit):
         d = (day - timedelta(days=offset)).isoformat()
+        if cov.get(d) != "ok":
+            continue
         if seen.get(d, 0) > 0:
             break
         n += 1
@@ -199,6 +226,7 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     base = load_baseline(conn)
     carriers = config.carriers()
     tracked = set(config.tracked_carriers())
+    cov = coverage_map(conn)          # read once, not once per route
 
     keys = set(base) | set(current)
     routes = []
@@ -209,7 +237,7 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
         cur = float(current.get(key, 0))
         bl = float(base.get(key, 0.0))
         status, ratio = classify(cur, bl)
-        quiet = silent_days(conn, key, day) if status == "SUSPENDED" else 0
+        quiet = silent_days(conn, key, day, cov=cov) if status == "SUSPENDED" else 0
 
         # A route is only *called* suspended after it has been quiet long
         # enough, and never while coverage is bad.

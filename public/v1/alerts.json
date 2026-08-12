@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:24:01+00:00",
+  "generated_at": "2026-08-12T12:33:22+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -25,7 +25,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 18.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -35,7 +35,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 17.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -45,7 +45,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 16.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -55,7 +55,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 16.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -65,7 +65,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 15.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -75,7 +75,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 12.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -85,7 +85,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 12.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -95,7 +95,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 12.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -105,7 +105,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 11.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -115,7 +115,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 11.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -125,7 +125,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 11.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -135,7 +135,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 11.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -145,17 +145,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 10.9,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OTHH-LHBP",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 10.7,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -165,7 +155,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 10.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -175,7 +165,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 10.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -185,7 +175,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 10.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -195,7 +185,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 10.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -205,17 +195,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 9.1,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "VECC-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 9.0,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -225,17 +205,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 8.2,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OTHH-EBLG",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 7.4,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -245,7 +215,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 7.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -255,17 +225,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 7.0,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-LSZH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 6.6,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -275,17 +235,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 6.5,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-LKPR",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 6.5,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -295,7 +245,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 6.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -305,7 +255,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 6.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -315,17 +265,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 6.2,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OTHH-LYBE",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 6.2,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -335,7 +275,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 6.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -345,27 +285,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 6.0,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-KIAH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 6.0,
-      "silent_days": 8
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-SBGL",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 5.9,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -375,7 +295,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -385,37 +305,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.8,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-VECC",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 5.8,
-      "silent_days": 9
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OTHH-KBOS",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 5.7,
-      "silent_days": 8
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "OMDB-LHBP",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 5.6,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -425,7 +315,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -435,7 +325,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -445,7 +335,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -455,7 +345,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -465,17 +355,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "LHBP-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 5.5,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -485,7 +365,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -495,17 +375,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "VECC-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 5.5,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -515,7 +385,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -525,7 +395,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -535,7 +405,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -545,7 +415,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -555,17 +425,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.2,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OTHH-KATL",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 5.2,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -575,7 +435,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 5.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -585,7 +445,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 4.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -595,37 +455,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 4.7,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "OMDB-VIDP",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 4.6,
-      "silent_days": 9
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "VAJJ-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 4.3,
-      "silent_days": 8
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "KLAX-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 4.3,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -635,7 +465,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 4.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -645,17 +475,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 4.2,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "LTFM-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 4.1,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -665,7 +485,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 4.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -675,17 +495,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 4.0,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "OMDB-VABB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 4.0,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -695,7 +505,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 4.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -705,17 +515,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.9,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OPMT-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 3.9,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -725,7 +525,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -735,7 +535,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -745,17 +545,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.5,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "VOCI-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 3.4,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -765,27 +555,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.4,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OTHH-RPLC",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 3.4,
-      "silent_days": 9
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "EGCC-OBBI",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 3.3,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -795,7 +565,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -805,17 +575,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.3,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "GOBD-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 3.3,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -825,7 +585,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -835,7 +595,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -845,7 +605,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -855,7 +615,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -865,7 +625,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -875,7 +635,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 3.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -885,7 +645,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -895,7 +655,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -905,7 +665,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -915,7 +675,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -925,7 +685,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -935,7 +695,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -945,7 +705,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -955,7 +715,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -965,7 +725,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -975,7 +735,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -985,7 +745,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -995,7 +755,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1005,7 +765,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1015,7 +775,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1025,7 +785,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1035,7 +795,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1045,7 +805,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1055,17 +815,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.4,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "OBBI-VGZR",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 2.4,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1075,7 +825,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1085,7 +835,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1095,7 +845,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1105,7 +855,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1115,7 +865,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1125,7 +875,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1135,7 +885,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1145,7 +895,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1155,7 +905,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1165,7 +915,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1175,7 +925,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1185,7 +935,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1195,7 +945,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1205,7 +955,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1215,7 +965,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1225,7 +975,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1235,17 +985,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 2.0,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "ETD",
-      "carrier_name": "Etihad Airways",
-      "route": "OTHH-OMAF",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 1.9,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1255,17 +995,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.9,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "EGKK-OBBI",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 1.9,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1275,7 +1005,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1285,7 +1015,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1295,7 +1025,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1305,7 +1035,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1315,7 +1045,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1325,7 +1055,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1335,7 +1065,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1345,7 +1075,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1355,7 +1085,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 7
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1365,7 +1095,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1375,17 +1105,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OMDW-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 1.8,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1395,7 +1115,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1405,7 +1125,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1415,7 +1135,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1425,7 +1145,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1435,7 +1155,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1445,17 +1165,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.7,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "OMDB-VECC",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 1.7,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1465,7 +1175,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1475,7 +1185,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1485,7 +1195,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1495,7 +1205,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1505,7 +1215,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1515,7 +1225,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1525,7 +1235,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1535,7 +1245,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1545,7 +1255,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1555,7 +1265,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1565,7 +1275,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1575,7 +1285,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1585,7 +1295,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1595,7 +1305,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1605,7 +1315,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1615,7 +1325,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1625,7 +1335,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1635,7 +1345,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1645,7 +1355,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1655,7 +1365,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1665,7 +1375,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1675,7 +1385,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1685,7 +1395,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1695,7 +1405,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1705,7 +1415,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1715,7 +1425,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1725,7 +1435,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1735,7 +1445,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1745,7 +1455,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1755,17 +1465,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.2,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "ABY",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "route": "OMSJ-OEDF",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 1.1,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1775,7 +1475,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1785,7 +1485,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1795,7 +1495,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1805,7 +1505,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1815,7 +1515,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1825,7 +1525,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1835,7 +1535,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1845,7 +1545,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1855,17 +1555,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "OTHH-LDZS",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 1.1,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1875,7 +1565,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1885,7 +1575,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1895,7 +1585,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1905,7 +1595,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1915,7 +1605,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1925,7 +1615,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1935,7 +1625,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1945,7 +1635,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1955,7 +1645,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1965,7 +1655,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1975,7 +1665,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 1.0,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1985,7 +1675,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -1995,7 +1685,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2005,7 +1695,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2015,7 +1705,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2025,7 +1715,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2035,7 +1725,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2045,7 +1735,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2055,7 +1745,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2065,7 +1755,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2075,7 +1765,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2085,7 +1775,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2095,7 +1785,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.9,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2105,7 +1795,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2115,7 +1805,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2125,27 +1815,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "OBBI-EGLL",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.8,
-      "silent_days": 8
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "OBBI-LIRF",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.8,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2155,7 +1825,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2165,7 +1835,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2175,7 +1845,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2185,17 +1855,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "OMA",
-      "carrier_name": "Oman Air",
-      "route": "VOCI-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.8,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2205,7 +1865,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2215,7 +1875,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2225,7 +1885,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2235,7 +1895,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2245,7 +1905,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2255,7 +1915,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2265,7 +1925,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2275,7 +1935,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2285,7 +1945,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2295,7 +1955,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2305,7 +1965,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2315,7 +1975,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2325,7 +1985,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2335,7 +1995,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2345,7 +2005,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2355,7 +2015,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2365,7 +2025,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2375,7 +2035,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2385,7 +2045,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2395,7 +2055,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2405,7 +2065,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2415,7 +2075,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2425,7 +2085,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2435,7 +2095,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.7,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2445,7 +2105,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2455,7 +2115,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2465,7 +2125,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2475,7 +2135,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2485,7 +2145,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2495,7 +2155,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2505,7 +2165,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2515,7 +2175,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2525,17 +2185,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "OBBI-LCLK",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.6,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2545,7 +2195,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2555,7 +2205,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2565,7 +2215,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2575,7 +2225,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2585,7 +2235,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2595,7 +2245,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2605,7 +2255,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2615,7 +2265,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2625,7 +2275,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2635,7 +2285,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2645,7 +2295,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.6,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2655,7 +2305,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2665,7 +2315,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2675,7 +2325,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2685,7 +2335,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2695,7 +2345,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2705,7 +2355,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2715,7 +2365,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2725,7 +2375,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2735,7 +2385,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2745,7 +2395,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2755,7 +2405,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2765,7 +2415,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2775,7 +2425,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2785,7 +2435,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2795,7 +2445,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2805,7 +2455,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2815,7 +2465,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2825,7 +2475,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2835,7 +2485,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2845,7 +2495,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2855,7 +2505,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2865,17 +2515,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "OMA",
-      "carrier_name": "Oman Air",
-      "route": "OTHH-VIDP",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.5,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2885,7 +2525,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2895,7 +2535,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2905,7 +2545,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2915,7 +2555,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2925,7 +2565,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2935,7 +2575,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2945,7 +2585,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2955,7 +2595,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2965,7 +2605,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2975,7 +2615,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2985,7 +2625,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -2995,7 +2635,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3005,7 +2645,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3015,7 +2655,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3025,7 +2665,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3035,7 +2675,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3045,7 +2685,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3055,7 +2695,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3065,7 +2705,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3075,17 +2715,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-RPLC",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.5,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3095,7 +2725,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3105,7 +2735,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3115,7 +2745,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3125,17 +2755,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "ETD",
-      "carrier_name": "Etihad Airways",
-      "route": "OMAA-EGLL",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.4,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3145,7 +2765,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3155,7 +2775,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3165,7 +2785,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3175,7 +2795,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3185,7 +2805,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3195,7 +2815,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3205,7 +2825,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3215,7 +2835,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3225,7 +2845,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3235,7 +2855,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3245,7 +2865,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3255,7 +2875,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3265,7 +2885,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3275,7 +2895,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3285,7 +2905,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3295,7 +2915,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3305,7 +2925,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3315,7 +2935,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3325,7 +2945,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3335,7 +2955,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3345,7 +2965,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3355,7 +2975,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3365,7 +2985,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3375,7 +2995,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3385,7 +3005,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3395,17 +3015,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-OMDW",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.4,
-      "silent_days": 9
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3415,7 +3025,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3425,7 +3035,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3435,7 +3045,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3445,7 +3055,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3455,7 +3065,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3465,7 +3075,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3475,7 +3085,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3485,7 +3095,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3495,7 +3105,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3505,7 +3115,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3515,7 +3125,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3525,7 +3135,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3535,7 +3145,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3545,7 +3155,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3555,7 +3165,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3565,7 +3175,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3575,17 +3185,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "OMAD-OBBI",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.3,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3595,7 +3195,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3605,7 +3205,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3615,7 +3215,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3625,7 +3225,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3635,7 +3235,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3645,7 +3245,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3655,7 +3255,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3665,7 +3265,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3675,7 +3275,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3685,7 +3285,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3695,7 +3295,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3705,7 +3305,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3715,7 +3315,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3725,7 +3325,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3735,7 +3335,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3745,7 +3345,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3755,17 +3355,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "DAAG-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.3,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3775,7 +3365,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3785,7 +3375,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3795,7 +3385,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3805,7 +3395,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3815,7 +3405,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3825,7 +3415,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3835,7 +3425,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3845,7 +3435,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3855,7 +3445,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3865,7 +3455,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3875,7 +3465,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3885,7 +3475,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3895,7 +3485,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3905,7 +3495,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3915,7 +3505,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3925,7 +3515,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3935,7 +3525,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3945,7 +3535,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.3,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3955,7 +3545,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3965,7 +3555,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3975,7 +3565,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3985,7 +3575,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -3995,7 +3585,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4005,7 +3595,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4015,7 +3605,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4025,7 +3615,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4035,7 +3625,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4045,7 +3635,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4055,17 +3645,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "OBBI-OEDR",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.2,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4075,7 +3655,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4085,7 +3665,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4095,7 +3675,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4105,7 +3685,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4115,7 +3695,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4125,7 +3705,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4135,7 +3715,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4145,7 +3725,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4155,7 +3735,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4165,7 +3745,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4175,7 +3755,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4185,7 +3765,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4195,7 +3775,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4205,7 +3785,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4215,7 +3795,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4225,7 +3805,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4235,7 +3815,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4245,7 +3825,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4255,7 +3835,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4265,7 +3845,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4275,7 +3855,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4285,7 +3865,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4295,7 +3875,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4305,7 +3885,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4315,7 +3895,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4325,7 +3905,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4335,7 +3915,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4345,7 +3925,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4355,7 +3935,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4365,7 +3945,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4375,7 +3955,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4385,7 +3965,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4395,7 +3975,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4405,7 +3985,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4415,7 +3995,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4425,7 +4005,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4435,7 +4015,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4445,7 +4025,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4455,7 +4035,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4465,7 +4045,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4475,7 +4055,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4485,7 +4065,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4495,7 +4075,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4505,7 +4085,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4515,7 +4095,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4525,7 +4105,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4535,7 +4115,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4545,7 +4125,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4555,7 +4135,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4565,7 +4145,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4575,7 +4155,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4585,7 +4165,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4595,7 +4175,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4605,7 +4185,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4615,7 +4195,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4625,7 +4205,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4635,7 +4215,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.2,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4645,7 +4225,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4655,7 +4235,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4665,7 +4245,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4675,7 +4255,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4685,7 +4265,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4695,7 +4275,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4705,7 +4285,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4715,7 +4295,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4725,7 +4305,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4735,7 +4315,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4745,7 +4325,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4755,7 +4335,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4765,7 +4345,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4775,7 +4355,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4785,7 +4365,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4795,7 +4375,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4805,7 +4385,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4815,7 +4395,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4825,7 +4405,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4835,7 +4415,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4845,7 +4425,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4855,7 +4435,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4865,7 +4445,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4875,7 +4455,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4885,7 +4465,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4895,7 +4475,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4905,7 +4485,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4915,7 +4495,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4925,7 +4505,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4935,7 +4515,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4945,7 +4525,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4955,7 +4535,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4965,7 +4545,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4975,7 +4555,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4985,7 +4565,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -4995,7 +4575,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5005,7 +4585,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5015,7 +4595,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5025,7 +4605,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5035,7 +4615,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5045,7 +4625,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5055,7 +4635,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5065,7 +4645,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5075,7 +4655,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5085,7 +4665,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5095,7 +4675,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5105,7 +4685,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5115,7 +4695,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5125,7 +4705,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5135,7 +4715,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5145,7 +4725,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5155,7 +4735,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5165,7 +4745,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5175,7 +4755,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5185,7 +4765,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5195,7 +4775,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5205,7 +4785,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5215,7 +4795,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5225,7 +4805,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5235,7 +4815,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5245,7 +4825,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5255,7 +4835,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5265,17 +4845,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "KNE",
-      "carrier_name": "flynas",
-      "route": "OTHH-HE15",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.1,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5285,7 +4855,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5295,7 +4865,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5305,7 +4875,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5315,7 +4885,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5325,7 +4895,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5335,7 +4905,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5345,7 +4915,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5355,7 +4925,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5365,7 +4935,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5375,7 +4945,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5385,7 +4955,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5395,7 +4965,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5405,7 +4975,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5415,7 +4985,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5425,7 +4995,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5435,7 +5005,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5445,7 +5015,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5455,7 +5025,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5465,7 +5035,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5475,7 +5045,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5485,7 +5055,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5495,7 +5065,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5505,7 +5075,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5515,7 +5085,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5525,7 +5095,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5535,7 +5105,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5545,7 +5115,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5555,7 +5125,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5565,7 +5135,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5575,7 +5145,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5585,7 +5155,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5595,7 +5165,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5605,7 +5175,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5615,7 +5185,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5625,7 +5195,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5635,7 +5205,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5645,7 +5215,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5655,7 +5225,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5665,7 +5235,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5675,7 +5245,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5685,7 +5255,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5695,7 +5265,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5705,7 +5275,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5715,7 +5285,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5725,7 +5295,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5735,7 +5305,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5745,7 +5315,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5755,7 +5325,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5765,7 +5335,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5775,7 +5345,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5785,7 +5355,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5795,7 +5365,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5805,7 +5375,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5815,7 +5385,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5825,7 +5395,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5835,7 +5405,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5845,7 +5415,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5855,7 +5425,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5865,7 +5435,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5875,7 +5445,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5885,7 +5455,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5895,7 +5465,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5905,7 +5475,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5915,7 +5485,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5925,7 +5495,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5935,7 +5505,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5945,7 +5515,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5955,7 +5525,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5965,7 +5535,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5975,7 +5545,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5985,7 +5555,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -5995,7 +5565,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6005,7 +5575,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6015,7 +5585,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6025,17 +5595,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
-    },
-    {
-      "severity": "critical",
-      "carrier": "SVA",
-      "carrier_name": "Saudia",
-      "route": "LFPG-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "baseline_weekly": 0.1,
-      "silent_days": 8
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6045,7 +5605,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6055,7 +5615,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6065,7 +5625,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6075,7 +5635,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6085,7 +5645,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6095,7 +5655,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6105,7 +5665,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6115,7 +5675,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6125,7 +5685,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6135,7 +5695,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6145,7 +5705,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6155,7 +5715,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6165,7 +5725,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6175,7 +5735,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6185,7 +5745,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6195,7 +5755,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6205,7 +5765,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6215,7 +5775,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6225,7 +5785,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6235,7 +5795,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6245,7 +5805,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6255,7 +5815,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6265,7 +5825,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6275,7 +5835,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6285,7 +5845,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6295,7 +5855,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6305,7 +5865,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6315,7 +5875,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "critical",
@@ -6325,7 +5885,7 @@
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "severity": "high",
@@ -7651,6 +7211,16 @@
       "severity": "high",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
+      "route": "OTHH-LHBP",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 10.7,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
       "route": "EPWA-OTHH",
       "status": "MINIMAL",
       "weekly_frequency": 3,
@@ -7776,6 +7346,16 @@
       "weekly_frequency": 2,
       "baseline_weekly": 9.1,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "VECC-OMDB",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 9.0,
+      "silent_days": 1
     },
     {
       "severity": "high",
@@ -8039,6 +7619,16 @@
     },
     {
       "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EBLG",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 7.4,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "LIME-OMSJ",
@@ -8106,6 +7696,16 @@
       "weekly_frequency": 1,
       "baseline_weekly": 6.6,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-LSZH",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 6.6,
+      "silent_days": 1
     },
     {
       "severity": "high",
@@ -8206,6 +7806,16 @@
       "weekly_frequency": 1,
       "baseline_weekly": 6.5,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-LKPR",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 6.5,
+      "silent_days": 1
     },
     {
       "severity": "high",
@@ -8351,6 +7961,16 @@
       "severity": "high",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
+      "route": "OTHH-LYBE",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 6.2,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
       "route": "YPPH-OTHH",
       "status": "MINIMAL",
       "weekly_frequency": 1,
@@ -8476,6 +8096,16 @@
       "weekly_frequency": 1,
       "baseline_weekly": 6.1,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-KIAH",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 6.0,
+      "silent_days": 1
     },
     {
       "severity": "high",
@@ -8631,6 +8261,16 @@
       "severity": "high",
       "carrier": "UAE",
       "carrier_name": "Emirates",
+      "route": "OMDB-SBGL",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.9,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
       "route": "OMDB-YPAD",
       "status": "MINIMAL",
       "weekly_frequency": 1,
@@ -8699,6 +8339,16 @@
     },
     {
       "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-VECC",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.8,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "LGAV-OMSJ",
@@ -8751,6 +8401,16 @@
       "severity": "high",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
+      "route": "OTHH-KBOS",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.7,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
       "route": "VOTV-OTHH",
       "status": "MINIMAL",
       "weekly_frequency": 1,
@@ -8766,6 +8426,16 @@
       "weekly_frequency": 1,
       "baseline_weekly": 5.7,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "OMDB-LHBP",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.6,
+      "silent_days": 2
     },
     {
       "severity": "high",
@@ -8799,6 +8469,16 @@
     },
     {
       "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "LHBP-OMDB",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.5,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "route": "VGZR-OBBI",
@@ -8826,6 +8506,16 @@
       "weekly_frequency": 1,
       "baseline_weekly": 5.5,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "VECC-OTHH",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.5,
+      "silent_days": 2
     },
     {
       "severity": "high",
@@ -8866,6 +8556,16 @@
       "weekly_frequency": 1,
       "baseline_weekly": 5.2,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-KATL",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 5.2,
+      "silent_days": 1
     },
     {
       "severity": "high",
@@ -8949,6 +8649,16 @@
     },
     {
       "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "OMDB-VIDP",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 4.6,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "route": "OTHH-KSEA",
@@ -8989,6 +8699,26 @@
     },
     {
       "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "VAJJ-OMDB",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 4.3,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "KLAX-OTHH",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 4.3,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "route": "OTHH-OPMT",
@@ -9019,6 +8749,16 @@
     },
     {
       "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "LTFM-OMDB",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 4.1,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "route": "EDDF-OBBI",
@@ -9026,6 +8766,16 @@
       "weekly_frequency": 1,
       "baseline_weekly": 4.1,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "OMDB-VABB",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 4.0,
+      "silent_days": 2
     },
     {
       "severity": "high",
@@ -9056,6 +8806,16 @@
       "weekly_frequency": 1,
       "baseline_weekly": 3.9,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OPMT-OTHH",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 3.9,
+      "silent_days": 2
     },
     {
       "severity": "high",
@@ -9119,6 +8879,26 @@
     },
     {
       "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "VOCI-OMDB",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 3.4,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-RPLC",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 3.4,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
       "carrier": "UAE",
       "carrier_name": "Emirates",
       "route": "OMDB-FAOR",
@@ -9126,6 +8906,226 @@
       "weekly_frequency": 1,
       "baseline_weekly": 3.4,
       "silent_days": 0
+    },
+    {
+      "severity": "high",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "EGCC-OBBI",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 3.3,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "GOBD-OMDB",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 3.3,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "OBBI-VGZR",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 2.4,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "route": "OTHH-OMAF",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.9,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "EGKK-OBBI",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.9,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OMDW-OTHH",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.8,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "OMDB-VECC",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.7,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "route": "OMSJ-OEDF",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.1,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LDZS",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 1.1,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "OBBI-EGLL",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.8,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "OBBI-LIRF",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.8,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "OMA",
+      "carrier_name": "Oman Air",
+      "route": "VOCI-OTHH",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.8,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "OBBI-LCLK",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.6,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "OMA",
+      "carrier_name": "Oman Air",
+      "route": "OTHH-VIDP",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.5,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-RPLC",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.5,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "route": "OMAA-EGLL",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.4,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-OMDW",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.4,
+      "silent_days": 2
+    },
+    {
+      "severity": "high",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "OMAD-OBBI",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.3,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "DAAG-OTHH",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.3,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "OBBI-OEDR",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.2,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "KNE",
+      "carrier_name": "flynas",
+      "route": "OTHH-HE15",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.1,
+      "silent_days": 1
+    },
+    {
+      "severity": "high",
+      "carrier": "SVA",
+      "carrier_name": "Saudia",
+      "route": "LFPG-OMDB",
+      "status": "MINIMAL",
+      "weekly_frequency": 0,
+      "baseline_weekly": 0.1,
+      "silent_days": 1
     },
     {
       "severity": "medium",

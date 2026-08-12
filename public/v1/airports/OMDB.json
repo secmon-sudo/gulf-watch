@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:24:01+00:00",
+  "generated_at": "2026-08-12T12:33:22+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -67,7 +67,7 @@
       "baseline_weekly": 18.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "BAW",
@@ -78,7 +78,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "BAW",
@@ -89,7 +89,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "BAW",
@@ -100,7 +100,7 @@
       "baseline_weekly": 16.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "BAW",
@@ -111,7 +111,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "BAW",
@@ -122,7 +122,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "BAW",
@@ -133,7 +133,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "BAW",
@@ -144,7 +144,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "BAW",
@@ -155,7 +155,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CCA",
@@ -166,7 +166,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CCA",
@@ -177,7 +177,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CCA",
@@ -188,7 +188,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CCA",
@@ -199,7 +199,7 @@
       "baseline_weekly": 1.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CCA",
@@ -210,7 +210,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CCA",
@@ -221,7 +221,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CES",
@@ -232,7 +232,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CES",
@@ -243,7 +243,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CES",
@@ -254,7 +254,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CES",
@@ -265,7 +265,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CES",
@@ -276,7 +276,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CSN",
@@ -287,7 +287,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CSN",
@@ -298,7 +298,7 @@
       "baseline_weekly": 1.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CSN",
@@ -309,7 +309,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CSN",
@@ -320,7 +320,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CSN",
@@ -331,7 +331,7 @@
       "baseline_weekly": 2.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "CSN",
@@ -342,7 +342,7 @@
       "baseline_weekly": 2.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "DAH",
@@ -353,7 +353,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "DAH",
@@ -364,7 +364,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -375,7 +375,7 @@
       "baseline_weekly": 3.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -386,7 +386,7 @@
       "baseline_weekly": 2.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -397,7 +397,7 @@
       "baseline_weekly": 1.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -408,7 +408,7 @@
       "baseline_weekly": 1.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -430,7 +430,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -441,7 +441,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -452,7 +452,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -463,7 +463,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -474,7 +474,7 @@
       "baseline_weekly": 3.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -484,8 +484,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.5,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "FDB",
@@ -496,7 +496,7 @@
       "baseline_weekly": 1.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -518,7 +518,7 @@
       "baseline_weekly": 2.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -529,7 +529,7 @@
       "baseline_weekly": 2.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -551,7 +551,7 @@
       "baseline_weekly": 2.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -562,7 +562,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -573,7 +573,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -605,8 +605,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 4.1,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "FDB",
@@ -617,7 +617,7 @@
       "baseline_weekly": 2.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -639,7 +639,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -650,7 +650,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -661,7 +661,7 @@
       "baseline_weekly": 2.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -672,7 +672,7 @@
       "baseline_weekly": 3.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -683,7 +683,7 @@
       "baseline_weekly": 6.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -694,7 +694,7 @@
       "baseline_weekly": 1.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -705,7 +705,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -727,7 +727,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -738,7 +738,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -749,7 +749,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -759,8 +759,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.6,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "FDB",
@@ -771,7 +771,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -793,7 +793,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -804,7 +804,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -815,7 +815,7 @@
       "baseline_weekly": 2.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -837,7 +837,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -848,7 +848,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -859,7 +859,7 @@
       "baseline_weekly": 2.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -870,7 +870,7 @@
       "baseline_weekly": 1.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -881,7 +881,7 @@
       "baseline_weekly": 5.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -947,7 +947,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -969,7 +969,7 @@
       "baseline_weekly": 2.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1024,7 +1024,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1057,7 +1057,7 @@
       "baseline_weekly": 1.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1068,7 +1068,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1079,7 +1079,7 @@
       "baseline_weekly": 1.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1089,8 +1089,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 4.0,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "FDB",
@@ -1101,7 +1101,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1111,8 +1111,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 1.7,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "FDB",
@@ -1123,7 +1123,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1144,8 +1144,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 4.6,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "FDB",
@@ -1156,7 +1156,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1189,7 +1189,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1211,7 +1211,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1233,7 +1233,7 @@
       "baseline_weekly": 1.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1266,7 +1266,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1276,8 +1276,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 4.3,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "FDB",
@@ -1299,7 +1299,7 @@
       "baseline_weekly": 4.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FDB",
@@ -1320,8 +1320,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 3.4,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "FDB",
@@ -1343,7 +1343,7 @@
       "baseline_weekly": 5.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FIN",
@@ -1354,7 +1354,7 @@
       "baseline_weekly": 3.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "FIN",
@@ -1365,7 +1365,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "GFA",
@@ -1376,7 +1376,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "GFA",
@@ -1387,7 +1387,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "GFA",
@@ -1420,7 +1420,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1431,7 +1431,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1442,7 +1442,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1453,7 +1453,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1464,7 +1464,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1475,7 +1475,7 @@
       "baseline_weekly": 10.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1486,7 +1486,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1497,7 +1497,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1508,7 +1508,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1519,7 +1519,7 @@
       "baseline_weekly": 10.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1530,7 +1530,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1541,7 +1541,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1552,7 +1552,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1563,7 +1563,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KAC",
@@ -1574,7 +1574,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1585,7 +1585,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1596,7 +1596,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1607,7 +1607,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1629,7 +1629,7 @@
       "baseline_weekly": 2.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1640,7 +1640,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1662,7 +1662,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1673,7 +1673,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1684,7 +1684,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1695,7 +1695,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1717,7 +1717,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1728,7 +1728,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1739,7 +1739,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1750,7 +1750,7 @@
       "baseline_weekly": 4.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1761,7 +1761,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1772,7 +1772,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1783,7 +1783,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1794,7 +1794,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "KNE",
@@ -1805,7 +1805,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MEA",
@@ -1816,7 +1816,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MEA",
@@ -1849,7 +1849,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MEA",
@@ -1860,7 +1860,7 @@
       "baseline_weekly": 2.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MSR",
@@ -1882,7 +1882,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MSR",
@@ -1893,7 +1893,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MSR",
@@ -1904,7 +1904,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MSR",
@@ -1926,7 +1926,7 @@
       "baseline_weekly": 1.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 7
+      "silent_days": 3
     },
     {
       "carrier": "MSR",
@@ -1937,7 +1937,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MSR",
@@ -1948,7 +1948,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MSR",
@@ -1981,7 +1981,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -1992,7 +1992,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2003,7 +2003,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2014,7 +2014,7 @@
       "baseline_weekly": 1.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2025,7 +2025,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2036,7 +2036,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2047,7 +2047,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2058,7 +2058,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2069,7 +2069,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2080,7 +2080,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2091,7 +2091,7 @@
       "baseline_weekly": 1.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2102,7 +2102,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2113,7 +2113,7 @@
       "baseline_weekly": 1.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -2124,7 +2124,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "PGT",
@@ -2135,7 +2135,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "PGT",
@@ -2146,7 +2146,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "PGT",
@@ -2168,7 +2168,7 @@
       "baseline_weekly": 1.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "PGT",
@@ -2190,7 +2190,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "QTR",
@@ -2201,7 +2201,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "QTR",
@@ -2212,7 +2212,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "QTR",
@@ -2223,7 +2223,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "QTR",
@@ -2234,7 +2234,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "QTR",
@@ -2278,7 +2278,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RAM",
@@ -2289,7 +2289,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RAM",
@@ -2300,7 +2300,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RAM",
@@ -2311,7 +2311,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RAM",
@@ -2333,7 +2333,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2344,7 +2344,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2355,7 +2355,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2366,7 +2366,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2377,7 +2377,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2388,7 +2388,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2399,7 +2399,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2410,7 +2410,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2421,7 +2421,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2432,7 +2432,7 @@
       "baseline_weekly": 1.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2443,7 +2443,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2454,7 +2454,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2476,7 +2476,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2487,7 +2487,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2498,7 +2498,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2509,7 +2509,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2520,7 +2520,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2531,7 +2531,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2542,7 +2542,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2553,7 +2553,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2564,7 +2564,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2575,7 +2575,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2586,7 +2586,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2597,7 +2597,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2608,7 +2608,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2630,7 +2630,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "RJA",
@@ -2641,7 +2641,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2652,7 +2652,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2663,7 +2663,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2674,7 +2674,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2684,8 +2684,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "SVA",
@@ -2696,7 +2696,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2707,7 +2707,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2718,7 +2718,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2729,7 +2729,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2740,7 +2740,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2762,7 +2762,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2773,7 +2773,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2784,7 +2784,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2795,7 +2795,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2806,7 +2806,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2828,7 +2828,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2850,7 +2850,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2861,7 +2861,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2872,7 +2872,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2883,7 +2883,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -2894,7 +2894,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2905,7 +2905,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -2927,7 +2927,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3190,8 +3190,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 3.3,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "UAE",
@@ -3213,7 +3213,7 @@
       "baseline_weekly": 1.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3356,7 +3356,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3367,7 +3367,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3422,7 +3422,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3499,7 +3499,7 @@
       "baseline_weekly": 1.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3510,7 +3510,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3565,7 +3565,7 @@
       "baseline_weekly": 10.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3576,7 +3576,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3598,7 +3598,7 @@
       "baseline_weekly": 11.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3642,7 +3642,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3664,7 +3664,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3675,7 +3675,7 @@
       "baseline_weekly": 1.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3719,7 +3719,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3763,7 +3763,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3807,7 +3807,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3873,7 +3873,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3917,7 +3917,7 @@
       "baseline_weekly": 1.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3939,7 +3939,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3950,7 +3950,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3961,7 +3961,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3983,7 +3983,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -3994,7 +3994,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4038,7 +4038,7 @@
       "baseline_weekly": 2.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4049,7 +4049,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4060,7 +4060,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4104,7 +4104,7 @@
       "baseline_weekly": 1.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4115,7 +4115,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4126,7 +4126,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4159,7 +4159,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4170,7 +4170,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4180,8 +4180,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.0,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -4225,7 +4225,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4280,7 +4280,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4324,7 +4324,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4335,7 +4335,7 @@
       "baseline_weekly": 1.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4379,7 +4379,7 @@
       "baseline_weekly": 1.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4401,7 +4401,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4412,7 +4412,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4445,7 +4445,7 @@
       "baseline_weekly": 2.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4477,8 +4477,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.5,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -4500,7 +4500,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4522,7 +4522,7 @@
       "baseline_weekly": 2.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4533,7 +4533,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4544,7 +4544,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4587,8 +4587,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 6.6,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -4632,7 +4632,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4643,7 +4643,7 @@
       "baseline_weekly": 10.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4654,7 +4654,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4687,7 +4687,7 @@
       "baseline_weekly": 11.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4709,7 +4709,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4730,8 +4730,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.4,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "UAE",
@@ -4742,7 +4742,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4753,7 +4753,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4764,7 +4764,7 @@
       "baseline_weekly": 1.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4775,7 +4775,7 @@
       "baseline_weekly": 2.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4840,8 +4840,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "UAE",
@@ -4863,7 +4863,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4873,8 +4873,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.9,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -4896,7 +4896,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4907,7 +4907,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4918,7 +4918,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4929,7 +4929,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4940,7 +4940,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4951,7 +4951,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4962,7 +4962,7 @@
       "baseline_weekly": 7.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4973,7 +4973,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4984,7 +4984,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -4995,7 +4995,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5017,7 +5017,7 @@
       "baseline_weekly": 1.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5028,7 +5028,7 @@
       "baseline_weekly": 2.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5038,8 +5038,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 5.8,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "UAE",
@@ -5050,7 +5050,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5083,7 +5083,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5105,7 +5105,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5160,7 +5160,7 @@
       "baseline_weekly": 17.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5182,7 +5182,7 @@
       "baseline_weekly": 1.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5193,7 +5193,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5204,7 +5204,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5215,7 +5215,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5259,7 +5259,7 @@
       "baseline_weekly": 16.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5270,7 +5270,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5281,7 +5281,7 @@
       "baseline_weekly": 2.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5336,7 +5336,7 @@
       "baseline_weekly": 1.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5347,7 +5347,7 @@
       "baseline_weekly": 1.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5369,7 +5369,7 @@
       "baseline_weekly": 0.9,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5380,7 +5380,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5391,7 +5391,7 @@
       "baseline_weekly": 2.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5490,7 +5490,7 @@
       "baseline_weekly": 7.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5501,7 +5501,7 @@
       "baseline_weekly": 2.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5522,8 +5522,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 9.0,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "UAE",
@@ -5622,7 +5622,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5633,7 +5633,7 @@
       "baseline_weekly": 2.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",
@@ -5655,7 +5655,7 @@
       "baseline_weekly": 15.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "UAE",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:24:01+00:00",
+  "generated_at": "2026-08-12T12:33:22+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -74,7 +74,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "ETD",
@@ -162,7 +162,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MEA",
@@ -184,7 +184,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MEA",
@@ -195,7 +195,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MEA",
@@ -206,7 +206,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "MEA",

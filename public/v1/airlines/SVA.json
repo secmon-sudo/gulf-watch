@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:24:01+00:00",
+  "generated_at": "2026-08-12T12:33:22+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -21,8 +21,8 @@
   "weekly_frequency": 4,
   "baseline_weekly": 9.1,
   "routes_total": 25,
-  "routes_suspended": 21,
-  "routes_reduced": 1,
+  "routes_suspended": 20,
+  "routes_reduced": 2,
   "ratio": 0.44,
   "status": "REDUCED",
   "operating": true,
@@ -45,7 +45,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -56,7 +56,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -67,7 +67,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -77,8 +77,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.1,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8
+      "status": "MINIMAL",
+      "silent_days": 1
     },
     {
       "carrier": "SVA",
@@ -89,7 +89,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -100,7 +100,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -111,7 +111,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -122,7 +122,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -133,7 +133,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -166,7 +166,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -177,7 +177,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -188,7 +188,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -199,7 +199,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -210,7 +210,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -232,7 +232,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -254,7 +254,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -265,7 +265,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -276,7 +276,7 @@
       "baseline_weekly": 1.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -287,7 +287,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -298,7 +298,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "SVA",
@@ -309,7 +309,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     }
   ],
   "stop_events": [],

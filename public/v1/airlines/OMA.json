@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T12:24:01+00:00",
+  "generated_at": "2026-08-12T12:33:22+00:00",
   "as_of_day": "2026-08-11",
   "coverage": {
     "day": "2026-08-11",
@@ -21,8 +21,8 @@
   "weekly_frequency": 1,
   "baseline_weekly": 16.0,
   "routes_total": 33,
-  "routes_suspended": 32,
-  "routes_reduced": 0,
+  "routes_suspended": 30,
+  "routes_reduced": 2,
   "ratio": 0.062,
   "status": "MINIMAL",
   "operating": true,
@@ -45,7 +45,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -56,7 +56,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -67,7 +67,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -78,7 +78,7 @@
       "baseline_weekly": 1.0,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -89,7 +89,7 @@
       "baseline_weekly": 0.3,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -100,7 +100,7 @@
       "baseline_weekly": 0.4,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -111,7 +111,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -122,7 +122,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -132,8 +132,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.5,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "OMA",
@@ -144,7 +144,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -155,7 +155,7 @@
       "baseline_weekly": 1.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -166,7 +166,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -177,7 +177,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -188,7 +188,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -199,7 +199,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -210,7 +210,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -221,7 +221,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -232,7 +232,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -243,7 +243,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -254,7 +254,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -276,7 +276,7 @@
       "baseline_weekly": 1.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -287,7 +287,7 @@
       "baseline_weekly": 0.8,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -298,7 +298,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -309,7 +309,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -320,7 +320,7 @@
       "baseline_weekly": 0.5,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -331,7 +331,7 @@
       "baseline_weekly": 0.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -342,7 +342,7 @@
       "baseline_weekly": 1.6,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -352,8 +352,8 @@
       "weekly_frequency": 0,
       "baseline_weekly": 0.8,
       "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9
+      "status": "MINIMAL",
+      "silent_days": 2
     },
     {
       "carrier": "OMA",
@@ -364,7 +364,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -375,7 +375,7 @@
       "baseline_weekly": 0.2,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -386,7 +386,7 @@
       "baseline_weekly": 0.1,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     },
     {
       "carrier": "OMA",
@@ -397,7 +397,7 @@
       "baseline_weekly": 0.7,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 14
+      "silent_days": 3
     }
   ],
   "stop_events": [],

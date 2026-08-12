@@ -144,12 +144,61 @@ class TestCoverageGate(unittest.TestCase):
             "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,28,'x','y')")
         self.conn.commit()
 
+        # Score every day in the window, not just today. Each ingest scores its
+        # own reference day, so in the live pipeline these rows accumulate --
+        # and silent_days() now needs them: a day with no coverage row is a day
+        # nobody looked at, and those cannot add up to proven silence.
+        for off in range(29):
+            metrics.score_coverage(self.conn, today - timedelta(days=off))
+        self.conn.commit()
+
         cov = metrics.score_coverage(self.conn, today)
         self.assertEqual(cov["verdict"], "ok")
         report = metrics.route_report(self.conn, today)
         gfa = [r for r in report["routes"] if r["carrier"] == "GFA"][0]
         self.assertEqual(gfa["status"], "SUSPENDED")
         self.assertGreaterEqual(gfa["silent_days"], config.SUSPENSION_CONFIRM_DAYS)
+
+    def test_blind_days_do_not_confirm_a_suspension(self):
+        """The 2026-08-12 shape: a long outage stretch behind one quiet day.
+
+        GFA's last flight was 3 days ago, but only one of the days since then
+        was observed -- the rest were `outage`, which is what the whole
+        backfill week looked like. One observed silent day is not three.
+        """
+        today = date.today()
+        rows, i = [], 0
+        for off in range(28, -1, -1):
+            d = today - timedelta(days=off)
+            for _ in range(10):
+                i += 1
+                rows.append(self._leg("UAE", d, i))
+            if off > 2:
+                for _ in range(3):
+                    i += 1
+                    rows.append(self._leg("GFA", d, i))
+        db.upsert_flights(self.conn, rows)
+        metrics.rebuild_daily(self.conn)
+        self.conn.execute(
+            "INSERT INTO baseline VALUES ('GFA','OMDB','OTHH',21,28,'x','y')")
+        for off in range(29):
+            metrics.score_coverage(self.conn, today - timedelta(days=off))
+        # The two days before today were blind, exactly as 2026-08-04..10 were.
+        for off in (1, 2):
+            self.conn.execute("UPDATE coverage SET verdict='outage' WHERE day=?",
+                              ((today - timedelta(days=off)).isoformat(),))
+        self.conn.commit()
+
+        quiet = metrics.silent_days(self.conn, ("GFA", "OMDB", "OTHH"), today)
+        self.assertEqual(
+            quiet, 1,
+            "blind days were counted as silence -- that is what published ten "
+            "carriers as SUSPENDED on 2026-08-12")
+        report = metrics.route_report(self.conn, today)
+        gfa = [r for r in report["routes"] if r["carrier"] == "GFA"][0]
+        self.assertNotEqual(
+            gfa["status"], "SUSPENDED",
+            "one observed silent day must not confirm a suspension")
 
 
 class TestIdempotency(unittest.TestCase):
