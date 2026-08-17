@@ -462,7 +462,7 @@ def verdict(seen_at: dict, sched: dict | None,
         if kesinti:
             return "partial", (f"{n} sefer havada görüldü, ancak basın "
                                f"hat kesintisi bildiriyor{nere}")
-        return "flying", f"{n} sefer havada görüldü, kesinti bildirimi yok"
+        return "flying", f"{n} sefer havada görüldü, hat kesintisi bildirilmedi"
 
     if haftalik:
         if kesinti:
@@ -620,6 +620,13 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
 
     coverage = metrics.score_coverage(conn, ref)
     delta = diff_since_last(conn, rows, coverage["verdict"] == "ok")
+    # How many days of this window we actually looked at, from the definition
+    # metrics and suspensions already share. It governs whether the ratio
+    # column exists, how the weekly figures are scaled, and what a silent
+    # carrier means -- so it belongs at the top of the page rather than in a
+    # footnote under one table.
+    observed = metrics.observed_days(
+        metrics.coverage_map(conn), ref, metrics.WINDOW_DAYS)
 
     return {
         "generated_at": datetime.now(tz=timezone.utc),
@@ -628,6 +635,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "window": (act["since"], act["until"]),
         "days": days,
         "coverage": coverage,
+        "observed_days": len(observed),
         "baseline_ready": bool(base),
         "carriers": rows,
         "airports": config.airports(),
@@ -652,9 +660,18 @@ STATE_LABEL = {"flying": "Uçuyor", "partial": "Kısmen kesti",
                "scheduled": "Tarifede var", "stopped": "Durdurdu",
                "unknown": "Bilinmiyor"}
 
-SIGNAL_LABEL = {"stopped": "kesinti", "resumed": "yeniden başladı",
+SIGNAL_LABEL = {"stopped": "hat kesintisi", "resumed": "yeniden başladı",
                 "unaffected": "etkilenmedi", "mentioned": "ilgili",
                 "irrelevant": "bu bölgeyle ilgisiz"}
+
+# One word, one meaning. "Kesinti" is what an AIRLINE did to a route, and it is
+# never what happened to our receivers -- the whole point of the page is that
+# those two are different, and it read as one word for both. The day's own
+# state gets the guide's three phrases verbatim instead of the raw enum value,
+# which was printing "ok" in the middle of a Turkish sentence.
+COV_LABEL = {"ok": "bakıldı, veri sağlam",
+             "outage": "bakıldı ama alıcılar zayıftı",
+             None: "bu güne hiç bakılmadı"}
 
 CSS = """
 :root{
@@ -728,6 +745,25 @@ header{display:flex;flex-direction:column;gap:6px;
 .stat .v{font-family:var(--mono);font-size:23px;font-weight:600;
   font-variant-numeric:tabular-nums;line-height:1.2}
 .stat .n{font-size:12px;color:var(--ink-3)}
+
+/* The day's coverage used to sit in the band as a bare "1.5" beside five
+   carrier counts -- a ratio wearing the same type as a headcount, which is
+   unreadable by design. It gets its own strip and says it in words. */
+.cov-line{font-size:12.5px;color:var(--ink-3);margin:10px 0 0;max-width:78ch}
+.cov{margin-top:10px;background:var(--panel);border:1px solid var(--rule);
+  border-radius:3px;padding:14px 16px;display:flex;gap:14px;
+  align-items:flex-start;flex-wrap:wrap}
+.cov p{font-size:13.5px;color:var(--ink-2);max-width:70ch;margin:0}
+
+/* Four units on one page, none of them addable to another. The tables label
+   every cell, and this is where the labels are defined once. */
+.glossary{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;margin-top:12px}
+.glossary>div{background:var(--panel);padding:12px 14px}
+.glossary .u{font-family:var(--mono);font-size:12px;font-weight:600;
+  color:var(--accent);display:block;margin-bottom:4px}
+.glossary p{font-size:12.5px;color:var(--ink-2);margin:0}
 
 .notice{border-left:3px solid var(--partial);background:var(--panel);
   padding:14px 18px;border-radius:0 3px 3px 0;display:flex;
@@ -852,9 +888,18 @@ def _airport_rows(data: dict) -> str:
             f'<span class="name">{_e(a["city"])}</span>'
             f'<div class="meta">{_e(a["icao"])} {_e(a["country"] or "")}</div></td>'
             f'<td><span class="pill s-{cls}"><span class="dot"></span>{label}</span></td>'
-            f'<td class="num">{a["legs"] or "—"}</td>'
-            f'<td class="num">{a["carriers_seen"] or "—"}</td>'
+            # Every number says its own unit. Four numeric columns ran side by
+            # side here -- 1611, 13, 2717, 12 -- where two count flights and
+            # two count airlines, and the only thing distinguishing them was a
+            # header row scrolled off the top.
+            f'<td class="num">{a["legs"] or "—"}'
+            + (f'<div class="meta">sefer</div>' if a["legs"] else "")
+            + '</td>'
+            f'<td class="num">{a["carriers_seen"] or "—"}'
+            + (f'<div class="meta">havayolu</div>' if a["carriers_seen"] else "")
+            + '</td>'
             f'<td class="num">{a["sched_weekly"] or "—"}'
+            + ('<div class="meta">sefer/hafta</div>' if a["sched_weekly"] else "")
             + (f'<div class="meta">{a["carriers_sched"]} havayolu</div>'
                if a["carriers_sched"] else "")
             + '</td>'
@@ -917,6 +962,8 @@ def _boards_section(data: dict) -> str:
                         for c in b["carriers"][:14])
         row_cls = ' class="r-stopped"' if broken else ""
         median = ("" if not show_median else
+                  # No unit label here: it sits directly beside a cell in the
+                  # same unit, under a header that names it.
                   f'<td class="num">{"—" if b["median"] is None else round(b["median"])}</td>')
         # A flagged board's carrier list is withheld rather than shown short:
         # a half-fetched list read as "these are the ones still flying" is
@@ -929,12 +976,13 @@ def _boards_section(data: dict) -> str:
             f'<span class="name">{_e(cfg.get("city", ""))}</span>'
             f'<div class="meta">{_e(b["airport"])}</div></td>'
             f'<td><span class="pill s-{cls}"><span class="dot"></span>{label}</span></td>'
-            f'<td class="num">{b["flights"]}</td>'
+            f'<td class="num">{b["flights"]}<div class="meta">kayıt</div></td>'
             f'{median}'
             f'<td>{who}</td>'
             '</tr>')
     if show_median:
-        medyan_th = '<th class="num">Medyan</th>'
+        medyan_th = ('<th class="num">Medyan'
+                     '<div class="meta">28 gün</div></th>')
         medyan_notu = (
             '<b>Medyan</b> sütunu önceki günlerin ortancası; bugünkü sayı onun '
             'çok altına düşerse kaynağın arızalandığı varsayılır, '
@@ -966,7 +1014,8 @@ def _boards_section(data: dict) -> str:
   {medyan_notu}</p>
   {warn}
   <div class="tablewrap"><table>
-    <thead><tr><th>Havalimanı</th><th>Durum</th><th class="num">Kayıt</th>
+    <thead><tr><th>Havalimanı</th><th>Durum</th>
+      <th class="num">Bugün<div class="meta">tahta kaydı</div></th>
       {medyan_th}<th>Tahtada görünen havayolları</th></tr></thead>
     <tbody>{"".join(rows)}</tbody>
   </table></div>
@@ -1117,7 +1166,9 @@ def _rows(data: dict) -> str:
             f'<div class="meta">{_e(c["iata"] or "")} {_e(c["country"] or "")}</div></td>'
             f'<td><div class="name">{_e(c["name"])}</div>{heads}</td>'
             f'<td>{_pill(c["state"])}<div class="why">{_e(c["why"])}</div></td>'
-            f'<td class="num">{c["legs"] or "—"}</td>'
+            f'<td class="num">{c["legs"] or "—"}'
+            + ('<div class="meta">sefer</div>' if c["legs"] else "")
+            + '</td>'
             f'<td class="at">{_e(at)}</td>'
             f'{ratio_cell}'
             f'</tr>')
@@ -1179,7 +1230,7 @@ def render(data: dict) -> str:
         warn.append(
             f'<b>Basın kaynağı {data["news_failures"]}/{data["news_asked"]} '
             f'havayolu sorgusunda yanıt vermedi.</b> Google News RSS HTTP '
-            f'hatası döndürdü; o satırlarda "kesinti bildirimi yok" ifadesi '
+            f'hatası döndürdü; o satırlarda "hat kesintisi bildirilmedi" ifadesi '
             f'<i>sorulup bulunamadığı</i> değil, <i>sorulamadığı</i> anlamına '
             f'gelir. Aynı sorgular başka bir ağdan çalışıyor, yani bu '
             f'çalıştırmaya özgü geçici bir arıza.')
@@ -1261,7 +1312,7 @@ def render(data: dict) -> str:
     <div class="stat"><span class="k">Havayolu</span><span class="v">{len(cs)}</span>
       <span class="n">izlenen toplam</span></div>
     <div class="stat"><span class="k">Uçuyor</span>
-      <span class="v s-flying">{n('flying')}</span><span class="n">havada görüldü, kesinti yok</span></div>
+      <span class="v s-flying">{n('flying')}</span><span class="n">havada görüldü, hat kesintisi bildirilmedi</span></div>
     <div class="stat"><span class="k">Kısmen kesti</span>
       <span class="v s-partial">{n('partial')}</span><span class="n">uçuyor ama hat kesmiş</span></div>
     <div class="stat"><span class="k">Durdurdu</span>
@@ -1270,9 +1321,21 @@ def render(data: dict) -> str:
       <span class="v s-scheduled">{n('scheduled')}</span><span class="n">kapsama dışı, tarifesi duruyor</span></div>
     <div class="stat"><span class="k">Bilinmiyor</span>
       <span class="v s-unknown">{n('unknown')}</span><span class="n">iki kaynak da sessiz</span></div>
-    <div class="stat"><span class="k">Kapsama</span>
-      <span class="v">{cov['score']}</span>
-      <span class="n">{_e(cov['verdict'])} · {cov['control_flights']} kontrol seferi</span></div>
+  </div>
+  <p class="cov-line">Yukarıdaki altı sayı <b>havayolu sayısı</b> ve toplamı
+  {len(cs)} eder. Aşağıdaki satır ise <b>bu verinin ne kadar sağlam olduğunu</b>
+  söyler — aynı cetvelin sayıları değil, o yüzden ayrı duruyor.</p>
+  <div class="cov">
+    <span class="pill s-{"flying" if cov["verdict"] == "ok" else "partial"}"><span class="dot"></span>{
+      _e(COV_LABEL.get(cov["verdict"], cov["verdict"]))}</span>
+    <p>{data["as_of_day"]} günü kontrol havayollarından <b>{cov['control_flights']}
+    sefer</b> görüldü; bu, son 28 günün ortancasının <b>{cov['score']} katı</b>.
+    Gözlem penceresindeki {data["days"]} günün <b>{data["observed_days"]}
+    tanesine</b> bakılabildi{
+      f", ve oran sütununun yayımlanması için gereken {MIN_RATIO_DAYS} güne "
+      f"{MIN_RATIO_DAYS - data['observed_days']} gün kaldı"
+      if data["observed_days"] < MIN_RATIO_DAYS else ""}. Haftalık sayılar
+    yalnızca bu günlere göre ölçekleniyor.</p>
   </div>
   {"".join(f'<div class="notice"><span class="t">Önce bunu okuyun</span><p>{w}</p></div>' for w in warn)}
 </section>
@@ -1305,7 +1368,7 @@ def render(data: dict) -> str:
       <b>“bu bölgeyle ilgisiz”</b> etiketiyle görünür ve <b>durumu
       değiştirmez</b>; bir havayolunu ancak izlediğimiz bir havalimanını ya da
       bölgeyi adlandıran başlık “kesti” sayabilir — yoksa başka bir kıtadaki
-      hat açılışı burada kesinti diye okunur. Duyuru gözlem değildir.
+      hat açılışı burada hat kesintisi diye okunur. Duyuru gözlem değildir.
       Kaynak yanıt vermezse rapor
       bunu en üstte söyler; sessizce “haber yok”a çevirmez. O durumda en son
       cevap alınan başlıklar <b>“arşiv”</b> etiketiyle ve alındıkları tarihle
@@ -1318,6 +1381,25 @@ def render(data: dict) -> str:
       düz metin yazar, yani yanılabilir. Yanındaki numaralar kaynak
       bağlantılarıdır, kontrol için oradalar.</div></div>
   </div>
+  <p class="sub prose">Sayfadaki sayılar <b>dört ayrı cetvelden</b> geliyor ve
+  hiçbiri diğeriyle toplanamaz. Bir tabloda bir sayı görürseniz altındaki küçük
+  etiket hangi cetvel olduğunu söyler:</p>
+  <div class="glossary">
+    <div><span class="u">sefer</span><p>Uçuş verisinde <b>görülmüş</b> tek bir
+      iniş ya da kalkış. Olan şey.</p></div>
+    <div><span class="u">sefer/hafta</span><p>Havayolunun <b>tarifesinde</b> duran
+      haftalık sefer sayısı. Planlanan şey — uçtuğu anlamına gelmez.</p></div>
+    <div><span class="u">kayıt</span><p>Yayımlanmış varış/kalkış
+      <b>tahtasındaki bir satır</b>. Liste kaydıdır, transponder görüntüsü
+      değil; seferle asla toplanmaz.</p></div>
+    <div><span class="u">kat</span><p>Kapsama puanı: bugün kontrol
+      havayollarından görülen trafiğin, son 28 günün ortancasına <b>oranı</b>.
+      Sayı değil, çarpan.</p></div>
+  </div>
+  <p class="sub prose"><b>“Kesinti” bu sayfada tek bir şey demek:</b> havayolunun
+  bir hattı kesmesi. Alıcılarımızın kör kaldığı gün için bu kelime hiç
+  kullanılmıyor — o gün “bakılamadı” diye geçer. İkisini aynı kelimeyle yazmak,
+  raporun bütün varlık sebebini ortadan kaldırırdı.</p>
   <p class="sub prose">Bir çelişki olduğunda <b>gözlem duyuruyu yener.</b> Uçarken
   görülen bir havayolu, basın “kesti” dese bile “Durdurdu” sayılmaz; “Kısmen
   kesti” olur. Durumların anlamı:</p>
@@ -1325,12 +1407,16 @@ def render(data: dict) -> str:
     <thead><tr><th>Durum</th><th>Ne demek</th><th>Nasıl karar verildi</th></tr></thead>
     <tbody>
       <tr><td>{_pill('flying')}</td>
-        <td>Havayolu izlenen havalimanlarında uçarken görüldü ve kesinti
-        bildirimi yok.</td><td class="why">ADS-B'de sefer var, basında kesinti haberi yok</td></tr>
+        <td>Havayolu izlenen havalimanlarında uçarken görüldü ve hat kesintisi
+        bildirimi yok.</td><td class="why">ADS-B'de sefer var, basında hat kesintisi haberi yok</td></tr>
       <tr class="r-partial"><td>{_pill('partial')}</td>
-        <td>Hâlâ uçuyor, ama bazı hatlarını kestiği bildiriliyor. Çatışma
-        döneminde en yaygın durum bu.</td>
-        <td class="why">ADS-B'de sefer var + basında kesinti haberi var</td></tr>
+        <td>Uçuyor, ama bazı hatlarını kestiği bildiriliyor. Çatışma
+        döneminde en yaygın durum bu. <b>İki ayrı temeli var</b> ve satırın
+        gerekçesi hangisi olduğunu söylüyor: ya uçarken görüldü, ya da
+        görülmedi ama tarifesi duruyor. İkincisi kapsama dışındaki bir havayolu
+        için tek okunabilir cevap — sayı sütunu boş kalır.</td>
+        <td class="why">basında hat kesintisi haberi var +
+        (ADS-B'de sefer var <i>ya da</i> tarifede sefer var)</td></tr>
       <tr><td>{_pill('scheduled')}</td>
         <td>ADS-B'de görülmedi ama tarifesinde sefer duruyor. Genellikle
         kapsama dışındaki bir havalimanına (Riyad, Cidde, Kuveyt, Bağdat…)
@@ -1366,8 +1452,10 @@ def render(data: dict) -> str:
   mu?</i> Önce sorunlular. <b>Tarifeli</b> olanlar ADS-B kapsamımızın dışında —
   uçuş verisi göremiyoruz ama havayolları tarifelerinde sefer tutuyor.</p>
   <div class="scroll"><table>
-    <thead><tr><th>Havalimanı</th><th>Durum</th><th class="num">Gözlenen sefer</th>
-      <th class="num">Havayolu</th><th class="num">Tarifede/hafta</th>
+    <thead><tr><th>Havalimanı</th><th>Durum</th>
+      <th class="num">Gözlenen sefer<div class="meta">uçuş verisi</div></th>
+      <th class="num">Görülen havayolu<div class="meta">uçuş verisi</div></th>
+      <th class="num">Tarifede sefer<div class="meta">tarife</div></th>
       <th>Kimler uçuyor</th></tr></thead>
     <tbody>{_airport_rows(data)}</tbody>
   </table></div>
@@ -1385,7 +1473,9 @@ def render(data: dict) -> str:
   {oran_aciklama}
   <div class="scroll"><table>
     <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
-      <th class="num">Sefer</th><th>Nerede görüldü</th>{oran_th}</tr></thead>
+      <th class="num">Sefer<div class="meta">uçuş verisi</div></th>
+      <th>Nerede görüldü<div class="meta">havalimanı·sefer</div></th>
+      {oran_th}</tr></thead>
     <tbody>{_rows(data)}</tbody>
   </table></div>
 </section>
