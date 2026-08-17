@@ -11,6 +11,8 @@ from datetime import date, datetime, timedelta, timezone
 from email.utils import format_datetime
 from unittest import mock
 
+import requests
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src import config, db, metrics  # noqa: E402
@@ -581,6 +583,99 @@ class TestSuspensionEvents(unittest.TestCase):
         self.conn.commit()
         self.susp.detect(self.conn, self.today)
         self.assertEqual(self.susp.report(self.conn)["active"], [])
+
+
+class TestWebSearchBudget(unittest.TestCase):
+    """Mistral meters web_search separately: 3 a minute, 20 a day.
+
+    Measured off the response headers on 2026-08-17. The 3s gap added on
+    2026-08-06 was pacing against the wrong thing -- the bucket is a minute
+    wide, so the fourth carrier of every run 429'd and its row silently lost
+    the one source that had anything to say about it.
+    """
+
+    def setUp(self):
+        from src import websearch
+        self.ws = websearch
+        self.ws.REMAINING.update({"minute": None, "day": None})
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.slept = []
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+        self.ws.REMAINING.update({"minute": None, "day": None})
+
+    class _Reply:
+        def __init__(self, status, minute, day, note="still flying"):
+            self.status_code = status
+            self.headers = {
+                "x-ratelimit-remaining-web-search-minute": str(minute),
+                "x-ratelimit-remaining-web-search-day": str(day)}
+            self._note = note
+
+        def json(self):
+            return {"outputs": [{"type": "message.output",
+                                 "content": [{"type": "text",
+                                              "text": self._note}]}]}
+
+        def raise_for_status(self):
+            if self.status_code >= 400:
+                raise requests.HTTPError(f"{self.status_code} Client Error")
+
+    def _run(self, replies, carriers):
+        """Serve `replies` in order; returns the notes and the POST count."""
+        served = iter(replies)
+        posts = []
+
+        def fake_post(url, **kw):
+            posts.append(url)
+            return next(served)
+
+        notes = []
+        with mock.patch.object(self.ws.requests, "post", fake_post), \
+             mock.patch.object(self.ws.time, "sleep", self.slept.append), \
+             mock.patch.dict(os.environ, {"MISTRAL_API_KEY": "test-key"}):
+            for i, c in enumerate(carriers):
+                notes.append(self.ws.resolve(self.conn, c, c, "agent-1"))
+        return notes, posts
+
+    def test_the_fourth_call_waits_instead_of_failing(self):
+        R = self._Reply
+        replies = [R(200, 2, 19), R(200, 1, 18), R(200, 0, 17), R(200, 2, 16)]
+        notes, posts = self._run(replies, ["DAH", "ABG", "RBG", "CCA"])
+
+        self.assertEqual(len(posts), 4)
+        self.assertTrue(
+            all(n and n["note"] for n in notes),
+            "a carrier lost its note to the per-minute bucket; CCA is the row "
+            "that failed this way on 2026-08-17")
+        self.assertEqual(
+            self.slept, [self.ws.BUCKET_WAIT],
+            "the wait must happen once, when the reported budget is spent -- "
+            "not as a blind gap between every call")
+
+    def test_a_429_is_retried_once_after_the_bucket_refills(self):
+        R = self._Reply
+        # The bucket can empty mid-call: one conversation may spend more than
+        # one search, so a call can 429 while the last header said 1 left.
+        notes, posts = self._run([R(429, 0, 17), R(200, 2, 16)], ["CCA"])
+
+        self.assertEqual(len(posts), 2, "the 429 was not retried")
+        self.assertEqual(self.slept, [self.ws.BUCKET_WAIT])
+        self.assertEqual(notes[0]["note"], "still flying")
+
+    def test_a_spent_day_stops_the_asking(self):
+        R = self._Reply
+        notes, posts = self._run([R(200, 2, 0)], ["DAH", "ABG", "RBG"])
+
+        self.assertEqual(
+            len(posts), 1,
+            "kept calling after the day's 20 searches were gone; each one is "
+            "a guaranteed 429")
+        self.assertIsNone(notes[1])
+        self.assertEqual(self.slept, [], "waiting cannot refill a day budget")
 
 
 class TestOpenSkyWindowing(unittest.TestCase):

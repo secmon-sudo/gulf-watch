@@ -18,6 +18,7 @@ URL does, so re-running the report on the same day gives the same note.
 from __future__ import annotations
 
 import logging
+import time
 from datetime import datetime, timezone
 
 import requests
@@ -28,6 +29,24 @@ LOG = logging.getLogger("gulfwatch.websearch")
 
 BASE = "https://api.mistral.ai/v1"
 MODEL = "mistral-medium-latest"
+
+# The web_search tool has its own budget, separate from tokens. Read off the
+# response headers of a real call on 2026-08-17:
+#
+#   x-ratelimit-limit-web-search-minute = 3
+#   x-ratelimit-limit-web-search-day    = 20
+#
+# and one conversation can spend more than one search, because the model may
+# search more than once to answer. That is the whole story behind the 429s: a
+# 3s gap between calls was added on 2026-08-06 on the theory that the calls
+# were too close together, and it never worked, because the bucket is a minute
+# wide and three calls empty it. The fourth carrier of every run failed --
+# CCA on 2026-08-17, and the same position on 2026-08-06.
+#
+# So pace off the budget the API reports instead of guessing an interval, and
+# treat a spent day as a reason to stop asking rather than to keep retrying.
+BUCKET_WAIT = 25
+REMAINING = {"minute": None, "day": None}
 
 QUESTION = (
     "As of {today}, is {name} still operating flights to the Gulf and the wider "
@@ -53,6 +72,16 @@ def _agent(key: str) -> str | None:
         return None
 
 
+def _read_budget(resp) -> None:
+    for field in ("minute", "day"):
+        raw = resp.headers.get(f"x-ratelimit-remaining-web-search-{field}")
+        if raw is not None:
+            try:
+                REMAINING[field] = int(raw)
+            except ValueError:
+                pass
+
+
 def resolve(conn, carrier: str, name: str, agent_id: str | None = None) -> dict | None:
     """Cached note for one carrier. None means no answer; caller shows nothing."""
     day = datetime.now(tz=timezone.utc).date().isoformat()
@@ -67,16 +96,40 @@ def resolve(conn, carrier: str, name: str, agent_id: str | None = None) -> dict 
     if not key or not agent_id:
         return None
 
-    try:
-        r = requests.post(
-            f"{BASE}/conversations",
-            headers={"Authorization": f"Bearer {key}"},
-            json={"agent_id": agent_id,
-                  "inputs": QUESTION.format(today=day, name=name)}, timeout=180)
-        r.raise_for_status()
-        payload = r.json()
-    except (requests.RequestException, ValueError) as exc:
-        LOG.warning("web search failed for %s: %s", carrier, exc)
+    if REMAINING["day"] == 0:
+        LOG.warning("web search budget for the day is spent; %s not asked",
+                    carrier)
+        return None
+
+    payload = None
+    for attempt in (1, 2):
+        if REMAINING["minute"] == 0:
+            time.sleep(BUCKET_WAIT)
+            REMAINING["minute"] = None
+        try:
+            r = requests.post(
+                f"{BASE}/conversations",
+                headers={"Authorization": f"Bearer {key}"},
+                json={"agent_id": agent_id,
+                      "inputs": QUESTION.format(today=day, name=name)},
+                timeout=180)
+        except requests.RequestException as exc:
+            LOG.warning("web search failed for %s: %s", carrier, exc)
+            return None
+        _read_budget(r)
+        if r.status_code == 429 and attempt == 1 and REMAINING["day"] != 0:
+            LOG.info("%s: web search bucket empty, waiting %ss", carrier,
+                     BUCKET_WAIT)
+            REMAINING["minute"] = 0
+            continue
+        try:
+            r.raise_for_status()
+            payload = r.json()
+        except (requests.RequestException, ValueError) as exc:
+            LOG.warning("web search failed for %s: %s", carrier, exc)
+            return None
+        break
+    if payload is None:
         return None
 
     text, sources = [], []

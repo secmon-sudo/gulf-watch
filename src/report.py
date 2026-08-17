@@ -614,7 +614,9 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
             got = websearch.resolve(conn, r["code"], r["name"], agent_id)
             if got:
                 r["note"] = got
-            time.sleep(3)   # 2026-08-06: back-to-back calls got 429 on the 4th
+            # No gap here on purpose: the 3s one added on 2026-08-06 never
+            # worked, and websearch now paces itself off the budget the API
+            # reports in its own headers.
 
     coverage = metrics.score_coverage(conn, ref)
     delta = diff_since_last(conn, rows, coverage["verdict"] == "ok")
