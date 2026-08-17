@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T11:04:37+00:00",
+  "generated_at": "2026-08-17T12:39:31+00:00",
   "as_of_day": "2026-08-16",
   "coverage": {
     "day": "2026-08-16",
@@ -38,16 +38,13 @@
   "status": "NEW",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "LTFJ-OMDB",
-      "OMDB-OEDR"
-    ],
-    "since": "2026-08-09",
-    "days_stopped": 7,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -611,43 +608,6 @@
       "observed_days": 4
     }
   ],
-  "stop_events": [
-    {
-      "id": 335,
-      "scope": "route",
-      "scope_key": "KNE|OMDB|OEDR",
-      "carrier": "KNE",
-      "detail": "OMDB-OEDR",
-      "baseline_weekly": 4.9,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "flynas",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 334,
-      "scope": "route",
-      "scope_key": "KNE|LTFJ|OMDB",
-      "carrier": "KNE",
-      "detail": "LTFJ-OMDB",
-      "baseline_weekly": 2.2,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "flynas",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

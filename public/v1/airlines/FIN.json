@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T11:04:37+00:00",
+  "generated_at": "2026-08-17T12:39:31+00:00",
   "as_of_day": "2026-08-16",
   "coverage": {
     "day": "2026-08-16",
@@ -38,17 +38,13 @@
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "EFHK-OMDB",
-      "OMDB-EFHK",
-      "OTHH-EFHK"
-    ],
-    "since": "2026-08-09",
-    "days_stopped": 7,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -132,61 +128,6 @@
       "observed_days": 4
     }
   ],
-  "stop_events": [
-    {
-      "id": 315,
-      "scope": "route",
-      "scope_key": "FIN|EFHK|OMDB",
-      "carrier": "FIN",
-      "detail": "EFHK-OMDB",
-      "baseline_weekly": 5.0,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 317,
-      "scope": "route",
-      "scope_key": "FIN|OTHH|EFHK",
-      "carrier": "FIN",
-      "detail": "OTHH-EFHK",
-      "baseline_weekly": 3.6,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 316,
-      "scope": "route",
-      "scope_key": "FIN|OMDB|EFHK",
-      "carrier": "FIN",
-      "detail": "OMDB-EFHK",
-      "baseline_weekly": 3.5,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Finnair",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T11:04:37+00:00",
+  "generated_at": "2026-08-17T12:39:31+00:00",
   "as_of_day": "2026-08-16",
   "coverage": {
     "day": "2026-08-16",
@@ -38,19 +38,13 @@
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "EGLL-OBBI",
-      "EGLL-OMDB",
-      "EGLL-OTHH",
-      "OMDB-EGLL",
-      "OTHH-EGLL"
-    ],
-    "since": "2026-08-09",
-    "days_stopped": 7,
-    "confidence": "corroborated"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -326,205 +320,6 @@
       "observed_days": 4
     }
   ],
-  "stop_events": [
-    {
-      "id": 289,
-      "scope": "route",
-      "scope_key": "BAW|EGLL|OMDB",
-      "carrier": "BAW",
-      "detail": "EGLL-OMDB",
-      "baseline_weekly": 18.0,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "corroborated",
-      "carrier_name": "British Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "British Airways to suspend UK repatriation flights – latest on travel from Middle East - BBC",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NeHVXa1JmOXl3dU8zU2xxdFRRZUxzcHc4Sm5jazNfMWIyN2UzYWp5SHhDeGl5T3VrOE96a29mb3BWS1k1ZmhwVXp2bXJRTmI3QUpkaF9ySnQxdw?oc=5",
-          "published": "Tue, 10 Mar 2026 07:00:00 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Our Middle East operation: 16 March 2026 - British Airways Media Centre",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE11Zllvbk40SGFKR1A4dkhDV2tfaHVLXzh0eFZlRXNCZFFyNHdmSW5ESGJxSUFfRHdMQU1OQTZwcVNsU3Npb1VMekhLSFM2WVpwZENSWTduSGZFeDNaeUFvSVNzbGVhZ3pqWEgzcTVGWkVhOVU?oc=5",
-          "published": "Tue, 03 Mar 2026 08:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "British Airways extends Dubai flight suspension until autumn - The Independent",
-          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPRzIwVnZockpSMURRVnBhenN5SnB5Ym1oRUdha1pQRy1ReVBIOVl4bk5KTXFRLVlDVnZnRURUUkxHZWNxUG1KZ291dVVxRGhNblRVMC1Cb055Yk9YNUpMdW8wdHM0cjJWMmcydXJDTWtlTm4wZUhaY202TG1jTmg0NDV2ZlJ5THE5bV9QWjctazkzaTV3SFpUQkVqMVJWdmdlRU1mZGhtbEV4dw?oc=5",
-          "published": "Thu, 04 Jun 2026 07:00:00 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Travel Warning: British Airways Pulls Plug On 2 Long-Haul Routes Until 2027 - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQWFlNeU1tOU1uT2w1MjZkTWZtUmJNNUhkNktOVk4ya2dpeS14OHhabENKWWk0a1B3YUJTTlI1Tm5QWmNGUUJ4aW43S09fRFVWNDdlenVud0EyMUpxV09DRnhxNk9ialcxblNjNjIzcFBfdDJwbTRGb2xvbVhlOFc1ZFF6YXJWWGZCOXc?oc=5",
-          "published": "Sat, 01 Aug 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines' schedules continue to be impacted as political tensions rumble on - cntravellerme.com",
-          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPYXloWmdIMDdZdzlkamZEOVNGR3MzQ2U5eTdYRHFuZ2E0U1p3SWhVcy1PWEZmZWY2bVAwRFAyQjFVSWxScVpaMm0teWE5Z1BNSlN1a3RLYjRxRkhDVjJhenliOWRBZlZBZy10TmZ0di1hdVhaNGE4cExXNFJhYkdyb1E5eEdNdkMwYjlZX3g4WDVlaW4xUVR1ME0wRTJWQkJsYnY4djlLaDBjYTVyaGQzWGhiUUQ2RXh0NVZXRVZGNVFadVd5X0s2OUNYN2hLMjctbTM1VmlNcTFlV2lEd2RMdHlYTHdVNHVEWFBhWkkyVy0?oc=5",
-          "published": "Mon, 17 Aug 2026 07:56:12 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 291,
-      "scope": "route",
-      "scope_key": "BAW|OMDB|EGLL",
-      "carrier": "BAW",
-      "detail": "OMDB-EGLL",
-      "baseline_weekly": 16.5,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "corroborated",
-      "carrier_name": "British Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "British Airways to suspend UK repatriation flights – latest on travel from Middle East - BBC",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NeHVXa1JmOXl3dU8zU2xxdFRRZUxzcHc4Sm5jazNfMWIyN2UzYWp5SHhDeGl5T3VrOE96a29mb3BWS1k1ZmhwVXp2bXJRTmI3QUpkaF9ySnQxdw?oc=5",
-          "published": "Tue, 10 Mar 2026 07:00:00 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Our Middle East operation: 16 March 2026 - British Airways Media Centre",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE11Zllvbk40SGFKR1A4dkhDV2tfaHVLXzh0eFZlRXNCZFFyNHdmSW5ESGJxSUFfRHdMQU1OQTZwcVNsU3Npb1VMekhLSFM2WVpwZENSWTduSGZFeDNaeUFvSVNzbGVhZ3pqWEgzcTVGWkVhOVU?oc=5",
-          "published": "Tue, 03 Mar 2026 08:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "British Airways extends Dubai flight suspension until autumn - The Independent",
-          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPRzIwVnZockpSMURRVnBhenN5SnB5Ym1oRUdha1pQRy1ReVBIOVl4bk5KTXFRLVlDVnZnRURUUkxHZWNxUG1KZ291dVVxRGhNblRVMC1Cb055Yk9YNUpMdW8wdHM0cjJWMmcydXJDTWtlTm4wZUhaY202TG1jTmg0NDV2ZlJ5THE5bV9QWjctazkzaTV3SFpUQkVqMVJWdmdlRU1mZGhtbEV4dw?oc=5",
-          "published": "Thu, 04 Jun 2026 07:00:00 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Travel Warning: British Airways Pulls Plug On 2 Long-Haul Routes Until 2027 - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQWFlNeU1tOU1uT2w1MjZkTWZtUmJNNUhkNktOVk4ya2dpeS14OHhabENKWWk0a1B3YUJTTlI1Tm5QWmNGUUJ4aW43S09fRFVWNDdlenVud0EyMUpxV09DRnhxNk9ialcxblNjNjIzcFBfdDJwbTRGb2xvbVhlOFc1ZFF6YXJWWGZCOXc?oc=5",
-          "published": "Sat, 01 Aug 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines' schedules continue to be impacted as political tensions rumble on - cntravellerme.com",
-          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPYXloWmdIMDdZdzlkamZEOVNGR3MzQ2U5eTdYRHFuZ2E0U1p3SWhVcy1PWEZmZWY2bVAwRFAyQjFVSWxScVpaMm0teWE5Z1BNSlN1a3RLYjRxRkhDVjJhenliOWRBZlZBZy10TmZ0di1hdVhaNGE4cExXNFJhYkdyb1E5eEdNdkMwYjlZX3g4WDVlaW4xUVR1ME0wRTJWQkJsYnY4djlLaDBjYTVyaGQzWGhiUUQ2RXh0NVZXRVZGNVFadVd5X0s2OUNYN2hLMjctbTM1VmlNcTFlV2lEd2RMdHlYTHdVNHVEWFBhWkkyVy0?oc=5",
-          "published": "Mon, 17 Aug 2026 07:56:12 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 290,
-      "scope": "route",
-      "scope_key": "BAW|EGLL|OTHH",
-      "carrier": "BAW",
-      "detail": "EGLL-OTHH",
-      "baseline_weekly": 11.4,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "British Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Factbox-Airlines resume some Middle East flights but disruption continues - Al-Monitor",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPdVNqbTFjcUJOZzlzS1B5Nl9WTFdmako4NVRpbVUwdVBON0RCWk5Rc3hGZGV4VXpncWlacHlaM2Q4dGdRYWc4LU05VzlSVEJkelRGNmFQdEZtNlA5ZmNPY0lHNjlhUTVyUVltUmpoSm9kaDJsWG10b3J6c3lTRmxPMHZoOGI0Wmt2Z3dKOU0xbDl3UFU3UDhpSHhmYkdsRHEyV3lNRHJ4MnYtZWwyYnVHWXFvdTA?oc=5",
-          "published": "Wed, 08 Jul 2026 13:38:20 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "British Airways extends flight cancellations to Israel through the end of October - The Jerusalem Post",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBDQU5keFhyM1VxZFFnNldmLWxYSElBWkFOQWM0TjBUYkpzRUNCQjhvcVhqTjlaRkE2NV9lM1Q1YU5IemQ4YUhrXzJqNUR5NE5FRFRWWFJXOEpaVGF2Um5SUWM1Ulg4d2NGMWdqUFBnWlBnVkpQbDE3TQ?oc=5",
-          "published": "Wed, 03 Jun 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Our Middle East operation: 16 March 2026 - British Airways Media Centre",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE11Zllvbk40SGFKR1A4dkhDV2tfaHVLXzh0eFZlRXNCZFFyNHdmSW5ESGJxSUFfRHdMQU1OQTZwcVNsU3Npb1VMekhLSFM2WVpwZENSWTduSGZFeDNaeUFvSVNzbGVhZ3pqWEgzcTVGWkVhOVU?oc=5",
-          "published": "Tue, 03 Mar 2026 08:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Travel Warning: British Airways Pulls Plug On 2 Long-Haul Routes Until 2027 - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQWFlNeU1tOU1uT2w1MjZkTWZtUmJNNUhkNktOVk4ya2dpeS14OHhabENKWWk0a1B3YUJTTlI1Tm5QWmNGUUJ4aW43S09fRFVWNDdlenVud0EyMUpxV09DRnhxNk9ialcxblNjNjIzcFBfdDJwbTRGb2xvbVhlOFc1ZFF6YXJWWGZCOXc?oc=5",
-          "published": "Sat, 01 Aug 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines' schedules continue to be impacted as political tensions rumble on - cntravellerme.com",
-          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPYXloWmdIMDdZdzlkamZEOVNGR3MzQ2U5eTdYRHFuZ2E0U1p3SWhVcy1PWEZmZWY2bVAwRFAyQjFVSWxScVpaMm0teWE5Z1BNSlN1a3RLYjRxRkhDVjJhenliOWRBZlZBZy10TmZ0di1hdVhaNGE4cExXNFJhYkdyb1E5eEdNdkMwYjlZX3g4WDVlaW4xUVR1ME0wRTJWQkJsYnY4djlLaDBjYTVyaGQzWGhiUUQ2RXh0NVZXRVZGNVFadVd5X0s2OUNYN2hLMjctbTM1VmlNcTFlV2lEd2RMdHlYTHdVNHVEWFBhWkkyVy0?oc=5",
-          "published": "Mon, 17 Aug 2026 07:56:12 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 292,
-      "scope": "route",
-      "scope_key": "BAW|OTHH|EGLL",
-      "carrier": "BAW",
-      "detail": "OTHH-EGLL",
-      "baseline_weekly": 10.6,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "British Airways",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 288,
-      "scope": "route",
-      "scope_key": "BAW|EGLL|OBBI",
-      "carrier": "BAW",
-      "detail": "EGLL-OBBI",
-      "baseline_weekly": 4.2,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "British Airways",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

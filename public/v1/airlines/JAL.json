@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T11:04:37+00:00",
+  "generated_at": "2026-08-17T12:39:31+00:00",
   "as_of_day": "2026-08-16",
   "coverage": {
     "day": "2026-08-16",
@@ -38,16 +38,13 @@
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "OTHH-RJTT",
-      "RJTT-OTHH"
-    ],
-    "since": "2026-08-09",
-    "days_stopped": 7,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -83,43 +80,6 @@
       "observed_days": 4
     }
   ],
-  "stop_events": [
-    {
-      "id": 326,
-      "scope": "route",
-      "scope_key": "JAL|OTHH|RJTT",
-      "carrier": "JAL",
-      "detail": "OTHH-RJTT",
-      "baseline_weekly": 6.5,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Japan Airlines",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 327,
-      "scope": "route",
-      "scope_key": "JAL|RJTT|OTHH",
-      "carrier": "JAL",
-      "detail": "RJTT-OTHH",
-      "baseline_weekly": 6.4,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Japan Airlines",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

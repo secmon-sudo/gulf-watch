@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T11:04:37+00:00",
+  "generated_at": "2026-08-17T12:39:31+00:00",
   "as_of_day": "2026-08-16",
   "coverage": {
     "day": "2026-08-16",
@@ -34,7 +34,7 @@
       "name": "Air Arabia (Sharjah)",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/ABY.json"
     },
     {
@@ -42,7 +42,7 @@
       "name": "Air China",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/CCA.json"
     },
     {
@@ -50,7 +50,7 @@
       "name": "American Airlines",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/AAL.json"
     },
     {
@@ -58,7 +58,7 @@
       "name": "British Airways",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/BAW.json"
     },
     {
@@ -74,7 +74,7 @@
       "name": "China Southern",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/CSN.json"
     },
     {
@@ -82,7 +82,7 @@
       "name": "EgyptAir",
       "status": "NEW",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/MSR.json"
     },
     {
@@ -90,7 +90,7 @@
       "name": "Emirates",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/UAE.json"
     },
     {
@@ -98,7 +98,7 @@
       "name": "Etihad Airways",
       "status": "NEW",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/ETD.json"
     },
     {
@@ -106,7 +106,7 @@
       "name": "Finnair",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/FIN.json"
     },
     {
@@ -114,7 +114,7 @@
       "name": "Gulf Air",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/GFA.json"
     },
     {
@@ -122,7 +122,7 @@
       "name": "Iberia",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/IBE.json"
     },
     {
@@ -130,7 +130,7 @@
       "name": "Japan Airlines",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/JAL.json"
     },
     {
@@ -138,7 +138,7 @@
       "name": "Kuwait Airways",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/KAC.json"
     },
     {
@@ -146,7 +146,7 @@
       "name": "Middle East Airlines",
       "status": "NEW",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/MEA.json"
     },
     {
@@ -154,7 +154,7 @@
       "name": "Oman Air",
       "status": "NEW",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/OMA.json"
     },
     {
@@ -162,7 +162,7 @@
       "name": "Pegasus Airlines",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/PGT.json"
     },
     {
@@ -170,7 +170,7 @@
       "name": "Qatar Airways",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/QTR.json"
     },
     {
@@ -178,7 +178,7 @@
       "name": "Royal Air Maroc",
       "status": "NEW",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/RAM.json"
     },
     {
@@ -186,7 +186,7 @@
       "name": "Royal Jordanian",
       "status": "NEW",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/RJA.json"
     },
     {
@@ -202,7 +202,7 @@
       "name": "flydubai",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/FDB.json"
     },
     {
@@ -210,7 +210,7 @@
       "name": "flynas",
       "status": "NEW",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/KNE.json"
     }
   ]

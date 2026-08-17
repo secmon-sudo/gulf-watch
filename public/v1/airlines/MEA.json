@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T11:04:37+00:00",
+  "generated_at": "2026-08-17T12:39:31+00:00",
   "as_of_day": "2026-08-16",
   "coverage": {
     "day": "2026-08-16",
@@ -38,16 +38,13 @@
   "status": "NEW",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "OMDB-Z19O",
-      "OTHH-Z19O"
-    ],
-    "since": "2026-08-09",
-    "days_stopped": 7,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -1011,43 +1008,6 @@
       "observed_days": 4
     }
   ],
-  "stop_events": [
-    {
-      "id": 336,
-      "scope": "route",
-      "scope_key": "MEA|OMDB|Z19O",
-      "carrier": "MEA",
-      "detail": "OMDB-Z19O",
-      "baseline_weekly": 2.0,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Middle East Airlines",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 337,
-      "scope": "route",
-      "scope_key": "MEA|OTHH|Z19O",
-      "carrier": "MEA",
-      "detail": "OTHH-Z19O",
-      "baseline_weekly": 1.4,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Middle East Airlines",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T11:04:37+00:00",
+  "generated_at": "2026-08-17T12:39:31+00:00",
   "as_of_day": "2026-08-16",
   "coverage": {
     "day": "2026-08-16",
@@ -38,20 +38,13 @@
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "OBBI-OKBK",
-      "OKBK-OBBI",
-      "OKBK-OMDB",
-      "OKBK-OTHH",
-      "OMDB-OKBK",
-      "OTHH-OKBK"
-    ],
-    "since": "2026-08-09",
-    "days_stopped": 7,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -551,115 +544,6 @@
       "observed_days": 4
     }
   ],
-  "stop_events": [
-    {
-      "id": 330,
-      "scope": "route",
-      "scope_key": "KAC|OKBK|OMDB",
-      "carrier": "KAC",
-      "detail": "OKBK-OMDB",
-      "baseline_weekly": 10.6,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Kuwait Airways",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 332,
-      "scope": "route",
-      "scope_key": "KAC|OMDB|OKBK",
-      "carrier": "KAC",
-      "detail": "OMDB-OKBK",
-      "baseline_weekly": 10.5,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Kuwait Airways",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 333,
-      "scope": "route",
-      "scope_key": "KAC|OTHH|OKBK",
-      "carrier": "KAC",
-      "detail": "OTHH-OKBK",
-      "baseline_weekly": 5.2,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Kuwait Airways",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 331,
-      "scope": "route",
-      "scope_key": "KAC|OKBK|OTHH",
-      "carrier": "KAC",
-      "detail": "OKBK-OTHH",
-      "baseline_weekly": 3.9,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Kuwait Airways",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 329,
-      "scope": "route",
-      "scope_key": "KAC|OKBK|OBBI",
-      "carrier": "KAC",
-      "detail": "OKBK-OBBI",
-      "baseline_weekly": 1.8,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Kuwait Airways",
-      "evidence": [],
-      "superseded_by": null
-    },
-    {
-      "id": 328,
-      "scope": "route",
-      "scope_key": "KAC|OBBI|OKBK",
-      "carrier": "KAC",
-      "detail": "OBBI-OKBK",
-      "baseline_weekly": 1.1,
-      "last_flight_on": null,
-      "started_on": "2026-08-09",
-      "detected_on": "2026-08-16",
-      "resumed_on": null,
-      "days_stopped": 7,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Kuwait Airways",
-      "evidence": [],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }
