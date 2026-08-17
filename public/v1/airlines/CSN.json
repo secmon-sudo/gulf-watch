@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-12T13:38:49+00:00",
-  "as_of_day": "2026-08-11",
+  "generated_at": "2026-08-17T11:04:37+00:00",
+  "as_of_day": "2026-08-16",
   "coverage": {
-    "day": "2026-08-11",
-    "control_flights": 629,
-    "median_28d": 327.0,
+    "day": "2026-08-16",
+    "control_flights": 525,
+    "median_28d": 302.5,
     "score": 1.5,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 2,
+    "observed_days": 4,
     "min_observed_days": 5,
     "ratios_published": false
   },
@@ -32,19 +32,23 @@
   "routes_baselined": 3,
   "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 2,
+  "observed_days": 4,
   "comparable_share": 0.653,
   "ratio": null,
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": false,
-    "scope": null,
+    "any": true,
+    "scope": "route",
     "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "routes_dropped": [
+      "OMDB-OMDB",
+      "OMDB-ZGSZ",
+      "ZGSZ-OMDB"
+    ],
+    "since": "2026-08-09",
+    "days_stopped": 7,
+    "confidence": "observed"
   },
   "routes": [
     {
@@ -61,7 +65,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -77,7 +81,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -93,7 +97,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -109,7 +113,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -125,7 +129,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -141,7 +145,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -157,7 +161,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -173,7 +177,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -189,7 +193,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -205,7 +209,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -221,7 +225,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -237,7 +241,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -253,7 +257,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -269,7 +273,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -285,9 +289,64 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 296,
+      "scope": "route",
+      "scope_key": "CSN|ZGSZ|OMDB",
+      "carrier": "CSN",
+      "detail": "ZGSZ-OMDB",
+      "baseline_weekly": 2.6,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "China Southern",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 295,
+      "scope": "route",
+      "scope_key": "CSN|OMDB|ZGSZ",
+      "carrier": "CSN",
+      "detail": "OMDB-ZGSZ",
+      "baseline_weekly": 2.3,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "China Southern",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 294,
+      "scope": "route",
+      "scope_key": "CSN|OMDB|OMDB",
+      "carrier": "CSN",
+      "detail": "OMDB-OMDB",
+      "baseline_weekly": 1.7,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "China Southern",
+      "evidence": [],
+      "superseded_by": null
+    }
+  ],
   "resumed": []
 }

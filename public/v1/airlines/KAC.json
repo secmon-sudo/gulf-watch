@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-12T13:38:49+00:00",
-  "as_of_day": "2026-08-11",
+  "generated_at": "2026-08-17T11:04:37+00:00",
+  "as_of_day": "2026-08-16",
   "coverage": {
-    "day": "2026-08-11",
-    "control_flights": 629,
-    "median_28d": 327.0,
+    "day": "2026-08-16",
+    "control_flights": 525,
+    "median_28d": 302.5,
     "score": 1.5,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 2,
+    "observed_days": 4,
     "min_observed_days": 5,
     "ratios_published": false
   },
@@ -24,27 +24,34 @@
   "name": "Kuwait Airways",
   "iata": "KU",
   "country": "KW",
-  "weekly_frequency": 0,
+  "weekly_frequency": 2,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 33.1,
-  "routes_total": 30,
+  "routes_total": 31,
   "routes_baselined": 6,
   "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 2,
-  "comparable_share": 0.836,
+  "observed_days": 4,
+  "comparable_share": 0.796,
   "ratio": null,
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": false,
-    "scope": null,
+    "any": true,
+    "scope": "route",
     "airports_dropped": [],
-    "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "routes_dropped": [
+      "OBBI-OKBK",
+      "OKBK-OBBI",
+      "OKBK-OMDB",
+      "OKBK-OTHH",
+      "OMDB-OKBK",
+      "OTHH-OKBK"
+    ],
+    "since": "2026-08-09",
+    "days_stopped": 7,
+    "confidence": "observed"
   },
   "routes": [
     {
@@ -61,7 +68,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -77,7 +84,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -93,7 +100,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -109,7 +116,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -125,23 +132,23 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
       "carrier_name": "Kuwait Airways",
       "origin": "LTFM",
       "destination": "OMDB",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -157,7 +164,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -173,7 +180,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -189,7 +196,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -205,7 +212,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -221,7 +228,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -237,7 +244,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -253,7 +260,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -269,7 +276,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -285,7 +292,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -301,7 +308,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -317,7 +324,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -333,7 +340,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -349,7 +356,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -365,7 +372,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -381,7 +388,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -397,7 +404,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -413,7 +420,23 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "VAJJ",
+      "destination": "OJAI",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -429,7 +452,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -445,7 +468,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -461,7 +484,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -477,7 +500,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -493,7 +516,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -509,7 +532,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -525,9 +548,118 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 4
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 330,
+      "scope": "route",
+      "scope_key": "KAC|OKBK|OMDB",
+      "carrier": "KAC",
+      "detail": "OKBK-OMDB",
+      "baseline_weekly": 10.6,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 332,
+      "scope": "route",
+      "scope_key": "KAC|OMDB|OKBK",
+      "carrier": "KAC",
+      "detail": "OMDB-OKBK",
+      "baseline_weekly": 10.5,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 333,
+      "scope": "route",
+      "scope_key": "KAC|OTHH|OKBK",
+      "carrier": "KAC",
+      "detail": "OTHH-OKBK",
+      "baseline_weekly": 5.2,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 331,
+      "scope": "route",
+      "scope_key": "KAC|OKBK|OTHH",
+      "carrier": "KAC",
+      "detail": "OKBK-OTHH",
+      "baseline_weekly": 3.9,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 329,
+      "scope": "route",
+      "scope_key": "KAC|OKBK|OBBI",
+      "carrier": "KAC",
+      "detail": "OKBK-OBBI",
+      "baseline_weekly": 1.8,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": null
+    },
+    {
+      "id": 328,
+      "scope": "route",
+      "scope_key": "KAC|OBBI|OKBK",
+      "carrier": "KAC",
+      "detail": "OBBI-OKBK",
+      "baseline_weekly": 1.1,
+      "last_flight_on": null,
+      "started_on": "2026-08-09",
+      "detected_on": "2026-08-16",
+      "resumed_on": null,
+      "days_stopped": 7,
+      "status": "active",
+      "confidence": "observed",
+      "carrier_name": "Kuwait Airways",
+      "evidence": [],
+      "superseded_by": null
+    }
+  ],
   "resumed": []
 }
