@@ -15,7 +15,7 @@ A station suspension is the headline. A region suspension usually means either
 a total network shutdown or -- far more likely -- that something is wrong with
 your data, so it is held to a much longer threshold.
 
-Two rules keep this honest:
+Three rules keep this honest:
 
 1. Silent days are COVERAGE-GATED. A day when the sensor network was degraded
    neither extends a silence streak nor breaks it; it is skipped. Otherwise
@@ -23,6 +23,9 @@ Two rules keep this honest:
    start date.
 2. A suspension is only ever OPENED against a real baseline. No baseline means
    UNKNOWN, never "stopped".
+3. It is also only ever opened against a real SIGHTING, and the silent days
+   have to fit inside a bounded span of calendar days. Something has to stop
+   before it can be stopped, and a week of silence has to mean a week.
 """
 
 from __future__ import annotations
@@ -34,8 +37,21 @@ from . import config, metrics
 
 LOG = logging.getLogger("gulfwatch.suspensions")
 
-# Consecutive coverage-good silent days before we will call it a stop.
+# Coverage-good silent days before we will call it a stop.
 THRESHOLD = {"route": 7, "station": 10, "region": 21}
+
+# ...and the calendar span those days must fit inside, at twice the threshold.
+#
+# The gating rule above counts observed days only, which is right, but it
+# quietly changed what the threshold means: seven observed silent days can be
+# spread across any number of weeks if coverage is sparse. On 2026-08-17 that
+# opened 147 route stops at once. The entire observation record was seven ok
+# days scattered over sixteen calendar days -- 08-01/02/03, then 08-10/11, then
+# 08-15/16 -- so every route the receivers cannot see hit the route threshold
+# on the first run after the gap. Requiring the seven to land inside fourteen
+# days restores the reading "a week of silence" instead of "a week's worth of
+# glimpses, whenever we happened to look".
+SPAN_DAYS = {"route": 14, "station": 20, "region": 42}
 
 # Ignore scopes too small to be meaningful (weekly departures in the baseline).
 MIN_BASELINE = {"route": 1.0, "station": 2.0, "region": 4.0}
@@ -107,8 +123,14 @@ def _coverage_map(conn) -> dict[str, str]:
     return metrics.coverage_map(conn)
 
 
-def silence(counts: dict[str, int], cov: dict[str, str], day: date) -> dict:
+def silence(counts: dict[str, int], cov: dict[str, str], day: date,
+            span: int | None = None) -> dict:
     """Walk backwards. Returns gated silent days, last operating day, skips.
+
+    `span` bounds the calendar window silent days may be drawn from; the walk
+    for the last operating day is not bounded, because "when did we last see
+    it fly" has to be answerable from further back than "has it been quiet for
+    a week". See SPAN_DAYS.
 
     Days with bad coverage are skipped entirely -- they do not count as silence
     and they do not reset it. This is the difference between "they stopped on
@@ -123,6 +145,7 @@ def silence(counts: dict[str, int], cov: dict[str, str], day: date) -> dict:
     7 whole carriers "stopped" since January, at `confidence: observed`, off a
     hole in the calendar. Absent is not empty.
     """
+    span = span or MAX_LOOKBACK
     silent = skipped = 0
     last_flight = None
     for offset in range(MAX_LOOKBACK):
@@ -134,7 +157,8 @@ def silence(counts: dict[str, int], cov: dict[str, str], day: date) -> dict:
         if counts.get(key, 0) > 0:
             last_flight = key
             break
-        silent += 1
+        if offset < span:
+            silent += 1
     return {"silent_days": silent, "last_flight_on": last_flight,
             "coverage_days_skipped": skipped}
 
@@ -161,11 +185,12 @@ def detect(conn, day: date | None = None) -> dict:
     for scope, entries in scopes.items():
         limit = THRESHOLD[scope]
         floor = MIN_BASELINE[scope]
+        span = SPAN_DAYS[scope]
         for key, meta in entries.items():
             if meta["baseline"] < floor:
                 continue
             counts = _daily_counts(conn, scope, key)
-            s = silence(counts, cov, day)
+            s = silence(counts, cov, day, span)
 
             active = conn.execute(
                 "SELECT * FROM suspension WHERE scope=? AND scope_key=? AND status='active'",
@@ -198,12 +223,21 @@ def detect(conn, day: date | None = None) -> dict:
                 continue
 
             # --- new stop ---------------------------------------------------
-            if s["silent_days"] >= limit:
-                if s["last_flight_on"]:
-                    started = (_d(s["last_flight_on"]) + timedelta(days=1)).isoformat()
-                else:
-                    # never seen operating in our window; do not invent a date
-                    started = (day - timedelta(days=s["silent_days"])).isoformat()
+            #
+            # A scope we have never once seen operating cannot have stopped:
+            # there is no day to date the stop from, and the honest reading of
+            # a baseline route with no sighting is that our receivers do not
+            # cover it. British Airways held five of the 147 stops opened on
+            # 2026-08-17, including London-Dubai at 18 departures a week, on
+            # zero observed legs in the entire record. The old fallback here
+            # took `day - silent_days` -- subtracting a count of OBSERVED days
+            # as if they were CALENDAR days -- and published 2026-08-09 as the
+            # start, a day whose own coverage row reads `outage`, while the
+            # feed's reading_note promised "started_on is the first silent
+            # day". Withhold instead; the ratio column already reports these
+            # carriers as never observed.
+            if s["silent_days"] >= limit and s["last_flight_on"]:
+                started = (_d(s["last_flight_on"]) + timedelta(days=1)).isoformat()
                 conn.execute(
                     """INSERT OR IGNORE INTO suspension
                        (scope, scope_key, carrier, detail, baseline_weekly,

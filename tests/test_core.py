@@ -501,6 +501,65 @@ class TestSuspensionEvents(unittest.TestCase):
         self.assertEqual(back[0]["resumed_on"], self.today.isoformat())
         self.assertEqual(back[0]["days_stopped"], 10)
 
+    def test_scattered_observed_days_are_not_a_week_of_silence(self):
+        """The 2026-08-17 blow-up: 147 route stops off seven glimpses.
+
+        Coverage gating counts observed days only, which is right, but seven
+        observed silent days can be spread over any span when coverage is
+        sparse. The real record that morning was 08-01/02/03, 08-10/11,
+        08-15/16 -- seven ok days across sixteen calendar days -- and every
+        route hit the seven-day route threshold on it. Seven must fit inside
+        SPAN_DAYS["route"] before it means a week.
+        """
+        from src.suspensions import silence, SPAN_DAYS
+
+        day = date(2026, 8, 16)
+        ok = ["2026-08-01", "2026-08-02", "2026-08-03",
+              "2026-08-10", "2026-08-11", "2026-08-15", "2026-08-16"]
+        cov = {d: "ok" for d in ok}
+        # Flew, and was seen flying, well before the observation window opened.
+        counts = {"2026-07-20": 3}
+        cov["2026-07-20"] = "ok"
+
+        spread = silence(counts, cov, day, SPAN_DAYS["route"])
+        self.assertLess(
+            spread["silent_days"], self.susp.THRESHOLD["route"],
+            "seven observed days spread over sixteen calendar days were "
+            "counted as a week of silence -- that is what opened 147 stops")
+
+        # Same seven days, actually consecutive: that IS a week of silence.
+        tight = {(day - timedelta(days=i)).isoformat(): "ok" for i in range(7)}
+        tight["2026-07-20"] = "ok"
+        self.assertGreaterEqual(
+            silence(counts, tight, day, SPAN_DAYS["route"])["silent_days"],
+            self.susp.THRESHOLD["route"])
+
+    def test_never_seen_flying_is_not_a_stop(self):
+        """No sighting, no stop. Absent from our receivers is not absent.
+
+        British Airways held five of the 147, London-Dubai among them at 18
+        departures a week, on zero observed legs in the whole record. The old
+        code dated those from `day - silent_days`, subtracting observed days as
+        if they were calendar days, and published a start date whose own
+        coverage row read `outage`.
+        """
+        self._fill(silent_for=None)
+        # A baseline route we have never once seen operate.
+        self.conn.execute(
+            "INSERT INTO baseline VALUES ('BAW','EGLL','OMDB',18,28,?,?)",
+            ((self.today - timedelta(days=28)).isoformat(),
+             self.today.isoformat()))
+        self.conn.commit()
+
+        self.susp.detect(self.conn, self.today)
+
+        baw = [e for e in self.susp.report(self.conn)["active"]
+               if e["carrier"] == "BAW"]
+        self.assertEqual(
+            baw, [],
+            "a route never seen flying was published as stopped; there is no "
+            "day to date the stop from")
+
     def test_coverage_outage_days_do_not_manufacture_a_stop(self):
         """A week of dead receivers must not become 'they stopped on the 14th'."""
         self._fill(silent_for=None,
