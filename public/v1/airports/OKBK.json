@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-17T12:39:31+00:00",
-  "as_of_day": "2026-08-16",
+  "generated_at": "2026-08-19T12:33:54+00:00",
+  "as_of_day": "2026-08-18",
   "coverage": {
-    "day": "2026-08-16",
-    "control_flights": 525,
-    "median_28d": 302.5,
-    "score": 1.5,
+    "day": "2026-08-18",
+    "control_flights": 497,
+    "median_28d": 502.5,
+    "score": 0.989,
     "verdict": "ok"
   },
   "observation": {

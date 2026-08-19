@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-17T12:39:31+00:00",
-  "as_of_day": "2026-08-16",
+  "generated_at": "2026-08-19T12:33:54+00:00",
+  "as_of_day": "2026-08-18",
   "coverage": {
-    "day": "2026-08-16",
-    "control_flights": 525,
-    "median_28d": 302.5,
-    "score": 1.5,
+    "day": "2026-08-18",
+    "control_flights": 497,
+    "median_28d": 502.5,
+    "score": 0.989,
     "verdict": "ok"
   },
   "observation": {
@@ -146,8 +146,8 @@
     {
       "carrier": "KNE",
       "carrier_name": "flynas",
-      "origin": "LTCG",
-      "destination": "OBBI",
+      "origin": "LTAI",
+      "destination": "OMDB",
       "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
@@ -163,7 +163,7 @@
       "carrier": "KNE",
       "carrier_name": "flynas",
       "origin": "LTCG",
-      "destination": "OMDB",
+      "destination": "OBBI",
       "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
@@ -236,6 +236,22 @@
       "comparable": false,
       "ratio": null,
       "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
+    },
+    {
+      "carrier": "KNE",
+      "carrier_name": "flynas",
+      "origin": "OJAI",
+      "destination": "OEDF",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 30,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 4
     },
@@ -316,22 +332,6 @@
       "comparable": false,
       "ratio": null,
       "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
-    },
-    {
-      "carrier": "KNE",
-      "carrier_name": "flynas",
-      "origin": "OMDB",
-      "destination": "HEAZ",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "ratio": null,
-      "status": "NEW",
       "silent_days": 0,
       "observed_days": 4
     },
