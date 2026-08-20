@@ -104,7 +104,12 @@ def build(out: Path | None = None) -> dict:
         # Everything known about the carrier, comparable or not -- the
         # denominator of the share test below.
         c["_known"] = c.get("_known", 0.0) + r["weekly_frequency"] + r["baseline_weekly"]
-        if r["comparable"]:
+        # `scored`, not `comparable`: a route with a usable baseline that our
+        # fetches could not see this week must leave the carrier ratio
+        # entirely, not sit in the denominator contributing a zero numerator.
+        # That is how Doha's thin departure fetch became "Qatar Airways at
+        # 47%" on 2026-08-20.
+        if r["scored"]:
             c["_comparable"] = (c.get("_comparable", 0.0)
                                 + r["weekly_frequency"] + r["baseline_weekly"])
             # Kept as a matched pair. weekly_frequency counts every route we

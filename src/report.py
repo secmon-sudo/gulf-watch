@@ -226,39 +226,77 @@ def observed_vs_scheduled(conn, days: int) -> dict[str, dict]:
     # at 17% of its timetable on a base whose complete days you can count on
     # one hand. Below the floor the report shows both raw numbers and no
     # percentage, which is the honest shape of "not enough data yet".
-    covered = conn.execute(
-        """SELECT COUNT(DISTINCT f.dep_date) n FROM flight f
-           JOIN coverage c ON c.day = f.dep_date
-           WHERE f.dep_date BETWEEN ? AND ? AND c.verdict = 'ok'""",
-        (since, until)).fetchone()["n"]
-    if not covered:
-        return {}
-    trustworthy = covered >= MIN_RATIO_DAYS
+    # A day the network calls `ok` is still no use for a percentage if the one
+    # fetch that could have caught these legs came back thin: the numerator
+    # drops and the timetable does not, so the shortfall renders as a cut.
+    # Asked per city pair and per direction, because that is the grain at
+    # which a leg is either visible or not. See
+    # metrics.airport_side_coverage.
+    ref = metrics.reference_day()
+    cov = metrics.coverage_map(conn)
+    ok_days = set(metrics.observed_days(cov, ref, days))
+    ap_cov = metrics.airport_side_coverage(conn, ref, days)
 
-    obs: dict[str, int] = defaultdict(int)
+    def visible(dep: str, arr: str) -> set[str]:
+        return ok_days & (ap_cov.get((dep, "dep"), set())
+                          | ap_cov.get((arr, "arr"), set()))
+
+    # Which pairs carry a percentage at all. Both ends are monitored here, so
+    # either fetch can vouch for a day, and a pair that clears the floor is
+    # scaled by ITS days rather than by the network's.
+    per_pair: dict[tuple, dict[str, int]] = defaultdict(dict)
     for r in conn.execute(
-            """SELECT carrier, dep_icao, arr_icao, COUNT(*) n FROM flight
+            """SELECT carrier, dep_icao, arr_icao, dep_date, COUNT(*) n
+               FROM flight
                WHERE is_freight = 0 AND dep_date BETWEEN ? AND ?
                  AND carrier IS NOT NULL AND dep_icao <> arr_icao
-               GROUP BY carrier, dep_icao, arr_icao""", (since, until)):
+               GROUP BY carrier, dep_icao, arr_icao, dep_date""", (since, until)):
         if r["dep_icao"] in iata and r["arr_icao"] in iata:
-            obs[r["carrier"]] += r["n"]
+            per_pair[(r["carrier"], r["dep_icao"], r["arr_icao"])][r["dep_date"]] = r["n"]
 
-    sch: dict[str, int] = defaultdict(int)
-    monitored = set(iata.values())
+    icao_of = {v: k for k, v in iata.items()}
+    sch_pair: dict[tuple, int] = defaultdict(int)
     for r in conn.execute(
             "SELECT carrier, dep_iata, arr_iata, weekly FROM route_schedule"):
-        if r["dep_iata"] in monitored and r["arr_iata"] in monitored:
-            sch[r["carrier"]] += r["weekly"] or 0
+        dep, arr = icao_of.get(r["dep_iata"]), icao_of.get(r["arr_iata"])
+        if dep and arr:
+            sch_pair[(r["carrier"], dep, arr)] += r["weekly"] or 0
+
+    obs: dict[str, float] = defaultdict(float)
+    sch: dict[str, int] = defaultdict(int)
+    sch_all: dict[str, int] = defaultdict(int)
+    pairs_seen: dict[str, int] = defaultdict(int)
+    pairs_all: dict[str, int] = defaultdict(int)
+    for key in set(per_pair) | set(sch_pair):
+        code, dep, arr = key
+        planned = sch_pair.get(key, 0)
+        sch_all[code] += planned
+        pairs_all[code] += 1
+        vis = visible(dep, arr)
+        if len(vis) < MIN_RATIO_DAYS:
+            # Dropped from BOTH sides. Leaving the timetable in while the
+            # sightings fall out is what published Emirates at 8% of its
+            # own schedule on 2026-08-20: seven of the fifteen monitored
+            # airports return no ADS-B at all, so their routes were pure
+            # denominator.
+            continue
+        flown = sum(n for d, n in per_pair.get(key, {}).items() if d in vis)
+        obs[code] += flown * 7 / len(vis)
+        sch[code] += planned
+        pairs_seen[code] += 1
 
     out = {}
-    for code in set(obs) | set(sch):
-        flown = round(obs[code] * 7 / covered, 1)
+    for code in set(obs) | set(sch_all):
         planned = sch[code]
-        out[code] = {"observed": flown, "scheduled": planned,
-                     "ratio": (round(flown / planned, 2)
-                               if planned and trustworthy else None),
-                     "days_covered": covered, "trustworthy": trustworthy}
+        share = (planned / sch_all[code]) if sch_all[code] else 0.0
+        # The same test the API ratio applies: a percentage built on a sliver
+        # of the timetable is a statement about the sliver.
+        usable = planned > 0 and share >= config.MIN_COMPARABLE_SHARE
+        out[code] = {"observed": round(obs[code], 1), "scheduled": planned,
+                     "scheduled_total": sch_all[code],
+                     "ratio": (round(obs[code] / planned, 2) if usable else None),
+                     "pairs": pairs_seen[code], "pairs_total": pairs_all[code],
+                     "share": round(share, 3), "trustworthy": usable}
     return out
 
 
@@ -1153,7 +1191,9 @@ def _rows(data: dict) -> str:
                 cls = ("flying" if pct >= 80 else "partial" if pct >= 30 else "stopped")
                 sched_cell = (f'<b class="s-{cls}">%{pct}</b>'
                               f'<div class="meta">haftada {rt["observed"]:.0f} / '
-                              f'{rt["scheduled"]}, izlenen çiftlerde</div>')
+                              f'{rt["scheduled"]} sefer/hafta, '
+                              f'{rt["pairs"]}/{rt["pairs_total"]} çiftte — '
+                              f'tarifenin %{int(rt["share"] * 100)}\u2019i</div>')
             elif rt.get("scheduled"):
                 sched_cell = (f'<span class="meta">tarifede haftada '
                               f'{rt["scheduled"]}; gözlem oranı için gün sayısı '
@@ -1243,7 +1283,8 @@ def render(data: dict) -> str:
     if _ratio_ready(data):
         oran_th = ('<th class="num">Gözlenen / tarifeli'
                    '<div class="meta">Sefer sütunuyla aynı şey değil: haftaya '
-                   'ölçeklenmiş ve yalnızca izlenen şehir çiftleri</div></th>')
+                   'ölçeklenmiş, ve yalnızca ölçülebilen şehir '
+                   'çiftleri</div></th>')
         oran_aciklama = (
             '<p class="sub prose"><b>Gözlenen / tarifeli</b> sütunu asıl cevabı '
             'verir: havayolunun izlenen havalimanları arasında gerçekten uçtuğu '
@@ -1257,11 +1298,16 @@ def render(data: dict) -> str:
         oran_th = ""
         oran_aciklama = (
             f'<p class="sub prose"><b>Gözlenen / tarifeli</b> sütunu bu raporda '
-            f'yok. Havayolunun uçtuğu haftalık seferi tarifesine bölen o '
-            f'oran, ancak kapsama testini geçen {MIN_RATIO_DAYS} gün biriktiğinde '
-            f'yayımlanır; altındaki her sayı birkaç günlük veriden haftalık '
-            f'frekans uydurmak olur. Şu an geçen gün sayısı yetersiz, o yüzden '
-            f'sütun boş hücrelerle çizilmek yerine hiç çizilmiyor.</p>')
+            f'yok. Havayolunun uçtuğu haftalık seferi tarifesine bölen o oran '
+            f'iki şart ister: bir şehir çiftinin <b>kendi</b> verisini getiren '
+            f'sorgunun en az {MIN_RATIO_DAYS} gün çalışmış olması, ve bu şekilde '
+            f'ölçülebilen çiftlerin havayolunun tarifesinin en az '
+            f'%{int(config.MIN_COMPARABLE_SHARE * 100)}’ini kapsaması. Bir '
+            f'kalkış yalnızca kalkış havalimanının sorgusuyla görünür; o sorgu '
+            f'zayıf döndüğünde sefer eksilir ama tarife eksilmez, ve aradaki '
+            f'fark havayolunun kesintisi gibi okunur. Şu an ölçülebilen çiftler '
+            f'tarifenin küçük bir kısmını kapsıyor, o yüzden sütun boş '
+            f'hücrelerle çizilmek yerine hiç çizilmiyor.</p>')
 
     fircards = "".join(
         f'<div class="card"><div class="hd"><span class="fir">{_e(f["fir"])}</span>'
@@ -1442,8 +1488,17 @@ def render(data: dict) -> str:
     <b>hiç bakılmadı</b>. Yalnızca ilki sessizlik sayılır — bir havayolunun
     “kaç gündür görünmediği” yalnızca baktığımız günlerden hesaplanır, ve
     haftalık sefer sayıları yalnızca o günlere göre ölçeklenir. Baktığımız gün
-    sayısı {MIN_RATIO_DAYS}’in altındaysa oran hiç yayımlanmaz. Bu ayrımın olmadığı
-    bir sürüm, verinin bittiği yeri uçuşların bittiği yer sanmıştı.</p></div>
+    sayısı {MIN_RATIO_DAYS}’in altındaysa oran hiç yayımlanmaz.</p>
+    <p>Bu üç hal <b>bütün ağ için</b> verilir, ve bir seferi görmeye tek başına
+    yetmez. Her sefer tek bir sorguyla yakalanır: kalkış havalimanının kalkış
+    sorgusu ya da varış havalimanının varış sorgusu. Bunlardan biri o gün zayıf
+    döndüyse, gün ağ için “veri sağlam” olsa bile <b>o sefer için</b>
+    bakılmamış sayılır. 19 Ağustos’ta Doha’nın kalkış sorgusu normalin
+    %27–56’sını getirirken varış sorgusu %66’daydı: Doha–Atlanta “kesildi”
+    diye işaretlendi, Atlanta–Doha ise aynı tabloda uçmaya devam ediyordu. O
+    yüzden hem sessizlik hem de oran, seferin kendi sorgusunun çalıştığı
+    günlerden hesaplanır. Bu ayrımın olmadığı bir sürüm, verinin bittiği yeri
+    uçuşların bittiği yer sanmıştı.</p></div>
 </section>
 
 <section>

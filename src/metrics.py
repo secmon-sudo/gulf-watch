@@ -159,6 +159,24 @@ def rolling_weekly(conn: sqlite3.Connection, day: date) -> dict[tuple, int]:
     return {(r["carrier"], r["dep_icao"], r["arr_icao"]): r["n"] for r in rows}
 
 
+def rolling_daily(conn: sqlite3.Connection, day: date) -> dict[tuple, dict[str, int]]:
+    """The same trailing week as rolling_weekly, kept split by day.
+
+    route_report needs to add up a route's departures over the days that
+    route's own fetch delivered, and those days differ from route to route.
+    A single pre-summed total cannot be filtered after the fact.
+    """
+    start = (day - timedelta(days=WINDOW_DAYS - 1)).isoformat()
+    out: dict[tuple, dict[str, int]] = {}
+    for r in conn.execute(
+            """SELECT carrier, dep_icao, arr_icao, day, SUM(departures) AS n
+               FROM daily_route WHERE day BETWEEN ? AND ?
+               GROUP BY carrier, dep_icao, arr_icao, day""",
+            (start, day.isoformat())):
+        out.setdefault((r["carrier"], r["dep_icao"], r["arr_icao"]), {})[r["day"]] = r["n"]
+    return out
+
+
 def load_baseline(conn: sqlite3.Connection) -> dict[tuple, float]:
     rows = conn.execute(
         "SELECT carrier, dep_icao, arr_icao, weekly_freq FROM baseline"
@@ -505,6 +523,18 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     enough = len(seen) >= config.MIN_OBSERVED_DAYS
     scale = WINDOW_DAYS / len(seen) if seen else None
 
+    # And the same question again, one level finer. `seen` is a property of the
+    # network; whether we could have seen THIS route is a property of one
+    # airport and one fetch direction, and the two disagree. Across
+    # 2026-08-15..19, every day of it `ok`, Doha's departure fetch ran at
+    # 0.27-0.56 of baseline while its arrival fetch held at 0.66 -- so a Doha
+    # departure divided five days of half-sight by a full week of baseline and
+    # published the shortfall as an airline decision. Qatar Airways read 47%
+    # that way on 2026-08-20.
+    seen_set = set(seen)
+    ap_cov = airport_side_coverage(conn, day, WINDOW_DAYS)
+    per_day = rolling_daily(conn, day)
+
     # The same question asked of the reference period. An airport we barely saw
     # back then cannot anchor a percentage now.
     bl_days, bl_span = baseline_airport_days(conn)
@@ -525,16 +555,36 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
         # Coverage says the baseline was collected; this says it is big enough
         # to divide by. Under one departure a week, a seven-day window expects
         # less than one flight and the ratio is noise either way.
+        # Which of the observed days this particular route could have been
+        # seen on. A leg is caught by the departure fetch at its origin or the
+        # arrival fetch at its destination, and by nothing else.
+        vis = seen_set & (ap_cov.get((dep, "dep"), set())
+                          | ap_cov.get((arr, "arr"), set()))
+        # Numerator and denominator have to describe the same days. Summing a
+        # whole calendar week and dividing by a week we only half-saw is the
+        # 2026-08-12 mistake at a finer grain.
+        raw_vis = sum(n for d, n in per_day.get(key, {}).items() if d in vis)
+        vis_scale = WINDOW_DAYS / len(vis) if vis else None
+        fetch_enough = len(vis) >= config.MIN_OBSERVED_DAYS
+
         comparable = bl_trusted and bl >= config.MIN_BASELINE_WEEKLY
+        # Kept apart from `comparable` on purpose: they fail for opposite
+        # reasons and the reader is owed the difference. `comparable` false
+        # means the REFERENCE period cannot be divided by, which renders as
+        # NO BASELINE. `scored` false with `comparable` true means the
+        # reference is fine and the PRESENT was not seen -- that is UNKNOWN,
+        # and calling it NO BASELINE would blame the wrong end.
+        scored = comparable and fetch_enough
 
         if not comparable:
             # Treated exactly like having no baseline, because that is what an
             # unobserved reference period is. classify() renders it NEW when
             # the carrier is flying, which the dashboard labels NO BASELINE.
             status, ratio = classify(raw, 0.0)
-        elif enough:
-            # Scale what we saw up to a full week before comparing.
-            status, ratio = classify(raw * scale, bl)
+        elif enough and scored:
+            # Scale what we saw up to a full week before comparing -- over this
+            # route's own visible days, not the network's.
+            status, ratio = classify(raw_vis * vis_scale, bl)
         else:
             # Withhold rather than publish a percentage the window cannot
             # carry. The raw count and observed_days still go out, so a reader
@@ -557,16 +607,20 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
             "origin": dep,
             "destination": arr,
             "weekly_frequency": int(raw),
-            "weekly_scaled": round(raw * scale, 1) if (enough and comparable) else None,
+            "weekly_scaled": (round(raw_vis * vis_scale, 1)
+                              if (enough and scored) else None),
             "baseline_weekly": round(bl, 1),
             "baseline_days": max(bl_days["dep"].get(dep, 0),
                                  bl_days["arr"].get(arr, 0)) if bl_span else 0,
             "baseline_trusted": bl_trusted,
             "comparable": comparable,
+            "scored": scored,
             "ratio": ratio,
             "status": status,
             "silent_days": quiet,
-            "observed_days": len(seen),
+            # This route's own basis, not the network's. They differ, and the
+            # difference is the whole point of the field.
+            "observed_days": len(vis),
         })
 
     return {

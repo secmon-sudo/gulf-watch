@@ -1592,6 +1592,54 @@ class TestBlindWeekEndToEnd(unittest.TestCase):
         gfa = [r for r in report["routes"] if r["carrier"] == "GFA"][0]
         self.assertIn(gfa["status"], ("SUSPENDED", "MINIMAL"))
 
+    def test_a_thin_fetch_withholds_the_ratio_instead_of_lowering_it(self):
+        """The 2026-08-20 ratios: our own downtime published as a carrier's cut.
+
+        Qatar Airways read 47% of baseline and 25% of its own timetable, on a
+        week when Doha's departure fetch was delivering 0.27-0.56. The number
+        is not "roughly right and a bit low" -- it is our receivers' duty
+        cycle wearing an airline's name, and there is no honest way to publish
+        it as a percentage of Qatar Airways.
+        """
+        suspensions = self._build()
+        rows, i = [], 90000
+        for off in range(5):
+            d = self.today - timedelta(days=off)
+            for _ in range(10):
+                i += 1
+                rows.append(self._leg("UAE", d, i))
+        db.upsert_flights(self.conn, rows)
+        metrics.rebuild_daily(self.conn)
+        for off in range(5):
+            metrics.score_coverage(self.conn, self.today - timedelta(days=off))
+        self.conn.commit()
+
+        healthy = [r for r in metrics.route_report(self.conn, self.today)["routes"]
+                   if r["carrier"] == "UAE"][0]
+        self.assertTrue(healthy["scored"])
+        self.assertIsNotNone(healthy["ratio"])
+
+        # Now thin the departure fetch at the origin on three of the five
+        # days, exactly as Doha's was. The days stay `ok` network-wide.
+        for off in range(3):
+            d = (self.today - timedelta(days=off)).isoformat()
+            self.conn.execute(
+                "UPDATE daily_route SET departures = 1 "
+                "WHERE day = ? AND dep_icao = 'OMDB'", (d,))
+        self.conn.commit()
+
+        thin = [r for r in metrics.route_report(self.conn, self.today)["routes"]
+                if r["carrier"] == "UAE"][0]
+        self.assertTrue(
+            thin["comparable"],
+            "the baseline is untouched; the present is what went blind")
+        self.assertFalse(thin["scored"])
+        self.assertIsNone(thin["ratio"], "a duty cycle was published as a ratio")
+        self.assertEqual(
+            thin["status"], "UNKNOWN",
+            "withholding must read as UNKNOWN, not as NO BASELINE -- the two "
+            "blame opposite ends of the calculation")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
