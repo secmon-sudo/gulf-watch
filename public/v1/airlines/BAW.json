@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-19T12:33:54+00:00",
-  "as_of_day": "2026-08-18",
+  "generated_at": "2026-08-20T14:19:10+00:00",
+  "as_of_day": "2026-08-19",
   "coverage": {
-    "day": "2026-08-18",
-    "control_flights": 497,
-    "median_28d": 502.5,
-    "score": 0.989,
+    "day": "2026-08-19",
+    "control_flights": 564,
+    "median_28d": 518,
+    "score": 1.089,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 4,
+    "observed_days": 5,
     "min_observed_days": 5,
-    "ratios_published": false
+    "ratios_published": true
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -26,16 +26,16 @@
   "country": "GB",
   "weekly_frequency": 0,
   "weekly_frequency_baselined": 0,
-  "weekly_scaled": null,
+  "weekly_scaled": 0.0,
   "baseline_weekly": 60.7,
   "routes_total": 17,
   "routes_baselined": 5,
-  "routes_suspended": 0,
+  "routes_suspended": 5,
   "routes_reduced": 0,
-  "observed_days": 4,
+  "observed_days": 5,
   "comparable_share": 0.957,
-  "ratio": null,
-  "status": "UNKNOWN",
+  "ratio": 0.0,
+  "status": "SUSPENDED",
   "operating": true,
   "stopped": {
     "any": false,
@@ -53,15 +53,15 @@
       "origin": "EGLL",
       "destination": "OBBI",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 4.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 7,
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -77,7 +77,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -93,7 +93,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -101,15 +101,15 @@
       "origin": "EGLL",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 18.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 7,
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -117,15 +117,15 @@
       "origin": "EGLL",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 11.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 7,
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -141,7 +141,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -157,7 +157,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -173,7 +173,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -189,7 +189,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -197,15 +197,15 @@
       "origin": "OMDB",
       "destination": "EGLL",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 16.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 7,
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -221,7 +221,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -237,7 +237,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -253,7 +253,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -269,7 +269,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -277,15 +277,15 @@
       "origin": "OTHH",
       "destination": "EGLL",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 10.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 7,
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -301,7 +301,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -317,7 +317,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     }
   ],
   "stop_events": [],

@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-19T12:33:54+00:00",
-  "as_of_day": "2026-08-18",
+  "generated_at": "2026-08-20T14:19:10+00:00",
+  "as_of_day": "2026-08-19",
   "coverage": {
-    "day": "2026-08-18",
-    "control_flights": 497,
-    "median_28d": 502.5,
-    "score": 0.989,
+    "day": "2026-08-19",
+    "control_flights": 564,
+    "median_28d": 518,
+    "score": 1.089,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 4,
+    "observed_days": 5,
     "min_observed_days": 5,
-    "ratios_published": false
+    "ratios_published": true
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -25,7 +25,7 @@
   "name": "Zayed Intl",
   "city": "Abu Dhabi",
   "country": "AE",
-  "weekly_frequency": 282,
+  "weekly_frequency": 372,
   "baseline_weekly": 46.9,
   "carriers_operating": [
     "ETD",
@@ -54,7 +54,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -70,7 +70,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -86,14 +86,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "EDDF",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
@@ -102,14 +102,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "EDDL",
       "destination": "OMAA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.4,
       "baseline_days": 87,
@@ -118,7 +118,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -134,14 +134,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "EGLL",
       "destination": "OMAA",
-      "weekly_frequency": 7,
+      "weekly_frequency": 10,
       "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
@@ -150,7 +150,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -166,7 +166,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -182,7 +182,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -198,7 +198,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -214,7 +214,23 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "HKJK",
+      "destination": "OMAA",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 87,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -230,7 +246,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -246,14 +262,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "KORD",
       "destination": "OMAA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.3,
       "baseline_days": 87,
@@ -262,14 +278,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "LEBL",
       "destination": "OMAA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.6,
       "baseline_days": 87,
@@ -278,14 +294,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "LEMD",
       "destination": "OMAA",
-      "weekly_frequency": 4,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
@@ -294,7 +310,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -310,7 +326,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -326,14 +342,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "LFPG",
       "destination": "OMAA",
-      "weekly_frequency": 4,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.8,
       "baseline_days": 88,
@@ -342,7 +358,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -358,14 +374,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "LIMC",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
@@ -374,14 +390,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "LIRF",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
@@ -390,14 +406,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "LLBG",
       "destination": "OMAA",
-      "weekly_frequency": 7,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 2.0,
       "baseline_days": 88,
@@ -406,7 +422,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -422,14 +438,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "LSZH",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 1.4,
       "baseline_days": 88,
@@ -438,7 +454,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -454,7 +470,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -470,12 +486,12 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
-      "origin": "OJAI",
+      "origin": "OEDF",
       "destination": "OMAA",
       "weekly_frequency": 1,
       "weekly_scaled": null,
@@ -486,7 +502,23 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OJAI",
+      "destination": "OMAA",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 87,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -502,7 +534,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -518,14 +550,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "EBBR",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 83,
@@ -534,7 +566,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -550,7 +582,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -566,14 +598,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "EGCC",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -582,14 +614,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "EGLL",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.4,
       "baseline_days": 88,
@@ -598,13 +630,13 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
-      "destination": "EIDW",
+      "destination": "EHAM",
       "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
@@ -614,7 +646,39 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OMAA",
+      "destination": "EIDW",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OMAA",
+      "destination": "EPKK",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 80,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -630,7 +694,23 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OMAA",
+      "destination": "FABB",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 43,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -646,7 +726,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -662,14 +742,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "HEAZ",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 43,
@@ -678,14 +758,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "HKJK",
-      "weekly_frequency": 4,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 43,
@@ -694,14 +774,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "KATL",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 68,
@@ -710,7 +790,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -726,7 +806,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -742,14 +822,30 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OMAA",
+      "destination": "LGAV",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 84,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "LIMC",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -758,14 +854,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "LLBG",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -774,7 +870,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -790,7 +886,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -806,7 +902,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -822,7 +918,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -838,14 +934,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "OEDF",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 43,
@@ -854,14 +950,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "OEDR",
-      "weekly_frequency": 3,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -870,14 +966,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "OJAI",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 43,
@@ -886,7 +982,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -902,14 +998,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "OMAA",
-      "weekly_frequency": 8,
+      "weekly_frequency": 9,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -918,14 +1014,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "OMAD",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 43,
@@ -934,14 +1030,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "OTHH",
-      "weekly_frequency": 5,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.3,
       "baseline_days": 88,
@@ -950,7 +1046,39 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OMAA",
+      "destination": "RJAA",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 80,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OMAA",
+      "destination": "RJBB",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 76,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -966,14 +1094,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "RPLL",
-      "weekly_frequency": 3,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.6,
       "baseline_days": 87,
@@ -982,14 +1110,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "VABB",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 85,
@@ -998,7 +1126,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1014,7 +1142,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1030,14 +1158,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "VIDP",
-      "weekly_frequency": 7,
+      "weekly_frequency": 9,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -1046,7 +1174,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1062,7 +1190,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1078,14 +1206,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "VOCI",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 86,
@@ -1094,7 +1222,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1110,14 +1238,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "VTBS",
-      "weekly_frequency": 7,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 87,
@@ -1126,7 +1254,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1142,7 +1270,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1158,7 +1286,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1174,7 +1302,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1190,7 +1318,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1206,23 +1334,23 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "OTHH",
       "destination": "OMAA",
-      "weekly_frequency": 5,
-      "weekly_scaled": null,
+      "weekly_frequency": 9,
+      "weekly_scaled": 12.6,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "ratio": 4.242,
+      "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1238,14 +1366,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "RJAA",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.8,
       "baseline_days": 87,
@@ -1254,14 +1382,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "RJBB",
       "destination": "OMAA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 87,
@@ -1270,14 +1398,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "RKSI",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 87,
@@ -1286,14 +1414,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "RPLL",
       "destination": "OMAA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 1.0,
       "baseline_days": 87,
@@ -1302,23 +1430,23 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "UUEE",
       "destination": "OMAA",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 87,
       "baseline_trusted": false,
       "comparable": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1334,14 +1462,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "VAJJ",
       "destination": "OMAA",
-      "weekly_frequency": 6,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 0.8,
       "baseline_days": 88,
@@ -1350,7 +1478,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1366,7 +1494,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1382,14 +1510,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "VHHH",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 87,
@@ -1398,14 +1526,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "VIDP",
       "destination": "OMAA",
-      "weekly_frequency": 10,
+      "weekly_frequency": 13,
       "weekly_scaled": null,
       "baseline_weekly": 3.4,
       "baseline_days": 88,
@@ -1414,14 +1542,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "VOBL",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 2.0,
       "baseline_days": 88,
@@ -1430,14 +1558,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "VOCI",
       "destination": "OMAA",
-      "weekly_frequency": 4,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 1.5,
       "baseline_days": 88,
@@ -1446,14 +1574,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "VOMM",
       "destination": "OMAA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -1462,14 +1590,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "VOTV",
       "destination": "OMAA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 1.4,
       "baseline_days": 87,
@@ -1478,14 +1606,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "VTBS",
       "destination": "OMAA",
-      "weekly_frequency": 4,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 3.4,
       "baseline_days": 88,
@@ -1494,7 +1622,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1510,14 +1638,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "WIII",
       "destination": "OMAA",
-      "weekly_frequency": 4,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -1526,7 +1654,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
@@ -1542,14 +1670,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "ETD",
       "carrier_name": "Etihad Airways",
       "origin": "YSSY",
       "destination": "OMAA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.3,
       "baseline_days": 87,
@@ -1558,14 +1686,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "OMAA",
-      "weekly_frequency": 5,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -1574,14 +1702,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OMAA",
       "destination": "OBBI",
-      "weekly_frequency": 6,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -1590,7 +1718,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "MEA",
@@ -1606,14 +1734,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OMAA",
       "destination": "OLBA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 43,
@@ -1622,7 +1750,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "MEA",
@@ -1638,7 +1766,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "MSR",
@@ -1654,23 +1782,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
-    },
-    {
-      "carrier": "MSR",
-      "carrier_name": "EgyptAir",
-      "origin": "OMAA",
-      "destination": "HE13",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 43,
-      "baseline_trusted": false,
-      "comparable": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "MSR",
@@ -1686,7 +1798,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "MSR",
@@ -1702,7 +1814,23 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
+    },
+    {
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "origin": "EDDM",
+      "destination": "OMAA",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "carrier": "PGT",
@@ -1718,7 +1846,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "PGT",
@@ -1734,14 +1862,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OMAA",
       "destination": "OTHH",
-      "weekly_frequency": 8,
+      "weekly_frequency": 11,
       "weekly_scaled": null,
       "baseline_weekly": 0.9,
       "baseline_days": 88,
@@ -1750,30 +1878,30 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OMAA",
-      "weekly_frequency": 10,
-      "weekly_scaled": null,
+      "weekly_frequency": 13,
+      "weekly_scaled": 18.2,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "ratio": 15.965,
+      "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "OMAA",
-      "weekly_frequency": 5,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -1782,14 +1910,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OMAA",
       "destination": "OJAI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 43,
@@ -1798,7 +1926,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     }
   ]
 }
