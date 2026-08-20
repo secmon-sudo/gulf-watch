@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:38:44+00:00",
+  "generated_at": "2026-08-20T15:05:06+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -12,7 +12,8 @@
     "window_days": 7,
     "observed_days": 5,
     "min_observed_days": 5,
-    "ratios_published": true
+    "ratios_published": true,
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -25,15 +26,16 @@
   "iata": "WY",
   "country": "OM",
   "weekly_frequency": 11,
-  "weekly_frequency_baselined": 3,
+  "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
-  "baseline_weekly": 5.2,
+  "baseline_weekly": 0.0,
   "routes_total": 38,
-  "routes_baselined": 3,
+  "routes_baselined": 0,
   "routes_suspended": 0,
-  "routes_reduced": 2,
+  "routes_reduced": 0,
   "observed_days": 5,
-  "comparable_share": 0.304,
+  "comparable_share": 0.0,
+  "baselined_share": 0.304,
   "ratio": null,
   "status": "NEW",
   "operating": true,
@@ -58,10 +60,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -74,10 +77,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -90,10 +94,11 @@
       "baseline_days": 85,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "OMA",
@@ -106,10 +111,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -122,10 +128,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -138,10 +145,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -154,10 +162,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -170,10 +179,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -186,10 +196,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -202,10 +213,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -218,10 +230,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -234,10 +247,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -250,10 +264,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -261,15 +276,16 @@
       "origin": "OTHH",
       "destination": "VOCI",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.765,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -282,10 +298,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -298,10 +315,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -314,10 +332,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -330,10 +349,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -346,10 +366,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -362,10 +383,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -378,10 +400,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -394,10 +417,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -410,10 +434,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -426,6 +451,7 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -437,15 +463,16 @@
       "origin": "VIDP",
       "destination": "OMDB",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.8,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -458,10 +485,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -474,10 +502,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -490,6 +519,7 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -506,10 +536,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -522,10 +553,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -538,10 +570,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -549,15 +582,16 @@
       "origin": "VOCI",
       "destination": "OMDB",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.875,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -570,10 +604,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -586,10 +621,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -602,10 +638,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -618,10 +655,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -634,10 +672,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -650,10 +689,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     }
   ],
   "stop_events": [],

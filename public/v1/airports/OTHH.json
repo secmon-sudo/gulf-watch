@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:38:44+00:00",
+  "generated_at": "2026-08-20T15:05:06+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -12,7 +12,8 @@
     "window_days": 7,
     "observed_days": 5,
     "min_observed_days": 5,
-    "ratios_published": true
+    "ratios_published": true,
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -40,17 +41,7 @@
     "RAM",
     "RJA"
   ],
-  "carriers_absent": [
-    "AAL",
-    "BAW",
-    "ETD",
-    "FIN",
-    "IBE",
-    "JAL",
-    "KAC",
-    "QTR",
-    "RAM"
-  ],
+  "carriers_absent": [],
   "carriers_stopped": [],
   "resumed_recently": [],
   "routes": [
@@ -65,10 +56,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "AAL",
@@ -76,15 +68,16 @@
       "origin": "KPHL",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "AAL",
@@ -97,10 +90,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "AAL",
@@ -108,15 +102,16 @@
       "origin": "OTHH",
       "destination": "KPHL",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "ABY",
@@ -129,10 +124,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "ABY",
@@ -145,6 +141,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
+      "scored": true,
       "ratio": 0.387,
       "status": "REDUCED",
       "silent_days": 0,
@@ -161,10 +158,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "ABY",
@@ -172,15 +170,16 @@
       "origin": "OTHH",
       "destination": "OMSJ",
       "weekly_frequency": 11,
-      "weekly_scaled": 15.4,
+      "weekly_scaled": null,
       "baseline_weekly": 40.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.38,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "ABY",
@@ -193,10 +192,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "ABY",
@@ -209,10 +209,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "BAW",
@@ -220,15 +221,16 @@
       "origin": "EGLL",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 11.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "BAW",
@@ -241,10 +243,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "BAW",
@@ -252,15 +255,16 @@
       "origin": "OTHH",
       "destination": "EGLL",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 10.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "BAW",
@@ -273,10 +277,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "BAW",
@@ -289,10 +294,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -305,10 +311,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -321,10 +328,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -337,10 +345,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -353,10 +362,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -369,10 +379,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -385,10 +396,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "CSN",
@@ -401,6 +413,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
@@ -417,10 +430,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -433,10 +447,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "DAH",
@@ -449,10 +464,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "ETD",
@@ -465,10 +481,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "ETD",
@@ -481,6 +498,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -497,10 +515,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "ETD",
@@ -513,10 +532,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "ETD",
@@ -529,6 +549,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
+      "scored": true,
       "ratio": 4.242,
       "status": "NORMAL",
       "silent_days": 0,
@@ -545,10 +566,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "ETD",
@@ -556,15 +578,16 @@
       "origin": "OTHH",
       "destination": "OMAF",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "ETD",
@@ -572,15 +595,16 @@
       "origin": "OTHH",
       "destination": "OMAM",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.228,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "FDB",
@@ -593,6 +617,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
+      "scored": true,
       "ratio": 0.76,
       "status": "REDUCED",
       "silent_days": 0,
@@ -604,15 +629,16 @@
       "origin": "OTHH",
       "destination": "OMDB",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 11.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.708,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "FIN",
@@ -620,15 +646,16 @@
       "origin": "OTHH",
       "destination": "EFHK",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "FIN",
@@ -641,10 +668,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "GFA",
@@ -652,15 +680,16 @@
       "origin": "OBBI",
       "destination": "OTHH",
       "weekly_frequency": 10,
-      "weekly_scaled": 14.0,
+      "weekly_scaled": null,
       "baseline_weekly": 16.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.876,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "GFA",
@@ -668,15 +697,16 @@
       "origin": "OTHH",
       "destination": "OBBI",
       "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_scaled": null,
       "baseline_weekly": 20.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.475,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "IBE",
@@ -684,15 +714,16 @@
       "origin": "LEMD",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "IBE",
@@ -700,15 +731,16 @@
       "origin": "OTHH",
       "destination": "LEMD",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "JAL",
@@ -716,15 +748,16 @@
       "origin": "OTHH",
       "destination": "RJTT",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "JAL",
@@ -732,15 +765,16 @@
       "origin": "RJTT",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -753,10 +787,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -764,15 +799,16 @@
       "origin": "OKBK",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -785,6 +821,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
@@ -796,15 +833,16 @@
       "origin": "OTHH",
       "destination": "OKBK",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "KAC",
@@ -817,10 +855,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "KAC",
@@ -833,10 +872,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "KAC",
@@ -849,10 +889,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -865,10 +906,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -881,10 +923,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -897,10 +940,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -913,10 +957,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -929,10 +974,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -945,10 +991,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -961,10 +1008,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -977,10 +1025,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -993,10 +1042,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -1009,10 +1059,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -1025,10 +1076,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -1041,6 +1093,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -1057,10 +1110,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -1068,15 +1122,16 @@
       "origin": "OTHH",
       "destination": "Z19O",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.022,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -1089,10 +1144,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MSR",
@@ -1105,10 +1161,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -1121,10 +1178,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -1137,10 +1195,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -1153,10 +1212,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -1169,10 +1229,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -1185,10 +1246,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -1201,10 +1263,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -1217,10 +1280,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -1233,10 +1297,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -1244,15 +1309,16 @@
       "origin": "OTHH",
       "destination": "VOCI",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.765,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -1265,10 +1331,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -1281,10 +1348,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -1297,10 +1365,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -1313,10 +1382,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -1329,10 +1399,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -1345,10 +1416,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -1361,10 +1433,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "OMA",
@@ -1377,10 +1450,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "PGT",
@@ -1393,10 +1467,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "PGT",
@@ -1409,10 +1484,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "PGT",
@@ -1420,15 +1496,16 @@
       "origin": "LTFJ",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 7.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.182,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "PGT",
@@ -1436,15 +1513,16 @@
       "origin": "OTHH",
       "destination": "LTFJ",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 7.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.379,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -1457,10 +1535,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1468,15 +1547,16 @@
       "origin": "CYUL",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 4.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.34,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1484,15 +1564,16 @@
       "origin": "CYYZ",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 5.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.981,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1505,10 +1586,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1521,10 +1603,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1532,15 +1615,16 @@
       "origin": "EBBR",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.943,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1553,10 +1637,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1564,15 +1649,16 @@
       "origin": "EBMB",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 7.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.531,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1580,15 +1666,16 @@
       "origin": "EDDB",
       "destination": "OTHH",
       "weekly_frequency": 8,
-      "weekly_scaled": 11.2,
+      "weekly_scaled": null,
       "baseline_weekly": 18.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.606,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1596,15 +1683,16 @@
       "origin": "EDDF",
       "destination": "OTHH",
       "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_scaled": null,
       "baseline_weekly": 20.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.475,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1612,15 +1700,16 @@
       "origin": "EDDH",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 4.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1628,15 +1717,16 @@
       "origin": "EDDL",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 8.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.651,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1644,15 +1734,16 @@
       "origin": "EDDM",
       "destination": "OTHH",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 12.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.665,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1665,10 +1756,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1681,10 +1773,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1692,15 +1785,16 @@
       "origin": "EGBB",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 6.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.92,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1708,15 +1802,16 @@
       "origin": "EGCC",
       "destination": "OTHH",
       "weekly_frequency": 9,
-      "weekly_scaled": 12.6,
+      "weekly_scaled": null,
       "baseline_weekly": 21.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.598,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1724,15 +1819,16 @@
       "origin": "EGKK",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 8.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.64,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1740,15 +1836,16 @@
       "origin": "EGLL",
       "destination": "OTHH",
       "weekly_frequency": 21,
-      "weekly_scaled": 29.4,
+      "weekly_scaled": null,
       "baseline_weekly": 51.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.573,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1756,15 +1853,16 @@
       "origin": "EGPH",
       "destination": "OTHH",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 12.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.694,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1772,15 +1870,16 @@
       "origin": "EHAM",
       "destination": "OTHH",
       "weekly_frequency": 9,
-      "weekly_scaled": 12.6,
+      "weekly_scaled": null,
       "baseline_weekly": 20.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.625,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1793,10 +1892,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1804,15 +1904,16 @@
       "origin": "EIDW",
       "destination": "OTHH",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 13.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.606,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1820,15 +1921,16 @@
       "origin": "EKCH",
       "destination": "OTHH",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 13.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.508,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1836,15 +1938,16 @@
       "origin": "ENGM",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 9.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.46,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1852,15 +1955,16 @@
       "origin": "EPWA",
       "destination": "OTHH",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 10.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.794,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1868,15 +1972,16 @@
       "origin": "ESSA",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.944,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1884,15 +1989,16 @@
       "origin": "FACT",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 7.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.759,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1900,15 +2006,16 @@
       "origin": "FAOR",
       "destination": "OTHH",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 15.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.46,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1921,10 +2028,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1937,10 +2045,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1953,10 +2062,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1969,10 +2079,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1980,15 +2091,16 @@
       "origin": "HTDA",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1996,15 +2108,16 @@
       "origin": "KATL",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 4.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.877,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2012,15 +2125,16 @@
       "origin": "KBOS",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.505,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2033,10 +2147,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2044,15 +2159,16 @@
       "origin": "KDFW",
       "destination": "OTHH",
       "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_scaled": null,
       "baseline_weekly": 10.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.913,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2060,15 +2176,16 @@
       "origin": "KIAD",
       "destination": "OTHH",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 7.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.911,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2076,15 +2193,16 @@
       "origin": "KIAH",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.15,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2092,15 +2210,16 @@
       "origin": "KJFK",
       "destination": "OTHH",
       "weekly_frequency": 8,
-      "weekly_scaled": 11.2,
+      "weekly_scaled": null,
       "baseline_weekly": 14.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.775,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2108,15 +2227,16 @@
       "origin": "KLAX",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.657,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2124,15 +2244,16 @@
       "origin": "KMIA",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 8.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.694,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2140,15 +2261,16 @@
       "origin": "KORD",
       "destination": "OTHH",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 7.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.949,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2161,10 +2283,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2172,15 +2295,16 @@
       "origin": "KSEA",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.645,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2188,15 +2312,16 @@
       "origin": "KSFO",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 4.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.347,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2209,10 +2334,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2220,15 +2346,16 @@
       "origin": "LBSF",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2236,15 +2363,16 @@
       "origin": "LCLK",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.956,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2252,15 +2380,16 @@
       "origin": "LDZA",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 2.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.614,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2268,15 +2397,16 @@
       "origin": "LDZB",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.148,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2284,15 +2414,16 @@
       "origin": "LDZI",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.8,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2300,15 +2431,16 @@
       "origin": "LEBL",
       "destination": "OTHH",
       "weekly_frequency": 11,
-      "weekly_scaled": 15.4,
+      "weekly_scaled": null,
       "baseline_weekly": 18.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.847,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2316,15 +2448,16 @@
       "origin": "LEMD",
       "destination": "OTHH",
       "weekly_frequency": 9,
-      "weekly_scaled": 12.6,
+      "weekly_scaled": null,
       "baseline_weekly": 16.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.767,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2332,15 +2465,16 @@
       "origin": "LEMG",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 2.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 2.231,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2353,10 +2487,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2369,10 +2504,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2385,10 +2521,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2396,15 +2533,16 @@
       "origin": "LFMN",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.382,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2412,15 +2550,16 @@
       "origin": "LFPG",
       "destination": "OTHH",
       "weekly_frequency": 10,
-      "weekly_scaled": 14.0,
+      "weekly_scaled": null,
       "baseline_weekly": 19.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.722,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2428,15 +2567,16 @@
       "origin": "LGAV",
       "destination": "OTHH",
       "weekly_frequency": 13,
-      "weekly_scaled": 18.2,
+      "weekly_scaled": null,
       "baseline_weekly": 11.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.564,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2449,10 +2589,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2460,15 +2601,16 @@
       "origin": "LHBP",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 8.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.511,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2476,15 +2618,16 @@
       "origin": "LIMC",
       "destination": "OTHH",
       "weekly_frequency": 10,
-      "weekly_scaled": 14.0,
+      "weekly_scaled": null,
       "baseline_weekly": 21.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.652,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2492,15 +2635,16 @@
       "origin": "LIPZ",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2508,15 +2652,16 @@
       "origin": "LIRF",
       "destination": "OTHH",
       "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_scaled": null,
       "baseline_weekly": 15.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.638,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2524,15 +2669,16 @@
       "origin": "LKPR",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 6.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.846,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2540,15 +2686,16 @@
       "origin": "LMML",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2556,15 +2703,16 @@
       "origin": "LOWW",
       "destination": "OTHH",
       "weekly_frequency": 9,
-      "weekly_scaled": 12.6,
+      "weekly_scaled": null,
       "baseline_weekly": 10.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.174,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2577,10 +2725,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2593,10 +2742,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2604,15 +2754,16 @@
       "origin": "LPPT",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 5.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.788,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2620,15 +2771,16 @@
       "origin": "LROP",
       "destination": "OTHH",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 11.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.751,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2636,15 +2788,16 @@
       "origin": "LSGG",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.083,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2652,15 +2805,16 @@
       "origin": "LSZH",
       "destination": "OTHH",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 10.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.843,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2673,10 +2827,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2689,10 +2844,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2705,10 +2861,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2716,15 +2873,16 @@
       "origin": "LTFJ",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2732,15 +2890,16 @@
       "origin": "LTFM",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 13.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.21,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2748,15 +2907,16 @@
       "origin": "LYBE",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 5.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.736,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2764,15 +2924,16 @@
       "origin": "NZAA",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2780,15 +2941,16 @@
       "origin": "OBBI",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 13.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.42,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2801,10 +2963,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2817,10 +2980,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2828,15 +2992,16 @@
       "origin": "OKBK",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 12.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2849,6 +3014,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -2865,6 +3031,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -2881,10 +3048,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2897,6 +3065,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
+      "scored": true,
       "ratio": 0.317,
       "status": "REDUCED",
       "silent_days": 0,
@@ -2908,15 +3077,16 @@
       "origin": "OMDW",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.765,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2929,6 +3099,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
+      "scored": true,
       "ratio": 0.69,
       "status": "REDUCED",
       "silent_days": 0,
@@ -2940,15 +3111,16 @@
       "origin": "OPLA",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.287,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2956,15 +3128,16 @@
       "origin": "OPMT",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 3.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.361,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2972,15 +3145,16 @@
       "origin": "ORMM",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -2993,10 +3167,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3004,15 +3179,16 @@
       "origin": "OTHH",
       "destination": "CYUL",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 4.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.67,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3020,15 +3196,16 @@
       "origin": "OTHH",
       "destination": "CYYZ",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.239,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3041,10 +3218,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3057,10 +3235,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3068,15 +3247,16 @@
       "origin": "OTHH",
       "destination": "EBBR",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 8.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.166,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3084,15 +3264,16 @@
       "origin": "OTHH",
       "destination": "EBLG",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 7.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.569,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3100,15 +3281,16 @@
       "origin": "OTHH",
       "destination": "EBMB",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3121,10 +3303,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3137,10 +3320,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3153,10 +3337,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3164,15 +3349,16 @@
       "origin": "OTHH",
       "destination": "EDDB",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 16.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.256,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3180,15 +3366,16 @@
       "origin": "OTHH",
       "destination": "EDDF",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 22.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.253,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3196,15 +3383,16 @@
       "origin": "OTHH",
       "destination": "EDDH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3212,15 +3400,16 @@
       "origin": "OTHH",
       "destination": "EDDL",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 8.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 6,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3228,15 +3417,16 @@
       "origin": "OTHH",
       "destination": "EDDM",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 11.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.254,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3249,10 +3439,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3265,10 +3456,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3281,10 +3473,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3292,15 +3485,16 @@
       "origin": "OTHH",
       "destination": "EGBB",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 6,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3313,10 +3507,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3329,10 +3524,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3340,15 +3536,16 @@
       "origin": "OTHH",
       "destination": "EGCC",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 19.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.29,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3356,15 +3553,16 @@
       "origin": "OTHH",
       "destination": "EGKK",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 8.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 6,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3377,10 +3575,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3388,15 +3587,16 @@
       "origin": "OTHH",
       "destination": "EGLL",
       "weekly_frequency": 13,
-      "weekly_scaled": 18.2,
+      "weekly_scaled": null,
       "baseline_weekly": 54.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.335,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3409,10 +3609,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3425,10 +3626,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3441,10 +3643,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3457,10 +3660,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3473,10 +3677,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3484,15 +3689,16 @@
       "origin": "OTHH",
       "destination": "EGPH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 11.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.239,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3500,15 +3706,16 @@
       "origin": "OTHH",
       "destination": "EGSS",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.287,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3521,10 +3728,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3532,15 +3740,16 @@
       "origin": "OTHH",
       "destination": "EHAM",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 18.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.382,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3548,15 +3757,16 @@
       "origin": "OTHH",
       "destination": "EIDW",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 12.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.541,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3564,15 +3774,16 @@
       "origin": "OTHH",
       "destination": "EKCH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 13.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.101,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3580,15 +3791,16 @@
       "origin": "OTHH",
       "destination": "ENGM",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 6.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.607,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3601,10 +3813,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3617,10 +3830,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3628,15 +3842,16 @@
       "origin": "OTHH",
       "destination": "EPWA",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 11.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 5,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3649,10 +3864,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3660,15 +3876,16 @@
       "origin": "OTHH",
       "destination": "ESSA",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.478,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3681,10 +3898,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3692,15 +3910,16 @@
       "origin": "OTHH",
       "destination": "FABB",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3708,15 +3927,16 @@
       "origin": "OTHH",
       "destination": "FACT",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 8.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.317,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3729,10 +3949,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3740,15 +3961,16 @@
       "origin": "OTHH",
       "destination": "FAGM",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3756,15 +3978,16 @@
       "origin": "OTHH",
       "destination": "FAHG",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3772,15 +3995,16 @@
       "origin": "OTHH",
       "destination": "FAOR",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 9.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.292,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3793,10 +4017,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3809,10 +4034,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3820,15 +4046,16 @@
       "origin": "OTHH",
       "destination": "HE13",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3841,10 +4068,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3857,10 +4085,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3873,10 +4102,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3889,10 +4119,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3905,10 +4136,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3921,10 +4153,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3932,15 +4165,16 @@
       "origin": "OTHH",
       "destination": "HKNW",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 5,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3948,15 +4182,16 @@
       "origin": "OTHH",
       "destination": "HTDA",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3969,10 +4204,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3980,15 +4216,16 @@
       "origin": "OTHH",
       "destination": "KATL",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4001,10 +4238,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4012,15 +4250,16 @@
       "origin": "OTHH",
       "destination": "KBOS",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4028,15 +4267,16 @@
       "origin": "OTHH",
       "destination": "KDFW",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 11.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.254,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4049,10 +4289,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4060,15 +4301,16 @@
       "origin": "OTHH",
       "destination": "KIAD",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 8.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.173,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4076,15 +4318,16 @@
       "origin": "OTHH",
       "destination": "KIAH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 5.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.259,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4092,15 +4335,16 @@
       "origin": "OTHH",
       "destination": "KJFK",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 14.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.294,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4108,15 +4352,16 @@
       "origin": "OTHH",
       "destination": "KLAX",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 4.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.624,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4124,15 +4369,16 @@
       "origin": "OTHH",
       "destination": "KMIA",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 8.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.172,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4140,15 +4386,16 @@
       "origin": "OTHH",
       "destination": "KORD",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.227,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4161,10 +4408,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4172,15 +4420,16 @@
       "origin": "OTHH",
       "destination": "KSEA",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 4.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.603,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4188,15 +4437,16 @@
       "origin": "OTHH",
       "destination": "KSFO",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 5.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.275,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4209,10 +4459,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4220,15 +4471,16 @@
       "origin": "OTHH",
       "destination": "LBSF",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4236,15 +4488,16 @@
       "origin": "OTHH",
       "destination": "LCLK",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 6.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.23,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4252,15 +4505,16 @@
       "origin": "OTHH",
       "destination": "LDZA",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4268,15 +4522,16 @@
       "origin": "OTHH",
       "destination": "LDZB",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 6,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4284,15 +4539,16 @@
       "origin": "OTHH",
       "destination": "LDZS",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4300,15 +4556,16 @@
       "origin": "OTHH",
       "destination": "LEBL",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 17.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.33,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4321,10 +4578,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4332,15 +4590,16 @@
       "origin": "OTHH",
       "destination": "LEMD",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 16.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.523,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4348,15 +4607,16 @@
       "origin": "OTHH",
       "destination": "LEMG",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 2.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.081,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4369,10 +4629,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4385,10 +4646,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4396,15 +4658,16 @@
       "origin": "OTHH",
       "destination": "LFMN",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 3.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.449,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4412,15 +4675,16 @@
       "origin": "OTHH",
       "destination": "LFPG",
       "weekly_frequency": 10,
-      "weekly_scaled": 14.0,
+      "weekly_scaled": null,
       "baseline_weekly": 20.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.679,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4428,15 +4692,16 @@
       "origin": "OTHH",
       "destination": "LGAV",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 9.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.725,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4444,15 +4709,16 @@
       "origin": "OTHH",
       "destination": "LGKN",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4465,10 +4731,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4476,15 +4743,16 @@
       "origin": "OTHH",
       "destination": "LHBP",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 10.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.13,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4492,15 +4760,16 @@
       "origin": "OTHH",
       "destination": "LIMC",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 18.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.308,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4513,10 +4782,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4524,15 +4794,16 @@
       "origin": "OTHH",
       "destination": "LIPV",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4540,15 +4811,16 @@
       "origin": "OTHH",
       "destination": "LIPZ",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4556,15 +4828,16 @@
       "origin": "OTHH",
       "destination": "LIRF",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 15.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.265,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4572,15 +4845,16 @@
       "origin": "OTHH",
       "destination": "LKPR",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 7.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.188,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4588,15 +4862,16 @@
       "origin": "OTHH",
       "destination": "LMML",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4609,10 +4884,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4620,15 +4896,16 @@
       "origin": "OTHH",
       "destination": "LOWW",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 11.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.241,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4636,15 +4913,16 @@
       "origin": "OTHH",
       "destination": "LPAR",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4657,10 +4935,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4668,15 +4947,16 @@
       "origin": "OTHH",
       "destination": "LPPT",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 2.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.053,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4689,10 +4969,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4700,15 +4981,16 @@
       "origin": "OTHH",
       "destination": "LROP",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 11.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.383,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4716,15 +4998,16 @@
       "origin": "OTHH",
       "destination": "LSGG",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 5.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.242,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4732,15 +5015,16 @@
       "origin": "OTHH",
       "destination": "LSZH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 10.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.133,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4753,10 +5037,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4769,10 +5054,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4785,10 +5071,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4796,15 +5083,16 @@
       "origin": "OTHH",
       "destination": "LTFJ",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4812,15 +5100,16 @@
       "origin": "OTHH",
       "destination": "LTFM",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 11.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.366,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4828,15 +5117,16 @@
       "origin": "OTHH",
       "destination": "LYBE",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.224,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4844,15 +5134,16 @@
       "origin": "OTHH",
       "destination": "NZAA",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4860,15 +5151,16 @@
       "origin": "OTHH",
       "destination": "OBBI",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 16.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.42,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -4881,10 +5173,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4892,15 +5185,16 @@
       "origin": "OTHH",
       "destination": "OEDF",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.228,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4908,15 +5202,16 @@
       "origin": "OTHH",
       "destination": "OEDR",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 15.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.28,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4929,10 +5224,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4945,10 +5241,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4961,6 +5258,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -4972,15 +5270,16 @@
       "origin": "OTHH",
       "destination": "OKBK",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 12.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4993,10 +5292,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5009,10 +5309,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5025,6 +5326,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
+      "scored": true,
       "ratio": 15.965,
       "status": "NORMAL",
       "silent_days": 0,
@@ -5041,10 +5343,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5057,10 +5360,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5068,15 +5372,16 @@
       "origin": "OTHH",
       "destination": "OMDB",
       "weekly_frequency": 9,
-      "weekly_scaled": 12.6,
+      "weekly_scaled": null,
       "baseline_weekly": 30.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.416,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5084,15 +5389,16 @@
       "origin": "OTHH",
       "destination": "OMDW",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5100,15 +5406,16 @@
       "origin": "OTHH",
       "destination": "OMSJ",
       "weekly_frequency": 18,
-      "weekly_scaled": 25.2,
+      "weekly_scaled": null,
       "baseline_weekly": 42.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.589,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -5121,10 +5428,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5137,10 +5445,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5153,10 +5462,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5164,15 +5474,16 @@
       "origin": "OTHH",
       "destination": "OPMT",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.645,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5180,15 +5491,16 @@
       "origin": "OTHH",
       "destination": "ORMM",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5201,10 +5513,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5212,12 +5525,13 @@
       "origin": "OTHH",
       "destination": "OTHH",
       "weekly_frequency": 12,
-      "weekly_scaled": 16.8,
+      "weekly_scaled": 12.6,
       "baseline_weekly": 71.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.235,
+      "scored": true,
+      "ratio": 0.176,
       "status": "MINIMAL",
       "silent_days": 0,
       "observed_days": 5
@@ -5228,15 +5542,16 @@
       "origin": "OTHH",
       "destination": "RJAA",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 8.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.634,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5244,15 +5559,16 @@
       "origin": "OTHH",
       "destination": "RJBB",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 3.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.384,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5265,10 +5581,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5276,15 +5593,16 @@
       "origin": "OTHH",
       "destination": "RKSI",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 6,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5292,15 +5610,16 @@
       "origin": "OTHH",
       "destination": "RPLC",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 3.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.409,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5308,15 +5627,16 @@
       "origin": "OTHH",
       "destination": "RPLL",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 13.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.305,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5329,10 +5649,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5340,15 +5661,16 @@
       "origin": "OTHH",
       "destination": "SBGR",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 9.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.307,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5356,15 +5678,16 @@
       "origin": "OTHH",
       "destination": "SBSJ",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5377,10 +5700,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5393,10 +5717,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5409,10 +5734,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5425,10 +5751,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5436,15 +5763,16 @@
       "origin": "OTHH",
       "destination": "UGTB",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 3.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.346,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5452,15 +5780,16 @@
       "origin": "OTHH",
       "destination": "UUEE",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 2.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.593,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5468,15 +5797,16 @@
       "origin": "OTHH",
       "destination": "VABB",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 7.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.395,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5484,15 +5814,16 @@
       "origin": "OTHH",
       "destination": "VEBA",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5500,15 +5831,16 @@
       "origin": "OTHH",
       "destination": "VECC",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5521,10 +5853,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5532,15 +5865,16 @@
       "origin": "OTHH",
       "destination": "VGZR",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 11.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.708,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5548,15 +5882,16 @@
       "origin": "OTHH",
       "destination": "VHHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.287,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5569,10 +5904,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5580,15 +5916,16 @@
       "origin": "OTHH",
       "destination": "VIDP",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 13.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.62,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5601,10 +5938,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5612,15 +5950,16 @@
       "origin": "OTHH",
       "destination": "VNKT",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 14.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.297,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5633,10 +5972,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5644,15 +5984,16 @@
       "origin": "OTHH",
       "destination": "VOCI",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 9.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.598,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5665,10 +6006,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5681,10 +6023,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5692,15 +6035,16 @@
       "origin": "OTHH",
       "destination": "VOTV",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.956,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5708,15 +6052,16 @@
       "origin": "OTHH",
       "destination": "VOYK",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5724,15 +6069,16 @@
       "origin": "OTHH",
       "destination": "VTBS",
       "weekly_frequency": 12,
-      "weekly_scaled": 16.8,
+      "weekly_scaled": null,
       "baseline_weekly": 34.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.481,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5740,15 +6086,16 @@
       "origin": "OTHH",
       "destination": "VVGL",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5756,15 +6103,16 @@
       "origin": "OTHH",
       "destination": "VVNB",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5777,10 +6125,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5793,10 +6142,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5804,15 +6154,16 @@
       "origin": "OTHH",
       "destination": "WIII",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 1.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 2.295,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5820,15 +6171,16 @@
       "origin": "OTHH",
       "destination": "WMKK",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 10.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.648,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5836,15 +6188,16 @@
       "origin": "OTHH",
       "destination": "WSAC",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 1.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.474,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5852,15 +6205,16 @@
       "origin": "OTHH",
       "destination": "WSAP",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 11.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5868,15 +6222,16 @@
       "origin": "OTHH",
       "destination": "WSSS",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5884,15 +6239,16 @@
       "origin": "OTHH",
       "destination": "YBBN",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.252,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5900,15 +6256,16 @@
       "origin": "OTHH",
       "destination": "YMML",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 11.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 6,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5916,15 +6273,16 @@
       "origin": "OTHH",
       "destination": "YPAD",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 4.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.593,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5932,15 +6290,16 @@
       "origin": "OTHH",
       "destination": "YPPH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.478,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5948,15 +6307,16 @@
       "origin": "OTHH",
       "destination": "YSSY",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 5.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.484,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5964,15 +6324,16 @@
       "origin": "OTHH",
       "destination": "Z19O",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5980,15 +6341,16 @@
       "origin": "RJAA",
       "destination": "OTHH",
       "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": null,
       "baseline_weekly": 9.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.912,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5996,15 +6358,16 @@
       "origin": "RJBB",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 5,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6017,10 +6380,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6028,15 +6392,16 @@
       "origin": "RKSI",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.645,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6044,15 +6409,16 @@
       "origin": "RPLC",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 3.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.875,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6060,15 +6426,16 @@
       "origin": "RPLL",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 13.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.416,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6076,15 +6443,16 @@
       "origin": "SBGR",
       "destination": "OTHH",
       "weekly_frequency": 10,
-      "weekly_scaled": 14.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 2.708,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6092,15 +6460,16 @@
       "origin": "UGTB",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": null,
       "baseline_weekly": 3.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.6,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6108,15 +6477,16 @@
       "origin": "UUEE",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.471,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6129,10 +6499,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6140,15 +6511,16 @@
       "origin": "VAJJ",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 6.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.642,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6156,15 +6528,16 @@
       "origin": "VECC",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6172,15 +6545,16 @@
       "origin": "VGZR",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 12.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.347,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6188,15 +6562,16 @@
       "origin": "VHHH",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 8.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.472,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6204,15 +6579,16 @@
       "origin": "VIDP",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 11.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.358,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6220,15 +6596,16 @@
       "origin": "VNKT",
       "destination": "OTHH",
       "weekly_frequency": 9,
-      "weekly_scaled": 12.6,
+      "weekly_scaled": null,
       "baseline_weekly": 16.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.777,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6236,15 +6613,16 @@
       "origin": "VOBL",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 7.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.552,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6252,15 +6630,16 @@
       "origin": "VOCI",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 9.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.431,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6273,10 +6652,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6284,15 +6664,16 @@
       "origin": "VOTV",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 5.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.49,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6300,15 +6681,16 @@
       "origin": "VTBS",
       "destination": "OTHH",
       "weekly_frequency": 10,
-      "weekly_scaled": 14.0,
+      "weekly_scaled": null,
       "baseline_weekly": 36.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.384,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6316,15 +6698,16 @@
       "origin": "VVNB",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 4.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6337,10 +6720,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6348,15 +6732,16 @@
       "origin": "WMKK",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 12.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6369,10 +6754,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6380,15 +6766,16 @@
       "origin": "WSSS",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 2.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.315,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6396,15 +6783,16 @@
       "origin": "YBBN",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 6.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.222,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6412,15 +6800,16 @@
       "origin": "YMML",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 12.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.341,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6428,15 +6817,16 @@
       "origin": "YPAD",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.542,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6444,15 +6834,16 @@
       "origin": "YPPH",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.449,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -6460,15 +6851,16 @@
       "origin": "YSSY",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.455,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RAM",
@@ -6481,10 +6873,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RAM",
@@ -6497,10 +6890,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RAM",
@@ -6513,10 +6907,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RAM",
@@ -6524,15 +6919,16 @@
       "origin": "KJFK",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 7,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "RAM",
@@ -6545,10 +6941,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -6561,10 +6958,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -6577,10 +6975,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RAM",
@@ -6593,10 +6992,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6609,10 +7009,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -6625,10 +7026,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -6641,10 +7043,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -6657,10 +7060,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -6673,10 +7077,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -6689,10 +7094,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -6705,10 +7111,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -6721,10 +7128,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -6737,10 +7145,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6753,10 +7162,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6769,10 +7179,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6785,10 +7196,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6801,10 +7213,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6817,10 +7230,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6833,10 +7247,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6849,10 +7264,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6865,10 +7281,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6881,10 +7298,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6897,10 +7315,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6913,10 +7332,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6929,10 +7349,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -6945,6 +7366,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -6961,10 +7383,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "SVA",
@@ -6977,10 +7400,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     }
   ]
 }

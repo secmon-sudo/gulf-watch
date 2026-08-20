@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:38:44+00:00",
+  "generated_at": "2026-08-20T15:05:06+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -12,7 +12,8 @@
     "window_days": 7,
     "observed_days": 5,
     "min_observed_days": 5,
-    "ratios_published": true
+    "ratios_published": true,
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -25,15 +26,16 @@
   "iata": "ME",
   "country": "LB",
   "weekly_frequency": 149,
-  "weekly_frequency_baselined": 3,
+  "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
-  "baseline_weekly": 3.4,
+  "baseline_weekly": 0.0,
   "routes_total": 66,
-  "routes_baselined": 2,
+  "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
   "observed_days": 5,
-  "comparable_share": 0.041,
+  "comparable_share": 0.0,
+  "baselined_share": 0.041,
   "ratio": null,
   "status": "NEW",
   "operating": true,
@@ -58,10 +60,11 @@
       "baseline_days": 43,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -74,6 +77,7 @@
       "baseline_days": 68,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
@@ -90,10 +94,11 @@
       "baseline_days": 68,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -106,10 +111,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -122,10 +128,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -138,10 +145,11 @@
       "baseline_days": 87,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -154,6 +162,7 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -170,10 +179,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -186,10 +196,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -202,10 +213,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -218,10 +230,11 @@
       "baseline_days": 85,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -234,10 +247,11 @@
       "baseline_days": 20,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -250,10 +264,11 @@
       "baseline_days": 82,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -266,10 +281,11 @@
       "baseline_days": 86,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -282,10 +298,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -298,10 +315,11 @@
       "baseline_days": 40,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -314,10 +332,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -330,10 +349,11 @@
       "baseline_days": 82,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -346,10 +366,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -362,10 +383,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -378,6 +400,7 @@
       "baseline_days": 87,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
@@ -394,10 +417,11 @@
       "baseline_days": 87,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -410,10 +434,11 @@
       "baseline_days": 84,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -426,10 +451,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -442,10 +468,11 @@
       "baseline_days": 85,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -458,6 +485,7 @@
       "baseline_days": 24,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -474,10 +502,11 @@
       "baseline_days": 17,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -490,10 +519,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -506,10 +536,11 @@
       "baseline_days": 39,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -522,10 +553,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -538,10 +570,11 @@
       "baseline_days": 83,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -554,10 +587,11 @@
       "baseline_days": 87,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -570,10 +604,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -586,10 +621,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -602,10 +638,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -618,10 +655,11 @@
       "baseline_days": 13,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -634,10 +672,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -650,10 +689,11 @@
       "baseline_days": 13,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -666,10 +706,11 @@
       "baseline_days": 13,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -682,10 +723,11 @@
       "baseline_days": 13,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -698,10 +740,11 @@
       "baseline_days": 13,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -714,10 +757,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -730,10 +774,11 @@
       "baseline_days": 87,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -746,10 +791,11 @@
       "baseline_days": 41,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -762,10 +808,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -778,10 +825,11 @@
       "baseline_days": 84,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -794,10 +842,11 @@
       "baseline_days": 88,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -810,10 +859,11 @@
       "baseline_days": 87,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -826,10 +876,11 @@
       "baseline_days": 85,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -842,10 +893,11 @@
       "baseline_days": 13,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -858,10 +910,11 @@
       "baseline_days": 13,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -874,10 +927,11 @@
       "baseline_days": 85,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -890,6 +944,7 @@
       "baseline_days": 24,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -906,10 +961,11 @@
       "baseline_days": 17,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -922,6 +978,7 @@
       "baseline_days": 87,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -938,6 +995,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -954,6 +1012,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
@@ -970,10 +1029,11 @@
       "baseline_days": 52,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -986,10 +1046,11 @@
       "baseline_days": 43,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -1002,10 +1063,11 @@
       "baseline_days": 43,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -1018,10 +1080,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -1034,6 +1097,7 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
@@ -1045,15 +1109,16 @@
       "origin": "OMDB",
       "destination": "Z19O",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 2.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.414,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "MEA",
@@ -1066,10 +1131,11 @@
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -1077,15 +1143,16 @@
       "origin": "OTHH",
       "destination": "Z19O",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "ratio": 1.022,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "MEA",
@@ -1098,10 +1165,11 @@
       "baseline_days": 73,
       "baseline_trusted": false,
       "comparable": false,
+      "scored": false,
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     }
   ],
   "stop_events": [],

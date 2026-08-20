@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:38:44+00:00",
+  "generated_at": "2026-08-20T15:05:06+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -12,7 +12,8 @@
     "window_days": 7,
     "observed_days": 5,
     "min_observed_days": 5,
-    "ratios_published": true
+    "ratios_published": true,
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",

@@ -59,7 +59,13 @@ def _envelope(report: dict) -> dict:
             "window_days": report["window_days"],
             "observed_days": report["observed_days"],
             "min_observed_days": report["min_observed_days"],
+            # The window-wide day gate. It is necessary, not sufficient: a
+            # carrier still needs enough of itself in routes our fetches
+            # actually delivered, so this can read true while every ratio
+            # below is null. `carriers_with_ratio` is the number that tells a
+            # reader whether anything was published at all.
             "ratios_published": report["ratios_published"],
+            "carriers_with_ratio": None,
         },
         "attribution": ATTRIBUTION,
     }
@@ -104,6 +110,12 @@ def build(out: Path | None = None) -> dict:
         # Everything known about the carrier, comparable or not -- the
         # denominator of the share test below.
         c["_known"] = c.get("_known", 0.0) + r["weekly_frequency"] + r["baseline_weekly"]
+        # Tracked apart from the scored subset below so the two failures can be
+        # told apart: a carrier whose BASELINE is mostly unusable, and one
+        # whose baseline is fine but whose week we could not see.
+        if r["comparable"]:
+            c["_baselined"] = (c.get("_baselined", 0.0)
+                               + r["weekly_frequency"] + r["baseline_weekly"])
         # `scored`, not `comparable`: a route with a usable baseline that our
         # fetches could not see this week must leave the carrier ratio
         # entirely, not sit in the denominator contributing a zero numerator.
@@ -129,12 +141,21 @@ def build(out: Path | None = None) -> dict:
         c["observed_days"] = report["observed_days"]
         known = c.pop("_known", 0.0)
         share = (c.pop("_comparable", 0.0) / known) if known else 0.0
+        bl_share = (c.pop("_baselined", 0.0) / known) if known else 0.0
         c["comparable_share"] = round(share, 3)
+        c["baselined_share"] = round(bl_share, 3)
         if share < config.MIN_COMPARABLE_SHARE:
             # A ratio built on a sliver of the network is a statement about the
             # sliver. Etihad's comparable subset is 12 routes of 100.
             c["weekly_scaled"] = None
-            status, ratio = metrics.classify(c["weekly_frequency"], 0.0)
+            if bl_share >= config.MIN_COMPARABLE_SHARE:
+                # The baseline is there; this week is not. Rendering that as
+                # NO BASELINE would blame the reference period for a gap in
+                # the present, which is the same misattribution route_report
+                # avoids by keeping `scored` apart from `comparable`.
+                status, ratio = "UNKNOWN", None
+            else:
+                status, ratio = metrics.classify(c["weekly_frequency"], 0.0)
         elif not c["routes_baselined"]:
             # Nothing to compare against. classify() calls this NEW when the
             # carrier is flying, which the dashboard labels NO BASELINE.
@@ -166,6 +187,11 @@ def build(out: Path | None = None) -> dict:
             "days_stopped": max((e["days_stopped"] or 0 for e in evs), default=0),
             "confidence": (region + station + evs)[0]["confidence"] if evs else None,
         }
+
+    # Counted after the fact, because a carrier only earns a ratio once its
+    # scored subset clears the share floor -- which the envelope cannot know.
+    env["observation"]["carriers_with_ratio"] = sum(
+        1 for c in by_carrier.values() if c["ratio"] is not None)
 
     _write(out / "status.json", {
         **env,
