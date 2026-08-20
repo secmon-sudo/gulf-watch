@@ -536,6 +536,62 @@ class TestSuspensionEvents(unittest.TestCase):
             silence(counts, tight, day, SPAN_DAYS["route"])["silent_days"],
             self.susp.THRESHOLD["route"])
 
+    def test_a_thin_fetch_direction_is_not_a_silent_day(self):
+        """The 2026-08-20 nine: one direction called stopped, the other flying.
+
+        Doha's departure fetch was returning 0.27-0.56 of its baseline volume
+        across five days the network-wide verdict called `ok`, while Doha's
+        arrival fetch held at 0.66. So Doha-Atlanta accumulated exactly seven
+        silent days and opened, while Atlanta-Doha was being observed three
+        times a week in the same table. A leg reaches us through one fetch
+        only, so scoring both against one global `ok` cannot separate them.
+        """
+        from src.suspensions import silence, SPAN_DAYS, THRESHOLD
+        day = date(2026, 8, 19)
+        # Seen flying a fortnight ago, then seven observed, silent days.
+        counts = {"2026-08-03": 1}
+        cov = {"2026-08-03": "ok"}
+        for d in (6, 10, 11, 15, 16, 17, 18, 19):
+            cov[f"2026-08-{d:02d}"] = "ok"
+
+        wide_open = silence(counts, cov, day, SPAN_DAYS["route"])
+        self.assertGreaterEqual(
+            wide_open["silent_days"], THRESHOLD["route"],
+            "fixture no longer reproduces the shape that opened the nine")
+
+        # The fetch that could have seen this leg delivered on only three of
+        # those days. The rest are unlooked-at, not empty.
+        visible = {"2026-08-11", "2026-08-15", "2026-08-18"}
+        gated = silence(counts, cov, day, SPAN_DAYS["route"], visible)
+        self.assertLess(
+            gated["silent_days"], THRESHOLD["route"],
+            "a leg was counted silent on days its own fetch came back thin")
+        self.assertEqual(gated["last_flight_on"], "2026-08-03")
+
+    def test_a_sighting_outranks_a_thin_fetch(self):
+        """Seeing it fly is positive evidence, whatever the fetch volume was.
+
+        The gate may only ever withhold silence. If it could also swallow a
+        sighting, the walk would stride past the last operating day and date
+        the stop from further back than the evidence supports.
+        """
+        from src.suspensions import silence, SPAN_DAYS
+        day = date(2026, 8, 19)
+        counts = {"2026-08-17": 2}
+        cov = {f"2026-08-{d:02d}": "ok" for d in range(10, 20)}
+        s = silence(counts, cov, day, SPAN_DAYS["route"], visible=set())
+        self.assertEqual(s["last_flight_on"], "2026-08-17")
+        self.assertEqual(s["silent_days"], 0)
+
+    def test_visibility_is_asked_per_direction(self):
+        """Doha-Atlanta rides Doha's departure fetch; the return leg does not."""
+        ap_cov = {("OTHH", "arr"): {"2026-08-17"}}
+        out = self.susp.visible_days("route", "QTR|OTHH|KATL", {}, ap_cov)
+        self.assertEqual(out, set(),
+                         "an outbound leg was vouched for by the arrival fetch")
+        back = self.susp.visible_days("route", "QTR|KATL|OTHH", {}, ap_cov)
+        self.assertEqual(back, {"2026-08-17"})
+
     def test_never_seen_flying_is_not_a_stop(self):
         """No sighting, no stop. Absent from our receivers is not absent.
 

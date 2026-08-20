@@ -56,6 +56,21 @@ MIN_OBSERVED_DAYS = 5
 # an airport nobody was watching reads as growth, not as the gap it is.
 MIN_BASELINE_COVERAGE = 0.75
 
+# The same question asked of the OBSERVATION window, per airport and per fetch
+# direction. The day-level verdict is global -- it scores the whole network
+# against its own 28-day median -- so a day passes as `ok` while one hub's
+# fetch returns a third of its usual volume, and silence at that hub reads as
+# an airline decision. Measured over 2026-08-15..19, every day of it `ok`:
+# Doha's *departure* fetch ran at 0.27-0.56 of baseline while its *arrival*
+# fetch held at 0.66 and kept showing the same routes flying the other way.
+# That gap opened nine route stops on 2026-08-20, four of them out of Doha,
+# every one of them contradicted by its own return leg. A leg is only ever
+# seen through one of the two fetches, so the direction is half the question.
+# At this floor a daily route is missed on all seven silent days with
+# probability about 1 in 128; at the 0.27 Doha was actually delivering it is
+# worse than 1 in 10, which is the difference between a finding and a guess.
+MIN_CURRENT_AIRPORT_COVERAGE = 0.5
+
 # Day counts miss the airport whose fetch ran and came back nearly empty. The
 # control carriers settle it: their rate at an airport now, over their rate
 # there in the baseline window. Stable by construction, so a large jump is a

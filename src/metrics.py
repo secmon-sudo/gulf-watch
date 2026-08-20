@@ -283,6 +283,72 @@ def baseline_control_drift(conn: sqlite3.Connection, cov: dict[str, str],
     return drift
 
 
+def airport_side_coverage(conn: sqlite3.Connection, day: date,
+                         lookback: int) -> dict[tuple[str, str], set[str]]:
+    """Which days each monitored airport's departure and arrival fetch delivered.
+
+    `was_observed` answers "did we look" for the network as a whole. It cannot
+    answer "could we have seen THIS leg", and those are not the same question:
+    a leg out of Doha is only ever visible through Doha's departure fetch, so
+    when that one fetch comes back thin the leg is invisible on a day the
+    network-wide verdict calls `ok`. See MIN_CURRENT_AIRPORT_COVERAGE for the
+    measurement that made this concrete, and suspensions.silence for the use.
+
+    Scored on control-carrier traffic, for the reason baseline_control_drift
+    already gives: their volume at an airport is a statement about our
+    receivers rather than about aviation. Restricted to monitored airports,
+    because the far end of a route is never fetched -- Heathrow appears in the
+    data only as whatever Dubai's fetch happened to carry, so its count says
+    nothing about a fetch that was never made.
+
+    An airport with no control traffic in the baseline gets no entry and can
+    therefore never vouch for a silent day. That is the same refusal
+    baseline_trusted makes: nothing to anchor to means nothing to conclude.
+    """
+    controls = list(config.control_carriers())
+    monitored = set(config.airports())
+    if not controls or not monitored:
+        return {}
+    marks = ",".join("?" for _ in controls)
+    keep = ",".join("?" for _ in monitored)
+    win = conn.execute(
+        "SELECT window_start, window_end FROM baseline LIMIT 1").fetchone()
+    if not win or not win["window_start"]:
+        return {}
+    try:
+        span = (datetime.fromisoformat(win["window_end"])
+                - datetime.fromisoformat(win["window_start"])).days + 1
+    except (TypeError, ValueError):
+        return {}
+
+    days = [(day - timedelta(days=o)).isoformat() for o in range(lookback)]
+    marks_days = ",".join("?" for _ in days)
+    sides = (("dep", "dep_icao"), ("arr", "arr_icao"))
+
+    baseline: dict[tuple[str, str], float] = {}
+    for side, col in sides:
+        for r in conn.execute(
+                f"""SELECT {col} AS a, SUM(departures) n FROM daily_route
+                    WHERE day BETWEEN ? AND ? AND carrier IN ({marks})
+                      AND {col} IN ({keep}) GROUP BY a""",
+                [win["window_start"], win["window_end"], *controls, *monitored]):
+            baseline[(r["a"], side)] = (r["n"] or 0) / span
+
+    ok: dict[tuple[str, str], set[str]] = {}
+    for side, col in sides:
+        for r in conn.execute(
+                f"""SELECT {col} AS a, day, SUM(departures) n FROM daily_route
+                    WHERE day IN ({marks_days}) AND carrier IN ({marks})
+                      AND {col} IN ({keep}) GROUP BY a, day""",
+                [*days, *controls, *monitored]):
+            base = baseline.get((r["a"], side), 0.0)
+            if base <= 0:
+                continue
+            if (r["n"] or 0) / base >= config.MIN_CURRENT_AIRPORT_COVERAGE:
+                ok.setdefault((r["a"], side), set()).add(r["day"])
+    return ok
+
+
 def baseline_trusted(dep: str, arr: str, bl_days: dict[str, dict[str, int]],
                      floor: float, monitored: set[str],
                      drift: dict[str, float]) -> bool:

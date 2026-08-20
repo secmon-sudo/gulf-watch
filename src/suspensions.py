@@ -15,7 +15,7 @@ A station suspension is the headline. A region suspension usually means either
 a total network shutdown or -- far more likely -- that something is wrong with
 your data, so it is held to a much longer threshold.
 
-Three rules keep this honest:
+Four rules keep this honest:
 
 1. Silent days are COVERAGE-GATED. A day when the sensor network was degraded
    neither extends a silence streak nor breaks it; it is skipped. Otherwise
@@ -26,6 +26,11 @@ Three rules keep this honest:
 3. It is also only ever opened against a real SIGHTING, and the silent days
    have to fit inside a bounded span of calendar days. Something has to stop
    before it can be stopped, and a week of silence has to mean a week.
+4. Silence is gated PER AIRPORT AND PER FETCH DIRECTION, not only per day.
+   The day-level verdict scores the whole network, so one hub's thin fetch
+   hides inside an `ok`. A leg is seen through exactly one fetch, and on
+   2026-08-20 that gap called Doha-Atlanta stopped while Atlanta-Doha was
+   being observed three times a week.
 """
 
 from __future__ import annotations
@@ -124,7 +129,7 @@ def _coverage_map(conn) -> dict[str, str]:
 
 
 def silence(counts: dict[str, int], cov: dict[str, str], day: date,
-            span: int | None = None) -> dict:
+            span: int | None = None, visible: set[str] | None = None) -> dict:
     """Walk backwards. Returns gated silent days, last operating day, skips.
 
     `span` bounds the calendar window silent days may be drawn from; the walk
@@ -135,6 +140,12 @@ def silence(counts: dict[str, int], cov: dict[str, str], day: date,
     Days with bad coverage are skipped entirely -- they do not count as silence
     and they do not reset it. This is the difference between "they stopped on
     the 14th" and "our receivers died on the 14th".
+
+    `visible` narrows the same idea from the network to this scope: the days
+    on which the fetch that could have seen these legs actually delivered. A
+    day the network calls `ok` is still skipped here if the one airport-and-
+    direction this scope depends on came back thin. See
+    metrics.airport_side_coverage.
 
     A day with NO coverage row is skipped for the same reason, and this is not
     a detail. It used to default to "ok", which read a day nobody looked at as
@@ -157,10 +168,39 @@ def silence(counts: dict[str, int], cov: dict[str, str], day: date,
         if counts.get(key, 0) > 0:
             last_flight = key
             break
+        if visible is not None and key not in visible:
+            skipped += 1
+            continue
         if offset < span:
             silent += 1
     return {"silent_days": silent, "last_flight_on": last_flight,
             "coverage_days_skipped": skipped}
+
+
+def visible_days(scope: str, key: str, meta: dict,
+                 ap_cov: dict[tuple[str, str], set[str]]) -> set[str]:
+    """The days this scope could have been seen on, if it were flying.
+
+    Direction is not decoration. A Doha-Atlanta leg reaches us only through
+    Doha's departure fetch; the Atlanta-Doha leg only through Doha's arrival
+    fetch. On 2026-08-20 the first was called stopped while the second was
+    being observed three times a week, because both were scored against one
+    network-wide `ok`. Asking per direction is what separates them.
+
+    The far end of a route is unmonitored and contributes nothing, so a route
+    with no monitored endpoint returns the empty set and can never accumulate
+    a silent day -- which is correct: we were never in a position to look.
+    """
+    if scope == "route":
+        _, dep, arr = key.split("|")
+        return ap_cov.get((dep, "dep"), set()) | ap_cov.get((arr, "arr"), set())
+    if scope == "station":
+        _, ap = key.split("|")
+        return ap_cov.get((ap, "dep"), set()) | ap_cov.get((ap, "arr"), set())
+    seen: set[str] = set()
+    for ap in meta["airports"]:
+        seen |= ap_cov.get((ap, "dep"), set()) | ap_cov.get((ap, "arr"), set())
+    return seen
 
 
 def first_flight_after(counts: dict[str, int], start: str) -> str | None:
@@ -179,6 +219,10 @@ def detect(conn, day: date | None = None) -> dict:
                 "opened_events": [], "resumed_events": []}
 
     scopes = build_scopes(conn)
+    # Per airport and per fetch direction, the days that fetch actually
+    # delivered. The silence walk needs it for every day it might count, and
+    # it only counts days inside the scope's span.
+    ap_cov = metrics.airport_side_coverage(conn, day, max(SPAN_DAYS.values()))
     opened: list[dict] = []
     resumed: list[dict] = []
 
@@ -190,7 +234,8 @@ def detect(conn, day: date | None = None) -> dict:
             if meta["baseline"] < floor:
                 continue
             counts = _daily_counts(conn, scope, key)
-            s = silence(counts, cov, day, span)
+            s = silence(counts, cov, day, span,
+                        visible_days(scope, key, meta, ap_cov))
 
             active = conn.execute(
                 "SELECT * FROM suspension WHERE scope=? AND scope_key=? AND status='active'",
