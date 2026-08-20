@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:19:10+00:00",
+  "generated_at": "2026-08-20T14:38:44+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -264,16 +264,13 @@
       "status": "REDUCED",
       "operating": true,
       "stopped": {
-        "any": true,
-        "scope": "route",
+        "any": false,
+        "scope": null,
         "airports_dropped": [],
-        "routes_dropped": [
-          "OMDB-VECC",
-          "VECC-OMDB"
-        ],
-        "since": "2026-08-03",
-        "days_stopped": 16,
-        "confidence": "corroborated"
+        "routes_dropped": [],
+        "since": null,
+        "days_stopped": 0,
+        "confidence": null
       }
     },
     {
@@ -295,15 +292,13 @@
       "status": "NEW",
       "operating": true,
       "stopped": {
-        "any": true,
-        "scope": "route",
+        "any": false,
+        "scope": null,
         "airports_dropped": [],
-        "routes_dropped": [
-          "OTHH-OMAF"
-        ],
-        "since": "2026-08-04",
-        "days_stopped": 15,
-        "confidence": "contradicted"
+        "routes_dropped": [],
+        "since": null,
+        "days_stopped": 0,
+        "confidence": null
       }
     },
     {
@@ -549,18 +544,13 @@
       "status": "REDUCED",
       "operating": true,
       "stopped": {
-        "any": true,
-        "scope": "route",
+        "any": false,
+        "scope": null,
         "airports_dropped": [],
-        "routes_dropped": [
-          "OTHH-KATL",
-          "OTHH-KBOS",
-          "OTHH-LDZS",
-          "VECC-OTHH"
-        ],
-        "since": "2026-08-03",
-        "days_stopped": 16,
-        "confidence": "contradicted"
+        "routes_dropped": [],
+        "since": null,
+        "days_stopped": 0,
+        "confidence": null
       }
     },
     {
@@ -666,16 +656,13 @@
       "status": "REDUCED",
       "operating": true,
       "stopped": {
-        "any": true,
-        "scope": "route",
+        "any": false,
+        "scope": null,
         "airports_dropped": [],
-        "routes_dropped": [
-          "LHBP-OMDB",
-          "OMDB-VECC"
-        ],
-        "since": "2026-08-03",
-        "days_stopped": 16,
-        "confidence": "contradicted"
+        "routes_dropped": [],
+        "since": null,
+        "days_stopped": 0,
+        "confidence": null
       }
     },
     {
@@ -712,7 +699,7 @@
     "routes_tracked": 1527,
     "routes_suspended": 160,
     "routes_reduced": 301,
-    "carriers_with_a_stop": 4,
+    "carriers_with_a_stop": 0,
     "stations_dropped": 0,
     "resumed_last_30d": 0
   }

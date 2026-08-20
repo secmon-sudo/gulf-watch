@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:19:10+00:00",
+  "generated_at": "2026-08-20T14:38:44+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -38,15 +38,13 @@
   "status": "NEW",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "OTHH-OMAF"
-    ],
-    "since": "2026-08-04",
-    "days_stopped": 15,
-    "confidence": "contradicted"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -1842,61 +1840,6 @@
       "observed_days": 5
     }
   ],
-  "stop_events": [
-    {
-      "id": 418,
-      "scope": "route",
-      "scope_key": "ETD|OTHH|OMAF",
-      "carrier": "ETD",
-      "detail": "OTHH-OMAF",
-      "baseline_weekly": 1.9,
-      "last_flight_on": "2026-08-03",
-      "started_on": "2026-08-04",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 15,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "Etihad Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Airlines cancel more flights as Middle East conflict escalates - The New Arab",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxONnVya1QwM28zWHpEWm93ZnVhUUp3Q0JTTmwycGoxbzFOdExMYWppRnpLS3Q0RmtBeFR6c00tUmZhbkxqcUVUbU9hU0lleE9JWndpaVJ1bUFYV0tqMk5pQXpqTFpfUDgyeXl0dER6ay00UjJZVEphQnBnUzl4aFZNOXNnWlU3YkIwUEdLZGREUDhrUdIBlwFBVV95cUxQaDRGN3cxbnIyaTRGMWRycWtwQ1RvajhJNVVSS2lnaFpEc202d2JhN3RpdkxFVUdvTHFrV2prOE1yQUJBS1lOMFVsUkJPalpIbFk2TVYwWmRLSE8wdEU1WlpvSHVxWU1MajlDRjVDUmhWTWJqMktrLTQ3Z0J6bUpqTl9Xbm5jRDFURzNERjdBOVJxdHpUemFV?oc=5",
-          "published": "Tue, 24 Mar 2026 07:00:00 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "What Travelers Need to Know About Middle East Flight Disruptions - Condé Nast Traveler",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPUGF3cUNQSVRsSDYwSEt5TGNyalJQNU50SGJNRURnbHhCRG5tRWlTLUdDYlVqTGNNeWVnSGtuejkxVmJoUVFEQ2ZnQzlmSzlibmpKb0kxeXNobnc4Z0VqZkdGb1FqSGlWMWFRaENwZlFGZWdDX1hTSzJ6RDV1ZGRXTFZxaWZWSEh4Rlc2bXAzMzJUVEo0WEZCOVIxbEt0UQ?oc=5",
-          "published": "Tue, 17 Mar 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Middle East Flights Reopen as New Confusion Hits Travelers - Newsweek",
-          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQLXhpRk12U01Id25TaURDZVR6bXZvbnV5QzREOENCTGhoLTVhZHZ1SDYwOUJUQW1zWUZGYW9oTDFUZmM4alEyNDRGWDlUb2ozcjNZNWN3bmh5eVB6ZnV6Mk1oS0VEZTlKR3BVMWQ0cmFYQy1mbFptX1Z5c2M5bDZkUUxldXdxYkJsaVVXZVZfS281S0o3RGJN?oc=5",
-          "published": "Sat, 20 Jun 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Gulf carriers resume some flights as Iran strikes and retaliation fuel travel chaos - PBS",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOVWpNcmVhQkt0YWg4SkR2bjRsZVFhckYxaXVISkJfWUtLRE1ldGp6ZDlsWG1vOHdFVF9DWU5DLUJKeUh5dVJtcXpEc3JneTBsX1hESzJ3YUtaZFJIT3VISnd4MkhpcXpJX3lkWVR3V2pZUGYzaXM2SWFiSklOa3pHLWtCekd3RmF3U1ZLR1lKZFhTMW5Wa0E3R09GTjRId3hlNWFxaGZMYnU4cXpoMG9Fd3pBSmxsR1lXamfSAb8BQVVfeXFMTzBHTi1rWDdDOWJBeThDZF9YZFhKazlJeURkbWR6Z2NKaUVLOGcxS0ZPYTlmQnFHMzI0d0NDdmlrVmVBTkp0Y2xBWHp0UVduZmp5dFk4UXBlWnItb2dYRENXX05HSXU0UFpHaEVqRERIOFIxTExwUGpySHBra0VzQXBrdVE2akxoYUhBVXp2NTBxVXlWeHNMczlGUTNHUnhkdERzOW9waG51dWRHRU54YzlqNXQ1X2MxNmgtb3AzQXc?oc=5",
-          "published": "Mon, 02 Mar 2026 08:00:00 GMT",
-          "stance": "contradicts"
-        }
-      ],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

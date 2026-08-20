@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:19:10+00:00",
+  "generated_at": "2026-08-20T14:38:44+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -38,18 +38,13 @@
   "status": "REDUCED",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "OTHH-KATL",
-      "OTHH-KBOS",
-      "OTHH-LDZS",
-      "VECC-OTHH"
-    ],
-    "since": "2026-08-03",
-    "days_stopped": 16,
-    "confidence": "contradicted"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -5189,223 +5184,6 @@
       "observed_days": 5
     }
   ],
-  "stop_events": [
-    {
-      "id": 422,
-      "scope": "route",
-      "scope_key": "QTR|OTHH|KBOS",
-      "carrier": "QTR",
-      "detail": "OTHH-KBOS",
-      "baseline_weekly": 5.7,
-      "last_flight_on": "2026-08-03",
-      "started_on": "2026-08-04",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 15,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "Qatar Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Qatar Airways Operates Limited Flights to and from Doha - safariindia.com",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA1VTE2bkVoMVJNWVFtVjdsMmlHWlhUUGctMmc0U05BWG1xMzlzLW9iOWJfNFI0R2NBZnZGbnotMkFOZmVJS29KWnA2VE1uTWxKclA0VF91MVlwbElZU05Ic1liVHFNRUJYdmdGNUN5NFg?oc=5",
-          "published": "Wed, 19 Aug 2026 09:18:41 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways returns to PHL with daily flights to Doha - NBC10 Philadelphia",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUFDN0dyVjZfRnZiMzBYcjliYW9JODBsbUhQa19panY1b095bDBaRHMydTdTZ0NLNjNJeG9KbDUtUGxncWR5NVIwNFUxTXY0WFJwZjk0UHRHdlhjSWdHbGNob3l5SkNfTmYxWmhBQ0ptUmx5VVd0SkI4UDJmeVI3RnN0Ymx6UXpzTkJ5UjFJVi12Y0d0dDJMX3RnMVluVWlEZHFxMTFR0gGuAUFVX3lxTE1uTGl2QjlEdFNkRW9keWxvOFBGMjl2MExkRXB4ZF9lYUVqTlJneDlMTF9pdl8wYWh0NFU5YjRDOXQySEZIMG9BUUdYWTQyOWJpcUI0WDg2VXdXRzB5TTNtQ2xxeU9yRVVkUFN3U1ZBSmtiMnpKQzNnTDBMX3laUUZ2cXNVeWJrNXk2TE5ENkF2dnhSLXhyaDY4eEVDZHhoVWpFQWtodlZlOWVxaVlEZw?oc=5",
-          "published": "Wed, 10 Jun 2026 07:00:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways Restarts Daily Philadelphia–Doha Flights: Check Start Date & Schedule - IndianEagle",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRlQ1eWZrVFFzQXc0d0lJZzdDRngxdG9rbFZXQzBQS1NTY29lRVNweV80b1c3X2dfdjRFYWNpRWlZSzM0YW5Oekx6RlRzUUp4NkFka2VTcEdvZ3k2S0dFaWpfMDU4eVE2eDVNcEt2RUhLUjNtcUdBdGVWTkloLTFiZTl2Sk9RQlNhRXhMaGdfdjZqZw?oc=5",
-          "published": "Mon, 17 Aug 2026 09:28:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways resumes daily Philadelphia-Doha flights starting August 1 - eciks.org",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE4zZFNwNEJWLTdsTGFoQm9QZTJyWG40cUoyMmNCTFVDYS1McV9jRVB4RzJZTG1kODlMdUdKV0xGNEpCWXA3a3R5VTk1SzZtX0haVHROVW1YbVU2VElJemxJV2g1VXhwOVlOR00zYmpzaVJUSkV3Qjg3Qw?oc=5",
-          "published": "Mon, 17 Aug 2026 00:31:56 GMT",
-          "stance": "contradicts"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 424,
-      "scope": "route",
-      "scope_key": "QTR|VECC|OTHH",
-      "carrier": "QTR",
-      "detail": "VECC-OTHH",
-      "baseline_weekly": 5.5,
-      "last_flight_on": "2026-08-02",
-      "started_on": "2026-08-03",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 16,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "Qatar Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Qatar Airways Operates Limited Flights to and from Doha - safariindia.com",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA1VTE2bkVoMVJNWVFtVjdsMmlHWlhUUGctMmc0U05BWG1xMzlzLW9iOWJfNFI0R2NBZnZGbnotMkFOZmVJS29KWnA2VE1uTWxKclA0VF91MVlwbElZU05Ic1liVHFNRUJYdmdGNUN5NFg?oc=5",
-          "published": "Wed, 19 Aug 2026 09:18:41 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways returns to PHL with daily flights to Doha - NBC10 Philadelphia",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUFDN0dyVjZfRnZiMzBYcjliYW9JODBsbUhQa19panY1b095bDBaRHMydTdTZ0NLNjNJeG9KbDUtUGxncWR5NVIwNFUxTXY0WFJwZjk0UHRHdlhjSWdHbGNob3l5SkNfTmYxWmhBQ0ptUmx5VVd0SkI4UDJmeVI3RnN0Ymx6UXpzTkJ5UjFJVi12Y0d0dDJMX3RnMVluVWlEZHFxMTFR0gGuAUFVX3lxTE1uTGl2QjlEdFNkRW9keWxvOFBGMjl2MExkRXB4ZF9lYUVqTlJneDlMTF9pdl8wYWh0NFU5YjRDOXQySEZIMG9BUUdYWTQyOWJpcUI0WDg2VXdXRzB5TTNtQ2xxeU9yRVVkUFN3U1ZBSmtiMnpKQzNnTDBMX3laUUZ2cXNVeWJrNXk2TE5ENkF2dnhSLXhyaDY4eEVDZHhoVWpFQWtodlZlOWVxaVlEZw?oc=5",
-          "published": "Wed, 10 Jun 2026 07:00:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways Restarts Daily Philadelphia–Doha Flights: Check Start Date & Schedule - IndianEagle",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRlQ1eWZrVFFzQXc0d0lJZzdDRngxdG9rbFZXQzBQS1NTY29lRVNweV80b1c3X2dfdjRFYWNpRWlZSzM0YW5Oekx6RlRzUUp4NkFka2VTcEdvZ3k2S0dFaWpfMDU4eVE2eDVNcEt2RUhLUjNtcUdBdGVWTkloLTFiZTl2Sk9RQlNhRXhMaGdfdjZqZw?oc=5",
-          "published": "Mon, 17 Aug 2026 09:28:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways resumes daily Philadelphia-Doha flights starting August 1 - eciks.org",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE4zZFNwNEJWLTdsTGFoQm9QZTJyWG40cUoyMmNCTFVDYS1McV9jRVB4RzJZTG1kODlMdUdKV0xGNEpCWXA3a3R5VTk1SzZtX0haVHROVW1YbVU2VElJemxJV2g1VXhwOVlOR00zYmpzaVJUSkV3Qjg3Qw?oc=5",
-          "published": "Mon, 17 Aug 2026 00:31:56 GMT",
-          "stance": "contradicts"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 421,
-      "scope": "route",
-      "scope_key": "QTR|OTHH|KATL",
-      "carrier": "QTR",
-      "detail": "OTHH-KATL",
-      "baseline_weekly": 5.2,
-      "last_flight_on": "2026-08-03",
-      "started_on": "2026-08-04",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 15,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "Qatar Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Qatar Airways Operates Limited Flights to and from Doha - safariindia.com",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA1VTE2bkVoMVJNWVFtVjdsMmlHWlhUUGctMmc0U05BWG1xMzlzLW9iOWJfNFI0R2NBZnZGbnotMkFOZmVJS29KWnA2VE1uTWxKclA0VF91MVlwbElZU05Ic1liVHFNRUJYdmdGNUN5NFg?oc=5",
-          "published": "Wed, 19 Aug 2026 09:18:41 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways returns to PHL with daily flights to Doha - NBC10 Philadelphia",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUFDN0dyVjZfRnZiMzBYcjliYW9JODBsbUhQa19panY1b095bDBaRHMydTdTZ0NLNjNJeG9KbDUtUGxncWR5NVIwNFUxTXY0WFJwZjk0UHRHdlhjSWdHbGNob3l5SkNfTmYxWmhBQ0ptUmx5VVd0SkI4UDJmeVI3RnN0Ymx6UXpzTkJ5UjFJVi12Y0d0dDJMX3RnMVluVWlEZHFxMTFR0gGuAUFVX3lxTE1uTGl2QjlEdFNkRW9keWxvOFBGMjl2MExkRXB4ZF9lYUVqTlJneDlMTF9pdl8wYWh0NFU5YjRDOXQySEZIMG9BUUdYWTQyOWJpcUI0WDg2VXdXRzB5TTNtQ2xxeU9yRVVkUFN3U1ZBSmtiMnpKQzNnTDBMX3laUUZ2cXNVeWJrNXk2TE5ENkF2dnhSLXhyaDY4eEVDZHhoVWpFQWtodlZlOWVxaVlEZw?oc=5",
-          "published": "Wed, 10 Jun 2026 07:00:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways Restarts Daily Philadelphia–Doha Flights: Check Start Date & Schedule - IndianEagle",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRlQ1eWZrVFFzQXc0d0lJZzdDRngxdG9rbFZXQzBQS1NTY29lRVNweV80b1c3X2dfdjRFYWNpRWlZSzM0YW5Oekx6RlRzUUp4NkFka2VTcEdvZ3k2S0dFaWpfMDU4eVE2eDVNcEt2RUhLUjNtcUdBdGVWTkloLTFiZTl2Sk9RQlNhRXhMaGdfdjZqZw?oc=5",
-          "published": "Mon, 17 Aug 2026 09:28:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways resumes daily Philadelphia-Doha flights starting August 1 - eciks.org",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE4zZFNwNEJWLTdsTGFoQm9QZTJyWG40cUoyMmNCTFVDYS1McV9jRVB4RzJZTG1kODlMdUdKV0xGNEpCWXA3a3R5VTk1SzZtX0haVHROVW1YbVU2VElJemxJV2g1VXhwOVlOR00zYmpzaVJUSkV3Qjg3Qw?oc=5",
-          "published": "Mon, 17 Aug 2026 00:31:56 GMT",
-          "stance": "contradicts"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 423,
-      "scope": "route",
-      "scope_key": "QTR|OTHH|LDZS",
-      "carrier": "QTR",
-      "detail": "OTHH-LDZS",
-      "baseline_weekly": 1.1,
-      "last_flight_on": "2026-08-03",
-      "started_on": "2026-08-04",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 15,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "Qatar Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Qatar Airways Operates Limited Flights to and from Doha - safariindia.com",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA1VTE2bkVoMVJNWVFtVjdsMmlHWlhUUGctMmc0U05BWG1xMzlzLW9iOWJfNFI0R2NBZnZGbnotMkFOZmVJS29KWnA2VE1uTWxKclA0VF91MVlwbElZU05Ic1liVHFNRUJYdmdGNUN5NFg?oc=5",
-          "published": "Wed, 19 Aug 2026 09:18:41 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways returns to PHL with daily flights to Doha - NBC10 Philadelphia",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUFDN0dyVjZfRnZiMzBYcjliYW9JODBsbUhQa19panY1b095bDBaRHMydTdTZ0NLNjNJeG9KbDUtUGxncWR5NVIwNFUxTXY0WFJwZjk0UHRHdlhjSWdHbGNob3l5SkNfTmYxWmhBQ0ptUmx5VVd0SkI4UDJmeVI3RnN0Ymx6UXpzTkJ5UjFJVi12Y0d0dDJMX3RnMVluVWlEZHFxMTFR0gGuAUFVX3lxTE1uTGl2QjlEdFNkRW9keWxvOFBGMjl2MExkRXB4ZF9lYUVqTlJneDlMTF9pdl8wYWh0NFU5YjRDOXQySEZIMG9BUUdYWTQyOWJpcUI0WDg2VXdXRzB5TTNtQ2xxeU9yRVVkUFN3U1ZBSmtiMnpKQzNnTDBMX3laUUZ2cXNVeWJrNXk2TE5ENkF2dnhSLXhyaDY4eEVDZHhoVWpFQWtodlZlOWVxaVlEZw?oc=5",
-          "published": "Wed, 10 Jun 2026 07:00:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways Restarts Daily Philadelphia–Doha Flights: Check Start Date & Schedule - IndianEagle",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRlQ1eWZrVFFzQXc0d0lJZzdDRngxdG9rbFZXQzBQS1NTY29lRVNweV80b1c3X2dfdjRFYWNpRWlZSzM0YW5Oekx6RlRzUUp4NkFka2VTcEdvZ3k2S0dFaWpfMDU4eVE2eDVNcEt2RUhLUjNtcUdBdGVWTkloLTFiZTl2Sk9RQlNhRXhMaGdfdjZqZw?oc=5",
-          "published": "Mon, 17 Aug 2026 09:28:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways resumes daily Philadelphia-Doha flights starting August 1 - eciks.org",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE4zZFNwNEJWLTdsTGFoQm9QZTJyWG40cUoyMmNCTFVDYS1McV9jRVB4RzJZTG1kODlMdUdKV0xGNEpCWXA3a3R5VTk1SzZtX0haVHROVW1YbVU2VElJemxJV2g1VXhwOVlOR00zYmpzaVJUSkV3Qjg3Qw?oc=5",
-          "published": "Mon, 17 Aug 2026 00:31:56 GMT",
-          "stance": "contradicts"
-        }
-      ],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

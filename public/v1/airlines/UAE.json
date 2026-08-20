@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:19:10+00:00",
+  "generated_at": "2026-08-20T14:38:44+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -38,16 +38,13 @@
   "status": "REDUCED",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "OMDB-VECC",
-      "VECC-OMDB"
-    ],
-    "since": "2026-08-03",
-    "days_stopped": 16,
-    "confidence": "corroborated"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -4595,115 +4592,6 @@
       "observed_days": 5
     }
   ],
-  "stop_events": [
-    {
-      "id": 426,
-      "scope": "route",
-      "scope_key": "UAE|VECC|OMDB",
-      "carrier": "UAE",
-      "detail": "VECC-OMDB",
-      "baseline_weekly": 9.0,
-      "last_flight_on": "2026-08-03",
-      "started_on": "2026-08-04",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 15,
-      "status": "active",
-      "confidence": "corroborated",
-      "carrier_name": "Emirates",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "United Arab Emirates suspends trade with Iran after coming under renewed missile fire - NBC News",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxONEdNMjJ3YXRGXzVscUpuZjFoZXVlRU00dTFrdFpQOEJxZ1NGVTFyT1ZXdy0xU0pBWXpUUWF4TGNxRlItZ29iTDl1TkxBNmJ2bnJidHNaTkVqekVzaWpBdzRZdW1SaTcyQjI2OWJtV3pyVnJHNjFoc1NWcWpibUVOR3FsRlFzaW5TQmF1RUQ4SzNjTnBYYnRRSnpBd2dvdzZyaS1EVjFBLUdaWVBxanhkZ3VkVnU?oc=5",
-          "published": "Wed, 19 Aug 2026 23:33:27 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "U.A.E. Announces Halt to Trade With Iran Amid Trump’s Push To Isolate Tehran - The New York Times",
-          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPNmtXS01YWG5DUVk4eTdlaEktZE0zYmNOSG1wMVZORUduSWc2NnVZaG9tUjY1d3RNWU9QWDEwTTZiWDlzWmJVcGdqUVFWZThrMVFncGVROV9OM2FYQ21rYXo2RVpUdUpDVEhaMkdpc18wYUYwTDRVMXBnYzFaTzhjZVVuRUpNTjhQOExnR0xnUWhjQlhz?oc=5",
-          "published": "Wed, 19 Aug 2026 16:33:35 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "UAE's financial embargo on Iran after missile threat puts rivalry back in spotlight - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNdzR1UDJHQ1pYM2Y2dzJ4Wmo3d3VCNFBEbDZQamtaSm5wdF9uWUdwRzdNa0ZtTFdzaUppUkdtelNyaDV0ZnU4aWY1aUlBLWhNdzN2VmhvZzJNdk8zM3gwSXZvc0p6Zld0UHhRQ0RjY2NTekZOekZnMEhwWlo1OXc2Mk1KZ0ZkZHF4WFR5NVRMejB2eDQxdXJJR0VocU5QVmRHbHFTZXlJNWRfdE43Sko3cXlYalB2VmFWSFczb044NlZEU21vOTNHOHpB?oc=5",
-          "published": "Wed, 19 Aug 2026 10:52:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Emirates Offers Unlimited Free Date Changes on Flights to Dubai - CairoScene",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOc0pmSjRVNVRyaV9UN2oxa2JKSjQ4bmZpN19pOS1PdldVcnQwTUI3Y0xZRVg5VURFOWx0dW5CRWZpNmxGWUo3UVk5cG5kLUpjSjlqS2VvdF8yakpVTUdzbTdwdVZpLVJpajNmVHdDc2ZQN3pXS0swWWJqVmh6dm91VFlVMmNBVExneW12ZUxBY3NkSkxoOEt2YzZKazE?oc=5",
-          "published": "Wed, 19 Aug 2026 03:45:40 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 425,
-      "scope": "route",
-      "scope_key": "UAE|OMDB|VECC",
-      "carrier": "UAE",
-      "detail": "OMDB-VECC",
-      "baseline_weekly": 5.8,
-      "last_flight_on": "2026-08-02",
-      "started_on": "2026-08-03",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 16,
-      "status": "active",
-      "confidence": "corroborated",
-      "carrier_name": "Emirates",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "United Arab Emirates suspends trade with Iran after coming under renewed missile fire - NBC News",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxONEdNMjJ3YXRGXzVscUpuZjFoZXVlRU00dTFrdFpQOEJxZ1NGVTFyT1ZXdy0xU0pBWXpUUWF4TGNxRlItZ29iTDl1TkxBNmJ2bnJidHNaTkVqekVzaWpBdzRZdW1SaTcyQjI2OWJtV3pyVnJHNjFoc1NWcWpibUVOR3FsRlFzaW5TQmF1RUQ4SzNjTnBYYnRRSnpBd2dvdzZyaS1EVjFBLUdaWVBxanhkZ3VkVnU?oc=5",
-          "published": "Wed, 19 Aug 2026 23:33:27 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "U.A.E. Announces Halt to Trade With Iran Amid Trump’s Push To Isolate Tehran - The New York Times",
-          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPNmtXS01YWG5DUVk4eTdlaEktZE0zYmNOSG1wMVZORUduSWc2NnVZaG9tUjY1d3RNWU9QWDEwTTZiWDlzWmJVcGdqUVFWZThrMVFncGVROV9OM2FYQ21rYXo2RVpUdUpDVEhaMkdpc18wYUYwTDRVMXBnYzFaTzhjZVVuRUpNTjhQOExnR0xnUWhjQlhz?oc=5",
-          "published": "Wed, 19 Aug 2026 16:33:35 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "UAE's financial embargo on Iran after missile threat puts rivalry back in spotlight - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNdzR1UDJHQ1pYM2Y2dzJ4Wmo3d3VCNFBEbDZQamtaSm5wdF9uWUdwRzdNa0ZtTFdzaUppUkdtelNyaDV0ZnU4aWY1aUlBLWhNdzN2VmhvZzJNdk8zM3gwSXZvc0p6Zld0UHhRQ0RjY2NTekZOekZnMEhwWlo1OXc2Mk1KZ0ZkZHF4WFR5NVRMejB2eDQxdXJJR0VocU5QVmRHbHFTZXlJNWRfdE43Sko3cXlYalB2VmFWSFczb044NlZEU21vOTNHOHpB?oc=5",
-          "published": "Wed, 19 Aug 2026 10:52:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Emirates Offers Unlimited Free Date Changes on Flights to Dubai - CairoScene",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOc0pmSjRVNVRyaV9UN2oxa2JKSjQ4bmZpN19pOS1PdldVcnQwTUI3Y0xZRVg5VURFOWx0dW5CRWZpNmxGWUo3UVk5cG5kLUpjSjlqS2VvdF8yakpVTUdzbTdwdVZpLVJpajNmVHdDc2ZQN3pXS0swWWJqVmh6dm91VFlVMmNBVExneW12ZUxBY3NkSkxoOEt2YzZKazE?oc=5",
-          "published": "Wed, 19 Aug 2026 03:45:40 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        }
-      ],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

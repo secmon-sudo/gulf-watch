@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:19:10+00:00",
+  "generated_at": "2026-08-20T14:38:44+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -90,7 +90,7 @@
       "name": "Emirates",
       "status": "REDUCED",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/UAE.json"
     },
     {
@@ -98,7 +98,7 @@
       "name": "Etihad Airways",
       "status": "NEW",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/ETD.json"
     },
     {
@@ -170,7 +170,7 @@
       "name": "Qatar Airways",
       "status": "REDUCED",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/QTR.json"
     },
     {
@@ -202,7 +202,7 @@
       "name": "flydubai",
       "status": "REDUCED",
       "operating": true,
-      "stopped": true,
+      "stopped": false,
       "href": "airlines/FDB.json"
     },
     {

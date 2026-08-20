@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T14:19:10+00:00",
+  "generated_at": "2026-08-20T14:38:44+00:00",
   "as_of_day": "2026-08-19",
   "coverage": {
     "day": "2026-08-19",
@@ -38,16 +38,13 @@
   "status": "REDUCED",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "LHBP-OMDB",
-      "OMDB-VECC"
-    ],
-    "since": "2026-08-03",
-    "days_stopped": 16,
-    "confidence": "contradicted"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -1603,115 +1600,6 @@
       "observed_days": 5
     }
   ],
-  "stop_events": [
-    {
-      "id": 419,
-      "scope": "route",
-      "scope_key": "FDB|LHBP|OMDB",
-      "carrier": "FDB",
-      "detail": "LHBP-OMDB",
-      "baseline_weekly": 5.5,
-      "last_flight_on": "2026-08-02",
-      "started_on": "2026-08-03",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 16,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "flydubai",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Flydubai resumes flights over Iranian airspace - insideflyer.com",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOaUxHYmhxQm54OU1ha0lpQXk1VUhOS08tLTlNdzl0Vld0SDFINTRQZnpvTm1OcHJkT0Uxb0hXd1BNYlRhdDd5bHg1VHh2Q0xnS2NXbVhKbDNLbi1PMUpnN1dsa1p1WXdoN2xwSEt5MXVIZUg3by1fXzBPbWE1cHNHVXBfU18wbDR0?oc=5",
-          "published": "Tue, 18 Aug 2026 23:20:02 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Major UAE Carrier Resumes Flights Over Iranian Airspace Despite EASA Warnings Not To - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNbkRDOHZrRjdZekFpVVRheTBXd1F0dHpCaVRVWmJ3OE5ZRjFEbUswX1VQc29DcG1UX2dBU0hhTE9mMU1HdzNYWTJ1UWk3bWstbmJjbWxXWTd6X0t6Vm15dW5lWURYaXhjQUhXUThVaklhZWNaYVBDQ05ORW1ZbnhIekU0dTNmYVhO?oc=5",
-          "published": "Tue, 18 Aug 2026 22:18:08 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "flydubai resumes flights over Iran for first time since war began - Arabian Business",
-          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPN3dCNENHVmFneE0ySmd4OVB5UXN5WjNuM0c1M1FBTmk4V204bjRXWlI0cHNQc0tzZnp3b3Jkc3hyQi0yenVqbXExaEZSdEdlVWt1SUFhMTFBdkpTbXNZbnhiR3ppNzFhbEFRSmhLMGdqeTZvc1EzOUlBVnVKbE9sVnhLWEdqRlduYjllei1R?oc=5",
-          "published": "Tue, 18 Aug 2026 07:56:43 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "UAE flight updates today: Emirates, Etihad, Air Arabia, flydubai cancellations, delays - Gulf News",
-          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQdTEtWGhhTjdGRTJkYXRwR193S2xJQmloVEpxQ1dFM1QtYXh4RENLcTVWazNMbll1S1VUbENJUWtxalRBMGljQ29ZSzl0UmJDMnR3YmNwQ0Znck1UVWRPeDJSVnR0MldlbGFMZ3FqZThnTUFmdVkzV0oydmoyd3JxTmc0TmJ0TXNBbVZTQXFyUjhwMmtIVm9NUU9JR0VLRmJtLVdsMkl4cXFEbFJValoxcFR1THlNVVNlaU1CdkVoNWN5VmRBVzNOVEdEVmnSAd8BQVVfeXFMUGVCYlJyT0tHUDBSNEhXUjhWNEZIaFJmdmZSQ2tBNFI0UGpWOWwtbkp6YUNSZkNmZVJHakF4azhORHhieEl4MW00dDRwNWVvcWx4VkFvSHR1UGhMdXhITUZtcUh2Mnp4VjJDLTM0cHZUeXpkMzhuZkFzYjc0cXluU292dFJ4MFU0WEpCeXNJSWQxRS01R05QWnhLREJ1SVpxcVVDWEprcW0xdXBUWUNSQzNldlN1Q1RwX1NyTGQtV1JibWFwQ0NBWUxsY1htRVhYSk9BT0xUSW1rcU1mUEg5cw?oc=5",
-          "published": "Thu, 20 Aug 2026 05:00:07 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 420,
-      "scope": "route",
-      "scope_key": "FDB|OMDB|VECC",
-      "carrier": "FDB",
-      "detail": "OMDB-VECC",
-      "baseline_weekly": 1.7,
-      "last_flight_on": "2026-08-02",
-      "started_on": "2026-08-03",
-      "detected_on": "2026-08-19",
-      "resumed_on": null,
-      "days_stopped": 16,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "flydubai",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Flydubai resumes flights over Iranian airspace - insideflyer.com",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOaUxHYmhxQm54OU1ha0lpQXk1VUhOS08tLTlNdzl0Vld0SDFINTRQZnpvTm1OcHJkT0Uxb0hXd1BNYlRhdDd5bHg1VHh2Q0xnS2NXbVhKbDNLbi1PMUpnN1dsa1p1WXdoN2xwSEt5MXVIZUg3by1fXzBPbWE1cHNHVXBfU18wbDR0?oc=5",
-          "published": "Tue, 18 Aug 2026 23:20:02 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Major UAE Carrier Resumes Flights Over Iranian Airspace Despite EASA Warnings Not To - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNbkRDOHZrRjdZekFpVVRheTBXd1F0dHpCaVRVWmJ3OE5ZRjFEbUswX1VQc29DcG1UX2dBU0hhTE9mMU1HdzNYWTJ1UWk3bWstbmJjbWxXWTd6X0t6Vm15dW5lWURYaXhjQUhXUThVaklhZWNaYVBDQ05ORW1ZbnhIekU0dTNmYVhO?oc=5",
-          "published": "Tue, 18 Aug 2026 22:18:08 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "flydubai resumes flights over Iran for first time since war began - Arabian Business",
-          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPN3dCNENHVmFneE0ySmd4OVB5UXN5WjNuM0c1M1FBTmk4V204bjRXWlI0cHNQc0tzZnp3b3Jkc3hyQi0yenVqbXExaEZSdEdlVWt1SUFhMTFBdkpTbXNZbnhiR3ppNzFhbEFRSmhLMGdqeTZvc1EzOUlBVnVKbE9sVnhLWEdqRlduYjllei1R?oc=5",
-          "published": "Tue, 18 Aug 2026 07:56:43 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: regional airlines cancel flights amid ongoing tensions - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNUno0WGFjYloxNE1XckwxdVZ2R1pNZHBvd0wxdEpWVW05eXdhMGhTSFFvNXN5X3RWQ1gzT205SURkTEtuQWd3RGhrYzg5N25NeEhuMHZWYTJoZVZRcUJvZENkS2lsc01uVVppVm5raTZmQlRJNm1BaVJScVZmM1BKV09oaGhXSWNTZ1NfZU52SDB1c2tMbjdqdVhjbnR5ZXFIT3ZVSmQtdFBXYkp6M1BMZzJvb2E4NWxQSDZUSENFREd2d0xrTW85UVBB?oc=5",
-          "published": "Thu, 20 Aug 2026 07:00:16 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "UAE flight updates today: Emirates, Etihad, Air Arabia, flydubai cancellations, delays - Gulf News",
-          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQdTEtWGhhTjdGRTJkYXRwR193S2xJQmloVEpxQ1dFM1QtYXh4RENLcTVWazNMbll1S1VUbENJUWtxalRBMGljQ29ZSzl0UmJDMnR3YmNwQ0Znck1UVWRPeDJSVnR0MldlbGFMZ3FqZThnTUFmdVkzV0oydmoyd3JxTmc0TmJ0TXNBbVZTQXFyUjhwMmtIVm9NUU9JR0VLRmJtLVdsMkl4cXFEbFJValoxcFR1THlNVVNlaU1CdkVoNWN5VmRBVzNOVEdEVmnSAd8BQVVfeXFMUGVCYlJyT0tHUDBSNEhXUjhWNEZIaFJmdmZSQ2tBNFI0UGpWOWwtbkp6YUNSZkNmZVJHakF4azhORHhieEl4MW00dDRwNWVvcWx4VkFvSHR1UGhMdXhITUZtcUh2Mnp4VjJDLTM0cHZUeXpkMzhuZkFzYjc0cXluU292dFJ4MFU0WEpCeXNJSWQxRS01R05QWnhLREJ1SVpxcVVDWEprcW0xdXBUWUNSQzNldlN1Q1RwX1NyTGQtV1JibWFwQ0NBWUxsY1htRVhYSk9BT0xUSW1rcU1mUEg5cw?oc=5",
-          "published": "Thu, 20 Aug 2026 05:00:07 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }
