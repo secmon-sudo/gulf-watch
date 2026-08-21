@@ -39,8 +39,22 @@ def rebuild_daily(conn: sqlite3.Connection, since: str | None = None,
     backfill needs that: it drops each harvested window's raw legs once they
     are rolled up, so a rebuild reaching wider than the legs still present
     would erase the days whose legs are already gone.
+
+    A leg whose departure and arrival are the same airport is dropped. It is
+    not a city pair, it is OpenSky's arrival estimate failing and falling back
+    to where the aircraft started: QTR401 and QTR847 are real Doha departures
+    to real places, filed here as OTHH-OTHH. Left in, they build baselines for
+    routes that do not exist -- Doha-Doha at 71.6 departures a week, Dubai-
+    Dubai at 47.4, 189 a week across 14 such rows, 3.6% of the whole baseline
+    -- and those phantom routes then sit in the ratio denominator collecting
+    almost no sightings, because nothing flies them.
+
+    Dropped from the ROUTE view only. score_coverage counts the same legs
+    straight off `flight`, which is right: a leg we could not resolve is still
+    proof the receivers were working.
     """
-    where = "WHERE is_freight = 0 AND dep_icao IS NOT NULL AND arr_icao IS NOT NULL"
+    where = ("WHERE is_freight = 0 AND dep_icao IS NOT NULL "
+             "AND arr_icao IS NOT NULL AND dep_icao <> arr_icao")
     params: list = []
     bounds: list[str] = []
     dparams: list = []

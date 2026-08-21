@@ -643,6 +643,40 @@ class TestSuspensionEvents(unittest.TestCase):
             ("OMAA", "dep"), ap,
             "an airport whose baseline is a sliver vouched for today anyway")
 
+    def test_a_leg_that_lands_where_it_started_is_not_a_route(self):
+        """OTHH-OTHH at 71.6 departures a week, and nothing flies it.
+
+        OpenSky estimates the arrival airport, and when the estimate fails it
+        falls back to the departure. QTR401 and QTR847 are real Doha
+        departures to real places, filed as Doha-Doha. Fourteen such rows
+        carried 189 weekly departures into the baseline -- 3.6% of it -- as
+        routes that then collected no sightings, because there is nothing to
+        sight.
+        """
+        conn = db.connect(":memory:")
+        rows = []
+        for i, (dep, arr) in enumerate([("OTHH", "OTHH"), ("OTHH", "OMDB"),
+                                        ("OMDB", "OMDB")]):
+            rows.append({
+                "icao24": f"f0{i:04x}", "first_seen": 1700000000 + i * 60,
+                "last_seen": None, "callsign": f"QTR40{i}", "carrier": "QTR",
+                "flight_number": i, "dep_icao": dep, "arr_icao": arr,
+                "is_freight": 0, "dep_date": "2026-08-19", "source": "t",
+                "ingested_at": 0})
+        db.upsert_flights(conn, rows)
+        metrics.rebuild_daily(conn)
+
+        pairs = {(r["dep_icao"], r["arr_icao"]) for r in
+                 conn.execute("SELECT dep_icao, arr_icao FROM daily_route")}
+        self.assertEqual(
+            pairs, {("OTHH", "OMDB")},
+            "a leg that landed where it started was rolled up as a route")
+
+        # The legs themselves are untouched: coverage is scored off `flight`,
+        # and an unresolvable arrival is still proof the receivers worked.
+        self.assertEqual(
+            conn.execute("SELECT COUNT(*) FROM flight").fetchone()[0], 3)
+
     def test_an_unnameable_far_end_takes_its_routes_with_it(self):
         """Kolkata, 2026-08-21: two carriers "stopped" it on the same day.
 
