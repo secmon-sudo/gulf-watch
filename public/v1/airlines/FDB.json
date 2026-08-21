@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-20T15:05:06+00:00",
-  "as_of_day": "2026-08-19",
+  "generated_at": "2026-08-21T17:47:15+00:00",
+  "as_of_day": "2026-08-20",
   "coverage": {
-    "day": "2026-08-19",
-    "control_flights": 564,
-    "median_28d": 518,
-    "score": 1.089,
+    "day": "2026-08-20",
+    "control_flights": 722,
+    "median_28d": 525.0,
+    "score": 1.375,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 5,
+    "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 0
+    "carriers_with_ratio": 1
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -25,17 +25,17 @@
   "name": "flydubai",
   "iata": "FZ",
   "country": "AE",
-  "weekly_frequency": 248,
-  "weekly_frequency_baselined": 41,
+  "weekly_frequency": 326,
+  "weekly_frequency_baselined": 147,
   "weekly_scaled": null,
-  "baseline_weekly": 50.3,
-  "routes_total": 97,
-  "routes_baselined": 3,
-  "routes_suspended": 0,
-  "routes_reduced": 2,
-  "observed_days": 5,
-  "comparable_share": 0.14,
-  "baselined_share": 0.878,
+  "baseline_weekly": 227.1,
+  "routes_total": 104,
+  "routes_baselined": 28,
+  "routes_suspended": 12,
+  "routes_reduced": 9,
+  "observed_days": 6,
+  "comparable_share": 0.513,
+  "baselined_share": 0.857,
   "ratio": null,
   "status": "UNKNOWN",
   "operating": true,
@@ -55,16 +55,16 @@
       "origin": "EPKK",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 3.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -72,16 +72,16 @@
       "origin": "EPPO",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 2.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -89,16 +89,16 @@
       "origin": "EVRA",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -106,23 +106,40 @@
       "origin": "EYVI",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "HEAL",
+      "destination": "OMDB",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "HEBA",
       "destination": "OMDB",
-      "weekly_frequency": 5,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.3,
       "baseline_days": 88,
@@ -132,7 +149,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -149,7 +166,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -166,7 +183,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -183,7 +200,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -200,7 +217,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -208,33 +225,50 @@
       "origin": "LBSF",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "LGMK",
+      "destination": "OMDB",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "LHBP",
       "destination": "OMDB",
-      "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_frequency": 1,
+      "weekly_scaled": 1.4,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.252,
+      "status": "MINIMAL",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -242,33 +276,33 @@
       "origin": "LICZ",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 1.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "LIME",
       "destination": "OMDB",
-      "weekly_frequency": 3,
-      "weekly_scaled": null,
+      "weekly_frequency": 4,
+      "weekly_scaled": 5.6,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.909,
+      "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -276,16 +310,16 @@
       "origin": "LIRP",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 2.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -293,50 +327,50 @@
       "origin": "LKPR",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 2.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "LLBG",
       "destination": "OMDB",
-      "weekly_frequency": 35,
-      "weekly_scaled": null,
+      "weekly_frequency": 43,
+      "weekly_scaled": 49.0,
       "baseline_weekly": 61.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.797,
+      "status": "REDUCED",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "LOWS",
       "destination": "OMDB",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
+      "weekly_frequency": 2,
+      "weekly_scaled": 1.4,
       "baseline_weekly": 2.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.558,
+      "status": "REDUCED",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -353,7 +387,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -370,14 +404,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "LTAI",
       "destination": "OMDB",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -387,7 +421,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -404,7 +438,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -421,7 +455,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -429,16 +463,16 @@
       "origin": "LTFM",
       "destination": "OMDB",
       "weekly_frequency": 1,
-      "weekly_scaled": null,
+      "weekly_scaled": 1.4,
       "baseline_weekly": 4.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.341,
+      "status": "REDUCED",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -446,33 +480,33 @@
       "origin": "LYBE",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 2.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OBBI",
       "destination": "OMDB",
-      "weekly_frequency": 5,
-      "weekly_scaled": null,
+      "weekly_frequency": 7,
+      "weekly_scaled": 8.4,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 1.6,
+      "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -489,7 +523,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -506,7 +540,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -514,16 +548,16 @@
       "origin": "OKBK",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 2.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -540,7 +574,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -557,7 +591,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -574,7 +608,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -591,14 +625,31 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "HEAL",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "HEBA",
-      "weekly_frequency": 5,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 0.4,
       "baseline_days": 88,
@@ -608,7 +659,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -625,7 +676,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -642,7 +693,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -659,7 +710,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "LGMK",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -676,7 +744,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -693,14 +761,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "LIME",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 6.6,
       "baseline_days": 88,
@@ -710,7 +778,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -727,7 +795,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -744,7 +812,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -761,14 +829,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "LLBG",
-      "weekly_frequency": 31,
+      "weekly_frequency": 38,
       "weekly_scaled": null,
       "baseline_weekly": 61.7,
       "baseline_days": 88,
@@ -778,7 +846,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -795,7 +863,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -812,14 +880,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "LOWS",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 2.7,
       "baseline_days": 88,
@@ -829,14 +897,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "LQVI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 1.6,
       "baseline_days": 88,
@@ -846,7 +914,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -863,7 +931,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -880,14 +948,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "LYBE",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 8.3,
       "baseline_days": 88,
@@ -897,64 +965,13 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
-      "destination": "OBBI",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
-      "baseline_weekly": 5.7,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": true,
-      "scored": true,
-      "ratio": 0.736,
-      "status": "REDUCED",
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "origin": "OMDB",
-      "destination": "OEDF",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.5,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 3
-    },
-    {
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "origin": "OMDB",
-      "destination": "OEDR",
-      "weekly_frequency": 10,
-      "weekly_scaled": null,
-      "baseline_weekly": 14.5,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 3
-    },
-    {
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "origin": "OMDB",
-      "destination": "OENR",
+      "destination": "LYPG",
       "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
@@ -965,7 +982,92 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "OBBI",
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
+      "baseline_weekly": 5.7,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": true,
+      "scored": true,
+      "ratio": 0.817,
+      "status": "NORMAL",
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "OEAH",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 4
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "OEDF",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.5,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 4
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "OEDR",
+      "weekly_frequency": 11,
+      "weekly_scaled": null,
+      "baseline_weekly": 14.5,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": true,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "OENR",
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -982,14 +1084,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "OJAI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 1.0,
       "baseline_days": 88,
@@ -999,7 +1101,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "FDB",
@@ -1016,14 +1118,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "OLBA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -1033,24 +1135,24 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "OMDB",
-      "weekly_frequency": 28,
-      "weekly_scaled": 39.2,
+      "weekly_frequency": 36,
+      "weekly_scaled": 42.0,
       "baseline_weekly": 26.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 1.498,
+      "ratio": 1.605,
       "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "FDB",
@@ -1067,7 +1169,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1084,7 +1186,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1101,7 +1203,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1118,7 +1220,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1135,7 +1237,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OMDB",
+      "destination": "OS61",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1152,31 +1271,31 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "OTHH",
-      "weekly_frequency": 10,
-      "weekly_scaled": 14.0,
+      "weekly_frequency": 13,
+      "weekly_scaled": 15.2,
       "baseline_weekly": 18.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 0.76,
-      "status": "REDUCED",
+      "ratio": 0.824,
+      "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "UGSB",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1186,7 +1305,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1203,7 +1322,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1220,7 +1339,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1237,7 +1356,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1254,7 +1373,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1271,7 +1390,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1288,7 +1407,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1305,14 +1424,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "VGZR",
-      "weekly_frequency": 6,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 10.7,
       "baseline_days": 88,
@@ -1322,7 +1441,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1339,7 +1458,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1356,14 +1475,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "VNKT",
-      "weekly_frequency": 6,
+      "weekly_frequency": 9,
       "weekly_scaled": null,
       "baseline_weekly": 15.3,
       "baseline_days": 88,
@@ -1373,14 +1492,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "VTBD",
-      "weekly_frequency": 6,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1390,7 +1509,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -1407,14 +1526,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDW",
       "destination": "OMDB",
-      "weekly_frequency": 7,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -1424,7 +1543,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1441,7 +1560,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1458,24 +1577,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OPMT",
       "destination": "OMDB",
-      "weekly_frequency": 2,
-      "weekly_scaled": null,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.2,
       "baseline_weekly": 12.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.333,
+      "status": "REDUCED",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1483,23 +1602,23 @@
       "origin": "ORMM",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 1.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OS63",
       "destination": "OMDB",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1509,7 +1628,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1526,41 +1645,41 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OTHH",
       "destination": "OMDB",
-      "weekly_frequency": 6,
-      "weekly_scaled": null,
+      "weekly_frequency": 7,
+      "weekly_scaled": 9.8,
       "baseline_weekly": 11.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.826,
+      "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "UGTB",
       "destination": "OMDB",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.8,
       "baseline_weekly": 8.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.329,
+      "status": "REDUCED",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1577,7 +1696,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1594,7 +1713,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1602,33 +1721,33 @@
       "origin": "VAJJ",
       "destination": "OMDB",
       "weekly_frequency": 2,
-      "weekly_scaled": null,
+      "weekly_scaled": 1.4,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.329,
+      "status": "REDUCED",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "VGZR",
       "destination": "OMDB",
-      "weekly_frequency": 7,
-      "weekly_scaled": null,
+      "weekly_frequency": 9,
+      "weekly_scaled": 9.8,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 1.653,
+      "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1636,33 +1755,33 @@
       "origin": "VIDP",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 4.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 8,
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "VNKT",
       "destination": "OMDB",
-      "weekly_frequency": 8,
-      "weekly_scaled": null,
+      "weekly_frequency": 11,
+      "weekly_scaled": 12.6,
       "baseline_weekly": 17.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.742,
+      "status": "REDUCED",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
@@ -1670,23 +1789,23 @@
       "origin": "VOCI",
       "destination": "OMDB",
       "weekly_frequency": 1,
-      "weekly_scaled": null,
+      "weekly_scaled": 1.4,
       "baseline_weekly": 3.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
+      "scored": true,
+      "ratio": 0.418,
+      "status": "REDUCED",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "VTBD",
       "destination": "OMDB",
-      "weekly_frequency": 9,
+      "weekly_frequency": 11,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1696,7 +1815,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     }
   ],
   "stop_events": [],
