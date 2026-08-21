@@ -178,7 +178,9 @@ def silence(counts: dict[str, int], cov: dict[str, str], day: date,
 
 
 def visible_days(scope: str, key: str, meta: dict,
-                 ap_cov: dict[tuple[str, str], set[str]]) -> set[str]:
+                 ap_cov: dict[tuple[str, str], set[str]],
+                 far: dict[str, set[str]] | None = None,
+                 monitored: set[str] | None = None) -> set[str]:
     """The days this scope could have been seen on, if it were flying.
 
     Direction is not decoration. A Doha-Atlanta leg reaches us only through
@@ -187,13 +189,25 @@ def visible_days(scope: str, key: str, meta: dict,
     being observed three times a week, because both were scored against one
     network-wide `ok`. Asking per direction is what separates them.
 
-    The far end of a route is unmonitored and contributes nothing, so a route
-    with no monitored endpoint returns the empty set and can never accumulate
-    a silent day -- which is correct: we were never in a position to look.
+    The far end of a route is unmonitored and contributes nothing on its own,
+    so a route with no monitored endpoint returns the empty set and can never
+    accumulate a silent day -- which is correct: we were never in a position
+    to look.
+
+    It can, however, take days AWAY. An unmonitored endpoint has to be
+    identifiable before a leg can be attributed to it, and when it is not, the
+    leg stops being this route in our data without anything having stopped
+    flying. See metrics.far_end_days -- Kolkata went unresolvable on
+    2026-08-04 and took Qatar's and Emirates' Kolkata service with it.
     """
     if scope == "route":
         _, dep, arr = key.split("|")
-        return ap_cov.get((dep, "dep"), set()) | ap_cov.get((arr, "arr"), set())
+        days = ap_cov.get((dep, "dep"), set()) | ap_cov.get((arr, "arr"), set())
+        if far is not None and monitored is not None:
+            for ap in (dep, arr):
+                if ap not in monitored:
+                    days &= far.get(ap, set())
+        return days
     if scope == "station":
         _, ap = key.split("|")
         return ap_cov.get((ap, "dep"), set()) | ap_cov.get((ap, "arr"), set())
@@ -223,6 +237,9 @@ def detect(conn, day: date | None = None) -> dict:
     # delivered. The silence walk needs it for every day it might count, and
     # it only counts days inside the scope's span.
     ap_cov = metrics.airport_side_coverage(conn, day, max(SPAN_DAYS.values()))
+    # ...and whether the unmonitored end of a route could be named at all.
+    far = metrics.far_end_days(conn, day, max(SPAN_DAYS.values()))
+    monitored = set(config.airports())
     opened: list[dict] = []
     resumed: list[dict] = []
 
@@ -235,7 +252,7 @@ def detect(conn, day: date | None = None) -> dict:
                 continue
             counts = _daily_counts(conn, scope, key)
             s = silence(counts, cov, day, span,
-                        visible_days(scope, key, meta, ap_cov))
+                        visible_days(scope, key, meta, ap_cov, far, monitored))
 
             active = conn.execute(
                 "SELECT * FROM suspension WHERE scope=? AND scope_key=? AND status='active'",

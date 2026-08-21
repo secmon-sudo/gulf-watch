@@ -583,6 +583,106 @@ class TestSuspensionEvents(unittest.TestCase):
         self.assertEqual(s["last_flight_on"], "2026-08-17")
         self.assertEqual(s["silent_days"], 0)
 
+    def test_a_sliver_of_a_baseline_cannot_vouch_for_today(self):
+        """The ceiling the first version of the gate was missing.
+
+        Abu Dhabi, Beirut and Amman were barely watched in the reference
+        window, so dividing today by their baseline gives 16x, 38x and 46x --
+        clearing any floor while saying nothing about how much we see now.
+        Unguarded, that admitted the very airports the gate exists to keep
+        out: Bahrain-Abu Dhabi passed as measurable at 62 timetabled
+        departures a week across five days holding zero sightings.
+        """
+        from src import metrics
+        day = date(2026, 8, 19)
+        conn = db.connect(":memory:")
+        controls = list(config.control_carriers())[:1]
+        rows, i = [], 0
+        # A reference window where OMDB was watched and OMAA barely was.
+        for off in range(30, 60):
+            d = date(2026, 8, 19) - timedelta(days=off)
+            for _ in range(20):
+                i += 1
+                rows.append({
+                    "icao24": f"e0{i:04x}", "first_seen": 1700000000 + i * 60,
+                    "last_seen": None, "callsign": f"{controls[0]}{i}",
+                    "carrier": controls[0], "flight_number": i,
+                    "dep_icao": "OMDB", "arr_icao": "OTHH", "is_freight": 0,
+                    "dep_date": d.isoformat(), "source": "t", "ingested_at": 0})
+        # One lonely OMAA leg in the whole reference window.
+        i += 1
+        rows.append({
+            "icao24": f"e0{i:04x}", "first_seen": 1700000000, "last_seen": None,
+            "callsign": f"{controls[0]}{i}", "carrier": controls[0],
+            "flight_number": i, "dep_icao": "OMAA", "arr_icao": "OTHH",
+            "is_freight": 0, "dep_date": (date(2026, 8, 19) - timedelta(days=45)).isoformat(),
+            "source": "t", "ingested_at": 0})
+        # Today OMAA is busy -- which is a fact about our receivers, not growth.
+        for off in range(5):
+            d = day - timedelta(days=off)
+            for _ in range(20):
+                i += 1
+                rows.append({
+                    "icao24": f"e1{i:04x}", "first_seen": 1700000000 + i * 60,
+                    "last_seen": None, "callsign": f"{controls[0]}{i}",
+                    "carrier": controls[0], "flight_number": i,
+                    "dep_icao": "OMAA", "arr_icao": "OTHH", "is_freight": 0,
+                    "dep_date": d.isoformat(), "source": "t", "ingested_at": 0})
+        db.upsert_flights(conn, rows)
+        metrics.rebuild_daily(conn)
+        conn.execute(
+            "INSERT INTO baseline VALUES (?,'OMDB','OTHH',140,30,?,?)",
+            (controls[0], (day - timedelta(days=59)).isoformat(),
+             (day - timedelta(days=30)).isoformat()))
+        for off in range(60):
+            metrics.score_coverage(conn, day - timedelta(days=off))
+        conn.commit()
+
+        ap = metrics.airport_side_coverage(conn, day, metrics.WINDOW_DAYS)
+        self.assertNotIn(
+            ("OMAA", "dep"), ap,
+            "an airport whose baseline is a sliver vouched for today anyway")
+
+    def test_an_unnameable_far_end_takes_its_routes_with_it(self):
+        """Kolkata, 2026-08-21: two carriers "stopped" it on the same day.
+
+        The far end of a route is never fetched; OpenSky names it by
+        estimating from the track, and that needs receivers there. Kolkata
+        stopped resolving on 2026-08-04 -- zero days in the trailing week
+        against 5 or 6 for Delhi, Mumbai, Heathrow and Atlanta -- and its legs
+        stopped being Kolkata legs. Qatar and Emirates both opened against it
+        in the same run, which is the tell: airlines do not coordinate a cut
+        to the day, receivers fail together.
+        """
+        ap_cov = {("OMDB", "arr"): {"2026-08-15", "2026-08-16", "2026-08-17",
+                                    "2026-08-18", "2026-08-19"}}
+        monitored = {"OMDB", "OTHH"}
+
+        # Delhi resolves on four of those days; Kolkata on none.
+        far = {"VIDP": {"2026-08-15", "2026-08-16", "2026-08-18", "2026-08-19"},
+               "VECC": set()}
+
+        delhi = self.susp.visible_days(
+            "route", "UAE|VIDP|OMDB", {}, ap_cov, far, monitored)
+        self.assertEqual(len(delhi), 4)
+
+        kolkata = self.susp.visible_days(
+            "route", "UAE|VECC|OMDB", {}, ap_cov, far, monitored)
+        self.assertEqual(
+            kolkata, set(),
+            "a route was scored against an endpoint we could not even name")
+
+        # An airport absent from the mapping entirely is unnameable too, not
+        # a free pass.
+        unknown = self.susp.visible_days(
+            "route", "UAE|ZZZZ|OMDB", {}, ap_cov, far, monitored)
+        self.assertEqual(unknown, set())
+
+        # And the monitored-to-monitored case is untouched by any of this.
+        both = self.susp.visible_days(
+            "route", "UAE|OTHH|OMDB", {}, ap_cov, far, monitored)
+        self.assertEqual(len(both), 5)
+
     def test_visibility_is_asked_per_direction(self):
         """Doha-Atlanta rides Doha's departure fetch; the return leg does not."""
         ap_cov = {("OTHH", "arr"): {"2026-08-17"}}

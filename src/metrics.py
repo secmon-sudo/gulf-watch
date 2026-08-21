@@ -322,6 +322,18 @@ def airport_side_coverage(conn: sqlite3.Connection, day: date,
     An airport with no control traffic in the baseline gets no entry and can
     therefore never vouch for a silent day. That is the same refusal
     baseline_trusted makes: nothing to anchor to means nothing to conclude.
+
+    Nor does a *near*-empty baseline, and that one bites harder because it
+    looks like success. Abu Dhabi, Beirut and Amman were barely watched in the
+    reference window, so their baseline rate is a sliver and today's traffic
+    divides out at 16x, 38x and 46x -- clearing any floor trivially while
+    saying nothing about how much we see. Left unguarded on 2026-08-20 that
+    admitted exactly the airports it was built to exclude: Bahrain-Abu Dhabi
+    at 62 timetabled departures a week passed as measurable on five days that
+    produced zero sightings, and dragged Etihad to 10% of its own schedule.
+    The ceiling is MAX_BASELINE_CONTROL_DRIFT, the same constant and the same
+    reasoning baseline_trusted uses -- an inflated present impeaches the past
+    it is measured against.
     """
     controls = list(config.control_carriers())
     monitored = set(config.airports())
@@ -364,7 +376,51 @@ def airport_side_coverage(conn: sqlite3.Connection, day: date,
                 continue
             if (r["n"] or 0) / base >= config.MIN_CURRENT_AIRPORT_COVERAGE:
                 ok.setdefault((r["a"], side), set()).add(r["day"])
-    return ok
+
+    # Drop whole airport-directions whose anchor cannot bear weight. Done
+    # after the per-day pass rather than inside it, because the test is about
+    # the window as a whole: one busy day does not rehabilitate a baseline
+    # that was never collected.
+    drift = baseline_control_drift(conn, coverage_map(conn), day)
+    return {k: v for k, v in ok.items()
+            if drift.get(k[0], float("inf")) <= config.MAX_BASELINE_CONTROL_DRIFT}
+
+
+def far_end_days(conn: sqlite3.Connection, day: date,
+                 lookback: int) -> dict[str, set[str]]:
+    """Days each UNMONITORED airport could be identified at all.
+
+    The far end of a route is never fetched, so it is not a coverage question
+    in the airport_side_coverage sense -- but it is still a question. OpenSky
+    names the other end by estimating it from the track, and that estimate
+    needs receivers there. Where it fails the leg lands with no usable
+    endpoint and simply is not the route any more.
+
+    Which is indistinguishable, from inside our data, from the route stopping.
+    Measured 2026-08-21 over the trailing week: Delhi, Mumbai, Bangalore,
+    Heathrow, Paris, Atlanta and Budapest all resolved on 5 or 6 days of 7,
+    while Kolkata and Al Ain resolved on **none** -- and Kolkata had been
+    steady at 2-6 departures a day through the whole reference window. Two
+    stops opened against Kolkata that morning, Qatar's and Emirates', which is
+    both carriers' Kolkata service disappearing on the same day. Airlines do
+    not coordinate like that; receivers do.
+
+    Counted across every carrier on purpose. Asking whether THIS route was
+    seen would be circular -- that is the very thing in question. Asking
+    whether the airport exists in our data at all is not.
+    """
+    monitored = set(config.airports())
+    days = [(day - timedelta(days=o)).isoformat() for o in range(lookback)]
+    marks = ",".join("?" for _ in days)
+    out: dict[str, set[str]] = {}
+    for col in ("dep_icao", "arr_icao"):
+        for r in conn.execute(
+                f"""SELECT {col} AS a, day FROM daily_route
+                    WHERE day IN ({marks}) AND departures > 0
+                    GROUP BY a, day""", days):
+            if r["a"] not in monitored:
+                out.setdefault(r["a"], set()).add(r["day"])
+    return out
 
 
 def baseline_trusted(dep: str, arr: str, bl_days: dict[str, dict[str, int]],
@@ -533,6 +589,7 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     # that way on 2026-08-20.
     seen_set = set(seen)
     ap_cov = airport_side_coverage(conn, day, WINDOW_DAYS)
+    far = far_end_days(conn, day, WINDOW_DAYS)
     per_day = rolling_daily(conn, day)
 
     # The same question asked of the reference period. An airport we barely saw
@@ -560,6 +617,11 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
         # arrival fetch at its destination, and by nothing else.
         vis = seen_set & (ap_cov.get((dep, "dep"), set())
                           | ap_cov.get((arr, "arr"), set()))
+        # An unmonitored endpoint has to be identifiable before a leg can be
+        # counted against it; see far_end_days.
+        for ap in (dep, arr):
+            if ap not in monitored:
+                vis &= far.get(ap, set())
         # Numerator and denominator have to describe the same days. Summing a
         # whole calendar week and dividing by a week we only half-saw is the
         # 2026-08-12 mistake at a finer grain.
