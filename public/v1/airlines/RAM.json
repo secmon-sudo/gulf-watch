@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-23T22:05:20+00:00",
+  "generated_at": "2026-08-23T22:09:54+00:00",
   "as_of_day": "2026-08-22",
   "coverage": {
     "day": "2026-08-22",
-    "control_flights": 0,
+    "control_flights": 642,
     "median_28d": 525.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.223,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 5,
+    "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 0
+    "carriers_with_ratio": 5
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -28,16 +28,16 @@
   "weekly_frequency": 1,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
-  "baseline_weekly": 0.0,
+  "baseline_weekly": 1.1,
   "routes_total": 12,
-  "routes_baselined": 0,
-  "routes_suspended": 0,
+  "routes_baselined": 1,
+  "routes_suspended": 1,
   "routes_reduced": 0,
-  "observed_days": 5,
-  "comparable_share": 0.0,
+  "observed_days": 6,
+  "comparable_share": 0.212,
   "baselined_share": 0.212,
   "ratio": null,
-  "status": "UNKNOWN",
+  "status": "NEW",
   "operating": true,
   "stopped": {
     "any": false,
@@ -79,7 +79,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 2
     },
@@ -98,7 +98,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RAM",
@@ -115,7 +115,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "RAM",
@@ -132,7 +132,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "RAM",
@@ -140,16 +140,16 @@
       "origin": "KJFK",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 9,
+      "observed_days": 5
     },
     {
       "carrier": "RAM",
@@ -166,7 +166,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "RAM",
@@ -200,7 +200,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RAM",
@@ -234,7 +234,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RAM",
@@ -251,7 +251,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     }
   ],
   "stop_events": [],

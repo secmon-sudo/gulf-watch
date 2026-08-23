@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-23T22:05:20+00:00",
+  "generated_at": "2026-08-23T22:09:54+00:00",
   "as_of_day": "2026-08-22",
   "coverage": {
     "day": "2026-08-22",
-    "control_flights": 0,
+    "control_flights": 642,
     "median_28d": 525.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.223,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 5,
+    "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 0
+    "carriers_with_ratio": 5
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -28,12 +28,67 @@
   },
   "reading_note": "started_on is the first silent day, not an announcement date. confidence=observed means ADS-B silence only; corroborated means reporting agrees; contradicted means reporting says they are flying and you should trust the reporting over this feed.",
   "summary": {
-    "carriers_with_any_stop": 0,
+    "carriers_with_any_stop": 1,
     "region_stops": 0,
     "station_stops": 0,
-    "route_stops": 0,
+    "route_stops": 1,
     "resumed_last_30d": 0
   },
-  "active": [],
+  "active": [
+    {
+      "id": 429,
+      "scope": "route",
+      "scope_key": "QTR|OTHH|KBOS",
+      "carrier": "QTR",
+      "detail": "OTHH-KBOS",
+      "baseline_weekly": 5.7,
+      "last_flight_on": "2026-08-03",
+      "started_on": "2026-08-04",
+      "detected_on": "2026-08-22",
+      "resumed_on": null,
+      "days_stopped": 18,
+      "status": "active",
+      "confidence": "contradicted",
+      "carrier_name": "Qatar Airways",
+      "evidence": [
+        {
+          "source": "news",
+          "title": "Qatar Airways returns to PHL with daily flights to Doha - NBC10 Philadelphia",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUFDN0dyVjZfRnZiMzBYcjliYW9JODBsbUhQa19panY1b095bDBaRHMydTdTZ0NLNjNJeG9KbDUtUGxncWR5NVIwNFUxTXY0WFJwZjk0UHRHdlhjSWdHbGNob3l5SkNfTmYxWmhBQ0ptUmx5VVd0SkI4UDJmeVI3RnN0Ymx6UXpzTkJ5UjFJVi12Y0d0dDJMX3RnMVluVWlEZHFxMTFR0gGuAUFVX3lxTE1uTGl2QjlEdFNkRW9keWxvOFBGMjl2MExkRXB4ZF9lYUVqTlJneDlMTF9pdl8wYWh0NFU5YjRDOXQySEZIMG9BUUdYWTQyOWJpcUI0WDg2VXdXRzB5TTNtQ2xxeU9yRVVkUFN3U1ZBSmtiMnpKQzNnTDBMX3laUUZ2cXNVeWJrNXk2TE5ENkF2dnhSLXhyaDY4eEVDZHhoVWpFQWtodlZlOWVxaVlEZw?oc=5",
+          "published": "Wed, 10 Jun 2026 07:00:00 GMT",
+          "stance": "contradicts"
+        },
+        {
+          "source": "news",
+          "title": "Qatar Airways Flies 7,750 Indians to India in 25 Flights: Indian Embassy - News On AIR",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOcC05aFZGb3I0cUZ1SVlVbi1uUEh6Q3lva3NEWDZGdnlZZldYNHFKRGVCWFViaHpNVkVGamRVVXZqeHpQQ2U3NVhjNHNoWERaUXlhcVFHbzlnblM1WUN4X0RmZTRMcHhlLU5lVjlQOTZwY2FZaTdiNjg3M1N2QWlFYjk1ZXBiZUhiWTNSX1JrYlZJUGxPM1ZYemV1OWQ?oc=5",
+          "published": "Sun, 23 Aug 2026 17:52:04 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Qatar Airways Operates Limited Flights to and from Doha - safariindia.com",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA1VTE2bkVoMVJNWVFtVjdsMmlHWlhUUGctMmc0U05BWG1xMzlzLW9iOWJfNFI0R2NBZnZGbnotMkFOZmVJS29KWnA2VE1uTWxKclA0VF91MVlwbElZU05Ic1liVHFNRUJYdmdGNUN5NFg?oc=5",
+          "published": "Sun, 23 Aug 2026 00:57:54 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Qatar Airways Launches 16-Hour Nonstop Flights To Major US City In 2 Weeks [Map] - Simple Flying",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOc182aW5HVXozdWI0dksyaUt6QUFpMllRZ3pNN0MxQTlhb1hPZzhjalNfQW82cVliVndGMmptaUs3bnZZbExqSXExODMzb25vUmFvX3NuRG11SlNIN21aSUdldV83OGhrZFdPOXI3OEYtWXlIME5lNHZKT1Zqd1c5ZzNqVGRQOTA?oc=5",
+          "published": "Mon, 20 Jul 2026 07:00:00 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
+          "title": "Qatar Airways Restarts Daily Philadelphia–Doha Flights: Check Start Date & Schedule - IndianEagle",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRlQ1eWZrVFFzQXc0d0lJZzdDRngxdG9rbFZXQzBQS1NTY29lRVNweV80b1c3X2dfdjRFYWNpRWlZSzM0YW5Oekx6RlRzUUp4NkFka2VTcEdvZ3k2S0dFaWpfMDU4eVE2eDVNcEt2RUhLUjNtcUdBdGVWTkloLTFiZTl2Sk9RQlNhRXhMaGdfdjZqZw?oc=5",
+          "published": "Mon, 17 Aug 2026 09:28:00 GMT",
+          "stance": "contradicts"
+        }
+      ],
+      "superseded_by": null
+    }
+  ],
   "recently_resumed": []
 }

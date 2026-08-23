@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-23T22:05:20+00:00",
+  "generated_at": "2026-08-23T22:09:54+00:00",
   "as_of_day": "2026-08-22",
   "coverage": {
     "day": "2026-08-22",
-    "control_flights": 0,
+    "control_flights": 642,
     "median_28d": 525.0,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.223,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 5,
+    "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 0
+    "carriers_with_ratio": 5
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -57,7 +57,7 @@
     {
       "carrier": "BAW",
       "name": "British Airways",
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": false,
       "href": "airlines/BAW.json"
@@ -81,7 +81,7 @@
     {
       "carrier": "MSR",
       "name": "EgyptAir",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/MSR.json"
@@ -89,7 +89,7 @@
     {
       "carrier": "UAE",
       "name": "Emirates",
-      "status": "UNKNOWN",
+      "status": "NORMAL",
       "operating": true,
       "stopped": false,
       "href": "airlines/UAE.json"
@@ -97,7 +97,7 @@
     {
       "carrier": "ETD",
       "name": "Etihad Airways",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/ETD.json"
@@ -113,7 +113,7 @@
     {
       "carrier": "GFA",
       "name": "Gulf Air",
-      "status": "UNKNOWN",
+      "status": "NORMAL",
       "operating": true,
       "stopped": false,
       "href": "airlines/GFA.json"
@@ -137,7 +137,7 @@
     {
       "carrier": "KAC",
       "name": "Kuwait Airways",
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": false,
       "href": "airlines/KAC.json"
@@ -145,7 +145,7 @@
     {
       "carrier": "MEA",
       "name": "Middle East Airlines",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/MEA.json"
@@ -153,7 +153,7 @@
     {
       "carrier": "OMA",
       "name": "Oman Air",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/OMA.json"
@@ -161,7 +161,7 @@
     {
       "carrier": "PGT",
       "name": "Pegasus Airlines",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/PGT.json"
@@ -171,13 +171,13 @@
       "name": "Qatar Airways",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": false,
+      "stopped": true,
       "href": "airlines/QTR.json"
     },
     {
       "carrier": "RAM",
       "name": "Royal Air Maroc",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/RAM.json"
@@ -185,7 +185,7 @@
     {
       "carrier": "RJA",
       "name": "Royal Jordanian",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/RJA.json"
@@ -193,7 +193,7 @@
     {
       "carrier": "SVA",
       "name": "Saudia",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/SVA.json"
@@ -201,7 +201,7 @@
     {
       "carrier": "FDB",
       "name": "flydubai",
-      "status": "UNKNOWN",
+      "status": "NORMAL",
       "operating": true,
       "stopped": false,
       "href": "airlines/FDB.json"
@@ -209,7 +209,7 @@
     {
       "carrier": "KNE",
       "name": "flynas",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/KNE.json"
