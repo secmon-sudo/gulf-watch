@@ -15,7 +15,7 @@ A station suspension is the headline. A region suspension usually means either
 a total network shutdown or -- far more likely -- that something is wrong with
 your data, so it is held to a much longer threshold.
 
-Four rules keep this honest:
+Five rules keep this honest:
 
 1. Silent days are COVERAGE-GATED. A day when the sensor network was degraded
    neither extends a silence streak nor breaks it; it is skipped. Otherwise
@@ -31,6 +31,11 @@ Four rules keep this honest:
    hides inside an `ok`. A leg is seen through exactly one fetch, and on
    2026-08-20 that gap called Doha-Atlanta stopped while Atlanta-Doha was
    being observed three times a week.
+5. And before a route stop is written, the OPPOSITE DIRECTION is checked.
+   Scheduled service does not run one way; if the return leg flew, the
+   outbound is missing from our data rather than from the sky. This is the
+   test that caught all twelve false stops of 2026-08-20/21/23 -- by hand,
+   after publishing, each time.
 """
 
 from __future__ import annotations
@@ -217,6 +222,34 @@ def visible_days(scope: str, key: str, meta: dict,
     return seen
 
 
+def reverse_flew(conn, scope: str, key: str, since: str) -> str | None:
+    """Was the opposite direction seen flying since `since`? Returns the day.
+
+    Scheduled passenger service does not run one way. An aircraft that lands
+    in Boston has to leave it, so if we can see the inbound and never the
+    outbound, the outbound is missing from our data rather than from the sky
+    -- OpenSky resolves the two ends of a leg independently and either can
+    fail on its own.
+
+    This is the test that caught every false stop this project has published
+    since the coverage gates went in: nine on 2026-08-20 (Doha-Atlanta
+    "stopped" while Atlanta-Doha flew five times), two on 2026-08-21, one on
+    2026-08-23. Each time it was run by hand afterwards. Run it before.
+
+    Route scope only. A station or region suspension is about an airport or a
+    carrier, and has no opposite direction to ask about.
+    """
+    if scope != "route":
+        return None
+    carrier, dep, arr = key.split("|")
+    row = conn.execute(
+        """SELECT MAX(day) d FROM daily_route
+           WHERE carrier=? AND dep_icao=? AND arr_icao=? AND day >= ?
+             AND departures > 0""",
+        (carrier, arr, dep, since)).fetchone()
+    return row["d"] if row and row["d"] else None
+
+
 def first_flight_after(counts: dict[str, int], start: str) -> str | None:
     later = [d for d, n in counts.items() if n > 0 and d >= start]
     return min(later) if later else None
@@ -300,6 +333,11 @@ def detect(conn, day: date | None = None) -> dict:
             # carriers as never observed.
             if s["silent_days"] >= limit and s["last_flight_on"]:
                 started = (_d(s["last_flight_on"]) + timedelta(days=1)).isoformat()
+                # One more falsification before we say it out loud.
+                back = reverse_flew(conn, scope, key, started)
+                if back:
+                    LOG.info("withheld %s %s: reverse leg flew %s", scope, key, back)
+                    continue
                 conn.execute(
                     """INSERT OR IGNORE INTO suspension
                        (scope, scope_key, carrier, detail, baseline_weekly,

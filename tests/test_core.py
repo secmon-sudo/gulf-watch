@@ -643,6 +643,46 @@ class TestSuspensionEvents(unittest.TestCase):
             ("OMAA", "dep"), ap,
             "an airport whose baseline is a sliver vouched for today anyway")
 
+    def test_a_route_whose_return_leg_flies_is_not_stopped(self):
+        """Doha-Boston, 2026-08-23, and the nine before it.
+
+        Scheduled service does not run one way: an aircraft that lands in
+        Boston has to leave again. Seeing the inbound and never the outbound
+        means the outbound is missing from our data, not from the sky --
+        OpenSky resolves each end of a leg independently and either can fail.
+        Every false stop since the coverage gates went in was caught by this
+        test run by hand afterwards; here it runs first.
+        """
+        self._fill(silent_for=None)
+        self.conn.execute(
+            "INSERT INTO baseline VALUES ('GFA','OBBI','KBOS',6,28,?,?)",
+            ((self.today - timedelta(days=28)).isoformat(),
+             self.today.isoformat()))
+        # Outbound last seen a fortnight ago; inbound flying all week.
+        old_day = (self.today - timedelta(days=14)).isoformat()
+        self.conn.execute(
+            "INSERT INTO daily_route VALUES (?,'GFA','OBBI','KBOS',1)", (old_day,))
+        for off in range(0, 6, 2):
+            self.conn.execute(
+                "INSERT INTO daily_route VALUES (?,'GFA','KBOS','OBBI',1)",
+                ((self.today - timedelta(days=off)).isoformat(),))
+        self.conn.commit()
+
+        self.assertIsNotNone(
+            self.susp.reverse_flew(self.conn, "route", "GFA|OBBI|KBOS", old_day),
+            "the return leg is in the table and the check did not find it")
+
+        self.susp.detect(self.conn, self.today)
+        stops = [e for e in self.susp.report(self.conn)["active"]
+                 if e["detail"] == "OBBI-KBOS"]
+        self.assertEqual(
+            stops, [],
+            "a route was published as stopped while its return leg flew")
+
+        # Station and region scope have no opposite direction to ask about.
+        self.assertIsNone(
+            self.susp.reverse_flew(self.conn, "station", "GFA|OBBI", old_day))
+
     def test_a_leg_that_lands_where_it_started_is_not_a_route(self):
         """OTHH-OTHH at 71.6 departures a week, and nothing flies it.
 
