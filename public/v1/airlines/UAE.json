@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T22:09:54+00:00",
+  "generated_at": "2026-08-23T22:22:15+00:00",
   "as_of_day": "2026-08-22",
   "coverage": {
     "day": "2026-08-22",
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 5
+    "carriers_with_ratio": 4
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -28,15 +28,15 @@
   "weekly_frequency": 1197,
   "weekly_frequency_baselined": 917,
   "weekly_scaled": 1138.7,
-  "baseline_weekly": 1303.2,
+  "baseline_weekly": 1281.2,
   "routes_total": 282,
-  "routes_baselined": 124,
-  "routes_suspended": 6,
+  "routes_baselined": 122,
+  "routes_suspended": 4,
   "routes_reduced": 36,
   "observed_days": 6,
-  "comparable_share": 0.799,
+  "comparable_share": 0.792,
   "baselined_share": 0.927,
-  "ratio": 0.874,
+  "ratio": 0.889,
   "status": "NORMAL",
   "operating": true,
   "stopped": {
@@ -1245,16 +1245,16 @@
       "origin": "OKBK",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 11.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "UAE",
@@ -2979,16 +2979,16 @@
       "origin": "OMDB",
       "destination": "OKBK",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 11.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "UAE",

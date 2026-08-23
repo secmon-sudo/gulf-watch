@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T22:09:54+00:00",
+  "generated_at": "2026-08-23T22:22:15+00:00",
   "as_of_day": "2026-08-22",
   "coverage": {
     "day": "2026-08-22",
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 5
+    "carriers_with_ratio": 4
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -28,15 +28,15 @@
   "weekly_frequency": 333,
   "weekly_frequency_baselined": 210,
   "weekly_scaled": 258.1,
-  "baseline_weekly": 305.4,
+  "baseline_weekly": 300.0,
   "routes_total": 107,
-  "routes_baselined": 29,
-  "routes_suspended": 8,
+  "routes_baselined": 27,
+  "routes_suspended": 6,
   "routes_reduced": 8,
   "observed_days": 6,
-  "comparable_share": 0.726,
+  "comparable_share": 0.718,
   "baselined_share": 0.829,
-  "ratio": 0.845,
+  "ratio": 0.86,
   "status": "NORMAL",
   "operating": true,
   "stopped": {
@@ -531,16 +531,16 @@
       "origin": "OKBK",
       "destination": "OMDB",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "FDB",
@@ -1160,16 +1160,16 @@
       "origin": "OMDB",
       "destination": "OKBK",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "FDB",

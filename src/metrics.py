@@ -400,15 +400,14 @@ def airport_side_coverage(conn: sqlite3.Connection, day: date,
             if drift.get(k[0], float("inf")) <= config.MAX_BASELINE_CONTROL_DRIFT}
 
 
-def far_end_days(conn: sqlite3.Connection, day: date,
-                 lookback: int) -> dict[str, set[str]]:
-    """Days each UNMONITORED airport could be identified at all.
+def nameable_days(conn: sqlite3.Connection, day: date,
+                  lookback: int) -> dict[str, set[str]]:
+    """Days each airport could be identified at all, monitored or not.
 
-    The far end of a route is never fetched, so it is not a coverage question
-    in the airport_side_coverage sense -- but it is still a question. OpenSky
-    names the other end by estimating it from the track, and that estimate
-    needs receivers there. Where it fails the leg lands with no usable
-    endpoint and simply is not the route any more.
+    Every leg has two ends and OpenSky resolves them independently: one is
+    known from the fetch that returned the leg, the other is estimated from
+    the track, and that estimate needs receivers there. Where it fails the leg
+    lands with no usable endpoint and simply is not the route any more.
 
     Which is indistinguishable, from inside our data, from the route stopping.
     Measured 2026-08-21 over the trailing week: Delhi, Mumbai, Bangalore,
@@ -419,11 +418,26 @@ def far_end_days(conn: sqlite3.Connection, day: date,
     both carriers' Kolkata service disappearing on the same day. Airlines do
     not coordinate like that; receivers do.
 
+    Monitored airports need this too, and that gap published a false finding.
+    Kuwait carried KAC 435, Qatar 322, Emirates 290, Gulf Air 187, Air Arabia
+    145 and flydubai 71 departures through the reference window and **zero
+    from anyone** across 2026-08-15..22. Six carriers do not stop together;
+    Kuwait went dark to us. Because OKBK is on the monitored list it was
+    exempt from this test, and Dubai's healthy arrival fetch was allowed to
+    vouch for Kuwait-Dubai legs on the reasoning that it would have caught
+    them -- which is true only if the far end can still be named as Kuwait.
+    Kuwait Airways was published at 0% of baseline, SUSPENDED, off that.
+
+    Contrast Heathrow over the same days: Qatar 59, Emirates 46, Etihad 24,
+    Royal Jordanian 19, MEA 18, Gulf Air 13, and British Airways zero. Same
+    fetches, six carriers present, one absent. That is a finding, and this
+    test keeps it -- which is the point. It withholds where we are blind and
+    stays out of the way where we are not.
+
     Counted across every carrier on purpose. Asking whether THIS route was
     seen would be circular -- that is the very thing in question. Asking
     whether the airport exists in our data at all is not.
     """
-    monitored = set(config.airports())
     days = [(day - timedelta(days=o)).isoformat() for o in range(lookback)]
     marks = ",".join("?" for _ in days)
     out: dict[str, set[str]] = {}
@@ -432,8 +446,7 @@ def far_end_days(conn: sqlite3.Connection, day: date,
                 f"""SELECT {col} AS a, day FROM daily_route
                     WHERE day IN ({marks}) AND departures > 0
                     GROUP BY a, day""", days):
-            if r["a"] not in monitored:
-                out.setdefault(r["a"], set()).add(r["day"])
+            out.setdefault(r["a"], set()).add(r["day"])
     return out
 
 
@@ -603,7 +616,7 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     # that way on 2026-08-20.
     seen_set = set(seen)
     ap_cov = airport_side_coverage(conn, day, WINDOW_DAYS)
-    far = far_end_days(conn, day, WINDOW_DAYS)
+    nameable = nameable_days(conn, day, WINDOW_DAYS)
     per_day = rolling_daily(conn, day)
 
     # The same question asked of the reference period. An airport we barely saw
@@ -631,11 +644,10 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
         # arrival fetch at its destination, and by nothing else.
         vis = seen_set & (ap_cov.get((dep, "dep"), set())
                           | ap_cov.get((arr, "arr"), set()))
-        # An unmonitored endpoint has to be identifiable before a leg can be
-        # counted against it; see far_end_days.
+        # Both endpoints have to be identifiable before a leg can be counted
+        # against this route; see nameable_days.
         for ap in (dep, arr):
-            if ap not in monitored:
-                vis &= far.get(ap, set())
+            vis &= nameable.get(ap, set())
         # Numerator and denominator have to describe the same days. Summing a
         # whole calendar week and dividing by a week we only half-saw is the
         # 2026-08-12 mistake at a finer grain.

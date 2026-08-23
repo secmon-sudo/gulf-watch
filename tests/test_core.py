@@ -717,44 +717,53 @@ class TestSuspensionEvents(unittest.TestCase):
         self.assertEqual(
             conn.execute("SELECT COUNT(*) FROM flight").fetchone()[0], 3)
 
-    def test_an_unnameable_far_end_takes_its_routes_with_it(self):
-        """Kolkata, 2026-08-21: two carriers "stopped" it on the same day.
+    def test_an_unnameable_endpoint_takes_its_routes_with_it(self):
+        """Kolkata on 2026-08-21, Kuwait on 08-23. Both ends, either kind.
 
-        The far end of a route is never fetched; OpenSky names it by
-        estimating from the track, and that needs receivers there. Kolkata
-        stopped resolving on 2026-08-04 -- zero days in the trailing week
-        against 5 or 6 for Delhi, Mumbai, Heathrow and Atlanta -- and its legs
-        stopped being Kolkata legs. Qatar and Emirates both opened against it
-        in the same run, which is the tell: airlines do not coordinate a cut
-        to the day, receivers fail together.
+        OpenSky resolves the two ends of a leg independently: one comes from
+        the fetch that returned it, the other is estimated from the track.
+        Kolkata stopped resolving on 08-04 -- zero days of the trailing week
+        against 5 or 6 for Delhi, Mumbai and Heathrow -- and Qatar and
+        Emirates both "stopped" it in one run.
+
+        Kuwait is the same failure at a MONITORED airport, which the first
+        version of this gate exempted: KAC 435, QTR 322, UAE 290, GFA 187,
+        ABY 145 and FDB 71 departures in the reference window, then zero from
+        anyone across 08-15..22. Dubai's healthy arrival fetch was allowed to
+        vouch for Kuwait-Dubai legs, and Kuwait Airways went out at 0% of
+        baseline, SUSPENDED.
         """
-        ap_cov = {("OMDB", "arr"): {"2026-08-15", "2026-08-16", "2026-08-17",
-                                    "2026-08-18", "2026-08-19"}}
-        monitored = {"OMDB", "OTHH"}
+        days = {"2026-08-15", "2026-08-16", "2026-08-17", "2026-08-18",
+                "2026-08-19"}
+        ap_cov = {("OMDB", "arr"): days, ("OMDB", "dep"): days,
+                  ("OTHH", "arr"): days}
+        nameable = {"OMDB": days, "OTHH": days,
+                    "VIDP": {"2026-08-15", "2026-08-16", "2026-08-18",
+                             "2026-08-19"},
+                    "VECC": set(), "OKBK": set()}
 
-        # Delhi resolves on four of those days; Kolkata on none.
-        far = {"VIDP": {"2026-08-15", "2026-08-16", "2026-08-18", "2026-08-19"},
-               "VECC": set()}
-
-        delhi = self.susp.visible_days(
-            "route", "UAE|VIDP|OMDB", {}, ap_cov, far, monitored)
+        delhi = self.susp.visible_days("route", "UAE|VIDP|OMDB", {}, ap_cov,
+                                       nameable)
         self.assertEqual(len(delhi), 4)
 
-        kolkata = self.susp.visible_days(
-            "route", "UAE|VECC|OMDB", {}, ap_cov, far, monitored)
+        kolkata = self.susp.visible_days("route", "UAE|VECC|OMDB", {}, ap_cov,
+                                         nameable)
         self.assertEqual(
             kolkata, set(),
             "a route was scored against an endpoint we could not even name")
 
-        # An airport absent from the mapping entirely is unnameable too, not
-        # a free pass.
-        unknown = self.susp.visible_days(
-            "route", "UAE|ZZZZ|OMDB", {}, ap_cov, far, monitored)
+        kuwait = self.susp.visible_days("route", "KAC|OKBK|OMDB", {}, ap_cov,
+                                        nameable)
+        self.assertEqual(
+            kuwait, set(),
+            "a monitored airport that went dark still vouched for its routes")
+
+        unknown = self.susp.visible_days("route", "UAE|ZZZZ|OMDB", {}, ap_cov,
+                                         nameable)
         self.assertEqual(unknown, set())
 
-        # And the monitored-to-monitored case is untouched by any of this.
-        both = self.susp.visible_days(
-            "route", "UAE|OTHH|OMDB", {}, ap_cov, far, monitored)
+        both = self.susp.visible_days("route", "UAE|OTHH|OMDB", {}, ap_cov,
+                                      nameable)
         self.assertEqual(len(both), 5)
 
     def test_visibility_is_asked_per_direction(self):

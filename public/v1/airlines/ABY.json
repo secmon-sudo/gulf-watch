@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T22:09:54+00:00",
+  "generated_at": "2026-08-23T22:22:15+00:00",
   "as_of_day": "2026-08-22",
   "coverage": {
     "day": "2026-08-22",
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 5
+    "carriers_with_ratio": 4
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -28,13 +28,13 @@
   "weekly_frequency": 484,
   "weekly_frequency_baselined": 179,
   "weekly_scaled": null,
-  "baseline_weekly": 283.8,
+  "baseline_weekly": 278.3,
   "routes_total": 133,
-  "routes_baselined": 25,
-  "routes_suspended": 3,
+  "routes_baselined": 24,
+  "routes_suspended": 2,
   "routes_reduced": 12,
   "observed_days": 6,
-  "comparable_share": 0.465,
+  "comparable_share": 0.46,
   "baselined_share": 0.806,
   "ratio": null,
   "status": "UNKNOWN",
@@ -429,16 +429,16 @@
       "origin": "OKBK",
       "destination": "OMSJ",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "ABY",
@@ -1169,7 +1169,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "ABY",

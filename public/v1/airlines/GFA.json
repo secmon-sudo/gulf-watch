@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T22:09:54+00:00",
+  "generated_at": "2026-08-23T22:22:15+00:00",
   "as_of_day": "2026-08-22",
   "coverage": {
     "day": "2026-08-22",
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 5
+    "carriers_with_ratio": 4
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -28,15 +28,15 @@
   "weekly_frequency": 323,
   "weekly_frequency_baselined": 178,
   "weekly_scaled": 199.3,
-  "baseline_weekly": 192.2,
+  "baseline_weekly": 183.1,
   "routes_total": 88,
-  "routes_baselined": 24,
-  "routes_suspended": 1,
+  "routes_baselined": 23,
+  "routes_suspended": 0,
   "routes_reduced": 7,
   "observed_days": 6,
-  "comparable_share": 0.641,
+  "comparable_share": 0.626,
   "baselined_share": 0.801,
-  "ratio": 1.037,
+  "ratio": 1.088,
   "status": "NORMAL",
   "operating": true,
   "stopped": {
@@ -778,7 +778,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 0
     },
     {
       "carrier": "GFA",
@@ -1160,16 +1160,16 @@
       "origin": "OKBK",
       "destination": "OBBI",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 9.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "GFA",

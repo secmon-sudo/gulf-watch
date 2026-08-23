@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T22:09:54+00:00",
+  "generated_at": "2026-08-23T22:22:15+00:00",
   "as_of_day": "2026-08-22",
   "coverage": {
     "day": "2026-08-22",
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 5
+    "carriers_with_ratio": 4
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -64,18 +64,6 @@
       "severity": "critical",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
-      "route": "OKBK-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 12.3,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
       "route": "WMKK-OTHH",
       "status": "SUSPENDED",
       "weekly_frequency": 0,
@@ -93,66 +81,6 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 11.4,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OKBK-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 11.0,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-OKBK",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 11.0,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "KAC",
-      "carrier_name": "Kuwait Airways",
-      "route": "OKBK-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 10.6,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "KAC",
-      "carrier_name": "Kuwait Airways",
-      "route": "OMDB-OKBK",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 10.5,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "route": "OKBK-OBBI",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 9.1,
       "silent_days": 9,
       "observed_days": 5
     },
@@ -233,18 +161,6 @@
       "carrier": "AAL",
       "carrier_name": "American Airlines",
       "route": "KPHL-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 5.5,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "ABY",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "route": "OKBK-OMSJ",
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
@@ -350,18 +266,6 @@
     },
     {
       "severity": "critical",
-      "carrier": "KAC",
-      "carrier_name": "Kuwait Airways",
-      "route": "OKBK-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 3.9,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "route": "EPKK-OMDB",
@@ -381,30 +285,6 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 3.0,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "OKBK-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 2.7,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "OMDB-OKBK",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 2.7,
       "silent_days": 9,
       "observed_days": 5
     },
@@ -477,18 +357,6 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 2.0,
-      "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "KAC",
-      "carrier_name": "Kuwait Airways",
-      "route": "OKBK-OBBI",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 1.8,
       "silent_days": 9,
       "observed_days": 5
     },
