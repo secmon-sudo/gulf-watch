@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-21T17:47:15+00:00",
-  "as_of_day": "2026-08-20",
+  "generated_at": "2026-08-23T22:05:20+00:00",
+  "as_of_day": "2026-08-22",
   "coverage": {
-    "day": "2026-08-20",
-    "control_flights": 722,
+    "day": "2026-08-22",
+    "control_flights": 0,
     "median_28d": 525.0,
-    "score": 1.375,
-    "verdict": "ok"
+    "score": 0.0,
+    "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 6,
+    "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 1
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -28,13 +28,13 @@
   "weekly_frequency": 0,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
-  "baseline_weekly": 6.4,
+  "baseline_weekly": 0.0,
   "routes_total": 2,
-  "routes_baselined": 1,
-  "routes_suspended": 1,
+  "routes_baselined": 0,
+  "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 6,
-  "comparable_share": 0.496,
+  "observed_days": 5,
+  "comparable_share": 0.0,
   "baselined_share": 1.0,
   "ratio": null,
   "status": "UNKNOWN",
@@ -64,7 +64,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "JAL",
@@ -72,16 +72,16 @@
       "origin": "RJTT",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     }
   ],
   "stop_events": [],

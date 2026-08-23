@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-21T17:47:15+00:00",
-  "as_of_day": "2026-08-20",
+  "generated_at": "2026-08-23T22:05:20+00:00",
+  "as_of_day": "2026-08-22",
   "coverage": {
-    "day": "2026-08-20",
-    "control_flights": 722,
+    "day": "2026-08-22",
+    "control_flights": 0,
     "median_28d": 525.0,
-    "score": 1.375,
-    "verdict": "ok"
+    "score": 0.0,
+    "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 6,
+    "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 1
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -26,7 +26,7 @@
   "name": "Beirut Rafic Hariri",
   "city": "Beirut",
   "country": "LB",
-  "weekly_frequency": 284,
+  "weekly_frequency": 240,
   "baseline_weekly": 2.1,
   "carriers_operating": [
     "ABY",
@@ -48,7 +48,7 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OLBA",
       "destination": "OMSJ",
-      "weekly_frequency": 6,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -56,9 +56,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "ABY",
@@ -73,9 +73,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "ETD",
@@ -90,16 +90,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 0
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OMDB",
       "destination": "OLBA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -107,9 +107,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -124,31 +124,31 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "carrier": "MEA",
-      "carrier_name": "Middle East Airlines",
-      "origin": "EBMB",
-      "destination": "OLBA",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 68,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "EDDB",
+      "destination": "OLBA",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "MEA",
+      "carrier_name": "Middle East Airlines",
+      "origin": "EDDF",
       "destination": "OLBA",
       "weekly_frequency": 3,
       "weekly_scaled": null,
@@ -158,33 +158,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "carrier": "MEA",
-      "carrier_name": "Middle East Airlines",
-      "origin": "EDDF",
-      "destination": "OLBA",
-      "weekly_frequency": 4,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "EDDL",
       "destination": "OLBA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -192,16 +175,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "EGLL",
       "destination": "OLBA",
-      "weekly_frequency": 7,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -209,9 +192,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -226,33 +209,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "carrier": "MEA",
-      "carrier_name": "Middle East Airlines",
-      "origin": "EKCH",
-      "destination": "OLBA",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 85,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "HECA",
       "destination": "OLBA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 20,
@@ -260,9 +226,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -277,16 +243,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "LEBL",
       "destination": "OLBA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 86,
@@ -294,16 +260,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "LEMD",
       "destination": "OLBA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -311,16 +277,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "LFMN",
       "destination": "OLBA",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 40,
@@ -328,16 +294,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "LFPG",
       "destination": "OLBA",
-      "weekly_frequency": 12,
+      "weekly_frequency": 10,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -345,9 +311,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -362,9 +328,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -379,16 +345,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "LIMC",
       "destination": "OLBA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -396,9 +362,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -413,9 +379,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -430,16 +396,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "LTFM",
       "destination": "OLBA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 84,
@@ -447,16 +413,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OJAI",
       "destination": "OLBA",
-      "weekly_frequency": 7,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 17,
@@ -464,9 +430,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -481,9 +447,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -498,9 +464,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -515,9 +481,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -532,9 +498,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -549,9 +515,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -566,9 +532,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -583,9 +549,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -600,9 +566,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -617,32 +583,15 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OLBA",
       "destination": "HEAZ",
-      "weekly_frequency": 2,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 13,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "carrier": "MEA",
-      "carrier_name": "Middle East Airlines",
-      "origin": "OLBA",
-      "destination": "HEEM",
       "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
@@ -651,16 +600,33 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
+    },
+    {
+      "carrier": "MEA",
+      "carrier_name": "Middle East Airlines",
+      "origin": "OLBA",
+      "destination": "HEEM",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 13,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OLBA",
       "destination": "LCLK",
-      "weekly_frequency": 10,
+      "weekly_frequency": 9,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -668,9 +634,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -685,9 +651,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -702,16 +668,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OLBA",
       "destination": "LFMN",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 41,
@@ -719,9 +685,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -736,9 +702,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -753,9 +719,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -770,9 +736,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -787,9 +753,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -804,9 +770,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -821,9 +787,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -838,9 +804,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
+    },
+    {
+      "carrier": "MEA",
+      "carrier_name": "Middle East Airlines",
+      "origin": "OLBA",
+      "destination": "LTBX",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 13,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -855,16 +838,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OLBA",
       "destination": "LTFM",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.4,
       "baseline_days": 85,
@@ -872,16 +855,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OLBA",
       "destination": "OJAI",
-      "weekly_frequency": 7,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 24,
@@ -889,33 +872,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
-    },
-    {
-      "carrier": "MEA",
-      "carrier_name": "Middle East Airlines",
-      "origin": "OLBA",
-      "destination": "OLBA",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 17,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OLBA",
       "destination": "OMAA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -923,9 +889,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -940,16 +906,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OLBA",
       "destination": "OTHH",
-      "weekly_frequency": 7,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -957,9 +923,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
@@ -974,9 +940,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
@@ -986,21 +952,21 @@
       "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
-      "baseline_days": 43,
+      "baseline_days": 42,
       "baseline_trusted": false,
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OMDB",
       "destination": "OLBA",
-      "weekly_frequency": 7,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -1008,16 +974,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "MEA",
       "carrier_name": "Middle East Airlines",
       "origin": "OTHH",
       "destination": "OLBA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1025,9 +991,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "MEA",
@@ -1042,16 +1008,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
       "origin": "HECA",
       "destination": "OLBA",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 20,
@@ -1059,9 +1025,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MSR",
@@ -1076,16 +1042,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
       "origin": "OLBA",
       "destination": "HEAZ",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 13,
@@ -1093,9 +1059,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
+    },
+    {
+      "carrier": "MSR",
+      "carrier_name": "EgyptAir",
+      "origin": "OLBA",
+      "destination": "HECA",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 13,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "MSR",
@@ -1110,16 +1093,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "LTFJ",
       "destination": "OLBA",
-      "weekly_frequency": 3,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 78,
@@ -1127,9 +1110,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "PGT",
@@ -1144,9 +1127,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "PGT",
@@ -1161,16 +1144,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "OLBA",
       "destination": "LTFJ",
-      "weekly_frequency": 9,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 85,
@@ -1178,16 +1161,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OLBA",
       "destination": "OTHH",
-      "weekly_frequency": 7,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -1195,16 +1178,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OLBA",
-      "weekly_frequency": 9,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -1212,16 +1195,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "OLBA",
-      "weekly_frequency": 16,
+      "weekly_frequency": 14,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 17,
@@ -1229,16 +1212,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OLBA",
       "destination": "OJAI",
-      "weekly_frequency": 11,
+      "weekly_frequency": 10,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 24,
@@ -1246,9 +1229,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 0
     },
     {
       "carrier": "UAE",
@@ -1263,9 +1246,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "UAE",
@@ -1280,33 +1263,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
-    },
-    {
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "origin": "OLBA",
-      "destination": "OMSJ",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "UAE",
       "carrier_name": "Emirates",
       "origin": "OMDB",
       "destination": "OLBA",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1314,9 +1280,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     }
   ]
 }

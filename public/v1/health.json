@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-21T17:47:15+00:00",
-  "as_of_day": "2026-08-20",
+  "generated_at": "2026-08-23T22:05:20+00:00",
+  "as_of_day": "2026-08-22",
   "coverage": {
-    "day": "2026-08-20",
-    "control_flights": 722,
+    "day": "2026-08-22",
+    "control_flights": 0,
     "median_28d": 525.0,
-    "score": 1.375,
-    "verdict": "ok"
+    "score": 0.0,
+    "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 6,
+    "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 1
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -22,11 +22,11 @@
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
   "database": {
-    "route_departures": 76449,
+    "route_departures": 73730,
     "raw_legs_retained": 14260,
     "first_day": "2025-10-31",
     "last_day": "2026-08-21",
-    "baseline_routes": 1161
+    "baseline_routes": 1147
   },
   "baseline_ready": true,
   "recent_runs": [

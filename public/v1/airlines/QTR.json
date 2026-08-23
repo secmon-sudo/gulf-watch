@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-21T17:47:15+00:00",
-  "as_of_day": "2026-08-20",
+  "generated_at": "2026-08-23T22:05:20+00:00",
+  "as_of_day": "2026-08-22",
   "coverage": {
-    "day": "2026-08-20",
-    "control_flights": 722,
+    "day": "2026-08-22",
+    "control_flights": 0,
     "median_28d": 525.0,
-    "score": 1.375,
-    "verdict": "ok"
+    "score": 0.0,
+    "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 6,
+    "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 1
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -25,30 +25,28 @@
   "name": "Qatar Airways",
   "iata": "QR",
   "country": "QA",
-  "weekly_frequency": 1039,
-  "weekly_frequency_baselined": 577,
+  "weekly_frequency": 832,
+  "weekly_frequency_baselined": 37,
   "weekly_scaled": null,
-  "baseline_weekly": 1069.2,
+  "baseline_weekly": 90.2,
   "routes_total": 331,
-  "routes_baselined": 99,
-  "routes_suspended": 12,
-  "routes_reduced": 52,
-  "observed_days": 6,
-  "comparable_share": 0.551,
-  "baselined_share": 0.934,
+  "routes_baselined": 3,
+  "routes_suspended": 0,
+  "routes_reduced": 0,
+  "observed_days": 5,
+  "comparable_share": 0.047,
+  "baselined_share": 0.937,
   "ratio": null,
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "VECC-OTHH"
-    ],
-    "since": "2026-08-03",
-    "days_stopped": 17,
-    "confidence": "contradicted"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -66,41 +64,41 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "CYUL",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 4.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.34,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "CYYZ",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 5.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.981,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -115,9 +113,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -134,24 +132,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EBBR",
       "destination": "OTHH",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.943,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -168,58 +166,58 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EBMB",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 7.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.531,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EDDB",
       "destination": "OTHH",
-      "weekly_frequency": 10,
-      "weekly_scaled": 12.6,
+      "weekly_frequency": 8,
+      "weekly_scaled": null,
       "baseline_weekly": 18.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.681,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EDDF",
       "destination": "OTHH",
-      "weekly_frequency": 10,
-      "weekly_scaled": 14.0,
+      "weekly_frequency": 8,
+      "weekly_scaled": null,
       "baseline_weekly": 20.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.679,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -227,50 +225,50 @@
       "origin": "EDDH",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 4.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EDDL",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 8.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.651,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EDDM",
       "destination": "OTHH",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": null,
       "baseline_weekly": 12.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.776,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -287,14 +285,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EFHK",
       "destination": "OTHH",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -302,94 +300,94 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EGBB",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 6.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.92,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EGCC",
       "destination": "OTHH",
-      "weekly_frequency": 11,
-      "weekly_scaled": 14.0,
+      "weekly_frequency": 8,
+      "weekly_scaled": null,
       "baseline_weekly": 21.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.664,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EGKK",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 8.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.64,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EGLL",
       "destination": "OTHH",
-      "weekly_frequency": 27,
-      "weekly_scaled": 32.2,
+      "weekly_frequency": 23,
+      "weekly_scaled": null,
       "baseline_weekly": 51.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.628,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EGPH",
       "destination": "OTHH",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": null,
       "baseline_weekly": 12.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.81,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -404,26 +402,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EHAM",
       "destination": "OTHH",
-      "weekly_frequency": 11,
-      "weekly_scaled": 15.4,
+      "weekly_frequency": 7,
+      "weekly_scaled": null,
       "baseline_weekly": 20.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.764,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -438,94 +436,94 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EIDW",
       "destination": "OTHH",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 7,
+      "weekly_scaled": null,
       "baseline_weekly": 13.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.708,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EKCH",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 13.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.508,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "ENGM",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 9.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.613,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "EPWA",
       "destination": "OTHH",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": null,
       "baseline_weekly": 10.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.926,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "ESSA",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.944,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -542,41 +540,41 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "FACT",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 7.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.949,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "FAOR",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 15.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.46,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -591,9 +589,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -608,9 +606,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -625,16 +623,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "HECA",
       "destination": "OTHH",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.6,
       "baseline_days": 88,
@@ -642,9 +640,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -659,16 +657,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "HKJK",
       "destination": "OTHH",
-      "weekly_frequency": 6,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -676,9 +674,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -686,50 +684,50 @@
       "origin": "HTDA",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KATL",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 4.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.877,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KBOS",
       "destination": "OTHH",
-      "weekly_frequency": 3,
-      "weekly_scaled": 2.8,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.505,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -746,7 +744,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -763,41 +761,41 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KDFW",
       "destination": "OTHH",
-      "weekly_frequency": 9,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 7,
+      "weekly_scaled": null,
       "baseline_weekly": 10.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.913,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KIAD",
       "destination": "OTHH",
-      "weekly_frequency": 6,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 7.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.911,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -814,41 +812,41 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KIAH",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.437,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KJFK",
       "destination": "OTHH",
-      "weekly_frequency": 10,
-      "weekly_scaled": 11.2,
+      "weekly_frequency": 8,
+      "weekly_scaled": null,
       "baseline_weekly": 14.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.775,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -856,57 +854,57 @@
       "origin": "KLAX",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.329,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KMIA",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 8.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.867,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KORD",
       "destination": "OTHH",
-      "weekly_frequency": 6,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 5,
+      "weekly_scaled": null,
       "baseline_weekly": 7.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.949,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KPHL",
       "destination": "OTHH",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -914,26 +912,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "KSEA",
       "destination": "OTHH",
-      "weekly_frequency": 3,
-      "weekly_scaled": 2.8,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.645,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -941,16 +939,16 @@
       "origin": "KSFO",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 4.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "MINIMAL",
-      "silent_days": 2,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -967,7 +965,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -975,50 +973,50 @@
       "origin": "LBSF",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LCLK",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.956,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LDZA",
       "destination": "OTHH",
-      "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.614,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -1026,16 +1024,16 @@
       "origin": "LDZB",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 1.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "MINIMAL",
-      "silent_days": 2,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -1043,67 +1041,67 @@
       "origin": "LDZI",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.8,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LEBL",
       "destination": "OTHH",
-      "weekly_frequency": 13,
-      "weekly_scaled": 16.8,
+      "weekly_frequency": 10,
+      "weekly_scaled": null,
       "baseline_weekly": 18.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.924,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LEMD",
       "destination": "OTHH",
-      "weekly_frequency": 12,
-      "weekly_scaled": 15.4,
+      "weekly_frequency": 9,
+      "weekly_scaled": null,
       "baseline_weekly": 16.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.937,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LEMG",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 2.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 2.789,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1118,9 +1116,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -1137,7 +1135,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -1154,65 +1152,65 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LFMN",
       "destination": "OTHH",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.382,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LFPG",
       "destination": "OTHH",
-      "weekly_frequency": 13,
-      "weekly_scaled": 16.8,
+      "weekly_frequency": 10,
+      "weekly_scaled": null,
       "baseline_weekly": 19.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.866,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LGAV",
       "destination": "OTHH",
-      "weekly_frequency": 16,
-      "weekly_scaled": 19.6,
+      "weekly_frequency": 13,
+      "weekly_scaled": null,
       "baseline_weekly": 11.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.684,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LGMK",
       "destination": "OTHH",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1220,43 +1218,43 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LHBP",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 8.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.681,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LIMC",
       "destination": "OTHH",
-      "weekly_frequency": 14,
-      "weekly_scaled": 18.2,
+      "weekly_frequency": 12,
+      "weekly_scaled": null,
       "baseline_weekly": 21.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.848,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1264,50 +1262,50 @@
       "origin": "LIPZ",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LIRF",
       "destination": "OTHH",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": null,
       "baseline_weekly": 15.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.638,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LKPR",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 6.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.846,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1315,33 +1313,33 @@
       "origin": "LMML",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.4,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LOWW",
       "destination": "OTHH",
-      "weekly_frequency": 11,
-      "weekly_scaled": 12.6,
+      "weekly_frequency": 9,
+      "weekly_scaled": null,
       "baseline_weekly": 10.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.174,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1358,7 +1356,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -1375,75 +1373,75 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LPPT",
       "destination": "OTHH",
-      "weekly_frequency": 3,
-      "weekly_scaled": 2.8,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 5.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.525,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LROP",
       "destination": "OTHH",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": null,
       "baseline_weekly": 11.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.877,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LSGG",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.354,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LSZH",
       "destination": "OTHH",
-      "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": null,
       "baseline_weekly": 10.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.983,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1460,29 +1458,12 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LTAI",
-      "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "origin": "LTCG",
       "destination": "OTHH",
       "weekly_frequency": 3,
       "weekly_scaled": null,
@@ -1492,9 +1473,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
+    },
+    {
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "origin": "LTCG",
+      "destination": "OTHH",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1502,33 +1500,33 @@
       "origin": "LTFJ",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "LTFM",
       "destination": "OTHH",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 13.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.21,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -1536,16 +1534,16 @@
       "origin": "LYBE",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 5.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.736,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1553,33 +1551,33 @@
       "origin": "NZAA",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OBBI",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 13.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.42,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1596,14 +1594,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OJAI",
       "destination": "OTHH",
-      "weekly_frequency": 8,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1611,9 +1609,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1621,23 +1619,23 @@
       "origin": "OKBK",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 12.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OLBA",
       "destination": "OTHH",
-      "weekly_frequency": 7,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -1645,16 +1643,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OMAA",
       "destination": "OTHH",
-      "weekly_frequency": 13,
+      "weekly_frequency": 10,
       "weekly_scaled": null,
       "baseline_weekly": 0.9,
       "baseline_days": 88,
@@ -1662,9 +1660,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1679,9 +1677,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1722,17 +1720,17 @@
       "carrier_name": "Qatar Airways",
       "origin": "OMDB",
       "destination": "OTHH",
-      "weekly_frequency": 10,
-      "weekly_scaled": 11.7,
+      "weekly_frequency": 8,
+      "weekly_scaled": 11.2,
       "baseline_weekly": 30.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 0.378,
-      "status": "REDUCED",
+      "ratio": 0.363,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 5
     },
     {
       "carrier": "QTR",
@@ -1740,16 +1738,16 @@
       "origin": "OMDW",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.765,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1764,26 +1762,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OMSJ",
       "destination": "OTHH",
-      "weekly_frequency": 28,
-      "weekly_scaled": 32.7,
+      "weekly_frequency": 23,
+      "weekly_scaled": 32.2,
       "baseline_weekly": 42.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 0.767,
-      "status": "REDUCED",
+      "ratio": 0.756,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 5
     },
     {
       "carrier": "QTR",
@@ -1791,16 +1789,16 @@
       "origin": "OPLA",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.287,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -1808,16 +1806,16 @@
       "origin": "OPMT",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 3.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "MINIMAL",
-      "silent_days": 2,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -1825,16 +1823,16 @@
       "origin": "ORMM",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 2.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -1849,9 +1847,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -1868,7 +1866,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -1885,7 +1883,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -1902,7 +1900,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -1919,14 +1917,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "DAAG",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -1934,9 +1932,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -1953,7 +1951,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -1970,7 +1968,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -1987,7 +1985,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2004,7 +2002,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2021,7 +2019,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2038,14 +2036,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "EDDB",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 16.4,
       "baseline_days": 88,
@@ -2055,14 +2053,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "EDDF",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 22.1,
       "baseline_days": 88,
@@ -2072,7 +2070,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2089,7 +2087,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2106,14 +2104,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "EDDM",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 11.0,
       "baseline_days": 88,
@@ -2123,7 +2121,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2140,7 +2138,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2157,7 +2155,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2174,7 +2172,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2189,9 +2187,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -2208,7 +2206,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2225,7 +2223,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2240,16 +2238,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "EGCC",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 19.3,
       "baseline_days": 88,
@@ -2259,7 +2257,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2276,7 +2274,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2293,14 +2291,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "EGLL",
-      "weekly_frequency": 19,
+      "weekly_frequency": 17,
       "weekly_scaled": null,
       "baseline_weekly": 54.4,
       "baseline_days": 88,
@@ -2310,7 +2308,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2327,7 +2325,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2344,24 +2342,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
-    },
-    {
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "origin": "OTHH",
-      "destination": "EGND",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2378,7 +2359,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2395,7 +2376,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2412,7 +2393,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2429,7 +2410,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -2446,14 +2427,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "EHAM",
-      "weekly_frequency": 6,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 18.3,
       "baseline_days": 88,
@@ -2463,14 +2444,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "EIDW",
-      "weekly_frequency": 8,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 12.9,
       "baseline_days": 88,
@@ -2480,7 +2461,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2497,14 +2478,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "ENGM",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 6.9,
       "baseline_days": 88,
@@ -2514,7 +2495,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2531,7 +2512,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2548,7 +2529,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2565,7 +2546,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2580,9 +2561,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2599,7 +2580,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2616,7 +2597,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2633,14 +2614,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "FACT",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 8.8,
       "baseline_days": 88,
@@ -2650,7 +2631,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2667,7 +2648,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2684,7 +2665,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -2701,14 +2682,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "FAOR",
-      "weekly_frequency": 4,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 9.6,
       "baseline_days": 88,
@@ -2718,7 +2699,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2735,7 +2716,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2750,9 +2731,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2769,14 +2750,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "HE15",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.4,
       "baseline_days": 88,
@@ -2784,9 +2765,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -2803,7 +2784,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2818,9 +2799,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -2835,16 +2816,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "HEBA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -2852,9 +2833,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2869,9 +2850,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2886,16 +2867,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "HKJK",
-      "weekly_frequency": 8,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.7,
       "baseline_days": 88,
@@ -2903,9 +2884,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2922,7 +2903,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -2939,7 +2920,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -2956,7 +2937,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -2973,7 +2954,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -2990,7 +2971,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3007,7 +2988,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3024,7 +3005,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3041,7 +3022,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3058,7 +3039,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3075,14 +3056,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "KJFK",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 14.3,
       "baseline_days": 88,
@@ -3092,7 +3073,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3109,7 +3090,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3126,7 +3107,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3143,7 +3124,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3158,9 +3139,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3177,7 +3158,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3194,7 +3175,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3211,7 +3192,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3228,7 +3209,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3245,7 +3226,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3262,7 +3243,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3279,7 +3260,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -3296,14 +3277,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LEBL",
-      "weekly_frequency": 7,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 17.0,
       "baseline_days": 88,
@@ -3313,7 +3294,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3328,16 +3309,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LEMD",
-      "weekly_frequency": 8,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 16.1,
       "baseline_days": 88,
@@ -3347,7 +3328,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3364,7 +3345,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3381,7 +3362,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3398,14 +3379,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LFMN",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 3.1,
       "baseline_days": 88,
@@ -3415,14 +3396,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LFPG",
-      "weekly_frequency": 13,
+      "weekly_frequency": 12,
       "weekly_scaled": null,
       "baseline_weekly": 20.6,
       "baseline_days": 88,
@@ -3432,14 +3413,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LGAV",
-      "weekly_frequency": 8,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 9.7,
       "baseline_days": 88,
@@ -3449,7 +3430,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3466,7 +3447,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3481,9 +3462,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -3500,14 +3481,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LIMC",
-      "weekly_frequency": 6,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 18.2,
       "baseline_days": 88,
@@ -3517,7 +3498,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3534,7 +3515,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3551,7 +3532,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3568,14 +3549,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LIRF",
-      "weekly_frequency": 6,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 15.8,
       "baseline_days": 88,
@@ -3585,7 +3566,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3602,7 +3583,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3619,7 +3600,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -3636,14 +3617,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LOWW",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 11.6,
       "baseline_days": 88,
@@ -3653,7 +3634,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3670,7 +3651,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3687,14 +3668,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LPPT",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 2.7,
       "baseline_days": 88,
@@ -3704,7 +3685,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3721,7 +3702,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3738,7 +3719,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3755,7 +3736,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3772,7 +3753,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3787,9 +3768,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3804,9 +3785,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3821,16 +3802,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
-      "destination": "LTCG",
-      "weekly_frequency": 3,
+      "destination": "LTBZ",
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -3838,9 +3819,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
+    },
+    {
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "origin": "OTHH",
+      "destination": "LTCG",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -3857,14 +3855,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "LTFM",
-      "weekly_frequency": 3,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 11.5,
       "baseline_days": 88,
@@ -3874,7 +3872,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -3891,7 +3889,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -3908,31 +3906,31 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OBBI",
-      "weekly_frequency": 7,
-      "weekly_scaled": 8.2,
+      "weekly_frequency": 6,
+      "weekly_scaled": 8.4,
       "baseline_weekly": 16.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 0.49,
-      "status": "REDUCED",
+      "ratio": 0.504,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 5
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OEAA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -3940,9 +3938,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -3959,14 +3957,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OEDR",
-      "weekly_frequency": 5,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 15.0,
       "baseline_days": 88,
@@ -3976,14 +3974,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OENR",
-      "weekly_frequency": 2,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -3991,9 +3989,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -4010,14 +4008,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OJAI",
-      "weekly_frequency": 11,
+      "weekly_frequency": 9,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -4025,9 +4023,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4044,14 +4042,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OLBA",
-      "weekly_frequency": 9,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -4059,9 +4057,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4078,24 +4076,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OMAA",
-      "weekly_frequency": 16,
-      "weekly_scaled": 18.7,
+      "weekly_frequency": 12,
+      "weekly_scaled": null,
       "baseline_weekly": 1.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 16.374,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4110,9 +4108,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4129,7 +4127,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4144,26 +4142,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OMDB",
-      "weekly_frequency": 14,
-      "weekly_scaled": 19.6,
+      "weekly_frequency": 12,
+      "weekly_scaled": null,
       "baseline_weekly": 30.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.647,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -4180,24 +4178,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OMSJ",
-      "weekly_frequency": 24,
-      "weekly_scaled": 30.8,
+      "weekly_frequency": 20,
+      "weekly_scaled": null,
       "baseline_weekly": 42.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.72,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -4212,9 +4210,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -4231,7 +4229,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4248,14 +4246,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "OPMT",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
@@ -4265,7 +4263,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4282,7 +4280,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4299,31 +4297,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
-    },
-    {
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "origin": "OTHH",
-      "destination": "OTHH",
-      "weekly_frequency": 17,
-      "weekly_scaled": 16.3,
-      "baseline_weekly": 71.6,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": true,
-      "scored": true,
-      "ratio": 0.228,
-      "status": "MINIMAL",
-      "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "RJAA",
-      "weekly_frequency": 6,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 8.8,
       "baseline_days": 88,
@@ -4333,14 +4314,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "RJBB",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 3.6,
       "baseline_days": 88,
@@ -4350,7 +4331,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4365,9 +4346,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4384,14 +4365,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "RPLC",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 3.4,
       "baseline_days": 88,
@@ -4401,14 +4382,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "RPLL",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 13.8,
       "baseline_days": 88,
@@ -4418,7 +4399,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4435,14 +4416,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "SBGR",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 9.1,
       "baseline_days": 88,
@@ -4452,7 +4433,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4469,7 +4450,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4486,7 +4467,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4503,7 +4484,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4520,7 +4501,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4537,7 +4518,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4554,7 +4535,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4571,14 +4552,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "VABB",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 7.1,
       "baseline_days": 88,
@@ -4588,7 +4569,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4605,7 +4586,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4622,7 +4603,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4639,14 +4620,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "VGZR",
-      "weekly_frequency": 8,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 11.9,
       "baseline_days": 88,
@@ -4656,14 +4637,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "VHHH",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
@@ -4673,7 +4654,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4690,14 +4671,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "VIDP",
-      "weekly_frequency": 8,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 13.5,
       "baseline_days": 88,
@@ -4707,7 +4688,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
+    },
+    {
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "origin": "OTHH",
+      "destination": "VLLN",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4724,7 +4722,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -4741,14 +4739,31 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
+    },
+    {
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "origin": "OTHH",
+      "destination": "VNSI",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "VOBL",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.3,
       "baseline_days": 88,
@@ -4756,16 +4771,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "VOCI",
-      "weekly_frequency": 5,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 9.4,
       "baseline_days": 88,
@@ -4775,7 +4790,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4792,7 +4807,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4807,16 +4822,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "VOTV",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 5.9,
       "baseline_days": 88,
@@ -4826,7 +4841,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4843,14 +4858,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "VTBS",
-      "weekly_frequency": 17,
+      "weekly_frequency": 14,
       "weekly_scaled": null,
       "baseline_weekly": 34.9,
       "baseline_days": 88,
@@ -4860,7 +4875,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4877,7 +4892,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -4894,14 +4909,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "WICB",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -4909,16 +4924,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "WIDD",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -4926,16 +4941,16 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "WIII",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 1.2,
       "baseline_days": 88,
@@ -4945,14 +4960,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "WMKK",
-      "weekly_frequency": 8,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 10.8,
       "baseline_days": 88,
@@ -4962,7 +4977,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4979,7 +4994,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -4996,7 +5011,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -5013,14 +5028,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "YBBN",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
@@ -5030,7 +5045,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
@@ -5047,14 +5062,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "YPAD",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 4.7,
       "baseline_days": 88,
@@ -5064,7 +5079,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5081,14 +5096,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "YSSY",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 5.8,
       "baseline_days": 88,
@@ -5098,7 +5113,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
@@ -5115,14 +5130,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "OTHH",
       "destination": "ZGSD",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -5130,26 +5145,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "RJAA",
       "destination": "OTHH",
-      "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": null,
       "baseline_weekly": 9.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.064,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5157,23 +5172,23 @@
       "origin": "RJBB",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 3.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.375,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "RJTT",
       "destination": "OTHH",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -5181,26 +5196,26 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "RKSI",
       "destination": "OTHH",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 4.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.645,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5208,67 +5223,67 @@
       "origin": "RPLC",
       "destination": "OTHH",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": null,
       "baseline_weekly": 3.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.875,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "RPLL",
       "destination": "OTHH",
-      "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 13.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.624,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "SBGR",
       "destination": "OTHH",
-      "weekly_frequency": 11,
-      "weekly_scaled": 14.0,
+      "weekly_frequency": 7,
+      "weekly_scaled": null,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 2.708,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "UGTB",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 3.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.6,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5276,16 +5291,16 @@
       "origin": "UUEE",
       "destination": "OTHH",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": null,
       "baseline_weekly": 3.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.471,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 1
     },
     {
       "carrier": "QTR",
@@ -5302,24 +5317,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "VAJJ",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 6.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.856,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5327,33 +5342,16 @@
       "origin": "VECC",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
-    },
-    {
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "origin": "VGZR",
-      "destination": "OJAI",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": false,
-      "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
@@ -5361,33 +5359,33 @@
       "origin": "VGZR",
       "destination": "OTHH",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 12.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.579,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "VHHH",
       "destination": "OTHH",
-      "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
       "baseline_weekly": 8.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.787,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5395,74 +5393,74 @@
       "origin": "VIDP",
       "destination": "OTHH",
       "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 11.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.358,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "VNKT",
       "destination": "OTHH",
-      "weekly_frequency": 12,
-      "weekly_scaled": 15.4,
+      "weekly_frequency": 10,
+      "weekly_scaled": null,
       "baseline_weekly": 16.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.95,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "VOBL",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 7.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.736,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "VOCI",
       "destination": "OTHH",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 9.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.431,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "VOMM",
       "destination": "OTHH",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -5470,43 +5468,43 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "VOTV",
       "destination": "OTHH",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 5.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.736,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "VTBS",
       "destination": "OTHH",
-      "weekly_frequency": 14,
-      "weekly_scaled": 16.8,
+      "weekly_frequency": 12,
+      "weekly_scaled": null,
       "baseline_weekly": 36.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.461,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5514,23 +5512,23 @@
       "origin": "VVNB",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 4.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "WIII",
       "destination": "OTHH",
-      "weekly_frequency": 10,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 0.7,
       "baseline_days": 88,
@@ -5538,9 +5536,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5548,23 +5546,23 @@
       "origin": "WMKK",
       "destination": "OTHH",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 12.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
-      "status": "SUSPENDED",
-      "silent_days": 8,
-      "observed_days": 5
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "WSAC",
       "destination": "OTHH",
-      "weekly_frequency": 3,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -5572,9 +5570,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
@@ -5582,158 +5580,103 @@
       "origin": "WSSS",
       "destination": "OTHH",
       "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": null,
       "baseline_weekly": 2.1,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.972,
-      "status": "NORMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 3
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "YBBN",
       "destination": "OTHH",
-      "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_frequency": 0,
+      "weekly_scaled": null,
       "baseline_weekly": 6.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.222,
-      "status": "MINIMAL",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "YMML",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
       "baseline_weekly": 12.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.454,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "YPAD",
       "destination": "OTHH",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.542,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "YPPH",
       "destination": "OTHH",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.673,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "origin": "YSSY",
       "destination": "OTHH",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 6.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.682,
-      "status": "REDUCED",
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 2
     }
   ],
-  "stop_events": [
-    {
-      "id": 427,
-      "scope": "route",
-      "scope_key": "QTR|VECC|OTHH",
-      "carrier": "QTR",
-      "detail": "VECC-OTHH",
-      "baseline_weekly": 5.5,
-      "last_flight_on": "2026-08-02",
-      "started_on": "2026-08-03",
-      "detected_on": "2026-08-20",
-      "resumed_on": null,
-      "days_stopped": 17,
-      "status": "active",
-      "confidence": "contradicted",
-      "carrier_name": "Qatar Airways",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Qatar Airways returns to PHL with daily flights to Doha - NBC10 Philadelphia",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQMUFDN0dyVjZfRnZiMzBYcjliYW9JODBsbUhQa19panY1b095bDBaRHMydTdTZ0NLNjNJeG9KbDUtUGxncWR5NVIwNFUxTXY0WFJwZjk0UHRHdlhjSWdHbGNob3l5SkNfTmYxWmhBQ0ptUmx5VVd0SkI4UDJmeVI3RnN0Ymx6UXpzTkJ5UjFJVi12Y0d0dDJMX3RnMVluVWlEZHFxMTFR0gGuAUFVX3lxTE1uTGl2QjlEdFNkRW9keWxvOFBGMjl2MExkRXB4ZF9lYUVqTlJneDlMTF9pdl8wYWh0NFU5YjRDOXQySEZIMG9BUUdYWTQyOWJpcUI0WDg2VXdXRzB5TTNtQ2xxeU9yRVVkUFN3U1ZBSmtiMnpKQzNnTDBMX3laUUZ2cXNVeWJrNXk2TE5ENkF2dnhSLXhyaDY4eEVDZHhoVWpFQWtodlZlOWVxaVlEZw?oc=5",
-          "published": "Wed, 10 Jun 2026 07:00:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways Operates Limited Flights to and from Doha - safariindia.com",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA1VTE2bkVoMVJNWVFtVjdsMmlHWlhUUGctMmc0U05BWG1xMzlzLW9iOWJfNFI0R2NBZnZGbnotMkFOZmVJS29KWnA2VE1uTWxKclA0VF91MVlwbElZU05Ic1liVHFNRUJYdmdGNUN5NFg?oc=5",
-          "published": "Thu, 20 Aug 2026 08:36:17 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways Restarts Daily Philadelphia–Doha Flights: Check Start Date & Schedule - IndianEagle",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNRlQ1eWZrVFFzQXc0d0lJZzdDRngxdG9rbFZXQzBQS1NTY29lRVNweV80b1c3X2dfdjRFYWNpRWlZSzM0YW5Oekx6RlRzUUp4NkFka2VTcEdvZ3k2S0dFaWpfMDU4eVE2eDVNcEt2RUhLUjNtcUdBdGVWTkloLTFiZTl2Sk9RQlNhRXhMaGdfdjZqZw?oc=5",
-          "published": "Mon, 17 Aug 2026 09:28:00 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways resumes daily Philadelphia-Doha flights starting August 1 - eciks.org",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE4zZFNwNEJWLTdsTGFoQm9QZTJyWG40cUoyMmNCTFVDYS1McV9jRVB4RzJZTG1kODlMdUdKV0xGNEpCWXA3a3R5VTk1SzZtX0haVHROVW1YbVU2VElJemxJV2g1VXhwOVlOR00zYmpzaVJUSkV3Qjg3Qw?oc=5",
-          "published": "Mon, 17 Aug 2026 00:31:56 GMT",
-          "stance": "contradicts"
-        },
-        {
-          "source": "news",
-          "title": "Qatar Airways Flies 7,750 Indians to India in 25 Flights: Indian Embassy - News On AIR",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOcC05aFZGb3I0cUZ1SVlVbi1uUEh6Q3lva3NEWDZGdnlZZldYNHFKRGVCWFViaHpNVkVGamRVVXZqeHpQQ2U3NVhjNHNoWERaUXlhcVFHbzlnblM1WUN4X0RmZTRMcHhlLU5lVjlQOTZwY2FZaTdiNjg3M1N2QWlFYjk1ZXBiZUhiWTNSX1JrYlZJUGxPM1ZYemV1OWQ?oc=5",
-          "published": "Fri, 21 Aug 2026 11:35:37 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }
