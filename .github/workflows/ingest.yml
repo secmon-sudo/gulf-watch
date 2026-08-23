@@ -4,19 +4,26 @@ name: ingest
 # stop/resume detection, regenerate the static JSON, commit both the SQLite
 # file and public/, then redeploy Pages.
 #
-# Manual only, by choice: the operator triggers this when they want a reading,
-# rather than having it spend the OpenSky allowance on a timer. The schedule
-# block is left out rather than commented out, so nothing fires by accident.
+# Daily at 12:00 UTC, plus manual dispatch. It was manual-only until
+# 2026-08-23, when the cost of that showed up in the output: nothing ran for
+# three days, the trailing 7-day window slid past the observed days, and every
+# published ratio -- Gulf Air at 1.02 included -- vanished until a run
+# recovered it. The analysis needs 5 observed days inside a rolling 7
+# (config.MIN_OBSERVED_DAYS), so a missed day is not a missed reading, it is a
+# gap that keeps costing for a week.
 #
-# If you ever want it scheduled, add:
-#   schedule:
-#     - cron: "0 5 * * *"
-# Daily, not hourly. Analysis is anchored on the last settled UTC day
+# 12:00 UTC and not earlier: the OpenSky allowance resets at a fixed ~10:44
+# UTC, measured twice. A 05:00 cron -- which the note here used to suggest --
+# would run on the tail of the previous day's quota.
+#
+# Daily and not hourly. Analysis is anchored on the last settled UTC day
 # (config.SETTLE_LAG_DAYS), so extra runs recompute the same answer, and
 # measured against a real account ~85 requests exhaust the daily allowance
 # while one all-airports pass costs ~52.
 
 on:
+  schedule:
+    - cron: "0 12 * * *"
   workflow_dispatch:
     inputs:
       hours:
@@ -66,9 +73,15 @@ jobs:
           # from freezing. Without the key it logs a warning and skips.
           AIRLABS_API_KEY: ${{ secrets.AIRLABS_API_KEY }}
         run: |
+          # A scheduled event carries no inputs -- GitHub does not apply
+          # workflow_dispatch defaults to it -- so both flags fall back
+          # explicitly. --all-airports especially: without it a scheduled run
+          # would drop to pick_airports()'s priority filter, which polls
+          # everything only when the hour divides by 4. That would work at
+          # 12:00 by coincidence and break the moment the cron moved.
           python -m src.ingest \
             --hours "${{ inputs.hours || '48' }}" \
-            ${{ inputs.all_airports && '--all-airports' || '' }}
+            ${{ (inputs.all_airports || github.event_name == 'schedule') && '--all-airports' || '' }}
 
       - name: Publish JSON
         run: python -m src.publish
