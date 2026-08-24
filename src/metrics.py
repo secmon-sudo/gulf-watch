@@ -428,11 +428,12 @@ def nameable_days(conn: sqlite3.Connection, day: date,
     them -- which is true only if the far end can still be named as Kuwait.
     Kuwait Airways was published at 0% of baseline, SUSPENDED, off that.
 
-    Contrast Heathrow over the same days: Qatar 59, Emirates 46, Etihad 24,
-    Royal Jordanian 19, MEA 18, Gulf Air 13, and British Airways zero. Same
-    fetches, six carriers present, one absent. That is a finding, and this
-    test keeps it -- which is the point. It withholds where we are blind and
-    stays out of the way where we are not.
+    Heathrow over the same days looks like the opposite case: Qatar 59,
+    Emirates 46, Etihad 24, Royal Jordanian 19, MEA 18, Gulf Air 13, and
+    British Airways zero. Same fetches, six carriers present, one absent -- so
+    this test lets it through, and on 2026-08-21 that was read as a finding.
+    It is not. The absence is per operator and this test cannot see operators;
+    `carrier_visibility` below is the one that can.
 
     Counted across every carrier on purpose. Asking whether THIS route was
     seen would be circular -- that is the very thing in question. Asking
@@ -447,6 +448,46 @@ def nameable_days(conn: sqlite3.Connection, day: date,
                     WHERE day IN ({marks}) AND departures > 0
                     GROUP BY a, day""", days):
             out.setdefault(r["a"], set()).add(r["day"])
+    return out
+
+
+def carrier_visibility(conn: sqlite3.Connection, day: date,
+                       lookback: int) -> dict[str, float]:
+    """How much of each carrier's own baseline our feed still delivers.
+
+    The four gates before this one are geographic -- did this airport's fetch
+    run, did that one deliver its usual volume, can either end be named, did
+    the return leg fly. None of them can separate a British Airways from an
+    Emirates, because on 2026-08-19 both flew Heathrow to Dubai, on the same
+    day, through the same receivers, and only one of them is in our data.
+    Asked by origin airport rather than by callsign, so that no parsing choice
+    could hide the answer, seventy-one arrivals into Dubai came from European
+    airports and every single one was Emirates or flydubai.
+
+    So ask about the operator directly: legs seen over the days we observed,
+    against what this carrier's baseline predicts for those same days. It is
+    the airport diagnostic -- list every carrier there, then and now -- turned
+    ninety degrees, and it is deliberately blunt. A carrier either shows up in
+    our feed at roughly the rate it should, or it does not show up at all;
+    measured over the thirteen observed days to 2026-08-23 there is nothing
+    between 0.08 and 0.68.
+
+    Carriers with no baseline get no entry. There is nothing to measure them
+    against, and their routes are not comparable anyway.
+    """
+    days = observed_days(coverage_map(conn), day, lookback)
+    if not days:
+        return {}
+    marks = ",".join("?" for _ in days)
+    seen = {r["carrier"]: r["n"] for r in conn.execute(
+        f"""SELECT carrier, SUM(departures) AS n FROM daily_route
+            WHERE day IN ({marks}) GROUP BY carrier""", days)}
+    out: dict[str, float] = {}
+    for r in conn.execute(
+            "SELECT carrier, SUM(weekly_freq) AS w FROM baseline GROUP BY carrier"):
+        expected = r["w"] * len(days) / 7
+        if expected > 0:
+            out[r["carrier"]] = seen.get(r["carrier"], 0) / expected
     return out
 
 
@@ -619,6 +660,13 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     nameable = nameable_days(conn, day, WINDOW_DAYS)
     per_day = rolling_daily(conn, day)
 
+    # And once more, of the operator. Every gate above is geographic and none
+    # of them can tell a carrier that stopped from one this feed does not
+    # carry -- BA and Emirates fly the same pair on the same day and only one
+    # is in our data. Asked over a much wider span than the ratio window,
+    # because it is a question about the feed rather than about the week.
+    car_vis = carrier_visibility(conn, day, config.CARRIER_VISIBILITY_DAYS)
+
     # The same question asked of the reference period. An airport we barely saw
     # back then cannot anchor a percentage now.
     bl_days, bl_span = baseline_airport_days(conn)
@@ -656,13 +704,20 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
         fetch_enough = len(vis) >= config.MIN_OBSERVED_DAYS
 
         comparable = bl_trusted and bl >= config.MIN_BASELINE_WEEKLY
+        # A carrier with no baseline entry cannot be judged either way, and its
+        # routes are not comparable regardless; let it through here.
+        carrier_seen = (car_vis.get(carrier, 1.0)
+                        >= config.MIN_CARRIER_VISIBILITY)
         # Kept apart from `comparable` on purpose: they fail for opposite
         # reasons and the reader is owed the difference. `comparable` false
         # means the REFERENCE period cannot be divided by, which renders as
         # NO BASELINE. `scored` false with `comparable` true means the
         # reference is fine and the PRESENT was not seen -- that is UNKNOWN,
         # and calling it NO BASELINE would blame the wrong end.
-        scored = comparable and fetch_enough
+        # `carrier_seen` belongs on this side of the line, not with
+        # `comparable`: the reference period is fine and it is the present we
+        # cannot see, which is exactly what UNKNOWN means here.
+        scored = comparable and fetch_enough and carrier_seen
 
         if not comparable:
             # Treated exactly like having no baseline, because that is what an

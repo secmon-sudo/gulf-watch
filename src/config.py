@@ -97,6 +97,40 @@ MIN_BASELINE_WEEKLY = 1.0
 # Jordanian 1%. Nothing sits between 42% and 73%.
 MIN_COMPARABLE_SHARE = 0.6
 
+# The same question asked of a CARRIER rather than an airport or a fetch, and
+# the only one of the five gates that can tell a British Airways from an
+# Emirates. Every earlier gate is geographic -- did this airport's fetch run,
+# can this endpoint be named -- and geography cannot separate them, because the
+# two fly the same pair on the same day through the same receivers. Measured
+# 2026-08-24 by asking OpenSky for 2026-08-19 by origin airport instead of by
+# callsign: seventy-one arrivals into Dubai came from European airports and
+# every one was Emirates or flydubai, four of them EGLL-OMDB. BA runs that pair
+# daily and appears under no callsign at all. Whatever the cause, the feed
+# carries some operators and not others, and no gate we write and no window we
+# widen changes that.
+#
+# So: legs seen over the observed days, against what this carrier's own
+# baseline predicts for the same days. The split is not close. Over the
+# thirteen observed days to 2026-08-23: Qatar 0.68, Emirates 0.74, Oman Air
+# 0.85, flydubai 0.87, flynas 0.91, Air Arabia 0.96 and up -- then nothing at
+# all until Kuwait Airways 0.08, British Airways 0.008, and JAL, Finnair,
+# American, Iberia, China Southern, Air China, China Eastern and Air Algerie at
+# exactly zero. Nothing lands between 0.08 and 0.68.
+#
+# A carrier below this floor is not scored and cannot be called stopped. That
+# withholds a genuine total suspension too, and knowingly: this feed cannot
+# tell one from the other, and the project's answer to that has always been to
+# withhold rather than to guess. The press route still works -- report.verdict
+# calls a carrier stopped on schedule plus reporting, and needs no sighting.
+MIN_CARRIER_VISIBILITY = 0.2
+
+# Over how many calendar days the question is asked. Deliberately far wider
+# than the seven-day ratio window: whether we can see a carrier at all is a
+# property of the feed, not of the week, and a small carrier can miss a week by
+# chance. 42 days matches the region-scope span and covers the whole
+# observation record as it stands.
+CARRIER_VISIBILITY_DAYS = 42
+
 # Baseline window (frozen, pre-escalation). Change and re-run backfill if you
 # want a different reference period.
 BASELINE_START = os.environ.get("GULFWATCH_BASELINE_START", "2025-11-01")

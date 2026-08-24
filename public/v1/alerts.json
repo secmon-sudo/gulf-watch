@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T13:04:43+00:00",
+  "generated_at": "2026-08-24T19:33:05+00:00",
   "as_of_day": "2026-08-23",
   "coverage": {
     "day": "2026-08-23",
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 9
+    "carriers_with_ratio": 4
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -26,30 +26,6 @@
   "alerts": [
     {
       "severity": "critical",
-      "carrier": "BAW",
-      "carrier_name": "British Airways",
-      "route": "EGLL-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 18.0,
-      "silent_days": 10,
-      "observed_days": 6
-    },
-    {
-      "severity": "critical",
-      "carrier": "BAW",
-      "carrier_name": "British Airways",
-      "route": "OMDB-EGLL",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 16.5,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "route": "WMKK-OTHH",
@@ -57,30 +33,6 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 12.2,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "BAW",
-      "carrier_name": "British Airways",
-      "route": "EGLL-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 11.4,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "BAW",
-      "carrier_name": "British Airways",
-      "route": "OTHH-EGLL",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 10.6,
       "silent_days": 10,
       "observed_days": 5
     },
@@ -110,30 +62,6 @@
     },
     {
       "severity": "critical",
-      "carrier": "JAL",
-      "carrier_name": "Japan Airlines",
-      "route": "OTHH-RJTT",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 6.5,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "JAL",
-      "carrier_name": "Japan Airlines",
-      "route": "RJTT-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 6.4,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "route": "OMDB-EPWA",
@@ -158,18 +86,6 @@
     },
     {
       "severity": "critical",
-      "carrier": "IBE",
-      "carrier_name": "Iberia",
-      "route": "LEMD-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 6.0,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "route": "OTHH-LTFJ",
@@ -177,18 +93,6 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 6.0,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "IBE",
-      "carrier_name": "Iberia",
-      "route": "OTHH-LEMD",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 5.8,
       "silent_days": 10,
       "observed_days": 5
     },
@@ -230,18 +134,6 @@
     },
     {
       "severity": "critical",
-      "carrier": "AAL",
-      "carrier_name": "American Airlines",
-      "route": "KPHL-OTHH",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 5.5,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "WMKK-OMSJ",
@@ -266,18 +158,6 @@
     },
     {
       "severity": "critical",
-      "carrier": "AAL",
-      "carrier_name": "American Airlines",
-      "route": "OTHH-KPHL",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 5.3,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
       "carrier": "ABY",
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "LTFJ-OMSJ",
@@ -286,18 +166,6 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 5.2,
       "silent_days": 7,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "FIN",
-      "carrier_name": "Finnair",
-      "route": "EFHK-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 5.0,
-      "silent_days": 10,
       "observed_days": 5
     },
     {
@@ -333,18 +201,6 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 4.3,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "BAW",
-      "carrier_name": "British Airways",
-      "route": "EGLL-OBBI",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 4.2,
       "silent_days": 10,
       "observed_days": 5
     },
@@ -398,18 +254,6 @@
     },
     {
       "severity": "critical",
-      "carrier": "CSN",
-      "carrier_name": "China Southern",
-      "route": "ZGSZ-OMDB",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 2.6,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "route": "LYBE-OMDB",
@@ -441,18 +285,6 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 2.4,
-      "silent_days": 10,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "CSN",
-      "carrier_name": "China Southern",
-      "route": "OMDB-ZGSZ",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 2.3,
       "silent_days": 10,
       "observed_days": 5
     },

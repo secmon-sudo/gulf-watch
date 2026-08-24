@@ -1772,8 +1772,16 @@ class TestBlindWeekEndToEnd(unittest.TestCase):
         uae = [r for r in report["routes"] if r["carrier"] == "UAE"][0]
         self.assertEqual(uae["status"], "NORMAL",
                          "scaling five observed days to a week should land on baseline")
+        # Gulf Air is a different matter, and the answer changed on
+        # 2026-08-24. Its only sightings in this fixture are 127 days back, so
+        # inside the visibility span it has none at all -- which is exactly
+        # what a carrier the feed does not carry looks like, and this pipeline
+        # cannot tell the two apart. It used to guess, and guessed SUSPENDED.
+        # See TestCarrierVisibility, where a carrier still flying elsewhere
+        # keeps its silent route called.
         gfa = [r for r in report["routes"] if r["carrier"] == "GFA"][0]
-        self.assertIn(gfa["status"], ("SUSPENDED", "MINIMAL"))
+        self.assertEqual(gfa["status"], "UNKNOWN")
+        self.assertTrue(gfa["comparable"], "the baseline is not what failed")
 
     def test_a_thin_fetch_withholds_the_ratio_instead_of_lowering_it(self):
         """The 2026-08-20 ratios: our own downtime published as a carrier's cut.
@@ -1822,6 +1830,161 @@ class TestBlindWeekEndToEnd(unittest.TestCase):
             thin["status"], "UNKNOWN",
             "withholding must read as UNKNOWN, not as NO BASELINE -- the two "
             "blame opposite ends of the calculation")
+
+
+class TestCarrierVisibility(unittest.TestCase):
+    """The gate that can tell a British Airways from an Emirates.
+
+    Measured 2026-08-24 against the live API: on 2026-08-19 seventy-one
+    arrivals into Dubai came from European airports and every one was Emirates
+    or flydubai. Four were Heathrow to Dubai -- all four Emirates. BA runs the
+    same pair daily and is in the feed under no callsign at all. Thirteen
+    carriers that flew ~30 departures a day through the reference window total
+    zero or one a day across all of August.
+
+    Every earlier gate is geographic and none of them can see that, because
+    the two carriers share the pair, the day and the receivers. So a carrier
+    absent from the whole visibility span is withheld, and a carrier still
+    present elsewhere is not -- that second half is the point. A gate that
+    muted the detector would be no better than the false stops it prevents.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.today = date.today()
+        self._build()
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _leg(self, carrier, day, i, dep, arr):
+        return {
+            "icao24": f"cc{i:05x}", "first_seen": 1700000000 + i * 60,
+            "last_seen": None, "callsign": f"{carrier}{i}", "carrier": carrier,
+            "flight_number": i, "dep_icao": dep, "arr_icao": arr,
+            "is_freight": 0, "dep_date": day.isoformat(), "source": "t",
+            "ingested_at": 0,
+        }
+
+    def _build(self):
+        rows, i = [], 0
+
+        def fly(carrier, day, dep, arr, n):
+            nonlocal i
+            for _ in range(n):
+                i += 1
+                rows.append(self._leg(carrier, day, i, dep, arr))
+
+        # The reference period, far enough back to sit outside the visibility
+        # span: everyone flying, every day observed.
+        base_end = self.today - timedelta(days=127)
+        for off in range(30):
+            d = base_end - timedelta(days=off)
+            fly("UAE", d, "OMDB", "OTHH", 10)
+            fly("GFA", d, "OMDB", "OTHH", 3)
+            fly("GFA", d, "OTHH", "OMDB", 3)
+            fly("BAW", d, "OMDB", "OTHH", 3)
+
+        # The observed week. Emirates flies as always. Gulf Air flies one of
+        # its two routes and not the other -- a carrier we can plainly see,
+        # with a silent route. British Airways is simply not there.
+        self.observed = [self.today - timedelta(days=off) for off in range(6)]
+        for d in self.observed:
+            fly("UAE", d, "OMDB", "OTHH", 10)
+            fly("GFA", d, "OTHH", "OMDB", 3)
+
+        db.upsert_flights(self.conn, rows)
+        metrics.rebuild_daily(self.conn)
+        window = ((base_end - timedelta(days=29)).isoformat(), base_end.isoformat())
+        for carrier, dep, arr, weekly in (("UAE", "OMDB", "OTHH", 70),
+                                          ("GFA", "OMDB", "OTHH", 21),
+                                          ("GFA", "OTHH", "OMDB", 21),
+                                          ("BAW", "OMDB", "OTHH", 21)):
+            self.conn.execute("INSERT INTO baseline VALUES (?,?,?,?,30,?,?)",
+                              (carrier, dep, arr, weekly, *window))
+        for off in range(30):
+            metrics.score_coverage(self.conn, base_end - timedelta(days=off))
+        for d in self.observed:
+            metrics.score_coverage(self.conn, d)
+        self.conn.commit()
+
+    def _route(self, report, carrier, dep, arr):
+        return [r for r in report["routes"] if r["carrier"] == carrier
+                and r["origin"] == dep and r["destination"] == arr][0]
+
+    def test_the_rate_separates_the_two_cases(self):
+        vis = metrics.carrier_visibility(self.conn, self.today,
+                                         config.CARRIER_VISIBILITY_DAYS)
+        self.assertGreaterEqual(vis["UAE"], config.MIN_CARRIER_VISIBILITY)
+        self.assertGreaterEqual(
+            vis["GFA"], config.MIN_CARRIER_VISIBILITY,
+            "half a carrier's routes still flying is a carrier we can see")
+        self.assertLess(vis["BAW"], config.MIN_CARRIER_VISIBILITY)
+
+    def test_a_carrier_the_feed_does_not_carry_is_not_called_stopped(self):
+        report = metrics.route_report(self.conn, self.today)
+        self.assertTrue(report["ratios_published"])
+        baw = self._route(report, "BAW", "OMDB", "OTHH")
+        self.assertTrue(
+            baw["comparable"],
+            "the reference period is fine; it is the present we cannot see")
+        self.assertFalse(baw["scored"])
+        self.assertIsNone(baw["ratio"])
+        self.assertEqual(
+            baw["status"], "UNKNOWN",
+            "a carrier absent from the entire visibility span was published "
+            "at 0% of baseline -- AAL, IBE, JAL and CSN went out that way on "
+            "2026-08-24")
+
+    def test_a_carrier_we_can_still_see_keeps_its_silent_route(self):
+        """The half that matters: this must not mute the detector."""
+        report = metrics.route_report(self.conn, self.today)
+        gfa = self._route(report, "GFA", "OMDB", "OTHH")
+        self.assertTrue(gfa["scored"])
+        self.assertEqual(gfa["ratio"], 0.0)
+        self.assertEqual(gfa["status"], "SUSPENDED")
+
+    def test_the_page_ratio_withholds_it_too_and_says_why(self):
+        """Two surfaces, one rule. They disagreed, and the page was the wrong one.
+
+        The pair-and-direction gate cannot catch this: BA's Dubai legs would
+        be caught by the same healthy Dubai fetch that catches Emirates', so
+        every pair passes the visibility floor and the carrier still reads
+        zero. On 2026-08-24 this column published BA, American, Iberia, JAL
+        and China Southern at %0 on a timetable share of 1.0, beside a JSON
+        API that had just withdrawn all five.
+        """
+        from src import report
+        # One direction only. The reverse pair has no control traffic in this
+        # fixture, so it fails the visibility floor and leaves both carriers
+        # under the timetable-share test -- which would withhold the ratio for
+        # the wrong reason and prove nothing.
+        for dep, arr, carrier, weekly in (("DXB", "DOH", "BAW", 20),
+                                          ("DXB", "DOH", "UAE", 70)):
+            self.conn.execute(
+                "INSERT INTO route_schedule VALUES (?,?,?,?,1,0,?)",
+                (dep, arr, carrier, weekly, self.today.isoformat()))
+        self.conn.commit()
+
+        out = report.observed_vs_scheduled(self.conn, metrics.WINDOW_DAYS)
+        self.assertIsNotNone(out["UAE"]["ratio"],
+                             "a carrier we can see must still be measured")
+        self.assertIsNone(out["BAW"]["ratio"])
+        self.assertFalse(out["BAW"]["carrier_seen"])
+        self.assertEqual(
+            out["BAW"]["share"], 1.0,
+            "the timetable share is fine -- which is why the share test let "
+            "this through, and why the cell has to name the real reason")
+
+    def test_the_ledger_opens_nothing_against_a_carrier_we_cannot_see(self):
+        from src import suspensions
+        events = suspensions.detect(self.conn, self.today)
+        opened = {(e["carrier"], e["detail"]) for e in events["opened_events"]}
+        self.assertNotIn(
+            ("BAW", "OMDB-OTHH"), opened,
+            "silence from a carrier this feed does not carry is not a stop")
 
 
 if __name__ == "__main__":

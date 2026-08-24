@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T13:04:43+00:00",
+  "generated_at": "2026-08-24T19:33:05+00:00",
   "as_of_day": "2026-08-23",
   "coverage": {
     "day": "2026-08-23",
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 9
+    "carriers_with_ratio": 4
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -49,7 +49,7 @@
     {
       "carrier": "AAL",
       "name": "American Airlines",
-      "status": "SUSPENDED",
+      "status": "UNKNOWN",
       "operating": true,
       "stopped": false,
       "href": "airlines/AAL.json"
@@ -57,7 +57,7 @@
     {
       "carrier": "BAW",
       "name": "British Airways",
-      "status": "SUSPENDED",
+      "status": "UNKNOWN",
       "operating": true,
       "stopped": false,
       "href": "airlines/BAW.json"
@@ -73,7 +73,7 @@
     {
       "carrier": "CSN",
       "name": "China Southern",
-      "status": "SUSPENDED",
+      "status": "UNKNOWN",
       "operating": true,
       "stopped": false,
       "href": "airlines/CSN.json"
@@ -121,7 +121,7 @@
     {
       "carrier": "IBE",
       "name": "Iberia",
-      "status": "SUSPENDED",
+      "status": "UNKNOWN",
       "operating": true,
       "stopped": false,
       "href": "airlines/IBE.json"
@@ -129,7 +129,7 @@
     {
       "carrier": "JAL",
       "name": "Japan Airlines",
-      "status": "SUSPENDED",
+      "status": "UNKNOWN",
       "operating": true,
       "stopped": false,
       "href": "airlines/JAL.json"

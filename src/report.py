@@ -236,6 +236,13 @@ def observed_vs_scheduled(conn, days: int) -> dict[str, dict]:
     cov = metrics.coverage_map(conn)
     ok_days = set(metrics.observed_days(cov, ref, days))
     ap_cov = metrics.airport_side_coverage(conn, ref, days)
+    # And whether this feed carries the operator at all. The pair-and-direction
+    # test above cannot answer that: British Airways' Dubai legs are caught by
+    # the same healthy Dubai fetch that catches Emirates', so every pair passes
+    # and the carrier still reads zero. On 2026-08-24 this column published
+    # BA, American, Iberia, JAL and China Southern at %0 with `trustworthy`
+    # true, on a timetable share of 1.0. See metrics.carrier_visibility.
+    vis_rate = metrics.carrier_visibility(conn, ref, config.CARRIER_VISIBILITY_DAYS)
 
     def visible(dep: str, arr: str) -> set[str]:
         return ok_days & (ap_cov.get((dep, "dep"), set())
@@ -291,12 +298,19 @@ def observed_vs_scheduled(conn, days: int) -> dict[str, dict]:
         share = (planned / sch_all[code]) if sch_all[code] else 0.0
         # The same test the API ratio applies: a percentage built on a sliver
         # of the timetable is a statement about the sliver.
-        usable = planned > 0 and share >= config.MIN_COMPARABLE_SHARE
+        seen = vis_rate.get(code, 1.0) >= config.MIN_CARRIER_VISIBILITY
+        usable = planned > 0 and share >= config.MIN_COMPARABLE_SHARE and seen
         out[code] = {"observed": round(obs[code], 1), "scheduled": planned,
                      "scheduled_total": sch_all[code],
                      "ratio": (round(obs[code] / planned, 2) if usable else None),
                      "pairs": pairs_seen[code], "pairs_total": pairs_all[code],
-                     "share": round(share, 3), "trustworthy": usable}
+                     "share": round(share, 3), "trustworthy": usable,
+                     # Kept separate from `trustworthy` because the cell has to
+                     # say which of the two withheld the number. "Not enough
+                     # days" printed over a carrier we cannot see at all names
+                     # the wrong cause, and the reading guide would then
+                     # contradict the row.
+                     "carrier_seen": seen}
     return out
 
 
@@ -1194,6 +1208,11 @@ def _rows(data: dict) -> str:
                               f'{rt["scheduled"]} sefer/hafta, '
                               f'{rt["pairs"]}/{rt["pairs_total"]} çiftte — '
                               f'tarifenin %{int(rt["share"] * 100)}\u2019i</div>')
+            elif rt.get("scheduled") and not rt.get("carrier_seen", True):
+                sched_cell = (f'<span class="meta">tarifede haftada '
+                              f'{rt["scheduled"]}; bu taşıyıcı ADS-B '
+                              f'beslememizde hiç görünmüyor, oran '
+                              f'ölçülemez</span>')
             elif rt.get("scheduled"):
                 sched_cell = (f'<span class="meta">tarifede haftada '
                               f'{rt["scheduled"]}; gözlem oranı için gün sayısı '
@@ -1293,7 +1312,11 @@ def render(data: dict) -> str:
             'demektir. İki taraf da <b>aynı şehir çiftlerini</b> sayar, yoksa '
             'uzun menzilli havayolları haksız yere düşük görünür — bu yüzden '
             'soldaki <b>Sefer</b> sütunundan küçüktür, o sütun bütün '
-            'havalimanlarındaki bütün seferleri sayar.</p>')
+            'havalimanlarındaki bütün seferleri sayar. Üçüncü bir şart daha '
+            'var: <b>havayolunun beslememizde görünüyor olması</b>. British '
+            'Airways ile Emirates aynı günde aynı hattı uçuyor ve ADS-B '
+            'beslememize yalnızca biri giriyor; hiç görünmeyen bir havayolu '
+            'için bu hücre %0 demez, ölçülemediğini söyler.</p>')
     else:
         oran_th = ""
         oran_aciklama = (

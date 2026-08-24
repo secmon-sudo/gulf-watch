@@ -15,7 +15,7 @@ A station suspension is the headline. A region suspension usually means either
 a total network shutdown or -- far more likely -- that something is wrong with
 your data, so it is held to a much longer threshold.
 
-Five rules keep this honest:
+Six rules keep this honest:
 
 1. Silent days are COVERAGE-GATED. A day when the sensor network was degraded
    neither extends a silence streak nor breaks it; it is skipped. Otherwise
@@ -36,6 +36,11 @@ Five rules keep this honest:
    outbound is missing from our data rather than from the sky. This is the
    test that caught all twelve false stops of 2026-08-20/21/23 -- by hand,
    after publishing, each time.
+6. And the CARRIER has to be one this feed carries at all. The five rules
+   above are geographic and none of them can separate a British Airways from
+   an Emirates: on 2026-08-19 both flew Heathrow to Dubai, and only one is in
+   our data. Measured that day, seventy-one arrivals into Dubai came from
+   European airports and every one was Emirates or flydubai.
 """
 
 from __future__ import annotations
@@ -271,6 +276,14 @@ def detect(conn, day: date | None = None) -> dict:
     ap_cov = metrics.airport_side_coverage(conn, day, max(SPAN_DAYS.values()))
     # ...and whether each end of a route could be named at all.
     nameable = metrics.nameable_days(conn, day, max(SPAN_DAYS.values()))
+    # ...and whether this feed carries the operator at all. The last_flight_on
+    # requirement below already refuses a stop for a carrier never once seen,
+    # which is what saved the ledger from these on 2026-08-17. It stops being
+    # enough the moment one stray leg gives such a carrier a last operating
+    # day: British Airways has exactly one in the record, Heathrow to Amman on
+    # 2026-08-23, against 63.7 departures a week of baseline it never appears
+    # on. Ask the question directly rather than rely on that.
+    car_vis = metrics.carrier_visibility(conn, day, config.CARRIER_VISIBILITY_DAYS)
     opened: list[dict] = []
     resumed: list[dict] = []
 
@@ -280,6 +293,9 @@ def detect(conn, day: date | None = None) -> dict:
         span = SPAN_DAYS[scope]
         for key, meta in entries.items():
             if meta["baseline"] < floor:
+                continue
+            if (car_vis.get(meta["carrier"], 1.0)
+                    < config.MIN_CARRIER_VISIBILITY):
                 continue
             counts = _daily_counts(conn, scope, key)
             s = silence(counts, cov, day, span,
