@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-23T22:22:15+00:00",
-  "as_of_day": "2026-08-22",
+  "generated_at": "2026-08-24T13:04:43+00:00",
+  "as_of_day": "2026-08-23",
   "coverage": {
-    "day": "2026-08-22",
-    "control_flights": 642,
-    "median_28d": 525.0,
-    "score": 1.223,
+    "day": "2026-08-23",
+    "control_flights": 755,
+    "median_28d": 532,
+    "score": 1.419,
     "verdict": "ok"
   },
   "observation": {
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 4
+    "carriers_with_ratio": 9
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -25,17 +25,17 @@
   "name": "British Airways",
   "iata": "BA",
   "country": "GB",
-  "weekly_frequency": 0,
+  "weekly_frequency": 1,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": 0.0,
-  "baseline_weekly": 50.1,
+  "baseline_weekly": 60.7,
   "routes_total": 17,
-  "routes_baselined": 4,
-  "routes_suspended": 4,
+  "routes_baselined": 5,
+  "routes_suspended": 5,
   "routes_reduced": 0,
   "observed_days": 6,
-  "comparable_share": 0.79,
-  "baselined_share": 0.957,
+  "comparable_share": 0.943,
+  "baselined_share": 0.943,
   "ratio": 0.0,
   "status": "SUSPENDED",
   "operating": true,
@@ -63,7 +63,7 @@
       "scored": true,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 9,
+      "silent_days": 10,
       "observed_days": 5
     },
     {
@@ -71,7 +71,7 @@
       "carrier_name": "British Airways",
       "origin": "EGLL",
       "destination": "OJAI",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -79,7 +79,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 0
     },
@@ -114,8 +114,8 @@
       "scored": true,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 5
+      "silent_days": 10,
+      "observed_days": 6
     },
     {
       "carrier": "BAW",
@@ -131,7 +131,7 @@
       "scored": true,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 9,
+      "silent_days": 10,
       "observed_days": 5
     },
     {
@@ -216,7 +216,7 @@
       "scored": true,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 9,
+      "silent_days": 10,
       "observed_days": 5
     },
     {
@@ -293,16 +293,16 @@
       "origin": "OTHH",
       "destination": "EGLL",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 10.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 10,
+      "observed_days": 5
     },
     {
       "carrier": "BAW",
@@ -319,7 +319,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "BAW",

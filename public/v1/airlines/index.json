@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-23T22:22:15+00:00",
-  "as_of_day": "2026-08-22",
+  "generated_at": "2026-08-24T13:04:43+00:00",
+  "as_of_day": "2026-08-23",
   "coverage": {
-    "day": "2026-08-22",
-    "control_flights": 642,
-    "median_28d": 525.0,
-    "score": 1.223,
+    "day": "2026-08-23",
+    "control_flights": 755,
+    "median_28d": 532,
+    "score": 1.419,
     "verdict": "ok"
   },
   "observation": {
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 4
+    "carriers_with_ratio": 9
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -49,7 +49,7 @@
     {
       "carrier": "AAL",
       "name": "American Airlines",
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": false,
       "href": "airlines/AAL.json"
@@ -73,7 +73,7 @@
     {
       "carrier": "CSN",
       "name": "China Southern",
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": false,
       "href": "airlines/CSN.json"
@@ -121,7 +121,7 @@
     {
       "carrier": "IBE",
       "name": "Iberia",
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": false,
       "href": "airlines/IBE.json"
@@ -129,7 +129,7 @@
     {
       "carrier": "JAL",
       "name": "Japan Airlines",
-      "status": "UNKNOWN",
+      "status": "SUSPENDED",
       "operating": true,
       "stopped": false,
       "href": "airlines/JAL.json"
@@ -169,7 +169,7 @@
     {
       "carrier": "QTR",
       "name": "Qatar Airways",
-      "status": "UNKNOWN",
+      "status": "REDUCED",
       "operating": true,
       "stopped": false,
       "href": "airlines/QTR.json"

@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-23T22:22:15+00:00",
-  "as_of_day": "2026-08-22",
+  "generated_at": "2026-08-24T13:04:43+00:00",
+  "as_of_day": "2026-08-23",
   "coverage": {
-    "day": "2026-08-22",
-    "control_flights": 642,
-    "median_28d": 525.0,
-    "score": 1.223,
+    "day": "2026-08-23",
+    "control_flights": 755,
+    "median_28d": 532,
+    "score": 1.419,
     "verdict": "ok"
   },
   "observation": {
@@ -13,7 +13,7 @@
     "observed_days": 6,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 4
+    "carriers_with_ratio": 9
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -27,17 +27,17 @@
   "country": "JP",
   "weekly_frequency": 0,
   "weekly_frequency_baselined": 0,
-  "weekly_scaled": null,
-  "baseline_weekly": 6.4,
+  "weekly_scaled": 0.0,
+  "baseline_weekly": 12.9,
   "routes_total": 2,
-  "routes_baselined": 1,
-  "routes_suspended": 1,
+  "routes_baselined": 2,
+  "routes_suspended": 2,
   "routes_reduced": 0,
   "observed_days": 6,
-  "comparable_share": 0.496,
+  "comparable_share": 1.0,
   "baselined_share": 1.0,
-  "ratio": null,
-  "status": "UNKNOWN",
+  "ratio": 0.0,
+  "status": "SUSPENDED",
   "operating": true,
   "stopped": {
     "any": false,
@@ -55,16 +55,16 @@
       "origin": "OTHH",
       "destination": "RJTT",
       "weekly_frequency": 0,
-      "weekly_scaled": null,
+      "weekly_scaled": 0.0,
       "baseline_weekly": 6.5,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "scored": true,
+      "ratio": 0.0,
+      "status": "SUSPENDED",
+      "silent_days": 10,
+      "observed_days": 5
     },
     {
       "carrier": "JAL",
@@ -80,7 +80,7 @@
       "scored": true,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 9,
+      "silent_days": 10,
       "observed_days": 5
     }
   ],
