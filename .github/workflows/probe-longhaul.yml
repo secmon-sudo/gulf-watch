@@ -1,0 +1,109 @@
+name: probe-longhaul
+
+# ONE-OFF DIAGNOSTIC -- delete once it has answered.
+#
+# Question: are the intercontinental carriers missing from `flight` because
+# OpenSky finalises long-haul arrival/departure estimates later than the 48h
+# window ingest reads, or for some other reason? Thirteen carriers that ran
+# ~30 departures a day in the Nov-Jan baseline window (AFR 28.3/wk at Dubai,
+# DLH 20.4, KLM 11.3, BAW, AAL, IBE, JAL, CSN...) total 0-1 a day across all
+# of August 2026, while every carrier still visible is Gulf/Levant/Turkey
+# based.
+#
+# Method: re-ask OpenSky for a day we already ingested at the time -- 2026-08-19,
+# fully inside the 2026-08-20T14:14Z run's 48h window -- and compare, record by
+# record, what it returns now against what we stored then. Anything present now
+# and absent from `flight` arrived after we asked.
+#
+# Costs exactly two OpenSky requests (one UTC day is one partition), and writes
+# nothing.
+
+on:
+  workflow_dispatch:
+    inputs:
+      day:
+        description: "UTC day to re-ask for (YYYY-MM-DD)"
+        default: "2026-08-19"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Probe
+        env:
+          OPENSKY_CLIENT_ID: ${{ secrets.OPENSKY_CLIENT_ID }}
+          OPENSKY_CLIENT_SECRET: ${{ secrets.OPENSKY_CLIENT_SECRET }}
+          DAY: ${{ inputs.day || '2026-08-19' }}
+        run: |
+          python - <<'PY'
+          import os, sqlite3, collections, datetime as dt
+          from src import config
+          from src.opensky import OpenSky, API
+          from src.parse import normalise, parse_callsign
+
+          day = os.environ["DAY"]
+          begin = int(dt.datetime.strptime(day, "%Y-%m-%d")
+                      .replace(tzinfo=dt.timezone.utc).timestamp())
+          end = begin + 24 * 3600
+
+          api = OpenSky()
+          print("authenticated:", api.authenticated)
+          carriers = config.carriers()
+          conn = sqlite3.connect("data/gulfwatch.db")
+          held = {(i, f) for i, f in conn.execute(
+              "SELECT icao24, first_seen FROM flight")}
+
+          # The set that vanished from August, named here so the output reads
+          # without a lookup. Everything else returned is regional.
+          FOREIGN = {"BAW","AFR","DLH","KLM","AAL","JAL","IBE","FIN",
+                     "CSN","CCA","CES","DAH","IBS"}
+
+          # The request goes out through the client's session and auth header
+          # rather than _get(), only so the response headers survive: the
+          # allowance left is the one number a run cannot estimate.
+          def ask(icao):
+              resp = api.session.get(
+                  f"{API}/flights/arrival",
+                  params={"airport": icao, "begin": begin, "end": end},
+                  headers=api._auth_header(), timeout=60)
+              print(f"{icao}: HTTP {resp.status_code}  remaining="
+                    f"{resp.headers.get('X-Rate-Limit-Remaining')}")
+              if resp.status_code == 404:
+                  return []
+              resp.raise_for_status()
+              return resp.json()
+
+          for icao in ("OMDB", "OTHH"):
+              raw = ask(icao)
+              print(f"=== {icao} arrivals {day}: {len(raw)} records now ===")
+              tally = collections.defaultdict(lambda: [0, 0, 0])  # now, kept, held
+              for rec in raw:
+                  c, _ = parse_callsign(rec.get("callsign"))
+                  if c is None:
+                      c = "(unparsed)"
+                  t = tally[c]
+                  t[0] += 1
+                  if normalise(rec, carriers, "opensky"):
+                      t[1] += 1
+                  if (str(rec.get("icao24") or "").lower(),
+                      int(rec.get("firstSeen") or 0)) in held:
+                      t[2] += 1
+              print(f"{'carrier':10}{'now':>6}{'normalised':>12}{'in db':>8}{'missed':>9}")
+              for c in sorted(tally, key=lambda k: -tally[k][0]):
+                  now, kept, inx = tally[c]
+                  mark = "  <-- FOREIGN" if c in FOREIGN else ""
+                  print(f"{c:10}{now:>6}{kept:>12}{inx:>8}{kept - inx:>9}{mark}")
+              f_now = sum(v[0] for k, v in tally.items() if k in FOREIGN)
+              f_db = sum(v[2] for k, v in tally.items() if k in FOREIGN)
+              print(f"foreign carriers: {f_now} returned now, {f_db} already held\n")
+          PY
