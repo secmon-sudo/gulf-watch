@@ -83,27 +83,34 @@ jobs:
               resp.raise_for_status()
               return resp.json()
 
-          for icao in ("OMDB", "OTHH"):
+          for icao in ("OMDB",):
               raw = ask(icao)
               print(f"=== {icao} arrivals {day}: {len(raw)} records now ===")
-              tally = collections.defaultdict(lambda: [0, 0, 0])  # now, kept, held
-              for rec in raw:
-                  c, _ = parse_callsign(rec.get("callsign"))
-                  if c is None:
-                      c = "(unparsed)"
-                  t = tally[c]
-                  t[0] += 1
-                  if normalise(rec, carriers, "opensky"):
-                      t[1] += 1
-                  if (str(rec.get("icao24") or "").lower(),
-                      int(rec.get("firstSeen") or 0)) in held:
-                      t[2] += 1
-              print(f"{'carrier':10}{'now':>6}{'normalised':>12}{'in db':>8}{'missed':>9}")
-              for c in sorted(tally, key=lambda k: -tally[k][0]):
-                  now, kept, inx = tally[c]
-                  mark = "  <-- FOREIGN" if c in FOREIGN else ""
-                  print(f"{c:10}{now:>6}{kept:>12}{inx:>8}{kept - inx:>9}{mark}")
-              f_now = sum(v[0] for k, v in tally.items() if k in FOREIGN)
-              f_db = sum(v[2] for k, v in tally.items() if k in FOREIGN)
-              print(f"foreign carriers: {f_now} returned now, {f_db} already held\n")
+
+              # Round two. Round one showed the thirteen absent from the feed
+              # entirely and `missed` at zero for every carrier, so nothing is
+              # arriving late -- the question left is whether they are really
+              # absent or merely wearing a callsign parse_callsign rejects.
+              # Asking by origin airport rather than by callsign is the way to
+              # find out: an EGLL/LFPG/EDDF/EHAM departure is a BA/AF/LH/KLM
+              # leg whatever it calls itself.
+              EURO = ("EG", "LF", "ED", "EH", "LE", "EF", "LI", "LS", "EK",
+                      "EB", "LO", "LK", "EP", "ES", "EN", "LG", "LP", "LT")
+              euro = [r for r in raw
+                      if (r.get("estDepartureAirport") or "").startswith(EURO)]
+              print(f"\n-- records whose estimated origin is European: {len(euro)}")
+              for r in sorted(euro, key=lambda r: r.get("estDepartureAirport") or ""):
+                  print(f"   {r.get('estDepartureAirport')}  "
+                        f"callsign={r.get('callsign')!r}  icao24={r.get('icao24')}")
+
+              unparsed = [r for r in raw if parse_callsign(r.get("callsign"))[0] is None]
+              print(f"\n-- records whose callsign does not parse: {len(unparsed)}")
+              for r in unparsed:
+                  print(f"   callsign={r.get('callsign')!r}  "
+                        f"dep={r.get('estDepartureAirport')}  icao24={r.get('icao24')}")
+
+              origins = collections.Counter(
+                  (r.get("estDepartureAirport") or "(none)")[:2] for r in raw)
+              print("\n-- origins by ICAO region prefix:",
+                    dict(sorted(origins.items(), key=lambda kv: -kv[1])))
           PY
