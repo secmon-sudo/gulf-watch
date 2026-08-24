@@ -34,6 +34,31 @@ class TestCallsign(unittest.TestCase):
     def test_alpha_suffix(self):
         self.assertEqual(parse_callsign("MEA212A"), ("MEA", 212))
 
+    def test_two_letter_suffix(self):
+        """17% of a day at Dubai, thrown away by one character of regex.
+
+        Measured against the live API on 2026-08-24: the old pattern allowed
+        a single trailing letter and discarded 74 of 439 arrival records for
+        2026-08-19 -- 43 flydubai, 25 Emirates, 3 Turkish -- on exactly these
+        shapes. A dropped record was never stored, so the loss could not be
+        seen from inside our own data at all.
+
+        The flight number has to survive too: stripping one letter off "4DT"
+        leaves "4D", and a leg with no flight number cannot be told from a
+        freighter.
+        """
+        self.assertEqual(parse_callsign("UAE4DT"), ("UAE", 4))
+        self.assertEqual(parse_callsign("FDB7ZK"), ("FDB", 7))
+        self.assertEqual(parse_callsign("THY9ZD"), ("THY", 9))
+        self.assertEqual(parse_callsign("UAE12AB"), ("UAE", 12))
+
+    def test_three_letters_is_still_too_many(self):
+        # The suffix has to start with a digit, or the ground vehicles and the
+        # registrations come in with it. DPDB205 was in the same day's feed.
+        self.assertEqual(parse_callsign("DPDB205"), (None, None))
+        self.assertEqual(parse_callsign("ABCDEF"), (None, None))
+        self.assertEqual(parse_callsign("N123AB"), (None, None))
+
     def test_every_configured_carrier_is_a_valid_prefix(self):
         for code in config.carriers():
             self.assertRegex(code, r"^[A-Z]{3}$", f"{code} is not an ICAO prefix")
@@ -1830,6 +1855,58 @@ class TestBlindWeekEndToEnd(unittest.TestCase):
             thin["status"], "UNKNOWN",
             "withholding must read as UNKNOWN, not as NO BASELINE -- the two "
             "blame opposite ends of the calculation")
+
+
+class TestScheduleCodeshare(unittest.TestCase):
+    """A marketed codeshare is somebody else's aeroplane.
+
+    AirLabs lists a route under the airline whose number is on the ticket, so
+    Qatar Airways' Riyadh-Doha flights arrive in the feed a second time as
+    American Airlines. Counting their days as AA's own timetable gave AA 220
+    weekly departures at Jeddah and Riyadh against zero sightings, and the
+    report published the %0 that follows. Royal Air Maroc showed the same
+    thing from the other side on 2026-08-24: "12 sefer havada görüldü" and
+    "%0" in one row, on a denominator of 163 departures it does not operate.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def test_the_marketing_carrier_does_not_inherit_the_flight(self):
+        from src import schedules
+        rows = [
+            # Qatar Airways' own metal, seven days a week.
+            {"airline_icao": "QTR", "flight_iata": "QR1170",
+             "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]},
+            # The same aircraft sold twice more, by two partners.
+            {"airline_icao": "AAL", "flight_iata": "AA8710",
+             "cs_flight_iata": "QR1170",
+             "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]},
+            {"airline_icao": "BAW", "flight_iata": "BA6410",
+             "cs_flight_iata": "QR1170",
+             "days": ["mon", "wed", "fri"]},
+        ]
+        with mock.patch.object(schedules, "_key", return_value="k"), \
+                mock.patch.object(schedules, "_fetch", return_value=rows):
+            schedules.refresh(self.conn, limit=1)
+
+        got = {r["carrier"]: (r["weekly"], r["codeshare"]) for r in
+               self.conn.execute("SELECT carrier, weekly, codeshare "
+                                 "FROM route_schedule")}
+        self.assertEqual(got["QTR"], (7, 0))
+        self.assertEqual(
+            got["AAL"], (0, 1),
+            "a codeshare counted as American's own timetable is the 220 "
+            "weekly departures it holds at Jeddah and Riyadh")
+        self.assertEqual(got["BAW"], (0, 1))
+        self.assertEqual(
+            sum(w for w, _ in got.values()), 7,
+            "one aircraft, one entry in the denominator")
 
 
 class TestCarrierVisibility(unittest.TestCase):

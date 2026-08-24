@@ -18,7 +18,17 @@ from __future__ import annotations
 import re
 from datetime import datetime, timezone
 
-CALLSIGN_RE = re.compile(r"^([A-Z]{3})(\d{1,4}[A-Z]?)$")
+# Three letters, a flight number, and up to TWO trailing letters. One was not
+# enough and the shortfall was invisible from inside our own data, because a
+# record dropped here was never stored: measured against the live API on
+# 2026-08-24, `^([A-Z]{3})(\d{1,4}[A-Z]?)$` threw away 74 of 439 arrivals into
+# Dubai for 2026-08-19 -- 43 flydubai, 25 Emirates, 3 Turkish -- on shapes like
+# UAE4DT, FDB7ZK and THY9ZD. That is 17% of the day, concentrated on the two
+# carriers whose observed-versus-timetable ratio has read impossibly low.
+#
+# Still rejected, and deliberately: DPDB205 and ABCDEF (the suffix must start
+# with a digit) and N123AB (a registration, not a callsign).
+CALLSIGN_RE = re.compile(r"^([A-Z]{3})(\d{1,4}[A-Z]{0,2})$")
 
 
 def parse_callsign(raw: str | None) -> tuple[str | None, int | None]:
@@ -30,7 +40,12 @@ def parse_callsign(raw: str | None) -> tuple[str | None, int | None]:
     if not m:
         return None, None
     prefix, num = m.group(1), m.group(2)
-    digits = re.sub(r"[A-Z]$", "", num)
+    # All of the trailing letters, not one of them. Stripping a single letter
+    # off "4DT" leaves "4D", which int() rejects, so widening the pattern above
+    # without widening this would have parsed the carrier and thrown the flight
+    # number away -- and the flight number is what tells a freighter from a
+    # passenger leg.
+    digits = re.sub(r"[A-Z]+$", "", num)
     try:
         return prefix, int(digits)
     except ValueError:

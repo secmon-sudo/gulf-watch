@@ -113,9 +113,25 @@ def refresh(conn, max_age_days: int = DEFAULT_MAX_AGE_DAYS,
             if not code:
                 continue
             a = agg.setdefault(code, {"weekly": 0, "flights": set(), "cs": 0})
+            # A marketed codeshare is somebody else's aeroplane. AirLabs lists
+            # it under the airline whose number is on the ticket, and counting
+            # its days as that airline's own timetable is how American Airlines
+            # came to hold 220 departures a week at Jeddah and Riyadh -- Qatar
+            # Airways flights wearing an AA number -- while ADS-B saw none of
+            # them, which the report then published as %0.
+            #
+            # It is not a small correction and it is not confined to carriers
+            # we cannot see: Royal Air Maroc rendered "12 sefer havada
+            # görüldü" and "%0" in the same row on 2026-08-24, against a
+            # denominator of 163 weekly departures it does not operate.
+            #
+            # The count is kept, because "this pair is mostly codeshare" is
+            # worth knowing. Only the weekly total stops including them.
+            if r.get("cs_flight_iata"):
+                a["cs"] += 1
+                continue
             a["weekly"] += len(r.get("days") or [])
             a["flights"].add(r.get("flight_iata"))
-            a["cs"] += 1 if r.get("cs_flight_iata") else 0
 
         conn.execute("DELETE FROM route_schedule WHERE dep_iata=? AND arr_iata=?",
                      (dep, arr))
