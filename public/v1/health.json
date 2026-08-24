@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T19:40:44+00:00",
+  "generated_at": "2026-08-24T20:01:37+00:00",
   "as_of_day": "2026-08-23",
   "coverage": {
     "day": "2026-08-23",
@@ -23,13 +23,17 @@
   },
   "database": {
     "route_departures": 75973,
-    "raw_legs_retained": 18480,
+    "raw_legs_retained": 18493,
     "first_day": "2025-10-31",
     "last_day": "2026-08-24",
     "baseline_routes": 1147
   },
   "baseline_ready": true,
   "recent_runs": [
+    {
+      "started_at": "2026-08-24T19:54:13+00:00",
+      "detail": "legs=30 coverage=ok(1.419) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=1919"
+    },
     {
       "started_at": "2026-08-24T19:38:15+00:00",
       "detail": "legs=29 coverage=ok(1.419) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=1919"
@@ -45,10 +49,6 @@
     {
       "started_at": "2026-08-21T17:43:37+00:00",
       "detail": "legs=2667 coverage=ok(1.375) rescored=1 stopped=2 resumed=0 czib_changes=0 sched=0 board=2012"
-    },
-    {
-      "started_at": "2026-08-20T14:14:52+00:00",
-      "detail": "legs=2219 coverage=ok(1.089) rescored=1 stopped=9 resumed=0 czib_changes=0 sched=0 board=1952"
     }
   ]
 }
