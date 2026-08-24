@@ -1,0 +1,95 @@
+name: probe-callsign
+
+# ONE-OFF DIAGNOSTIC -- delete once it has answered.
+#
+# parse.CALLSIGN_RE allows at most one trailing letter, and the common suffix
+# shape is two: UAE4DT, FDB7ZK, THY9ZD. Measured 2026-08-24 at Dubai, that
+# discarded 74 of 439 arrival records for 2026-08-19 -- 43 flydubai, 25
+# Emirates, 17% of the day.
+#
+# The question this asks is not whether to fix the regex. It is whether the
+# BASELINE was harvested through the same loss, because that decides whether
+# fixing it corrects the observed/scheduled ratio or biases it:
+#
+#   same loss both sides   -> current/baseline was ~unbiased, and fixing only
+#                             the present would inflate every ratio by 1/k.
+#                             The baseline window must be re-harvested.
+#   loss only in the present -> the baseline is intact, today's numerator is
+#                             short, and the fix corrects the ratio outright.
+#                             No re-harvest.
+#
+# So: ask for one day inside the frozen reference window and one recent day,
+# through the same code, and count the shapes. Two requests, writes nothing.
+
+on:
+  workflow_dispatch:
+    inputs:
+      baseline_day:
+        description: "A UTC day inside the frozen reference window"
+        default: "2025-11-19"
+      recent_day:
+        description: "A UTC day from the observation record"
+        default: "2026-08-19"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Probe
+        env:
+          OPENSKY_CLIENT_ID: ${{ secrets.OPENSKY_CLIENT_ID }}
+          OPENSKY_CLIENT_SECRET: ${{ secrets.OPENSKY_CLIENT_SECRET }}
+          BASELINE_DAY: ${{ inputs.baseline_day || '2025-11-19' }}
+          RECENT_DAY: ${{ inputs.recent_day || '2026-08-19' }}
+        run: |
+          python - <<'PY'
+          import os, re, collections, datetime as dt
+          from src.opensky import OpenSky, API
+          from src.parse import CALLSIGN_RE
+
+          PROPOSED = re.compile(r"^([A-Z]{3})(\d{1,4}[A-Z]{0,2})$")
+
+          api = OpenSky()
+
+          def ask(icao, day):
+              begin = int(dt.datetime.strptime(day, "%Y-%m-%d")
+                          .replace(tzinfo=dt.timezone.utc).timestamp())
+              resp = api.session.get(
+                  f"{API}/flights/arrival",
+                  params={"airport": icao, "begin": begin, "end": begin + 86400},
+                  headers=api._auth_header(), timeout=60)
+              print(f"{icao} {day}: HTTP {resp.status_code}  "
+                    f"remaining={resp.headers.get('X-Rate-Limit-Remaining')}")
+              return [] if resp.status_code == 404 else resp.json()
+
+          for label, day in (("REFERENCE", os.environ["BASELINE_DAY"]),
+                             ("PRESENT  ", os.environ["RECENT_DAY"])):
+              raw = ask("OMDB", day)
+              kept = recovered = dropped = 0
+              lost = collections.Counter()
+              for rec in raw:
+                  cs = (rec.get("callsign") or "").strip().upper()
+                  if CALLSIGN_RE.match(cs):
+                      kept += 1
+                  elif PROPOSED.match(cs):
+                      recovered += 1
+                      lost[cs[:3]] += 1
+                  else:
+                      dropped += 1
+              total = len(raw)
+              pct = recovered / total * 100 if total else 0
+              print(f"{label} {day}  records={total}  parsed_now={kept}  "
+                    f"recovered_by_fix={recovered} ({pct:.1f}%)  "
+                    f"still_unparsed={dropped}")
+              print(f"   recovered by carrier: {dict(lost.most_common(8))}\n")
+          PY
