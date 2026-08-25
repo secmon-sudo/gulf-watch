@@ -48,6 +48,10 @@ EXIT_INCOMPLETE = 2
 RAW_RETENTION_DAYS = 60
 
 
+# Seen live, blind across the reference window. See observable_airports.
+BASELINE_BLIND = {"OOMS"}
+
+
 def observable_airports() -> list[str]:
     """The airports OpenSky can actually see.
 
@@ -57,9 +61,16 @@ def observable_airports() -> list[str]:
     no inputs at all -- so the list has to come from somewhere that a cron run
     reaches too. Harvesting the other seven costs about half the daily
     allowance and returns zero flights, measured over a real 48h ingest.
+
+    Muscat is the eighth, and it is only knowable by having harvested it. The
+    live 48h ingest sees it, so BLIND does not list it, but across the frozen
+    2025-11-01..2026-01-31 window it returned **zero legs on all thirteen of
+    its slices** in the 2026-08-11 harvest. Thirteen slices is an eighth of the
+    run and, at the pace a re-harvest can afford beside the daily ingest, more
+    than a day of waiting for nothing.
     """
     return [icao for icao, cfg in config.airports().items()
-            if cfg["iata"] not in schedules.BLIND]
+            if cfg["iata"] not in schedules.BLIND and icao not in BASELINE_BLIND]
 
 
 def _slices(t0: int, t1: int) -> list[tuple[int, int]]:

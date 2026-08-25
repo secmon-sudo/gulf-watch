@@ -1263,9 +1263,14 @@ class TestCompaction(unittest.TestCase):
         allowance on airports measured to return zero."""
         from src import schedules
         picked = self.bf.observable_airports()
-        self.assertEqual(len(picked), 8)
+        self.assertEqual(len(picked), 7)
         iata = {config.airports()[i]["iata"] for i in picked}
         self.assertFalse(iata & set(schedules.BLIND))
+        # Muscat is seen live and blind across the reference window -- zero
+        # legs on all thirteen of its slices in the 2026-08-11 harvest -- so it
+        # is excluded here and nowhere else.
+        self.assertNotIn("OOMS", picked)
+        self.assertIn("OOMS", config.airports())
 
     def test_compacting_twice_does_not_destroy_the_rollup(self):
         """A second run over a finished window finds no raw legs. Rebuilding
