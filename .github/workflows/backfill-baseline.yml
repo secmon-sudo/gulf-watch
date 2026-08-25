@@ -10,6 +10,23 @@ name: backfill-baseline
 # what remains is re-harvesting a different window on purpose.
 
 on:
+  # TEMPORARY -- delete this block when the 2026-08-25 re-harvest finishes.
+  # It exists once before, for the original harvest, and was removed in
+  # 0147d59 the day that one completed. Leaving it in turns a one-time
+  # operation into a standing job that re-fetches the same frozen window
+  # forever.
+  #
+  # 15:00 UTC, and the hour is the whole point. The allowance resets at ~10:44,
+  # the daily ingest fires at 12:00 and lands around 13:00, and a full
+  # fifteen-airport pass costs about 1900 of the roughly 4000 credits a day
+  # holds. Running the harvest first would take the lot and leave the ingest
+  # nothing, which costs an observed day -- and the analysis needs five of them
+  # inside a rolling seven, so a lost day keeps costing for a week. Second in
+  # the queue, the harvest gets whatever the ingest did not spend, stops
+  # cleanly when that is gone, and resumes here tomorrow. It also shares the
+  # `ingest` concurrency group, so even a late ingest cannot collide with it.
+  schedule:
+    - cron: "0 15 * * *"
   workflow_dispatch:
     inputs:
       start:
