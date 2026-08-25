@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-24T20:01:37+00:00",
-  "as_of_day": "2026-08-23",
+  "generated_at": "2026-08-25T13:00:53+00:00",
+  "as_of_day": "2026-08-24",
   "coverage": {
-    "day": "2026-08-23",
-    "control_flights": 755,
-    "median_28d": 532,
-    "score": 1.419,
-    "verdict": "ok"
+    "day": "2026-08-24",
+    "control_flights": 197,
+    "median_28d": 534.0,
+    "score": 0.369,
+    "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 6,
+    "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 4
+    "carriers_with_ratio": 2
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -33,7 +33,7 @@
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 6,
+  "observed_days": 5,
   "comparable_share": 0.0,
   "baselined_share": 0.0,
   "ratio": null,
@@ -64,7 +64,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "DAH",
@@ -81,7 +81,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 0
     },
     {
       "carrier": "DAH",
