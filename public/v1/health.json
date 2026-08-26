@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-25T15:09:55+00:00",
-  "as_of_day": "2026-08-24",
+  "generated_at": "2026-08-26T13:07:19+00:00",
+  "as_of_day": "2026-08-25",
   "coverage": {
-    "day": "2026-08-24",
-    "control_flights": 197,
-    "median_28d": 534.0,
-    "score": 0.369,
+    "day": "2026-08-25",
+    "control_flights": 175,
+    "median_28d": 532,
+    "score": 0.329,
     "verdict": "outage"
   },
   "observation": {
@@ -13,7 +13,7 @@
     "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 2
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -22,14 +22,18 @@
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
   "database": {
-    "route_departures": 76111,
-    "raw_legs_retained": 60365,
+    "route_departures": 76654,
+    "raw_legs_retained": 61654,
     "first_day": "2025-10-31",
-    "last_day": "2026-08-25",
+    "last_day": "2026-08-26",
     "baseline_routes": 1147
   },
   "baseline_ready": true,
   "recent_runs": [
+    {
+      "started_at": "2026-08-26T13:03:07+00:00",
+      "detail": "legs=1485 coverage=outage(0.329) rescored=2 stopped=0 resumed=0 czib_changes=0 sched=0 board=1844"
+    },
     {
       "started_at": "2026-08-25T12:57:07+00:00",
       "detail": "legs=1472 coverage=outage(0.369) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=1828 FLAGGED[OIIE:empty]"
@@ -45,10 +49,6 @@
     {
       "started_at": "2026-08-24T13:00:59+00:00",
       "detail": "legs=3052 coverage=ok(1.419) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=1919"
-    },
-    {
-      "started_at": "2026-08-23T22:06:22+00:00",
-      "detail": "legs=2245 coverage=ok(1.223) rescored=2 stopped=1 resumed=0 czib_changes=0 sched=0 board=1962"
     }
   ]
 }

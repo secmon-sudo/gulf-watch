@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-25T15:09:55+00:00",
-  "as_of_day": "2026-08-24",
+  "generated_at": "2026-08-26T13:07:19+00:00",
+  "as_of_day": "2026-08-25",
   "coverage": {
-    "day": "2026-08-24",
-    "control_flights": 197,
-    "median_28d": 534.0,
-    "score": 0.369,
+    "day": "2026-08-25",
+    "control_flights": 175,
+    "median_28d": 532,
+    "score": 0.329,
     "verdict": "outage"
   },
   "observation": {
@@ -13,7 +13,7 @@
     "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 2
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -81,7 +81,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "AAL",
@@ -115,7 +115,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     }
   ],
   "stop_events": [],

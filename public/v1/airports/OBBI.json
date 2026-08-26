@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-25T15:09:55+00:00",
-  "as_of_day": "2026-08-24",
+  "generated_at": "2026-08-26T13:07:19+00:00",
+  "as_of_day": "2026-08-25",
   "coverage": {
-    "day": "2026-08-24",
-    "control_flights": 197,
-    "median_28d": 534.0,
-    "score": 0.369,
+    "day": "2026-08-25",
+    "control_flights": 175,
+    "median_28d": 532,
+    "score": 0.329,
     "verdict": "outage"
   },
   "observation": {
@@ -13,7 +13,7 @@
     "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 2
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -26,7 +26,7 @@
   "name": "Bahrain Intl",
   "city": "Manama",
   "country": "BH",
-  "weekly_frequency": 360,
+  "weekly_frequency": 338,
   "baseline_weekly": 366.4,
   "carriers_operating": [
     "ABY",
@@ -49,14 +49,14 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "origin": "OBBI",
       "destination": "OMSJ",
-      "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_frequency": 4,
+      "weekly_scaled": 5.6,
       "baseline_weekly": 13.8,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 0.61,
+      "ratio": 0.407,
       "status": "UNKNOWN",
       "silent_days": 0,
       "observed_days": 5
@@ -93,7 +93,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "BAW",
@@ -110,7 +110,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "BAW",
@@ -151,7 +151,7 @@
       "carrier_name": "Etihad Airways",
       "origin": "OBBI",
       "destination": "OMAD",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -195,7 +195,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "ETD",
@@ -212,24 +212,41 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "FDB",
       "carrier_name": "flydubai",
       "origin": "OBBI",
       "destination": "OMDB",
-      "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_frequency": 5,
+      "weekly_scaled": 7.0,
       "baseline_weekly": 5.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 1.6,
+      "ratio": 1.333,
       "status": "UNKNOWN",
       "silent_days": 0,
       "observed_days": 5
+    },
+    {
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "origin": "OBBI",
+      "destination": "OMDM",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "FDB",
@@ -237,16 +254,16 @@
       "origin": "OMDB",
       "destination": "OBBI",
       "weekly_frequency": 5,
-      "weekly_scaled": 7.0,
+      "weekly_scaled": null,
       "baseline_weekly": 5.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.226,
+      "scored": false,
+      "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "FDB",
@@ -280,7 +297,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -297,7 +314,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -314,7 +331,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -331,14 +348,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "EGLL",
       "destination": "OBBI",
-      "weekly_frequency": 8,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 10.0,
       "baseline_days": 88,
@@ -348,14 +365,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "HECA",
       "destination": "OBBI",
-      "weekly_frequency": 6,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.6,
       "baseline_days": 88,
@@ -365,7 +382,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
+    },
+    {
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "origin": "HKJK",
+      "destination": "OBBI",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -382,7 +416,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -399,7 +433,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -416,7 +450,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -433,7 +467,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -450,7 +484,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -467,14 +501,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "LIRF",
       "destination": "OBBI",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 1.8,
       "baseline_days": 88,
@@ -484,7 +518,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -501,7 +535,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -525,7 +559,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "EDDF",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 1.9,
       "baseline_days": 88,
@@ -559,7 +593,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "EGCC",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -593,7 +627,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "EGLL",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.8,
       "baseline_days": 88,
@@ -678,7 +712,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "HECA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -712,7 +746,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "LCLK",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.6,
       "baseline_days": 88,
@@ -729,7 +763,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "LFPG",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 1.5,
       "baseline_days": 88,
@@ -746,7 +780,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "LGAV",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 1.4,
       "baseline_days": 88,
@@ -780,7 +814,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "LIMC",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 1.7,
       "baseline_days": 88,
@@ -797,7 +831,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "LIRF",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.8,
       "baseline_days": 88,
@@ -813,7 +847,7 @@
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
-      "destination": "LTBA",
+      "destination": "LTBN",
       "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
@@ -824,7 +858,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 0
     },
     {
       "carrier": "GFA",
@@ -864,8 +898,25 @@
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
-      "destination": "OEAA",
+      "destination": "OE50",
       "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "origin": "OBBI",
+      "destination": "OEAA",
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -967,7 +1018,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "OMAA",
-      "weekly_frequency": 7,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -984,7 +1035,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "OMAD",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -1018,14 +1069,14 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "OMDB",
-      "weekly_frequency": 24,
-      "weekly_scaled": 30.8,
+      "weekly_frequency": 20,
+      "weekly_scaled": 25.2,
       "baseline_weekly": 17.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 1.737,
+      "ratio": 1.421,
       "status": "UNKNOWN",
       "silent_days": 0,
       "observed_days": 5
@@ -1034,18 +1085,35 @@
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
-      "destination": "OTHH",
-      "weekly_frequency": 15,
+      "destination": "OMDM",
+      "weekly_frequency": 1,
       "weekly_scaled": null,
-      "baseline_weekly": 16.0,
+      "baseline_weekly": 0.0,
       "baseline_days": 88,
       "baseline_trusted": true,
-      "comparable": true,
+      "comparable": false,
       "scored": false,
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 0
+    },
+    {
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "origin": "OBBI",
+      "destination": "OTHH",
+      "weekly_frequency": 14,
+      "weekly_scaled": 18.2,
+      "baseline_weekly": 16.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": true,
+      "scored": true,
+      "ratio": 1.139,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "carrier": "GFA",
@@ -1068,8 +1136,25 @@
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
+      "destination": "UG22",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "origin": "OBBI",
       "destination": "VABB",
-      "weekly_frequency": 7,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
@@ -1085,8 +1170,25 @@
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
+      "destination": "VAPO",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "origin": "OBBI",
       "destination": "VGZR",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 2.4,
       "baseline_days": 88,
@@ -1103,7 +1205,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "VIDP",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 4.0,
       "baseline_days": 88,
@@ -1120,7 +1222,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "VOBL",
-      "weekly_frequency": 7,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -1205,7 +1307,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OBBI",
       "destination": "VTBS",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.8,
       "baseline_days": 88,
@@ -1273,7 +1375,7 @@
       "carrier_name": "Gulf Air",
       "origin": "OEDF",
       "destination": "OBBI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -1283,14 +1385,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OJAI",
       "destination": "OBBI",
-      "weekly_frequency": 8,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1300,7 +1402,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1334,7 +1436,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1351,24 +1453,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OMDB",
       "destination": "OBBI",
-      "weekly_frequency": 26,
-      "weekly_scaled": 36.4,
+      "weekly_frequency": 25,
+      "weekly_scaled": null,
       "baseline_weekly": 28.3,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 1.286,
+      "scored": false,
+      "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "GFA",
@@ -1385,24 +1487,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "OTHH",
       "destination": "OBBI",
-      "weekly_frequency": 14,
-      "weekly_scaled": 19.6,
+      "weekly_frequency": 16,
+      "weekly_scaled": null,
       "baseline_weekly": 20.6,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.951,
+      "scored": false,
+      "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "GFA",
@@ -1419,7 +1521,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1436,24 +1538,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
-    },
-    {
-      "carrier": "GFA",
-      "carrier_name": "Gulf Air",
-      "origin": "UUEE",
-      "destination": "OBBI",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1470,14 +1555,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "VAJJ",
       "destination": "OBBI",
-      "weekly_frequency": 10,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 10.7,
       "baseline_days": 88,
@@ -1487,14 +1572,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "VGZR",
       "destination": "OBBI",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 5.5,
       "baseline_days": 88,
@@ -1504,14 +1589,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "VIDP",
       "destination": "OBBI",
-      "weekly_frequency": 9,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 10.8,
       "baseline_days": 88,
@@ -1521,14 +1606,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "VOBL",
       "destination": "OBBI",
-      "weekly_frequency": 10,
+      "weekly_frequency": 9,
       "weekly_scaled": null,
       "baseline_weekly": 11.6,
       "baseline_days": 88,
@@ -1538,14 +1623,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
       "carrier_name": "Gulf Air",
       "origin": "VOCI",
       "destination": "OBBI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 5.4,
       "baseline_days": 88,
@@ -1555,7 +1640,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1579,7 +1664,7 @@
       "carrier_name": "Gulf Air",
       "origin": "VOMM",
       "destination": "OBBI",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1589,7 +1674,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1606,7 +1691,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1623,7 +1708,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1640,7 +1725,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "GFA",
@@ -1657,7 +1742,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "KAC",
@@ -1725,7 +1810,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "KAC",
@@ -1742,7 +1827,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "KNE",
@@ -1759,7 +1844,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "KNE",
@@ -1793,7 +1878,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "KNE",
@@ -1810,14 +1895,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
       "origin": "HECA",
       "destination": "OBBI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -1827,7 +1912,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
@@ -1900,23 +1985,6 @@
     {
       "carrier": "OMA",
       "carrier_name": "Oman Air",
-      "origin": "OBBI",
-      "destination": "VGZR",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 1
-    },
-    {
-      "carrier": "OMA",
-      "carrier_name": "Oman Air",
       "origin": "VAJJ",
       "destination": "OBBI",
       "weekly_frequency": 1,
@@ -1929,7 +1997,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -1946,7 +2014,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -1963,7 +2031,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -1980,7 +2048,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -1997,7 +2065,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -2014,7 +2082,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "PGT",
@@ -2031,7 +2099,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "PGT",
@@ -2048,14 +2116,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "origin": "OBBI",
       "destination": "LTBZ",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -2089,9 +2157,26 @@
       "carrier_name": "Qatar Airways",
       "origin": "OBBI",
       "destination": "OTHH",
-      "weekly_frequency": 4,
-      "weekly_scaled": null,
+      "weekly_frequency": 3,
+      "weekly_scaled": 4.2,
       "baseline_weekly": 13.3,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": true,
+      "scored": true,
+      "ratio": 0.315,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "origin": "OTHH",
+      "destination": "OBBI",
+      "weekly_frequency": 6,
+      "weekly_scaled": null,
+      "baseline_weekly": 16.7,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
@@ -2100,23 +2185,6 @@
       "status": "UNKNOWN",
       "silent_days": 0,
       "observed_days": 4
-    },
-    {
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "origin": "OTHH",
-      "destination": "OBBI",
-      "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
-      "baseline_weekly": 16.7,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": true,
-      "scored": true,
-      "ratio": 0.504,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 5
     },
     {
       "carrier": "RJA",
@@ -2133,7 +2201,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2150,7 +2218,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2174,7 +2242,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OBBI",
       "destination": "OJAI",
-      "weekly_frequency": 6,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -2191,7 +2259,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "OBBI",
-      "weekly_frequency": 7,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -2201,7 +2269,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "UAE",
@@ -2218,7 +2286,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "UAE",
@@ -2242,17 +2310,17 @@
       "carrier_name": "Emirates",
       "origin": "OMDB",
       "destination": "OBBI",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
       "baseline_weekly": 10.2,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.412,
+      "scored": false,
+      "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     }
   ]
 }

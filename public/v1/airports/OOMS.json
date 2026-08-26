@@ -21,14 +21,36 @@
     "advisories": "EASA Conflict Zone Information Bulletins",
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
-  "endpoints": [
-    "status.json",
-    "suspensions.json",
-    "alerts.json",
-    "firs.json",
-    "advisories.json",
-    "health.json",
-    "airlines/index.json",
-    "airports/index.json"
+  "airport": "OOMS",
+  "iata": "MCT",
+  "name": "Muscat Intl",
+  "city": "Muscat",
+  "country": "OM",
+  "weekly_frequency": 1,
+  "baseline_weekly": 0.0,
+  "carriers_operating": [
+    "ETD"
+  ],
+  "carriers_absent": [],
+  "carriers_stopped": [],
+  "resumed_recently": [],
+  "routes": [
+    {
+      "carrier": "ETD",
+      "carrier_name": "Etihad Airways",
+      "origin": "OMAA",
+      "destination": "OOMS",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 42,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "UNKNOWN",
+      "silent_days": 0,
+      "observed_days": 0
+    }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-25T15:09:55+00:00",
-  "as_of_day": "2026-08-24",
+  "generated_at": "2026-08-26T13:07:19+00:00",
+  "as_of_day": "2026-08-25",
   "coverage": {
-    "day": "2026-08-24",
-    "control_flights": 197,
-    "median_28d": 534.0,
-    "score": 0.369,
+    "day": "2026-08-25",
+    "control_flights": 175,
+    "median_28d": 532,
+    "score": 0.329,
     "verdict": "outage"
   },
   "observation": {
@@ -13,7 +13,7 @@
     "observed_days": 5,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 2
+    "carriers_with_ratio": 0
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -28,13 +28,13 @@
   "weekly_frequency": 11,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
-  "baseline_weekly": 7.1,
-  "routes_total": 34,
-  "routes_baselined": 2,
+  "baseline_weekly": 2.2,
+  "routes_total": 33,
+  "routes_baselined": 1,
   "routes_suspended": 0,
   "routes_reduced": 0,
   "observed_days": 5,
-  "comparable_share": 0.287,
+  "comparable_share": 0.089,
   "baselined_share": 0.287,
   "ratio": null,
   "status": "UNKNOWN",
@@ -81,7 +81,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "KNE",
@@ -115,7 +115,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "KNE",
@@ -156,7 +156,7 @@
       "carrier_name": "flynas",
       "origin": "LTCG",
       "destination": "OMDB",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -217,7 +217,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "KNE",
@@ -257,23 +257,6 @@
       "carrier": "KNE",
       "carrier_name": "flynas",
       "origin": "OJAI",
-      "destination": "OEDF",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 30,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 0
-    },
-    {
-      "carrier": "KNE",
-      "carrier_name": "flynas",
-      "origin": "OJAI",
       "destination": "OMDB",
       "weekly_frequency": 2,
       "weekly_scaled": null,
@@ -302,7 +285,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -319,7 +302,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -336,7 +319,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "KNE",
@@ -370,7 +353,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -404,7 +387,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -429,16 +412,16 @@
       "origin": "OMDB",
       "destination": "OEDR",
       "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
+      "weekly_scaled": null,
       "baseline_weekly": 4.9,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
-      "scored": true,
-      "ratio": 0.0,
+      "scored": false,
+      "ratio": null,
       "status": "UNKNOWN",
-      "silent_days": 9,
-      "observed_days": 5
+      "silent_days": 0,
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -455,7 +438,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -472,7 +455,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "KNE",
@@ -557,7 +540,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "KNE",
@@ -591,7 +574,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "KNE",
@@ -608,7 +591,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "KNE",
