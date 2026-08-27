@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-26T16:18:14+00:00",
-  "as_of_day": "2026-08-25",
+  "generated_at": "2026-08-27T17:53:32+00:00",
+  "as_of_day": "2026-08-26",
   "coverage": {
-    "day": "2026-08-25",
-    "control_flights": 175,
-    "median_28d": 532,
-    "score": 0.329,
+    "day": "2026-08-26",
+    "control_flights": 99,
+    "median_28d": 525.0,
+    "score": 0.189,
     "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 5,
+    "observed_days": 4,
     "min_observed_days": 5,
-    "ratios_published": true,
+    "ratios_published": false,
     "carriers_with_ratio": 0
   },
   "attribution": {
@@ -33,7 +33,7 @@
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 5,
+  "observed_days": 4,
   "comparable_share": 0.0,
   "baselined_share": 0.407,
   "ratio": null,
@@ -64,7 +64,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CCA",
@@ -81,7 +81,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "CCA",
@@ -98,7 +98,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "CCA",
@@ -132,7 +132,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     },
     {
       "carrier": "CCA",
@@ -149,7 +149,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     }
   ],
   "stop_events": [],
