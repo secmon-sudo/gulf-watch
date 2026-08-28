@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-28T00:13:35+00:00",
+  "generated_at": "2026-08-28T22:08:05+00:00",
   "as_of_day": "2026-08-27",
   "coverage": {
     "day": "2026-08-27",
-    "control_flights": 158,
+    "control_flights": 882,
     "median_28d": 518,
-    "score": 0.305,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 3,
+    "observed_days": 4,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -28,7 +28,7 @@
       "revision": "2026-07-08",
       "valid_to": "2026-08-31",
       "url": "https://www.easa.europa.eu/en/domains/air-operations/czibs/czib-2026-04",
-      "last_seen": "2026-08-27T22:08:41+00:00",
+      "last_seen": "2026-08-28T22:06:58+00:00",
       "summary": "Tehran FIR (OIIX)'deki tüm irtifalar ve uçuş seviyelerinde İran hava sahası yüksek risk taşır, operasyonlar kesinlikle tavsiye edilmez."
     },
     {
@@ -37,7 +37,7 @@
       "revision": "2026-07-08",
       "valid_to": "2026-08-31",
       "url": "https://www.easa.europa.eu/en/domains/air-operations/czibs/czib-2026-05",
-      "last_seen": "2026-08-27T22:08:41+00:00",
+      "last_seen": "2026-08-28T22:06:58+00:00",
       "summary": "Irak'ın (ORBB FIR) tüm irtifalarda ve uçuş seviyelerinde savaş nedeniyle yüksek risk var, uçuşlardan kaçınılmalıdır."
     },
     {
@@ -46,7 +46,7 @@
       "revision": "2026-07-08",
       "valid_to": "2026-08-31",
       "url": "https://www.easa.europa.eu/en/domains/air-operations/czibs/czib-2026-06",
-      "last_seen": "2026-08-27T22:08:41+00:00",
+      "last_seen": "2026-08-28T22:06:58+00:00",
       "summary": "Lübnan'ın (OLBB FIR) tüm irtifalar ve uçuş seviyelerinde savaş riski yüksek, uçuşlardan kaçınılmalıdır."
     }
   ]

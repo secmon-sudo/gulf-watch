@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-28T00:13:35+00:00",
+  "generated_at": "2026-08-28T22:08:05+00:00",
   "as_of_day": "2026-08-27",
   "coverage": {
     "day": "2026-08-27",
-    "control_flights": 158,
+    "control_flights": 882,
     "median_28d": 518,
-    "score": 0.305,
-    "verdict": "outage"
+    "score": 1.5,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 3,
+    "observed_days": 4,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -35,7 +35,7 @@
       "name": "Air Arabia (Sharjah)",
       "status": "UNKNOWN",
       "operating": true,
-      "stopped": false,
+      "stopped": true,
       "href": "airlines/ABY.json"
     },
     {
@@ -81,7 +81,7 @@
     {
       "carrier": "MSR",
       "name": "EgyptAir",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/MSR.json"
@@ -97,7 +97,7 @@
     {
       "carrier": "ETD",
       "name": "Etihad Airways",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/ETD.json"
@@ -145,7 +145,7 @@
     {
       "carrier": "MEA",
       "name": "Middle East Airlines",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/MEA.json"
@@ -153,15 +153,15 @@
     {
       "carrier": "OMA",
       "name": "Oman Air",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
-      "stopped": false,
+      "stopped": true,
       "href": "airlines/OMA.json"
     },
     {
       "carrier": "PGT",
       "name": "Pegasus Airlines",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/PGT.json"
@@ -185,7 +185,7 @@
     {
       "carrier": "RJA",
       "name": "Royal Jordanian",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/RJA.json"
@@ -193,7 +193,7 @@
     {
       "carrier": "SVA",
       "name": "Saudia",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/SVA.json"
@@ -209,7 +209,7 @@
     {
       "carrier": "KNE",
       "name": "flynas",
-      "status": "UNKNOWN",
+      "status": "NEW",
       "operating": true,
       "stopped": false,
       "href": "airlines/KNE.json"
