@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-28T23:52:43+00:00",
-  "as_of_day": "2026-08-27",
+  "generated_at": "2026-08-29T16:34:02+00:00",
+  "as_of_day": "2026-08-28",
   "coverage": {
-    "day": "2026-08-27",
-    "control_flights": 882,
-    "median_28d": 518,
-    "score": 1.5,
-    "verdict": "ok"
+    "day": "2026-08-28",
+    "control_flights": 107,
+    "median_28d": 525.0,
+    "score": 0.204,
+    "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
@@ -31,6 +31,10 @@
   "baseline_ready": true,
   "recent_runs": [
     {
+      "started_at": "2026-08-29T16:32:40+00:00",
+      "detail": "legs=0 coverage=outage(0.204) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=1842 FLAGGED[OIIE:empty]"
+    },
+    {
       "started_at": "2026-08-28T22:03:54+00:00",
       "detail": "legs=2604 coverage=ok(1.5) rescored=2 stopped=3 resumed=0 czib_changes=0 sched=0 board=1962"
     },
@@ -45,10 +49,6 @@
     {
       "started_at": "2026-08-26T13:03:07+00:00",
       "detail": "legs=1485 coverage=outage(0.329) rescored=2 stopped=0 resumed=0 czib_changes=0 sched=0 board=1844"
-    },
-    {
-      "started_at": "2026-08-25T12:57:07+00:00",
-      "detail": "legs=1472 coverage=outage(0.369) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=1828 FLAGGED[OIIE:empty]"
     }
   ]
 }
