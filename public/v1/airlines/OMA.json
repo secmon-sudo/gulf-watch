@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-29T18:16:47+00:00",
-  "as_of_day": "2026-08-28",
+  "generated_at": "2026-08-30T16:28:52+00:00",
+  "as_of_day": "2026-08-29",
   "coverage": {
-    "day": "2026-08-28",
-    "control_flights": 107,
-    "median_28d": 525.0,
-    "score": 0.204,
+    "day": "2026-08-29",
+    "control_flights": 0,
+    "median_28d": 518,
+    "score": 0.0,
     "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 4,
+    "observed_days": 3,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -25,17 +25,17 @@
   "name": "Oman Air",
   "iata": "WY",
   "country": "OM",
-  "weekly_frequency": 13,
+  "weekly_frequency": 7,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
-  "routes_total": 38,
+  "routes_total": 35,
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 4,
+  "observed_days": 3,
   "comparable_share": 0.0,
-  "baselined_share": 0.214,
+  "baselined_share": 0.27,
   "ratio": null,
   "status": "UNKNOWN",
   "operating": true,
@@ -61,23 +61,6 @@
       "baseline_weekly": 0.1,
       "baseline_days": 88,
       "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 0
-    },
-    {
-      "carrier": "OMA",
-      "carrier_name": "Oman Air",
-      "origin": "OJAI",
-      "destination": "WSAC",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 25,
-      "baseline_trusted": false,
       "comparable": false,
       "scored": false,
       "ratio": null,
@@ -134,7 +117,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -151,7 +134,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -168,7 +151,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -185,7 +168,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -219,24 +202,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
-    },
-    {
-      "carrier": "OMA",
-      "carrier_name": "Oman Air",
-      "origin": "OMSJ",
-      "destination": "OMDB",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -253,14 +219,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
       "carrier_name": "Oman Air",
       "origin": "OTHH",
       "destination": "VIDP",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -270,7 +236,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -304,7 +270,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -321,7 +287,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -355,7 +321,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -372,7 +338,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -389,7 +355,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -406,7 +372,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -423,7 +389,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -440,7 +406,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -457,7 +423,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -474,7 +440,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -491,7 +457,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -508,7 +474,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -531,23 +497,6 @@
       "carrier": "OMA",
       "carrier_name": "Oman Air",
       "origin": "VOBL",
-      "destination": "OMAA",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "UNKNOWN",
-      "silent_days": 0,
-      "observed_days": 0
-    },
-    {
-      "carrier": "OMA",
-      "carrier_name": "Oman Air",
-      "origin": "VOBL",
       "destination": "OMDB",
       "weekly_frequency": 0,
       "weekly_scaled": null,
@@ -559,7 +508,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -576,7 +525,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -593,7 +542,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -610,14 +559,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
       "carrier_name": "Oman Air",
       "origin": "VOCI",
       "destination": "OTHH",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.8,
       "baseline_days": 88,
@@ -627,7 +576,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -644,14 +593,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
       "carrier_name": "Oman Air",
       "origin": "VOTV",
       "destination": "OTHH",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -661,7 +610,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "OMA",
@@ -678,7 +627,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "OMA",
@@ -695,7 +644,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     }
   ],
   "stop_events": [
