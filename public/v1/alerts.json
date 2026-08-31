@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-30T18:32:18+00:00",
-  "as_of_day": "2026-08-29",
+  "generated_at": "2026-08-31T19:04:29+00:00",
+  "as_of_day": "2026-08-30",
   "coverage": {
-    "day": "2026-08-29",
-    "control_flights": 0,
+    "day": "2026-08-30",
+    "control_flights": 683,
     "median_28d": 518,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.319,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
@@ -21,7 +21,7 @@
     "advisories": "EASA Conflict Zone Information Bulletins",
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
-  "suppressed": true,
-  "suppression_reason": "ADS-B coverage below threshold; absence of flights cannot be distinguished from absence of data",
+  "suppressed": false,
+  "suppression_reason": null,
   "alerts": []
 }

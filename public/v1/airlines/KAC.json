@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-30T18:32:18+00:00",
-  "as_of_day": "2026-08-29",
+  "generated_at": "2026-08-31T19:04:29+00:00",
+  "as_of_day": "2026-08-30",
   "coverage": {
-    "day": "2026-08-29",
-    "control_flights": 0,
+    "day": "2026-08-30",
+    "control_flights": 683,
     "median_28d": 518,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.319,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
@@ -25,7 +25,7 @@
   "name": "Kuwait Airways",
   "iata": "KU",
   "country": "KW",
-  "weekly_frequency": 5,
+  "weekly_frequency": 6,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
@@ -35,7 +35,7 @@
   "routes_reduced": 0,
   "observed_days": 3,
   "comparable_share": 0.0,
-  "baselined_share": 0.744,
+  "baselined_share": 0.727,
   "ratio": null,
   "status": "UNKNOWN",
   "operating": true,
@@ -139,7 +139,7 @@
       "carrier_name": "Kuwait Airways",
       "origin": "LTCG",
       "destination": "OMDB",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -147,7 +147,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 3
     },
@@ -181,7 +181,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 0
     },
@@ -283,7 +283,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 0
     },
@@ -419,7 +419,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 1
     },
@@ -436,7 +436,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 1
     },

@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-30T18:32:18+00:00",
-  "as_of_day": "2026-08-29",
+  "generated_at": "2026-08-31T19:04:29+00:00",
+  "as_of_day": "2026-08-30",
   "coverage": {
-    "day": "2026-08-29",
-    "control_flights": 0,
+    "day": "2026-08-30",
+    "control_flights": 683,
     "median_28d": 518,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.319,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
@@ -64,7 +64,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "DAH",
@@ -81,7 +81,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "DAH",
@@ -98,7 +98,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     }
   ],
   "stop_events": [],

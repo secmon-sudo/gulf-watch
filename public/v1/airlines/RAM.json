@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-30T18:32:18+00:00",
-  "as_of_day": "2026-08-29",
+  "generated_at": "2026-08-31T19:04:29+00:00",
+  "as_of_day": "2026-08-30",
   "coverage": {
-    "day": "2026-08-29",
-    "control_flights": 0,
+    "day": "2026-08-30",
+    "control_flights": 683,
     "median_28d": 518,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.319,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
@@ -25,28 +25,30 @@
   "name": "Royal Air Maroc",
   "iata": "AT",
   "country": "MA",
-  "weekly_frequency": 0,
+  "weekly_frequency": 4,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
-  "routes_total": 11,
+  "routes_total": 15,
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
   "observed_days": 3,
   "comparable_share": 0.0,
-  "baselined_share": 0.262,
+  "baselined_share": 0.134,
   "ratio": null,
-  "status": "UNKNOWN",
+  "status": "NEW",
   "operating": true,
   "stopped": {
-    "any": false,
-    "scope": null,
-    "airports_dropped": [],
+    "any": true,
+    "scope": "station",
+    "airports_dropped": [
+      "OTHH"
+    ],
     "routes_dropped": [],
-    "since": null,
-    "days_stopped": 0,
-    "confidence": null
+    "since": "2026-08-16",
+    "days_stopped": 14,
+    "confidence": "contradicted"
   },
   "routes": [
     {
@@ -64,7 +66,41 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
+    },
+    {
+      "carrier": "RAM",
+      "carrier_name": "Royal Air Maroc",
+      "origin": "GMMN",
+      "destination": "OMDB",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 1
+    },
+    {
+      "carrier": "RAM",
+      "carrier_name": "Royal Air Maroc",
+      "origin": "GMMN",
+      "destination": "OTHH",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 1
     },
     {
       "carrier": "RAM",
@@ -172,6 +208,23 @@
       "carrier": "RAM",
       "carrier_name": "Royal Air Maroc",
       "origin": "OMDB",
+      "destination": "GMMN",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 1
+    },
+    {
+      "carrier": "RAM",
+      "carrier_name": "Royal Air Maroc",
+      "origin": "OMDB",
       "destination": "GOBD",
       "weekly_frequency": 0,
       "weekly_scaled": null,
@@ -200,7 +253,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
+    },
+    {
+      "carrier": "RAM",
+      "carrier_name": "Royal Air Maroc",
+      "origin": "OTHH",
+      "destination": "GMMN",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 1
     },
     {
       "carrier": "RAM",
@@ -237,6 +307,61 @@
       "observed_days": 2
     }
   ],
-  "stop_events": [],
+  "stop_events": [
+    {
+      "id": 433,
+      "scope": "station",
+      "scope_key": "RAM|OTHH",
+      "carrier": "RAM",
+      "detail": "OTHH",
+      "baseline_weekly": 2.8,
+      "last_flight_on": "2026-08-15",
+      "started_on": "2026-08-16",
+      "detected_on": "2026-08-30",
+      "resumed_on": null,
+      "days_stopped": 14,
+      "status": "active",
+      "confidence": "contradicted",
+      "carrier_name": "Royal Air Maroc",
+      "evidence": [
+        {
+          "source": "news",
+          "title": "Royal Air Maroc suspends Doha, Dubai flights amid regional turmoil - middleeasteye.net",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOQUxJYkg0bFpGZXU2ZC0xSGpxaUUyZnV5RmNZUXNKTUpBNVZSX3hVSjM3cW01cXdCLVA5YmJwbnFlZ1I4Z0s4dkpMTkpiUzNvb3g1b3FtVU04bFhERHl1bkt3MEdZQnZ1QjVjb3B4SDkyRVVjRl9aT0hHdzVZcEFZekE2SnIxOWdVUFdhdVZNaXZabjJPbmoxSHRjVW5CTklHMTZnN09WLTlfWTFRbU80ZXhjTVExUlY2LTNMWG93bw?oc=5",
+          "published": "Thu, 02 Apr 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Royal Air Maroc extends Dubai and Doha flight suspension until March 31 - en.yabiladi.com",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNNmtxdFBMQzhndGdtSHkwYldjcWFIcW5sV3Fyajd3d2MwdjBOdzBkUXpGLVVHdmlHNUFzRXF2RWdQa0RQY0FxX2ttY2NrZmdaM0pvTE5SdEFPbWVFNngxTzNhd3ZJa3JEekVReEJnWW5vZVhWQ3RHOFVDTFh6ajdRZFp5Mk5NWXU0S09r?oc=5",
+          "published": "Sun, 15 Mar 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Royal Air Maroc Extends Suspension of Flights to Dubai and Doha - Morocco World News",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMXdsOHJLOE1xbDZpUDhMVE1sVmJScXBPakNCOWdOOEZtN29FWXpnSVlmMmQ1VTd4bE1DaTV1bHJaMy1rRkI5Rlk4bEtCU3BRMUJqVUM0WGVaM0MyU3VHMXhITnRqa05BcWd2QmJ2elJ1MDNXODNzSDc1bFdDOGlEaExIN0I3WUlDbnVHZXVpemxJMGtUM0tyaUlIRm5OMW95Nm45SzVJMERFOXRyUUhyYTF3?oc=5",
+          "published": "Sat, 14 Mar 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Royal Air Maroc update: Gulf and Central Africa flights return while European routes remain suspended - TravelMole",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0tYWV4Qm81NWlHdlF4Y1pvWVFOUDhXSVhMcThjWUU2UDd0RmRPeXkxLXgtbEdQYlBPcFYtb0pCQzVHT1hpeVpDRGVVVDRBYWY1M19QTFdYQUlXNnRoc2VSMGpzZHU3WVZ2ZHc?oc=5",
+          "published": "Mon, 22 Jun 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Royal Air Maroc announces its return to the Gulf - Voyages d'affaires",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBWNF9fd2FldE1ManNVa2JQMnRtQ3kwZXMzX0ZoRFpMRk5RX0MxTzhxS0pvOTRxWl9NaU96NXZnMjR1YjFMeHd5d0Q0TnFIcXJzeEpEX0ZleXRtT25QUk43YnVPTk5KejBkVkE?oc=5",
+          "published": "Mon, 22 Jun 2026 07:00:00 GMT",
+          "stance": "contradicts"
+        }
+      ],
+      "superseded_by": null
+    }
+  ],
   "resumed": []
 }

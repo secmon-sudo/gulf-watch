@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-30T18:32:18+00:00",
-  "as_of_day": "2026-08-29",
+  "generated_at": "2026-08-31T19:04:29+00:00",
+  "as_of_day": "2026-08-30",
   "coverage": {
-    "day": "2026-08-29",
-    "control_flights": 0,
+    "day": "2026-08-30",
+    "control_flights": 683,
     "median_28d": 518,
-    "score": 0.0,
-    "verdict": "outage"
+    "score": 1.319,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
@@ -28,13 +28,67 @@
   },
   "reading_note": "started_on is the first silent day, not an announcement date. confidence=observed means ADS-B silence only; corroborated means reporting agrees; contradicted means reporting says they are flying and you should trust the reporting over this feed.",
   "summary": {
-    "carriers_with_any_stop": 2,
+    "carriers_with_any_stop": 3,
     "region_stops": 0,
-    "station_stops": 0,
+    "station_stops": 1,
     "route_stops": 3,
     "resumed_last_30d": 0
   },
   "active": [
+    {
+      "id": 433,
+      "scope": "station",
+      "scope_key": "RAM|OTHH",
+      "carrier": "RAM",
+      "detail": "OTHH",
+      "baseline_weekly": 2.8,
+      "last_flight_on": "2026-08-15",
+      "started_on": "2026-08-16",
+      "detected_on": "2026-08-30",
+      "resumed_on": null,
+      "days_stopped": 14,
+      "status": "active",
+      "confidence": "contradicted",
+      "carrier_name": "Royal Air Maroc",
+      "evidence": [
+        {
+          "source": "news",
+          "title": "Royal Air Maroc suspends Doha, Dubai flights amid regional turmoil - middleeasteye.net",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOQUxJYkg0bFpGZXU2ZC0xSGpxaUUyZnV5RmNZUXNKTUpBNVZSX3hVSjM3cW01cXdCLVA5YmJwbnFlZ1I4Z0s4dkpMTkpiUzNvb3g1b3FtVU04bFhERHl1bkt3MEdZQnZ1QjVjb3B4SDkyRVVjRl9aT0hHdzVZcEFZekE2SnIxOWdVUFdhdVZNaXZabjJPbmoxSHRjVW5CTklHMTZnN09WLTlfWTFRbU80ZXhjTVExUlY2LTNMWG93bw?oc=5",
+          "published": "Thu, 02 Apr 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Royal Air Maroc extends Dubai and Doha flight suspension until March 31 - en.yabiladi.com",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNNmtxdFBMQzhndGdtSHkwYldjcWFIcW5sV3Fyajd3d2MwdjBOdzBkUXpGLVVHdmlHNUFzRXF2RWdQa0RQY0FxX2ttY2NrZmdaM0pvTE5SdEFPbWVFNngxTzNhd3ZJa3JEekVReEJnWW5vZVhWQ3RHOFVDTFh6ajdRZFp5Mk5NWXU0S09r?oc=5",
+          "published": "Sun, 15 Mar 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Royal Air Maroc Extends Suspension of Flights to Dubai and Doha - Morocco World News",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMXdsOHJLOE1xbDZpUDhMVE1sVmJScXBPakNCOWdOOEZtN29FWXpnSVlmMmQ1VTd4bE1DaTV1bHJaMy1rRkI5Rlk4bEtCU3BRMUJqVUM0WGVaM0MyU3VHMXhITnRqa05BcWd2QmJ2elJ1MDNXODNzSDc1bFdDOGlEaExIN0I3WUlDbnVHZXVpemxJMGtUM0tyaUlIRm5OMW95Nm45SzVJMERFOXRyUUhyYTF3?oc=5",
+          "published": "Sat, 14 Mar 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Royal Air Maroc update: Gulf and Central Africa flights return while European routes remain suspended - TravelMole",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE0tYWV4Qm81NWlHdlF4Y1pvWVFOUDhXSVhMcThjWUU2UDd0RmRPeXkxLXgtbEdQYlBPcFYtb0pCQzVHT1hpeVpDRGVVVDRBYWY1M19QTFdYQUlXNnRoc2VSMGpzZHU3WVZ2ZHc?oc=5",
+          "published": "Mon, 22 Jun 2026 07:00:00 GMT",
+          "stance": "supports"
+        },
+        {
+          "source": "news",
+          "title": "Royal Air Maroc announces its return to the Gulf - Voyages d'affaires",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBWNF9fd2FldE1ManNVa2JQMnRtQ3kwZXMzX0ZoRFpMRk5RX0MxTzhxS0pvOTRxWl9NaU96NXZnMjR1YjFMeHd5d0Q0TnFIcXJzeEpEX0ZleXRtT25QUk43YnVPTk5KejBkVkE?oc=5",
+          "published": "Mon, 22 Jun 2026 07:00:00 GMT",
+          "stance": "contradicts"
+        }
+      ],
+      "superseded_by": null
+    },
     {
       "id": 431,
       "scope": "route",
@@ -46,7 +100,7 @@
       "started_on": "2026-08-16",
       "detected_on": "2026-08-27",
       "resumed_on": null,
-      "days_stopped": 11,
+      "days_stopped": 14,
       "status": "active",
       "confidence": "observed",
       "carrier_name": "Air Arabia (Sharjah)",
@@ -60,6 +114,13 @@
         },
         {
           "source": "news",
+          "title": "Air Arabia Launches Daily Sharjah-Frankfurt Flights - MiGFlug",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPSXN2TC1ialp5MmlURHZScGtKOHRaczdFQnlXWlRiLW9pN2Zvdno1LS1JZnpEVWw1YVdsWXhsd3BnV1hscjZIOURIZWR4R25xNTgzMFFIZC0tTkMzQnAtWG9lV0FXUGhTOVVSdzlyM2o0MU1SNk1ueG05YXhKam40Mw?oc=5",
+          "published": "Tue, 25 Aug 2026 14:20:50 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
           "title": "Air Arabia launches third Germany route from Sharjah with daily flights - Gulf News",
           "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOWm1Sa2RMM0VaM09LZld2T2QteUdEY1JoWEdlSlZkaGU2U0ROZV90bDBkZzMtQ1ptcXQzMkV0aFNjemJmb09hdXRDM20zRU83c3Ewcld2ZHpkZmhRNzJQVDl2REU0RUUwOFk5Z1FMZnlyYWVleUcyMDRWdUdfMmJWNF93MlllaDhaVk51ZEZiSFJOblZpVzR0Y0NxSXV0R3dGYVZGcGcwOUhweHc2Ml9JeFA2UDhITHZQaWxtbEpRNNIB0gFBVV95cUxPbHJlX094TUNRajg0bjdkMlhqalJxeElMMGs3UUFjQnpLNDdFT0wyNHBnTzBNRUdIUnNWQ1ZuTWdFMk5aeUhBaTFaVTFwc1lYM3F6Zm5KZGJCSG9nM0F0REk4bkhES3V1SEpwQVR5YVAyaUFXTjdybE02OFUydzlsS0U3NDBTZE03ekpBMG5SLU1YSl9mbXBBdThKdFlkQUY0d3I2RTZxU0I5RkZIU2lGUFkyYVRhUWtzWDU3SEwxZkdxWUJVY1RJVW9jaEhjaGJ4SUE?oc=5",
           "published": "Thu, 27 Aug 2026 07:17:53 GMT",
@@ -67,7 +128,7 @@
         },
         {
           "source": "news",
-          "title": "Travel & Tourism News Middle East - Travel & Tourism News Middle East",
+          "title": "Travel & Tourism News Middle East - ttnworldwide.com",
           "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQUzZ3QmFJZlMtb1BpaHN0XzE1dEJTYWItcUNKY0FNYTVLb1RLMHNnODAtSGlKejdXd01xNElqcTgxR2RYUGx5QlVPVy1WLUx3MTdiQXdoc09tVUM1eFJ6XzAzLW9sdXBSeTZfUHhSVTZYS1NzM2N6QWJacWhGSlY3US1OX1B1enFHanhYcklrNDNyTnRiMTFYYlZqbEJBNzdXcmlrdWpJR05jLXJsVUMxTA?oc=5",
           "published": "Thu, 27 Aug 2026 06:47:03 GMT",
           "stance": "unclear"
@@ -77,13 +138,6 @@
           "title": "8-Hour Route: Air Arabia Launches 3rd Daily Nonstop Flight To London [Map] - Simple Flying",
           "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBycF9keEtVT2thNXdjOWx2UXVpYXplNGkyZmk2NFNWTVZhTWhJTjNXYWxfLW5VWUpLM1NqazMyMTZQQ2g0T3ptalQ2RHlkZGlTTUI4WG8xd3hNbURodE15U1JnV1kzTFRuOE5TUjZGcTY0Q2pvYkJZSUlHMlVCbVU?oc=5",
           "published": "Sun, 26 Jul 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Air Arabia Launches Daily Sharjah-Frankfurt Flights - MiGFlug",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPSXN2TC1ialp5MmlURHZScGtKOHRaczdFQnlXWlRiLW9pN2Zvdno1LS1JZnpEVWw1YVdsWXhsd3BnV1hscjZIOURIZWR4R25xNTgzMFFIZC0tTkMzQnAtWG9lV0FXUGhTOVVSdzlyM2o0MU1SNk1ueG05YXhKam40Mw?oc=5",
-          "published": "Fri, 28 Aug 2026 10:51:50 GMT",
           "stance": "unclear"
         }
       ],
@@ -100,7 +154,7 @@
       "started_on": "2026-08-16",
       "detected_on": "2026-08-27",
       "resumed_on": null,
-      "days_stopped": 11,
+      "days_stopped": 14,
       "status": "active",
       "confidence": "observed",
       "carrier_name": "Air Arabia (Sharjah)",
@@ -114,6 +168,13 @@
         },
         {
           "source": "news",
+          "title": "Air Arabia Launches Daily Sharjah-Frankfurt Flights - MiGFlug",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPSXN2TC1ialp5MmlURHZScGtKOHRaczdFQnlXWlRiLW9pN2Zvdno1LS1JZnpEVWw1YVdsWXhsd3BnV1hscjZIOURIZWR4R25xNTgzMFFIZC0tTkMzQnAtWG9lV0FXUGhTOVVSdzlyM2o0MU1SNk1ueG05YXhKam40Mw?oc=5",
+          "published": "Tue, 25 Aug 2026 14:20:50 GMT",
+          "stance": "unclear"
+        },
+        {
+          "source": "news",
           "title": "Air Arabia launches third Germany route from Sharjah with daily flights - Gulf News",
           "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOWm1Sa2RMM0VaM09LZld2T2QteUdEY1JoWEdlSlZkaGU2U0ROZV90bDBkZzMtQ1ptcXQzMkV0aFNjemJmb09hdXRDM20zRU83c3Ewcld2ZHpkZmhRNzJQVDl2REU0RUUwOFk5Z1FMZnlyYWVleUcyMDRWdUdfMmJWNF93MlllaDhaVk51ZEZiSFJOblZpVzR0Y0NxSXV0R3dGYVZGcGcwOUhweHc2Ml9JeFA2UDhITHZQaWxtbEpRNNIB0gFBVV95cUxPbHJlX094TUNRajg0bjdkMlhqalJxeElMMGs3UUFjQnpLNDdFT0wyNHBnTzBNRUdIUnNWQ1ZuTWdFMk5aeUhBaTFaVTFwc1lYM3F6Zm5KZGJCSG9nM0F0REk4bkhES3V1SEpwQVR5YVAyaUFXTjdybE02OFUydzlsS0U3NDBTZE03ekpBMG5SLU1YSl9mbXBBdThKdFlkQUY0d3I2RTZxU0I5RkZIU2lGUFkyYVRhUWtzWDU3SEwxZkdxWUJVY1RJVW9jaEhjaGJ4SUE?oc=5",
           "published": "Thu, 27 Aug 2026 07:17:53 GMT",
@@ -121,7 +182,7 @@
         },
         {
           "source": "news",
-          "title": "Travel & Tourism News Middle East - Travel & Tourism News Middle East",
+          "title": "Travel & Tourism News Middle East - ttnworldwide.com",
           "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQUzZ3QmFJZlMtb1BpaHN0XzE1dEJTYWItcUNKY0FNYTVLb1RLMHNnODAtSGlKejdXd01xNElqcTgxR2RYUGx5QlVPVy1WLUx3MTdiQXdoc09tVUM1eFJ6XzAzLW9sdXBSeTZfUHhSVTZYS1NzM2N6QWJacWhGSlY3US1OX1B1enFHanhYcklrNDNyTnRiMTFYYlZqbEJBNzdXcmlrdWpJR05jLXJsVUMxTA?oc=5",
           "published": "Thu, 27 Aug 2026 06:47:03 GMT",
           "stance": "unclear"
@@ -131,13 +192,6 @@
           "title": "8-Hour Route: Air Arabia Launches 3rd Daily Nonstop Flight To London [Map] - Simple Flying",
           "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBycF9keEtVT2thNXdjOWx2UXVpYXplNGkyZmk2NFNWTVZhTWhJTjNXYWxfLW5VWUpLM1NqazMyMTZQQ2g0T3ptalQ2RHlkZGlTTUI4WG8xd3hNbURodE15U1JnV1kzTFRuOE5TUjZGcTY0Q2pvYkJZSUlHMlVCbVU?oc=5",
           "published": "Sun, 26 Jul 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Air Arabia Launches Daily Sharjah-Frankfurt Flights - MiGFlug",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPSXN2TC1ialp5MmlURHZScGtKOHRaczdFQnlXWlRiLW9pN2Zvdno1LS1JZnpEVWw1YVdsWXhsd3BnV1hscjZIOURIZWR4R25xNTgzMFFIZC0tTkMzQnAtWG9lV0FXUGhTOVVSdzlyM2o0MU1SNk1ueG05YXhKam40Mw?oc=5",
-          "published": "Fri, 28 Aug 2026 10:51:50 GMT",
           "stance": "unclear"
         }
       ],
@@ -154,21 +208,21 @@
       "started_on": "2026-08-18",
       "detected_on": "2026-08-27",
       "resumed_on": null,
-      "days_stopped": 9,
+      "days_stopped": 12,
       "status": "active",
       "confidence": "corroborated",
       "carrier_name": "Oman Air",
       "evidence": [
         {
           "source": "news",
-          "title": "What Travelers Need to Know About Middle East Flight Disruptions - Condé Nast Traveler",
+          "title": "What Travelers Need to Know About Middle East Flight Disruptions - cntraveler.com",
           "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPUGF3cUNQSVRsSDYwSEt5TGNyalJQNU50SGJNRURnbHhCRG5tRWlTLUdDYlVqTGNNeWVnSGtuejkxVmJoUVFEQ2ZnQzlmSzlibmpKb0kxeXNobnc4Z0VqZkdGb1FqSGlWMWFRaENwZlFGZWdDX1hTSzJ6RDV1ZGRXTFZxaWZWSEh4Rlc2bXAzMzJUVEo0WEZCOVIxbEt0UQ?oc=5",
           "published": "Tue, 17 Mar 2026 07:00:00 GMT",
           "stance": "unclear"
         },
         {
           "source": "news",
-          "title": "British Airways to suspend UK repatriation flights – latest on travel from Middle East - BBC",
+          "title": "British Airways to suspend UK repatriation flights – latest on travel from Middle East - bbc.com",
           "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NeHVXa1JmOXl3dU8zU2xxdFRRZUxzcHc4Sm5jazNfMWIyN2UzYWp5SHhDeGl5T3VrOE96a29mb3BWS1k1ZmhwVXp2bXJRTmI3QUpkaF9ySnQxdw?oc=5",
           "published": "Tue, 10 Mar 2026 07:00:00 GMT",
           "stance": "supports"
