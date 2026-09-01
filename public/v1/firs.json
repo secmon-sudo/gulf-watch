@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-31T20:40:14+00:00",
-  "as_of_day": "2026-08-30",
+  "generated_at": "2026-09-01T16:26:07+00:00",
+  "as_of_day": "2026-08-31",
   "coverage": {
-    "day": "2026-08-30",
-    "control_flights": 683,
+    "day": "2026-08-31",
+    "control_flights": 47,
     "median_28d": 518,
-    "score": 1.319,
-    "verdict": "ok"
+    "score": 0.091,
+    "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 3,
+    "observed_days": 2,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -40,11 +40,11 @@
           "transits": 2
         },
         {
-          "carrier": "FDB",
+          "carrier": "KAC",
           "transits": 2
         },
         {
-          "carrier": "UAE",
+          "carrier": "FDB",
           "transits": 1
         },
         {
@@ -101,42 +101,42 @@
         },
         {
           "carrier": "QTR",
-          "transits": 9
-        },
-        {
-          "carrier": "FDB",
-          "transits": 7
-        },
-        {
-          "carrier": "KNE",
-          "transits": 6
+          "transits": 8
         },
         {
           "carrier": "ETD",
           "transits": 6
         },
         {
-          "carrier": "THY",
+          "carrier": "FDB",
           "transits": 5
         },
         {
-          "carrier": "SVA",
+          "carrier": "THY",
           "transits": 4
+        },
+        {
+          "carrier": "KNE",
+          "transits": 4
+        },
+        {
+          "carrier": "SVA",
+          "transits": 3
         },
         {
           "carrier": "PGT",
-          "transits": 4
+          "transits": 3
         },
         {
           "carrier": "OMA",
-          "transits": 4
-        },
-        {
-          "carrier": "ABY",
-          "transits": 4
+          "transits": 3
         },
         {
           "carrier": "MEA",
+          "transits": 3
+        },
+        {
+          "carrier": "ABY",
           "transits": 3
         },
         {
@@ -148,7 +148,7 @@
           "transits": 2
         }
       ],
-      "total_transits": 67
+      "total_transits": 57
     },
     {
       "fir": "LLLL",
@@ -164,15 +164,11 @@
           "transits": 3
         },
         {
-          "carrier": "FDB",
-          "transits": 3
-        },
-        {
           "carrier": "ETD",
           "transits": 3
         },
         {
-          "carrier": "QTR",
+          "carrier": "FDB",
           "transits": 2
         },
         {
@@ -184,11 +180,11 @@
           "transits": 1
         },
         {
-          "carrier": "ABY",
+          "carrier": "QTR",
           "transits": 1
         }
       ],
-      "total_transits": 19
+      "total_transits": 16
     },
     {
       "fir": "OKAC",
@@ -204,31 +200,31 @@
       "carriers": [
         {
           "carrier": "QTR",
-          "transits": 50
+          "transits": 39
         },
         {
           "carrier": "GFA",
-          "transits": 27
+          "transits": 25
         },
         {
           "carrier": "FDB",
-          "transits": 21
+          "transits": 20
         },
         {
           "carrier": "ABY",
-          "transits": 15
+          "transits": 14
         },
         {
           "carrier": "KAC",
           "transits": 12
         },
         {
-          "carrier": "UAE",
-          "transits": 8
+          "carrier": "ETD",
+          "transits": 7
         },
         {
-          "carrier": "ETD",
-          "transits": 8
+          "carrier": "UAE",
+          "transits": 5
         },
         {
           "carrier": "OMA",
@@ -236,30 +232,22 @@
         },
         {
           "carrier": "MEA",
-          "transits": 3
-        },
-        {
-          "carrier": "RJA",
-          "transits": 2
-        },
-        {
-          "carrier": "MSR",
-          "transits": 2
+          "transits": 4
         },
         {
           "carrier": "KNE",
           "transits": 2
         },
         {
-          "carrier": "RAM",
+          "carrier": "RJA",
           "transits": 1
         },
         {
-          "carrier": "PGT",
+          "carrier": "MSR",
           "transits": 1
         }
       ],
-      "total_transits": 156
+      "total_transits": 134
     },
     {
       "fir": "OTDF",
@@ -268,30 +256,30 @@
       "carriers": [
         {
           "carrier": "QTR",
-          "transits": 29
-        },
-        {
-          "carrier": "ETD",
-          "transits": 4
+          "transits": 22
         },
         {
           "carrier": "MEA",
-          "transits": 2
+          "transits": 3
         },
         {
-          "carrier": "KAC",
-          "transits": 2
-        },
-        {
-          "carrier": "GFA",
-          "transits": 2
+          "carrier": "ETD",
+          "transits": 3
         },
         {
           "carrier": "FDB",
           "transits": 2
+        },
+        {
+          "carrier": "KAC",
+          "transits": 1
+        },
+        {
+          "carrier": "GFA",
+          "transits": 1
         }
       ],
-      "total_transits": 41
+      "total_transits": 32
     },
     {
       "fir": "OMAE",
@@ -300,47 +288,43 @@
       "carriers": [
         {
           "carrier": "UAE",
-          "transits": 55
+          "transits": 46
         },
         {
           "carrier": "FDB",
-          "transits": 45
-        },
-        {
-          "carrier": "ETD",
-          "transits": 38
+          "transits": 46
         },
         {
           "carrier": "QTR",
-          "transits": 37
+          "transits": 32
         },
         {
           "carrier": "ABY",
-          "transits": 33
+          "transits": 32
+        },
+        {
+          "carrier": "ETD",
+          "transits": 28
         },
         {
           "carrier": "GFA",
-          "transits": 17
+          "transits": 15
         },
         {
           "carrier": "SVA",
-          "transits": 9
+          "transits": 8
         },
         {
           "carrier": "KAC",
-          "transits": 7
+          "transits": 8
         },
         {
           "carrier": "OMA",
-          "transits": 6
+          "transits": 5
         },
         {
           "carrier": "KNE",
-          "transits": 6
-        },
-        {
-          "carrier": "THY",
-          "transits": 3
+          "transits": 5
         },
         {
           "carrier": "MSR",
@@ -351,11 +335,11 @@
           "transits": 2
         },
         {
-          "carrier": "PGT",
+          "carrier": "THY",
           "transits": 1
         }
       ],
-      "total_transits": 262
+      "total_transits": 231
     },
     {
       "fir": "OOMM",
@@ -364,19 +348,19 @@
       "carriers": [
         {
           "carrier": "UAE",
-          "transits": 64
-        },
-        {
-          "carrier": "ETD",
-          "transits": 55
+          "transits": 56
         },
         {
           "carrier": "QTR",
-          "transits": 54
+          "transits": 49
         },
         {
           "carrier": "FDB",
-          "transits": 36
+          "transits": 38
+        },
+        {
+          "carrier": "ETD",
+          "transits": 37
         },
         {
           "carrier": "ABY",
@@ -384,7 +368,7 @@
         },
         {
           "carrier": "OMA",
-          "transits": 28
+          "transits": 24
         },
         {
           "carrier": "SVA",
@@ -392,26 +376,26 @@
         },
         {
           "carrier": "GFA",
-          "transits": 16
-        },
-        {
-          "carrier": "KNE",
-          "transits": 10
+          "transits": 11
         },
         {
           "carrier": "KAC",
           "transits": 9
         },
         {
-          "carrier": "THY",
+          "carrier": "KNE",
           "transits": 8
         },
         {
-          "carrier": "MSR",
-          "transits": 3
+          "carrier": "THY",
+          "transits": 6
         },
         {
           "carrier": "RBG",
+          "transits": 2
+        },
+        {
+          "carrier": "MSR",
           "transits": 2
         },
         {
@@ -419,7 +403,7 @@
           "transits": 2
         }
       ],
-      "total_transits": 333
+      "total_transits": 290
     },
     {
       "fir": "OEJD",
@@ -435,50 +419,42 @@
       "carriers": [
         {
           "carrier": "RJA",
-          "transits": 13
-        },
-        {
-          "carrier": "FDB",
-          "transits": 11
-        },
-        {
-          "carrier": "ETD",
-          "transits": 11
+          "transits": 12
         },
         {
           "carrier": "UAE",
-          "transits": 10
+          "transits": 11
         },
         {
-          "carrier": "SVA",
+          "carrier": "FDB",
+          "transits": 9
+        },
+        {
+          "carrier": "ETD",
           "transits": 8
         },
         {
           "carrier": "QTR",
-          "transits": 8
-        },
-        {
-          "carrier": "KNE",
           "transits": 7
         },
         {
-          "carrier": "ABY",
+          "carrier": "SVA",
           "transits": 5
         },
         {
-          "carrier": "THY",
-          "transits": 4
+          "carrier": "KNE",
+          "transits": 5
         },
         {
-          "carrier": "MEA",
+          "carrier": "ABY",
           "transits": 4
-        },
-        {
-          "carrier": "PGT",
-          "transits": 3
         },
         {
           "carrier": "OMA",
+          "transits": 3
+        },
+        {
+          "carrier": "MEA",
           "transits": 3
         },
         {
@@ -486,15 +462,23 @@
           "transits": 3
         },
         {
-          "carrier": "MSR",
+          "carrier": "THY",
           "transits": 2
         },
         {
-          "carrier": "GFA",
+          "carrier": "PGT",
           "transits": 2
+        },
+        {
+          "carrier": "MSR",
+          "transits": 1
+        },
+        {
+          "carrier": "GFA",
+          "transits": 1
         }
       ],
-      "total_transits": 94
+      "total_transits": 76
     }
   ]
 }

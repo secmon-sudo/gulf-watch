@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-31T20:40:14+00:00",
-  "as_of_day": "2026-08-30",
+  "generated_at": "2026-09-01T16:26:07+00:00",
+  "as_of_day": "2026-08-31",
   "coverage": {
-    "day": "2026-08-30",
-    "control_flights": 683,
+    "day": "2026-08-31",
+    "control_flights": 47,
     "median_28d": 518,
-    "score": 1.319,
-    "verdict": "ok"
+    "score": 0.091,
+    "verdict": "outage"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 3,
+    "observed_days": 2,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -48,7 +48,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
       "observed_days": 0
     }
