@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T16:26:07+00:00",
+  "generated_at": "2026-09-01T18:11:58+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -23,7 +23,7 @@
   },
   "database": {
     "route_departures": 79581,
-    "raw_legs_retained": 186816,
+    "raw_legs_retained": 186908,
     "first_day": "2025-10-31",
     "last_day": "2026-08-31",
     "baseline_routes": 1147
