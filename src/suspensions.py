@@ -226,6 +226,65 @@ def visible_days(scope: str, key: str, meta: dict,
     return seen
 
 
+def board_flew(conn, scope: str, key: str, since: str) -> str | None:
+    """Did the airport boards list this carrier's own aeroplane? Returns the day.
+
+    The second falsification, and the one `reverse_flew` cannot make. A route
+    stop where both directions are equally invisible passes that test and is
+    still wrong whenever the invisibility is ours -- ADS-B resolves an
+    aircraft, not an operator, so a carrier it cannot attribute goes silent in
+    both directions at once.
+
+    Measured 2026-09-02 against the four stops then live: Royal Air Maroc was
+    published as having stopped serving Doha while the board listed its own
+    metal there once each way, and Air Arabia was published as having stopped
+    Sharjah-Istanbul in BOTH directions while the board listed one departure
+    and one arrival on its own aircraft. Three of four, and only Oman Air's
+    Delhi-Dubai survived -- at Dubai it flies Muscat and Salalah and nothing
+    else, which is what the board says too.
+
+    `operated_by IS NULL` is not optional here. Counting codeshares would have
+    let Qatar's aeroplanes vouch for British Airways, which is the error this
+    whole source was added to end.
+    """
+    parts = key.split("|")
+    carrier = parts[0]
+    sql = ["""SELECT MAX(bf.day) d FROM board_flight bf
+              JOIN board_probe bp ON bp.airport = bf.airport AND bp.day = bf.day
+              WHERE bf.carrier = ? AND bf.day >= ? AND bf.operated_by IS NULL
+                AND bp.verdict = 'ok'"""]
+    args: list = [carrier, since]
+
+    if scope == "station":
+        sql.append("AND bf.airport = ?")
+        args.append(parts[1])
+    elif scope == "route":
+        # The carrier flying somewhere else does not refute a claim about one
+        # route: Oman Air's own metal at Jeddah and Riyadh says nothing about
+        # Delhi-Dubai, which it genuinely does not operate -- at Dubai it flies
+        # Muscat and Salalah and nothing more, exactly as the board shows.
+        #
+        # The board names the far end by IATA and the ledger by ICAO, so a
+        # route is only checkable when both ends are airports we monitor. When
+        # the far end cannot be resolved the answer is None and the stop
+        # stands: this test may withhold a claim, never manufacture one.
+        iata = {code: cfg["iata"] for code, cfg in config.airports().items()}
+        dep, arr = parts[1], parts[2]
+        legs = []
+        if dep in iata and arr in iata:
+            legs = [(dep, "dep", iata[arr]), (arr, "arr", iata[dep])]
+        if not legs:
+            return None
+        sql.append("AND (" + " OR ".join(
+            "(bf.airport=? AND bf.direction=? AND bf.other_iata=?)"
+            for _ in legs) + ")")
+        for leg in legs:
+            args.extend(leg)
+
+    row = conn.execute(" ".join(sql), args).fetchone()
+    return row["d"] if row and row["d"] else None
+
+
 def reverse_flew(conn, scope: str, key: str, since: str) -> str | None:
     """Was the opposite direction seen flying since `since`? Returns the day.
 
@@ -352,6 +411,11 @@ def detect(conn, day: date | None = None) -> dict:
                 if back:
                     LOG.info("withheld %s %s: reverse leg flew %s", scope, key, back)
                     continue
+                seen = board_flew(conn, scope, key, started)
+                if seen:
+                    LOG.info("withheld %s %s: board listed its own aircraft %s",
+                             scope, key, seen)
+                    continue
                 conn.execute(
                     """INSERT OR IGNORE INTO suspension
                        (scope, scope_key, carrier, detail, baseline_weekly,
@@ -367,9 +431,42 @@ def detect(conn, day: date | None = None) -> dict:
                                "baseline_weekly": round(meta["baseline"], 1)})
                 LOG.info("STOPPED %s %s since %s", scope, key, started)
 
+    withdrawn = withdraw_contradicted(conn)
     conn.commit()
     return {"opened": len(opened), "resumed": len(resumed), "skipped": False,
+            "withdrawn": withdrawn,
             "opened_events": opened, "resumed_events": resumed}
+
+
+def withdraw_contradicted(conn) -> int:
+    """Drop active stops the boards contradict. Returns how many.
+
+    A separate pass over the ledger, and it has to be: the loop above only
+    revisits scopes it still derives from the baseline and the silence
+    computation, so a stop whose scope later falls out of that set -- the
+    carrier loses its baseline row, or a visibility gate skips it -- is never
+    looked at again. That is the mechanism behind "detection never clears its
+    own false stops", which is why the 147 of 2026-08-17 and the 9 of
+    2026-08-20 both had to be deleted by hand.
+
+    Withdrawn, not resumed. `resumed` asserts that service stopped and came
+    back; saying that about a carrier which never stopped is a second false
+    claim laid over the first. The row stays for the audit trail, and
+    `report()` reads neither status, so it leaves the page.
+    """
+    n = 0
+    for row in conn.execute(
+            "SELECT id, scope, scope_key, started_on FROM suspension "
+            "WHERE status='active'").fetchall():
+        seen = board_flew(conn, row["scope"], row["scope_key"], row["started_on"])
+        if not seen:
+            continue
+        conn.execute("UPDATE suspension SET status='withdrawn' WHERE id=?",
+                     (row["id"],))
+        LOG.info("WITHDREW %s %s: board listed its own aircraft %s",
+                 row["scope"], row["scope_key"], seen)
+        n += 1
+    return n
 
 
 # --- Reporting -------------------------------------------------------------

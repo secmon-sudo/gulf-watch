@@ -708,6 +708,109 @@ class TestSuspensionEvents(unittest.TestCase):
         self.assertIsNone(
             self.susp.reverse_flew(self.conn, "station", "GFA|OBBI", old_day))
 
+    def _board_own_metal(self, carrier, airport="OTHH", days=3, other=None):
+        """The board listing `carrier`'s own aircraft, on days judged `ok`."""
+        for n in range(days):
+            d = (self.today - timedelta(days=n)).isoformat()
+            self.conn.execute("INSERT OR REPLACE INTO board_probe "
+                              "(airport, day, flights, verdict) VALUES (?,?,?,'ok')",
+                              (airport, d, 40))
+            self.conn.execute(
+                "INSERT OR REPLACE INTO board_flight (airport, direction, day, "
+                "carrier, flight_no, other_iata, operated_by) "
+                "VALUES (?,'dep',?,?,?,?,NULL)",
+                (airport, d, carrier, "700", other))
+        self.conn.commit()
+
+    def test_a_stop_is_not_opened_when_the_board_lists_its_own_aircraft(self):
+        """The falsification reverse_flew cannot make.
+
+        A route silent in BOTH directions passes the reverse-leg test and is
+        still wrong whenever the silence is ours: ADS-B resolves an aircraft,
+        not an operator, so a carrier it cannot attribute vanishes both ways at
+        once. Measured 2026-09-02: of the four stops then live, Royal Air Maroc
+        at Doha and Air Arabia's Sharjah-Istanbul in both directions were all
+        contradicted by the board's own-metal listings.
+        """
+        self._fill(silent_for=None)
+        self.conn.execute(
+            "INSERT INTO baseline VALUES ('GFA','OBBI','OTHH',6,28,?,?)",
+            ((self.today - timedelta(days=28)).isoformat(),
+             self.today.isoformat()))
+        old_day = (self.today - timedelta(days=14)).isoformat()
+        self.conn.execute(
+            "INSERT INTO daily_route VALUES (?,'GFA','OBBI','OTHH',1)", (old_day,))
+        self.conn.commit()
+        # Own metal on that pair, named the way the board names it: by IATA.
+        self._board_own_metal("GFA", airport="OBBI", other="DOH")
+
+        self.susp.detect(self.conn, self.today)
+        self.assertEqual(
+            [e for e in self.susp.report(self.conn)["active"]
+             if e["detail"] == "OBBI-OTHH"], [],
+            "published a stop while the board listed the carrier's own metal")
+
+    def test_a_route_the_board_cannot_name_leaves_the_stop_standing(self):
+        """The board names the far end by IATA and the ledger by ICAO, so a
+        route to somewhere we do not monitor cannot be checked. Withholding a
+        claim is this test's job; manufacturing one is not, and neither is
+        clearing a true stop because the carrier flies elsewhere -- Oman Air's
+        own metal at Jeddah says nothing about Delhi-Dubai."""
+        self._board_own_metal("OMA", airport="OEJN", other="JED")
+        since = (self.today - timedelta(days=14)).isoformat()
+        self.assertIsNone(
+            self.susp.board_flew(self.conn, "route", "OMA|VIDP|OMDB", since))
+        self.assertIsNotNone(
+            self.susp.board_flew(self.conn, "station", "OMA|OEJN", since),
+            "the same evidence does refute a claim about that airport")
+
+    def test_a_codeshare_on_the_board_does_not_rescue_a_stop(self):
+        """The mirror of the above, and the more dangerous half: a Qatar
+        aeroplane wearing a partner's number must not vouch for the partner."""
+        self._board_own_metal("GFA", airport="OBBI")
+        self.conn.execute(
+            "UPDATE board_flight SET operated_by='Operated by Qatar Airways 1' "
+            "WHERE carrier='GFA'")
+        self.conn.commit()
+        self.assertIsNone(
+            self.susp.board_flew(self.conn, "route", "GFA|OBBI|LTFJ",
+                                 (self.today - timedelta(days=14)).isoformat()),
+            "a ticket number on someone else's aircraft is not an operation")
+
+    def test_an_active_stop_the_board_contradicts_is_withdrawn(self):
+        """Detection alone never clears a false stop -- once the silence falls
+        back under the threshold the scope keeps taking the `active` branch and
+        stays published forever, which is why the 147 of 2026-08-17 and the 9
+        of 2026-08-20 had to be deleted by hand."""
+        # BAW, not GFA: the carrier must be invisible to ADS-B, or the resume
+        # path fires first and `resumed` is then the honest reading. This is
+        # exactly the real case -- a carrier our feed cannot attribute, whose
+        # own metal the board can still see.
+        self._fill(silent_for=None)
+        started = (self.today - timedelta(days=10)).isoformat()
+        self.conn.execute(
+            """INSERT INTO suspension (scope, scope_key, carrier, detail,
+                   baseline_weekly, last_flight_on, started_on, detected_on,
+                   days_stopped, status, confidence)
+               VALUES ('station','BAW|OBBI','BAW','OBBI',6,?,?,?,10,
+                       'active','observed')""",
+            (started, started, self.today.isoformat()))
+        self.conn.commit()
+        self._board_own_metal("BAW", airport="OBBI")
+
+        self.susp.detect(self.conn, self.today)
+        row = self.conn.execute(
+            "SELECT status FROM suspension WHERE scope_key='BAW|OBBI'").fetchone()
+        self.assertEqual(row["status"], "withdrawn")
+        self.assertEqual(
+            [e for e in self.susp.report(self.conn)["active"]
+             if e["detail"] == "OBBI"], [])
+        self.assertEqual(
+            [e for e in self.susp.report(self.conn)["recently_resumed"]
+             if e["detail"] == "OBBI"], [],
+            "withdrawn is not resumed -- it never stopped, and saying it came "
+            "back is a second false claim covering the first")
+
     def test_a_leg_that_lands_where_it_started_is_not_a_route(self):
         """OTHH-OTHH at 71.6 departures a week, and nothing flies it.
 
