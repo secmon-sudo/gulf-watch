@@ -1063,6 +1063,46 @@ class TestFlightBoardGuard(unittest.TestCase):
         self.assertGreater(
             self.conn.execute("SELECT COUNT(*) n FROM board_flight").fetchone()["n"], 0)
 
+    def test_a_codeshare_is_not_evidence_that_the_carrier_flies(self):
+        """The defect that hid the project's own answer for three weeks.
+
+        The board lists a flight once per ticket number, so a Qatar Airways
+        aeroplane out of Doha appears under BA, AA, IB, JL and AY as well.
+        Reading `carrier` alone, British Airways looked present at Riyadh --
+        253 entries across the blind seven, every one a Doha codeshare -- and
+        that false presence was recorded in the project notes as independent
+        proof BA was still flying, which is exactly backwards.
+        """
+        flights = [{"carrier": {"fs": "BA", "name": "British Airways",
+                                "flightNumber": "2327"},
+                    "airport": {"fs": "DOH"}, "arrivalTime": {"time24": "09:45"},
+                    "operatedBy": "Operated by Qatar Airways 1"},
+                   {"carrier": {"fs": "EK", "name": "Emirates",
+                                "flightNumber": "1"},
+                    "airport": {"fs": "LHR"}, "arrivalTime": {"time24": "02:00"},
+                    "operatedBy": None}]
+        with mock.patch.object(self.fb, "_fetch", return_value=flights):
+            self.fb.sample(self.conn)
+        operators = {r["carrier"] for r in self.conn.execute(
+            "SELECT DISTINCT carrier FROM board_flight WHERE operated_by IS NULL")}
+        self.assertIn("UAE", operators)
+        self.assertNotIn(
+            "BAW", operators,
+            "a ticket number on someone else's aeroplane is not an operation")
+        # The codeshare row is still kept -- it is how the report explains that
+        # the route is served while the carrier is not the one serving it.
+        self.assertEqual(
+            self.conn.execute("SELECT operated_by FROM board_flight "
+                              "WHERE carrier='BAW'").fetchone()["operated_by"],
+            "Operated by Qatar Airways 1")
+
+    def test_the_board_covers_the_airports_adsb_can_see_too(self):
+        """ADS-B names an aircraft, not an operator, so the eight airports it
+        covers still had no witness that could tell absence from blindness."""
+        covered = set(self.fb.board_airports())
+        self.assertIn("OMDB", covered, "Dubai is where the question lives")
+        self.assertIn("OTHH", covered)
+        self.assertIn("ORBI", covered, "and the blind seven are not dropped")
 
 class TestReportAttribution(unittest.TestCase):
     """A headline gets attributed to a carrier, or the carrier reads Stopped.

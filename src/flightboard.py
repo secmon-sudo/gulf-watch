@@ -1,4 +1,4 @@
-"""Arrival/departure boards for the airports ADS-B cannot see.
+"""Arrival/departure boards, read for the operator ADS-B cannot name.
 
 Seven of fifteen monitored airports return zero flights from every ADS-B
 source we have -- OpenSky, adsb.lol and airplanes.live alike, because all
@@ -54,12 +54,23 @@ _session.headers["User-Agent"] = (
     "(KHTML, like Gecko) Chrome/126.0 Safari/537.36")
 
 
-def blind_airports() -> dict[str, dict]:
-    """The monitored airports with no ADS-B coverage, keyed by ICAO."""
-    from . import schedules
-    blind = set(schedules.BLIND)
-    return {icao: cfg for icao, cfg in config.airports().items()
-            if cfg["iata"] in blind}
+def board_airports() -> dict[str, dict]:
+    """Every monitored airport, keyed by ICAO.
+
+    This used to be the ADS-B-blind seven only, on the reasoning that the
+    other eight already had a witness. That was wrong, and it cost the project
+    its central question. ADS-B identifies an aircraft, not an operator: the
+    thirteen carriers that vanished from the feed in 2026-08 were read as our
+    own blind spot for three weeks, because nothing we had could tell "British
+    Airways is not flying" from "we cannot see British Airways". The board can
+    -- it names the operator -- but it was only ever pointed at seven airports
+    that British Airways has never served.
+
+    Measured 2026-09-02, once it was pointed at Dubai: 1097 departure listings,
+    twenty-one of them to Heathrow, every one operated by Emirates, and no BA
+    metal anywhere. That is the observation the whole thing was built to make.
+    """
+    return dict(config.airports())
 
 
 def _iata_to_icao() -> dict[str, str]:
@@ -96,7 +107,14 @@ def _rows(flights: list[dict], icao: str, direction: str, day: str,
                     (f.get("airport") or {}).get("fs"),
                     (f.get("arrivalTime") or f.get("departureTime")
                      or {}).get("time24"),
-                    now))
+                    now,
+                    # The board lists a codeshare under the carrier whose
+                    # number is on the ticket, so reading `carrier` alone says
+                    # British Airways serves Riyadh when the aeroplane is
+                    # Qatar's. Measured 2026-09-02: of BA's 253 entries across
+                    # the seven blind airports, 253 were Doha codeshares and
+                    # none was BA metal. 43% of Dubai's board carries this.
+                    f.get("operatedBy")))
     return out
 
 
@@ -131,7 +149,7 @@ def sample(conn, day: datetime | None = None) -> dict:
 
     written = 0
     flagged: list[str] = []
-    for icao, cfg in blind_airports().items():
+    for icao, cfg in board_airports().items():
         seen: set[tuple] = set()
         failed = False
         for direction in ("arr", "dep"):
@@ -154,7 +172,8 @@ def sample(conn, day: datetime | None = None) -> dict:
         conn.executemany(
             """INSERT OR REPLACE INTO board_flight
                (airport, direction, day, carrier, flight_no, other_iata,
-                sched_time, fetched_at) VALUES (?,?,?,?,?,?,?,?)""",
+                sched_time, fetched_at, operated_by)
+               VALUES (?,?,?,?,?,?,?,?,?)""",
             sorted(seen))
         written += len(seen)
 
