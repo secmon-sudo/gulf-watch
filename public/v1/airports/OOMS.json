@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-02T16:23:56+00:00",
+  "generated_at": "2026-09-02T18:04:56+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
-    "control_flights": 47,
+    "control_flights": 304,
     "median_28d": 518,
-    "score": 0.091,
-    "verdict": "outage"
+    "score": 0.587,
+    "verdict": "degraded"
   },
   "observation": {
     "window_days": 7,
@@ -53,7 +53,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 0
     }
