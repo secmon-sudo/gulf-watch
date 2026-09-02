@@ -1131,18 +1131,22 @@ class TestBoardVerdict(unittest.TestCase):
         self.conn.close()
         os.unlink(self.tmp.name)
 
-    def _board(self, airport, rows, verdict="ok"):
-        """rows: (carrier, operated_by). Adds one codeshare so the day counts
-        as attributed, unless the caller already supplied one."""
-        d = self.day.isoformat()
-        self.conn.execute("INSERT OR REPLACE INTO board_probe "
-                          "(airport, day, flights, verdict) VALUES (?,?,?,?)",
-                          (airport, d, len(rows), verdict))
-        for i, (car, op) in enumerate(rows):
-            self.conn.execute(
-                "INSERT OR REPLACE INTO board_flight (airport, direction, day, "
-                "carrier, flight_no, operated_by) VALUES (?,?,?,?,?,?)",
-                (airport, "dep", d, car, str(100 + i), op))
+    def _board(self, airport, rows, verdict="ok", days=3):
+        """rows: (carrier, operated_by), repeated over `days` board-days.
+
+        Three by default because MIN_ABSENCE_DAYS is three -- a single day is
+        an anecdote about the source, not a fact about an airline.
+        """
+        for n in range(days):
+            d = (self.day - timedelta(days=n)).isoformat()
+            self.conn.execute("INSERT OR REPLACE INTO board_probe "
+                              "(airport, day, flights, verdict) VALUES (?,?,?,?)",
+                              (airport, d, len(rows), verdict))
+            for i, (car, op) in enumerate(rows):
+                self.conn.execute(
+                    "INSERT OR REPLACE INTO board_flight (airport, direction, "
+                    "day, carrier, flight_no, operated_by) VALUES (?,?,?,?,?,?)",
+                    (airport, "dep", d, car, str(100 + i), op))
         self.conn.commit()
 
     def test_a_codeshare_does_not_make_the_carrier_an_operator(self):
@@ -1179,6 +1183,17 @@ class TestBoardVerdict(unittest.TestCase):
             self.report.board_state("BAW", got, {"OERK"}),
             "a carrier that never served a covered airport cannot be missing "
             "from one")
+
+    def test_one_days_board_cannot_call_a_carrier_stopped(self):
+        """EgyptAir came out `absent` on 2026-09-02 off a single Kuwait board
+        while 86 of its flights sat in our own ADS-B that week. The sighting
+        outranked it so nothing was published, but only by luck of ordering."""
+        self._board("OMDB", [("UAE", None), ("QTR", "Operated by Emirates 1")],
+                    days=1)
+        got = self.report.board_operators(self.conn, 7)
+        self.assertIsNone(self.report.board_state("BAW", got, {"OMDB"}))
+        self.assertIn("UAE", got["operating"],
+                      "one day is still enough to prove somebody DOES fly")
 
     def test_the_verdict_prefers_a_sighting_then_the_board_then_the_timetable(self):
         v = self.report.verdict

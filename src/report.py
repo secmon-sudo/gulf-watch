@@ -498,6 +498,12 @@ def blind_news(conn, max_age: int = NEWS_MAX_AGE_DAYS,
     return out
 
 
+# Board-days that must agree before an absence counts. Deliberately the same
+# number as flightboard.MIN_HISTORY_DAYS and for the same reason: one day is an
+# anecdote about a source, not a fact about an airline.
+MIN_ABSENCE_DAYS = 3
+
+
 def board_operators(conn, days: int) -> dict:
     """Who actually operated an aeroplane at our airports, from the boards.
 
@@ -543,7 +549,10 @@ def board_operators(conn, days: int) -> dict:
         if (r["airport"], r["day"]) in good:
             operating.add(r["carrier"])
     return {"usable": True, "operating": operating,
-            "airports": {a for a, _ in good}, "days": len({d for _, d in good})}
+            "airports": {a for a, _ in good},
+            "days": len({d for _, d in good}),
+            "by_airport": {a: len({d for a2, d in good if a2 == a})
+                           for a, _ in good}}
 
 
 def board_state(code: str, boards: dict, base_airports: set[str]) -> str | None:
@@ -556,9 +565,15 @@ def board_state(code: str, boards: dict, base_airports: set[str]) -> str | None:
     """
     if not boards["usable"]:
         return None
+    # Presence needs one day; absence needs several. One sighting of a
+    # carrier's own aeroplane proves it operates, but one day of one board
+    # proving it does not is how EgyptAir came out `absent` on 2026-09-02
+    # while 86 of its flights were in our own ADS-B that week -- the sighting
+    # outranked it and nothing was published, but only by luck of ordering.
     if code in boards["operating"]:
         return "operates"
-    if not (base_airports & boards["airports"]):
+    covered = base_airports & boards["airports"]
+    if sum(boards["by_airport"][a] for a in covered) < MIN_ABSENCE_DAYS:
         return None
     return "absent"
 

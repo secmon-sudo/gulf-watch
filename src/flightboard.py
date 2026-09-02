@@ -34,17 +34,20 @@ LOG = logging.getLogger("gulfwatch.flightboard")
 
 BASE = "https://www.flightstats.com/v2/api-next/flight-tracker"
 
-# Six-hour windows, four of them, so a full UTC day is covered per direction.
-# This was 56 requests a day while the walk covered seven airports and ran for
-# weeks without complaint; at fifteen it is 120, and on 2026-09-02 flightstats
-# answered 403 from about the twenty-fourth onwards -- an IP-wide block that
-# then refused even the airports which had worked all along. A 12-hour window
-# would halve the count and is the obvious next move, but numHours=12 has not
-# been shown to return a full twelve hours, and shipping an unverified
-# parameter would trade a rate problem for a silent data-loss one. So the
-# count stays and ABORT_AFTER carries the fix.
-WINDOW_HOURS = 6
-WINDOW_STARTS = [0, 6, 12, 18]
+# Twelve-hour windows, two of them, so a full UTC day is covered per direction.
+# Six-hour windows were 56 requests a day across seven airports and ran for
+# weeks without complaint; at fifteen airports that became 120 and flightstats
+# answered 403 from about the twenty-fourth onwards, an IP-wide block that then
+# refused even the airports which had worked all along. This halves it back to
+# 60, inside the range already proven safe.
+#
+# Verified lossless before it shipped, because a wider window that quietly
+# returns less would trade a rate problem for a data problem: for Dubai
+# departures on 2026-09-01 the two six-hour windows at 0 and 6 hold 257 and 402
+# flights, 597 once their 62 shared rows collapse, and the single twelve-hour
+# window holds exactly those 597 -- nothing missing either way.
+WINDOW_HOURS = 12
+WINDOW_STARTS = [0, 12]
 
 # Seconds between requests. Was 1.0 for seven airports.
 REQUEST_DELAY = 2.0
