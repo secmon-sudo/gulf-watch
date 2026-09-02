@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-02T13:22:44+00:00",
-  "as_of_day": "2026-09-01",
+  "generated_at": "2026-09-02T16:23:56+00:00",
+  "as_of_day": "2026-08-31",
   "coverage": {
-    "day": "2026-09-01",
-    "control_flights": 0,
-    "median_28d": 499,
-    "score": 0.0,
+    "day": "2026-08-31",
+    "control_flights": 47,
+    "median_28d": 518,
+    "score": 0.091,
     "verdict": "outage"
   },
   "observation": {
@@ -14,6 +14,11 @@
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
+  },
+  "baseline": {
+    "window": "2025-11-01..2026-01-31",
+    "season": "IATA winter",
+    "caveat": "Ratios compare the present against a fixed winter reference. Summer and winter schedules differ, so a ratio is not a pure measure of disruption."
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -26,7 +31,7 @@
   "name": "Muscat Intl",
   "city": "Muscat",
   "country": "OM",
-  "weekly_frequency": 2,
+  "weekly_frequency": 3,
   "baseline_weekly": 0.0,
   "carriers_operating": [
     "ETD"
@@ -40,7 +45,7 @@
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "OOMS",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 42,

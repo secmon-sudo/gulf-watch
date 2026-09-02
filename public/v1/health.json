@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-02T13:22:44+00:00",
-  "as_of_day": "2026-09-01",
+  "generated_at": "2026-09-02T16:23:56+00:00",
+  "as_of_day": "2026-08-31",
   "coverage": {
-    "day": "2026-09-01",
-    "control_flights": 0,
-    "median_28d": 499,
-    "score": 0.0,
+    "day": "2026-08-31",
+    "control_flights": 47,
+    "median_28d": 518,
+    "score": 0.091,
     "verdict": "outage"
   },
   "observation": {
@@ -14,6 +14,11 @@
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
+  },
+  "baseline": {
+    "window": "2025-11-01..2026-01-31",
+    "season": "IATA winter",
+    "caveat": "Ratios compare the present against a fixed winter reference. Summer and winter schedules differ, so a ratio is not a pure measure of disruption."
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -31,6 +36,10 @@
   "baseline_ready": true,
   "recent_runs": [
     {
+      "started_at": "2026-09-02T16:21:31+00:00",
+      "detail": "legs=0 coverage=outage(0.091) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=6469"
+    },
+    {
       "started_at": "2026-09-02T13:21:24+00:00",
       "detail": "legs=0 coverage=outage(0.0) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=1786"
     },
@@ -45,10 +54,6 @@
     {
       "started_at": "2026-08-30T16:27:31+00:00",
       "detail": "legs=0 coverage=outage(0.0) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=1937"
-    },
-    {
-      "started_at": "2026-08-29T16:32:40+00:00",
-      "detail": "legs=0 coverage=outage(0.204) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=1842 FLAGGED[OIIE:empty]"
     }
   ]
 }
