@@ -858,6 +858,31 @@ class TestSuspensionEvents(unittest.TestCase):
             self.conn.execute("SELECT status FROM suspension WHERE carrier='OMA'")
                 .fetchone()["status"], "withdrawn")
 
+    def test_a_false_stop_is_withdrawn_even_when_coverage_is_bad(self):
+        """The coverage gate stops us MAKING claims from data we do not trust.
+        Withdrawing one asserts nothing about the sky. Gating the retraction
+        too keeps a false stop published on exactly the days we are least able
+        to defend it -- which is what happened on 2026-09-03: the Oman Air
+        withdrawal shipped and then did not run, because that day was
+        `degraded`."""
+        self._fill(silent_for=None, coverage_bad_days=(0, 1, 2, 3, 4, 5, 6))
+        started = (self.today - timedelta(days=12)).isoformat()
+        self.conn.execute(
+            """INSERT INTO suspension (scope, scope_key, carrier, detail,
+                   baseline_weekly, last_flight_on, started_on, detected_on,
+                   days_stopped, status, confidence)
+               VALUES ('route','OMA|VIDP|OMDB','OMA','VIDP-OMDB',6,?,?,?,12,
+                       'active','corroborated')""",
+            (started, started, self.today.isoformat()))
+        self.conn.commit()
+
+        out = self.susp.detect(self.conn, self.today)
+        self.assertTrue(out["skipped"], "coverage must still gate new stops")
+        self.assertEqual(out["withdrawn"], 1)
+        self.assertEqual(
+            self.conn.execute("SELECT status FROM suspension WHERE carrier='OMA'")
+                .fetchone()["status"], "withdrawn")
+
     def test_a_leg_that_lands_where_it_started_is_not_a_route(self):
         """OTHH-OTHH at 71.6 departures a week, and nothing flies it.
 

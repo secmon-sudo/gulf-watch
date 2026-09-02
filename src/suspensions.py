@@ -323,10 +323,21 @@ def first_flight_after(counts: dict[str, int], start: str) -> str | None:
 def detect(conn, day: date | None = None) -> dict:
     day = day or metrics.reference_day()
     cov = _coverage_map(conn)
+
+    # Before the coverage gate, deliberately. That gate exists to stop us
+    # MAKING a claim from data we do not trust; withdrawing one asserts nothing
+    # about the sky, it retracts an assertion we have since found we cannot
+    # support. Gating a retraction behind good coverage means a false stop
+    # stays published on exactly the days we are least able to defend it --
+    # which is what happened on 2026-09-03: the Oman Air withdrawal was written
+    # and shipped, and then did not run, because that day scored `degraded`.
+    withdrawn = withdraw_contradicted(conn)
+
     if not metrics.was_observed(cov, day.isoformat()):
-        LOG.warning("coverage not ok for %s; suspension state left untouched", day)
+        LOG.warning("coverage not ok for %s; no stop opened or resumed", day)
+        conn.commit()
         return {"opened": 0, "resumed": 0, "skipped": True,
-                "opened_events": [], "resumed_events": []}
+                "withdrawn": withdrawn, "opened_events": [], "resumed_events": []}
 
     scopes = build_scopes(conn)
     # Per airport and per fetch direction, the days that fetch actually
@@ -436,7 +447,6 @@ def detect(conn, day: date | None = None) -> dict:
                                "baseline_weekly": round(meta["baseline"], 1)})
                 LOG.info("STOPPED %s %s since %s", scope, key, started)
 
-    withdrawn = withdraw_contradicted(conn)
     conn.commit()
     return {"opened": len(opened), "resumed": len(resumed), "skipped": False,
             "withdrawn": withdrawn,
