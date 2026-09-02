@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T18:04:56+00:00",
+  "generated_at": "2026-09-02T18:08:48+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -360,7 +360,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "OMA",
@@ -411,7 +411,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "OMA",
@@ -445,7 +445,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "OMA",
@@ -513,7 +513,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "OMA",
@@ -564,7 +564,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "OMA",
@@ -632,7 +632,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "OMA",

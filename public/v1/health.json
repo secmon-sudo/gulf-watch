@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T18:04:56+00:00",
+  "generated_at": "2026-09-02T18:08:48+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -27,11 +27,11 @@
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
   "database": {
-    "route_departures": 80521,
-    "raw_legs_retained": 188765,
+    "route_departures": 89787,
+    "raw_legs_retained": 27826,
     "first_day": "2025-10-31",
     "last_day": "2026-09-02",
-    "baseline_routes": 1147
+    "baseline_routes": 1259
   },
   "baseline_ready": true,
   "recent_runs": [

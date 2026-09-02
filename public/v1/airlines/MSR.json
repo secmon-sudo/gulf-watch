@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T18:04:56+00:00",
+  "generated_at": "2026-09-02T18:08:48+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -96,7 +96,7 @@
       "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
-      "baseline_days": 24,
+      "baseline_days": 25,
       "baseline_trusted": false,
       "comparable": false,
       "scored": false,
@@ -256,7 +256,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "MSR",
@@ -368,7 +368,7 @@
       "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
-      "baseline_days": 10,
+      "baseline_days": 11,
       "baseline_trusted": false,
       "comparable": false,
       "scored": false,
@@ -402,7 +402,7 @@
       "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
-      "baseline_days": 13,
+      "baseline_days": 14,
       "baseline_trusted": false,
       "comparable": false,
       "scored": false,
@@ -419,7 +419,7 @@
       "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
-      "baseline_days": 13,
+      "baseline_days": 14,
       "baseline_trusted": false,
       "comparable": false,
       "scored": false,
@@ -436,7 +436,7 @@
       "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
-      "baseline_days": 42,
+      "baseline_days": 53,
       "baseline_trusted": false,
       "comparable": false,
       "scored": false,
