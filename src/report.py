@@ -314,6 +314,19 @@ def observed_vs_scheduled(conn, days: int) -> dict[str, dict]:
     return out
 
 
+def baseline_airports(conn) -> dict[str, set[str]]:
+    """Carrier -> the monitored airports it served in the reference period.
+
+    Bounds where a board absence is allowed to mean anything: a carrier that
+    never flew to a board-covered airport cannot be found missing from one.
+    """
+    out: dict[str, set[str]] = {}
+    for r in conn.execute("SELECT carrier, dep_icao, arr_icao FROM baseline"):
+        out.setdefault(r["carrier"], set()).update({r["dep_icao"], r["arr_icao"]})
+    monitored = set(config.airports())
+    return {c: aps & monitored for c, aps in out.items()}
+
+
 def baseline_weekly(conn) -> dict[str, float]:
     """Carrier -> baselined departures per week, if a baseline exists at all."""
     rows = conn.execute(
@@ -485,8 +498,74 @@ def blind_news(conn, max_age: int = NEWS_MAX_AGE_DAYS,
     return out
 
 
+def board_operators(conn, days: int) -> dict:
+    """Who actually operated an aeroplane at our airports, from the boards.
+
+    The source that answers the question ADS-B cannot. A transponder return
+    names an aircraft, not an operator, so a carrier missing from the feed is
+    indistinguishable from a carrier the feed cannot resolve -- and for three
+    weeks in 2026-08 that ambiguity was resolved the wrong way, publishing
+    eleven withdrawals as our own blind spot.
+
+    Two guards, both load-bearing:
+
+    `operated_by IS NULL` is the whole point. The board lists a flight once per
+    ticket number, so a Qatar Airways aeroplane out of Doha appears under BA,
+    AA, IB, JL and AY too. Counting those as presence is what made British
+    Airways look like it was still flying.
+
+    Only `ok` board-days count. An empty or thin board is the endpoint failing,
+    and reading it as absence would turn a source outage into a fleet-wide
+    grounding -- the same mistake in a new place.
+    """
+    since = (metrics.reference_day() - timedelta(days=days - 1)).isoformat()
+    good = {(r["airport"], r["day"]) for r in conn.execute(
+        "SELECT airport, day FROM board_probe WHERE day >= ? AND verdict = 'ok'",
+        (since,))}
+    # Third guard, and it is about our own history rather than the source.
+    # `operated_by` was added on 2026-09-02; every row collected before it is
+    # NULL, which in this query means "flies its own aircraft". Read as-is,
+    # British Airways' 253 Doha codeshares would come back as 253 British
+    # Airways operations and bury the finding under its own evidence. A real
+    # Gulf board always carries codeshares -- 43% of Dubai's -- so a day that
+    # recorded none is a day collected before we could tell them apart.
+    attributed = {(r["airport"], r["day"]) for r in conn.execute(
+        "SELECT DISTINCT airport, day FROM board_flight "
+        "WHERE day >= ? AND operated_by IS NOT NULL", (since,))}
+    good &= attributed
+    if not good:
+        return {"usable": False, "operating": set(), "airports": set(), "days": 0}
+
+    operating: set[str] = set()
+    for r in conn.execute(
+            "SELECT DISTINCT airport, day, carrier FROM board_flight "
+            "WHERE day >= ? AND operated_by IS NULL", (since,)):
+        if (r["airport"], r["day"]) in good:
+            operating.add(r["carrier"])
+    return {"usable": True, "operating": operating,
+            "airports": {a for a, _ in good}, "days": len({d for _, d in good})}
+
+
+def board_state(code: str, boards: dict, base_airports: set[str]) -> str | None:
+    """'operates', 'absent', or None when the boards cannot speak for it.
+
+    Absence only means something where the carrier used to be. A carrier with
+    no reference-period presence at any board-covered airport is simply out of
+    this source's reach, and saying "absent" about it would be inventing a
+    finding out of a coverage edge.
+    """
+    if not boards["usable"]:
+        return None
+    if code in boards["operating"]:
+        return "operates"
+    if not (base_airports & boards["airports"]):
+        return None
+    return "absent"
+
+
 def verdict(seen_at: dict, sched: dict | None,
-            news: list[dict] | None) -> tuple[str, str]:
+            news: list[dict] | None,
+            on_board: str | None = None) -> tuple[str, str]:
     """(durum, gerekçe) — üç kaynaktan.
 
     Sıralama: gözlem > tarife > haber. Uçtuğu görülen bir havayolu, basın ne
@@ -515,6 +594,28 @@ def verdict(seen_at: dict, sched: dict | None,
             return "partial", (f"{n} sefer havada görüldü, ancak basın "
                                f"hat kesintisi bildiriyor{nere}")
         return "flying", f"{n} sefer havada görüldü, hat kesintisi bildirilmedi"
+
+    # The board, above the timetable and below a sighting. A timetable is an
+    # intention; a board is the aeroplanes that were listed that day, named by
+    # who operates them. It is what tells "not flying" from "not visible to us"
+    # -- the distinction ADS-B cannot make, and the one this report got wrong
+    # for eleven carriers.
+    if on_board == "operates":
+        if kesinti:
+            return "partial", ("havalimanı tabelalarında kendi uçağıyla "
+                               f"işletiyor, ancak basın hat kesintisi "
+                               f"bildiriyor{nere}")
+        return "flying", ("ADS-B kapsamamız dışında, ama havalimanı "
+                          "tabelalarında kendi uçağıyla işletiyor")
+
+    if on_board == "absent":
+        if kesinti:
+            return "stopped", ("havalimanı tabelalarında kendi uçağı hiç yok "
+                               f"ve basın durdurduğunu bildiriyor{nere} — iki "
+                               "bağımsız kaynak aynı yönde")
+        return "stopped", ("uçtuğu havalimanlarının tabelalarında kendi uçağı "
+                           "hiç görünmüyor; başkasının uçağındaki kod paylaşımı "
+                           "sayılmadı. Basında teyit eden haber bulunamadı")
 
     if haftalik:
         if kesinti:
@@ -620,6 +721,8 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
     use_llm = use_llm and classify.available()
     ref = metrics.reference_day()
     act = activity(conn, days)
+    boards = board_operators(conn, days)
+    base_airports = baseline_airports(conn)
     base = baseline_weekly(conn)
     sched_by_carrier = schedules.by_carrier(conn)
     ratios = observed_vs_scheduled(conn, days)
@@ -643,10 +746,11 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
                 LOG.info("%s: %s headlines", code, len(news))
             time.sleep(1.2)          # be polite to Google News
         seen_at = dict(act["seen"].get(code, {}))
+        on_board = board_state(code, boards, base_airports.get(code, set()))
         sched = sched_by_carrier.get(code)
         # `stale` deliberately does not reach verdict(): it is shown, not
         # counted. news is still None here, so the row reads "sorulamadı".
-        state, why = verdict(seen_at, sched, news)
+        state, why = verdict(seen_at, sched, news, on_board)
         rows.append({"code": code, "name": cfg["name"],
                      "iata": cfg.get("iata"), "country": cfg.get("country"),
                      "seen_at": seen_at, "legs": sum(seen_at.values()),
@@ -654,12 +758,24 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
                      "stale": stale if news is None else None,
                      "news_failed": with_news and news is None,
                      "sched": sched, "ratio": ratios.get(code),
+                     "board": on_board,
                      "state": state, "why": why})
 
     # Last resort, and only for the rows that would otherwise say nothing at
     # all. A search costs far more than a headline lookup and is weaker
     # evidence, so it is spent where the report is genuinely blank.
-    silent = [r for r in rows if r["state"] == "unknown"]
+    # Ask the press about the rows where an answer changes something, not the
+    # rows that happen to sort first. Before this, the six searches went to
+    # DAH, ABG, RBG, CCA, AAL and CES -- alphabetical order -- while British
+    # Airways, Air France, Lufthansa and KLM, the carriers the boards say have
+    # withdrawn from Dubai and Doha, were never asked about at all.
+    #
+    # A withdrawal the press has not confirmed is the most valuable question in
+    # the report: the observation is already strong, and a citation is what
+    # turns it into something publishable. `unknown` still queues behind it --
+    # those rows have nothing at all, so a search can only help.
+    silent = ([r for r in rows if r["state"] == "stopped" and not r["news"]]
+              + [r for r in rows if r["state"] == "unknown"])
     if use_llm and silent:
         agent_id = websearch.agent()
         for r in silent[:MAX_WEB_SEARCHES]:

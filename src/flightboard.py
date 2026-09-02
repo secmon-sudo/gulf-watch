@@ -35,8 +35,25 @@ LOG = logging.getLogger("gulfwatch.flightboard")
 BASE = "https://www.flightstats.com/v2/api-next/flight-tracker"
 
 # Six-hour windows, four of them, so a full UTC day is covered per direction.
+# This was 56 requests a day while the walk covered seven airports and ran for
+# weeks without complaint; at fifteen it is 120, and on 2026-09-02 flightstats
+# answered 403 from about the twenty-fourth onwards -- an IP-wide block that
+# then refused even the airports which had worked all along. A 12-hour window
+# would halve the count and is the obvious next move, but numHours=12 has not
+# been shown to return a full twelve hours, and shipping an unverified
+# parameter would trade a rate problem for a silent data-loss one. So the
+# count stays and ABORT_AFTER carries the fix.
 WINDOW_HOURS = 6
 WINDOW_STARTS = [0, 6, 12, 18]
+
+# Seconds between requests. Was 1.0 for seven airports.
+REQUEST_DELAY = 2.0
+
+# Consecutive failures that end the whole sweep. Without this the walk answered
+# a block by sending the remaining ninety-six requests into it, which is both
+# useless and the surest way to make the block longer. Stopping early costs one
+# day of boards; being banned costs every day until it lifts.
+ABORT_AFTER = 8
 
 # Below this share of the recent median, the board is treated as broken rather
 # than as evidence. 0.3 is deliberately generous: a real collapse in traffic is
@@ -149,7 +166,14 @@ def sample(conn, day: datetime | None = None) -> dict:
 
     written = 0
     flagged: list[str] = []
+    misses = 0
     for icao, cfg in board_airports().items():
+        if misses >= ABORT_AFTER:
+            LOG.warning("%s and the rest skipped: %s requests in a row failed, "
+                        "so the source is refusing us and hammering it would "
+                        "only prolong that", icao, misses)
+            flagged.append(f"{icao}:skipped")
+            continue
         seen: set[tuple] = set()
         failed = False
         for direction in ("arr", "dep"):
@@ -157,10 +181,16 @@ def sample(conn, day: datetime | None = None) -> dict:
                 flights = _fetch(cfg["iata"], direction, day, hour)
                 if flights is None:
                     failed = True
+                    misses += 1
+                    if misses >= ABORT_AFTER:
+                        break
                     continue
+                misses = 0
                 for row in _rows(flights, icao, direction, key, mapping, now):
                     seen.add(row)
-                time.sleep(1.0)
+                time.sleep(REQUEST_DELAY)
+            if misses >= ABORT_AFTER:
+                break
 
         if failed and not seen:
             # Every window errored. Recording a zero here would poison the
@@ -174,7 +204,7 @@ def sample(conn, day: datetime | None = None) -> dict:
                (airport, direction, day, carrier, flight_no, other_iata,
                 sched_time, fetched_at, operated_by)
                VALUES (?,?,?,?,?,?,?,?,?)""",
-            sorted(seen))
+            sorted(seen, key=lambda r: tuple("" if v is None else v for v in r)))
         written += len(seen)
 
         verdict, median = _verdict(conn, icao, key, len(seen))

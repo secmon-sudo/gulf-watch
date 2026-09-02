@@ -1049,7 +1049,14 @@ class TestFlightBoardGuard(unittest.TestCase):
         rows = self.conn.execute("SELECT COUNT(*) n FROM board_probe").fetchone()["n"]
         self.assertEqual(rows, 0)
         self.assertEqual(out["written"], 0)
-        self.assertTrue(all(f.endswith(":failed") for f in out["flagged"]))
+        # `:failed` until the circuit breaker trips, `:skipped` after it. Both
+        # record no count, which is the whole point; what changed on
+        # 2026-09-02 is that the walk now stops asking instead of sending the
+        # rest of its requests into a block.
+        self.assertTrue(all(f.endswith((":failed", ":skipped"))
+                            for f in out["flagged"]))
+        self.assertTrue(any(f.endswith(":skipped") for f in out["flagged"]),
+                        "a total failure must stop the sweep, not complete it")
 
     def test_board_rows_never_land_in_the_flight_table(self):
         """A board listing is not a sighting; merging the two would let the
@@ -1103,6 +1110,85 @@ class TestFlightBoardGuard(unittest.TestCase):
         self.assertIn("OMDB", covered, "Dubai is where the question lives")
         self.assertIn("OTHH", covered)
         self.assertIn("ORBI", covered, "and the blind seven are not dropped")
+
+class TestBoardVerdict(unittest.TestCase):
+    """The source that tells "not flying" from "not visible to us".
+
+    ADS-B names an aircraft, not an operator, so for three weeks in 2026-08
+    eleven carriers that had genuinely withdrawn from Dubai and Doha were
+    published as our own blind spot. These pin the four ways that reading can
+    go wrong in the other direction.
+    """
+
+    def setUp(self):
+        from src import report
+        self.report = report
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.day = metrics.reference_day()
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _board(self, airport, rows, verdict="ok"):
+        """rows: (carrier, operated_by). Adds one codeshare so the day counts
+        as attributed, unless the caller already supplied one."""
+        d = self.day.isoformat()
+        self.conn.execute("INSERT OR REPLACE INTO board_probe "
+                          "(airport, day, flights, verdict) VALUES (?,?,?,?)",
+                          (airport, d, len(rows), verdict))
+        for i, (car, op) in enumerate(rows):
+            self.conn.execute(
+                "INSERT OR REPLACE INTO board_flight (airport, direction, day, "
+                "carrier, flight_no, operated_by) VALUES (?,?,?,?,?,?)",
+                (airport, "dep", d, car, str(100 + i), op))
+        self.conn.commit()
+
+    def test_a_codeshare_does_not_make_the_carrier_an_operator(self):
+        self._board("OMDB", [("UAE", None), ("BAW", "Operated by Emirates 1")])
+        got = self.report.board_operators(self.conn, 7)
+        self.assertIn("UAE", got["operating"])
+        self.assertNotIn("BAW", got["operating"])
+
+    def test_a_broken_board_is_not_an_empty_sky(self):
+        """The guard flightboard already has, carried through to the verdict:
+        a source that stopped answering must not ground a fleet."""
+        self._board("OMDB", [("UAE", None), ("X", "Operated by Someone 1")],
+                    verdict="empty")
+        got = self.report.board_operators(self.conn, 7)
+        self.assertFalse(got["usable"])
+        self.assertIsNone(self.report.board_state("BAW", got, {"OMDB"}))
+
+    def test_rows_from_before_operator_attribution_are_not_read_as_own_metal(self):
+        """`operated_by` arrived on 2026-09-02 and every older row is NULL --
+        which in this query would mean "flies its own aircraft". BA's 253 Doha
+        codeshares would have come back as 253 BA operations."""
+        self._board("OMDB", [("UAE", None), ("BAW", None)])   # no codeshare recorded
+        got = self.report.board_operators(self.conn, 7)
+        self.assertFalse(
+            got["usable"],
+            "a Gulf board with no codeshare in it was collected before we "
+            "could tell a codeshare apart")
+
+    def test_absence_only_speaks_where_the_carrier_used_to_be(self):
+        self._board("OMDB", [("UAE", None), ("QTR", "Operated by Emirates 1")])
+        got = self.report.board_operators(self.conn, 7)
+        self.assertEqual(self.report.board_state("BAW", got, {"OMDB"}), "absent")
+        self.assertIsNone(
+            self.report.board_state("BAW", got, {"OERK"}),
+            "a carrier that never served a covered airport cannot be missing "
+            "from one")
+
+    def test_the_verdict_prefers_a_sighting_then_the_board_then_the_timetable(self):
+        v = self.report.verdict
+        self.assertEqual(v({"OMDB": 3}, None, [], "absent")[0], "flying")
+        self.assertEqual(v({}, None, [], "operates")[0], "flying")
+        self.assertEqual(v({}, {"weekly": 20, "airports": {}}, [], "absent")[0],
+                         "stopped")
+        self.assertEqual(v({}, {"weekly": 20, "airports": {}}, [], None)[0],
+                         "scheduled")
+
 
 class TestReportAttribution(unittest.TestCase):
     """A headline gets attributed to a carrier, or the carrier reads Stopped.
