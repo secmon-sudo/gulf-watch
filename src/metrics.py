@@ -732,6 +732,7 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     # is in our data. Asked over a much wider span than the ratio window,
     # because it is a question about the feed rather than about the week.
     car_vis = carrier_visibility(conn, day, config.CARRIER_VISIBILITY_DAYS)
+    bl_blind = config.baseline_blind_carriers()
 
     # The same question asked of the reference period. An airport we barely saw
     # back then cannot anchor a percentage now.
@@ -769,7 +770,8 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
         vis_scale = WINDOW_DAYS / len(vis) if vis else None
         fetch_enough = len(vis) >= config.MIN_OBSERVED_DAYS
 
-        comparable = bl_trusted and bl >= config.MIN_BASELINE_WEEKLY
+        comparable = (bl_trusted and bl >= config.MIN_BASELINE_WEEKLY
+                      and carrier not in bl_blind)
         # A carrier with no baseline entry cannot be judged either way, and its
         # routes are not comparable regardless; let it through here.
         carrier_seen = (car_vis.get(carrier, 1.0)

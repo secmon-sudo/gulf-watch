@@ -811,6 +811,53 @@ class TestSuspensionEvents(unittest.TestCase):
             "withdrawn is not resumed -- it never stopped, and saying it came "
             "back is a second false claim covering the first")
 
+    def test_a_carrier_whose_home_was_never_harvested_cannot_be_stopped(self):
+        """Oman Air, measured 2026-09-03. Not one of its 32 baseline routes
+        touches Muscat -- impossible for an airline whose whole network runs
+        through it -- because Muscat is in BASELINE_BLIND. What the baseline
+        holds instead is Doha-Kochi, Delhi-Dubai and Kuala Lumpur-Doha, and
+        flight OMA246 appears arriving at Bahrain, Dubai and Doha on different
+        days. There is no claim to make about a carrier flying less than a
+        baseline that was never its own.
+        """
+        self.assertEqual(config.baseline_blind_carriers(), {"OMA"})
+        self._fill(silent_for=None)
+        self.conn.execute(
+            "INSERT INTO baseline VALUES ('OMA','VIDP','OMDB',6,28,?,?)",
+            ((self.today - timedelta(days=28)).isoformat(),
+             self.today.isoformat()))
+        old_day = (self.today - timedelta(days=14)).isoformat()
+        self.conn.execute(
+            "INSERT INTO daily_route VALUES (?,'OMA','VIDP','OMDB',1)", (old_day,))
+        self.conn.commit()
+
+        self.susp.detect(self.conn, self.today)
+        self.assertEqual(
+            [e for e in self.susp.report(self.conn)["active"]
+             if e["carrier"] == "OMA"], [])
+
+    def test_an_existing_stop_is_withdrawn_when_its_baseline_is_disowned(self):
+        """Skipping detection is not enough -- the loop stops revisiting the
+        scope and an already-published stop would stay on the page forever.
+        This one was live: Oman Air Delhi-Dubai was the only finding the feed
+        was publishing on 2026-09-03, and it was an artifact."""
+        self._fill(silent_for=None)
+        started = (self.today - timedelta(days=12)).isoformat()
+        self.conn.execute(
+            """INSERT INTO suspension (scope, scope_key, carrier, detail,
+                   baseline_weekly, last_flight_on, started_on, detected_on,
+                   days_stopped, status, confidence)
+               VALUES ('route','OMA|VIDP|OMDB','OMA','VIDP-OMDB',6,?,?,?,12,
+                       'active','corroborated')""",
+            (started, started, self.today.isoformat()))
+        self.conn.commit()
+
+        self.assertEqual(self.susp.withdraw_contradicted(self.conn), 1)
+        self.conn.commit()
+        self.assertEqual(
+            self.conn.execute("SELECT status FROM suspension WHERE carrier='OMA'")
+                .fetchone()["status"], "withdrawn")
+
     def test_a_leg_that_lands_where_it_started_is_not_a_route(self):
         """OTHH-OTHH at 71.6 departures a week, and nothing flies it.
 

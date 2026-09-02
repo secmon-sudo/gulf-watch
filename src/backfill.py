@@ -49,7 +49,7 @@ RAW_RETENTION_DAYS = 60
 
 
 # Seen live, blind across the reference window. See observable_airports.
-BASELINE_BLIND = {"OOMS"}
+BASELINE_BLIND = config.BASELINE_BLIND_AIRPORTS
 
 
 def observable_airports() -> list[str]:

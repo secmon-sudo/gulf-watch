@@ -343,6 +343,7 @@ def detect(conn, day: date | None = None) -> dict:
     # 2026-08-23, against 63.7 departures a week of baseline it never appears
     # on. Ask the question directly rather than rely on that.
     car_vis = metrics.carrier_visibility(conn, day, config.CARRIER_VISIBILITY_DAYS)
+    bl_blind = config.baseline_blind_carriers()
     opened: list[dict] = []
     resumed: list[dict] = []
 
@@ -355,6 +356,10 @@ def detect(conn, day: date | None = None) -> dict:
                 continue
             if (car_vis.get(meta["carrier"], 1.0)
                     < config.MIN_CARRIER_VISIBILITY):
+                continue
+            # No baseline of its own routes, only legs mis-attributed to it --
+            # there is nothing here to have stopped doing.
+            if meta["carrier"] in bl_blind:
                 continue
             counts = _daily_counts(conn, scope, key)
             s = silence(counts, cov, day, span,
@@ -454,17 +459,29 @@ def withdraw_contradicted(conn) -> int:
     claim laid over the first. The row stays for the audit trail, and
     `report()` reads neither status, so it leaves the page.
     """
+    blind = config.baseline_blind_carriers()
     n = 0
     for row in conn.execute(
-            "SELECT id, scope, scope_key, started_on FROM suspension "
+            "SELECT id, scope, scope_key, carrier, started_on FROM suspension "
             "WHERE status='active'").fetchall():
-        seen = board_flew(conn, row["scope"], row["scope_key"], row["started_on"])
-        if not seen:
+        why = None
+        if row["carrier"] in blind:
+            # The reason vanished rather than being contradicted. A stop is a
+            # claim about a carrier flying less than its baseline, so a carrier
+            # whose baseline turns out to be worthless has no such claim left,
+            # and leaving it published would be asserting something we have
+            # since established we cannot know.
+            why = "its baseline is not its own routes"
+        else:
+            seen = board_flew(conn, row["scope"], row["scope_key"],
+                              row["started_on"])
+            if seen:
+                why = f"board listed its own aircraft {seen}"
+        if not why:
             continue
         conn.execute("UPDATE suspension SET status='withdrawn' WHERE id=?",
                      (row["id"],))
-        LOG.info("WITHDREW %s %s: board listed its own aircraft %s",
-                 row["scope"], row["scope_key"], seen)
+        LOG.info("WITHDREW %s %s: %s", row["scope"], row["scope_key"], why)
         n += 1
     return n
 

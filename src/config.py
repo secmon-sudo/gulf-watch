@@ -138,6 +138,39 @@ MIN_SIGNAL_HISTORY_DAYS = 7
 
 # Baseline window (frozen, pre-escalation). Change and re-run backfill if you
 # want a different reference period.
+# Airports the baseline harvest could not collect. OpenSky returned zero legs
+# for Muscat on all thirteen of its reference-window slices, so harvesting it
+# only spent credits.
+BASELINE_BLIND_AIRPORTS = {"OOMS"}
+
+
+def baseline_blind_carriers() -> set[str]:
+    """Carriers whose baseline is structurally worthless, not merely thin.
+
+    An airline based where the harvest is blind has no baseline of its own
+    routes -- only the legs other airports' fetches mis-attributed to it.
+    Measured 2026-09-03: not one of Oman Air's 32 baseline routes touches
+    Muscat, which is impossible for an airline whose entire network runs
+    through it, and what the baseline holds instead is Doha-Kochi, Delhi-Dubai
+    and Kuala Lumpur-Doha. Flight OMA246 appears arriving at Bahrain, Dubai and
+    Doha on different days, and OMA411 flies Delhi-Amman, a route Oman Air does
+    not operate. OpenSky estimates the arrival airport and picks whichever
+    monitored one the aeroplane passed near.
+
+    `baseline_trusted` cannot catch this: it asks whether the ROUTE could have
+    entered the baseline, and Delhi-Dubai legitimately could, through Dubai's
+    arrival fetch. The defect is in what that fetch called the flight, so the
+    question has to be asked about the carrier.
+
+    Derived rather than listed, so a future blind airport takes its own
+    carriers with it.
+    """
+    blind = {a["country"] for code, a in airports().items()
+             if code in BASELINE_BLIND_AIRPORTS}
+    return {code for code, cfg in carriers().items()
+            if cfg.get("country") in blind}
+
+
 BASELINE_START = os.environ.get("GULFWATCH_BASELINE_START", "2025-11-01")
 BASELINE_END = os.environ.get("GULFWATCH_BASELINE_END", "2026-01-31")
 
