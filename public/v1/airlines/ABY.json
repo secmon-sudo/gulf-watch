@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T18:08:48+00:00",
+  "generated_at": "2026-09-02T20:45:49+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -45,16 +45,13 @@
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "LTFJ-OMSJ",
-      "OMSJ-LTFJ"
-    ],
-    "since": "2026-08-16",
-    "days_stopped": 14,
-    "confidence": "observed"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -2217,115 +2214,6 @@
       "observed_days": 2
     }
   ],
-  "stop_events": [
-    {
-      "id": 431,
-      "scope": "route",
-      "scope_key": "ABY|OMSJ|LTFJ",
-      "carrier": "ABY",
-      "detail": "OMSJ-LTFJ",
-      "baseline_weekly": 5.6,
-      "last_flight_on": "2026-08-15",
-      "started_on": "2026-08-16",
-      "detected_on": "2026-08-27",
-      "resumed_on": null,
-      "days_stopped": 14,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Air Arabia to launch five weekly flights between Sharjah, Gdansk - TradeArabia",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOUURlYU4xTmVDZFFFSTlqNUxGbVQyY0tEcnlLWldhUVpGcVRIRDh5TUx4WG1ZeEZyTWpCRG90ZnR4UG1uQ2dOUFVPM3FGbmpRdnd4Ti11WHJ1Uk03b3dNQ0FURGQ0cEhEVmwyU21nLVVlUnhjLTIyRkhTYXAwUWJ6Q29abGJqN3lyREZjZXpDRC1FREliN05oQm1meExONXNqc3Zxb0dB?oc=5",
-          "published": "Wed, 26 Aug 2026 06:36:40 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Air Arabia Launches Daily Sharjah-Frankfurt Flights - MiGFlug",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPSXN2TC1ialp5MmlURHZScGtKOHRaczdFQnlXWlRiLW9pN2Zvdno1LS1JZnpEVWw1YVdsWXhsd3BnV1hscjZIOURIZWR4R25xNTgzMFFIZC0tTkMzQnAtWG9lV0FXUGhTOVVSdzlyM2o0MU1SNk1ueG05YXhKam40Mw?oc=5",
-          "published": "Tue, 25 Aug 2026 14:20:50 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Air Arabia launches third Germany route from Sharjah with daily flights - Gulf News",
-          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOWm1Sa2RMM0VaM09LZld2T2QteUdEY1JoWEdlSlZkaGU2U0ROZV90bDBkZzMtQ1ptcXQzMkV0aFNjemJmb09hdXRDM20zRU83c3Ewcld2ZHpkZmhRNzJQVDl2REU0RUUwOFk5Z1FMZnlyYWVleUcyMDRWdUdfMmJWNF93MlllaDhaVk51ZEZiSFJOblZpVzR0Y0NxSXV0R3dGYVZGcGcwOUhweHc2Ml9JeFA2UDhITHZQaWxtbEpRNNIB0gFBVV95cUxPbHJlX094TUNRajg0bjdkMlhqalJxeElMMGs3UUFjQnpLNDdFT0wyNHBnTzBNRUdIUnNWQ1ZuTWdFMk5aeUhBaTFaVTFwc1lYM3F6Zm5KZGJCSG9nM0F0REk4bkhES3V1SEpwQVR5YVAyaUFXTjdybE02OFUydzlsS0U3NDBTZE03ekpBMG5SLU1YSl9mbXBBdThKdFlkQUY0d3I2RTZxU0I5RkZIU2lGUFkyYVRhUWtzWDU3SEwxZkdxWUJVY1RJVW9jaEhjaGJ4SUE?oc=5",
-          "published": "Thu, 27 Aug 2026 07:17:53 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Travel & Tourism News Middle East - ttnworldwide.com",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQUzZ3QmFJZlMtb1BpaHN0XzE1dEJTYWItcUNKY0FNYTVLb1RLMHNnODAtSGlKejdXd01xNElqcTgxR2RYUGx5QlVPVy1WLUx3MTdiQXdoc09tVUM1eFJ6XzAzLW9sdXBSeTZfUHhSVTZYS1NzM2N6QWJacWhGSlY3US1OX1B1enFHanhYcklrNDNyTnRiMTFYYlZqbEJBNzdXcmlrdWpJR05jLXJsVUMxTA?oc=5",
-          "published": "Thu, 27 Aug 2026 06:47:03 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "8-Hour Route: Air Arabia Launches 3rd Daily Nonstop Flight To London [Map] - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBycF9keEtVT2thNXdjOWx2UXVpYXplNGkyZmk2NFNWTVZhTWhJTjNXYWxfLW5VWUpLM1NqazMyMTZQQ2g0T3ptalQ2RHlkZGlTTUI4WG8xd3hNbURodE15U1JnV1kzTFRuOE5TUjZGcTY0Q2pvYkJZSUlHMlVCbVU?oc=5",
-          "published": "Sun, 26 Jul 2026 07:00:00 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    },
-    {
-      "id": 430,
-      "scope": "route",
-      "scope_key": "ABY|LTFJ|OMSJ",
-      "carrier": "ABY",
-      "detail": "LTFJ-OMSJ",
-      "baseline_weekly": 5.2,
-      "last_flight_on": "2026-08-15",
-      "started_on": "2026-08-16",
-      "detected_on": "2026-08-27",
-      "resumed_on": null,
-      "days_stopped": 14,
-      "status": "active",
-      "confidence": "observed",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "Air Arabia to launch five weekly flights between Sharjah, Gdansk - TradeArabia",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOUURlYU4xTmVDZFFFSTlqNUxGbVQyY0tEcnlLWldhUVpGcVRIRDh5TUx4WG1ZeEZyTWpCRG90ZnR4UG1uQ2dOUFVPM3FGbmpRdnd4Ti11WHJ1Uk03b3dNQ0FURGQ0cEhEVmwyU21nLVVlUnhjLTIyRkhTYXAwUWJ6Q29abGJqN3lyREZjZXpDRC1FREliN05oQm1meExONXNqc3Zxb0dB?oc=5",
-          "published": "Wed, 26 Aug 2026 06:36:40 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Air Arabia Launches Daily Sharjah-Frankfurt Flights - MiGFlug",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPSXN2TC1ialp5MmlURHZScGtKOHRaczdFQnlXWlRiLW9pN2Zvdno1LS1JZnpEVWw1YVdsWXhsd3BnV1hscjZIOURIZWR4R25xNTgzMFFIZC0tTkMzQnAtWG9lV0FXUGhTOVVSdzlyM2o0MU1SNk1ueG05YXhKam40Mw?oc=5",
-          "published": "Tue, 25 Aug 2026 14:20:50 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Air Arabia launches third Germany route from Sharjah with daily flights - Gulf News",
-          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOWm1Sa2RMM0VaM09LZld2T2QteUdEY1JoWEdlSlZkaGU2U0ROZV90bDBkZzMtQ1ptcXQzMkV0aFNjemJmb09hdXRDM20zRU83c3Ewcld2ZHpkZmhRNzJQVDl2REU0RUUwOFk5Z1FMZnlyYWVleUcyMDRWdUdfMmJWNF93MlllaDhaVk51ZEZiSFJOblZpVzR0Y0NxSXV0R3dGYVZGcGcwOUhweHc2Ml9JeFA2UDhITHZQaWxtbEpRNNIB0gFBVV95cUxPbHJlX094TUNRajg0bjdkMlhqalJxeElMMGs3UUFjQnpLNDdFT0wyNHBnTzBNRUdIUnNWQ1ZuTWdFMk5aeUhBaTFaVTFwc1lYM3F6Zm5KZGJCSG9nM0F0REk4bkhES3V1SEpwQVR5YVAyaUFXTjdybE02OFUydzlsS0U3NDBTZE03ekpBMG5SLU1YSl9mbXBBdThKdFlkQUY0d3I2RTZxU0I5RkZIU2lGUFkyYVRhUWtzWDU3SEwxZkdxWUJVY1RJVW9jaEhjaGJ4SUE?oc=5",
-          "published": "Thu, 27 Aug 2026 07:17:53 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Travel & Tourism News Middle East - ttnworldwide.com",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQUzZ3QmFJZlMtb1BpaHN0XzE1dEJTYWItcUNKY0FNYTVLb1RLMHNnODAtSGlKejdXd01xNElqcTgxR2RYUGx5QlVPVy1WLUx3MTdiQXdoc09tVUM1eFJ6XzAzLW9sdXBSeTZfUHhSVTZYS1NzM2N6QWJacWhGSlY3US1OX1B1enFHanhYcklrNDNyTnRiMTFYYlZqbEJBNzdXcmlrdWpJR05jLXJsVUMxTA?oc=5",
-          "published": "Thu, 27 Aug 2026 06:47:03 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "8-Hour Route: Air Arabia Launches 3rd Daily Nonstop Flight To London [Map] - Simple Flying",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBycF9keEtVT2thNXdjOWx2UXVpYXplNGkyZmk2NFNWTVZhTWhJTjNXYWxfLW5VWUpLM1NqazMyMTZQQ2g0T3ptalQ2RHlkZGlTTUI4WG8xd3hNbURodE15U1JnV1kzTFRuOE5TUjZGcTY0Q2pvYkJZSUlHMlVCbVU?oc=5",
-          "published": "Sun, 26 Jul 2026 07:00:00 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }
