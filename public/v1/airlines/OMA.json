@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T21:30:57+00:00",
+  "generated_at": "2026-09-02T21:37:01+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -45,15 +45,13 @@
   "status": "UNKNOWN",
   "operating": true,
   "stopped": {
-    "any": true,
-    "scope": "route",
+    "any": false,
+    "scope": null,
     "airports_dropped": [],
-    "routes_dropped": [
-      "VIDP-OMDB"
-    ],
-    "since": "2026-08-18",
-    "days_stopped": 12,
-    "confidence": "corroborated"
+    "routes_dropped": [],
+    "since": null,
+    "days_stopped": 0,
+    "confidence": null
   },
   "routes": [
     {
@@ -686,61 +684,6 @@
       "observed_days": 2
     }
   ],
-  "stop_events": [
-    {
-      "id": 432,
-      "scope": "route",
-      "scope_key": "OMA|VIDP|OMDB",
-      "carrier": "OMA",
-      "detail": "VIDP-OMDB",
-      "baseline_weekly": 1.8,
-      "last_flight_on": "2026-08-17",
-      "started_on": "2026-08-18",
-      "detected_on": "2026-08-27",
-      "resumed_on": null,
-      "days_stopped": 12,
-      "status": "active",
-      "confidence": "corroborated",
-      "carrier_name": "Oman Air",
-      "evidence": [
-        {
-          "source": "news",
-          "title": "What Travelers Need to Know About Middle East Flight Disruptions - cntraveler.com",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPUGF3cUNQSVRsSDYwSEt5TGNyalJQNU50SGJNRURnbHhCRG5tRWlTLUdDYlVqTGNNeWVnSGtuejkxVmJoUVFEQ2ZnQzlmSzlibmpKb0kxeXNobnc4Z0VqZkdGb1FqSGlWMWFRaENwZlFGZWdDX1hTSzJ6RDV1ZGRXTFZxaWZWSEh4Rlc2bXAzMzJUVEo0WEZCOVIxbEt0UQ?oc=5",
-          "published": "Tue, 17 Mar 2026 07:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "British Airways to suspend UK repatriation flights – latest on travel from Middle East - bbc.com",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NeHVXa1JmOXl3dU8zU2xxdFRRZUxzcHc4Sm5jazNfMWIyN2UzYWp5SHhDeGl5T3VrOE96a29mb3BWS1k1ZmhwVXp2bXJRTmI3QUpkaF9ySnQxdw?oc=5",
-          "published": "Tue, 10 Mar 2026 07:00:00 GMT",
-          "stance": "supports"
-        },
-        {
-          "source": "news",
-          "title": "Update from Oman Air Cargo concerning flights to and from the Middle East - American Journal of Transportation",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPdzFoN0NvOTZkM0dCa1RsTXNPUTlZLWszXzVLbGVONVo0cDFJLXVKUUhLVGlGMUZ4M0JsTGp5blp4dElPRXBsYXhUNnZXRTV0NkVma0d3OW9IWjl6WUU4RFhnTF9kME9yWEZuRW5LcXFxY3pSQ0lqdjRfcWxXbk91ZE1mTTdudWdHUE1WbllNWXlrR0RVVFRlQTFkQVNNeUda?oc=5",
-          "published": "Tue, 03 Mar 2026 08:00:00 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Dubai and Middle East flight disruption: this major European airline has operated its first Dubai flight in six months - Condé Nast Traveller Middle East",
-          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSjVJSnh5aDhwcENVYXYzaHNScVR3aXlwQ25RZmFoeHZrdHhoYklGLUJ1MVBZR0wyU1ZRUndNRDFZc0VuYjd2ZEs4ZDlhWWJwSWNRdEJieWlWNHhmVzlPSTVkMkNqYXNWZll0M1NWWHRDcE5JLU5UNjl1TG9oS3VFOEd2Y243eVJtanhDYnNlMWlFVC1kdU5GR3o2VmJ2akl6QlBaSi1VcHBIM25sTzVCQ2xPekZnY3QzT0gzWkotdF8zaFRLTFFyU01UcXhrT2JuZkUzX29rdm1PYUI1NnIxZHdIWW91TzNh?oc=5",
-          "published": "Thu, 27 Aug 2026 08:42:25 GMT",
-          "stance": "unclear"
-        },
-        {
-          "source": "news",
-          "title": "Oman Air extends cancellations on 7 routes until April 15 over regional airspace closures - Anadolu Ajansı",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOQ3pqLWZ2X2FZWjJqaUlTbHRjcjV2ZDdGVmRsUVYwMTZwbUlDdkhCTnpKSzl4dTdRamxGU01OUlNjZVBXVFlwUFVWWVY1TE1KRWVnMW15S1Z6RlNqSHhwQzBiNFdrN1ZCb1ZMeFR1VGROVUpTbGtLcUNkMnR6NkpsTGtVMVZJNU9HMWQ1MGVpYkdmV2FMS0dUMURyZ0pYQlRzWEk5S2o5cVhQd0F4bXFjY0FYcHVqZ0Zhby15UVd3NnFxZDdPSmNlaGtR?oc=5",
-          "published": "Thu, 26 Mar 2026 07:00:00 GMT",
-          "stance": "unclear"
-        }
-      ],
-      "superseded_by": null
-    }
-  ],
+  "stop_events": [],
   "resumed": []
 }

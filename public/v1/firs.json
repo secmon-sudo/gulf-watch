@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T21:30:57+00:00",
+  "generated_at": "2026-09-02T21:37:01+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -404,15 +404,15 @@
           "transits": 2
         },
         {
-          "carrier": "MEA",
+          "carrier": "MSR",
           "transits": 2
         },
         {
-          "carrier": "MSR",
-          "transits": 1
+          "carrier": "MEA",
+          "transits": 2
         }
       ],
-      "total_transits": 328
+      "total_transits": 329
     },
     {
       "fir": "OEJD",
