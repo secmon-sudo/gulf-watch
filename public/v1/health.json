@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T21:14:54+00:00",
+  "generated_at": "2026-09-02T21:30:57+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -36,6 +36,10 @@
   "baseline_ready": true,
   "recent_runs": [
     {
+      "started_at": "2026-09-02T21:28:38+00:00",
+      "detail": "legs=0 coverage=degraded(0.587) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=6469"
+    },
+    {
       "started_at": "2026-09-02T21:11:36+00:00",
       "detail": "legs=1089 coverage=degraded(0.587) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=6469"
     },
@@ -50,10 +54,6 @@
     {
       "started_at": "2026-09-02T13:21:24+00:00",
       "detail": "legs=0 coverage=outage(0.0) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=1786"
-    },
-    {
-      "started_at": "2026-09-01T16:24:07+00:00",
-      "detail": "legs=0 coverage=outage(0.091) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=210 board=1834 FLAGGED[OIIE:empty]"
     }
   ]
 }

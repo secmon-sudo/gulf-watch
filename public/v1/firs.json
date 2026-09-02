@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T21:14:54+00:00",
+  "generated_at": "2026-09-02T21:30:57+00:00",
   "as_of_day": "2026-08-31",
   "coverage": {
     "day": "2026-08-31",
@@ -170,7 +170,7 @@
         },
         {
           "carrier": "MSR",
-          "transits": 3
+          "transits": 4
         },
         {
           "carrier": "FDB",
@@ -193,7 +193,7 @@
           "transits": 1
         }
       ],
-      "total_transits": 18
+      "total_transits": 19
     },
     {
       "fir": "OKAC",
@@ -428,7 +428,7 @@
       "carriers": [
         {
           "carrier": "RJA",
-          "transits": 14
+          "transits": 15
         },
         {
           "carrier": "UAE",
@@ -487,7 +487,7 @@
           "transits": 2
         }
       ],
-      "total_transits": 80
+      "total_transits": 81
     }
   ]
 }
