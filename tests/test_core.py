@@ -1093,6 +1093,128 @@ class TestOpenSkyWindowing(unittest.TestCase):
             self.assertEqual(prev_end, next_start)
 
 
+class TestSignalCoverage(unittest.TestCase):
+    """Coverage measures the pipe, not anybody's airline.
+
+    The control group it replaced was nominally six carriers and actually two:
+    over August 2026, Emirates and Qatar supplied 11945 of 12168 control legs,
+    Lufthansa 1, Air France 4, KLM none. Three of the six have since been shown
+    not to be flying, which is the one thing a control carrier cannot be.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.today = date(2026, 9, 1)
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _probe(self, day, n, airport="OMDB"):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO fetch_probe (airport, direction, day, records) "
+            "VALUES (?,'dep',?,?)", (airport, day.isoformat(), n))
+        self.conn.commit()
+
+    def test_a_fetch_is_bucketed_by_the_day_its_records_belong_to(self):
+        """A 48-hour fetch spans two or three UTC days, so attributing it to
+        the day the fetch ran would smear the signal across the wrong days."""
+        d1 = int(datetime(2026, 8, 30, 10, tzinfo=timezone.utc).timestamp())
+        d2 = int(datetime(2026, 8, 31, 10, tzinfo=timezone.utc).timestamp())
+        raw = [{"firstSeen": d1}] * 3 + [{"firstSeen": d2}] * 5 + [{"firstSeen": None}]
+        metrics.record_fetch(self.conn, "OMDB", "dep", raw)
+        got = dict(self.conn.execute("SELECT day, records FROM fetch_probe"))
+        self.assertEqual(got, {"2026-08-30": 3, "2026-08-31": 5})
+
+    def test_a_re_read_keeps_the_high_water_mark(self):
+        """Later runs re-read the same window and see more as OpenSky settles
+        it; a lower count from a thin re-read must not overwrite a good one."""
+        d = int(datetime(2026, 8, 30, 10, tzinfo=timezone.utc).timestamp())
+        metrics.record_fetch(self.conn, "OMDB", "dep", [{"firstSeen": d}] * 9)
+        metrics.record_fetch(self.conn, "OMDB", "dep", [{"firstSeen": d}] * 2)
+        self.assertEqual(
+            self.conn.execute("SELECT records FROM fetch_probe").fetchone()[0], 9)
+
+    def test_no_carrier_can_move_the_score_by_leaving(self):
+        """The whole point. A carrier withdrawing changes who is in the feed,
+        not how much of it arrives, so the health verdict must not move."""
+        for off in range(1, 15):
+            self._probe(self.today - timedelta(days=off), 500)
+        self._probe(self.today, 500)
+        got = metrics.score_coverage(self.conn, self.today)
+        self.assertEqual(got["verdict"], "ok")
+        self.assertEqual(got["control_flights"], 500,
+                         "scored on records delivered, not on control legs")
+
+    def test_a_thin_fetch_still_reads_as_an_outage(self):
+        for off in range(1, 15):
+            self._probe(self.today - timedelta(days=off), 500)
+        self._probe(self.today, 40)
+        self.assertEqual(
+            metrics.score_coverage(self.conn, self.today)["verdict"], "outage")
+
+    def test_it_falls_back_until_the_new_signal_has_a_median(self):
+        """A signal with no reference period cannot tell a quiet day from a
+        broken one, and a month of `outage` would freeze stop detection."""
+        for off in range(1, 4):          # under MIN_SIGNAL_HISTORY_DAYS
+            self._probe(self.today - timedelta(days=off), 500)
+        self._probe(self.today, 500)
+        got = metrics.score_coverage(self.conn, self.today)
+        self.assertNotEqual(
+            got["control_flights"], 500,
+            "too little history to score on volume; the fallback must run")
+
+
+class TestFirGeometry(unittest.TestCase):
+    """The FIR boxes are crude rectangles and they overlap. These pin that one
+    aeroplane lands in exactly one of them, and that it is flying."""
+
+    def setUp(self):
+        from src import firwatch
+        self.fw = firwatch
+        self.firs = config.firs()
+
+    def _at(self, lat, lon, alt=35000):
+        return {"lat": lat, "lon": lon, "alt_baro": alt, "hex": "abc123"}
+
+    def test_gulf_traffic_is_not_counted_as_iranian_overflight(self):
+        """The box used to reach the southern shore of the Gulf: it held Doha,
+        Dubai, Abu Dhabi, Bahrain, Sharjah, Kuwait, Riyadh, Baghdad and Erbil.
+        Nothing was published off it only because the sampler's query radius
+        never reached that far."""
+        for name, lat, lon, want in (("Doha", 25.273, 51.608, "OTDF"),
+                                     ("Dubai", 25.253, 55.365, "OMAE"),
+                                     ("Kuwait", 29.227, 47.969, "OKAC"),
+                                     ("Amman", 31.723, 35.993, "OJAC")):
+            got = self.fw._best_fir(self._at(lat, lon), self.firs)
+            self.assertEqual(got, want, f"{name} was assigned to {got}")
+
+    def test_tehran_still_holds_its_own_airspace(self):
+        """Tightening the box must not empty it -- Bandar Abbas at 27.2N is
+        inside Iran and has to stay."""
+        self.assertEqual(
+            self.fw._best_fir(self._at(27.2, 56.4), self.firs), "OIIX")
+        self.assertEqual(
+            self.fw._best_fir(self._at(35.416, 51.152), self.firs), "OIIX")
+
+    def test_an_aeroplane_on_the_ground_is_not_an_overflight(self):
+        """`alt_baro` arrives as the string "ground" for parked aircraft -- 8
+        of 41 over Dubai when measured -- and the integrity check passed it
+        because it only rejects negative *numeric* altitudes."""
+        self.assertFalse(self.fw.airborne({"alt_baro": "ground"}))
+        self.assertFalse(self.fw.airborne({}), "no altitude is not a transit")
+        self.assertTrue(self.fw.airborne({"alt_baro": 35000}))
+
+    def test_no_aircraft_is_in_two_firs_at_once(self):
+        """The overlap is the defect; one answer per aeroplane is the fix."""
+        ac = self._at(25.273, 51.608)
+        holding = [f for f, cfg in self.firs.items()
+                   if self.fw._inside(ac, cfg["bbox"])]
+        self.assertGreater(len(holding), 1, "this position must be ambiguous")
+        self.assertIn(self.fw._best_fir(ac, self.firs), holding)
+
+
 class TestFlightBoardGuard(unittest.TestCase):
     """The board endpoint is undocumented. When it breaks it will not error,
     it will return an empty list -- which without a guard reads as "every

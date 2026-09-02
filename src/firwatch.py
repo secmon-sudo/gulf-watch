@@ -34,12 +34,60 @@ def _inside(ac: dict, bbox) -> bool:
     return lamin <= ac["lat"] <= lamax and lomin <= ac["lon"] <= lomax
 
 
+def _area(bbox) -> float:
+    lamin, lomin, lamax, lomax = bbox
+    return (lamax - lamin) * (lomax - lomin)
+
+
+def _best_fir(ac: dict, firs: dict) -> str | None:
+    """The smallest configured FIR whose box holds this aircraft.
+
+    The boxes are crude rectangles and they overlap badly -- measured
+    2026-09-02, the Tehran box holds ten of the fifteen airports we monitor,
+    Muscat's holds Dubai, Jeddah's holds Amman and Baghdad's holds Kuwait. With
+    each FIR asked independently, one aeroplane over Doha answered yes to
+    several of them at once and Gulf traffic could be counted as Tehran FIR
+    activity.
+
+    Smallest-box-wins gives every aircraft exactly one FIR and picks the most
+    specific claim, which is the right one whenever a small box sits inside a
+    large one -- the usual shape here. It is still an approximation and the
+    config says so; what it stops is one aircraft being several places at once.
+    """
+    holding = [(fir, cfg) for fir, cfg in firs.items() if _inside(ac, cfg["bbox"])]
+    if not holding:
+        return None
+    return min(holding, key=lambda kv: _area(kv[1]["bbox"]))[0]
+
+
+def airborne(ac: dict) -> bool:
+    """Is this aeroplane actually flying?
+
+    `alt_baro` arrives as the string "ground" for parked and taxiing aircraft
+    -- 8 of 41 over Dubai when this was measured on 2026-09-02 -- and the
+    integrity check let it through because it only rejects *negative numeric*
+    altitudes. Nothing downstream looked at altitude at all, so aircraft
+    sitting on stands were being counted as FIR transits: Emirates FIR held 497
+    and Muscat FIR 630 on that arithmetic.
+
+    An aircraft that reports no altitude at all is also not counted. It may
+    well be flying, but we cannot say so, and a transit count is a claim about
+    aeroplanes in the air.
+    """
+    alt = ac.get("alt_baro")
+    if alt is None or isinstance(alt, str):     # "ground", or nothing at all
+        return False
+    return alt > 0
+
+
 def sample(conn, only_czib: bool = False) -> dict:
     """One sampling pass over configured FIRs. Writes to fir_transit."""
     day = datetime.now(tz=timezone.utc).strftime("%Y-%m-%d")
     carriers = config.carriers()
+    all_firs = config.firs()
     results: dict[str, dict[str, int]] = {}
     rejected = 0
+    grounded = 0
 
     for fir, cfg in config.firs().items():
         if only_czib and not cfg.get("czib_watch"):
@@ -51,7 +99,13 @@ def sample(conn, only_czib: bool = False) -> dict:
             if not adsb_live.position_is_trustworthy(ac):
                 rejected += 1
                 continue
-            if not _inside(ac, cfg["bbox"]):
+            if not airborne(ac):
+                grounded += 1
+                continue
+            # Ask which FIR this aeroplane is in, not whether it is in this
+            # one. The boxes overlap, so the second question has several true
+            # answers for the same aircraft and the first has one.
+            if _best_fir(ac, all_firs) != fir:
                 continue
             carrier, _ = parse_callsign(ac.get("flight"))
             if not carrier or carrier not in carriers:
@@ -70,8 +124,10 @@ def sample(conn, only_czib: bool = False) -> dict:
         LOG.info("%s via %s: %s carriers", fir, backend, len(seen))
 
     conn.commit()
-    LOG.info("dropped %s positions below the GNSS integrity floor", rejected)
-    return {"day": day, "firs": results, "positions_rejected": rejected}
+    LOG.info("dropped %s positions below the GNSS integrity floor and %s not "
+             "airborne", rejected, grounded)
+    return {"day": day, "firs": results, "positions_rejected": rejected,
+            "not_airborne": grounded}
 
 
 def summary(conn, days: int = 7) -> list[dict]:

@@ -65,6 +65,25 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      - name: Fetch the database
+        # The db lives on the `db-latest` release, not in git. If it cannot be
+        # had, STOP: an empty database does not fail loudly, it scores every
+        # day as an outage, publishes a JSON API with no carriers in it and
+        # commits that over the real one. Better a run that did nothing.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p data
+          gh release download db-latest -p gulfwatch.db -D data --clobber
+          test -s data/gulfwatch.db || { echo "database is empty or missing"; exit 1; }
+          python - <<'PY'
+          import sqlite3, sys
+          n = sqlite3.connect("data/gulfwatch.db").execute(
+              "SELECT COUNT(*) FROM flight").fetchone()[0]
+          print(f"database carries {n} flight rows")
+          sys.exit(0 if n else 1)
+          PY
+
       - name: Backfill
         env:
           OPENSKY_CLIENT_ID: ${{ secrets.OPENSKY_CLIENT_ID }}
@@ -117,11 +136,20 @@ jobs:
           c.close()
           PY
 
+      - name: Store the database
+        # Upload before the commit step, so the data layer is safe even if the
+        # git push below loses a race. --clobber replaces the single rolling
+        # asset; there is no history here on purpose, git holds the code and
+        # the published JSON and nothing binary.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload db-latest data/gulfwatch.db --clobber
+
       - name: Commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/gulfwatch.db public
+          git add public
           if git diff --cached --quiet; then
             echo "nothing changed"
             exit 0

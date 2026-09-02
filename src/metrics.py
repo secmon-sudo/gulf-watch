@@ -87,36 +87,35 @@ def rebuild_daily(conn: sqlite3.Connection, since: str | None = None,
 
 # --- Coverage health -------------------------------------------------------
 
-def score_coverage(conn: sqlite3.Connection, day: date) -> dict:
-    """How much of the network are we actually seeing today?
+def _score_coverage_by_controls(conn: sqlite3.Connection, day: date) -> dict:
+    """The old control-carrier count, kept only as a warm-up fallback.
 
-    Uses control-group carriers only -- operators whose disappearance would
-    mean the sensors failed, not that the war escalated.
+    Its flaws are described in `score_coverage`; it is here because on the day
+    the signal-volume table is created it holds nothing, and a coverage score
+    that reads `outage` for a month while the new signal fills would freeze
+    stop detection for that month.
     """
     controls = list(config.control_carriers().keys())
     if not controls:
         return {"day": day.isoformat(), "score": 1.0, "verdict": "ok",
                 "control_flights": 0, "median_28d": 0.0}
-
     marks = ",".join("?" for _ in controls)
-    row = conn.execute(
+    today_n = conn.execute(
         f"SELECT COUNT(*) AS n FROM flight WHERE dep_date = ? AND carrier IN ({marks})",
-        [day.isoformat(), *controls],
-    ).fetchone()
-    today_n = row["n"]
-
+        [day.isoformat(), *controls]).fetchone()["n"]
     history = conn.execute(
-        f"""
-        SELECT dep_date, COUNT(*) AS n FROM flight
-        WHERE dep_date < ? AND dep_date >= ? AND carrier IN ({marks})
-        GROUP BY dep_date
-        """,
-        [day.isoformat(), (day - timedelta(days=28)).isoformat(), *controls],
-    ).fetchall()
-
+        f"""SELECT dep_date, COUNT(*) AS n FROM flight
+            WHERE dep_date < ? AND dep_date >= ? AND carrier IN ({marks})
+            GROUP BY dep_date""",
+        [day.isoformat(), (day - timedelta(days=28)).isoformat(), *controls]).fetchall()
     counts = [r["n"] for r in history if r["n"] > 0]
-    median = statistics.median(counts) if counts else 0.0
+    return _write_coverage(conn, day, today_n, counts)
 
+
+def _write_coverage(conn: sqlite3.Connection, day: date, today_n: int,
+                    counts: list) -> dict:
+    """Shared scoring and persistence for both signals."""
+    median = statistics.median(counts) if counts else 0.0
     if median <= 0 and today_n > 0:
         score, verdict = 1.0, "ok"      # cold start, but traffic is flowing
     elif median <= 0:
@@ -134,19 +133,86 @@ def score_coverage(conn: sqlite3.Connection, day: date) -> dict:
             verdict = "degraded"
         else:
             verdict = "outage"
-
     conn.execute(
         """INSERT INTO coverage (day, control_flights, median_28d, score, verdict)
            VALUES (?,?,?,?,?)
            ON CONFLICT(day) DO UPDATE SET
              control_flights=excluded.control_flights, median_28d=excluded.median_28d,
              score=excluded.score, verdict=excluded.verdict""",
-        (day.isoformat(), today_n, median, round(score, 3), verdict),
-    )
+        (day.isoformat(), today_n, median, round(score, 3), verdict))
     conn.commit()
     return {"day": day.isoformat(), "control_flights": today_n,
             "median_28d": round(median, 1), "score": round(score, 3),
             "verdict": verdict}
+
+
+def record_fetch(conn: sqlite3.Connection, airport: str, direction: str,
+                 raw: list) -> None:
+    """Bucket one fetch's raw records by UTC day and store the counts.
+
+    A fetch covers 48 hours and therefore spans two or three UTC days, so the
+    records are bucketed by their own `firstSeen` rather than attributed to the
+    day the fetch happened. Later runs re-read the same window and may see more
+    of a day as OpenSky settles it, so the stored value is a high-water mark --
+    the same reason `board_probe` keeps a MAX.
+    """
+    per_day: dict[str, int] = {}
+    for rec in raw:
+        first = rec.get("firstSeen")
+        if not first:
+            continue
+        d = datetime.fromtimestamp(first, tz=timezone.utc).strftime("%Y-%m-%d")
+        per_day[d] = per_day.get(d, 0) + 1
+    now = datetime.now(tz=timezone.utc).isoformat(timespec="seconds")
+    for d, n in per_day.items():
+        conn.execute(
+            """INSERT INTO fetch_probe (airport, direction, day, records, fetched_at)
+               VALUES (?,?,?,?,?)
+               ON CONFLICT(airport, direction, day) DO UPDATE SET
+                 records = MAX(fetch_probe.records, excluded.records),
+                 fetched_at = excluded.fetched_at""",
+            (airport, direction, d, n, now))
+    conn.commit()
+
+
+def signal_volume(conn: sqlite3.Connection, day: date) -> int | None:
+    """Records the receivers delivered on `day`, or None if we never asked."""
+    row = conn.execute(
+        "SELECT SUM(records) n, COUNT(*) c FROM fetch_probe WHERE day = ?",
+        (day.isoformat(),)).fetchone()
+    return row["n"] if row and row["c"] else None
+
+
+def score_coverage(conn: sqlite3.Connection, day: date) -> dict:
+    """How much of the network are we actually seeing today?
+
+    Measures the pipe, not anybody's airline. Raw records delivered per day,
+    before any carrier filter, against the median of the last 28 such days.
+
+    This replaced a control group of six named carriers whose disappearance was
+    supposed to mean the receivers had failed. Two things were wrong with it.
+    The group was not six: measured 2026-09-02 over August, Emirates and Qatar
+    supplied 11945 of 12168 control legs while Lufthansa supplied 1, Air France
+    4 and KLM none -- so network health rested on two airlines at two airports,
+    and Doha's fetch running at 0.27 of baseline on 2026-08-20 collapsed the
+    score for the whole region. And three of the six have since been shown not
+    to be flying at all, which is the one thing a control carrier may never be.
+
+    Falls back to the old control-carrier count until `fetch_probe` has enough
+    history to have a median, because a new signal with no reference period
+    cannot tell a quiet day from a broken one.
+    """
+    today_n = signal_volume(conn, day)
+    history = conn.execute(
+        """SELECT day, SUM(records) AS n FROM fetch_probe
+           WHERE day < ? AND day >= ? GROUP BY day""",
+        [day.isoformat(), (day - timedelta(days=28)).isoformat()],
+    ).fetchall()
+    counts = [r["n"] for r in history if r["n"] > 0]
+
+    if today_n is None or len(counts) < config.MIN_SIGNAL_HISTORY_DAYS:
+        return _score_coverage_by_controls(conn, day)
+    return _write_coverage(conn, day, today_n, counts)
 
 
 # --- Frequency -------------------------------------------------------------

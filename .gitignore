@@ -8,7 +8,18 @@ __pycache__/
 credentials.json
 .env
 
-# data/gulfwatch.db is committed on purpose -- git is the history layer.
-# The WAL sidecars are not.
+# The database is NOT in git. It lives on the `db-latest` release and each
+# ingest run downloads it, updates it and uploads it back.
+#
+# It used to be committed daily on the reasoning that git was the history
+# layer. Measured 2026-09-02: 58 commits of a 12MB binary had taken .git to
+# 161MB, and git cannot delta-compress SQLite pages, so that only grows. The
+# sharper problem was the daily `git pull --rebase` over a binary file --
+# nothing can merge two versions of it, so any concurrent write is somebody's
+# work silently discarded. That nearly happened the same day: a hand-edit to
+# the ledger sat unpushed while a scheduled run was due to write its own copy.
+#
+# Fetch it with:  gh release download db-latest -p gulfwatch.db -D data
+data/*.db
 data/*.db-wal
 data/*.db-shm

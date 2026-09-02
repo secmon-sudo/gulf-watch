@@ -70,6 +70,11 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
                 LOG.warning("%s -- skipping the rest of the OpenSky fetches", exc)
                 exhausted = True
                 break
+            # Record the raw volume before any carrier filter. This is what
+            # the coverage score reads: `flight` only ever holds the two dozen
+            # carriers we track, so counting it measures those airlines as much
+            # as it measures our receivers.
+            metrics.record_fetch(conn, icao, direction, raw)
             rows = [r for r in (normalise(x, carriers, "opensky") for x in raw) if r]
             total += db.upsert_flights(conn, rows)
             LOG.info("%s %s: %s raw -> %s matched", icao, direction, len(raw), len(rows))

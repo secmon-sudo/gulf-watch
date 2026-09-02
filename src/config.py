@@ -131,6 +131,11 @@ MIN_CARRIER_VISIBILITY = 0.2
 # observation record as it stands.
 CARRIER_VISIBILITY_DAYS = 42
 
+# Days of raw-fetch history needed before coverage is scored on signal volume
+# rather than on the old control-carrier count. Seven: enough for a median to
+# mean something, short enough that the fallback is not load-bearing for long.
+MIN_SIGNAL_HISTORY_DAYS = 7
+
 # Baseline window (frozen, pre-escalation). Change and re-run backfill if you
 # want a different reference period.
 BASELINE_START = os.environ.get("GULFWATCH_BASELINE_START", "2025-11-01")

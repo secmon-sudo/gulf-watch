@@ -95,10 +95,17 @@ Nothing runs on a timer. The `ingest` workflow is manual — Actions → **inges
 → Run workflow — and so is everything else. Locally the same thing is:
 
 ```bash
+gh release download db-latest -p gulfwatch.db -D data   # the db is not in git
 python -m src.ingest          # pull flights, score coverage, detect stops
 python -m src.publish         # regenerate public/v1/*.json -- the dashboard reads these
 python -m src.report          # write public/index.html, the site front page
 ```
+
+The database lives on the `db-latest` release rather than in the repository,
+and each run downloads it, updates it and uploads it back. Git carries the code
+and the published JSON; nothing binary. Committing it daily had taken `.git` to
+161MB against a 12MB file, and worse, two runs writing it could not be merged --
+a binary conflict is somebody's work silently discarded.
 
 Deliberate rather than unfinished. Analysis is anchored on the last settled UTC
 day, so repeated runs recompute the same answer, and ~85 requests exhaust

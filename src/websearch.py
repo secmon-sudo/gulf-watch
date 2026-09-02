@@ -57,12 +57,42 @@ QUESTION = (
 )
 
 
+AGENT_NAME = "gulfwatch-websearch"
+
+
+def _find_agent(key: str) -> str | None:
+    """An agent we made on an earlier run, if it is still there."""
+    try:
+        r = requests.get(f"{BASE}/agents",
+                         headers={"Authorization": f"Bearer {key}"},
+                         params={"page_size": 100}, timeout=60)
+        r.raise_for_status()
+        payload = r.json()
+        items = payload if isinstance(payload, list) else payload.get("data", [])
+    except (requests.RequestException, ValueError) as exc:
+        LOG.warning("could not list agents: %s", exc)
+        return None
+    mine = [a for a in items if a.get("name") == AGENT_NAME and a.get("id")]
+    return mine[0]["id"] if mine else None
+
+
 def _agent(key: str) -> str | None:
+    """Reuse the agent if one exists, create it only the first time.
+
+    This used to POST /agents on every run and keep the id for that run only,
+    which is a resource leak with a daily cadence: by 2026-09-02 the account
+    held **56 orphaned `gulfwatch-websearch` agents**, one per report since the
+    feature shipped, heading for the account's agent limit. Nothing ever
+    deleted them because nothing remembered they existed.
+    """
+    found = _find_agent(key)
+    if found:
+        return found
     try:
         r = requests.post(
             f"{BASE}/agents",
             headers={"Authorization": f"Bearer {key}"},
-            json={"model": MODEL, "name": "gulfwatch-websearch",
+            json={"model": MODEL, "name": AGENT_NAME,
                   "description": "Reports whether a carrier still serves the Gulf.",
                   "tools": [{"type": "web_search"}]}, timeout=60)
         r.raise_for_status()

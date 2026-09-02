@@ -31,7 +31,16 @@ firs:
     name: Tehran FIR
     country: IR
     czib_watch: true
-    bbox: [24.0, 43.5, 40.0, 63.5]
+    # Was [24.0, 43.5, 40.0, 63.5], which reached the southern shore of the
+    # Gulf and the Tigris: it contained ten of the fifteen airports below,
+    # Doha, Dubai, Abu Dhabi, Bahrain, Sharjah, Kuwait, Riyadh, Baghdad and
+    # Erbil among them. Nothing was published off it -- the sampler queries
+    # from the box centre with a 250nm cap, and central Iran is ~430nm from
+    # Dubai, so the circle never reached what the box claimed -- but one
+    # radius change would have turned Gulf traffic into Iranian overflights.
+    # Now roughly Iran's own extent: north of the Gulf median line and east of
+    # the Iraqi border, which keeps Bandar Abbas (27.2N) and drops Kuwait.
+    bbox: [26.5, 45.5, 39.8, 63.3]
   ORBB:
     name: Baghdad FIR
     country: IQ

@@ -225,6 +225,27 @@ CREATE TABLE IF NOT EXISTS run_log (
 -- out of `flight` on purpose: those rows are transponder observations with an
 -- icao24 address, these are a published board with no aircraft identity, and
 -- merging them would let a board entry be counted as a sighting.
+-- Raw fetch volume per airport, direction and day: how many records OpenSky
+-- returned before any carrier filter. This is the sensor-health signal, and
+-- it is deliberately blind to WHO was flying.
+--
+-- Coverage used to be scored off six named "control" carriers on the reasoning
+-- that their disappearance would mean the receivers broke. Measured
+-- 2026-09-02, that group was Emirates and Qatar and nobody else: of 12168
+-- control legs in August, Lufthansa contributed 1, Air France 4 and KLM none
+-- at all. So the health of the whole network rested on two airlines at two
+-- airports, and the day one hub's fetch thinned -- Doha ran at 0.27 of
+-- baseline on 2026-08-20 -- the score collapsed network-wide. Counting
+-- records instead asks about the pipe rather than about anybody's airline.
+CREATE TABLE IF NOT EXISTS fetch_probe (
+    airport    TEXT NOT NULL,
+    direction  TEXT NOT NULL,          -- arr | dep
+    day        TEXT NOT NULL,          -- YYYY-MM-DD UTC, from firstSeen
+    records    INTEGER NOT NULL,
+    fetched_at TEXT,
+    PRIMARY KEY (airport, direction, day)
+);
+
 CREATE TABLE IF NOT EXISTS board_flight (
     airport    TEXT NOT NULL,          -- ICAO of the monitored airport
     direction  TEXT NOT NULL,          -- arr | dep
