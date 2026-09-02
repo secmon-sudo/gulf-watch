@@ -67,6 +67,22 @@ def _envelope(report: dict) -> dict:
             "ratios_published": report["ratios_published"],
             "carriers_with_ratio": None,
         },
+        # What the ratios divide by, stated because it is not season-neutral.
+        # The window is fixed IATA *winter* and the present day is usually not,
+        # so every ratio here carries a season term alongside the disruption
+        # term it is meant to measure. It is labelled rather than corrected:
+        # correcting needs a winter *timetable*, and AirLabs serves only the
+        # current season, so any factor derived here would mix the season term
+        # with the winter capture rate and could not be separated again.
+        # /v1/report (the Turkish page) divides by the current timetable
+        # instead and does not carry this term.
+        "baseline": {
+            "window": f"{config.BASELINE_START}..{config.BASELINE_END}",
+            "season": "IATA winter",
+            "caveat": "Ratios compare the present against a fixed winter "
+                      "reference. Summer and winter schedules differ, so a "
+                      "ratio is not a pure measure of disruption.",
+        },
         "attribution": ATTRIBUTION,
     }
 

@@ -9,24 +9,17 @@ name: backfill-baseline
 # 2026-08-11 and the baseline is frozen, so a run now has nothing to fetch --
 # what remains is re-harvesting a different window on purpose.
 
+# The 2026-08-25 re-harvest ran on a TEMPORARY `schedule:` block here. It is
+# gone, and it must not come back on the reasoning it carried, because that
+# reasoning rested on a premise measured false on 2026-09-02: the OpenSky
+# allowance does NOT reset at a fixed ~10:44. The reset is a rolling window
+# from whenever the quota was spent, so the daily 15:00 harvest -- delivered by
+# GitHub nearer 18:00 -- moved the next reset to ~18:00 and every ingest that
+# landed before it got zero legs. Three of five ingests died that way
+# (08-29, 08-30, 09-01) and `observed_days` fell to 2 of the required 5.
+# Queueing second does not protect the ingest when the harvest sets the clock
+# the ingest is read against.
 on:
-  # TEMPORARY -- delete this block when the 2026-08-25 re-harvest finishes.
-  # It exists once before, for the original harvest, and was removed in
-  # 0147d59 the day that one completed. Leaving it in turns a one-time
-  # operation into a standing job that re-fetches the same frozen window
-  # forever.
-  #
-  # 15:00 UTC, and the hour is the whole point. The allowance resets at ~10:44,
-  # the daily ingest fires at 12:00 and lands around 13:00, and a full
-  # fifteen-airport pass costs about 1900 of the roughly 4000 credits a day
-  # holds. Running the harvest first would take the lot and leave the ingest
-  # nothing, which costs an observed day -- and the analysis needs five of them
-  # inside a rolling seven, so a lost day keeps costing for a week. Second in
-  # the queue, the harvest gets whatever the ingest did not spend, stops
-  # cleanly when that is gone, and resumes here tomorrow. It also shares the
-  # `ingest` concurrency group, so even a late ingest cannot collide with it.
-  schedule:
-    - cron: "0 15 * * *"
   workflow_dispatch:
     inputs:
       start:

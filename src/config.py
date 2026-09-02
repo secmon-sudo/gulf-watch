@@ -150,7 +150,15 @@ INGEST_LOOKBACK_HOURS = 48
 # essentially every run, which suppresses every alert and freezes the stop
 # detector -- a monitor that has collected the data and refuses to say
 # anything. Raise this if your OpenSky data settles more slowly.
-SETTLE_LAG_DAYS = 1
+#
+# 2 and not 1, measured 2026-08-27 over three snapshots of the committed db:
+# OpenSky's arrival estimator leaves `arr_icao` NULL on ~85% of a day's rows
+# when the day is asked at age 1, ~40% at age 2, ~25-36% from age 3, and a row
+# needs both airports to reach `daily_route`. A lag of 1 therefore judged every
+# day at its worst moment and wrote `outage` on days that rescored `ok` a day
+# later -- 08-24 went outage(0.369) -> ok(0.933) exactly that way. Those false
+# outages cost observed days, and under a 5-in-7 floor a lost day costs a week.
+SETTLE_LAG_DAYS = 2
 
 # ADS-B position quality floor for FIR overflight counting. The Gulf has heavy
 # GNSS jamming/spoofing; low-integrity positions must not be counted.

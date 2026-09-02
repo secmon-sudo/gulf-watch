@@ -1934,7 +1934,13 @@ class TestCarrierVisibility(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
         self.conn = db.connect(self.tmp.name)
-        self.today = date.today()
+        # The anchor production uses, not the calendar day. `route_report` is
+        # handed this explicitly but `report.observed_vs_scheduled` derives its
+        # own from `metrics.reference_day()`, so a fixture built on
+        # `date.today()` silently drifts out of the window whenever
+        # SETTLE_LAG_DAYS changes -- which is exactly what happened when it
+        # went 1 -> 2.
+        self.today = metrics.reference_day()
         self._build()
 
     def tearDown(self):

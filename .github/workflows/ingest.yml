@@ -12,9 +12,14 @@ name: ingest
 # (config.MIN_OBSERVED_DAYS), so a missed day is not a missed reading, it is a
 # gap that keeps costing for a week.
 #
-# 12:00 UTC and not earlier: the OpenSky allowance resets at a fixed ~10:44
-# UTC, measured twice. A 05:00 cron -- which the note here used to suggest --
-# would run on the tail of the previous day's quota.
+# 12:00 UTC. The "allowance resets at a fixed ~10:44" reading this note used to
+# give was WRONG, measured 2026-09-02: at 13:21, with nothing having run that
+# day, OpenSky still answered `retry in 4.5h`. The reset is a rolling window
+# from whenever the quota was spent, not a wall clock -- so the hour in this
+# cron does not buy a full allowance, it only decides what time of day this run
+# will set the reset to for tomorrow. That is self-stabilising while this
+# workflow is the only consumer, and it broke the moment the baseline harvest
+# became a second one (see backfill-baseline.yml).
 #
 # Daily and not hourly. Analysis is anchored on the last settled UTC day
 # (config.SETTLE_LAG_DAYS), so extra runs recompute the same answer, and
