@@ -145,9 +145,24 @@ def enrich(conn, max_lookups: int = 12) -> dict:
             continue    # the source did not answer; leave the confidence alone
         checked += 1
 
+        # A headline only counts as evidence about this carrier if it names
+        # it. Google honours the quotes around the name loosely: the Oman Air
+        # query came back with "British Airways to suspend UK repatriation
+        # flights" (BBC), which was filed as evidence and pushed an Oman Air
+        # route to `corroborated` -- a stop, on the front page, sourced to a
+        # story about a different airline. report.carrier_news() has always
+        # applied this filter; this path never did.
+        #
+        # Imported here rather than at module scope: report imports _news from
+        # this module, so a top-level import would be circular.
+        from .report import _aliases
+        keys = _aliases(name)
+
         stances = set()
         for it in items:
             if not it["url"]:
+                continue
+            if not any(k in it["title"].lower() for k in keys):
                 continue
             stances.add(it["stance"])
             conn.execute(

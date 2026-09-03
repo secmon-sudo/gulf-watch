@@ -39,7 +39,7 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 from . import (advisories, classify, config, db, firwatch, flightboard,
-               metrics, schedules, websearch)
+               metrics, schedules, suspensions, websearch)
 from .corroborate import _news
 
 logging.basicConfig(level=logging.INFO,
@@ -371,6 +371,56 @@ def _age_days(published: str) -> int | None:
         return None
 
 
+# Google News answers with content farms as readily as with newsrooms, and it
+# stamps a story with the date its crawler saw the page rather than the date
+# the page was written. Measured 2026-09-03 on the live feed: "Kuwait Airport
+# Closed: Drone Strikes Ground All Flights - MiGFlug" arrived carrying
+# pubDate 2026-09-02 for a page published in April 2026, and the front page
+# printed it as "bugün" -- an airport closure, today, top of the report, from
+# a company that sells fighter-jet flight experiences.
+#
+# The feed's date is the only date there is, so it cannot be corrected here.
+# What can be done is to stop taking every publisher for a newsroom, and to
+# stop taking a re-crawled standing page for a story. Both filters below were
+# written off items actually seen on the feed.
+NON_NEWS = {
+    "migflug",            # sells fighter-jet flight experiences
+    "mshale.com",         # scraped feeds republished under generated slugs
+    "wego travel blog",   # standing fare pages, re-dated on every crawl
+}
+
+# A page that exists permanently and gets re-crawled, rather than a story
+# written on a day. Seen: "Kuwait Airport News | Kuwait Flights Updates |
+# Ticket Price & Airport Rules | Kuwait News Today San Patrignano
+# (MoxFHDUXNS)" -- three pipes and a generated id, dated seven days ago.
+STANDING_PAGE = re.compile(r"\([A-Za-z0-9]{8,}\)|\|.*\|")
+
+
+def _publisher(title: str) -> str:
+    """Google News appends " - <publisher>" to every headline it returns."""
+    _, sep, pub = title.rpartition(" - ")
+    return pub.strip().lower() if sep else ""
+
+
+def _headline(title: str) -> str:
+    """The headline without the publisher Google appends to it."""
+    head, sep, _ = title.rpartition(" - ")
+    return head.strip() if sep else title
+
+
+def _is_reporting(it: dict) -> bool:
+    """Was this written as news, or is it a page the crawler keeps re-dating?
+
+    Cheap and deliberately narrow. It does not rank publishers by quality --
+    that is the reader's job, which is why the publisher is now printed beside
+    every headline. It only drops the two shapes that carry a date meaning
+    nothing at all.
+    """
+    title = it.get("title") or ""
+    return (_publisher(title) not in NON_NEWS
+            and not STANDING_PAGE.search(title))
+
+
 def carrier_news(name: str, limit: int = 2,
                  max_age: int = NEWS_MAX_AGE_DAYS) -> list[dict] | None:
     """Recent headlines that name this carrier. None if the source did not answer.
@@ -398,6 +448,8 @@ def carrier_news(name: str, limit: int = 2,
         title = it["title"]
         low = title.lower()
         if not any(k in low for k in keys) or GENERIC.search(title):
+            continue
+        if not _is_reporting(it):
             continue
         age = _age_days(it.get("published"))
         if age is None or age > max_age:
@@ -481,6 +533,8 @@ def blind_news(conn, max_age: int = NEWS_MAX_AGE_DAYS,
         for it in items:
             if city.lower() not in it["title"].lower():
                 continue          # regional round-up that never names the place
+            if not _is_reporting(it):
+                continue          # a standing page, or a shop selling flights
             age = _age_days(it.get("published"))
             if age is None or age > max_age:
                 continue
@@ -826,6 +880,10 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "airport_view": airport_view(conn, days, carriers),
         "blind_news": blind_news(conn, news_days) if with_news else [],
         "boards": flightboard.by_airport(conn),
+        # The detected stops, with the day each went silent and whatever the
+        # press said back. The front page is built around these now, so they
+        # are collected rather than left to publish.py alone.
+        "stops": suspensions.report(conn),
         "firs": firwatch.summary(conn, days=7),
         "schedule_coverage": schedules.coverage(conn),
         "advisories": advisories.current(conn),
@@ -1030,6 +1088,38 @@ dl.src dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;
 dl.src dd{margin:0;color:var(--ink-2)}
 footer{border-top:1px solid var(--rule);padding-top:20px;font-size:12.5px;
   color:var(--ink-3);max-width:72ch;display:flex;flex-direction:column;gap:8px}
+/* --- The answer block. Everything here exists to make one table the page,
+   and the rest of the page its footnotes. */
+.stamp{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);
+  letter-spacing:.02em;margin-top:8px}
+.answer{font-size:17px;line-height:1.5;color:var(--ink);max-width:62ch}
+.answer .big{font-family:var(--mono);font-size:26px;font-variant-numeric:tabular-nums;
+  line-height:1;padding:0 2px}
+.big-place{font-size:16px;letter-spacing:.06em}
+
+/* Provenance the reader can weigh without opening anything. */
+.notes{display:flex;flex-direction:column;gap:14px}
+.watch-item{background:var(--panel);border:1px solid var(--rule);
+  border-radius:3px;padding:14px 16px}
+.watch-item p{font-size:13.5px;color:var(--ink-2);margin-top:6px;max-width:88ch}
+
+/* The methodology did not get shorter, it got folded. Nothing was deleted:
+   a reader who wants to know what a cell rests on is one click away, and a
+   reader who wants the answer is not made to scroll past 110 lines of it. */
+details.more{background:var(--panel);border:1px solid var(--rule);border-radius:3px}
+details.more>summary{cursor:pointer;padding:15px 18px;font-family:var(--mono);
+  font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  list-style:none}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::after{content:"+";font-family:var(--mono);font-size:17px;
+  color:var(--ink-3);line-height:1}
+details.more[open]>summary::after{content:"\2212"}
+details.more[open]>summary{border-bottom:1px solid var(--rule);color:var(--ink)}
+.more-body{padding:20px 18px;display:flex;flex-direction:column;gap:26px;
+  background:var(--bg)}
+.more-body h2{margin-top:0}
+
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (max-width:640px){ .why{display:none} }
 """
@@ -1365,6 +1455,353 @@ def _rows(data: dict) -> str:
     return "".join(out)
 
 
+# --- The answer ------------------------------------------------------------
+#
+# Everything above this line gathers evidence. This is where the page says
+# what it thinks, and it is deliberately the smallest part of the file: one
+# question -- WHICH AIRLINE HAS STOPPED FLYING WHERE -- answered from the two
+# sources that name a place in a field of their own, never from prose.
+
+# The confidence ladder. Four rungs, and the rung is the whole point: a stop
+# nobody corroborated and a stop two sources agree on are not the same claim
+# and must not be printed as the same row.
+CONF = {
+    "corroborated": ("stopped", "Teyitli", 0,
+                     "Uçuşlar gözlemde sustu, basın da durdurduğunu yazıyor."),
+    "observed": ("partial", "Gözleme dayalı", 1,
+                 "Eşiği aşan sessizlik. Basında teyit eden haber bulunamadı."),
+    "reported": ("scheduled", "Basına dayalı", 2,
+                 "Basın kesinti bildiriyor; kendi gözlemimizle doğrulanamadı."),
+    "contradicted": ("unknown", "Çelişkili", 3,
+                     "Bir kaynak kesildi diyor, diğeri uçtuğunu gösteriyor. "
+                     "Kayıtta tutuluyor ama bir kesinti sayılmıyor."),
+}
+
+
+# What a filed headline says about the stop it is filed under. Three values,
+# and the third is not a shade of the other two: "unclear" is a story that
+# mentions the carrier without taking a position, and printing it as a
+# refutation is as wrong as printing it as proof.
+STANCE = {"supports": ("stopped", "doğruluyor"),
+          "contradicts": ("flying", "çürütüyor"),
+          "unclear": ("unknown", "ilgisi belirsiz")}
+
+
+def register(data: dict) -> dict:
+    """The stop register: one row per carrier and place, ranked by evidence.
+
+    Two inputs, and only two, because only these two name a place in a
+    structured field:
+
+    * `suspensions.report()` -- a scope whose traffic went silent past its
+      threshold, carrying the first silent day and whatever the press said.
+    * the classifier's `airports` list on a headline it read as a stop.
+
+    The web-search note is **not** merged in. It is a paragraph of model
+    prose, and pulling airport codes out of prose would put a claim in the
+    register that nothing structured supports. It is shown whole, elsewhere,
+    as something to go and read.
+
+    The split matters more than the merge. A carrier we SAW flying at the very
+    airport a headline says it cut has not stopped serving that airport -- it
+    cancelled some flights, which is a different and much smaller claim. Those
+    rows go to `partial`, never to `full`, because a register that prints
+    "Emirates -- Dubai -- durdurdu" beside 1354 observed Dubai movements is
+    worse than no register.
+    """
+    ap = data["airports"]
+    by_iata = {c["iata"]: i for i, c in ap.items() if c.get("iata")}
+
+    def iata(icao: str) -> str:
+        return ap.get(icao, {}).get("iata") or icao
+
+    rows: dict[tuple, dict] = {}
+
+    def row(carrier: str, name: str, place: str, kind: str) -> dict:
+        return rows.setdefault((carrier, place), {
+            "carrier": carrier, "name": name, "place": place, "kind": kind,
+            "since": None, "days": None, "conf": None, "weekly": None,
+            "reported_age": None, "basis": set(), "links": []})
+
+    for st in data["stops"]["active"]:
+        if st.get("superseded_by"):
+            continue                      # rolled up into a wider stop
+        if st["scope"] == "station":
+            place, kind = iata(st["detail"]), "istasyon"
+        elif st["scope"] == "route":
+            dep, _, arr = st["detail"].partition("-")
+            place, kind = f"{iata(dep)}\u2192{iata(arr)}", "hat"
+        else:
+            place, kind = "izlenen ağın tamamı", "ağ"
+        r = row(st["carrier"], st["carrier_name"], place, kind)
+        r["since"], r["days"] = st["started_on"], st["days_stopped"]
+        r["conf"], r["weekly"] = st["confidence"], st["baseline_weekly"]
+        r["basis"].add("gözlem")
+        keys = _aliases(st["carrier_name"])
+        for e in st["evidence"]:
+            # Filed evidence is re-checked here, not only where it is written.
+            # Rows written before corroborate.enrich() learned to check the
+            # name are still in the database, and one of them -- a BBC story
+            # about British Airways -- was the sole thing holding an Oman Air
+            # route at "Teyitli" on the front page.
+            if e["source"] == "news" and not any(
+                    k in (e["title"] or "").lower() for k in keys):
+                continue
+            r["basis"].add("basın")
+            r["links"].append({"title": e["title"], "url": e["url"],
+                               "stance": e["stance"], "age": None})
+
+    # How many of our carriers a headline names. The round-up is the trap:
+    # "UAE flight update: Emirates, Etihad, flydubai, Air Arabia cancellations
+    # as Iran tensions escalate" (Gulf News) names four, and the classifier
+    # hands the same two airports to all four. Read as station closures that
+    # was four rows of nonsense on the front page -- Emirates stopping Abu
+    # Dhabi, Etihad stopping Dubai, neither of which is even their station.
+    #
+    # A round-up reports that cancellations happened. It does not report that
+    # a named carrier left a named airport, so it may not open a register row.
+    # It can still say "some flights were cut here", which is what a partial
+    # card is, and only where we can see the carrier still flying there.
+    tracked_keys = {code: _aliases(cfg["name"])
+                    for code, cfg in data["carriers_cfg"].items()}
+
+    def names_only(title: str) -> bool:
+        low = _headline(title).lower()
+        return sum(1 for c, keys in tracked_keys.items()
+                   if any(k in low for k in keys)) == 1
+
+    partial = []
+    for c in data["carriers"]:
+        if c["state"] not in ("stopped", "partial"):
+            continue
+        hits = [h for h in c["news"]
+                if h["signal"] == "stopped" and _region_tied(h)]
+        if not hits:
+            continue
+        alone = [h for h in hits if names_only(h["title"])]
+        places = sorted({a for h in hits for a in (h.get("airports") or [])})
+        links = [{"title": h["title"], "url": h["url"], "stance": "supports",
+                  "age": h["age_days"]} for h in hits]
+        for place in places or ["yer belirtilmedi"]:
+            # Seen flying there? Then this is a cut inside a station that is
+            # still served, not a station that closed.
+            if c["seen_at"].get(by_iata.get(place)):
+                partial.append({
+                    "carrier": c["code"], "name": c["name"], "place": place,
+                    "legs": c["seen_at"][by_iata[place]], "links": links})
+                continue
+            if not alone:
+                continue          # round-up only: not a claim about a station
+            r = row(c["code"], c["name"], place,
+                    "istasyon" if places else "belirsiz")
+            r["basis"].add("basın")
+            r["conf"] = ("corroborated" if r["conf"] == "observed"
+                         else r["conf"] or "reported")
+            r["links"] += [{"title": h["title"], "url": h["url"],
+                            "stance": "supports", "age": h["age_days"]}
+                           for h in alone]
+            ages = [h["age_days"] for h in alone if h["age_days"] is not None]
+            if ages and r["since"] is None:
+                r["reported_age"] = min(ages)
+
+    for r in rows.values():
+        seen = set()
+        r["links"] = [l for l in r["links"]
+                      if not (l["url"] in seen or seen.add(l["url"]))][:4]
+        # The badge is recomputed from the evidence this row actually prints.
+        # The stored confidence is a snapshot of the run that last corroborated
+        # the scope, and the evidence table keeps growing after it -- Oman Air
+        # rendered "Teyitli" above three sources saying the opposite. A label
+        # that contradicts the rows beneath it is worse than no label.
+        stances = {l["stance"] for l in r["links"]}
+        if "contradicts" in stances:
+            r["conf"] = "contradicted"
+        elif "supports" in stances:
+            r["conf"] = "corroborated" if "gözlem" in r["basis"] else "reported"
+        elif "gözlem" in r["basis"]:
+            r["conf"] = "observed"
+        else:
+            r["conf"] = r["conf"] or "reported"
+    # Evidence first, then how much of the network the stop covers: a whole
+    # carrier leaving the region outranks one route, at equal confidence.
+    scope_rank = {"ağ": 0, "istasyon": 1, "hat": 2, "belirsiz": 3}
+    full = sorted(rows.values(),
+                  key=lambda r: (CONF[r["conf"]][2], scope_rank[r["kind"]],
+                                 -(r["days"] or 0)))
+    return {"full": full, "partial": partial}
+
+
+def _register_section(reg: dict) -> str:
+    """The one table the page exists for."""
+    if not reg["full"]:
+        return ('<div class="notice-inline">Bu çalıştırmada kayda geçmiş bir '
+                'uçuş durdurma yok. Bu, kimsenin kesmediği anlamına gelmez — '
+                'aşağıdaki kapsama satırı ne kadarına bakılabildiğini '
+                'söyler.</div>')
+    out = []
+    for r in reg["full"]:
+        cls, label, _, _ = CONF[r["conf"]]
+        kaynak = "".join(
+            f'<div class="head"><span class="tag s-{STANCE[l["stance"]][0]}">'
+            f'{STANCE[l["stance"]][1]}</span>'
+            f'<a href="{_e(l["url"])}" target="_blank" rel="noopener">'
+            f'{_e(_headline(l["title"]))}</a>'
+            + (f'<span class="meta"> · {_publisher(l["title"]) or "kaynak"}'
+               + (f' · {_gun(l["age"])}' if l["age"] is not None else "")
+               + '</span>')
+            + '</div>' for l in r["links"])
+        if not kaynak:
+            kaynak = ('<div class="head meta">basında teyit eden haber '
+                      'bulunamadı</div>')
+        out.append(
+            f'<tr class="r-{cls}">'
+            f'<td><div class="code">{_e(r["carrier"])}</div>'
+            f'<div class="name">{_e(r["name"])}</div></td>'
+            f'<td><div class="code big-place">{_e(r["place"])}</div>'
+            f'<div class="meta">{_e(r["kind"])}</div></td>'
+            + (f'<td class="at">{_e(r["since"])}'
+               f'<div class="meta">{r["days"]} gün sessiz</div></td>'
+               if r["since"] else
+               f'<td class="at">—<div class="meta">'
+               + (f'basında {_gun(r["reported_age"])}'
+                  if r.get("reported_age") is not None else "tarih yok")
+               + '</div></td>')
+            + f'<td><span class="pill s-{cls}"><span class="dot"></span>'
+            f'{label}</span>'
+            + (f'<div class="meta">normalde {r["weekly"]:.1f} sefer/hafta</div>'
+               if r["weekly"] else "")
+            + '</td>'
+            f'<td><div class="heads">{kaynak}</div></td>'
+            '</tr>')
+    return (
+        '<div class="scroll"><table><thead><tr>'
+        '<th>Havayolu</th><th>Nereye</th><th>Ne zamandan beri</th>'
+        '<th>Güven</th><th>Neye dayanıyor</th>'
+        '</tr></thead><tbody>' + "".join(out) + '</tbody></table></div>')
+
+
+def _partial_section(reg: dict) -> str:
+    """Reported cuts at airports we can still see the carrier flying into."""
+    if not reg["partial"]:
+        return ""
+    cards = []
+    for r in reg["partial"]:
+        links = "".join(
+            f'<li><a href="{_e(l["url"])}" target="_blank" rel="noopener">'
+            f'{_e(_headline(l["title"]))}</a><span class="meta">'
+            f'{_e(_publisher(l["title"]) or "kaynak")}'
+            + (f' · {_gun(l["age"])}' if l["age"] is not None else "")
+            + '</span></li>' for l in r["links"][:2])
+        cards.append(
+            f'<div class="card"><div class="hd">'
+            f'<span class="fir">{_e(r["carrier"])} \u2192 {_e(r["place"])}</span>'
+            f'<span class="cnt">{r["legs"]}</span></div>'
+            f'<div class="place">{_e(r["name"])} — basın hat kesintisi '
+            f'bildiriyor, ama bu havalimanında <b>{r["legs"]} sefer</b> '
+            f'havada görüldü. İstasyon açık; kesilen hatlar tek tek '
+            f'sayılamıyor.</div>'
+            f'<ul class="blind-news">{links}</ul></div>')
+    return f"""
+<section>
+  <h2>Kısmi kesintiler — istasyon açık</h2>
+  <p class="sub prose">Basının kesinti bildirdiği, <b>ama uçarken
+  gördüğümüz</b> havayolu–havalimanı çiftleri. Bunlar yukarıdaki kayda
+  girmez: bir havayolunun bazı seferlerini iptal etmesi, o havalimanına
+  uçmayı bırakması değildir. Sağdaki sayı, gözlem penceresinde o
+  havalimanında görülen sefer sayısıdır.</p>
+  <div class="cards">{"".join(cards)}</div>
+</section>
+"""
+
+
+def _watchlist_section(data: dict) -> str:
+    """Carriers where only the web search had anything to say.
+
+    Model prose with citations, kept away from the register on purpose. This
+    is where the strongest unverified claim on the page usually sits -- a
+    whole-network withdrawal nothing else in the pipeline can see -- and it
+    has to be readable as "go and check this", not as a finding.
+    """
+    notes = [c for c in data["carriers"] if c.get("note")]
+    if not notes:
+        return ""
+    items = []
+    for c in notes:
+        cites = " ".join(
+            f'<a href="{_e(u)}" target="_blank" rel="noopener">[{i + 1}]</a>'
+            for i, u in enumerate(c["note"]["sources"][:4]))
+        items.append(
+            f'<div class="watch-item"><div class="code">{_e(c["code"])} '
+            f'<span class="name">{_e(c["name"])}</span></div>'
+            f'<p>{_e(c["note"]["note"])} {cites}</p></div>')
+    return f"""
+<section>
+  <h2>Doğrulanmamış — okunmak için</h2>
+  <p class="sub prose">Uçuş verisi, tarife ve basın; üçü de bu havayolları
+  hakkında sessiz kaldı, o yüzden son çare olarak web araması yapıldı.
+  Aşağısı bir dil modelinin kaynak göstererek yazdığı düz metindir:
+  <b>kayda geçmez, bir durum değiştirmez</b>, ve içinden havalimanı kodu
+  çıkarılmaz. Bir iddiayı ciddiye almadan önce köşeli parantezdeki
+  bağlantıya bakın.</p>
+  <div class="notes">{"".join(items)}</div>
+</section>
+"""
+
+
+CZIB_COUNTRIES = None
+
+
+def _czib_countries() -> set[str]:
+    """Countries whose FIR EASA tells operators to avoid."""
+    return {f["country"] for f in config.firs().values()
+            if f.get("czib_watch") and f.get("country")}
+
+
+def _airport_strip(data: dict, reg: dict) -> str:
+    """The other half of the question: which airports are affected.
+
+    Ordered by what needs attention rather than by traffic -- a stop first,
+    then airspace EASA says to avoid, then the airports no receiver can see.
+    """
+    czib = _czib_countries()
+    stops: dict[str, list[str]] = defaultdict(list)
+    for r in reg["full"]:
+        stops[r["place"]].append(r["carrier"])
+    for r in reg["partial"]:
+        stops[r["place"]].append(r["carrier"])
+
+    out = []
+    for a in data["airport_view"]:
+        cls, label = AP_STATE[a["state"]]
+        flag = a["country"] in czib
+        who = sorted(set(stops.get(a["iata"], [])))
+        rank = (0 if who else 1, 0 if flag else 1,
+                0 if a["state"] == "tarifeli" else 1)
+        out.append((rank, a, cls, label, flag, who))
+
+    rows = []
+    for _, a, cls, label, flag, who in sorted(out, key=lambda x: x[0]):
+        etki = ("".join(f'<span class="who-chip">{_e(c)}</span>' for c in who)
+                if who else '<span class="meta">—</span>')
+        tr = ' class="r-stopped"' if who else ""
+        rows.append(
+            f'<tr{tr}>'
+            f'<td><span class="code">{_e(a["iata"])}</span> '
+            f'<span class="name">{_e(a["city"])}</span>'
+            f'<div class="meta">{_e(a["icao"])} {_e(a["country"] or "")}</div></td>'
+            f'<td>' + ('<span class="pill s-stopped"><span class="dot"></span>'
+                       'EASA: kaçının</span>' if flag else
+                       '<span class="meta">bülten yok</span>') + '</td>'
+            f'<td><span class="pill s-{cls}"><span class="dot"></span>{label}</span></td>'
+            f'<td><div class="who-list">{etki}</div></td>'
+            '</tr>')
+    return (
+        '<div class="scroll"><table><thead><tr>'
+        '<th>Havalimanı</th><th>Hava sahası</th><th>Bizim görüşümüz</th>'
+        '<th>Kesinti kaydı olan havayolları</th>'
+        '</tr></thead><tbody>' + "".join(rows) + '</tbody></table></div>')
+
+
 def render(data: dict) -> str:
     cov = data["coverage"]
     cs = data["carriers"]
@@ -1483,6 +1920,31 @@ def render(data: dict) -> str:
            if a.get("summary") else "")
         + "</div>" for a in data["advisories"]) or '<p class="sub">Kayıtlı bülten yok.</p>'
 
+    # The answer, and the two lists that are deliberately NOT the answer.
+    reg = register(data)
+    full = reg["full"]
+    n_car = len({r["carrier"] for r in full})
+    n_place = len({r["place"] for r in full})
+    say = lambda k: sum(1 for r in full if r["conf"] == k)  # noqa: E731
+
+    if not full:
+        cevap = ('Şu an <b>kayda geçmiş bir uçuş durdurma yok</b>. Bu, hiçbir '
+                 'havayolunun kesmediği anlamına gelmez; yalnızca elimizdeki '
+                 'kaynakların bugün kesinti gösteremediği anlamına gelir.')
+    else:
+        cevap = (f'Şu an <b class="big s-stopped">{n_car}</b> havayolunun '
+                 f'<b class="big s-stopped">{n_place}</b> noktaya uçuşu '
+                 f'durmuş görünüyor. Her satırın <b>neye dayandığı</b> ve '
+                 f'<b>ne zamandan beri sürdüğü</b> yanında yazıyor; '
+                 f'dayanağı zayıf olan satır aşağıda kalır.')
+
+    answer_band = "".join(
+        f'<div class="stat"><span class="k">{label}</span>'
+        f'<span class="v s-{cls}">{say(key)}</span>'
+        f'<span class="n">{note}</span></div>'
+        for key, (cls, label, _, note) in
+        sorted(CONF.items(), key=lambda kv: kv[1][2]))
+
     return f"""<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GulfWatch — Ortadoğu havayolu operasyon raporu {_e(data['as_of_day'])}</title>
@@ -1496,18 +1958,64 @@ def render(data: dict) -> str:
   <div class="deck">Ortadoğu havayolu operasyonları</div>
   <div class="eyebrow">Elle çalıştırılan rapor
     <a class="sibling" href="dashboard.html">Pano ve JSON API →</a></div>
-  <p class="sub prose">İzlenen Körfez ve Levant havalimanlarında hangi
-  havayolunun hâlâ uçtuğu. Dört kaynak sırayla okunuyor:
-  <b>gözlemlenen uçuş verisi</b>, <b>yayımlanmış tarifeler</b>,
-  <b>basın</b>, ve hiçbiri konuşmuyorsa <b>web araması</b>.
-  Veriler <b>{_e(data['as_of_day'])}</b>
-  gününe ait; gözlem penceresi {_e(d1)} → {_e(d2)} ({data['days']} gün).
-  Basın taraması son {data["news_days"]} günle sınırlı.
-  Rapor {_e(gen)} tarihinde üretildi.</p>
+  <p class="sub prose"><b>Bu sayfa tek bir soruyu cevaplar:</b> savaş ve
+  çatışma nedeniyle hangi havayolu, Ortadoğu'da hangi havalimanına uçmayı
+  bıraktı? Cevap ilk tabloda. Altındaki her şey, o tablonun neye
+  dayandığıdır.</p>
+  <p class="stamp">Veri günü <b>{_e(data['as_of_day'])}</b> · gözlem penceresi
+  {_e(d1)} → {_e(d2)} ({data['days']} gün) · basın taraması son
+  {data["news_days"]} gün · rapor {_e(gen)}</p>
 </header>
 
 <section>
-  <h2>Tek bakışta</h2>
+  <h2>Kesinti kaydı</h2>
+  <p class="answer">{cevap}</p>
+  <div class="band">{answer_band}</div>
+  {_register_section(reg)}
+  <p class="cov-line">Yukarıdaki dört sayı <b>kayıt satırı</b> sayar.
+  Aşağıdaki satır hiçbir şey saymaz: <b>bu kayda ne kadar
+  güvenilebileceğini</b> söyler — kaç güne bakılabildiğini, ve o günlerde
+  alıcıların ne kadar iyi gördüğünü.</p>
+  <div class="cov">
+    <span class="pill s-{"flying" if cov["verdict"] == "ok" else "partial"}"><span class="dot"></span>{
+      _e(COV_LABEL.get(cov["verdict"], cov["verdict"]))}</span>
+    <p>{data["as_of_day"]} günü kontrol havayollarından <b>{cov['control_flights']}
+    sefer</b> görüldü; bu, son 28 günün ortancasının <b>{cov['score']} katı</b>.
+    Gözlem penceresindeki {data["days"]} günün <b>{data["observed_days"]}
+    tanesine</b> bakılabildi{
+      f", ve oran sütununun yayımlanması için gereken {MIN_RATIO_DAYS} güne "
+      f"{MIN_RATIO_DAYS - data['observed_days']} gün kaldı"
+      if data["observed_days"] < MIN_RATIO_DAYS else ""}. Haftalık sayılar
+    yalnızca bu günlere göre ölçekleniyor.</p>
+  </div>
+    {"".join(f'<div class="notice"><span class="t">Önce bunu okuyun</span><p>{w}</p></div>' for w in warn)}
+</section>
+
+{_partial_section(reg)}
+{_watchlist_section(data)}
+{delta_html}
+<section>
+  <h2>Havalimanları — risk özeti</h2>
+  <p class="sub prose">Sorunun diğer yarısı: <i>hangi havalimanı etkilendi?</i>
+  <b>Hava sahası</b> sütunu EASA'nın operatörlere “kaçının” dediği ülkeleri
+  gösterir — kesintinin sebebi çoğunlukla oradadır. <b>Bizim görüşümüz</b>
+  sütunu bizim ne görebildiğimizi söyler, havalimanının açık olup olmadığını
+  değil: “Tarifeli, gözlenemiyor” demek, o havalimanında ADS-B alıcısı yok
+  demektir.</p>
+  {_airport_strip(data, reg)}
+</section>
+
+<section>
+  <h2>EASA çatışma bölgesi bültenleri</h2>
+  <p class="sub prose">Avrupa Havacılık Emniyeti Ajansı'nın yürürlükteki
+  uyarıları. Bir bültenin yeniden yayımlanması ya da geçerlilik süresinin
+  uzatılması, başlı başına bir sinyaldir.</p>
+  <div class="heads">{adv}</div>
+</section>
+
+<details class="more">
+  <summary>Bütün havayolları — {len(cs)} satır, durumu ve kaynaklarıyla</summary>
+  <div class="more-body">
   <div class="band">
     <div class="stat"><span class="k">Havayolu</span><span class="v">{len(cs)}</span>
       <span class="n">izlenen toplam</span></div>
@@ -1525,27 +2033,91 @@ def render(data: dict) -> str:
   <p class="cov-line">Yukarıdaki altı sayı <b>havayolu sayısı</b> ve toplamı
   {len(cs)} eder. Aşağıdaki satır ise <b>bu verinin ne kadar sağlam olduğunu</b>
   söyler — aynı cetvelin sayıları değil, o yüzden ayrı duruyor.</p>
-  <div class="cov">
-    <span class="pill s-{"flying" if cov["verdict"] == "ok" else "partial"}"><span class="dot"></span>{
-      _e(COV_LABEL.get(cov["verdict"], cov["verdict"]))}</span>
-    <p>{data["as_of_day"]} günü kontrol havayollarından <b>{cov['control_flights']}
-    sefer</b> görüldü; bu, son 28 günün ortancasının <b>{cov['score']} katı</b>.
-    Gözlem penceresindeki {data["days"]} günün <b>{data["observed_days"]}
-    tanesine</b> bakılabildi{
-      f", ve oran sütununun yayımlanması için gereken {MIN_RATIO_DAYS} güne "
-      f"{MIN_RATIO_DAYS - data['observed_days']} gün kaldı"
-      if data["observed_days"] < MIN_RATIO_DAYS else ""}. Haftalık sayılar
-    yalnızca bu günlere göre ölçekleniyor.</p>
-  </div>
-  {"".join(f'<div class="notice"><span class="t">Önce bunu okuyun</span><p>{w}</p></div>' for w in warn)}
+<section>
+  <h2>Havayolları</h2>
+  <p class="sub prose">Önce dikkat gerektirenler: durduranlar, sonra kısmen
+  kesenler, sonra hakkında bilgi olmayanlar. <b>Sefer</b> sütunu gözlem
+  penceresinde izlenen havalimanlarında sayılan iniş/kalkış sayısı;
+  <b>Nerede</b> sütunu bunun havalimanlarına dağılımı.</p>
+  {oran_aciklama}
+  <div class="scroll"><table>
+    <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
+      <th class="num">Sefer<div class="meta">uçuş verisi</div></th>
+      <th>Nerede görüldü<div class="meta">havalimanı·sefer</div></th>
+      {oran_th}</tr></thead>
+    <tbody>{_rows(data)}</tbody>
+  </table></div>
 </section>
+  </div>
+</details>
 
-{delta_html}
+<details class="more">
+  <summary>Havalimanı ayrıntısı — tarife, varış/kalkış tahtası ve basın</summary>
+  <div class="more-body">
+<section>
+  <h2>Havalimanları</h2>
+  <p class="sub prose">Sorunun diğer yarısı: <i>bu havalimanına hâlâ uçuluyor
+  mu?</i> Önce sorunlular. <b>Tarifeli</b> olanlar ADS-B kapsamımızın dışında —
+  uçuş verisi göremiyoruz ama havayolları tarifelerinde sefer tutuyor.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Havalimanı</th><th>Durum</th>
+      <th class="num">Gözlenen sefer<div class="meta">uçuş verisi</div></th>
+      <th class="num">Görülen havayolu<div class="meta">uçuş verisi</div></th>
+      <th class="num">Tarifede sefer<div class="meta">tarife</div></th>
+      <th>Kimler uçuyor</th></tr></thead>
+    <tbody>{_airport_rows(data)}</tbody>
+  </table></div>
+</section>
+{_boards_section(data)}
+{_blind_news_section(data)}
+  </div>
+</details>
+
+<details class="more">
+  <summary>Yöntem — bu rapor nasıl okunur, sayılar nereden geliyor</summary>
+  <div class="more-body">
 <section>
   <h2>Bu rapor nasıl okunur</h2>
   <p class="sub prose">Soru şu: <i>bu havayolu Ortadoğu uçuşlarını kesti mi?</i>
   Tek bir kaynak bunu güvenilir cevaplayamıyor, o yüzden iki kaynak
   birbirine karşı okunuyor.</p>
+
+  <p class="sub prose">Sayfanın başındaki <b>kesinti kaydı</b> bu okumanın
+  sonucudur ve <b>üç ayrı listeye</b> ayrılır. Hangi listede olduğu, bir
+  satırın ne kadar ciddiye alınacağını belirler:</p>
+  <div class="glossary">
+    <div><span class="u">Kesinti kaydı</span><p>Bir havayolunun <b>belirli bir
+      noktaya</b> uçmayı bıraktığı iddiası. Buraya girmek için ya gözlemde
+      eşiği aşan bir sessizlik olmalı, ya da <b>tek bir havayolunu adlandıran</b>
+      bir haber. Dört havayolunu birden sayan bölgesel derleme haberler buraya
+      <b>giremez</b>: “iptaller oldu” demek, “X havayolu Y havalimanını
+      bıraktı” demek değildir.</p></div>
+    <div><span class="u">Kısmi kesintiler</span><p>Basının kesinti bildirdiği,
+      ama <b>o havalimanında uçarken gördüğümüz</b> çiftler. Gözlem duyuruyu
+      yendiği için kayda girmezler; istasyon açıktır, kesilen tek tek hatları
+      sayacak veri yoktur.</p></div>
+    <div><span class="u">Doğrulanmamış</span><p>Yalnızca web aramasının
+      konuştuğu havayolları. Model düz metin yazar; <b>içinden havalimanı kodu
+      çıkarılmaz</b> ve hiçbir satırı hareket ettirmez. Kaynağına bakılmak
+      için durur.</p></div>
+  </div>
+
+  <p class="sub prose">Kayıttaki her satırın bir <b>güven</b> rozeti var, ve
+  rozet o satırın <b>altında yazan kaynaklardan</b> yeniden hesaplanır — veri
+  tabanındaki eski bir etiketten değil. Dördü şunlar:</p>
+  <div class="glossary">
+    <div><span class="u">Teyitli</span><p>Uçuşlar gözlemde sustu <b>ve</b>
+      havayolunu adıyla anan basın durdurduğunu yazıyor. İki bağımsız kaynak
+      aynı yönde.</p></div>
+    <div><span class="u">Gözleme dayalı</span><p>Yalnızca sessizlik: eşiği aşan
+      bir süredir görünmüyor, ama teyit eden haber bulunamadı.</p></div>
+    <div><span class="u">Basına dayalı</span><p>Yalnızca duyuru. Sessizlik
+      eşiği dolmamış ya da o nokta zaten gözlenemiyor. Tarih sütununda ilk
+      silent gün değil, <b>haberin yayım tarihi</b> yazar.</p></div>
+    <div><span class="u">Çelişkili</span><p>Aynı satırın kaynaklarından biri
+      kesildiğini, diğeri uçtuğunu söylüyor. Kayıtta durur ama
+      <b>bir kesinti sayılmaz</b>.</p></div>
+  </div>
   <div class="cards">
     <div class="card"><div class="hd"><span class="fir">Uçuş verisi</span></div>
       <div class="place">Uçakların yayınladığı ADS-B sinyalleri, gönüllü
@@ -1654,41 +2226,6 @@ def render(data: dict) -> str:
     günlerden hesaplanır. Bu ayrımın olmadığı bir sürüm, verinin bittiği yeri
     uçuşların bittiği yer sanmıştı.</p></div>
 </section>
-
-<section>
-  <h2>Havalimanları</h2>
-  <p class="sub prose">Sorunun diğer yarısı: <i>bu havalimanına hâlâ uçuluyor
-  mu?</i> Önce sorunlular. <b>Tarifeli</b> olanlar ADS-B kapsamımızın dışında —
-  uçuş verisi göremiyoruz ama havayolları tarifelerinde sefer tutuyor.</p>
-  <div class="scroll"><table>
-    <thead><tr><th>Havalimanı</th><th>Durum</th>
-      <th class="num">Gözlenen sefer<div class="meta">uçuş verisi</div></th>
-      <th class="num">Görülen havayolu<div class="meta">uçuş verisi</div></th>
-      <th class="num">Tarifede sefer<div class="meta">tarife</div></th>
-      <th>Kimler uçuyor</th></tr></thead>
-    <tbody>{_airport_rows(data)}</tbody>
-  </table></div>
-</section>
-
-{_boards_section(data)}
-{_blind_news_section(data)}
-
-<section>
-  <h2>Havayolları</h2>
-  <p class="sub prose">Önce dikkat gerektirenler: durduranlar, sonra kısmen
-  kesenler, sonra hakkında bilgi olmayanlar. <b>Sefer</b> sütunu gözlem
-  penceresinde izlenen havalimanlarında sayılan iniş/kalkış sayısı;
-  <b>Nerede</b> sütunu bunun havalimanlarına dağılımı.</p>
-  {oran_aciklama}
-  <div class="scroll"><table>
-    <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
-      <th class="num">Sefer<div class="meta">uçuş verisi</div></th>
-      <th>Nerede görüldü<div class="meta">havalimanı·sefer</div></th>
-      {oran_th}</tr></thead>
-    <tbody>{_rows(data)}</tbody>
-  </table></div>
-</section>
-
 <section>
   <h2>Hava sahası geçişleri · son 7 gün</h2>
   <p class="sub prose">Her uçuş bilgi bölgesinin (FIR) içinde canlı ADS-B ile
@@ -1698,15 +2235,6 @@ def render(data: dict) -> str:
   gösterir — oradan geçen trafik ayrıca dikkate değerdir.</p>
   <div class="cards">{fircards}</div>
 </section>
-
-<section>
-  <h2>EASA çatışma bölgesi bültenleri</h2>
-  <p class="sub prose">Avrupa Havacılık Emniyeti Ajansı'nın yürürlükteki
-  uyarıları. Bir bültenin yeniden yayımlanması ya da geçerlilik süresinin
-  uzatılması, başlı başına bir sinyaldir.</p>
-  <div class="heads">{adv}</div>
-</section>
-
 <section>
   <h2>Kaynaklar</h2>
   <dl class="src">
@@ -1719,7 +2247,14 @@ def render(data: dict) -> str:
       alınır. Yalnızca ADS-B'nin kör olduğu havalimanları için harcanır.</dd>
     <dt>Basın</dt><dd>Google News RSS. Başlıkta havayolunun adı geçen haberler
       süzülür; anahtar kelimeyle sınıflandırılır. Karar vermez, okumanız için
-      bağlantıyı önünüze koyar. Kaynak veri merkezi IP'lerine aralıklı olarak
+      bağlantıyı önünüze koyar. <b>Tarihe dikkat:</b> gösterilen gün Google
+      News’in kendi damgasıdır ve çoğu zaman sayfanın <i>yeniden tarandığı</i>
+      gündür, yazıldığı gün değil — Nisan 2026 tarihli bir sayfa “bugün” diye
+      görünebiliyordu. Bunu düzeltmenin yolu yok, o yüzden iki şey elendi:
+      haber odası olmayan yayıncılar, ve sürekli yeniden taranan sabit
+      sayfalar (başlıkta üst üste dikey çizgiler ya da üretilmiş bir kimlik).
+      Kalanların <b>yayıncı adı her başlığın yanında yazıyor</b>; kaynağı
+      tartmak okuyucunun işi. Kaynak veri merkezi IP'lerine aralıklı olarak
       HTTP hatası döndürüyor; cevap alınan son başlıklar saklanır ve kesinti
       gününde arşiv olarak, tarihiyle gösterilir.</dd>
     <dt>Web araması</dt><dd>Mistral web arama aracı. Yalnızca diğer üç kaynağın
@@ -1730,6 +2265,8 @@ def render(data: dict) -> str:
       bültenin kendisinin değişmesi gerekir.</dd>
   </dl>
 </section>
+  </div>
+</details>
 
 <footer>
   <p>Veri yokluğu hiçbir zaman uçuş yokluğunun kanıtı değildir. Ortak sefer
@@ -1740,7 +2277,6 @@ def render(data: dict) -> str:
   risk değerlendirmesidir.</p>
 </footer>
 </div>"""
-
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()

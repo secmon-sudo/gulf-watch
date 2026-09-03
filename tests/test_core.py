@@ -2513,5 +2513,132 @@ class TestCarrierVisibility(unittest.TestCase):
             "silence from a carrier this feed does not carry is not a stop")
 
 
+class TestNewsSourceGate(unittest.TestCase):
+    """Google News dates a page when it crawled it, not when it was written.
+
+    "Kuwait Airport Closed: Drone Strikes Ground All Flights - MiGFlug"
+    arrived on 2026-09-03 carrying pubDate 2026-09-02 for a page published in
+    April 2026, and the front page printed it as "bugün" -- an airport
+    closure, today, sourced to a company that sells fighter-jet rides. The
+    date cannot be corrected, so the publisher and the page shape are what get
+    checked.
+    """
+
+    def _item(self, title):
+        when = datetime.now(timezone.utc) - timedelta(days=1)
+        return {"title": title, "url": "http://x", "stance": "supports",
+                "published": format_datetime(when)}
+
+    def test_a_shop_is_not_a_newsroom(self):
+        from src import report
+        self.assertFalse(report._is_reporting(self._item(
+            "Kuwait Airport Closed: Drone Strikes Ground All Flights - MiGFlug")))
+
+    def test_a_standing_page_is_not_a_story(self):
+        from src import report
+        self.assertFalse(report._is_reporting(self._item(
+            "Kuwait Airport News | Kuwait Flights Updates | Ticket Price & "
+            "Airport Rules | Kuwait News Today San Patrignano (MoxFHDUXNS) "
+            "- mshale.com")))
+
+    def test_reporting_survives_the_gate(self):
+        from src import report
+        for title in (
+            "Finnair cancels Dubai flights for 5 months - Arabian Business",
+            "Royal Air Maroc suspends Doha, Dubai flights - middleeasteye.net",
+        ):
+            self.assertTrue(report._is_reporting(self._item(title)), title)
+
+    def test_the_gate_runs_inside_carrier_news(self):
+        from src import report
+        with mock.patch("src.report._news", return_value=[
+                self._item("Saudia suspends Dubai flights - MiGFlug")]):
+            self.assertEqual(report.carrier_news("Saudia"), [])
+
+
+class TestRegister(unittest.TestCase):
+    """The front page's answer. A row here says a named carrier stopped
+    serving a named place, so what may open one is deliberately narrow."""
+
+    def _data(self, news, seen_at=None, state="stopped"):
+        return {
+            "airports": {"OMDB": {"iata": "DXB", "city": "Dubai"},
+                         "OMAA": {"iata": "AUH", "city": "Abu Dhabi"}},
+            "carriers_cfg": {"UAE": {"name": "Emirates"},
+                             "ETD": {"name": "Etihad Airways"},
+                             "FDB": {"name": "flydubai"},
+                             "FIN": {"name": "Finnair"}},
+            "stops": {"active": []},
+            "carriers": [{"code": "UAE", "name": "Emirates", "state": state,
+                          "seen_at": seen_at or {}, "news": news}],
+        }
+
+    def _hit(self, title, airports, age=3):
+        return {"title": title, "url": "http://x/" + title[:8],
+                "signal": "stopped", "airports": airports, "age_days": age}
+
+    def test_a_roundup_naming_four_carriers_opens_nothing(self):
+        from src import report
+        reg = report.register(self._data([self._hit(
+            "UAE flight update: Emirates, Etihad, flydubai, Air Arabia "
+            "cancellations as Iran tensions escalate - Gulf News", ["AUH"])]))
+        self.assertEqual(
+            reg["full"], [],
+            "a round-up reports that cancellations happened; it does not "
+            "report that Emirates left Abu Dhabi")
+
+    def test_a_headline_about_one_carrier_does_open_a_row(self):
+        from src import report
+        reg = report.register(self._data([self._hit(
+            "Emirates suspends Dubai flights for the winter - Reuters",
+            ["DXB"])]))
+        self.assertEqual([(r["carrier"], r["place"], r["conf"])
+                          for r in reg["full"]],
+                         [("UAE", "DXB", "reported")])
+
+    def test_a_cut_where_we_see_the_carrier_flying_is_not_a_stop(self):
+        from src import report
+        reg = report.register(self._data(
+            [self._hit("Emirates cancels some Dubai flights - Reuters", ["DXB"])],
+            seen_at={"OMDB": 1371}, state="partial"))
+        self.assertEqual(reg["full"], [])
+        self.assertEqual([(r["carrier"], r["place"], r["legs"])
+                          for r in reg["partial"]], [("UAE", "DXB", 1371)])
+
+    def test_the_badge_is_recomputed_from_the_evidence_shown(self):
+        from src import report
+        data = self._data([])
+        data["carriers"] = []
+        data["stops"]["active"] = [{
+            "superseded_by": None, "scope": "station", "detail": "OMDB",
+            "carrier": "UAE", "carrier_name": "Emirates",
+            "started_on": "2026-08-01", "days_stopped": 20,
+            "confidence": "corroborated", "baseline_weekly": 12.0,
+            "evidence": [{"source": "news", "stance": "contradicts",
+                          "title": "Emirates resumes Dubai flights - Reuters",
+                          "url": "http://y"}]}]
+        self.assertEqual(report.register(data)["full"][0]["conf"],
+                         "contradicted",
+                         "a badge that contradicts the rows under it is a bug")
+
+    def test_evidence_that_never_names_the_carrier_is_dropped(self):
+        from src import report
+        data = self._data([])
+        data["carriers"] = []
+        data["stops"]["active"] = [{
+            "superseded_by": None, "scope": "station", "detail": "OMDB",
+            "carrier": "UAE", "carrier_name": "Emirates",
+            "started_on": "2026-08-01", "days_stopped": 20,
+            "confidence": "corroborated", "baseline_weekly": 12.0,
+            "evidence": [{"source": "news", "stance": "supports",
+                          "title": "British Airways to suspend UK "
+                                   "repatriation flights - bbc.com",
+                          "url": "http://y"}]}]
+        row = report.register(data)["full"][0]
+        self.assertEqual(row["links"], [])
+        self.assertEqual(row["conf"], "observed",
+                         "a story about another airline cannot corroborate")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
