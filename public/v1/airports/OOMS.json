@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-02T21:37:01+00:00",
-  "as_of_day": "2026-08-31",
+  "generated_at": "2026-09-03T16:14:56+00:00",
+  "as_of_day": "2026-09-01",
   "coverage": {
-    "day": "2026-08-31",
-    "control_flights": 304,
-    "median_28d": 518,
-    "score": 0.587,
-    "verdict": "degraded"
+    "day": "2026-09-01",
+    "control_flights": 360,
+    "median_28d": 499,
+    "score": 0.721,
+    "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 2,
+    "observed_days": 3,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -31,7 +31,7 @@
   "name": "Muscat Intl",
   "city": "Muscat",
   "country": "OM",
-  "weekly_frequency": 3,
+  "weekly_frequency": 2,
   "baseline_weekly": 0.0,
   "carriers_operating": [
     "ETD"
@@ -45,7 +45,7 @@
       "carrier_name": "Etihad Airways",
       "origin": "OMAA",
       "destination": "OOMS",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 53,
