@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-03T16:14:56+00:00",
-  "as_of_day": "2026-09-01",
+  "generated_at": "2026-09-04T07:03:59+00:00",
+  "as_of_day": "2026-09-02",
   "coverage": {
-    "day": "2026-09-01",
-    "control_flights": 360,
+    "day": "2026-09-02",
+    "control_flights": 682,
     "median_28d": 499,
-    "score": 0.721,
+    "score": 1.367,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 3,
+    "observed_days": 4,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -30,17 +30,17 @@
   "name": "Saudia",
   "iata": "SV",
   "country": "SA",
-  "weekly_frequency": 6,
+  "weekly_frequency": 8,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
-  "routes_total": 26,
+  "routes_total": 28,
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 3,
+  "observed_days": 4,
   "comparable_share": 0.0,
-  "baselined_share": 0.227,
+  "baselined_share": 0.2,
   "ratio": null,
   "status": "NEW",
   "operating": true,
@@ -69,7 +69,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -86,7 +86,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "SVA",
@@ -103,7 +103,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -120,7 +120,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -137,7 +137,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -154,7 +154,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -171,7 +171,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -188,7 +188,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -205,7 +205,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -222,7 +222,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -273,7 +273,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -290,7 +290,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -307,7 +307,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -358,7 +358,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "SVA",
@@ -375,7 +375,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "SVA",
@@ -392,7 +392,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -409,7 +409,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -426,7 +426,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -460,7 +460,24 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
+    },
+    {
+      "carrier": "SVA",
+      "carrier_name": "Saudia",
+      "origin": "OMDB",
+      "destination": "OMAF",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -478,6 +495,23 @@
       "status": "UNKNOWN",
       "silent_days": 0,
       "observed_days": 1
+    },
+    {
+      "carrier": "SVA",
+      "carrier_name": "Saudia",
+      "origin": "OTHH",
+      "destination": "HEBA",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 2
     },
     {
       "carrier": "SVA",

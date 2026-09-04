@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-03T16:14:56+00:00",
-  "as_of_day": "2026-09-01",
+  "generated_at": "2026-09-04T07:03:59+00:00",
+  "as_of_day": "2026-09-02",
   "coverage": {
-    "day": "2026-09-01",
-    "control_flights": 360,
+    "day": "2026-09-02",
+    "control_flights": 682,
     "median_28d": 499,
-    "score": 0.721,
+    "score": 1.367,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 3,
+    "observed_days": 4,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -30,17 +30,17 @@
   "name": "EgyptAir",
   "iata": "MS",
   "country": "EG",
-  "weekly_frequency": 42,
+  "weekly_frequency": 45,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
-  "routes_total": 42,
+  "routes_total": 43,
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 3,
+  "observed_days": 4,
   "comparable_share": 0.0,
-  "baselined_share": 0.146,
+  "baselined_share": 0.138,
   "ratio": null,
   "status": "NEW",
   "operating": true,
@@ -69,7 +69,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "MSR",
@@ -86,14 +86,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
       "origin": "HECA",
       "destination": "OJAI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 25,
@@ -126,23 +126,6 @@
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
       "origin": "HECA",
-      "destination": "OMAA",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 87,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 0
-    },
-    {
-      "carrier": "MSR",
-      "carrier_name": "EgyptAir",
-      "origin": "HECA",
       "destination": "OMDB",
       "weekly_frequency": 4,
       "weekly_scaled": null,
@@ -154,7 +137,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -171,14 +154,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
       "origin": "HECA",
       "destination": "OTHH",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.5,
       "baseline_days": 88,
@@ -186,9 +169,9 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
@@ -205,7 +188,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
@@ -222,7 +205,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
@@ -239,7 +222,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "MSR",
@@ -256,7 +239,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -273,7 +256,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "MSR",
@@ -290,7 +273,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "MSR",
@@ -307,7 +290,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "MSR",
@@ -331,7 +314,7 @@
       "carrier_name": "EgyptAir",
       "origin": "OJAI",
       "destination": "HE15",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 8,
@@ -398,6 +381,23 @@
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
       "origin": "OLBA",
+      "destination": "HE32",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 14,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "MSR",
+      "carrier_name": "EgyptAir",
+      "origin": "OLBA",
       "destination": "HE42",
       "weekly_frequency": 1,
       "weekly_scaled": null,
@@ -449,6 +449,23 @@
       "carrier": "MSR",
       "carrier_name": "EgyptAir",
       "origin": "OMAA",
+      "destination": "HEAZ",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 53,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "MSR",
+      "carrier_name": "EgyptAir",
+      "origin": "OMAA",
       "destination": "HEEM",
       "weekly_frequency": 1,
       "weekly_scaled": null,
@@ -477,7 +494,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
@@ -501,7 +518,7 @@
       "carrier_name": "EgyptAir",
       "origin": "OMDB",
       "destination": "HE15",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -511,7 +528,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -545,7 +562,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
@@ -562,7 +579,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "MSR",
@@ -579,7 +596,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "MSR",
@@ -620,7 +637,7 @@
       "carrier_name": "EgyptAir",
       "origin": "OMSJ",
       "destination": "HECA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 0,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -628,7 +645,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "NEW",
+      "status": "UNKNOWN",
       "silent_days": 0,
       "observed_days": 1
     },
@@ -671,7 +688,7 @@
       "carrier_name": "EgyptAir",
       "origin": "OTHH",
       "destination": "HE15",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -679,7 +696,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 1
     },
@@ -766,7 +783,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     }
   ],
   "stop_events": [],

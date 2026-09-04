@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-03T16:14:56+00:00",
-  "as_of_day": "2026-09-01",
+  "generated_at": "2026-09-04T07:03:59+00:00",
+  "as_of_day": "2026-09-02",
   "coverage": {
-    "day": "2026-09-01",
-    "control_flights": 360,
+    "day": "2026-09-02",
+    "control_flights": 682,
     "median_28d": 499,
-    "score": 0.721,
+    "score": 1.367,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 3,
+    "observed_days": 4,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -33,13 +33,14 @@
   },
   "reading_note": "started_on is the first silent day, not an announcement date. confidence=observed means ADS-B silence only; corroborated means reporting agrees; contradicted means reporting says they are flying and you should trust the reporting over this feed.",
   "summary": {
-    "carriers_with_any_stop": 1,
+    "carriers_with_any_stop": 0,
     "region_stops": 0,
-    "station_stops": 1,
+    "station_stops": 0,
     "route_stops": 0,
-    "resumed_last_30d": 0
+    "resumed_last_30d": 1
   },
-  "active": [
+  "active": [],
+  "recently_resumed": [
     {
       "id": 433,
       "scope": "station",
@@ -50,9 +51,9 @@
       "last_flight_on": "2026-08-15",
       "started_on": "2026-08-16",
       "detected_on": "2026-08-30",
-      "resumed_on": null,
-      "days_stopped": 16,
-      "status": "active",
+      "resumed_on": "2026-08-29",
+      "days_stopped": 13,
+      "status": "resumed",
       "confidence": "contradicted",
       "carrier_name": "Royal Air Maroc",
       "evidence": [
@@ -94,6 +95,5 @@
       ],
       "superseded_by": null
     }
-  ],
-  "recently_resumed": []
+  ]
 }

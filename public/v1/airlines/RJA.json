@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-03T16:14:56+00:00",
-  "as_of_day": "2026-09-01",
+  "generated_at": "2026-09-04T07:03:59+00:00",
+  "as_of_day": "2026-09-02",
   "coverage": {
-    "day": "2026-09-01",
-    "control_flights": 360,
+    "day": "2026-09-02",
+    "control_flights": 682,
     "median_28d": 499,
-    "score": 0.721,
+    "score": 1.367,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 3,
+    "observed_days": 4,
     "min_observed_days": 5,
     "ratios_published": false,
     "carriers_with_ratio": 0
@@ -30,17 +30,17 @@
   "name": "Royal Jordanian",
   "iata": "RJ",
   "country": "JO",
-  "weekly_frequency": 276,
+  "weekly_frequency": 330,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
-  "routes_total": 155,
+  "routes_total": 162,
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
-  "observed_days": 3,
+  "observed_days": 4,
   "comparable_share": 0.0,
-  "baselined_share": 0.004,
+  "baselined_share": 0.003,
   "ratio": null,
   "status": "NEW",
   "operating": true,
@@ -86,14 +86,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "DAAG",
       "destination": "OJAI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 25,
@@ -110,7 +110,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "DTTA",
       "destination": "OJAI",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 25,
@@ -154,14 +154,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "EDDB",
       "destination": "OJAI",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -178,7 +178,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "EDDF",
       "destination": "OJAI",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.2,
       "baseline_days": 88,
@@ -205,14 +205,31 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "EDDH",
+      "destination": "OJAI",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 87,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "EDDL",
       "destination": "OJAI",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -239,7 +256,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -256,14 +273,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "EDDM",
       "destination": "OJAI",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -280,7 +297,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "EGCC",
       "destination": "OJAI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -307,14 +324,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "EGLL",
       "destination": "OJAI",
-      "weekly_frequency": 8,
+      "weekly_frequency": 10,
       "weekly_scaled": null,
       "baseline_weekly": 0.1,
       "baseline_days": 88,
@@ -341,14 +358,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "EGSS",
       "destination": "OJAI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 86,
@@ -365,7 +382,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "EHAM",
       "destination": "OJAI",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -392,7 +409,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -409,7 +426,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -443,7 +460,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -484,7 +501,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "HECA",
       "destination": "OJAI",
-      "weekly_frequency": 5,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 25,
@@ -518,7 +535,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "KDFW",
       "destination": "OJAI",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 84,
@@ -562,7 +579,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "RJA",
@@ -596,14 +613,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "KJFK",
       "destination": "OJAI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -630,14 +647,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "KORD",
       "destination": "OJAI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 83,
@@ -664,14 +681,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "LCLK",
       "destination": "OJAI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 82,
@@ -698,7 +715,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -749,7 +766,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -773,7 +790,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "LFPG",
       "destination": "OJAI",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -800,7 +817,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -817,14 +834,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "LGAV",
       "destination": "OJAI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 82,
@@ -841,7 +858,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "LIMC",
       "destination": "OJAI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -858,7 +875,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "LIRF",
       "destination": "OJAI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -885,7 +902,41 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "LOWW",
+      "destination": "OJAI",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 87,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "LSGG",
+      "destination": "OJAI",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 87,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "RJA",
@@ -902,7 +953,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
@@ -970,7 +1021,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "RJA",
@@ -987,7 +1038,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "RJA",
@@ -1045,7 +1096,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "DTTA",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 5,
@@ -1095,8 +1146,42 @@
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
+      "destination": "EDDB",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 87,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
       "destination": "EDDF",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
+      "destination": "EDDH",
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1113,74 +1198,6 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "EDDL",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 0
-    },
-    {
-      "carrier": "RJA",
-      "carrier_name": "Royal Jordanian",
-      "origin": "OJAI",
-      "destination": "EDDM",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 0
-    },
-    {
-      "carrier": "RJA",
-      "carrier_name": "Royal Jordanian",
-      "origin": "OJAI",
-      "destination": "EGCC",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 0
-    },
-    {
-      "carrier": "RJA",
-      "carrier_name": "Royal Jordanian",
-      "origin": "OJAI",
-      "destination": "EGLL",
-      "weekly_frequency": 5,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 0
-    },
-    {
-      "carrier": "RJA",
-      "carrier_name": "Royal Jordanian",
-      "origin": "OJAI",
-      "destination": "EGSS",
       "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
@@ -1197,8 +1214,76 @@
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
+      "destination": "EDDM",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
+      "destination": "EGCC",
+      "weekly_frequency": 2,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
+      "destination": "EGLL",
+      "weekly_frequency": 7,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
+      "destination": "EGSS",
+      "weekly_frequency": 3,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
       "destination": "EHAM",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1248,8 +1333,25 @@
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
+      "destination": "GMMT",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 5,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
       "destination": "HE15",
-      "weekly_frequency": 3,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 8,
@@ -1334,7 +1436,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "HECA",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 11,
@@ -1368,7 +1470,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "KDFW",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 82,
@@ -1436,7 +1538,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "KORD",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 85,
@@ -1453,7 +1555,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "LCLK",
-      "weekly_frequency": 4,
+      "weekly_frequency": 5,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1521,7 +1623,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "LFPG",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1538,7 +1640,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "LGAV",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 84,
@@ -1555,7 +1657,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "LIMC",
-      "weekly_frequency": 2,
+      "weekly_frequency": 3,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1572,7 +1674,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "LIRF",
-      "weekly_frequency": 3,
+      "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -1606,7 +1708,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "LLOV",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 5,
@@ -1623,7 +1725,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "LLYO",
-      "weekly_frequency": 5,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 5,
@@ -1656,6 +1758,40 @@
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
+      "destination": "LOWW",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
+      "destination": "LSGG",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 85,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "RJA",
+      "carrier_name": "Royal Jordanian",
+      "origin": "OJAI",
       "destination": "LSZH",
       "weekly_frequency": 3,
       "weekly_scaled": null,
@@ -1674,7 +1810,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "LTBA",
-      "weekly_frequency": 6,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 14,
@@ -1718,31 +1854,14 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 1
-    },
-    {
-      "carrier": "RJA",
-      "carrier_name": "Royal Jordanian",
-      "origin": "OJAI",
-      "destination": "OE50",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 5,
-      "baseline_trusted": false,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 2
     },
     {
       "carrier": "RJA",
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "OEDF",
-      "weekly_frequency": 1,
+      "weekly_frequency": 2,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 31,
@@ -1878,7 +1997,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "OMDB",
-      "weekly_frequency": 8,
+      "weekly_frequency": 9,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1888,7 +2007,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -1905,7 +2024,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -1963,7 +2082,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "OSDI",
-      "weekly_frequency": 6,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 5,
@@ -1980,7 +2099,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OJAI",
       "destination": "OTHH",
-      "weekly_frequency": 7,
+      "weekly_frequency": 6,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -1990,7 +2109,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "RJA",
@@ -2048,7 +2167,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OLBA",
       "destination": "OJAI",
-      "weekly_frequency": 8,
+      "weekly_frequency": 9,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 25,
@@ -2109,7 +2228,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2126,7 +2245,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2143,7 +2262,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2160,7 +2279,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2177,7 +2296,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2194,7 +2313,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2211,7 +2330,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2228,7 +2347,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2245,7 +2364,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2262,7 +2381,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2279,7 +2398,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2296,7 +2415,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2320,7 +2439,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OMDB",
       "destination": "OJAI",
-      "weekly_frequency": 9,
+      "weekly_frequency": 11,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -2330,7 +2449,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
@@ -2371,7 +2490,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OS63",
       "destination": "OJAI",
-      "weekly_frequency": 6,
+      "weekly_frequency": 7,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 25,
@@ -2626,7 +2745,7 @@
       "carrier_name": "Royal Jordanian",
       "origin": "OTHH",
       "destination": "OJAI",
-      "weekly_frequency": 7,
+      "weekly_frequency": 8,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -2653,7 +2772,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "RJA",
