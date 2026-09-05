@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-04T16:11:42+00:00",
-  "as_of_day": "2026-09-02",
+  "generated_at": "2026-09-05T15:01:26+00:00",
+  "as_of_day": "2026-09-03",
   "coverage": {
-    "day": "2026-09-02",
-    "control_flights": 682,
-    "median_28d": 499,
-    "score": 1.367,
+    "day": "2026-09-03",
+    "control_flights": 873,
+    "median_28d": 508.5,
+    "score": 1.5,
     "verdict": "ok"
   },
   "observation": {
@@ -30,7 +30,7 @@
   "name": "British Airways",
   "iata": "BA",
   "country": "GB",
-  "weekly_frequency": 0,
+  "weekly_frequency": 2,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
@@ -40,7 +40,7 @@
   "routes_reduced": 0,
   "observed_days": 4,
   "comparable_share": 0.0,
-  "baselined_share": 0.956,
+  "baselined_share": 0.957,
   "ratio": null,
   "status": "UNKNOWN",
   "operating": true,
@@ -127,7 +127,7 @@
       "carrier_name": "British Airways",
       "origin": "EGLL",
       "destination": "OTHH",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 11.4,
       "baseline_days": 88,
@@ -205,7 +205,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 0
     },
     {
       "carrier": "BAW",
@@ -297,7 +297,7 @@
       "carrier_name": "British Airways",
       "origin": "OTHH",
       "destination": "EGLL",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 10.6,
       "baseline_days": 88,

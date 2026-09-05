@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-04T16:11:42+00:00",
-  "as_of_day": "2026-09-02",
+  "generated_at": "2026-09-05T15:01:26+00:00",
+  "as_of_day": "2026-09-03",
   "coverage": {
-    "day": "2026-09-02",
-    "control_flights": 682,
-    "median_28d": 499,
-    "score": 1.367,
+    "day": "2026-09-03",
+    "control_flights": 873,
+    "median_28d": 508.5,
+    "score": 1.5,
     "verdict": "ok"
   },
   "observation": {
@@ -154,7 +154,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "CSN",
@@ -222,7 +222,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "CSN",

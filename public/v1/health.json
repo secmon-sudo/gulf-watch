@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-04T16:11:42+00:00",
-  "as_of_day": "2026-09-02",
+  "generated_at": "2026-09-05T15:01:26+00:00",
+  "as_of_day": "2026-09-03",
   "coverage": {
-    "day": "2026-09-02",
-    "control_flights": 682,
-    "median_28d": 499,
-    "score": 1.367,
+    "day": "2026-09-03",
+    "control_flights": 873,
+    "median_28d": 508.5,
+    "score": 1.5,
     "verdict": "ok"
   },
   "observation": {
@@ -27,14 +27,18 @@
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
   "database": {
-    "route_departures": 91345,
-    "raw_legs_retained": 31037,
+    "route_departures": 92581,
+    "raw_legs_retained": 33224,
     "first_day": "2025-10-31",
-    "last_day": "2026-09-04",
+    "last_day": "2026-09-05",
     "baseline_routes": 1259
   },
   "baseline_ready": true,
   "recent_runs": [
+    {
+      "started_at": "2026-09-05T14:56:15+00:00",
+      "detail": "legs=2966 coverage=ok(1.5) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=6536 FLAGGED[OIIE:empty]"
+    },
     {
       "started_at": "2026-09-04T16:06:51+00:00",
       "detail": "legs=2595 coverage=ok(1.367) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=6748"
@@ -49,10 +53,6 @@
     },
     {
       "started_at": "2026-09-02T21:34:45+00:00",
-      "detail": "legs=0 coverage=degraded(0.587) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=6469"
-    },
-    {
-      "started_at": "2026-09-02T21:28:38+00:00",
       "detail": "legs=0 coverage=degraded(0.587) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=6469"
     }
   ]

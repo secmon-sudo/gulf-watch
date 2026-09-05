@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-04T16:11:42+00:00",
-  "as_of_day": "2026-09-02",
+  "generated_at": "2026-09-05T15:01:26+00:00",
+  "as_of_day": "2026-09-03",
   "coverage": {
-    "day": "2026-09-02",
-    "control_flights": 682,
-    "median_28d": 499,
-    "score": 1.367,
+    "day": "2026-09-03",
+    "control_flights": 873,
+    "median_28d": 508.5,
+    "score": 1.5,
     "verdict": "ok"
   },
   "observation": {
@@ -30,17 +30,17 @@
   "name": "Saudia",
   "iata": "SV",
   "country": "SA",
-  "weekly_frequency": 8,
+  "weekly_frequency": 10,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
-  "routes_total": 28,
+  "routes_total": 29,
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
   "observed_days": 4,
   "comparable_share": 0.0,
-  "baselined_share": 0.2,
+  "baselined_share": 0.179,
   "ratio": null,
   "status": "NEW",
   "operating": true,
@@ -239,7 +239,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "SVA",
@@ -347,6 +347,23 @@
       "carrier": "SVA",
       "carrier_name": "Saudia",
       "origin": "OMDB",
+      "destination": "HEAL",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 2
+    },
+    {
+      "carrier": "SVA",
+      "carrier_name": "Saudia",
+      "origin": "OMDB",
       "destination": "HECA",
       "weekly_frequency": 0,
       "weekly_scaled": null,
@@ -382,7 +399,7 @@
       "carrier_name": "Saudia",
       "origin": "OMDB",
       "destination": "LIRF",
-      "weekly_frequency": 0,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.8,
       "baseline_days": 88,
@@ -390,7 +407,7 @@
       "comparable": false,
       "scored": false,
       "ratio": null,
-      "status": "UNKNOWN",
+      "status": "NEW",
       "silent_days": 0,
       "observed_days": 3
     },
@@ -443,7 +460,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     },
     {
       "carrier": "SVA",
@@ -528,7 +545,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 0
+      "observed_days": 1
     }
   ],
   "stop_events": [],
