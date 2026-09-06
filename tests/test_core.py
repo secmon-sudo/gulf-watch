@@ -836,6 +836,45 @@ class TestSuspensionEvents(unittest.TestCase):
             [e for e in self.susp.report(self.conn)["active"]
              if e["carrier"] == "OMA"], [])
 
+    def test_a_stop_is_withdrawn_when_the_carrier_disowns_its_baseline(self):
+        """RAM|OTHH, measured 2026-09-06 -- the one row the ledger has ever
+        carried through detection and out the other side. Its baseline_weekly
+        of 2.8 is six North America-Doha routes Royal Air Maroc does not fly,
+        while the Casablanca legs it visibly does fly are in none of them.
+
+        Withdrawal has to be its own pass. Skipping detection alone leaves an
+        already-published stop on the page forever, which is the mechanism
+        behind the 147 of 2026-08-17 having to be deleted by hand.
+        """
+        self._fill(silent_for=None)
+        # At or before reference_day (today-2), or the observation window that
+        # decides "is this carrier visibly flying" never sees these legs.
+        seen_on = (self.today - timedelta(days=5)).isoformat()
+        window = ((self.today - timedelta(days=28)).isoformat(),
+                  self.today.isoformat())
+        for dep, arr in (("KJFK", "OTHH"), ("KIAD", "OTHH"), ("CYUL", "OTHH")):
+            self.conn.execute("INSERT INTO baseline VALUES ('RAM',?,?,1.0,28,?,?)",
+                              (dep, arr, *window))
+        for dep, arr in (("GMMN", "OTHH"), ("GMMN", "OMDB"), ("OTHH", "GMMN")):
+            self.conn.execute("INSERT INTO daily_route VALUES (?,'RAM',?,?,1)",
+                              (seen_on, dep, arr))
+        started = (self.today - timedelta(days=12)).isoformat()
+        self.conn.execute(
+            """INSERT INTO suspension (scope, scope_key, carrier, detail,
+                   baseline_weekly, last_flight_on, started_on, detected_on,
+                   days_stopped, status, confidence)
+               VALUES ('station','RAM|OTHH','RAM','OTHH',2.8,?,?,?,12,
+                       'active','observed')""",
+            (started, started, self.today.isoformat()))
+        self.conn.commit()
+
+        self.assertEqual(self.susp.withdraw_contradicted(self.conn), 1)
+        self.conn.commit()
+        self.assertEqual(
+            self.conn.execute(
+                "SELECT status FROM suspension WHERE carrier='RAM'").fetchone()[0],
+            "withdrawn")
+
     def test_an_existing_stop_is_withdrawn_when_its_baseline_is_disowned(self):
         """Skipping detection is not enough -- the loop stops revisiting the
         scope and an already-published stop would stay on the page forever.
@@ -2638,6 +2677,86 @@ class TestRegister(unittest.TestCase):
         self.assertEqual(row["links"], [])
         self.assertEqual(row["conf"], "observed",
                          "a story about another airline cannot corroborate")
+
+
+class DisownedBaselineGuard(unittest.TestCase):
+    """RAM|OTHH, measured 2026-09-06.
+
+    Its baseline_weekly of 2.8 is six North America-Doha routes and Royal Air
+    Maroc flies none of them; the Casablanca legs it does fly are in no
+    baseline row. config.baseline_blind_carriers() cannot reach this -- it
+    derives from BASELINE_BLIND *monitored* airports, and Morocco has none, so
+    RAM is outside the function's domain rather than missed by it.
+    """
+
+    def setUp(self):
+        from src import db
+        self.conn = db.connect(":memory:")
+        self.today = date(2026, 9, 4)
+        for i in range(10):
+            self.conn.execute(
+                "INSERT INTO coverage VALUES (?,600,500,1.2,'ok')",
+                ((self.today - timedelta(days=i)).isoformat(),))
+
+    def _baseline(self, carrier, routes):
+        for dep, arr in routes:
+            self.conn.execute(
+                "INSERT INTO baseline VALUES (?,?,?,1.0,28,'2025-11-01','2026-01-31')",
+                (carrier, dep, arr))
+
+    def _flying(self, carrier, routes):
+        day = (self.today - timedelta(days=1)).isoformat()
+        for dep, arr in routes:
+            self.conn.execute("INSERT INTO daily_route VALUES (?,?,?,?,1)",
+                              (day, carrier, dep, arr))
+
+    def _run(self):
+        from src import metrics
+        self.conn.commit()
+        return metrics.disowned_baseline_carriers(self.conn, self.today)
+
+    def test_a_carrier_flying_routes_its_baseline_never_held_is_disowned(self):
+        self._baseline("RAM", [("KJFK", "OTHH"), ("KIAD", "OTHH"),
+                               ("CYUL", "OTHH"), ("OTHH", "KJFK")])
+        self._flying("RAM", [("GMMN", "OTHH"), ("GMMN", "OMDB"),
+                             ("OTHH", "GMMN"), ("OMDB", "GMMN")])
+        self.assertIn("RAM", self._run())
+
+    def test_a_carrier_that_actually_stopped_is_left_alone(self):
+        """The trap this guard is built around. A carrier that genuinely
+        stopped flying also shares no route with its baseline -- it is flying
+        nothing at all -- so overlap alone would suppress exactly the true
+        positive the project exists to find. Only the observed-route floor
+        tells the two apart.
+        """
+        self._baseline("GFA", [("OBBI", "OMDB"), ("OBBI", "OTHH"),
+                               ("OMDB", "OBBI"), ("OTHH", "OBBI")])
+        # Flying nothing at all: the strongest possible stop signal.
+        self.assertNotIn("GFA", self._run())
+        # And still left alone one leg short of the floor.
+        self._flying("GFA", [("OBBI", "OJAI"), ("OJAI", "OBBI")])
+        self.assertNotIn("GFA", self._run(),
+                         "below the floor this must have no opinion")
+
+    def test_one_shared_route_is_enough_to_own_the_baseline(self):
+        self._baseline("QTR", [("OTHH", "OMDB"), ("OTHH", "EGLL")])
+        self._flying("QTR", [("OTHH", "OMDB"), ("OTHH", "LTFM"),
+                             ("OTHH", "VIDP"), ("OTHH", "OERK")])
+        self.assertNotIn("QTR", self._run())
+
+    def test_a_carrier_with_no_baseline_is_not_disowned(self):
+        self._flying("PGT", [("LTFJ", "OMSJ"), ("LTFJ", "OTHH"),
+                             ("LTFJ", "OMDB"), ("LTFJ", "OBBI")])
+        self.assertNotIn("PGT", self._run())
+
+    def test_with_no_trusted_day_it_falls_back_to_the_static_set(self):
+        """Withdrawal runs ahead of the coverage gate on purpose, so this must
+        degrade to silence rather than to a verdict."""
+        self.conn.execute("DELETE FROM coverage")
+        self._baseline("RAM", [("KJFK", "OTHH"), ("KIAD", "OTHH")])
+        self._flying("RAM", [("GMMN", "OTHH"), ("GMMN", "OMDB"),
+                             ("OTHH", "GMMN")])
+        self.assertEqual(self._run(), config.baseline_blind_carriers())
 
 
 class StaleNewsCannotCorroborate(unittest.TestCase):

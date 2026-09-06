@@ -354,7 +354,7 @@ def detect(conn, day: date | None = None) -> dict:
     # 2026-08-23, against 63.7 departures a week of baseline it never appears
     # on. Ask the question directly rather than rely on that.
     car_vis = metrics.carrier_visibility(conn, day, config.CARRIER_VISIBILITY_DAYS)
-    bl_blind = config.baseline_blind_carriers()
+    bl_blind = metrics.disowned_baseline_carriers(conn, day)
     opened: list[dict] = []
     resumed: list[dict] = []
 
@@ -469,7 +469,12 @@ def withdraw_contradicted(conn) -> int:
     claim laid over the first. The row stays for the audit trail, and
     `report()` reads neither status, so it leaves the page.
     """
-    blind = config.baseline_blind_carriers()
+    # Asked of the reference day rather than of today, to match detect(). With
+    # no observed day in the window this degrades to the static set, which is
+    # the right way round: this pass runs ahead of the coverage gate because a
+    # withdrawal asserts nothing about the sky, so it must never gain
+    # confidence from a day we do not trust.
+    blind = metrics.disowned_baseline_carriers(conn, metrics.reference_day())
     n = 0
     for row in conn.execute(
             "SELECT id, scope, scope_key, carrier, started_on FROM suspension "

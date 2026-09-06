@@ -143,6 +143,12 @@ MIN_SIGNAL_HISTORY_DAYS = 7
 # only spent credits.
 BASELINE_BLIND_AIRPORTS = {"OOMS"}
 
+# How many routes we must currently see a carrier flying before its total
+# disagreement with its own baseline is allowed to mean anything. The guard
+# this feeds is the dangerous kind, so the number is the safety catch rather
+# than a tuning knob -- see metrics.disowned_baseline_carriers.
+MIN_DISOWN_ROUTES = 3
+
 
 def baseline_blind_carriers() -> set[str]:
     """Carriers whose baseline is structurally worthless, not merely thin.

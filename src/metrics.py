@@ -557,6 +557,72 @@ def carrier_visibility(conn: sqlite3.Connection, day: date,
     return out
 
 
+def disowned_baseline_carriers(conn: sqlite3.Connection, day: date,
+                               lookback: int | None = None) -> set[str]:
+    """Carriers whose baseline describes an airline other than the one we see.
+
+    `config.baseline_blind_carriers()` asks whether a carrier is based at a
+    monitored airport the harvest went blind at. That question has a domain,
+    and the domain is too small: Morocco has no monitored airport at all, so
+    Royal Air Maroc is not merely missed by it, it can never be an answer.
+
+    Measured 2026-09-06, and it matters because RAM|OTHH is the one row the
+    ledger has ever carried through detection and out the other side. Its
+    `baseline_weekly` of 2.8 is six routes -- KJFK-OTHH 1.07, OTHH-KJFK 0.68,
+    CYUL-OTHH 0.38, KIAD-OTHH 0.38, OTHH-CYUL 0.15, OTHH-KIAD 0.15 -- and
+    Royal Air Maroc does not fly New York, Washington or Montreal to Doha. Not
+    one Casablanca leg is in its eleven baseline routes, while the network it
+    visibly flies is GMMN-OTHH and GMMN-OMDB. Across every carrier, baseline
+    route set against routes observed since 2026-08-01, RAM is the only one
+    with zero overlap: 11 baseline, 6 observed, 0 shared. The Gulf home
+    carriers sit at 60-71% (QTR 204/287, UAE 195/279, ETD 78/179, FDB 69/137,
+    ABY 62/117, GFA 61/100) and the carriers seen only through the Gulf end
+    are thin (RJA 5/141, KAC 1/13, KNE 2/23, MEA 8/80).
+
+    THE OBSERVED-ROUTE FLOOR IS THE WHOLE SAFETY OF THIS GUARD, not a
+    threshold to tune away. A carrier that genuinely stopped flying also
+    shares no route with its baseline -- because it is flying nothing at all --
+    so overlap alone would suppress precisely the true positives this project
+    exists to find. What separates RAM is that it is *visibly flying* while
+    sharing nothing, which is a statement about the baseline. Below the floor
+    this function must say nothing and let the ordinary gates work.
+
+    Carriers with no baseline get no entry: there is nothing to disagree with,
+    and MIN_BASELINE already refuses them a stop.
+    """
+    blind = config.baseline_blind_carriers()
+    days = observed_days(coverage_map(conn), day,
+                         lookback or config.CARRIER_VISIBILITY_DAYS)
+    if not days:
+        # No day we trust, so no opinion. The static guard still applies; this
+        # runs ahead of the coverage gate on purpose (withdrawal is not a
+        # claim about the sky) and must degrade to silence, not to a verdict.
+        return blind
+
+    marks = ",".join("?" for _ in days)
+    seen: dict[str, set[tuple[str, str]]] = {}
+    for r in conn.execute(
+            f"""SELECT DISTINCT carrier, dep_icao, arr_icao FROM daily_route
+                WHERE day IN ({marks})""", days):
+        seen.setdefault(r["carrier"], set()).add((r["dep_icao"], r["arr_icao"]))
+
+    base: dict[str, set[tuple[str, str]]] = {}
+    for r in conn.execute("SELECT carrier, dep_icao, arr_icao FROM baseline"):
+        base.setdefault(r["carrier"], set()).add((r["dep_icao"], r["arr_icao"]))
+
+    out = set(blind)
+    for carrier, flying in seen.items():
+        reference = base.get(carrier)
+        if not reference:
+            continue
+        if len(flying) < config.MIN_DISOWN_ROUTES:
+            continue
+        if flying & reference:
+            continue
+        out.add(carrier)
+    return out
+
+
 def baseline_trusted(dep: str, arr: str, bl_days: dict[str, dict[str, int]],
                      floor: float, monitored: set[str],
                      drift: dict[str, float]) -> bool:
@@ -732,7 +798,7 @@ def route_report(conn: sqlite3.Connection, day: date | None = None) -> dict:
     # is in our data. Asked over a much wider span than the ratio window,
     # because it is a question about the feed rather than about the week.
     car_vis = carrier_visibility(conn, day, config.CARRIER_VISIBILITY_DAYS)
-    bl_blind = config.baseline_blind_carriers()
+    bl_blind = disowned_baseline_carriers(conn, day)
 
     # The same question asked of the reference period. An airport we barely saw
     # back then cannot anchor a percentage now.
