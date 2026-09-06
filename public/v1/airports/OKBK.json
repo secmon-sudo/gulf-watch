@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-05T15:01:26+00:00",
-  "as_of_day": "2026-09-03",
+  "generated_at": "2026-09-06T15:21:51+00:00",
+  "as_of_day": "2026-09-04",
   "coverage": {
-    "day": "2026-09-03",
-    "control_flights": 873,
-    "median_28d": 508.5,
+    "day": "2026-09-04",
+    "control_flights": 1015,
+    "median_28d": 518,
     "score": 1.5,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 4,
+    "observed_days": 5,
     "min_observed_days": 5,
-    "ratios_published": false,
+    "ratios_published": true,
     "carriers_with_ratio": 0
   },
   "baseline": {
