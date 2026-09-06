@@ -22,9 +22,16 @@ name: ingest
 # became a second one (see backfill-baseline.yml).
 #
 # Daily and not hourly. Analysis is anchored on the last settled UTC day
-# (config.SETTLE_LAG_DAYS), so extra runs recompute the same answer, and
-# measured against a real account ~85 requests exhaust the daily allowance
-# while one all-airports pass costs ~52.
+# (config.SETTLE_LAG_DAYS), so extra runs recompute the same answer. The "~85
+# requests exhaust the daily allowance, one all-airports pass costs ~52"
+# figures this note used to give were never measured on this account and are
+# not what it is charged: X-Rate-Limit-Remaining read 2170 after a full
+# fifteen-airport ingest on 2026-08-24, one airport-day costing ~30 credits.
+#
+# And do not read the 12:00 as the time this lands. Measured over 13 scheduled
+# runs, the event arrives 1.0-10.1h late (mean 4.6h) -- GitHub delays scheduled
+# workflows under load and the top of the hour is the worst slot for it. The
+# 48h re-read absorbs that; the quota phase above cannot be planned around it.
 
 on:
   schedule:

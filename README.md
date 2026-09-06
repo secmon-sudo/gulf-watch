@@ -59,11 +59,14 @@ is.
 Actions → **backfill-baseline** → Run workflow. Defaults to 2025-11-01 →
 2026-01-31.
 
-**This does not finish in one run.** Measured against a real account, ~85
-requests exhaust OpenSky's daily allowance, and a 92-day baseline across 13
-airports needs ~1200. The harvest is therefore resumable: each 7-day slice is
-recorded in `backfill_progress` as it lands, a rate limit stops the run
-cleanly, and re-running picks up exactly where it left off. Expect to run it
+**This does not finish in one run.** A 92-day baseline across 13 airports is
+~1200 airport-day queries and the allowance will not carry that in a day.
+OpenSky bills in credits rather than requests, and the figure is worth
+re-measuring rather than assuming: `X-Rate-Limit-Remaining` read 2170 after a
+full fifteen-airport ingest on 2026-08-24, and one airport-day cost ~30 of it.
+The harvest is therefore resumable: each 7-day slice is recorded in
+`backfill_progress` as it lands, a rate limit stops the run cleanly, and
+re-running picks up exactly where it left off. Expect to run it
 once a day for about two weeks — or narrow the scope (fewer airports, shorter
 window) and finish in a few days.
 
@@ -91,8 +94,9 @@ https://<user>.github.io/<repo>/v1/status.json
 
 ### 4. Let it run
 
-Nothing runs on a timer. The `ingest` workflow is manual — Actions → **ingest**
-→ Run workflow — and so is everything else. Locally the same thing is:
+`ingest` runs daily at 12:00 UTC and has since 2026-08-23. Manual dispatch
+still works — Actions → **ingest** → Run workflow — and everything else is
+manual only. Locally the same thing is:
 
 ```bash
 gh release download db-latest -p gulfwatch.db -D data   # the db is not in git
@@ -107,11 +111,20 @@ and the published JSON; nothing binary. Committing it daily had taken `.git` to
 161MB against a 12MB file, and worse, two runs writing it could not be merged --
 a binary conflict is somebody's work silently discarded.
 
-Deliberate rather than unfinished. Analysis is anchored on the last settled UTC
-day, so repeated runs recompute the same answer, and ~85 requests exhaust
-OpenSky's daily allowance while one all-airports pass costs ~52. A timer would
-spend the budget whether or not anyone was reading. To schedule it anyway, add
-a `schedule:` block back to `.github/workflows/ingest.yml`.
+Daily, and not hourly. Analysis is anchored on the last settled UTC day, so
+extra runs inside a day recompute the same answer. Running less often is not
+free either: the analysis needs 5 observed days inside a rolling 7
+(`config.MIN_OBSERVED_DAYS`), so a missed day is not a missed reading, it is a
+gap that keeps costing for a week. Three manual-only days in August emptied
+every published ratio until a run recovered it, which is why the cron exists.
+
+Expect the schedule to land late. Across 13 scheduled runs the event arrived
+1.0-10.1h after 12:00 UTC, mean 4.6h — GitHub delays scheduled workflows under
+load, and the top of the hour is the worst slot for it. Nothing downstream
+cares, because every run re-reads 48h. Do not read the hour in the cron as a
+budget decision either: the OpenSky allowance rolls ~18.4h forward from
+whenever it was spent, so that hour does not buy a full allowance, it only sets
+what time tomorrow's reset lands.
 
 ### Try it without credentials
 
