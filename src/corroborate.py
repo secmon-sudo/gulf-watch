@@ -115,6 +115,11 @@ def enrich(conn, max_lookups: int = 12) -> dict:
         (max_lookups,)).fetchall()
 
     checked = flagged = closures = 0
+
+    # Imported here rather than at module scope: report imports _news from this
+    # module, so a top-level import would be circular.
+    from .report import _aliases, _age_days, NEWS_MAX_AGE_DAYS
+
     for s in rows:
         name = carriers.get(s["carrier"], {}).get("name", s["carrier"])
 
@@ -139,7 +144,8 @@ def enrich(conn, max_lookups: int = 12) -> dict:
             cities = [airports[a]["city"] for a in (dep, arr) if a in airports]
             where = "".join(f' "{c}"' for c in cities)
 
-        query = f'"{name}"{where} (suspend OR suspended OR halt OR resume OR flights)'
+        query = (f'"{name}"{where} (suspend OR suspended OR halt OR resume OR '
+                 f'flights) when:{NEWS_MAX_AGE_DAYS}d')
         items = _news(query)
         if items is None:
             continue    # the source did not answer; leave the confidence alone
@@ -152,10 +158,6 @@ def enrich(conn, max_lookups: int = 12) -> dict:
         # route to `corroborated` -- a stop, on the front page, sourced to a
         # story about a different airline. report.carrier_news() has always
         # applied this filter; this path never did.
-        #
-        # Imported here rather than at module scope: report imports _news from
-        # this module, so a top-level import would be circular.
-        from .report import _aliases
         keys = _aliases(name)
 
         stances = set()
@@ -163,6 +165,17 @@ def enrich(conn, max_lookups: int = 12) -> dict:
             if not it["url"]:
                 continue
             if not any(k in it["title"].lower() for k in keys):
+                continue
+            # And it has to be about now. `when:Nd` bounds this at the source,
+            # but Google honours that about as loosely as it honours the quotes
+            # around the name. Measured 2026-09-06: the RAM|OTHH stop that
+            # started 2026-08-16 was filed `corroborated` on three headlines
+            # from 14 Mar, 15 Mar and 2 Apr 2026 -- 136 to 164 days old, about
+            # a suspension that had already ended in June. A stale
+            # `corroborated` is worse than none: it is what makes a false stop
+            # read as a strong one on the front page.
+            age = _age_days(it.get("published"))
+            if age is None or age > NEWS_MAX_AGE_DAYS:
                 continue
             stances.add(it["stance"])
             conn.execute(

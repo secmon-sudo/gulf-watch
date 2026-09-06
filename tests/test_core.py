@@ -2640,5 +2640,60 @@ class TestRegister(unittest.TestCase):
                          "a story about another airline cannot corroborate")
 
 
+class StaleNewsCannotCorroborate(unittest.TestCase):
+    """corroborate.enrich() bounded its Google News query by nothing at all.
+
+    Live on 2026-09-06: RAM|OTHH started 2026-08-16 and carried
+    confidence=`corroborated`, on the strength of three correctly-named
+    headlines from 14 Mar, 15 Mar and 2 Apr 2026 -- 136 to 164 days old, and
+    describing a suspension that had already ended that June.
+    report.carrier_news() has bounded its own queries since it was written,
+    for exactly this reason; this path never did.
+    """
+
+    def setUp(self):
+        from src import db
+        self.conn = db.connect(":memory:")
+        self.conn.execute(
+            """INSERT INTO suspension (scope, scope_key, carrier, detail,
+                   baseline_weekly, last_flight_on, started_on, detected_on,
+                   days_stopped, status, confidence)
+               VALUES ('station','RAM|OTHH','RAM','OTHH',2.8,'2026-08-15',
+                       '2026-08-16','2026-08-30',13,'active','observed')""")
+        self.conn.commit()
+
+    def _run(self, published):
+        from src import corroborate
+        item = [{"title": "Royal Air Maroc suspends Doha, Dubai flights",
+                 "url": "http://example/x", "published": published,
+                 "stance": "supports"}]
+        with mock.patch.object(corroborate, "_news", return_value=item):
+            corroborate.enrich(self.conn)
+        self.conn.commit()
+        return (
+            self.conn.execute(
+                "SELECT confidence FROM suspension WHERE carrier='RAM'").fetchone()[0],
+            self.conn.execute("SELECT COUNT(*) FROM evidence").fetchone()[0])
+
+    def test_a_headline_older_than_the_window_is_not_evidence(self):
+        stale = (datetime.now(tz=timezone.utc) - timedelta(days=176))
+        conf, rows = self._run(format_datetime(stale))
+        self.assertEqual(conf, "observed",
+                         "a five-month-old notice cannot corroborate today")
+        self.assertEqual(rows, 0, "and it must not be filed as evidence either")
+
+    def test_a_recent_headline_still_corroborates(self):
+        fresh = (datetime.now(tz=timezone.utc) - timedelta(days=3))
+        conf, rows = self._run(format_datetime(fresh))
+        self.assertEqual(conf, "corroborated",
+                         "the filter must not swallow real corroboration")
+        self.assertEqual(rows, 1)
+
+    def test_an_unparseable_date_is_dropped_rather_than_trusted(self):
+        conf, rows = self._run("not a date")
+        self.assertEqual(conf, "observed")
+        self.assertEqual(rows, 0)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
