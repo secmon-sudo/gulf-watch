@@ -1802,6 +1802,63 @@ def _airport_strip(data: dict, reg: dict) -> str:
         '</tr></thead><tbody>' + "".join(rows) + '</tbody></table></div>')
 
 
+def _answer(reg: dict) -> str:
+    """The sentence directly under the H1: what the register found.
+
+    Pulled out of render() so it can be asserted without building a
+    page, because it is the most prominent claim the project makes.
+    """
+    full = reg["full"]
+    # The register merges two different kinds of claim: scopes our own feed
+    # watched go silent, and places only the press reports a stop at. The four
+    # tiles under this sentence have always said which is which. The sentence
+    # did not, and it is the most prominent number on the page.
+    #
+    # That is what made the page disagree with its own API. suspensions.json
+    # publishes the ADS-B ledger and nothing else, so a reader comparing the
+    # two saw "2 havayolunun ... uçuşu durmuş" here against
+    # `carriers_with_any_stop: 0` there. Measured 2026-09-06: BAW->DXB and
+    # FIN->DXB were printed as stop rows while the `suspension` table held no
+    # row for either carrier, because both reached the page through the press
+    # route alone -- which is correct, and was being reported as though it
+    # were our own finding.
+    #
+    # `contradicted` leaves the count for the same reason: its own tile says
+    # "kayıtta tutuluyor ama bir kesinti sayılmıyor", so counting it here made
+    # the headline assert a stop the page then disowned two lines lower.
+    ours = [r for r in full if r["conf"] in ("corroborated", "observed")]
+    press = [r for r in full if r["conf"] == "reported"]
+    tally = lambda rs: (len({r["carrier"] for r in rs}),  # noqa: E731
+                        len({r["place"] for r in rs}))
+
+    if not ours and not press:
+        cevap = ('Şu an <b>kayda geçmiş bir uçuş durdurma yok</b>. Bu, hiçbir '
+                 'havayolunun kesmediği anlamına gelmez; yalnızca elimizdeki '
+                 'kaynakların bugün kesinti gösteremediği anlamına gelir.')
+    else:
+        parts = []
+        if ours:
+            c, pl = tally(ours)
+            parts.append(f'Kendi uçuş gözlemimizde <b class="big s-stopped">{c}</b> '
+                         f'havayolunun <b class="big s-stopped">{pl}</b> noktaya '
+                         f'uçuşu durmuş görünüyor.')
+        else:
+            parts.append('Kendi uçuş gözlemimizde <b>kayda geçmiş bir '
+                         'durdurma yok</b>.')
+        if press:
+            c, pl = tally(press)
+            parts.append(f'Basın ayrıca <b class="big s-scheduled">{c}</b> havayolu '
+                         f'için <b class="big s-scheduled">{pl}</b> noktaya kesinti '
+                         f'bildiriyor; bu satırlar aşağıda <b>Basına dayalı</b> '
+                         f'olarak işaretli ve kendi uçuş verimizle '
+                         f'doğrulanamadı.')
+        parts.append('Her satırın <b>neye dayandığı</b> ve <b>ne zamandan beri '
+                     'sürdüğü</b> yanında yazıyor; dayanağı zayıf olan satır '
+                     'aşağıda kalır.')
+        cevap = " ".join(parts)
+    return cevap
+
+
 def render(data: dict) -> str:
     cov = data["coverage"]
     cs = data["carriers"]
@@ -1923,20 +1980,8 @@ def render(data: dict) -> str:
     # The answer, and the two lists that are deliberately NOT the answer.
     reg = register(data)
     full = reg["full"]
-    n_car = len({r["carrier"] for r in full})
-    n_place = len({r["place"] for r in full})
     say = lambda k: sum(1 for r in full if r["conf"] == k)  # noqa: E731
-
-    if not full:
-        cevap = ('Şu an <b>kayda geçmiş bir uçuş durdurma yok</b>. Bu, hiçbir '
-                 'havayolunun kesmediği anlamına gelmez; yalnızca elimizdeki '
-                 'kaynakların bugün kesinti gösteremediği anlamına gelir.')
-    else:
-        cevap = (f'Şu an <b class="big s-stopped">{n_car}</b> havayolunun '
-                 f'<b class="big s-stopped">{n_place}</b> noktaya uçuşu '
-                 f'durmuş görünüyor. Her satırın <b>neye dayandığı</b> ve '
-                 f'<b>ne zamandan beri sürdüğü</b> yanında yazıyor; '
-                 f'dayanağı zayıf olan satır aşağıda kalır.')
+    cevap = _answer(reg)
 
     answer_band = "".join(
         f'<div class="stat"><span class="k">{label}</span>'

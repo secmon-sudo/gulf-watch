@@ -2679,6 +2679,58 @@ class TestRegister(unittest.TestCase):
                          "a story about another airline cannot corroborate")
 
 
+class TheAnswerSentence(unittest.TestCase):
+    """The line under the H1, and the one place the page disagreed with its
+    own API. Measured live 2026-09-06: it read "Şu an 2 havayolunun 1 noktaya
+    uçuşu durmuş görünüyor" for BAW->DXB and FIN->DXB, while
+    suspensions.json published `carriers_with_any_stop: 0` and the
+    `suspension` table held no row for either -- both had reached the page
+    through the press route alone.
+    """
+
+    def _reg(self, *confs):
+        return {"full": [{"carrier": f"C{i}", "place": f"P{i}", "conf": c}
+                         for i, c in enumerate(confs)]}
+
+    def test_a_press_only_stop_is_not_reported_as_our_observation(self):
+        from src import report
+        out = report._answer(self._reg("reported", "reported"))
+        self.assertIn("Kendi uçuş gözlemimizde", out)
+        self.assertIn("kayda geçmiş bir", out)
+        self.assertIn("Basın ayrıca", out)
+        self.assertNotIn("uçuşu durmuş görünüyor", out,
+                         "the press saying it is not us having seen it")
+
+    def test_our_own_finding_still_reads_as_ours(self):
+        from src import report
+        out = report._answer(self._reg("observed", "corroborated"))
+        self.assertIn("uçuşu durmuş görünüyor", out)
+        self.assertNotIn("Basın ayrıca", out)
+
+    def test_the_two_kinds_are_counted_apart(self):
+        from src import report
+        out = report._answer(self._reg("observed", "reported", "reported"))
+        self.assertIn(">1</b> havayolunun", out)      # ours
+        self.assertIn(">2</b> havayolu için", out)    # press
+        self.assertIn("uçuşu durmuş görünüyor", out)
+        self.assertIn("Basın ayrıca", out)
+
+    def test_a_contradicted_row_is_counted_as_neither(self):
+        """Its own tile says it is kept but not counted as a stop; the
+        headline used to count it anyway and assert a stop the page disowned
+        two lines lower."""
+        from src import report
+        out = report._answer(self._reg("contradicted"))
+        self.assertIn("kayda geçmiş bir uçuş durdurma yok", out)
+        self.assertNotIn("Basın ayrıca", out)
+
+    def test_an_empty_register_says_so_without_claiming_nobody_cut(self):
+        from src import report
+        out = report._answer({"full": []})
+        self.assertIn("kayda geçmiş bir uçuş durdurma yok", out)
+        self.assertIn("anlamına gelmez", out)
+
+
 class DisownedBaselineGuard(unittest.TestCase):
     """RAM|OTHH, measured 2026-09-06.
 
