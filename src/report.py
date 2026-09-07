@@ -760,9 +760,31 @@ def diff_since_last(conn, rows: list[dict], coverage_ok: bool) -> dict:
             was_ap = {a for a in (was["airports"] or "").split(",") if a}
             iata = {k: v["iata"] for k, v in config.airports().items()}
             if was["state"] != r["state"]:
-                changes.append({"carrier": r["code"], "name": r["name"],
-                                "kind": "durum", "was": STATE_LABEL[was["state"]],
-                                "now": STATE_LABEL[r["state"]]})
+                # `flying` and `partial` differ by exactly one thing. See
+                # verdict(): a carrier we can see flying reads `partial` when a
+                # region-tied "stopped" headline exists and `flying` when none
+                # does. A move between the two is therefore a change in the
+                # REPORTING, not in the flying -- most often a headline ageing
+                # out of the 30-day window -- and printing it as
+                # "Kısmen kesti -> Uçuyor" invites the reader to see a
+                # resumption that never happened.
+                #
+                # Measured 2026-09-06: 63 of the 97 state transitions on record
+                # are this one pair, and three of the five rows the page was
+                # showing that day were Emirates, Etihad and flydubai flipping
+                # between them. Not noise to delete -- the press moving is
+                # worth a row -- but it has to say that it is the press.
+                pair = {was["state"], r["state"]}
+                if pair <= {"flying", "partial"}:
+                    changes.append({"carrier": r["code"], "name": r["name"],
+                                    "kind": "basın",
+                                    "was": PRESS_LABEL[was["state"]],
+                                    "now": PRESS_LABEL[r["state"]]})
+                else:
+                    changes.append({"carrier": r["code"], "name": r["name"],
+                                    "kind": "durum",
+                                    "was": STATE_LABEL[was["state"]],
+                                    "now": STATE_LABEL[r["state"]]})
             if not compare_airports:
                 continue
             gone = sorted(iata.get(a, a) for a in was_ap - now_ap)
@@ -900,6 +922,11 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
 STATE_LABEL = {"flying": "Uçuyor", "partial": "Kısmen kesti",
                "scheduled": "Tarifede var", "stopped": "Durdurdu",
                "unknown": "Bilinmiyor"}
+
+# The same two states named for what actually separates them, used only in the
+# delta table. See diff_since_last.
+PRESS_LABEL = {"flying": "kesinti bildirimi yok",
+               "partial": "basında hat kesintisi"}
 
 SIGNAL_LABEL = {"stopped": "hat kesintisi", "resumed": "yeniden başladı",
                 "unaffected": "etkilenmedi", "mentioned": "ilgili",
@@ -1873,7 +1900,7 @@ def render(data: dict) -> str:
               ' Bugün kapsama testi geçilmediği için <b>havalimanı '
               'kayıp/kazanç satırları üretilmedi</b> — boş bir pencereden '
               'düşen havalimanı, uçmayı bırakmış havayolu demek değildir. '
-              'Aşağıdakiler yalnızca durum değişiklikleridir.')
+              'Aşağıdakiler yalnızca durum ve basın değişiklikleridir.')
     if not d["since"]:
         delta_html = ""
     elif not d["changes"]:

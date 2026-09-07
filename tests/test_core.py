@@ -2113,13 +2113,13 @@ class TestChangeTracking(unittest.TestCase):
         self.assertEqual(
             self.conn.execute("SELECT COUNT(*) n FROM report_state").fetchone()["n"], 1)
 
-    def test_state_change_and_dropped_airport_are_both_reported(self):
+    def test_a_press_move_and_a_dropped_airport_are_both_reported(self):
         from src import report
         self._yesterday("OMDB,OBBI")
         out = report.diff_since_last(
             self.conn, self._rows("partial", {"OMDB": 5}), True)
         kinds = {c["kind"] for c in out["changes"]}
-        self.assertIn("durum", kinds)
+        self.assertIn("basın", kinds)
         self.assertIn("kayboldu", kinds)
         gone = [c for c in out["changes"] if c["kind"] == "kayboldu"][0]
         self.assertEqual(gone["was"], "BAH")     # OBBI -> its IATA code
@@ -2142,9 +2142,38 @@ class TestChangeTracking(unittest.TestCase):
         out = report.diff_since_last(
             self.conn, self._rows("partial", {"OMDB": 5}), False)
         kinds = {c["kind"] for c in out["changes"]}
-        self.assertIn("durum", kinds)          # the press still moves a state
+        self.assertIn("basın", kinds)          # the press still moves a row
         self.assertNotIn("kayboldu", kinds)
         self.assertFalse(out["airports_compared"])
+
+    def test_a_flying_partial_move_is_not_dressed_as_the_airline_changing(self):
+        """`flying` and `partial` differ only by whether a region-tied stop
+        headline exists (see verdict()), so a move between them is the press
+        moving, not the airline. Live on 2026-09-06 the page showed Emirates,
+        Etihad and flydubai as "Kısmen kesti -> Uçuyor", which reads as three
+        resumptions that never happened; 63 of the 97 transitions on record
+        are this one pair."""
+        from src import report
+        self._yesterday("OMDB")
+        out = report.diff_since_last(
+            self.conn, self._rows("partial", {"OMDB": 5}), True)
+        row = [c for c in out["changes"] if c["kind"] == "basın"][0]
+        self.assertEqual(row["was"], "kesinti bildirimi yok")
+        self.assertEqual(row["now"], "basında hat kesintisi")
+        for cell in (row["was"], row["now"]):
+            self.assertNotIn("Uçuyor", cell)
+            self.assertNotIn("Kısmen kesti", cell)
+
+    def test_a_real_state_change_is_still_labelled_durum(self):
+        """The relabelling must not swallow the transitions that do describe
+        the airline. Only the flying/partial pair is about the reporting."""
+        from src import report
+        self._yesterday("OMDB")
+        out = report.diff_since_last(
+            self.conn, self._rows("stopped", {}), True)
+        row = [c for c in out["changes"] if c["kind"] == "durum"][0]
+        self.assertEqual(row["was"], "Uçuyor")
+        self.assertEqual(row["now"], "Durdurdu")
 
     def test_a_blind_day_is_not_compared_against_afterwards_either(self):
         """Yesterday was blind, today can see: its shrunken airport list would
