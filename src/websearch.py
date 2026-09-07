@@ -48,12 +48,28 @@ MODEL = "mistral-medium-latest"
 BUCKET_WAIT = 25
 REMAINING = {"minute": None, "day": None}
 
+# Asked in English and answered in Turkish, deliberately. The sources are the
+# English-language aviation press, so searching in English is what finds them,
+# but the note lands in the middle of an otherwise entirely Turkish page and
+# five paragraphs of English is where a reader stops reading.
+#
+# The brevity clause is measured rather than tidy. On 2026-09-05 three of the
+# five notes were ~50 words spent saying nothing: "it is unclear if Air China
+# is operating flights to Dubai, Doha, Bahrain, Kuwait, Riyadh, Jeddah, Amman,
+# Beirut, Baghdad, or Erbil". The model was obeying "say plainly if it is
+# unclear" and enumerating every airport it had found nothing about. An
+# unclear answer is still worth printing -- it tells the reader the last
+# resort was tried and came back empty -- but it is worth one line, not ten
+# airport names.
 QUESTION = (
     "As of {today}, is {name} still operating flights to the Gulf and the wider "
     "Middle East (Dubai, Doha, Bahrain, Kuwait, Riyadh, Jeddah, Amman, Beirut, "
-    "Baghdad, Erbil)? Has it suspended or resumed any routes there? Answer in at "
-    "most two sentences, name specific airports and dates where reported, and say "
-    "plainly if it is unclear. Do not guess."
+    "Baghdad, Erbil)? Has it suspended or resumed any routes there? "
+    "Search in English, but WRITE THE ANSWER IN TURKISH. "
+    "At most two sentences. Name an airport ONLY when you have something "
+    "specific to report about that airport, with a date. Never repeat the list "
+    "of airports back. If the reporting does not settle it, say only that, in "
+    "one short sentence. Do not guess."
 )
 
 
