@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-07T17:42:02+00:00",
-  "as_of_day": "2026-09-05",
+  "generated_at": "2026-09-08T05:35:43+00:00",
+  "as_of_day": "2026-09-06",
   "coverage": {
-    "day": "2026-09-05",
-    "control_flights": 945,
-    "median_28d": 525.0,
-    "score": 1.5,
+    "day": "2026-09-06",
+    "control_flights": 1942,
+    "median_28d": 1681,
+    "score": 1.155,
     "verdict": "ok"
   },
   "observation": {
@@ -154,7 +154,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 4
     }
   ],
   "stop_events": [],

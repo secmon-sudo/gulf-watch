@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-07T17:42:02+00:00",
-  "as_of_day": "2026-09-05",
+  "generated_at": "2026-09-08T05:35:43+00:00",
+  "as_of_day": "2026-09-06",
   "coverage": {
-    "day": "2026-09-05",
-    "control_flights": 945,
-    "median_28d": 525.0,
-    "score": 1.5,
+    "day": "2026-09-06",
+    "control_flights": 1942,
+    "median_28d": 1681,
+    "score": 1.155,
     "verdict": "ok"
   },
   "observation": {
@@ -30,17 +30,17 @@
   "name": "Saudia",
   "iata": "SV",
   "country": "SA",
-  "weekly_frequency": 15,
+  "weekly_frequency": 12,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
-  "routes_total": 29,
+  "routes_total": 28,
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
   "observed_days": 6,
   "comparable_share": 0.0,
-  "baselined_share": 0.142,
+  "baselined_share": 0.162,
   "ratio": null,
   "status": "NEW",
   "operating": true,
@@ -103,7 +103,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "SVA",
@@ -239,7 +239,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "SVA",
@@ -375,7 +375,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "SVA",
@@ -432,23 +432,6 @@
       "carrier": "SVA",
       "carrier_name": "Saudia",
       "origin": "OMDB",
-      "destination": "LTBA",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "carrier": "SVA",
-      "carrier_name": "Saudia",
-      "origin": "OMDB",
       "destination": "LTFM",
       "weekly_frequency": 0,
       "weekly_scaled": null,
@@ -460,14 +443,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "SVA",
       "carrier_name": "Saudia",
       "origin": "OMDB",
       "destination": "OJAI",
-      "weekly_frequency": 3,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -494,7 +477,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "SVA",
@@ -511,7 +494,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 1
+      "observed_days": 2
     },
     {
       "carrier": "SVA",
@@ -545,7 +528,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     }
   ],
   "stop_events": [],
