@@ -40,15 +40,18 @@ jobs:
       # deploys the previous run's output and the site sits permanently one run
       # behind. Measured 2026-08-06: the API served a status.json generated
       # 27 hours earlier than the one already committed.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.ref_name }}
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
-      - uses: actions/upload-pages-artifact@v3
+      # v4 onward drops dotfiles from the artifact. public/ has none, so
+      # the default is right here; if one is ever added (a .nojekyll for a
+      # path starting with an underscore), set include-hidden-files: true.
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: public
 
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

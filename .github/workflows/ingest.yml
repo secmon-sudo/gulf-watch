@@ -65,9 +65,13 @@ jobs:
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
     steps:
-      - uses: actions/checkout@v4
+      # v5 is the Node 24 bump and nothing else. Do not reach for v6/v7
+      # without testing the Commit step: they moved the token out of
+      # .git/config into a separate credentials file, and the push below
+      # rides on exactly those persisted credentials.
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: pip
