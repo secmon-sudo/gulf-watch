@@ -4,6 +4,7 @@ Run: python -m pytest tests -q   (or: python tests/test_core.py)
 """
 import os
 import pathlib
+import sqlite3
 import sys
 import tempfile
 import unittest
@@ -15,7 +16,7 @@ import requests
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src import config, db, metrics  # noqa: E402
+from src import config, db, ingest, metrics  # noqa: E402
 from src.parse import is_freight, parse_callsign  # noqa: E402
 
 
@@ -2893,6 +2894,55 @@ class StaleNewsCannotCorroborate(unittest.TestCase):
         conf, rows = self._run("not a date")
         self.assertEqual(conf, "observed")
         self.assertEqual(rows, 0)
+
+
+class TestRunReason(unittest.TestCase):
+    """`legs=0` is an outcome, not a cause, and the two causes differ."""
+
+    def test_a_refused_run_is_not_an_empty_sky(self):
+        # The failure this exists for: 09-01, 09-02 and 09-03 all logged
+        # `legs=0` while the quota was refusing them, and the layer read as
+        # healthy because nothing said why.
+        self.assertEqual(ingest.run_reason(True, True, 0), "quota_denied")
+        self.assertEqual(ingest.run_reason(True, False, 0), "no_traffic")
+        self.assertNotEqual(ingest.run_reason(True, True, 0),
+                            ingest.run_reason(True, False, 0))
+
+    def test_a_run_cut_short_after_real_legs_still_names_the_quota(self):
+        # The legs it carries are what the quota allowed, not what flew.
+        self.assertEqual(ingest.run_reason(True, True, 2598), "quota_denied")
+
+    def test_a_missing_credential_is_neither_of_those(self):
+        self.assertEqual(ingest.run_reason(False, False, 0), "no_source")
+
+    def test_a_working_run_carries_no_reason(self):
+        self.assertIsNone(ingest.run_reason(True, False, 2598))
+
+    def test_the_reason_reaches_a_database_written_before_it_existed(self):
+        """The live db predates the column; the release copy is the only one."""
+        tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        old = sqlite3.connect(tmp.name)
+        old.execute("CREATE TABLE run_log (started_at TEXT PRIMARY KEY, "
+                    "kind TEXT, ok INTEGER, detail TEXT)")
+        old.execute("INSERT INTO run_log VALUES ('2026-09-03T16:00:00', "
+                    "'ingest', 1, 'legs=0 coverage=ok(1.5)')")
+        old.commit()
+        old.close()
+
+        conn = db.connect(tmp.name)
+        conn.execute("INSERT INTO run_log (started_at, kind, ok, detail, reason)"
+                     " VALUES ('2026-09-08T12:00:00','ingest',1,'legs=0',"
+                     "'quota_denied')")
+        rows = conn.execute(
+            "SELECT started_at, detail, reason FROM run_log "
+            "ORDER BY started_at DESC LIMIT 5").fetchall()
+        conn.close()
+        os.unlink(tmp.name)
+
+        self.assertEqual(rows[0]["reason"], "quota_denied")
+        self.assertIsNone(rows[1]["reason"],
+                          "a run logged before the column says nothing, "
+                          "rather than claiming traffic it never measured")
 
 
 if __name__ == "__main__":

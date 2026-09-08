@@ -312,7 +312,8 @@ def build(out: Path | None = None) -> dict:
 
     # --- /v1/health.json --------------------------------------------------
     last = conn.execute(
-        "SELECT started_at, detail FROM run_log ORDER BY started_at DESC LIMIT 5"
+        "SELECT started_at, detail, reason FROM run_log "
+        "ORDER BY started_at DESC LIMIT 5"
     ).fetchall()
     # Two numbers, because after backfill.compact() there are genuinely two.
     # The rollup is the durable record and what every analysis reads; the raw

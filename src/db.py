@@ -214,11 +214,17 @@ CREATE TABLE IF NOT EXISTS backfill_progress (
     PRIMARY KEY (airport, window_start, window_end)
 );
 
+-- `reason` is why the run produced what it produced, and it exists because
+-- `legs=0` is not a silent success: a run the quota refused and a day with
+-- nothing in the sky are different events. NULL means the run fetched and
+-- found traffic. The vocabulary is shared with the platform contract's
+-- `withheld_reason` -- no term is invented here that does not exist there.
 CREATE TABLE IF NOT EXISTS run_log (
     started_at TEXT PRIMARY KEY,
     kind       TEXT,
     ok         INTEGER,
-    detail     TEXT
+    detail     TEXT,
+    reason     TEXT
 );
 
 -- Arrival/departure boards for the airports no ADS-B receiver covers. Kept
@@ -283,6 +289,7 @@ MIGRATIONS = [
     ("advisory", "summary", "TEXT"),
     ("advisory", "summary_hash", "TEXT"),
     ("board_flight", "operated_by", "TEXT"),
+    ("run_log", "reason", "TEXT"),
 ]
 
 

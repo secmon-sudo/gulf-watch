@@ -38,6 +38,27 @@ def pick_airports(run_index: int, all_airports: bool) -> dict:
     }
 
 
+def run_reason(authenticated: bool, exhausted: bool, legs: int) -> str | None:
+    """Why this run collected what it collected. None when it simply worked.
+
+    `legs=0` on its own says nothing: the quota refusing a run and a day with
+    no traffic in it are different events with different remedies, and read as
+    one they make a starved layer look healthy. The words come from the
+    platform contract's shared `withheld_reason` vocabulary.
+
+    Quota outranks the leg count, so a run cut short after real legs still
+    reports `quota_denied` -- the number it carries is what the quota allowed,
+    not what flew.
+    """
+    if not authenticated:
+        return "no_source"
+    if exhausted:
+        return "quota_denied"
+    if legs == 0:
+        return "no_traffic"
+    return None
+
+
 def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
     started = datetime.now(tz=timezone.utc)
     conn = db.connect()
@@ -128,13 +149,15 @@ def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
               + f" board={board['written']}"
               + (f" FLAGGED[{','.join(board['flagged'])}]"
                  if board["flagged"] else ""))
+    reason = run_reason(api.authenticated, exhausted, total)
     conn.execute(
-        "INSERT OR REPLACE INTO run_log (started_at, kind, ok, detail) VALUES (?,?,?,?)",
-        (started.isoformat(timespec="seconds"), "ingest", 1, detail),
+        "INSERT OR REPLACE INTO run_log (started_at, kind, ok, detail, reason)"
+        " VALUES (?,?,?,?,?)",
+        (started.isoformat(timespec="seconds"), "ingest", 1, detail, reason),
     )
     conn.commit()
-    LOG.info("done: %s", detail)
-    return {"legs": total, "coverage": coverage, "fir": fir_result,
+    LOG.info("done: %s%s", detail, f" reason={reason}" if reason else "")
+    return {"legs": total, "reason": reason, "coverage": coverage, "fir": fir_result,
             "czib_changes": czib_changes, "events": events, "corroboration": corro}
 
 
