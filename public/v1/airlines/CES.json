@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T05:35:43+00:00",
+  "generated_at": "2026-09-08T16:33:05+00:00",
   "as_of_day": "2026-09-06",
   "coverage": {
     "day": "2026-09-06",
@@ -19,6 +19,11 @@
     "window": "2025-11-01..2026-01-31",
     "season": "IATA winter",
     "caveat": "Ratios compare the present against a fixed winter reference. Summer and winter schedules differ, so a ratio is not a pure measure of disruption."
+  },
+  "scope": {
+    "airports_monitored": 15,
+    "routes": "Every route here has at least one end at a monitored airport, because that is where the flights are fetched from. Long-haul routes are included; a route between two unmonitored airports is unreachable, not missing.",
+    "ratio": "A carrier's ratio covers `routes_baselined` of its `routes_total`: the routes that both carry a trusted baseline and were visible to our fetches this week. `comparable_share` is what that subset weighs against everything known about the carrier, and under 0.6 the ratio is withheld as null rather than published about a sliver."
   },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
@@ -43,6 +48,7 @@
   "baselined_share": 0.0,
   "ratio": null,
   "status": "UNKNOWN",
+  "withheld_reason": "no_baseline",
   "operating": true,
   "stopped": {
     "any": false,
@@ -103,7 +109,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 5
     },
     {
       "carrier": "CES",

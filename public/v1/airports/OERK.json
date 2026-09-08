@@ -31,33 +31,27 @@
     "advisories": "EASA Conflict Zone Information Bulletins",
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
-  "czib": [
-    {
-      "ref": "CZIB-2026-04",
-      "title": "Airspace of Iran (active)",
-      "revision": "2026-07-08",
-      "valid_to": "2026-09-30",
-      "url": "https://www.easa.europa.eu/en/domains/air-operations/czibs/czib-2026-04",
-      "last_seen": "2026-09-08T16:29:23+00:00",
-      "summary": "Tehran FIR (OIIX)'deki tüm irtifalar ve uçuş seviyelerinde İran hava sahası yüksek risk taşır, operasyonlar kesinlikle tavsiye edilmez."
-    },
-    {
-      "ref": "CZIB-2026-05",
-      "title": "Airspace of Iraq (active)",
-      "revision": "2026-07-08",
-      "valid_to": "2026-09-30",
-      "url": "https://www.easa.europa.eu/en/domains/air-operations/czibs/czib-2026-05",
-      "last_seen": "2026-09-08T16:29:23+00:00",
-      "summary": "Irak'ın (ORBB FIR) tüm irtifalarda ve uçuş seviyelerinde savaş nedeniyle yüksek risk var, uçuşlardan kaçınılmalıdır."
-    },
-    {
-      "ref": "CZIB-2026-06",
-      "title": "Airspace of Lebanon (active)",
-      "revision": "2026-07-08",
-      "valid_to": "2026-09-30",
-      "url": "https://www.easa.europa.eu/en/domains/air-operations/czibs/czib-2026-06",
-      "last_seen": "2026-09-08T16:29:23+00:00",
-      "summary": "Lübnan'ın (OLBB FIR) tüm irtifalar ve uçuş seviyelerinde savaş riski yüksek, uçuşlardan kaçınılmalıdır."
-    }
-  ]
+  "airport": "OERK",
+  "iata": "RUH",
+  "name": "King Khalid Intl",
+  "city": "Riyadh",
+  "country": "SA",
+  "operation": {
+    "day": "2026-09-07",
+    "flights": 809,
+    "median": 882.0,
+    "verdict": "ok",
+    "state": "normal",
+    "provisional": false,
+    "days": 0,
+    "withheld_reason": null
+  },
+  "adsb_observed": false,
+  "weekly_frequency": null,
+  "baseline_weekly": null,
+  "carriers_operating": null,
+  "carriers_absent": null,
+  "carriers_stopped": [],
+  "resumed_recently": [],
+  "routes": []
 }

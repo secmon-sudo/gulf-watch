@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T05:35:43+00:00",
+  "generated_at": "2026-09-08T16:33:05+00:00",
   "as_of_day": "2026-09-06",
   "coverage": {
     "day": "2026-09-06",
@@ -20,6 +20,11 @@
     "season": "IATA winter",
     "caveat": "Ratios compare the present against a fixed winter reference. Summer and winter schedules differ, so a ratio is not a pure measure of disruption."
   },
+  "scope": {
+    "airports_monitored": 15,
+    "routes": "Every route here has at least one end at a monitored airport, because that is where the flights are fetched from. Long-haul routes are included; a route between two unmonitored airports is unreachable, not missing.",
+    "ratio": "A carrier's ratio covers `routes_baselined` of its `routes_total`: the routes that both carry a trusted baseline and were visible to our fetches this week. `comparable_share` is what that subset weighs against everything known about the carrier, and under 0.6 the ratio is withheld as null rather than published about a sliver."
+  },
   "attribution": {
     "flight_data": "OpenSky Network (opensky-network.org), non-commercial use",
     "live_adsb": "adsb.lol and airplanes.live, ODbL 1.0",
@@ -27,33 +32,38 @@
     "notice": "Volunteer ADS-B coverage. Absence of data is not evidence of absence of flights. Check the coverage block before use."
   },
   "database": {
-    "route_departures": 94861,
-    "raw_legs_retained": 37568,
+    "route_departures": 95897,
+    "raw_legs_retained": 39534,
     "first_day": "2025-10-31",
-    "last_day": "2026-09-07",
+    "last_day": "2026-09-08",
     "baseline_routes": 1259
   },
   "baseline_ready": true,
   "recent_runs": [
     {
+      "started_at": "2026-09-08T16:24:50+00:00",
+      "detail": "legs=2559 coverage=ok(1.155) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=210 board=6414 FLAGGED[OIIE:empty]",
+      "reason": null
+    },
+    {
       "started_at": "2026-09-07T17:37:26+00:00",
-      "detail": "legs=2598 coverage=ok(1.5) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=6568"
+      "detail": "legs=2598 coverage=ok(1.5) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=6568",
+      "reason": null
     },
     {
       "started_at": "2026-09-06T15:16:43+00:00",
-      "detail": "legs=3027 coverage=ok(1.5) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=6666"
+      "detail": "legs=3027 coverage=ok(1.5) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=6666",
+      "reason": null
     },
     {
       "started_at": "2026-09-05T14:56:15+00:00",
-      "detail": "legs=2966 coverage=ok(1.5) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=6536 FLAGGED[OIIE:empty]"
+      "detail": "legs=2966 coverage=ok(1.5) rescored=1 stopped=0 resumed=0 czib_changes=0 sched=0 board=6536 FLAGGED[OIIE:empty]",
+      "reason": null
     },
     {
       "started_at": "2026-09-04T16:06:51+00:00",
-      "detail": "legs=2595 coverage=ok(1.367) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=6748"
-    },
-    {
-      "started_at": "2026-09-04T06:59:17+00:00",
-      "detail": "legs=3159 coverage=ok(1.367) rescored=1 stopped=0 resumed=1 czib_changes=0 sched=0 board=6748"
+      "detail": "legs=2595 coverage=ok(1.367) rescored=0 stopped=0 resumed=0 czib_changes=0 sched=0 board=6748",
+      "reason": null
     }
   ]
 }
