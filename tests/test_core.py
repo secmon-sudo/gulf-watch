@@ -2897,6 +2897,33 @@ class StaleNewsCannotCorroborate(unittest.TestCase):
         self.assertEqual(rows, 0)
 
 
+class TestPublishedScope(unittest.TestCase):
+    """The payload has to say which flights it can be about.
+
+    A ratio is silent about its own universe, and the one time that was left
+    to the reader it was read wrong for two weeks: the page's
+    monitored-to-monitored column and the API's route set were taken for the
+    same number, and the API's was written down as "intra-Gulf only". It is
+    not -- 291 of the 310 routes carrying a ratio have a foreign end.
+    """
+
+    def _envelope(self):
+        from src import publish
+        return publish._envelope({
+            "day": "2026-09-06", "coverage": {}, "window_days": 7,
+            "observed_days": 6, "min_observed_days": 5,
+            "ratios_published": True})
+
+    def test_the_scope_is_stated_and_counts_the_real_airports(self):
+        scope = self._envelope()["scope"]
+        self.assertEqual(scope["airports_monitored"], len(config.airports()))
+
+    def test_the_withholding_threshold_is_quoted_from_config(self):
+        """Prose that repeats a constant drifts from it. This is the guard."""
+        scope = self._envelope()["scope"]
+        self.assertIn(str(config.MIN_COMPARABLE_SHARE), scope["ratio"])
+
+
 class TestQuotaRecord(unittest.TestCase):
     """One allowance, two jobs, one record between them.
 

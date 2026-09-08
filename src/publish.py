@@ -83,6 +83,34 @@ def _envelope(report: dict) -> dict:
                       "reference. Summer and winter schedules differ, so a "
                       "ratio is not a pure measure of disruption.",
         },
+        # Which flights any of this can be about. Stated because the numbers
+        # are silent about their own universe and a reader has no other way
+        # to find it: every leg here was caught by a fetch at one of the
+        # monitored airports, so a route always has at least one end in that
+        # set -- 1765 of 1765 on 2026-09-08 -- and a route between two
+        # airports nobody watches is not missing from the payload, it is
+        # unreachable by it.
+        #
+        # It is emphatically NOT an intra-Gulf figure, which is the reading a
+        # 2026-08 note left behind and which the data refutes: 291 of the 310
+        # routes carrying a ratio have a foreign end, and 86% of their
+        # baseline weight does. The Turkish page's `Gözlenen / tarifeli`
+        # column is the one restricted to monitored-to-monitored pairs, and
+        # for a different reason -- AirLabs is only asked about those.
+        "scope": {
+            "airports_monitored": len(config.airports()),
+            "routes": "Every route here has at least one end at a monitored "
+                      "airport, because that is where the flights are fetched "
+                      "from. Long-haul routes are included; a route between "
+                      "two unmonitored airports is unreachable, not missing.",
+            "ratio": "A carrier's ratio covers `routes_baselined` of its "
+                     "`routes_total`: the routes that both carry a trusted "
+                     "baseline and were visible to our fetches this week. "
+                     "`comparable_share` is what that subset weighs against "
+                     "everything known about the carrier, and under "
+                     f"{config.MIN_COMPARABLE_SHARE} the ratio is withheld "
+                     "as null rather than published about a sliver.",
+        },
         "attribution": ATTRIBUTION,
     }
 
