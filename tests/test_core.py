@@ -7,6 +7,7 @@ import pathlib
 import sqlite3
 import sys
 import tempfile
+import time
 import unittest
 from datetime import date, datetime, timedelta, timezone
 from email.utils import format_datetime
@@ -2894,6 +2895,98 @@ class StaleNewsCannotCorroborate(unittest.TestCase):
         conf, rows = self._run("not a date")
         self.assertEqual(conf, "observed")
         self.assertEqual(rows, 0)
+
+
+class TestQuotaRecord(unittest.TestCase):
+    """One allowance, two jobs, one record between them.
+
+    The failure it exists for ran from 2026-08-25 to 09-02: a scheduled
+    baseline harvest and the daily ingest both held the same OpenSky
+    credential, the workflow's `concurrency` group queued them without
+    rationing anything, and three of five ingests came back with zero legs.
+    """
+
+    def setUp(self):
+        from src import backfill, opensky, quota
+        self.bf, self.opensky, self.quota = backfill, opensky, quota
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.patches = [
+            mock.patch("src.db.DB_PATH", self.tmp.name),
+            mock.patch.dict(os.environ, {"OPENSKY_CLIENT_ID": "x",
+                                         "OPENSKY_CLIENT_SECRET": "y"}),
+        ]
+        for p in self.patches:
+            p.start()
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        for p in self.patches:
+            p.stop()
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _client(self, consumer="ingest", replies=()):
+        """A client whose token is already good, so only _get is exercised."""
+        api = self.opensky.OpenSky(conn=self.conn, consumer=consumer)
+        api._token, api._token_expires = "cached", time.time() + 3600
+        api.session = mock.Mock()
+        api.session.get.side_effect = list(replies) or AssertionError(
+            "asked OpenSky while the record said the allowance was spent")
+        return api
+
+    class _Resp:
+        def __init__(self, status, retry_after=None):
+            self.status_code = status
+            self.headers = ({"X-Rate-Limit-Retry-After-Seconds": str(retry_after)}
+                            if retry_after is not None else {})
+
+        def json(self):
+            return []
+
+    def test_a_denial_by_one_job_stops_the_next_before_it_asks(self):
+        self.quota.record_denial(self.conn, 66240, "backfill")  # 18.4h
+        api = self._client("ingest")
+        with self.assertRaises(self.opensky.RateLimited):
+            api.departures("OTHH", 1762000000, 1762086400)
+        api.session.get.assert_not_called()
+
+    def test_the_window_opens_again_once_it_has_passed(self):
+        spent = datetime.now(tz=timezone.utc) - timedelta(hours=5)
+        self.quota.record_denial(self.conn, 3600, "backfill", now=spent)
+        self.assertEqual(self.quota.wait_seconds(self.conn), 0,
+                         "a window that closed hours ago must not lock anyone out")
+
+    def test_a_refusal_is_filed_where_the_other_job_will_see_it(self):
+        api = self._client("ingest", [self._Resp(429, 66240)])
+        with self.assertRaises(self.opensky.RateLimited):
+            api.departures("OTHH", 1762000000, 1762086400)
+        row = self.conn.execute("SELECT * FROM quota_state").fetchone()
+        self.assertEqual(row["consumer"], "ingest")
+        self.assertEqual(row["retry_after"], 66240)
+        self.assertGreater(self.quota.wait_seconds(self.conn), 60000)
+
+    def test_a_brief_pacing_limit_is_not_a_spent_allowance(self):
+        """The dangerous false positive: filing every 429 would let one slow
+        minute lock both jobs out of the rest of the day."""
+        api = self._client("ingest", [self._Resp(429, 30), self._Resp(200)])
+        with mock.patch.object(self.opensky.time, "sleep"):
+            api.departures("OTHH", 1762000000, 1762086400)
+        self.assertIsNone(self.conn.execute(
+            "SELECT * FROM quota_state").fetchone())
+        self.assertEqual(self.quota.wait_seconds(self.conn), 0)
+
+    def test_a_spent_window_ends_the_harvest_before_it_fetches(self):
+        """CLAUDE.md 5: the job stops rather than queueing behind the wall."""
+        self.quota.record_denial(self.conn, 66240, "ingest")
+        # Patched at the socket, not at _get: the gate lives inside _get, and
+        # a test that stubs it out would pass with no gate at all.
+        with mock.patch("src.opensky.requests.Session.get") as get, \
+                mock.patch("src.opensky.requests.Session.post") as post:
+            rc = self.bf.main(["--start", "2025-11-01", "--end", "2025-11-15",
+                               "--airports", "OTHH"])
+        get.assert_not_called()
+        post.assert_not_called()
+        self.assertEqual(rc, self.bf.EXIT_INCOMPLETE)
 
 
 class TestRunReason(unittest.TestCase):

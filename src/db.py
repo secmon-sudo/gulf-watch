@@ -214,6 +214,18 @@ CREATE TABLE IF NOT EXISTS backfill_progress (
     PRIMARY KEY (airport, window_start, window_end)
 );
 
+-- The shared OpenSky allowance record. One row: when the credential was last
+-- refused and how long OpenSky said to wait. Read by every job that spends
+-- it, so a harvest cannot leave the next ingest with nothing. See quota.py
+-- for why the workflow's `concurrency` group does not cover this.
+CREATE TABLE IF NOT EXISTS quota_state (
+    provider    TEXT PRIMARY KEY,
+    spent_at    TEXT NOT NULL,
+    resets_at   TEXT NOT NULL,
+    retry_after INTEGER NOT NULL,
+    consumer    TEXT
+);
+
 -- `reason` is why the run produced what it produced, and it exists because
 -- `legs=0` is not a silent success: a run the quota refused and a day with
 -- nothing in the sky are different events. NULL means the run fetched and

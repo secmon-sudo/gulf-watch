@@ -94,7 +94,7 @@ def harvest(start: str, end: str, airports: list[str] | None = None) -> dict:
     Harvesting them spends about half the daily allowance to learn nothing.
     """
     conn = db.connect()
-    api = OpenSky()
+    api = OpenSky(conn=conn, consumer="backfill")
     if not api.authenticated:
         LOG.error(
             "Backfill needs an authenticated OpenSky client. Create an API "

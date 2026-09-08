@@ -16,6 +16,8 @@ from typing import Any
 
 import requests
 
+from . import quota
+
 LOG = logging.getLogger("gulfwatch.opensky")
 
 TOKEN_URL = (
@@ -54,9 +56,17 @@ class RateLimited(RuntimeError):
 
 
 class OpenSky:
-    def __init__(self, client_id: str | None = None, client_secret: str | None = None):
+    """Pass `conn` and a `consumer` name to put this client under the shared
+    allowance record. Without them it fetches unconditionally, which is right
+    for a one-off script and wrong for anything on a schedule -- see quota.py.
+    """
+
+    def __init__(self, client_id: str | None = None, client_secret: str | None = None,
+                 conn=None, consumer: str = "?"):
         self.client_id = client_id or os.environ.get("OPENSKY_CLIENT_ID")
         self.client_secret = client_secret or os.environ.get("OPENSKY_CLIENT_SECRET")
+        self.conn = conn
+        self.consumer = consumer
         self.session = requests.Session()
         self.session.headers["User-Agent"] = "gulfwatch/1.0 (personal research)"
         self._token: str | None = None
@@ -89,6 +99,14 @@ class OpenSky:
         return {"Authorization": f"Bearer {self._token}"}
 
     def _get(self, path: str, params: dict[str, Any], attempts: int = 4) -> Any:
+        # The shared record first, before a single request leaves the machine.
+        # A run that starts inside a window another job already spent has
+        # nothing to collect and every reason not to push tomorrow's reset
+        # further into the next run's path.
+        if self.conn is not None:
+            wait = quota.wait_seconds(self.conn)
+            if wait:
+                raise RateLimited(wait)
         # Once OpenSky has refused us there is no point asking 25 more times.
         if self._auth_failed:
             return []
@@ -128,6 +146,8 @@ class OpenSky:
                     # rejections and then returns [], which a caller cannot
                     # distinguish from "no flights here". For the backfill that
                     # difference is the whole baseline.
+                    if self.conn is not None:
+                        quota.record_denial(self.conn, wait, self.consumer)
                     raise RateLimited(wait)
                 LOG.warning("rate limited, sleeping %ss", wait)
                 time.sleep(wait)

@@ -62,7 +62,7 @@ def run_reason(authenticated: bool, exhausted: bool, legs: int) -> str | None:
 def run(hours: int, all_airports: bool, skip_fir: bool = False) -> dict:
     started = datetime.now(tz=timezone.utc)
     conn = db.connect()
-    api = OpenSky()
+    api = OpenSky(conn=conn, consumer="ingest")
     if not api.authenticated:
         LOG.warning(
             "no OPENSKY_CLIENT_ID/SECRET -- OpenSky closed anonymous access to "

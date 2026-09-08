@@ -19,6 +19,14 @@ name: backfill-baseline
 # (08-29, 08-30, 09-01) and `observed_days` fell to 2 of the required 5.
 # Queueing second does not protect the ingest when the harvest sets the clock
 # the ingest is read against.
+#
+# What does protect it is the shared allowance record (`quota_state`, see
+# src/quota.py): both jobs read it before they fetch, so a harvest dispatched
+# inside a window the ingest already spent stops at its first slice and exits
+# 2 without spending anything. That reads as "allowance exhausted, resume next
+# run" in the log below, and on a hand-dispatched harvest it means come back
+# after the window rather than that anything is broken.
+
 on:
   workflow_dispatch:
     inputs:
