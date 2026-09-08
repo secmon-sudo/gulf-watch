@@ -2924,6 +2924,158 @@ class TestPublishedScope(unittest.TestCase):
         self.assertIn(str(config.MIN_COMPARABLE_SHARE), scope["ratio"])
 
 
+class TestBoardOperation(unittest.TestCase):
+    """The board answers for the airports ADS-B cannot see -- carefully.
+
+    Riyadh, Jeddah, Kuwait, Abha, Baghdad and Erbil return zero flights to
+    every receiver, so the published board is their only witness. Reading it
+    as a witness rather than only as a veto is what lets the page answer
+    "which airports stopped", and the risk it takes on is that this source
+    fails by returning a cheerful empty list.
+    """
+
+    def setUp(self):
+        from src import flightboard
+        self.fb = flightboard
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _probe(self, airport, day, flights, median, verdict):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO board_probe "
+            "(airport, day, flights, median, verdict, fetched_at) "
+            "VALUES (?,?,?,?,?,'t')", (airport, day, flights, median, verdict))
+        self.conn.commit()
+
+    def _state(self, day, airport):
+        rows = {r["airport"]: r for r in self.fb.airport_operation(self.conn, day)}
+        return rows[airport]
+
+    def test_a_dead_scraper_is_not_fifteen_airports_closing(self):
+        for icao in ("OERK", "OEJN", "ORBI"):
+            self._probe(icao, "2026-09-06", 0, 800.0, "empty")
+        for r in self.fb.airport_operation(self.conn, "2026-09-06"):
+            self.assertIsNone(r["state"], f"{r['airport']} read as a finding")
+            self.assertEqual(r["withheld_reason"], "no_source")
+
+    def test_one_empty_board_among_healthy_ones_is_about_that_airport(self):
+        self._probe("OERK", "2026-09-06", 840, 887.0, "ok")
+        self._probe("OEJN", "2026-09-06", 678, 697.0, "ok")
+        self._probe("ORBI", "2026-09-06", 0, 49.5, "empty")
+        r = self._state("2026-09-06", "ORBI")
+        self.assertEqual(r["state"], "stopped")
+        self.assertTrue(r["provisional"], "one day is not yet a finding")
+        self.assertIsNone(r["withheld_reason"])
+        self.assertEqual(self._state("2026-09-06", "OERK")["state"], "normal")
+
+    def test_a_second_day_turns_it_into_a_finding(self):
+        for day in ("2026-09-05", "2026-09-06"):
+            self._probe("OERK", day, 840, 887.0, "ok")
+            self._probe("ORBI", day, 0, 49.5, "empty")
+        r = self._state("2026-09-06", "ORBI")
+        self.assertEqual((r["state"], r["days"]), ("stopped", 2))
+        self.assertFalse(r["provisional"])
+
+    def test_a_day_the_sweep_missed_does_not_join_two_collapses(self):
+        """Our own gap must not be spent as somebody else's second day."""
+        self._probe("ORBI", "2026-09-04", 0, 49.5, "empty")
+        # 09-05 never fetched: sample() records nothing rather than a zero.
+        self._probe("OERK", "2026-09-06", 840, 887.0, "ok")
+        self._probe("ORBI", "2026-09-06", 0, 49.5, "empty")
+        r = self._state("2026-09-06", "ORBI")
+        self.assertEqual(r["days"], 1)
+        self.assertTrue(r["provisional"])
+
+    def test_a_board_too_small_to_divide_by_carries_no_verdict(self):
+        """Tehran: 2 listings against a median of 1. `ok` there means nothing."""
+        self._probe("OERK", "2026-09-06", 840, 887.0, "ok")
+        self._probe("OIIE", "2026-09-06", 2, 1.0, "ok")
+        r = self._state("2026-09-06", "OIIE")
+        self.assertIsNone(r["state"])
+        self.assertEqual(r["withheld_reason"], "no_source")
+
+    def test_a_state_and_a_reason_are_never_both_present(self):
+        self._probe("OERK", "2026-09-06", 840, 887.0, "ok")
+        self._probe("OEJN", "2026-09-06", 200, 697.0, "thin")
+        self._probe("OKBK", "2026-09-06", 5, None, "unproven")
+        self._probe("OIIE", "2026-09-06", 2, 1.0, "ok")
+        for r in self.fb.airport_operation(self.conn, "2026-09-06"):
+            with self.subTest(airport=r["airport"]):
+                self.assertEqual(r["state"] is None,
+                                 r["withheld_reason"] is not None)
+
+
+class TestAirportViewUsesTheBoard(unittest.TestCase):
+    """The page's airport row must spend the board it already collects.
+
+    Before this, Riyadh, Jeddah, Kuwait, Abha, Baghdad and Erbil all rendered
+    "Tarifeli, gözlenemiyor" -- our own blind spot wearing the airport's name
+    -- while a daily board sat in the database saying they were running.
+    """
+
+    def setUp(self):
+        from src import report
+        self.report = report
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.day = metrics.reference_day().isoformat()
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _probe(self, airport, flights, median, verdict, day=None):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO board_probe "
+            "(airport, day, flights, median, verdict, fetched_at) "
+            "VALUES (?,?,?,?,?,'t')",
+            (airport, day or self.day, flights, median, verdict))
+        self.conn.commit()
+
+    def _row(self, icao):
+        rows = self.report.airport_view(self.conn, 7, config.carriers())
+        return next(r for r in rows if r["icao"] == icao)
+
+    def test_a_healthy_board_answers_where_adsb_never_looks(self):
+        self._probe("OERK", 840, 887.0, "ok")
+        self._probe("OEJN", 678, 697.0, "ok")
+        self.assertEqual(self._row("OERK")["state"], "tahta")
+
+    def test_an_airport_neither_witness_reaches_stays_unanswered(self):
+        self._probe("OERK", 840, 887.0, "ok")
+        self._probe("OIIE", 2, 1.0, "ok")     # Tehran: a board of two
+        self.assertIn(self._row("OIIE")["state"], ("tarifeli", "durgun"))
+
+    def test_a_collapsed_board_is_the_row_that_sorts_first(self):
+        self._probe("OERK", 840, 887.0, "ok")
+        self._probe("ORBI", 0, 49.5, "empty")
+        rows = self.report.airport_view(self.conn, 7, config.carriers())
+        self.assertEqual(rows[0]["icao"], "ORBI")
+        self.assertEqual(rows[0]["state"], "dustu")
+
+    def test_one_day_of_collapse_is_labelled_as_unconfirmed(self):
+        self._probe("OERK", 840, 887.0, "ok")
+        self._probe("ORBI", 0, 49.5, "empty")
+        cls, label = self.report._ap_state(self._row("ORBI"))
+        self.assertIn("doğrulanmadı", label)
+        self.assertEqual(cls, "partial", "a single day must not render as a "
+                                         "stopped airport")
+
+    def test_a_second_day_drops_the_hedge(self):
+        prev = (metrics.reference_day() - timedelta(days=1)).isoformat()
+        self._probe("OERK", 840, 887.0, "ok")
+        self._probe("ORBI", 0, 49.5, "empty")
+        self._probe("ORBI", 0, 49.5, "empty", day=prev)
+        cls, label = self.report._ap_state(self._row("ORBI"))
+        self.assertNotIn("doğrulanmadı", label)
+        self.assertIn("2 gündür", label)
+        self.assertEqual(cls, "stopped")
+
+
 class TestWithheldRatios(unittest.TestCase):
     """A null with no reason is the carrier-level `legs=0`.
 

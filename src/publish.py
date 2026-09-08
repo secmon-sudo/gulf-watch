@@ -26,7 +26,8 @@ import logging
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import advisories, config, db, firwatch, metrics, suspensions
+from . import (advisories, config, db, firwatch, flightboard, metrics,
+               suspensions)
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -301,11 +302,21 @@ def build(out: Path | None = None) -> dict:
         index, key=lambda x: x["name"])})
 
     # --- /v1/airports/{ICAO}.json ----------------------------------------
+    # What the airport's own published board says about it. This is the only
+    # witness six of the fifteen have: Riyadh, Jeddah, Abha, Baghdad, Erbil
+    # and Tehran return zero flights to every ADS-B receiver, and until this
+    # went in they were not in the API AT ALL -- `if not legs: continue`
+    # dropped them, so the one question an operations reader arrives with
+    # ("is Riyadh running?") had no endpoint that could answer it.
+    boards = {b["airport"]: b for b in flightboard.airport_operation(conn)}
+
     ap_index = []
     for icao, meta in airports.items():
         legs = [r for r in routes if r["origin"] == icao or r["destination"] == icao]
-        if not legs:
-            continue
+        board = boards.get(icao)
+        # Nulls, not zeros, where ADS-B never looked. `carriers_operating: []`
+        # at Riyadh would read as "nobody flies from Riyadh", which is a
+        # statement about our receivers wearing the airport's name.
         payload = {
             **env,
             "airport": icao,
@@ -313,12 +324,18 @@ def build(out: Path | None = None) -> dict:
             "name": meta["name"],
             "city": meta["city"],
             "country": meta["country"],
-            "weekly_frequency": sum(r["weekly_frequency"] for r in legs),
-            "baseline_weekly": round(sum(r["baseline_weekly"] for r in legs), 1),
+            # The board's answer, and what it rests on. `state` is null
+            # exactly when `withheld_reason` is set.
+            "operation": ({k: v for k, v in board.items() if k != "airport"}
+                          if board else None),
+            "adsb_observed": bool(legs),
+            "weekly_frequency": sum(r["weekly_frequency"] for r in legs) if legs else None,
+            "baseline_weekly": (round(sum(r["baseline_weekly"] for r in legs), 1)
+                                if legs else None),
             "carriers_operating": sorted({r["carrier"] for r in legs
-                                          if r["weekly_frequency"] > 0}),
+                                          if r["weekly_frequency"] > 0}) if legs else None,
             "carriers_absent": sorted({r["carrier"] for r in legs
-                                       if r["status"] == "SUSPENDED"}),
+                                       if r["status"] == "SUSPENDED"}) if legs else None,
             "carriers_stopped": [
                 {"carrier": e["carrier"], "name": e["carrier_name"],
                  "since": e["started_on"], "days_stopped": e["days_stopped"],
@@ -333,7 +350,13 @@ def build(out: Path | None = None) -> dict:
             "routes": legs,
         }
         _write(out / "airports" / f"{icao}.json", payload)
+        # The index carries the answer itself, not only a link to it: the
+        # question is asked about fifteen airports at once far more often
+        # than about one.
         ap_index.append({"airport": icao, "iata": meta["iata"], "name": meta["name"],
+                         "operating": board["state"] if board else None,
+                         "provisional": board["provisional"] if board else False,
+                         "withheld_reason": board["withheld_reason"] if board else "no_source",
                          "href": f"airports/{icao}.json"})
     _write(out / "airports" / "index.json", {**env, "airports": ap_index})
 

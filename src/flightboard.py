@@ -24,7 +24,7 @@ from __future__ import annotations
 import logging
 import statistics
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import requests
 
@@ -227,6 +227,118 @@ def sample(conn, day: datetime | None = None) -> dict:
             LOG.info("%s: %s board entries (%s)", icao, len(seen), verdict)
 
     return {"day": key, "written": written, "flagged": flagged}
+
+
+# Verdicts that mean the board came back with far less than this airport
+# normally has. `_verdict` sets them; what they MEAN is decided below.
+COLLAPSED = ("empty", "thin")
+
+# Consecutive collapsed board days before the collapse is reported as a
+# finding about the airport rather than as something to keep watching. One day
+# is not enough: this endpoint is undocumented and a single airport can come
+# back empty for a few hours of its own. Two days is where a reading gets to
+# be called a finding, and the first day is still published -- as provisional.
+# The project's whole error history is confidently wrong output on day one.
+COLLAPSE_DAYS = 2
+
+# A board this small cannot carry a verdict about an airport. `_verdict` only
+# refuses a median of zero, which lets Tehran through at a median of 1.0 --
+# and "OIIE operating normally" on two listings is precisely the confidently
+# wrong output this project keeps having to retract. Measured 2026-09-06, a
+# floor of 10 excludes exactly one airport, and it is the one neither ADS-B
+# (0 records in seven days) nor the board can see. Saying so is the answer.
+MIN_BOARD_MEDIAN = 10
+
+
+def _collapse_streak(conn, icao: str, day: str) -> int:
+    """Consecutive board days ending at `day` that came back collapsed.
+
+    A day with no probe row breaks the streak rather than being skipped over.
+    That is deliberately the conservative direction: a day the sweep never
+    reached is not evidence that the airport was quiet on it, and joining two
+    collapses across a hole would manufacture a finding out of our own gap.
+    """
+    streak, expect = 0, date.fromisoformat(day)
+    for r in conn.execute(
+            "SELECT day, verdict FROM board_probe WHERE airport = ? AND day <= ? "
+            "ORDER BY day DESC LIMIT 14", (icao, day)):
+        if (date.fromisoformat(r["day"]) != expect
+                or r["verdict"] not in COLLAPSED):
+            break
+        streak += 1
+        expect -= timedelta(days=1)
+    return streak
+
+
+def airport_operation(conn, day: str | None = None) -> list[dict]:
+    """Is this airport operating, according to its own published board?
+
+    The question the project exists to answer for the airports ADS-B cannot
+    see -- Riyadh, Jeddah, Kuwait, Abha, Baghdad, Erbil all return zero
+    flights to every receiver, and the board is the only witness they have.
+    Until now the board was read defensively only: it could withdraw a stop
+    somebody else opened, and could not say anything on its own.
+
+    What makes a collapse readable at all is the rest of the sweep. The
+    realistic failure of this source is not an error but a cheerful empty
+    list, and that failure is IP-wide -- so a day on which no airport at all
+    scored `ok` is our scraper, and nothing on it may be read as an airport.
+    A day on which fourteen airports answered normally and one came back
+    empty is a statement about that one. No threshold is invented for this:
+    the discriminator is whether the source demonstrably answered somebody.
+
+    `state` is None exactly when `withheld_reason` is set, the same contract
+    the carrier ratios keep, and the reasons come from the same vocabulary.
+    """
+    if not day:
+        row = conn.execute("SELECT MAX(day) d FROM board_probe").fetchone()
+        day = row["d"] if row else None
+    if not day:
+        return []
+
+    probes = {r["airport"]: r for r in conn.execute(
+        "SELECT airport, flights, median, verdict FROM board_probe WHERE day = ?",
+        (day,))}
+    source_ok = any(p["verdict"] == "ok" for p in probes.values())
+
+    out = []
+    for icao in board_airports():
+        p = probes.get(icao)
+        state = reason = None
+        streak = 0
+        if p is None:
+            # No row at all: every window of the sweep failed here, and
+            # sample() deliberately records nothing rather than a zero.
+            reason = "no_source"
+        elif not source_ok:
+            # Nobody answered normally today. Fifteen airports do not close
+            # together; a scraper does.
+            reason = "no_source"
+        elif p["verdict"] == "unproven":
+            reason = "below_min_observed_days"
+        elif (p["median"] or 0) < MIN_BOARD_MEDIAN:
+            # There is a source; there is not enough of it to divide by.
+            reason = "no_source"
+        elif p["verdict"] == "ok":
+            state = "normal"
+        else:
+            state = "stopped" if p["verdict"] == "empty" else "reduced"
+            streak = _collapse_streak(conn, icao, day)
+        out.append({
+            "airport": icao,
+            "day": day,
+            "flights": p["flights"] if p else None,
+            "median": p["median"] if p else None,
+            "verdict": p["verdict"] if p else None,
+            "state": state,
+            # True while the collapse is one day old: published, and published
+            # as not yet a finding.
+            "provisional": bool(state in ("stopped", "reduced")
+                                and streak < COLLAPSE_DAYS),
+            "days": streak,
+            "withheld_reason": reason,
+        })
+    return out
 
 
 def by_airport(conn, day: str | None = None) -> list[dict]:

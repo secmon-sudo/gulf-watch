@@ -193,7 +193,26 @@ def airport_view(conn, days: int, tracked: dict) -> list[dict]:
             "who": sorted(seen[icao].items(), key=lambda kv: -kv[1]) if n
                    else sorted(sched_by.get(iata, {}).items(), key=lambda kv: -kv[1]),
         })
-    rank = {"durgun": 0, "tarifeli": 1, "acik": 2}
+    # The board's answer, attached to every row. For six of these airports it
+    # is the only witness there is -- Riyadh, Jeddah, Abha, Baghdad, Erbil and
+    # Tehran return zero flights to every ADS-B receiver, and this table used
+    # to call all of them "Tarifeli, gözlenemiyor" while a daily board sat in
+    # the database saying they were running normally. An unread source is a
+    # worse answer than a cautious one.
+    boards = {b["airport"]: b for b in flightboard.airport_operation(conn)}
+    for a in out:
+        b = boards.get(a["icao"])
+        a["board"] = b
+        if a["state"] == "acik":
+            # A sighting outranks a listing, as everywhere else in this
+            # project: if ADS-B saw the traffic, the board cannot overrule it.
+            continue
+        if b and b["state"] == "normal":
+            a["state"] = "tahta"
+        elif b and b["state"] in ("stopped", "reduced"):
+            a["state"] = "dustu"
+
+    rank = {"dustu": 0, "durgun": 1, "tarifeli": 2, "tahta": 3, "acik": 4}
     out.sort(key=lambda a: (rank[a["state"]], -a["legs"]))
     return out
 
@@ -1173,15 +1192,35 @@ def _pill(state: str) -> str:
 
 
 AP_STATE = {"acik": ("flying", "Trafik var"),
+            "tahta": ("flying", "Tahtada normal"),
             "tarifeli": ("scheduled", "Tarifeli, gözlenemiyor"),
             "durgun": ("stopped", "Durgun")}
+
+
+def _ap_state(a: dict) -> tuple[str, str]:
+    """The row's pill: what we say about this airport, and on whose word.
+
+    `dustu` is the only one that cannot be a fixed label. A board that came
+    back far below its own median on ONE day is published as not yet a
+    finding, because this endpoint fails by returning a cheerful empty list
+    and one day of that is likelier to be the endpoint than an airport. The
+    second consecutive day is what earns the plain sentence.
+    """
+    if a["state"] != "dustu":
+        return AP_STATE[a["state"]]
+    b = a["board"]
+    word = "durdu" if b["state"] == "stopped" else "düştü"
+    if b["provisional"]:
+        return "partial", f"Tahtada {word} — tek gün, doğrulanmadı"
+    return "stopped", f"Tahtada {word} — {b['days']} gündür"
 
 
 def _airport_rows(data: dict) -> str:
     out = []
     for a in data["airport_view"]:
-        cls, label = AP_STATE[a["state"]]
-        row_cls = ' class="r-stopped"' if a["state"] == "durgun" else ""
+        cls, label = _ap_state(a)
+        row_cls = (' class="r-stopped"'
+                   if a["state"] in ("durgun", "dustu") else "")
         out.append(
             f'<tr{row_cls}>'
             f'<td><span class="code">{_e(a["iata"])}</span> '
@@ -1799,11 +1838,13 @@ def _airport_strip(data: dict, reg: dict) -> str:
 
     out = []
     for a in data["airport_view"]:
-        cls, label = AP_STATE[a["state"]]
+        cls, label = _ap_state(a)
         flag = a["country"] in czib
         who = sorted(set(stops.get(a["iata"], [])))
-        rank = (0 if who else 1, 0 if flag else 1,
-                0 if a["state"] == "tarifeli" else 1)
+        # A collapsed board sorts above everything: it is the only row here
+        # that reports the airport itself, rather than who is flying to it.
+        rank = (0 if a["state"] == "dustu" else 1, 0 if who else 1,
+                0 if flag else 1, 0 if a["state"] == "tarifeli" else 1)
         out.append((rank, a, cls, label, flag, who))
 
     rows = []
@@ -2071,9 +2112,17 @@ def render(data: dict) -> str:
   <p class="sub prose">Sorunun diğer yarısı: <i>hangi havalimanı etkilendi?</i>
   <b>Hava sahası</b> sütunu EASA'nın operatörlere “kaçının” dediği ülkeleri
   gösterir — kesintinin sebebi çoğunlukla oradadır. <b>Bizim görüşümüz</b>
-  sütunu bizim ne görebildiğimizi söyler, havalimanının açık olup olmadığını
-  değil: “Tarifeli, gözlenemiyor” demek, o havalimanında ADS-B alıcısı yok
-  demektir.</p>
+  sütununun iki tanığı var ve hangisinin konuştuğu hücrede yazar:
+  “<b>Trafik var</b>” ADS-B'de o havalimanına ait sefer gördüğümüz anlamına
+  gelir; “<b>Tahtada normal</b>” havalimanının kendi yayınladığı varış/kalkış
+  tahtasının bugün her zamanki büyüklüğünde döndüğü anlamına gelir — Riyad,
+  Cidde, Kuveyt, Abha, Bağdat ve Erbil'de ADS-B alıcısı hiç yok, orada tek
+  tanık budur. Tahta kendi ortancasının çok altına düşerse hücre bunu
+  <b>kaç gündür sürdüğüyle</b> birlikte yazar; tek günlük bir düşüş
+  “doğrulanmadı” diye işaretlenir, çünkü bu kaynak boş liste döndürerek
+  bozulur ve bir günlük boşluk çoğu zaman havalimanının değil kaynağın
+  arızasıdır. “<b>Tarifeli, gözlenemiyor</b>” ikisinin de konuşamadığı
+  yerdir — bugün yalnızca Tahran öyle.</p>
   {_airport_strip(data, reg)}
 </section>
 
