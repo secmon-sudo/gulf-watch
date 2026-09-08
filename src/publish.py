@@ -115,6 +115,69 @@ def _envelope(report: dict) -> dict:
     }
 
 
+def _decide_ratio(c: dict, report: dict) -> dict:
+    """Settle one carrier's ratio, its status, and why the ratio is missing.
+
+    Pulled out of build() because it is the one place a null is created, and
+    every null has to say why: an empty ratio with no reason is the
+    carrier-level twin of the `legs=0` that read as a healthy run -- a reader
+    cannot tell a carrier we could not measure from one that has nothing to
+    measure. On 2026-09-06 all 24 carriers were null at once and nothing in
+    the payload named the cause. The words come from the platform contract's
+    shared `withheld_reason` vocabulary, the same one `run_log.reason` draws
+    on; none is invented here.
+
+    The invariant, and there is a test on it: `ratio is None` exactly when
+    `withheld_reason` is set.
+    """
+    known = c.pop("_known", 0.0)
+    share = (c.pop("_comparable", 0.0) / known) if known else 0.0
+    bl_share = (c.pop("_baselined", 0.0) / known) if known else 0.0
+    c["comparable_share"] = round(share, 3)
+    c["baselined_share"] = round(bl_share, 3)
+    withheld = None
+    if share < config.MIN_COMPARABLE_SHARE:
+        # A ratio built on a sliver of the network is a statement about the
+        # sliver. Etihad's comparable subset is 12 routes of 100.
+        c["weekly_scaled"] = None
+        if bl_share >= config.MIN_COMPARABLE_SHARE:
+            # The baseline is there; this week is not. Rendering that as
+            # NO BASELINE would blame the reference period for a gap in the
+            # present, which is the same misattribution route_report avoids
+            # by keeping `scored` apart from `comparable`.
+            status, ratio = "UNKNOWN", None
+            withheld = "below_min_comparable_share"
+        else:
+            status, ratio = metrics.classify(c["weekly_frequency"], 0.0)
+            # Ordered deliberately: this carrier fails the share test too, but
+            # it fails it BECAUSE its baseline is unusable, and naming the
+            # share would send a reader looking at the wrong half.
+            withheld = "no_baseline"
+    elif not c["routes_baselined"]:
+        # Nothing to compare against. classify() calls this NEW when the
+        # carrier is flying, which the dashboard labels NO BASELINE.
+        c["weekly_scaled"] = None
+        status, ratio = metrics.classify(c["weekly_frequency"], 0.0)
+        withheld = "no_baseline"
+    elif report["ratios_published"]:
+        # Compare like with like: the scaled week against a weekly baseline.
+        c["weekly_scaled"] = round(c["weekly_scaled"], 1)
+        status, ratio = metrics.classify(c["weekly_scaled"], c["baseline_weekly"])
+    else:
+        c["weekly_scaled"] = None
+        status, ratio = "UNKNOWN", None
+        withheld = "below_min_observed_days"
+    c["ratio"] = ratio
+    # A bad coverage day withholds the STATUS, not the ratio, and it does so
+    # for the whole payload at once -- the envelope's `coverage` block is
+    # where a reader finds that. Naming it per carrier as well would attach a
+    # withholding reason to a ratio that WAS published, and this field means
+    # exactly one thing: `ratio` is null and this is why.
+    c["status"] = status if report["coverage"]["verdict"] == "ok" else "UNKNOWN"
+    c["withheld_reason"] = withheld
+    return c
+
+
 def build(out: Path | None = None) -> dict:
     out = Path(out or config.PUBLIC_DIR) / "v1"
     conn = db.connect()
@@ -183,37 +246,7 @@ def build(out: Path | None = None) -> dict:
     for code, c in by_carrier.items():
         c["baseline_weekly"] = round(c["baseline_weekly"], 1)
         c["observed_days"] = report["observed_days"]
-        known = c.pop("_known", 0.0)
-        share = (c.pop("_comparable", 0.0) / known) if known else 0.0
-        bl_share = (c.pop("_baselined", 0.0) / known) if known else 0.0
-        c["comparable_share"] = round(share, 3)
-        c["baselined_share"] = round(bl_share, 3)
-        if share < config.MIN_COMPARABLE_SHARE:
-            # A ratio built on a sliver of the network is a statement about the
-            # sliver. Etihad's comparable subset is 12 routes of 100.
-            c["weekly_scaled"] = None
-            if bl_share >= config.MIN_COMPARABLE_SHARE:
-                # The baseline is there; this week is not. Rendering that as
-                # NO BASELINE would blame the reference period for a gap in
-                # the present, which is the same misattribution route_report
-                # avoids by keeping `scored` apart from `comparable`.
-                status, ratio = "UNKNOWN", None
-            else:
-                status, ratio = metrics.classify(c["weekly_frequency"], 0.0)
-        elif not c["routes_baselined"]:
-            # Nothing to compare against. classify() calls this NEW when the
-            # carrier is flying, which the dashboard labels NO BASELINE.
-            c["weekly_scaled"] = None
-            status, ratio = metrics.classify(c["weekly_frequency"], 0.0)
-        elif report["ratios_published"]:
-            # Compare like with like: the scaled week against a weekly baseline.
-            c["weekly_scaled"] = round(c["weekly_scaled"], 1)
-            status, ratio = metrics.classify(c["weekly_scaled"], c["baseline_weekly"])
-        else:
-            c["weekly_scaled"] = None
-            status, ratio = "UNKNOWN", None
-        c["ratio"] = ratio
-        c["status"] = status if report["coverage"]["verdict"] == "ok" else "UNKNOWN"
+        _decide_ratio(c, report)
 
         # The direct answer: has this carrier stopped anything, and since when?
         evs = active_by_carrier.get(code, [])

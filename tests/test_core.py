@@ -2924,6 +2924,72 @@ class TestPublishedScope(unittest.TestCase):
         self.assertIn(str(config.MIN_COMPARABLE_SHARE), scope["ratio"])
 
 
+class TestWithheldRatios(unittest.TestCase):
+    """A null with no reason is the carrier-level `legs=0`.
+
+    Reading `ratio: null` a reader cannot tell "we could not measure this
+    carrier" from "this carrier has nothing to measure" -- and on 2026-09-06
+    all 24 carriers were null at once, for a reason nothing in the payload
+    named. The words are the platform contract's shared vocabulary.
+    """
+
+    REASONS = {"below_min_comparable_share", "no_baseline",
+               "below_min_observed_days", "coverage_degraded", "quota_denied",
+               "no_source"}
+
+    def _carrier(self, **over):
+        base = {"weekly_frequency": 12.0, "weekly_scaled": 12.0,
+                "baseline_weekly": 10.0, "routes_baselined": 4,
+                "_known": 100.0, "_comparable": 80.0, "_baselined": 80.0}
+        base.update(over)
+        return base
+
+    def _publish(self, carrier, ratios_published=True, verdict="ok"):
+        """Run publish.py's withholding decision over one carrier row."""
+        from src import publish
+        report = {"observed_days": 6, "ratios_published": ratios_published,
+                  "coverage": {"verdict": verdict}}
+        return publish._decide_ratio(carrier, report)
+
+    def test_a_published_ratio_carries_no_reason(self):
+        c = self._publish(self._carrier())
+        self.assertIsNotNone(c["ratio"])
+        self.assertIsNone(c["withheld_reason"])
+
+    def test_a_sliver_of_this_week_says_so(self):
+        # Baseline fine, week thin: the 2026-09-06 shape exactly.
+        c = self._publish(self._carrier(_comparable=20.0, _baselined=80.0))
+        self.assertIsNone(c["ratio"])
+        self.assertEqual(c["withheld_reason"], "below_min_comparable_share")
+
+    def test_an_unusable_baseline_is_not_blamed_on_this_week(self):
+        c = self._publish(self._carrier(_comparable=20.0, _baselined=20.0))
+        self.assertEqual(c["withheld_reason"], "no_baseline",
+                         "naming the share would send the reader to the "
+                         "wrong half of the comparison")
+
+    def test_a_short_window_says_so(self):
+        c = self._publish(self._carrier(), ratios_published=False)
+        self.assertIsNone(c["ratio"])
+        self.assertEqual(c["withheld_reason"], "below_min_observed_days")
+
+    def test_every_null_has_a_reason_and_no_ratio_has_one(self):
+        """The invariant, over every shape the branch can take."""
+        for over in ({}, {"_comparable": 20.0}, {"_comparable": 20.0,
+                     "_baselined": 20.0}, {"routes_baselined": 0},
+                     {"weekly_frequency": 0.0, "_comparable": 0.0,
+                      "_baselined": 0.0}):
+            for published in (True, False):
+                for verdict in ("ok", "degraded"):
+                    c = self._publish(self._carrier(**over), published, verdict)
+                    with self.subTest(over=over, published=published,
+                                      verdict=verdict):
+                        self.assertEqual(c["ratio"] is None,
+                                         c["withheld_reason"] is not None)
+                        if c["withheld_reason"]:
+                            self.assertIn(c["withheld_reason"], self.REASONS)
+
+
 class TestQuotaRecord(unittest.TestCase):
     """One allowance, two jobs, one record between them.
 
