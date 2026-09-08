@@ -921,6 +921,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "airport_view": airport_view(conn, days, carriers),
         "blind_news": blind_news(conn, news_days) if with_news else [],
         "boards": flightboard.by_airport(conn),
+        "board_absence": flightboard.carrier_absence(conn),
         # The detected stops, with the day each went silent and whatever the
         # press said back. The front page is built around these now, so they
         # are collected rather than left to publish.py alone.
@@ -1346,11 +1347,12 @@ def _boards_section(data: dict) -> str:
                 f'havalimanları bugünkü okumadan çıkarılmıştır.</div>')
     return f"""
 <section>
-  <h2>Kör havalimanları — varış/kalkış tahtası</h2>
-  <p class="sub prose">ADS-B'nin göremediği yedi havalimanı için yayımlanmış
-  tahta (FlightStats). Bu bir <b>liste</b>dir, transponder görüntüsü değil —
-  o yüzden ayrı tabloda tutulur ve uçuş verisiyle asla toplanmaz.
-  {medyan_notu}</p>
+  <h2>Varış/kalkış tahtaları</h2>
+  <p class="sub prose">On beş havalimanının kendi yayımladığı tahta
+  (FlightStats). Bu bir <b>liste</b>dir, transponder görüntüsü değil — o
+  yüzden ayrı tabloda tutulur ve uçuş verisiyle asla toplanmaz. Riyad, Cidde,
+  Abha, Bağdat ve Erbil'de ADS-B alıcısı hiç yok; oralarda <b>tek tanık
+  budur</b>. {medyan_notu}</p>
   {warn}
   <div class="tablewrap"><table>
     <thead><tr><th>Havalimanı</th><th>Durum</th>
@@ -1358,8 +1360,74 @@ def _boards_section(data: dict) -> str:
       {medyan_th}<th>Tahtada görünen havayolları</th></tr></thead>
     <tbody>{"".join(rows)}</tbody>
   </table></div>
+  {_absence_block(data)}
 </section>
 """
+
+
+def _absence_block(data: dict) -> str:
+    """Who has gone missing from a board that is still answering.
+
+    The half of the airport question ADS-B cannot reach: it resolves an
+    aircraft, not an operator, so it can never tell "this airline stopped"
+    from "we cannot see this airline". The board names the operator.
+
+    An empty result is printed with its reason, never as a clean bill of
+    health: "nobody left" and "we cannot yet see far enough back to tell" are
+    different answers, and the second one is what today has.
+    """
+    a = data.get("board_absence") or {}
+    if not a:
+        return ""
+    head = ('<h3 class="sub-h">Tahtadan kaybolan havayolları</h3>'
+            '<p class="sub prose">Bir havayolunun <b>kendi uçurduğu</b> '
+            'seferler (ortak kod hariç) sağlıklı dönen bir tahtadan '
+            'kaybolduysa burada yazar. Havalimanının tahtası o günlerin '
+            'hepsinde normal döndü — yani kaynak cevap veriyordu ve bu '
+            'havayolu gelen cevabın içinde yok.</p>')
+
+    if a.get("withheld_reason") == "below_min_observed_days":
+        return head + (
+            f'<div class="notice-inline">Bu soru <b>henüz</b> '
+            f'cevaplanamıyor: karşılaştırılabilir tahta geçmişi '
+            f'<b>{a["readable_days"]} gün</b>, gereken '
+            f'{a["required_days"] + 1} gün. Tahtalar daha eskiye gidiyor ama '
+            f'{_e(a.get("comparable_since") or "—")} tarihine kadar bir '
+            f'seferi <i>kimin</i> uçurduğunu ayırt etmiyorlardı; o günden '
+            f'öncesiyle sonrasını karşılaştırmak, ortak kodlu seferi olan '
+            f'her havayolunu o sabah gitmiş gibi gösterirdi. Sayaç oradan '
+            f'başlıyor.</div>')
+    if a.get("withheld_reason"):
+        return head + ('<div class="notice-inline">Bugün hiçbir havalimanının '
+                       'tahtası okunabilir gelmedi, o yüzden bu soru '
+                       'sorulamadı.</div>')
+    if not a["findings"]:
+        return head + ('<p class="sub prose">Sağlıklı dönen tahtaların '
+                       'hiçbirinde, her gün uçan bir havayolu kaybolmadı.</p>')
+
+    rows = []
+    for f in a["findings"]:
+        cfg = data["airports"].get(f["airport"], {})
+        pill = ('<span class="pill s-partial"><span class="dot"></span>'
+                'Tek gün, doğrulanmadı</span>' if f["provisional"] else
+                '<span class="pill s-stopped"><span class="dot"></span>'
+                f'{f["days"]} gündür yok</span>')
+        row_cls = "" if f["provisional"] else ' class="r-stopped"'
+        rows.append(
+            f'<tr{row_cls}>'
+            f'<td><span class="code">{_e(f["carrier"])}</span></td>'
+            f'<td><span class="code">{_e(cfg.get("iata", f["airport"]))}</span> '
+            f'<span class="name">{_e(cfg.get("city", ""))}</span></td>'
+            f'<td>{pill}</td>'
+            f'<td class="num">{_e(f["last_listed"])}</td>'
+            f'<td class="num">{f["listings_before"]}<div class="meta">kayıt/gün</div></td>'
+            '</tr>')
+    return head + (
+        '<div class="tablewrap"><table><thead><tr>'
+        '<th>Havayolu</th><th>Havalimanı</th><th>Durum</th>'
+        '<th class="num">Son görüldüğü gün</th>'
+        '<th class="num">Öncesinde</th></tr></thead>'
+        f'<tbody>{"".join(rows)}</tbody></table></div>')
 
 
 def _blind_news_section(data: dict) -> str:

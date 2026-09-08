@@ -3009,6 +3009,131 @@ class TestBoardOperation(unittest.TestCase):
                                  r["withheld_reason"] is not None)
 
 
+class TestCarrierAbsence(unittest.TestCase):
+    """Who stopped serving an airport nobody can see — and who only looks it.
+
+    Run against the live database before it was written, the naive version of
+    this reported American, British Airways, China Eastern, China Southern,
+    Iberia, JAL and Finnair as abandoning Jeddah and Riyadh on the same
+    morning: fifteen findings, five airports, one cause, and the cause was
+    `operated_by` starting to be filled in on 2026-09-01.
+    """
+
+    DAYS = [f"2026-09-{d:02d}" for d in range(1, 11)]   # 10 readable days
+
+    def setUp(self):
+        from src import flightboard
+        self.fb = flightboard
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        # One codeshare row, so `operated_by` is populated from day one and
+        # the whole window is comparable.
+        self._listing("OERK", self.DAYS[0], "QTR", 1, operated_by="Qatar")
+        for d in self.DAYS:
+            for icao in ("OERK", "OEJN"):
+                self._probe(icao, d, 800, 850.0, "ok")
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _probe(self, airport, day, flights, median, verdict):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO board_probe "
+            "(airport, day, flights, median, verdict, fetched_at) "
+            "VALUES (?,?,?,?,?,'t')", (airport, day, flights, median, verdict))
+        self.conn.commit()
+
+    def _listing(self, airport, day, carrier, n, operated_by=None):
+        for i in range(n):
+            self.conn.execute(
+                "INSERT OR REPLACE INTO board_flight (airport, direction, day, "
+                "carrier, flight_no, other_iata, sched_time, fetched_at, "
+                "operated_by) VALUES (?,'dep',?,?,?,'XXX','01:00','t',?)",
+                (airport, day, carrier, f"{carrier}{i}", operated_by))
+        self.conn.commit()
+
+    def _daily(self, carrier, days, n=4, airport="OERK"):
+        for d in days:
+            self._listing(airport, d, carrier, n)
+
+    def _find(self, carrier, day=None):
+        rows = self.fb.carrier_absence(self.conn, day or self.DAYS[-1])
+        return next((r for r in rows["findings"] if r["carrier"] == carrier), None)
+
+    def test_a_daily_operator_that_vanishes_is_a_finding(self):
+        self._daily("SVA", self.DAYS[:8])
+        r = self._find("SVA")
+        self.assertIsNotNone(r, "eight daily days then two blank ones")
+        self.assertEqual((r["airport"], r["days"]), ("OERK", 2))
+        self.assertFalse(r["provisional"])
+        self.assertEqual(r["last_listed"], self.DAYS[7])
+
+    def test_one_blank_day_is_published_but_not_yet_a_finding(self):
+        self._daily("SVA", self.DAYS[:9])
+        r = self._find("SVA")
+        self.assertTrue(r["provisional"])
+        self.assertEqual(r["days"], 1)
+
+    def test_a_baseline_across_the_codeshare_change_reports_nothing(self):
+        """The bug this was caught on, pinned.
+
+        Before 2026-09-01 `operated_by` was NULL on every row including the
+        codeshares, so a marketing carrier looks like a daily operator that
+        stopped the day the column began to be filled.
+        """
+        conn = self.conn
+        conn.execute("DELETE FROM board_flight")
+        conn.execute("DELETE FROM board_probe")
+        old_days = [f"2026-08-{d:02d}" for d in range(20, 32)]
+        for d in old_days + self.DAYS[:3]:
+            self._probe("OERK", d, 800, 850.0, "ok")
+        # A codeshare-only carrier: own metal on the old days by default,
+        # correctly attributed to somebody else once the column arrives.
+        self._daily("AAL", old_days)
+        for d in self.DAYS[:3]:
+            self._listing("OERK", d, "AAL", 4, operated_by="Saudia")
+            self._listing("OERK", d, "SVA", 9)
+        self.assertIsNone(self._find("AAL", self.DAYS[2]),
+                          "a change in what our own column means is not an "
+                          "airline leaving Riyadh")
+
+    def test_a_sighting_outranks_the_missing_listing(self):
+        self._daily("SVA", self.DAYS[:8])
+        self.conn.execute(
+            "INSERT INTO flight (icao24, first_seen, callsign, carrier, "
+            "flight_number, dep_icao, arr_icao, is_freight, dep_date, source, "
+            "ingested_at) VALUES ('abc123',1,'SVA1','SVA',1,'OERK','OEJN',0,?, "
+            "'test',0)", (self.DAYS[8],))
+        self.conn.commit()
+        self.assertIsNone(self._find("SVA"))
+
+    def test_a_carrier_that_already_comes_and_goes_cannot_go_missing(self):
+        self._daily("MEA", [d for i, d in enumerate(self.DAYS[:8]) if i % 2])
+        self.assertIsNone(self._find("MEA"))
+
+    def test_a_one_listing_tail_is_not_a_daily_operator(self):
+        self._daily("PGT", self.DAYS[:8], n=1)
+        self.assertIsNone(self._find("PGT"))
+
+    def test_a_short_history_is_reported_as_such_not_as_nobody_left(self):
+        conn = self.conn
+        conn.execute("DELETE FROM board_probe")
+        for d in self.DAYS[:4]:
+            self._probe("OERK", d, 800, 850.0, "ok")
+        self._daily("SVA", self.DAYS[:3])
+        res = self.fb.carrier_absence(conn, self.DAYS[3])
+        self.assertEqual(res["findings"], [])
+        self.assertEqual(res["withheld_reason"], "below_min_observed_days")
+        self.assertLess(res["readable_days"], res["required_days"] + 1)
+
+    def test_a_collapsed_board_reports_no_carriers_at_all(self):
+        """Everything at that airport is missing; that is the board, not them."""
+        self._daily("SVA", self.DAYS[:8])
+        self._probe("OERK", self.DAYS[-1], 0, 850.0, "empty")
+        self.assertIsNone(self._find("SVA"))
+
+
 class TestAirportViewUsesTheBoard(unittest.TestCase):
     """The page's airport row must spend the board it already collects.
 

@@ -341,6 +341,160 @@ def airport_operation(conn, day: str | None = None) -> list[dict]:
     return out
 
 
+# Listings a day a carrier must normally post before its absence is worth
+# reading. One or two is a codeshare tail or a weekly charter, and its gaps
+# are not evidence of anything.
+MIN_BOARD_LISTINGS = 2
+
+
+def own_metal_since(conn) -> str | None:
+    """The first day the board distinguished an operator from a ticket.
+
+    `operated_by` was added to a table that already held weeks of rows, and
+    NULL there means two different things on either side of that day: before
+    it, "nobody told us"; after it, "this carrier operates the flight". The
+    whole 2503-rows-a-day codeshare layer at Jeddah and Riyadh reads as own
+    metal on the early days and correctly as somebody else's on the later
+    ones.
+
+    Measured 2026-09-08, and it is why this function exists rather than a
+    date constant: a presence baseline drawn across that day reported American
+    Airlines, British Airways, China Eastern, Iberia, JAL and Finnair as
+    having all abandoned Jeddah and Riyadh on the same morning -- fifteen
+    findings, five airports, one cause, and the cause was ours.
+    """
+    row = conn.execute(
+        "SELECT MIN(day) d FROM board_flight WHERE operated_by IS NOT NULL"
+    ).fetchone()
+    return row["d"] if row else None
+
+
+def _readable_days(conn, icao: str, day: str, window: int) -> list[str]:
+    """Board days at this airport that can be compared with each other.
+
+    Healthy at this airport, on a day the source answered somebody, and late
+    enough that `operated_by` means what it says.
+    """
+    floor = own_metal_since(conn)
+    if not floor:
+        return []
+    source_days = {r["day"] for r in conn.execute(
+        "SELECT day FROM board_probe WHERE verdict = 'ok' GROUP BY day")}
+    days = [r["day"] for r in conn.execute(
+        "SELECT day FROM board_probe WHERE airport = ? AND verdict = 'ok' "
+        "AND day <= ? AND day >= ? ORDER BY day DESC LIMIT ?",
+        (icao, day, floor, window))]
+    return sorted(d for d in days if d in source_days)
+
+
+def carrier_absence(conn, day: str | None = None, window: int = 21) -> dict:
+    """Tracked carriers that have vanished from a board that is still healthy.
+
+    The other half of the airport question, for the same six airports no
+    receiver reaches: not "is Riyadh running" but "who stopped running there".
+    The board is the only source that can answer it, because it names the
+    operator -- ADS-B resolves an aircraft and cannot tell "British Airways is
+    not flying" from "we cannot see British Airways".
+
+    What makes an absence readable is that everything around it is not: the
+    airport's own board scored `ok` on every day of the absence, so the source
+    was answering and this carrier is missing from an answer that arrived.
+
+    Four guards, and every one of them is a mistake this project has already
+    made somewhere else:
+
+    * The baseline may not cross `own_metal_since()` -- see that docstring.
+    * The carrier must have posted its own metal on EVERY readable day of the
+      baseline, which is what the board's daily operators actually do: of 166
+      airport-carrier pairs measured 2026-09-06, 156 have no gap at all.
+      A carrier that already comes and goes cannot go missing.
+    * ADS-B outranks the board. If a receiver saw the aeroplane at that
+      airport during the absence, there is no absence.
+    * One day is provisional, two is a finding, exactly as for the airport
+      itself -- and for the same reason.
+
+    Returns the findings AND how far back it could look, because "nobody
+    stopped" and "we cannot see far enough back to tell" are different
+    answers and an empty list says both.
+    """
+    if not day:
+        row = conn.execute("SELECT MAX(day) d FROM board_probe").fetchone()
+        day = row["d"] if row else None
+    if not day:
+        return {"day": None, "comparable_since": None,
+                "findings": [], "readable_days": 0,
+                "required_days": config.MIN_SIGNAL_HISTORY_DAYS,
+                "withheld_reason": "no_source"}
+
+    healthy = {a["airport"] for a in airport_operation(conn, day)
+               if a["state"] == "normal"}
+    tracked = set(config.tracked_carriers())
+    out = []
+    reach = 0
+    for icao in sorted(healthy):
+        days = _readable_days(conn, icao, day, window)
+        reach = max(reach, len(days))
+        if len(days) <= config.MIN_SIGNAL_HISTORY_DAYS:
+            continue
+        listings: dict[str, dict[str, int]] = {}
+        for r in conn.execute(
+                """SELECT carrier, day, COUNT(*) n FROM board_flight
+                   WHERE airport = ? AND operated_by IS NULL
+                     AND day BETWEEN ? AND ?
+                   GROUP BY carrier, day""", (icao, days[0], days[-1])):
+            if r["carrier"] in tracked:
+                listings.setdefault(r["carrier"], {})[r["day"]] = r["n"]
+
+        for carrier, byday in listings.items():
+            gone = 0
+            for d in reversed(days):
+                if byday.get(d):
+                    break
+                gone += 1
+            if not gone:
+                continue
+            base = days[:len(days) - gone]
+            if len(base) < config.MIN_SIGNAL_HISTORY_DAYS:
+                continue
+            if not all(byday.get(d) for d in base):
+                continue
+            mean = sum(byday[d] for d in base) / len(base)
+            if mean < MIN_BOARD_LISTINGS:
+                continue
+            first_absent = days[len(days) - gone]
+            seen = conn.execute(
+                """SELECT MAX(dep_date) d FROM flight
+                   WHERE carrier = ? AND dep_date >= ?
+                     AND (dep_icao = ? OR arr_icao = ?)""",
+                (carrier, first_absent, icao, icao)).fetchone()
+            if seen and seen["d"]:
+                # A sighting outranks a listing, here as everywhere.
+                continue
+            out.append({
+                "airport": icao,
+                "carrier": carrier,
+                "last_listed": base[-1],
+                "days": gone,
+                "provisional": gone < COLLAPSE_DAYS,
+                "listings_before": round(mean, 1),
+                "baseline_days": len(base),
+            })
+    reason = None
+    if not healthy:
+        reason = "no_source"
+    elif reach <= config.MIN_SIGNAL_HISTORY_DAYS:
+        # Not "nobody stopped": nobody could be told apart yet. The window
+        # that counts starts at own_metal_since(), so this reads short for
+        # days after that day, not after the boards began.
+        reason = "below_min_observed_days"
+    return {"day": day, "comparable_since": own_metal_since(conn),
+            "findings": sorted(
+                out, key=lambda r: (-r["days"], r["airport"], r["carrier"])),
+            "readable_days": reach,
+            "required_days": config.MIN_SIGNAL_HISTORY_DAYS,
+            "withheld_reason": reason}
+
+
 def by_airport(conn, day: str | None = None) -> list[dict]:
     """What the boards say, with the verdict attached so a reader can weigh it."""
     if not day:

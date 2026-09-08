@@ -372,6 +372,22 @@ def build(out: Path | None = None) -> dict:
         "summary": stops["summary"],
         "active": stops["active"],
         "recently_resumed": stops["recently_resumed"],
+        # A different witness, kept in its own block rather than merged into
+        # `active`. The boards name the operator, which is the one thing ADS-B
+        # cannot do, so for Riyadh, Jeddah, Abha, Baghdad and Erbil this is
+        # the only answer to "who stopped serving here" that exists. It has
+        # not been through the stop ledger's gates and does not claim to have
+        # been; `withheld_reason` says when it cannot look back far enough to
+        # answer at all, which is not the same as finding nobody.
+        "board_absence": {
+            "source": "published airport boards, own metal only "
+                      "(codeshare listings excluded)",
+            "note": "Not part of `active`. An absence here is a carrier "
+                    "missing from a board that answered normally on every "
+                    "day of the absence; one day is provisional, two is a "
+                    "finding.",
+            **flightboard.carrier_absence(conn),
+        },
     })
 
     # --- /v1/alerts.json --------------------------------------------------
