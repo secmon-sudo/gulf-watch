@@ -63,3 +63,48 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+---
+
+# Projeye özel kurallar — gulf_watch
+
+## 5. Kadans ve kota (bağlayıcı karar, 2026-09-07)
+
+**ADS-B ingest günde bir kez çalışır (12:00 UTC). Kadans artırılmaz.** Bu bir tercih değil, ölçüm
+sonucu:
+
+- Analiz son *oturmuş* UTC gününe çapalı (`config.SETTLE_LAG_DAYS`). Fazladan çalışma aynı cevabı
+  yeniden hesaplar, ama kota harcar.
+- OpenSky kotası sabit saatte sıfırlanmıyor; harcandığı andan itibaren **kayan bir pencere**
+  (2026-09-02'de ölçüldü: o gün hiçbir şey çalışmamışken 13:21'de `retry in 4.5h`). Her çalışma
+  yarınki sıfırlama saatini kendi saatine iter.
+- Ölçülen maliyet: bir havalimanı-günü ~30 kredi; on beş havalimanlık tam ingest sonrası
+  `X-Rate-Limit-Remaining` 2170 (2026-08-24). Eski notlardaki "günde ~85 istek / bir geçiş ~52
+  istek" rakamları bu hesapta hiç ölçülmedi — kullanılmaz.
+- 15 dakikalık döngü bu katmanı kalıcı `outage`'a sokar.
+
+**Baseline hasadı yalnızca elle tetiklenir.** `backfill-baseline.yml`'e `schedule:` bloğu
+**eklenmez**. Eklendiği dönemde (2026-08-25..09-02) beş ingest'in üçü sıfır leg ile döndü ve
+`observed_days` gerekli 5'in 2'sine düştü.
+
+**Tek tüketici kuralı.** OpenSky kimlik bilgisini kullanan her iş ortak bir kota kaydından geçer:
+son harcamanın zaman damgası + bilinen sıfırlama penceresi. Kayıt "harcanmış" diyorsa iş
+**başlamadan** biter ve bunu çalışma detayı olarak bildirir. `concurrency: group: ingest` bunu
+sağlamaz — o yalnızca eşzamanlılığı sıraya alır, kota harcamasını değil.
+
+## 6. Kapsama kapısı: hangi sayıya bakılır
+
+`observed_days` ve `coverage.verdict` sistemin sağlıklı olduğunu **kanıtlamaz**. 2026-09-06
+ölçümünde ikisi de yeşildi (`5/5`, `ok(1.5)`, `ratios_published: true`) ama 24 taşıyıcının
+**hiçbirinde** yayınlanabilir oran yoktu: `MIN_COMPARABLE_SHARE = 0.6` kapısını en iyi taşıyıcı
+0.456 ile geçemiyordu. Baseline'lar sağlamdı (0.79-0.93); eksik olan bu haftanın rota görünürlüğü.
+
+Sağlık iddiası şu göstergeye dayanır: **`carriers_with_ratio > 0` ve `comparable_share ≥ 0.6`.**
+
+## 7. `legs=0` sessiz bir başarı değildir
+
+Kotanın reddettiği bir çalışma ile trafiğin olmadığı bir gün aynı şey değildir. `recent_runs`
+detayı bu ikisini ayrı sebeplerle raporlar: `quota_denied` ≠ `no_traffic`. Bu sözlük, birleşik
+platform kontratındaki `withheld_reason` sözlüğüyle ortaktır.
+
+> Gerekçelerin tamamı: `~/Desktop/github_repos/sec_swiss/AVSEC_SWISS_ARMY_KNIFE.md` §8 ve §11 Faz 0.
