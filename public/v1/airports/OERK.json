@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-08T16:33:05+00:00",
-  "as_of_day": "2026-09-06",
+  "generated_at": "2026-09-09T16:25:06+00:00",
+  "as_of_day": "2026-09-07",
   "coverage": {
-    "day": "2026-09-06",
-    "control_flights": 1942,
-    "median_28d": 1681,
-    "score": 1.155,
+    "day": "2026-09-07",
+    "control_flights": 1851,
+    "median_28d": 1811.5,
+    "score": 1.022,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 6,
+    "observed_days": 7,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 2
+    "carriers_with_ratio": 4
   },
   "baseline": {
     "window": "2025-11-01..2026-01-31",
@@ -37,21 +37,41 @@
   "city": "Riyadh",
   "country": "SA",
   "operation": {
-    "day": "2026-09-07",
-    "flights": 809,
-    "median": 882.0,
+    "day": "2026-09-08",
+    "flights": 820,
+    "median": 878.0,
     "verdict": "ok",
     "state": "normal",
     "provisional": false,
     "days": 0,
     "withheld_reason": null
   },
-  "adsb_observed": false,
-  "weekly_frequency": null,
-  "baseline_weekly": null,
-  "carriers_operating": null,
-  "carriers_absent": null,
+  "adsb_observed": true,
+  "weekly_frequency": 1,
+  "baseline_weekly": 0.0,
+  "carriers_operating": [
+    "QTR"
+  ],
+  "carriers_absent": [],
   "carriers_stopped": [],
   "resumed_recently": [],
-  "routes": []
+  "routes": [
+    {
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "origin": "EFHK",
+      "destination": "OERK",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 73,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    }
+  ]
 }

@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-08T16:33:05+00:00",
-  "as_of_day": "2026-09-06",
+  "generated_at": "2026-09-09T16:25:06+00:00",
+  "as_of_day": "2026-09-07",
   "coverage": {
-    "day": "2026-09-06",
-    "control_flights": 1942,
-    "median_28d": 1681,
-    "score": 1.155,
+    "day": "2026-09-07",
+    "control_flights": 1851,
+    "median_28d": 1811.5,
+    "score": 1.022,
     "verdict": "ok"
   },
   "observation": {
     "window_days": 7,
-    "observed_days": 6,
+    "observed_days": 7,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 2
+    "carriers_with_ratio": 4
   },
   "baseline": {
     "window": "2025-11-01..2026-01-31",
@@ -44,7 +44,7 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 12.4,
       "silent_days": 9,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "critical",
@@ -56,7 +56,7 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 12.2,
       "silent_days": 9,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "critical",
@@ -68,19 +68,7 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 11.9,
       "silent_days": 9,
-      "observed_days": 5
-    },
-    {
-      "severity": "critical",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "OMDB-LTFJ",
-      "status": "SUSPENDED",
-      "weekly_frequency": 0,
-      "weekly_scaled": 0.0,
-      "baseline_weekly": 10.5,
-      "silent_days": 6,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "critical",
@@ -92,7 +80,43 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 6.2,
       "silent_days": 9,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "critical",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LYBE",
+      "status": "SUSPENDED",
+      "weekly_frequency": 0,
+      "weekly_scaled": 0.0,
+      "baseline_weekly": 6.2,
+      "silent_days": 7,
+      "observed_days": 5
+    },
+    {
+      "severity": "critical",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LTFJ",
+      "status": "SUSPENDED",
+      "weekly_frequency": 0,
+      "weekly_scaled": 0.0,
+      "baseline_weekly": 6.0,
+      "silent_days": 9,
+      "observed_days": 5
+    },
+    {
+      "severity": "critical",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-NZAA",
+      "status": "SUSPENDED",
+      "weekly_frequency": 0,
+      "weekly_scaled": 0.0,
+      "baseline_weekly": 5.8,
+      "silent_days": 9,
+      "observed_days": 5
     },
     {
       "severity": "critical",
@@ -104,7 +128,7 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 5.5,
       "silent_days": 9,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "critical",
@@ -115,6 +139,18 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 4.9,
+      "silent_days": 9,
+      "observed_days": 6
+    },
+    {
+      "severity": "critical",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EDDH",
+      "status": "SUSPENDED",
+      "weekly_frequency": 0,
+      "weekly_scaled": 0.0,
+      "baseline_weekly": 4.3,
       "silent_days": 9,
       "observed_days": 5
     },
@@ -128,7 +164,7 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 4.1,
       "silent_days": 9,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "critical",
@@ -140,7 +176,7 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 3.1,
       "silent_days": 9,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "critical",
@@ -152,7 +188,7 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 3.0,
       "silent_days": 9,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "critical",
@@ -163,8 +199,20 @@
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
       "baseline_weekly": 3.0,
-      "silent_days": 8,
-      "observed_days": 6
+      "silent_days": 9,
+      "observed_days": 7
+    },
+    {
+      "severity": "critical",
+      "carrier": "PGT",
+      "carrier_name": "Pegasus Airlines",
+      "route": "LTFJ-OBBI",
+      "status": "SUSPENDED",
+      "weekly_frequency": 0,
+      "weekly_scaled": 0.0,
+      "baseline_weekly": 2.3,
+      "silent_days": 9,
+      "observed_days": 5
     },
     {
       "severity": "critical",
@@ -176,13 +224,13 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 2.2,
       "silent_days": 9,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "critical",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "VABB-OMDB",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LIPZ",
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
@@ -200,7 +248,7 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 1.7,
       "silent_days": 9,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "critical",
@@ -212,7 +260,19 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 1.4,
       "silent_days": 9,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "critical",
+      "carrier": "SVA",
+      "carrier_name": "Saudia",
+      "route": "OMDB-LTFM",
+      "status": "SUSPENDED",
+      "weekly_frequency": 0,
+      "weekly_scaled": 0.0,
+      "baseline_weekly": 1.4,
+      "silent_days": 9,
+      "observed_days": 5
     },
     {
       "severity": "critical",
@@ -224,13 +284,25 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 1.2,
       "silent_days": 9,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "critical",
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "route": "OMDB-LTAI",
+      "status": "SUSPENDED",
+      "weekly_frequency": 0,
+      "weekly_scaled": 0.0,
+      "baseline_weekly": 1.1,
+      "silent_days": 9,
+      "observed_days": 6
+    },
+    {
+      "severity": "critical",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EBMB",
       "status": "SUSPENDED",
       "weekly_frequency": 0,
       "weekly_scaled": 0.0,
@@ -248,13 +320,13 @@
       "weekly_scaled": 0.0,
       "baseline_weekly": 1.1,
       "silent_days": 9,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "high",
       "carrier": "UAE",
       "carrier_name": "Emirates",
-      "route": "WMKK-OMDB",
+      "route": "LTFM-OMDB",
       "status": "MINIMAL",
       "weekly_frequency": 3,
       "weekly_scaled": 4.2,
@@ -264,13 +336,37 @@
     },
     {
       "severity": "high",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "WMKK-OMDB",
+      "status": "MINIMAL",
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.5,
+      "baseline_weekly": 15.7,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "high",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
       "route": "YMML-OTHH",
       "status": "MINIMAL",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.2,
+      "weekly_scaled": 1.0,
       "baseline_weekly": 12.3,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "OMDB-LTFJ",
+      "status": "MINIMAL",
+      "weekly_frequency": 1,
+      "weekly_scaled": 1.2,
+      "baseline_weekly": 10.5,
       "silent_days": 0,
       "observed_days": 6
     },
@@ -280,11 +376,11 @@
       "carrier_name": "flydubai",
       "route": "LTFJ-OMDB",
       "status": "MINIMAL",
-      "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.3,
       "baseline_weekly": 10.0,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "high",
@@ -292,65 +388,41 @@
       "carrier_name": "Qatar Airways",
       "route": "VHHH-OTHH",
       "status": "MINIMAL",
-      "weekly_frequency": 3,
-      "weekly_scaled": 2.3,
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.0,
       "baseline_weekly": 8.9,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "high",
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
-      "route": "LTFJ-OMSJ",
+      "route": "LTFJ-OTHH",
       "status": "MINIMAL",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.3,
-      "baseline_weekly": 7.9,
+      "weekly_scaled": 2.0,
+      "baseline_weekly": 7.7,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "high",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
-      "route": "YBBN-OTHH",
+      "route": "OTHH-CYYZ",
       "status": "MINIMAL",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.2,
-      "baseline_weekly": 6.3,
+      "weekly_scaled": 1.4,
+      "baseline_weekly": 5.9,
       "silent_days": 0,
-      "observed_days": 6
-    },
-    {
-      "severity": "high",
-      "carrier": "ABY",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "route": "VOBL-OMSJ",
-      "status": "MINIMAL",
-      "weekly_frequency": 2,
-      "weekly_scaled": 1.2,
-      "baseline_weekly": 5.7,
-      "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 5
     },
     {
       "severity": "high",
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "route": "LTFJ-OMDB",
-      "status": "MINIMAL",
-      "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
-      "baseline_weekly": 5.7,
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "severity": "high",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "LYBE-OTHH",
       "status": "MINIMAL",
       "weekly_frequency": 1,
       "weekly_scaled": 1.2,
@@ -365,20 +437,32 @@
       "route": "WMKK-OMSJ",
       "status": "MINIMAL",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.2,
+      "weekly_scaled": 1.0,
       "baseline_weekly": 5.5,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "high",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
-      "route": "KBOS-OTHH",
+      "route": "OTHH-VHHH",
+      "status": "MINIMAL",
+      "weekly_frequency": 1,
+      "weekly_scaled": 1.4,
+      "baseline_weekly": 4.9,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "high",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "VAJJ-OMDB",
       "status": "MINIMAL",
       "weekly_frequency": 1,
       "weekly_scaled": 1.2,
-      "baseline_weekly": 5.5,
+      "baseline_weekly": 4.3,
       "silent_days": 0,
       "observed_days": 6
     },
@@ -389,10 +473,22 @@
       "route": "KSFO-OTHH",
       "status": "MINIMAL",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.2,
+      "weekly_scaled": 1.0,
       "baseline_weekly": 4.0,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EGLL",
+      "status": "REDUCED",
+      "weekly_frequency": 30,
+      "weekly_scaled": 39.2,
+      "baseline_weekly": 54.4,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -400,11 +496,11 @@
       "carrier_name": "Qatar Airways",
       "route": "EGLL-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 34,
-      "weekly_scaled": 36.2,
+      "weekly_frequency": 35,
+      "weekly_scaled": 35.0,
       "baseline_weekly": 51.3,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -412,11 +508,11 @@
       "carrier_name": "Qatar Airways",
       "route": "OTHH-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 24,
-      "weekly_scaled": 26.8,
+      "weekly_frequency": 29,
+      "weekly_scaled": 29.0,
       "baseline_weekly": 42.8,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -424,11 +520,11 @@
       "carrier_name": "Qatar Airways",
       "route": "OMSJ-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 26,
-      "weekly_scaled": 29.2,
+      "weekly_frequency": 30,
+      "weekly_scaled": 30.0,
       "baseline_weekly": 42.6,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -436,11 +532,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "OTHH-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 15,
-      "weekly_scaled": 16.3,
+      "weekly_frequency": 19,
+      "weekly_scaled": 19.0,
       "baseline_weekly": 40.5,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -448,11 +544,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "OMSJ-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 20,
-      "weekly_scaled": 23.3,
+      "weekly_frequency": 24,
+      "weekly_scaled": 24.0,
       "baseline_weekly": 39.8,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -460,11 +556,11 @@
       "carrier_name": "flydubai",
       "route": "OMDB-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 17,
-      "weekly_scaled": 19.8,
+      "weekly_frequency": 21,
+      "weekly_scaled": 21.0,
       "baseline_weekly": 36.7,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -476,7 +572,7 @@
       "weekly_scaled": 14.0,
       "baseline_weekly": 36.7,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -484,11 +580,23 @@
       "carrier_name": "Qatar Airways",
       "route": "VTBS-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 20,
-      "weekly_scaled": 23.3,
+      "weekly_frequency": 24,
+      "weekly_scaled": 24.0,
       "baseline_weekly": 36.5,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-VTBS",
+      "status": "REDUCED",
+      "weekly_frequency": 23,
+      "weekly_scaled": 25.2,
+      "baseline_weekly": 34.9,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -496,11 +604,11 @@
       "carrier_name": "Qatar Airways",
       "route": "OMDB-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 16,
-      "weekly_scaled": 17.5,
+      "weekly_frequency": 19,
+      "weekly_scaled": 19.0,
       "baseline_weekly": 30.9,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -508,21 +616,9 @@
       "carrier_name": "Qatar Airways",
       "route": "OTHH-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 17,
-      "weekly_scaled": 21.0,
+      "weekly_frequency": 18,
+      "weekly_scaled": 18.7,
       "baseline_weekly": 30.3,
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "severity": "medium",
-      "carrier": "ABY",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "route": "VGZR-OMSJ",
-      "status": "REDUCED",
-      "weekly_frequency": 19,
-      "weekly_scaled": 19.8,
-      "baseline_weekly": 26.1,
       "silent_days": 0,
       "observed_days": 6
     },
@@ -532,9 +628,21 @@
       "carrier_name": "flydubai",
       "route": "OMDB-OBBI",
       "status": "REDUCED",
-      "weekly_frequency": 11,
+      "weekly_frequency": 12,
       "weekly_scaled": 14.0,
       "baseline_weekly": 25.9,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EDDF",
+      "status": "REDUCED",
+      "weekly_frequency": 12,
+      "weekly_scaled": 15.4,
+      "baseline_weekly": 22.1,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -544,11 +652,11 @@
       "carrier_name": "Qatar Airways",
       "route": "LIMC-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 11,
-      "weekly_scaled": 12.8,
+      "weekly_frequency": 12,
+      "weekly_scaled": 12.0,
       "baseline_weekly": 21.5,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -556,11 +664,11 @@
       "carrier_name": "Qatar Airways",
       "route": "EGCC-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 9,
-      "weekly_scaled": 10.5,
+      "weekly_frequency": 10,
+      "weekly_scaled": 10.0,
       "baseline_weekly": 21.1,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -568,11 +676,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "OMSJ-OBBI",
       "status": "REDUCED",
-      "weekly_frequency": 14,
-      "weekly_scaled": 15.4,
+      "weekly_frequency": 15,
+      "weekly_scaled": 16.3,
       "baseline_weekly": 20.9,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -580,11 +688,11 @@
       "carrier_name": "Qatar Airways",
       "route": "EDDF-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 12,
-      "weekly_scaled": 12.8,
+      "weekly_frequency": 13,
+      "weekly_scaled": 13.0,
       "baseline_weekly": 20.9,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -592,11 +700,11 @@
       "carrier_name": "Gulf Air",
       "route": "OTHH-OBBI",
       "status": "REDUCED",
-      "weekly_frequency": 10,
-      "weekly_scaled": 12.6,
+      "weekly_frequency": 11,
+      "weekly_scaled": 11.7,
       "baseline_weekly": 20.6,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -604,11 +712,11 @@
       "carrier_name": "Qatar Airways",
       "route": "EHAM-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 15,
-      "weekly_scaled": 15.2,
+      "weekly_frequency": 16,
+      "weekly_scaled": 16.0,
       "baseline_weekly": 20.2,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -616,11 +724,23 @@
       "carrier_name": "Qatar Airways",
       "route": "LFPG-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 14,
-      "weekly_scaled": 15.2,
+      "weekly_frequency": 15,
+      "weekly_scaled": 15.0,
       "baseline_weekly": 19.4,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EGCC",
+      "status": "REDUCED",
+      "weekly_frequency": 9,
+      "weekly_scaled": 11.2,
+      "baseline_weekly": 19.3,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -628,11 +748,11 @@
       "carrier_name": "Emirates",
       "route": "OMDB-EIDW",
       "status": "REDUCED",
-      "weekly_frequency": 10,
-      "weekly_scaled": 12.6,
+      "weekly_frequency": 12,
+      "weekly_scaled": 12.8,
       "baseline_weekly": 18.6,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -644,7 +764,7 @@
       "weekly_scaled": 14.0,
       "baseline_weekly": 18.6,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -652,8 +772,20 @@
       "carrier_name": "Qatar Airways",
       "route": "EDDB-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 12,
-      "weekly_scaled": 12.8,
+      "weekly_frequency": 13,
+      "weekly_scaled": 13.0,
+      "baseline_weekly": 18.5,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-YMML",
+      "status": "REDUCED",
+      "weekly_frequency": 13,
+      "weekly_scaled": 14.0,
       "baseline_weekly": 18.5,
       "silent_days": 0,
       "observed_days": 6
@@ -662,23 +794,23 @@
       "severity": "medium",
       "carrier": "UAE",
       "carrier_name": "Emirates",
-      "route": "OMDB-YMML",
+      "route": "EIDW-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 12,
-      "weekly_scaled": 14.0,
-      "baseline_weekly": 18.5,
+      "weekly_frequency": 10,
+      "weekly_scaled": 11.7,
+      "baseline_weekly": 18.4,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "EIDW-OMDB",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LIMC",
       "status": "REDUCED",
-      "weekly_frequency": 9,
-      "weekly_scaled": 11.2,
-      "baseline_weekly": 18.4,
+      "weekly_frequency": 10,
+      "weekly_scaled": 12.6,
+      "baseline_weekly": 18.2,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -689,10 +821,10 @@
       "route": "OMDB-LROP",
       "status": "REDUCED",
       "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_scaled": 8.2,
       "baseline_weekly": 16.7,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -700,11 +832,11 @@
       "carrier_name": "Qatar Airways",
       "route": "OTHH-OBBI",
       "status": "REDUCED",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 10,
+      "weekly_scaled": 10.5,
       "baseline_weekly": 16.7,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -712,11 +844,23 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "VTBS-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 11,
-      "weekly_scaled": 11.7,
+      "weekly_frequency": 12,
+      "weekly_scaled": 12.0,
       "baseline_weekly": 16.6,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EDDB",
+      "status": "REDUCED",
+      "weekly_frequency": 11,
+      "weekly_scaled": 12.6,
+      "baseline_weekly": 16.4,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -724,11 +868,11 @@
       "carrier_name": "Qatar Airways",
       "route": "VNKT-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 9,
-      "weekly_scaled": 10.5,
+      "weekly_frequency": 11,
+      "weekly_scaled": 11.0,
       "baseline_weekly": 16.2,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -736,11 +880,11 @@
       "carrier_name": "Emirates",
       "route": "OMDB-OBBI",
       "status": "REDUCED",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 9,
+      "weekly_scaled": 9.3,
       "baseline_weekly": 16.2,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -749,10 +893,10 @@
       "route": "OBBI-OTHH",
       "status": "REDUCED",
       "weekly_frequency": 11,
-      "weekly_scaled": 11.7,
+      "weekly_scaled": 11.0,
       "baseline_weekly": 16.0,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -760,9 +904,21 @@
       "carrier_name": "flydubai",
       "route": "LROP-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 7,
+      "weekly_scaled": 8.2,
       "baseline_weekly": 15.9,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-LTFM",
+      "status": "REDUCED",
+      "weekly_frequency": 8,
+      "weekly_scaled": 11.2,
+      "baseline_weekly": 15.6,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -772,11 +928,11 @@
       "carrier_name": "Qatar Airways",
       "route": "LIRF-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 10,
-      "weekly_scaled": 10.5,
+      "weekly_frequency": 12,
+      "weekly_scaled": 12.0,
       "baseline_weekly": 15.4,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -785,10 +941,22 @@
       "route": "FAOR-OTHH",
       "status": "REDUCED",
       "weekly_frequency": 9,
-      "weekly_scaled": 10.5,
+      "weekly_scaled": 9.0,
       "baseline_weekly": 15.2,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-OEDR",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 5.6,
+      "baseline_weekly": 15.0,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -796,11 +964,23 @@
       "carrier_name": "Qatar Airways",
       "route": "KJFK-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 9,
-      "weekly_scaled": 10.5,
+      "weekly_frequency": 11,
+      "weekly_scaled": 11.0,
       "baseline_weekly": 14.5,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-KJFK",
+      "status": "REDUCED",
+      "weekly_frequency": 8,
+      "weekly_scaled": 9.8,
+      "baseline_weekly": 14.3,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -808,11 +988,11 @@
       "carrier_name": "flydubai",
       "route": "OMDB-LYBE",
       "status": "REDUCED",
-      "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 9,
+      "weekly_scaled": 10.5,
       "baseline_weekly": 14.0,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -820,11 +1000,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "OBBI-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 7,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 6,
+      "weekly_scaled": 6.0,
       "baseline_weekly": 13.8,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -833,10 +1013,34 @@
       "route": "EKCH-OTHH",
       "status": "REDUCED",
       "weekly_frequency": 7,
-      "weekly_scaled": 8.2,
+      "weekly_scaled": 7.0,
       "baseline_weekly": 13.8,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EKCH",
+      "status": "REDUCED",
+      "weekly_frequency": 6,
+      "weekly_scaled": 7.0,
+      "baseline_weekly": 13.8,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-RPLL",
+      "status": "REDUCED",
+      "weekly_frequency": 8,
+      "weekly_scaled": 9.8,
+      "baseline_weekly": 13.8,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -844,8 +1048,20 @@
       "carrier_name": "flydubai",
       "route": "OMDB-OPMT",
       "status": "REDUCED",
-      "weekly_frequency": 6,
+      "weekly_frequency": 7,
       "weekly_scaled": 7.0,
+      "baseline_weekly": 13.5,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-VIDP",
+      "status": "REDUCED",
+      "weekly_frequency": 8,
+      "weekly_scaled": 8.4,
       "baseline_weekly": 13.5,
       "silent_days": 0,
       "observed_days": 5
@@ -856,11 +1072,23 @@
       "carrier_name": "Qatar Airways",
       "route": "RPLL-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 6,
+      "weekly_frequency": 7,
       "weekly_scaled": 7.0,
       "baseline_weekly": 13.5,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "LTFM-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 5.6,
+      "baseline_weekly": 13.3,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -869,10 +1097,10 @@
       "route": "OBBI-OTHH",
       "status": "REDUCED",
       "weekly_frequency": 5,
-      "weekly_scaled": 5.8,
+      "weekly_scaled": 5.0,
       "baseline_weekly": 13.3,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -880,11 +1108,11 @@
       "carrier_name": "flydubai",
       "route": "OPMT-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 6,
-      "weekly_scaled": 8.4,
+      "weekly_frequency": 7,
+      "weekly_scaled": 8.2,
       "baseline_weekly": 13.0,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -892,11 +1120,11 @@
       "carrier_name": "Emirates",
       "route": "OMDB-EGSS",
       "status": "REDUCED",
-      "weekly_frequency": 7,
-      "weekly_scaled": 8.4,
+      "weekly_frequency": 9,
+      "weekly_scaled": 9.3,
       "baseline_weekly": 12.9,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -904,11 +1132,11 @@
       "carrier_name": "Emirates",
       "route": "OMDB-EDDH",
       "status": "REDUCED",
-      "weekly_frequency": 7,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 8,
+      "weekly_scaled": 9.3,
       "baseline_weekly": 12.7,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -916,11 +1144,11 @@
       "carrier_name": "Emirates",
       "route": "OMDB-LOWW",
       "status": "REDUCED",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.8,
+      "weekly_frequency": 9,
+      "weekly_scaled": 9.3,
       "baseline_weekly": 12.7,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -928,11 +1156,11 @@
       "carrier_name": "Qatar Airways",
       "route": "EDDM-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 8,
-      "weekly_scaled": 9.3,
+      "weekly_frequency": 9,
+      "weekly_scaled": 9.0,
       "baseline_weekly": 12.6,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -940,11 +1168,11 @@
       "carrier_name": "flydubai",
       "route": "UGTB-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 6,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 8,
+      "weekly_scaled": 8.2,
       "baseline_weekly": 12.5,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -956,7 +1184,7 @@
       "weekly_scaled": 7.0,
       "baseline_weekly": 12.4,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -965,8 +1193,20 @@
       "route": "EDDH-OMDB",
       "status": "REDUCED",
       "weekly_frequency": 8,
-      "weekly_scaled": 8.4,
+      "weekly_scaled": 8.2,
       "baseline_weekly": 12.3,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EGPH",
+      "status": "REDUCED",
+      "weekly_frequency": 5,
+      "weekly_scaled": 7.0,
+      "baseline_weekly": 11.7,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -976,11 +1216,35 @@
       "carrier_name": "Emirates",
       "route": "OMDB-LSGG",
       "status": "REDUCED",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 5,
+      "weekly_scaled": 5.8,
       "baseline_weekly": 11.6,
       "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LTFM",
+      "status": "REDUCED",
+      "weekly_frequency": 5,
+      "weekly_scaled": 7.0,
+      "baseline_weekly": 11.5,
+      "silent_days": 0,
       "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "route": "VAJJ-OMSJ",
+      "status": "REDUCED",
+      "weekly_frequency": 9,
+      "weekly_scaled": 9.0,
+      "baseline_weekly": 11.4,
+      "silent_days": 0,
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -988,11 +1252,23 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "VOCI-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 7,
-      "weekly_scaled": 7.0,
+      "weekly_frequency": 8,
+      "weekly_scaled": 8.0,
       "baseline_weekly": 11.4,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-YMML",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 11.4,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -1000,11 +1276,11 @@
       "carrier_name": "Emirates",
       "route": "OMDB-OEDR",
       "status": "REDUCED",
-      "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_frequency": 5,
+      "weekly_scaled": 5.8,
       "baseline_weekly": 11.4,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1012,11 +1288,35 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "VIDP-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 5,
-      "weekly_scaled": 4.7,
+      "weekly_frequency": 6,
+      "weekly_scaled": 6.0,
       "baseline_weekly": 11.1,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EPWA",
+      "status": "REDUCED",
+      "weekly_frequency": 6,
+      "weekly_scaled": 8.4,
+      "baseline_weekly": 11.0,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LROP",
+      "status": "REDUCED",
+      "weekly_frequency": 6,
+      "weekly_scaled": 7.0,
+      "baseline_weekly": 11.0,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -1024,9 +1324,21 @@
       "carrier_name": "Emirates",
       "route": "OBBI-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 10.9,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "VAJJ-OBBI",
+      "status": "REDUCED",
+      "weekly_frequency": 8,
+      "weekly_scaled": 8.4,
+      "baseline_weekly": 10.7,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -1036,57 +1348,21 @@
       "carrier_name": "Qatar Airways",
       "route": "KDFW-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 8,
+      "weekly_frequency": 7,
       "weekly_scaled": 7.0,
       "baseline_weekly": 10.7,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
-      "route": "EPWA-OTHH",
-      "status": "REDUCED",
-      "weekly_frequency": 7,
-      "weekly_scaled": 8.2,
-      "baseline_weekly": 10.6,
-      "silent_days": 0,
-      "observed_days": 6
-    },
-    {
-      "severity": "medium",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "LSZH-OTHH",
+      "route": "OTHH-LHBP",
       "status": "REDUCED",
       "weekly_frequency": 6,
-      "weekly_scaled": 5.8,
-      "baseline_weekly": 10.0,
-      "silent_days": 0,
-      "observed_days": 6
-    },
-    {
-      "severity": "medium",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "VOCI-OTHH",
-      "status": "REDUCED",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.8,
-      "baseline_weekly": 9.7,
-      "silent_days": 0,
-      "observed_days": 6
-    },
-    {
-      "severity": "medium",
-      "carrier": "FDB",
-      "carrier_name": "flydubai",
-      "route": "OMDB-LIME",
-      "status": "REDUCED",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.6,
-      "baseline_weekly": 9.2,
+      "weekly_scaled": 8.4,
+      "baseline_weekly": 10.7,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -1094,13 +1370,85 @@
       "severity": "medium",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
-      "route": "ENGM-OTHH",
+      "route": "EPWA-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 8,
+      "weekly_scaled": 8.0,
+      "baseline_weekly": 10.6,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LSZH",
+      "status": "REDUCED",
+      "weekly_frequency": 6,
+      "weekly_scaled": 8.4,
+      "baseline_weekly": 10.5,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "LSZH-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 5,
+      "weekly_scaled": 5.0,
+      "baseline_weekly": 10.0,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "VOCI-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 6,
+      "weekly_scaled": 6.0,
+      "baseline_weekly": 9.7,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "OMDB-LIME",
+      "status": "REDUCED",
+      "weekly_frequency": 6,
+      "weekly_scaled": 5.8,
+      "baseline_weekly": 9.2,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "RJAA-OTHH",
       "status": "REDUCED",
       "weekly_frequency": 7,
       "weekly_scaled": 7.0,
+      "baseline_weekly": 9.2,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "ENGM-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 6,
+      "weekly_scaled": 6.0,
       "baseline_weekly": 9.1,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1108,7 +1456,19 @@
       "carrier_name": "flydubai",
       "route": "LIME-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 6,
+      "weekly_frequency": 7,
+      "weekly_scaled": 7.0,
+      "baseline_weekly": 8.9,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EDDL",
+      "status": "REDUCED",
+      "weekly_frequency": 5,
       "weekly_scaled": 7.0,
       "baseline_weekly": 8.9,
       "silent_days": 0,
@@ -1120,11 +1480,23 @@
       "carrier_name": "Qatar Airways",
       "route": "EGKK-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": 6.0,
       "baseline_weekly": 8.8,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-FACT",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 5.6,
+      "baseline_weekly": 8.8,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -1133,10 +1505,10 @@
       "route": "EDDL-OTHH",
       "status": "REDUCED",
       "weekly_frequency": 5,
-      "weekly_scaled": 5.8,
+      "weekly_scaled": 5.0,
       "baseline_weekly": 8.6,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1145,10 +1517,10 @@
       "route": "OMDB-EPKK",
       "status": "REDUCED",
       "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": 3.5,
       "baseline_weekly": 8.5,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1157,10 +1529,10 @@
       "route": "OMDB-LKPR",
       "status": "REDUCED",
       "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": 3.5,
       "baseline_weekly": 8.5,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1168,8 +1540,20 @@
       "carrier_name": "flydubai",
       "route": "EPKK-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.5,
+      "baseline_weekly": 8.4,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EBBR",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 5.6,
       "baseline_weekly": 8.4,
       "silent_days": 0,
       "observed_days": 5
@@ -1181,10 +1565,10 @@
       "route": "LHBP-OTHH",
       "status": "REDUCED",
       "weekly_frequency": 5,
-      "weekly_scaled": 5.8,
+      "weekly_scaled": 5.0,
       "baseline_weekly": 8.2,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1193,8 +1577,32 @@
       "route": "LKPR-OMDB",
       "status": "REDUCED",
       "weekly_frequency": 4,
-      "weekly_scaled": 5.6,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 8.1,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-KMIA",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 8.1,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EGKK",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 8.0,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -1202,13 +1610,13 @@
       "severity": "medium",
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
-      "route": "LTFJ-OTHH",
+      "route": "LTFJ-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.3,
-      "baseline_weekly": 7.7,
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.0,
+      "baseline_weekly": 7.9,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1216,23 +1624,35 @@
       "carrier_name": "Qatar Airways",
       "route": "VOBL-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 5,
-      "weekly_scaled": 5.8,
+      "weekly_frequency": 6,
+      "weekly_scaled": 6.0,
       "baseline_weekly": 7.6,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
-      "route": "KORD-OTHH",
+      "route": "OTHH-LKPR",
       "status": "REDUCED",
-      "weekly_frequency": 6,
-      "weekly_scaled": 5.8,
-      "baseline_weekly": 7.4,
+      "weekly_frequency": 4,
+      "weekly_scaled": 5.6,
+      "baseline_weekly": 7.5,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "LTFM-OMDB",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 7.2,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -1240,11 +1660,23 @@
       "carrier_name": "Qatar Airways",
       "route": "LKPR-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 4,
-      "weekly_scaled": 4.7,
+      "weekly_frequency": 5,
+      "weekly_scaled": 5.0,
       "baseline_weekly": 6.6,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-EGBB",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 6.5,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -1253,7 +1685,19 @@
       "route": "VAJJ-OTHH",
       "status": "REDUCED",
       "weekly_frequency": 3,
-      "weekly_scaled": 3.5,
+      "weekly_scaled": 3.0,
+      "baseline_weekly": 6.5,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-EGNT",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 6.5,
       "silent_days": 0,
       "observed_days": 6
@@ -1265,10 +1709,10 @@
       "route": "OMDB-ESSA",
       "status": "REDUCED",
       "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": 3.5,
       "baseline_weekly": 6.5,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1276,11 +1720,23 @@
       "carrier_name": "Emirates",
       "route": "OMDB-KBOS",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 6.5,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-LKPR",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
+      "baseline_weekly": 6.5,
+      "silent_days": 0,
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1288,11 +1744,23 @@
       "carrier_name": "Emirates",
       "route": "OMDB-LFLL",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 6.4,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "YBBN-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.0,
+      "baseline_weekly": 6.3,
+      "silent_days": 0,
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1300,11 +1768,11 @@
       "carrier_name": "Emirates",
       "route": "OMDB-CYYZ",
       "status": "REDUCED",
-      "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 5,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 6.3,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1312,17 +1780,53 @@
       "carrier_name": "Emirates",
       "route": "OMDB-EPWA",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 6.3,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-KORD",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 6.2,
       "silent_days": 0,
       "observed_days": 5
     },
     {
       "severity": "medium",
-      "carrier": "ABY",
-      "carrier_name": "Air Arabia (Sharjah)",
-      "route": "OPMT-OMSJ",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "YPPH-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.5,
+      "baseline_weekly": 6.2,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "YSSY-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.0,
+      "baseline_weekly": 6.2,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "KORD-OMDB",
       "status": "REDUCED",
       "weekly_frequency": 4,
       "weekly_scaled": 4.7,
@@ -1332,21 +1836,9 @@
     },
     {
       "severity": "medium",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "YPPH-OTHH",
-      "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
-      "baseline_weekly": 6.2,
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "severity": "medium",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "YSSY-OTHH",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-LCLK",
       "status": "REDUCED",
       "weekly_frequency": 4,
       "weekly_scaled": 3.5,
@@ -1356,47 +1848,11 @@
     },
     {
       "severity": "medium",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "KORD-OMDB",
-      "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
-      "baseline_weekly": 6.2,
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "severity": "medium",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-LCLK",
-      "status": "REDUCED",
-      "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
-      "baseline_weekly": 6.2,
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "severity": "medium",
       "carrier": "PGT",
       "carrier_name": "Pegasus Airlines",
       "route": "OMDB-LTFJ",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
-      "baseline_weekly": 6.1,
-      "silent_days": 0,
-      "observed_days": 5
-    },
-    {
-      "severity": "medium",
-      "carrier": "QTR",
-      "carrier_name": "Qatar Airways",
-      "route": "EGBB-OTHH",
-      "status": "REDUCED",
-      "weekly_frequency": 5,
+      "weekly_frequency": 4,
       "weekly_scaled": 4.7,
       "baseline_weekly": 6.1,
       "silent_days": 0,
@@ -1408,11 +1864,11 @@
       "carrier_name": "Emirates",
       "route": "OMDB-RJBB",
       "status": "REDUCED",
-      "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 5,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 6.1,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1421,8 +1877,20 @@
       "route": "RJTT-OMDB",
       "status": "REDUCED",
       "weekly_frequency": 4,
-      "weekly_scaled": 4.2,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 6.0,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-VOTV",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 5.9,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -1430,7 +1898,43 @@
       "severity": "medium",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
-      "route": "ESSA-OTHH",
+      "route": "OTHH-YPPH",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.8,
+      "baseline_weekly": 5.9,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "CYUL-OMDB",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
+      "baseline_weekly": 5.9,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-SBGL",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 5.9,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-YPAD",
       "status": "REDUCED",
       "weekly_frequency": 4,
       "weekly_scaled": 4.7,
@@ -1444,11 +1948,11 @@
       "carrier_name": "Emirates",
       "route": "RPLC-OMDB",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 4.2,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.7,
       "baseline_weekly": 5.9,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1456,20 +1960,32 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "LOWW-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 3.5,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.0,
       "baseline_weekly": 5.8,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
-      "carrier": "UAE",
-      "carrier_name": "Emirates",
-      "route": "OMDB-KIAD",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-LSGG",
       "status": "REDUCED",
-      "weekly_frequency": 4,
+      "weekly_frequency": 3,
       "weekly_scaled": 4.2,
+      "baseline_weekly": 5.8,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-YSSY",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 2.8,
       "baseline_weekly": 5.8,
       "silent_days": 0,
       "observed_days": 5
@@ -1480,11 +1996,47 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "LGAV-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 3.5,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.0,
       "baseline_weekly": 5.7,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "route": "VOBL-OMSJ",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.0,
+      "baseline_weekly": 5.7,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "LYBE-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.0,
+      "baseline_weekly": 5.7,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-KBOS",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 5.7,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -1492,11 +2044,11 @@
       "carrier_name": "Qatar Airways",
       "route": "VOTV-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.3,
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.0,
       "baseline_weekly": 5.7,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1505,10 +2057,10 @@
       "route": "OMDB-LHBP",
       "status": "REDUCED",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.8,
+      "weekly_scaled": 2.3,
       "baseline_weekly": 5.6,
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "severity": "medium",
@@ -1517,8 +2069,44 @@
       "route": "LHBP-OMDB",
       "status": "REDUCED",
       "weekly_frequency": 3,
+      "weekly_scaled": 3.5,
+      "baseline_weekly": 5.5,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "KBOS-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.0,
+      "baseline_weekly": 5.5,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-YBBN",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
       "weekly_scaled": 4.2,
       "baseline_weekly": 5.5,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "ABY",
+      "carrier_name": "Air Arabia (Sharjah)",
+      "route": "LTFM-OMSJ",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 4.2,
+      "baseline_weekly": 5.4,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -1528,11 +2116,11 @@
       "carrier_name": "Qatar Airways",
       "route": "LPPT-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.3,
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.0,
       "baseline_weekly": 5.3,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1540,11 +2128,11 @@
       "carrier_name": "Air Arabia (Sharjah)",
       "route": "LTFJ-OMSJ",
       "status": "REDUCED",
-      "weekly_frequency": 2,
-      "weekly_scaled": 2.3,
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.0,
       "baseline_weekly": 5.2,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1552,11 +2140,59 @@
       "carrier_name": "Qatar Airways",
       "route": "LSGG-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 3,
-      "weekly_scaled": 3.5,
+      "weekly_frequency": 4,
+      "weekly_scaled": 4.0,
       "baseline_weekly": 5.2,
       "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-KATL",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.8,
+      "baseline_weekly": 5.2,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-KSFO",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.8,
+      "baseline_weekly": 5.1,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "KIAH-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.5,
+      "baseline_weekly": 4.9,
+      "silent_days": 0,
       "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "LGAV-OBBI",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 2.8,
+      "baseline_weekly": 4.8,
+      "silent_days": 0,
+      "observed_days": 5
     },
     {
       "severity": "medium",
@@ -1564,9 +2200,45 @@
       "carrier_name": "Qatar Airways",
       "route": "KATL-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 4,
-      "weekly_scaled": 3.5,
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.0,
       "baseline_weekly": 4.8,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "FDB",
+      "carrier_name": "flydubai",
+      "route": "VIDP-OMDB",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.5,
+      "baseline_weekly": 4.7,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-YPAD",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 2.8,
+      "baseline_weekly": 4.7,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OMDB-VHHH",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.5,
+      "baseline_weekly": 4.7,
       "silent_days": 0,
       "observed_days": 6
     },
@@ -1574,9 +2246,33 @@
       "severity": "medium",
       "carrier": "FDB",
       "carrier_name": "flydubai",
-      "route": "VAJJ-OMDB",
+      "route": "OMDB-VIDP",
       "status": "REDUCED",
-      "weekly_frequency": 1,
+      "weekly_frequency": 4,
+      "weekly_scaled": 3.5,
+      "baseline_weekly": 4.6,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "LIMC-OBBI",
+      "status": "REDUCED",
+      "weekly_frequency": 4,
+      "weekly_scaled": 2.8,
+      "baseline_weekly": 4.3,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-OPMT",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
       "weekly_scaled": 1.4,
       "baseline_weekly": 4.3,
       "silent_days": 0,
@@ -1586,11 +2282,11 @@
       "severity": "medium",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
-      "route": "KLAX-OTHH",
+      "route": "OTHH-CYUL",
       "status": "REDUCED",
       "weekly_frequency": 2,
       "weekly_scaled": 2.8,
-      "baseline_weekly": 4.3,
+      "baseline_weekly": 4.2,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -1598,13 +2294,25 @@
       "severity": "medium",
       "carrier": "QTR",
       "carrier_name": "Qatar Airways",
+      "route": "OPMT-OTHH",
+      "status": "REDUCED",
+      "weekly_frequency": 3,
+      "weekly_scaled": 3.0,
+      "baseline_weekly": 3.9,
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
       "route": "RJBB-OTHH",
       "status": "REDUCED",
-      "weekly_frequency": 1,
-      "weekly_scaled": 1.2,
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.0,
       "baseline_weekly": 3.7,
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "severity": "medium",
@@ -1613,8 +2321,56 @@
       "route": "OMDB-VOCI",
       "status": "REDUCED",
       "weekly_frequency": 3,
+      "weekly_scaled": 2.3,
+      "baseline_weekly": 3.6,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-RJBB",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
       "weekly_scaled": 2.8,
       "baseline_weekly": 3.6,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "QTR",
+      "carrier_name": "Qatar Airways",
+      "route": "OTHH-RPLC",
+      "status": "REDUCED",
+      "weekly_frequency": 1,
+      "weekly_scaled": 1.4,
+      "baseline_weekly": 3.4,
+      "silent_days": 0,
+      "observed_days": 5
+    },
+    {
+      "severity": "medium",
+      "carrier": "UAE",
+      "carrier_name": "Emirates",
+      "route": "OPLA-OMDB",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
+      "weekly_scaled": 2.3,
+      "baseline_weekly": 3.2,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "LCLK-OBBI",
+      "status": "REDUCED",
+      "weekly_frequency": 1,
+      "weekly_scaled": 1.4,
+      "baseline_weekly": 2.8,
       "silent_days": 0,
       "observed_days": 5
     },
@@ -1625,8 +2381,20 @@
       "route": "VVNB-OMDB",
       "status": "REDUCED",
       "weekly_frequency": 1,
-      "weekly_scaled": 1.4,
+      "weekly_scaled": 1.2,
       "baseline_weekly": 2.3,
+      "silent_days": 0,
+      "observed_days": 6
+    },
+    {
+      "severity": "medium",
+      "carrier": "GFA",
+      "carrier_name": "Gulf Air",
+      "route": "LIRF-OBBI",
+      "status": "REDUCED",
+      "weekly_frequency": 2,
+      "weekly_scaled": 1.4,
+      "baseline_weekly": 1.8,
       "silent_days": 0,
       "observed_days": 5
     }
