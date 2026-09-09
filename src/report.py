@@ -923,6 +923,8 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "boards": flightboard.by_airport(conn),
         "board_absence": flightboard.carrier_absence(conn),
         "board_route_absence": flightboard.route_absence(conn),
+        "schedule_drops": {"since": schedules.changes_since(conn),
+                           "drops": schedules.drops(conn)},
         "board_frequency": flightboard.carrier_frequency(conn),
         # The detected stops, with the day each went silent and whatever the
         # press said back. The front page is built around these now, so they
@@ -1541,6 +1543,67 @@ def _frequency_block(data: dict) -> str:
         '<th class="num">Referans hafta</th><th class="num">Oran</th>'
         '<th class="num">Kapsam</th></tr></thead>'
         f'<tbody>{"".join(rows)}</tbody></table></div>')
+
+
+def _schedule_drops_section(data: dict) -> str:
+    """Routes the airlines themselves removed from their published timetable.
+
+    Every other surface on this page reports an absence somebody observed.
+    This one reports a decision somebody published, which is a different kind
+    of evidence and belongs in its own section rather than mixed into the
+    stop register.
+    """
+    d = data.get("schedule_drops") or {}
+    since = d.get("since")
+    drops = d.get("drops") or []
+    ap = {cfg["iata"]: cfg for cfg in data["airports"].values()}
+
+    if not since:
+        body = ('<p class="sub prose">Bu kayıt henüz hiçbir değişiklik '
+                'görmedi: tarife geçmişi bu sürümle tutulmaya başladı ve '
+                'ilk karşılaştırma bir sonraki tarife tazelemesinde '
+                'yapılacak.</p>')
+    elif not drops:
+        body = (f'<p class="sub prose">{_e(since)} tarihinden bu yana hiçbir '
+                f'havayolu tarifesinden bir hattı tamamen çıkarmadı.</p>')
+    else:
+        rows = []
+        for r in drops:
+            dep = ap.get(r["dep_iata"], {})
+            arr = ap.get(r["arr_iata"], {})
+            cfg = data["carriers_cfg"].get(r["carrier"], {})
+            rows.append(
+                f'<tr class="r-stopped">'
+                f'<td><span class="code">{_e(r["carrier"])}</span> '
+                f'<span class="name">{_e(cfg.get("name", ""))}</span></td>'
+                f'<td><span class="code">{_e(r["dep_iata"])}</span> → '
+                f'<span class="code">{_e(r["arr_iata"])}</span>'
+                f'<div class="meta">{_e(dep.get("city", ""))} — '
+                f'{_e(arr.get("city", ""))}</div></td>'
+                f'<td class="num">{r["weekly_before"]}'
+                f'<div class="meta">sefer/hafta idi</div></td>'
+                f'<td class="num">{_e(r["day"])}</td></tr>')
+        body = (
+            '<div class="tablewrap"><table><thead><tr><th>Havayolu</th>'
+            '<th>Hat</th><th class="num">Önce</th>'
+            '<th class="num">Fark edildiği gün</th></tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody></table></div>')
+
+    return f"""
+<section>
+  <h2>Tarifeden düşen hatlar</h2>
+  <p class="sub prose">Bu sayfadaki diğer her şey <i>gözlenmiş bir yokluğu</i>
+  bildirir; burası <i>yayımlanmış bir kararı</i>. Bir havayolunun kendi
+  tarifesinden bir hattı tamamen çıkarması, elimizdeki en net niyet
+  beyanıdır — uçuşun görülmemesi değil, havayolunun artık planlamıyor
+  olmasıdır. Kaynak AirLabs tarifesi; pazarlama amaçlı ortak kod seferleri
+  sayılmaz. Yalnızca <b>sıfıra düşen</b> hatlar ve yalnızca aynı tazelemede
+  o havalimanı çiftindeki <b>başka havayollarının kaldığı</b> durumlar
+  listelenir: bir çiftin tamamının birden boşalması havayollarının değil,
+  kaynağın davranışıdır.</p>
+  {body}
+</section>
+"""
 
 
 def _blind_news_section(data: dict) -> str:
@@ -2371,6 +2434,7 @@ def render(data: dict) -> str:
   </table></div>
 </section>
 {_boards_section(data)}
+{_schedule_drops_section(data)}
 {_blind_news_section(data)}
   </div>
 </details>

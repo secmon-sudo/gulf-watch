@@ -137,6 +137,27 @@ CREATE TABLE IF NOT EXISTS route_schedule (
     PRIMARY KEY (dep_iata, arr_iata, carrier)
 );
 
+-- What the published timetable did, day by day. `route_schedule` is rewritten
+-- in place on every refresh -- the old rows are DELETEd -- so a carrier
+-- dropping a route left no trace at all: the row simply stopped existing, and
+-- an airline removing a route from its own timetable is the closest thing
+-- this project has to a statement of intent.
+--
+-- weekly_before NULL means the route is new to us. weekly_after 0 means it
+-- was dropped. A change in what `weekly` COUNTS would land here as a mass
+-- drop -- that is what the codeshare filter did to `route_schedule` before
+-- this table existed -- so read a day carrying drops across many pairs as
+-- ours until proven otherwise.
+CREATE TABLE IF NOT EXISTS schedule_change (
+    dep_iata      TEXT NOT NULL,
+    arr_iata      TEXT NOT NULL,
+    carrier       TEXT NOT NULL,
+    day           TEXT NOT NULL,
+    weekly_before INTEGER,
+    weekly_after  INTEGER,
+    PRIMARY KEY (dep_iata, arr_iata, carrier, day)
+);
+
 -- Pairs we have asked about, so an empty answer ("nobody flies this") is
 -- distinguishable from one we never asked.
 CREATE TABLE IF NOT EXISTS schedule_probe (

@@ -3134,6 +3134,78 @@ class TestCarrierAbsence(unittest.TestCase):
         self.assertIsNone(self._find("SVA"))
 
 
+class TestScheduleChanges(unittest.TestCase):
+    """A route leaving the timetable is the airline saying so.
+
+    `route_schedule` is rewritten in place on every refresh, so until
+    `schedule_change` existed a dropped route simply stopped being a row and
+    nothing anywhere could notice.
+    """
+
+    def setUp(self):
+        from src import schedules
+        self.sch = schedules
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _flight(self, carrier, number, days=7, codeshare=None):
+        return {"airline_icao": carrier, "flight_iata": number,
+                "days": ["mon"] * days, "cs_flight_iata": codeshare}
+
+    def _refresh(self, rows):
+        with mock.patch.object(self.sch, "_key", lambda: "k"), \
+             mock.patch.object(self.sch, "pairs", lambda: [("RUH", "BEY")]), \
+             mock.patch.object(self.sch, "_fetch", lambda d, a, k: rows):
+            return self.sch.refresh(self.conn, max_age_days=0)
+
+    def _weekly(self):
+        return {r["carrier"]: r["weekly"] for r in self.conn.execute(
+            "SELECT carrier, weekly FROM route_schedule")}
+
+    def test_a_dropped_route_is_recorded_and_reported(self):
+        self._refresh([self._flight("SVA", "SV1"), self._flight("MEA", "ME1")])
+        self._refresh([self._flight("MEA", "ME1")])
+        drops = self.sch.drops(self.conn)
+        self.assertEqual(len(drops), 1)
+        self.assertEqual(drops[0]["carrier"], "SVA")
+        self.assertEqual(drops[0]["weekly_before"], 7)
+        self.assertNotIn("SVA", self._weekly())
+
+    def test_an_unchanged_timetable_records_nothing(self):
+        self._refresh([self._flight("SVA", "SV1")])
+        self._refresh([self._flight("SVA", "SV1")])
+        self.assertEqual(self.conn.execute(
+            "SELECT COUNT(*) FROM schedule_change").fetchone()[0], 1,
+            "only the first appearance")
+        self.assertEqual(self.sch.drops(self.conn), [])
+
+    def test_a_pair_that_empties_at_once_keeps_its_timetable(self):
+        """The API's cheerful empty list must not erase a whole airport pair."""
+        self._refresh([self._flight("SVA", "SV1"), self._flight("MEA", "ME1")])
+        self._refresh([])
+        self.assertEqual(set(self._weekly()), {"SVA", "MEA"},
+                         "one empty answer is not two airlines leaving")
+        self.assertEqual(self.sch.drops(self.conn), [])
+
+    def test_a_second_empty_answer_is_believed(self):
+        self._refresh([self._flight("SVA", "SV1")])
+        self._refresh([])
+        self._refresh([])
+        self.assertEqual(self._weekly(), {})
+
+    def test_a_new_route_is_recorded_but_is_not_a_drop(self):
+        self._refresh([self._flight("SVA", "SV1")])
+        row = self.conn.execute(
+            "SELECT weekly_before, weekly_after FROM schedule_change").fetchone()
+        self.assertIsNone(row["weekly_before"])
+        self.assertEqual(row["weekly_after"], 7)
+        self.assertEqual(self.sch.drops(self.conn), [])
+
+
 class TestRouteAbsence(unittest.TestCase):
     """Which route a carrier stopped listing, not merely which airport.
 

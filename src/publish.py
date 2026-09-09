@@ -27,7 +27,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import (advisories, config, db, firwatch, flightboard, metrics,
-               suspensions)
+               schedules, suspensions)
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -416,6 +416,21 @@ def build(out: Path | None = None) -> dict:
                     "not an airport we monitor, so no sighting could have "
                     "contradicted the board.",
             **flightboard.route_absence(conn),
+        },
+        # The airline's own word, as opposed to an observed absence. A route
+        # leaving the published timetable is the closest thing here to a
+        # statement of intent -- and it was invisible until `schedule_change`
+        # existed, because `route_schedule` is rewritten in place.
+        "schedule_drops": {
+            "source": "AirLabs published timetable, marketing codeshares "
+                      "excluded",
+            "note": "Recording began on `since`; a drop before that day was "
+                    "not missed, it was not watched. Only drops to zero, and "
+                    "only where other carriers on the same airport pair "
+                    "survived the same refresh.",
+            "since": schedules.changes_since(conn),
+            "window_days": 30,
+            "drops": schedules.drops(conn),
         },
     })
 

@@ -133,14 +133,53 @@ def refresh(conn, max_age_days: int = DEFAULT_MAX_AGE_DAYS,
             a["weekly"] += len(r.get("days") or [])
             a["flights"].add(r.get("flight_iata"))
 
-        conn.execute("DELETE FROM route_schedule WHERE dep_iata=? AND arr_iata=?",
-                     (dep, arr))
-        conn.executemany(
-            """INSERT INTO route_schedule
-               (dep_iata, arr_iata, carrier, weekly, flights, codeshare, fetched_at)
-               VALUES (?,?,?,?,?,?,?)""",
-            [(dep, arr, c, v["weekly"], len(v["flights"]), v["cs"], now)
-             for c, v in agg.items()])
+        before = {r["carrier"]: r["weekly"] for r in conn.execute(
+            "SELECT carrier, weekly FROM route_schedule "
+            "WHERE dep_iata=? AND arr_iata=?", (dep, arr))}
+        prev = conn.execute(
+            "SELECT routes FROM schedule_probe WHERE dep_iata=? AND arr_iata=?",
+            (dep, arr)).fetchone()
+
+        # An answer that empties a pair which had schedules yesterday is far
+        # likelier to be the API than an airport losing every service it had.
+        # It is the same cheerful-empty-list failure the boards have, and the
+        # cost here is higher: the write below is a DELETE, so one bad answer
+        # would erase the timetable and leave nothing to notice it by. Keep
+        # what we hold and let the probe record the emptiness -- a second
+        # consecutive empty answer is believed, because then `prev` is 0.
+        wholesale = bool(before) and not agg and (prev is None or prev["routes"])
+        if wholesale:
+            LOG.warning("%s-%s came back empty while holding %s carriers -- "
+                        "keeping the timetable; a second empty answer will "
+                        "clear it", dep, arr, len(before))
+        else:
+            conn.execute(
+                "DELETE FROM route_schedule WHERE dep_iata=? AND arr_iata=?",
+                (dep, arr))
+            conn.executemany(
+                """INSERT INTO route_schedule
+                   (dep_iata, arr_iata, carrier, weekly, flights, codeshare,
+                    fetched_at) VALUES (?,?,?,?,?,?,?)""",
+                [(dep, arr, c, v["weekly"], len(v["flights"]), v["cs"], now)
+                 for c, v in agg.items()])
+            # What changed, kept because the table above cannot remember. A
+            # carrier that drops a route here is recorded against a pair where
+            # somebody else survived -- the wholesale case never reaches this.
+            day = now[:10]
+            changes = []
+            for carrier, was in before.items():
+                is_now = agg.get(carrier, {}).get("weekly", 0)
+                if is_now != was:
+                    changes.append((dep, arr, carrier, day, was, is_now))
+            for carrier, v in agg.items():
+                if carrier not in before:
+                    changes.append((dep, arr, carrier, day, None, v["weekly"]))
+            if changes:
+                conn.executemany(
+                    """INSERT OR REPLACE INTO schedule_change
+                       (dep_iata, arr_iata, carrier, day, weekly_before,
+                        weekly_after) VALUES (?,?,?,?,?,?)""", changes)
+
         conn.execute(
             """INSERT OR REPLACE INTO schedule_probe
                (dep_iata, arr_iata, routes, fetched_at) VALUES (?,?,?,?)""",
@@ -150,6 +189,41 @@ def refresh(conn, max_age_days: int = DEFAULT_MAX_AGE_DAYS,
         LOG.info("%s-%s: %s routes, %s carriers", dep, arr, len(rows), len(agg))
 
     return {"fetched": fetched, "skipped": len(fresh), "no_key": False}
+
+
+def drops(conn, days: int = 30) -> list[dict]:
+    """Routes carriers removed from their own published timetable.
+
+    The closest thing this project has to a statement of intent: ADS-B
+    silence and a missing board listing are both observations of an absence,
+    while a timetable that no longer carries the route is the airline saying
+    so. It was invisible until `schedule_change` existed, because
+    `route_schedule` is rewritten in place and a dropped route simply stopped
+    being a row.
+
+    Only drops to zero, and only against a pair where other carriers
+    survived: refresh() never records a change for a pair that emptied
+    wholesale, so everything returned here stood beside somebody still
+    flying.
+    """
+    since = (datetime.now(tz=timezone.utc)
+             - timedelta(days=days)).date().isoformat()
+    return [dict(r) for r in conn.execute(
+        """SELECT dep_iata, arr_iata, carrier, day, weekly_before
+           FROM schedule_change
+           WHERE day >= ? AND weekly_after = 0 AND weekly_before > 0
+           ORDER BY day DESC, weekly_before DESC""", (since,))]
+
+
+def changes_since(conn) -> str | None:
+    """The first day the timetable's changes were recorded at all.
+
+    Worth printing beside an empty drop list: this table starts when it was
+    added, so "no drops" before that day means nothing was watching, not that
+    nothing moved.
+    """
+    row = conn.execute("SELECT MIN(day) d FROM schedule_change").fetchone()
+    return row["d"] if row else None
 
 
 def by_carrier(conn) -> dict[str, dict]:
