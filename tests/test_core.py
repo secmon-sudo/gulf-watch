@@ -3134,6 +3134,116 @@ class TestCarrierAbsence(unittest.TestCase):
         self.assertIsNone(self._find("SVA"))
 
 
+class TestBoardFrequency(unittest.TestCase):
+    """A frequency ratio built from the boards, for the carriers ADS-B misses.
+
+    The published ADS-B ratio reaches two carriers of twenty-four. Measured on
+    the live database with a shortened reference week, this one reaches
+    Saudia, flynas and Kuwait Airways -- three carriers whose airports return
+    no ADS-B at all and whose winter baseline is unusable.
+    """
+
+    DAYS = [f"2026-09-{d:02d}" for d in range(1, 12)]
+
+    def setUp(self):
+        from src import flightboard
+        self.fb = flightboard
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        # One codeshare row so own_metal_since() has a floor. Its flight
+        # number is deliberately one no plan below writes: the table's primary
+        # key includes it, so a plan reusing it would REPLACE the marker with
+        # a NULL operated_by and move the floor out from under the test.
+        self.conn.execute(
+            "INSERT INTO board_flight (airport, direction, day, carrier, "
+            "flight_no, other_iata, sched_time, fetched_at, operated_by) "
+            "VALUES ('OERK','dep',?,'QTR','MARKER','XXX','01:00','t','Qatar')",
+            (self.DAYS[0],))
+        self.conn.commit()
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _probe(self, airport, day, verdict="ok"):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO board_probe (airport, day, flights, median,"
+            " verdict, fetched_at) VALUES (?,?,800,850.0,?,'t')",
+            (airport, day, verdict))
+        self.conn.commit()
+
+    def _listing(self, airport, day, carrier, n, operated_by=None):
+        for i in range(n):
+            self.conn.execute(
+                "INSERT OR REPLACE INTO board_flight (airport, direction, day,"
+                " carrier, flight_no, other_iata, sched_time, fetched_at,"
+                " operated_by) VALUES (?,'dep',?,?,?,'XXX','01:00','t',?)",
+                (airport, day, carrier, f"{carrier}{i}", operated_by))
+        self.conn.commit()
+
+    def _week(self, airports, days, plan):
+        """plan: {carrier: listings-per-day} on every day, at every airport."""
+        for d in days:
+            for a in airports:
+                self._probe(a, d)
+                for carrier, n in plan.items():
+                    if n:
+                        self._listing(a, d, carrier, n)
+
+    def _carrier(self, code, day=None):
+        res = self.fb.carrier_frequency(self.conn, day or self.DAYS[8])
+        return next((c for c in res["carriers"] if c["carrier"] == code), None)
+
+    def test_a_steady_carrier_reads_as_normal(self):
+        self._week(["OERK"], self.DAYS[:9], {"SVA": 40})
+        c = self._carrier("SVA")
+        self.assertEqual(c["ratio"], 1.0)
+        self.assertIsNone(c["withheld_reason"])
+
+    def test_a_halved_carrier_reads_as_halved(self):
+        self._week(["OERK"], self.DAYS[:8], {"SVA": 40})
+        self._probe("OERK", self.DAYS[8])
+        self._listing("OERK", self.DAYS[8], "SVA", 20)
+        self.assertEqual(self._carrier("SVA")["ratio"], 0.5)
+
+    def test_a_sliver_of_a_carriers_network_is_withheld(self):
+        """Qatar Airways at Abha is a statement about Abha."""
+        self._week(["OERK"], self.DAYS[:9], {"SVA": 40, "QTR": 25})
+        # Doha joins late, so it never gets its own reference week -- but the
+        # 300 listings a day there still count as what is known about QTR.
+        for d in self.DAYS[6:9]:
+            self._probe("OTHH", d)
+            self._listing("OTHH", d, "QTR", 300)
+        c = self._carrier("QTR")
+        self.assertIsNone(c["ratio"])
+        self.assertEqual(c["withheld_reason"], "below_min_comparable_share")
+
+    def test_a_handful_of_listings_is_not_a_series(self):
+        self._week(["OERK"], self.DAYS[:9], {"SVA": 40, "RAM": 4})
+        self.assertEqual(self._carrier("RAM")["withheld_reason"], "no_source")
+
+    def test_no_answer_before_a_full_reference_week_exists(self):
+        self._week(["OERK"], self.DAYS[:4], {"SVA": 40})
+        res = self.fb.carrier_frequency(self.conn, self.DAYS[3])
+        self.assertEqual(res["carriers"], [])
+        self.assertEqual(res["withheld_reason"], "below_min_observed_days")
+
+    def test_a_day_inside_its_own_reference_week_is_not_measured(self):
+        self._week(["OERK"], self.DAYS[:7], {"SVA": 40})
+        res = self.fb.carrier_frequency(self.conn, self.DAYS[6])
+        self.assertEqual(res["withheld_reason"], "below_min_observed_days")
+
+    def test_a_ratio_and_a_reason_are_never_both_present(self):
+        self._week(["OERK", "OEJN"], self.DAYS[:9],
+                   {"SVA": 40, "KNE": 25, "RAM": 2, "QTR": 1})
+        res = self.fb.carrier_frequency(self.conn, self.DAYS[8])
+        self.assertTrue(res["carriers"])
+        for c in res["carriers"]:
+            with self.subTest(carrier=c["carrier"]):
+                self.assertEqual(c["ratio"] is None,
+                                 c["withheld_reason"] is not None)
+
+
 class TestAirportViewUsesTheBoard(unittest.TestCase):
     """The page's airport row must spend the board it already collects.
 

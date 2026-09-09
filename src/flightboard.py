@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import logging
 import statistics
+from collections import defaultdict
 import time
 from datetime import date, datetime, timedelta, timezone
 
@@ -493,6 +494,149 @@ def carrier_absence(conn, day: str | None = None, window: int = 21) -> dict:
             "readable_days": reach,
             "required_days": config.MIN_SIGNAL_HISTORY_DAYS,
             "withheld_reason": reason}
+
+
+# One full week of comparable board days is the reference a carrier's
+# frequency is divided by. Seven and not five: these listings come from a
+# timetable, so a shorter window catches some weekdays and not others and the
+# ratio then measures which days it happened to include. Measured 2026-09-08
+# over six days, the day-to-day spread of a carrier's own-metal listings
+# summed across the network is 2% (Emirates, Etihad) to 16% (Pegasus), so a
+# week is comfortably enough to place a real cut outside the noise.
+BOARD_BASELINE_DAYS = 7
+
+# Below this, a carrier's board presence is not a series, it is a handful of
+# rows. Measured the same day: above it sit Pegasus at 51 listings a day and
+# MEA at 104, both steady; below it sit Air Algérie at 5 (±120%), Royal Air
+# Maroc 4, China Southern 2, British Airways 2, JAL 1. A ratio on those says
+# nothing about an airline.
+MIN_BOARD_CARRIER_LISTINGS = 20
+
+
+def _healthy_days_by_airport(conn, upto: str, floor: str) -> dict[str, set]:
+    """Per airport, the days its board can be compared with other days.
+
+    Healthy at that airport, on a day the source answered somebody at all,
+    and late enough that `operated_by` means what it says.
+    """
+    source_days = {r["day"] for r in conn.execute(
+        "SELECT day FROM board_probe WHERE verdict = 'ok' GROUP BY day")}
+    out: dict[str, set] = defaultdict(set)
+    for r in conn.execute(
+            "SELECT airport, day FROM board_probe WHERE verdict = 'ok' "
+            "AND day >= ? AND day <= ?", (floor, upto)):
+        if r["day"] in source_days:
+            out[r["airport"]].add(r["day"])
+    return out
+
+
+def carrier_frequency(conn, day: str | None = None) -> dict:
+    """How much each carrier is flying, measured against its own board week.
+
+    The ADS-B ratio can speak about two carriers of twenty-four: the rest have
+    no usable winter baseline or too little of this week in view. This one is
+    built from a different series and does not share those limits -- the board
+    names the operator, covers all fifteen airports, and its reference period
+    is three weeks old rather than a season away, so no summer-against-winter
+    term rides along inside it.
+
+    The reference is the FIRST full week of comparable days, not a trailing
+    median. A trailing median would erase the thing this exists to find: a
+    carrier that cuts thirty per cent and stays there drags its own median
+    down within a week and reads as normal again.
+
+    Numerator and denominator cover the SAME airports, and only airports whose
+    board was healthy on every day of the reference week and again today. The
+    alternative is the mistake `_decide_ratio` already documents: an airport
+    that drops out of the numerator while staying in the denominator publishes
+    our own gap as an airline's decision.
+    """
+    if not day:
+        row = conn.execute("SELECT MAX(day) d FROM board_probe").fetchone()
+        day = row["d"] if row else None
+    floor = own_metal_since(conn)
+    env = {"day": day, "baseline_window": None, "baseline_days": BOARD_BASELINE_DAYS,
+           "carriers": [], "withheld_reason": None}
+    if not day or not floor:
+        env["withheld_reason"] = "no_source"
+        return env
+
+    healthy = _healthy_days_by_airport(conn, day, floor)
+    if not healthy:
+        env["withheld_reason"] = "no_source"
+        return env
+
+    # Each airport carries its OWN first week, because they did not start on
+    # the same day: the eight ADS-B-covered airports only joined the board
+    # sweep on 2026-09-01 and scored `unproven` until they had history of
+    # their own. One global window would have frozen them out permanently and
+    # published Qatar Airways off 38 listings a day at the Saudi airports
+    # while ignoring the 600 at Doha -- measured, on the way to this.
+    base_days = {icao: sorted(days)[:BOARD_BASELINE_DAYS]
+                 for icao, days in healthy.items()}
+    ready = {icao: bd for icao, bd in base_days.items()
+             if len(bd) == BOARD_BASELINE_DAYS and day in healthy[icao]
+             and day > bd[-1]}
+    if not ready:
+        # Nowhere has a full reference week yet that today can be read against.
+        env["withheld_reason"] = "below_min_observed_days"
+        return env
+    env["baseline_window"] = (f"{min(bd[0] for bd in ready.values())}.."
+                              f"{max(bd[-1] for bd in ready.values())}")
+    env["airports_ready"] = len(ready)
+    env["airports_total"] = len(healthy)
+
+    tracked = set(config.tracked_carriers())
+    counts: dict[tuple, int] = {}
+    first = min(min(d) for d in base_days.values())
+    for r in conn.execute(
+            """SELECT airport, carrier, day, COUNT(*) n FROM board_flight
+               WHERE operated_by IS NULL AND day >= ? AND day <= ?
+               GROUP BY airport, carrier, day""", (first, day)):
+        if r["carrier"] in tracked:
+            counts[(r["airport"], r["carrier"], r["day"])] = r["n"]
+
+    per: dict[str, dict] = {}
+    for icao, days in healthy.items():
+        # `known` counts every airport this carrier appears at, whether or not
+        # it qualifies today. It is the denominator of the share test below --
+        # the same test the ADS-B ratio applies, for the same reason: a ratio
+        # built on a sliver of a carrier's network is a statement about the
+        # sliver, and Qatar Airways at Abha is a sliver of Qatar Airways.
+        known_days = base_days[icao]
+        for carrier in tracked:
+            known = statistics.median(
+                counts.get((icao, carrier, d), 0) for d in known_days)
+            med, cur = 0.0, 0     # listings are a count; keep them one
+            if icao in ready:
+                med = statistics.median(
+                    counts.get((icao, carrier, d), 0) for d in ready[icao])
+                cur = counts.get((icao, carrier, day), 0)
+            if not known and not med and not cur:
+                continue
+            c = per.setdefault(carrier, {"carrier": carrier, "listings": 0,
+                                         "baseline": 0.0, "known": 0.0,
+                                         "airports": 0})
+            c["listings"] += cur
+            c["baseline"] += med
+            c["known"] += known
+            c["airports"] += 1 if icao in ready and (med or cur) else 0
+
+    out = []
+    for c in per.values():
+        known = c.pop("known") or 0.0
+        share = (c["baseline"] / known) if known else 0.0
+        c["baseline"] = round(c["baseline"], 1)
+        c["board_share"] = round(share, 3)
+        if c["baseline"] < MIN_BOARD_CARRIER_LISTINGS:
+            c["ratio"], c["withheld_reason"] = None, "no_source"
+        elif share < config.MIN_COMPARABLE_SHARE:
+            c["ratio"], c["withheld_reason"] = None, "below_min_comparable_share"
+        else:
+            c["ratio"], c["withheld_reason"] = round(c["listings"] / c["baseline"], 3), None
+        out.append(c)
+    env["carriers"] = sorted(out, key=lambda x: -x["baseline"])
+    return env
 
 
 def by_airport(conn, day: str | None = None) -> list[dict]:

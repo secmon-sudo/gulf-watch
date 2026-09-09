@@ -922,6 +922,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "blind_news": blind_news(conn, news_days) if with_news else [],
         "boards": flightboard.by_airport(conn),
         "board_absence": flightboard.carrier_absence(conn),
+        "board_frequency": flightboard.carrier_frequency(conn),
         # The detected stops, with the day each went silent and whatever the
         # press said back. The front page is built around these now, so they
         # are collected rather than left to publish.py alone.
@@ -1361,6 +1362,7 @@ def _boards_section(data: dict) -> str:
     <tbody>{"".join(rows)}</tbody>
   </table></div>
   {_absence_block(data)}
+  {_frequency_block(data)}
 </section>
 """
 
@@ -1427,6 +1429,70 @@ def _absence_block(data: dict) -> str:
         '<th>Havayolu</th><th>Havalimanı</th><th>Durum</th>'
         '<th class="num">Son görüldüğü gün</th>'
         '<th class="num">Öncesinde</th></tr></thead>'
+        f'<tbody>{"".join(rows)}</tbody></table></div>')
+
+
+def _frequency_block(data: dict) -> str:
+    """The boards' own frequency ratio, beside the ADS-B one and never inside it.
+
+    Different source, different denominator, different unit -- `kayıt/gün`
+    against `sefer/hafta` -- so the page keeps them apart in the way the
+    glossary already demands. What this one buys is reach: the ADS-B ratio
+    speaks about two carriers of twenty-four, and this one can speak about
+    the airlines flying out of Riyadh, Jeddah and Kuwait, where no receiver
+    has ever seen anything.
+    """
+    f = data.get("board_frequency") or {}
+    if not f:
+        return ""
+    head = ('<h3 class="sub-h">Tahtadan frekans oranı</h3>'
+            '<p class="sub prose">Bir havayolunun bugün tahtalarda görünen '
+            '<b>kendi</b> sefer sayısının (ortak kod hariç), aynı '
+            'havalimanlarındaki <b>ilk tam haftasına</b> bölümü. Birim '
+            '<b>kayıt/gün</b>; soldaki <b>Gözlenen / tarifeli</b> sütunuyla '
+            '<b>aynı şey değildir</b> ve onunla toplanmaz — kaynağı da, '
+            'bölendeki sayı da başkadır. Referans haftası donduruluyor: '
+            'kayan bir ortanca kullansaydık, kesintiyi yapıp orada kalan bir '
+            'havayolu bir hafta içinde kendi ortancasını aşağı çeker ve '
+            'yeniden normal görünürdü.</p>')
+
+    if f.get("withheld_reason") == "below_min_observed_days":
+        return head + (
+            f'<div class="notice-inline">Henüz referans haftası yok: hiçbir '
+            f'havalimanının karşılaştırılabilir <b>{f["baseline_days"]} '
+            f'günü</b> dolmadı. Sayaç, tahtaların bir seferi kimin '
+            f'uçurduğunu ayırt etmeye başladığı günden işliyor.</div>')
+    if f.get("withheld_reason"):
+        return head + ('<div class="notice-inline">Bugün okunabilir tahta '
+                       'gelmediği için bu oran hesaplanamadı.</div>')
+
+    rows = []
+    for c in f["carriers"]:
+        cfg = data["carriers_cfg"].get(c["carrier"], {})
+        if c["ratio"] is None:
+            cell = ('<span class="meta">yayınlanmadı — '
+                    + ("ağın küçük bir parçası" if c["withheld_reason"]
+                       == "below_min_comparable_share" else "seri sayılacak "
+                       "kadar kayıt yok") + '</span>')
+        else:
+            cell = f'<b>%{round(c["ratio"] * 100)}</b>'
+        rows.append(
+            f'<tr><td><span class="code">{_e(c["carrier"])}</span> '
+            f'<span class="name">{_e(cfg.get("name", ""))}</span></td>'
+            f'<td class="num">{c["listings"]}<div class="meta">kayıt/gün</div></td>'
+            f'<td class="num">{c["baseline"]}<div class="meta">kayıt/gün</div></td>'
+            f'<td class="num">{cell}</td>'
+            f'<td class="num">%{round(c["board_share"] * 100)}'
+            f'<div class="meta">ağının kapsanan payı</div></td></tr>')
+    return head + (
+        f'<p class="sub prose">Referans haftası: '
+        f'<b>{_e(f["baseline_window"])}</b>. Bir havayolunun oranı yalnızca '
+        f'kendi ağının en az %{int(config.MIN_COMPARABLE_SHARE * 100)}’i '
+        f'kapsanıyorsa yayınlanır.</p>'
+        '<div class="tablewrap"><table><thead><tr>'
+        '<th>Havayolu</th><th class="num">Bugün</th>'
+        '<th class="num">Referans hafta</th><th class="num">Oran</th>'
+        '<th class="num">Kapsam</th></tr></thead>'
         f'<tbody>{"".join(rows)}</tbody></table></div>')
 
 

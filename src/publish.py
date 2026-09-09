@@ -274,6 +274,22 @@ def build(out: Path | None = None) -> dict:
     _write(out / "status.json", {
         **env,
         "carriers": sorted(by_carrier.values(), key=lambda x: x["name"]),
+        # A second frequency measure, from the boards, kept beside the first
+        # rather than inside it. The two must never be added or compared
+        # cell-by-cell: this one counts published listings per day against the
+        # carrier's own first board week, so it carries no season term and no
+        # winter baseline, and it reaches carriers the ADS-B ratio cannot see
+        # at all -- Saudia, flynas and Kuwait Airways fly out of airports that
+        # return no ADS-B whatsoever.
+        "board_frequency": {
+            "unit": "listings per day, own metal only",
+            "note": "Not comparable with `carriers[].ratio`: different "
+                    "source, different denominator, no season term. The "
+                    "reference is each airport's first full week of "
+                    "comparable board days, frozen, so a carrier that cuts "
+                    "and stays cut keeps reading as cut.",
+            **flightboard.carrier_frequency(conn),
+        },
         "summary": {
             "carriers_tracked": len(by_carrier),
             "routes_tracked": len(routes),
