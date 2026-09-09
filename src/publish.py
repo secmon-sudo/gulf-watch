@@ -404,6 +404,19 @@ def build(out: Path | None = None) -> dict:
                     "finding.",
             **flightboard.carrier_absence(conn),
         },
+        # One level finer, and the level this domain moves at: 18 routes
+        # suspended against zero carriers stopped. Only routes the board
+        # lists every single day can be judged; the rest are absent four days
+        # in seven by their own timetable.
+        "board_route_absence": {
+            "source": "published airport boards, own metal only "
+                      "(codeshare listings excluded)",
+            "note": "A route counts as absent only when neither leg is "
+                    "listed. `adsb_checked` is false where the far end is "
+                    "not an airport we monitor, so no sighting could have "
+                    "contradicted the board.",
+            **flightboard.route_absence(conn),
+        },
     })
 
     # --- /v1/alerts.json --------------------------------------------------

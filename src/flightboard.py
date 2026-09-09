@@ -639,6 +639,116 @@ def carrier_frequency(conn, day: str | None = None) -> dict:
     return env
 
 
+def route_absence(conn, day: str | None = None, window: int = 21) -> dict:
+    """Routes a carrier has stopped listing at an airport whose board is fine.
+
+    One level finer than `carrier_absence`, and the level this domain actually
+    moves at: on 2026-09-08 the ledger held 18 suspended routes and 126
+    reduced ones against zero carriers with a stop. "Saudia no longer lists
+    Riyadh-Beirut" is the sentence an operations reader wants; "Saudia left
+    Riyadh" almost never happens.
+
+    Direction is deliberately not part of the key. A route is absent only when
+    NEITHER leg is listed, which is the same falsification `reverse_flew`
+    applies to the ADS-B side: scheduled service does not run one way, so a
+    one-way disappearance is far more likely to be ours than theirs.
+
+    Only daily routes can be judged. A route flown three times a week is
+    absent four days out of seven by design, and no absence rule can separate
+    that from a cut -- so the baseline demands presence on EVERY readable day,
+    which measured 2026-09-08 keeps 836 routes of 1224 in scope and drops the
+    rest by construction rather than by threshold.
+
+    That baseline has to span a FULL week, which is what
+    `config.MIN_SIGNAL_HISTORY_DAYS` buys here. Run with five days against the
+    live database it reported four routes -- Jeddah-Singapore, Riyadh-Shenzhen,
+    Riyadh-Alexandria, Riyadh-Salalah -- and a six-days-a-week route is
+    exactly what that looks like: present on every day of a short baseline,
+    then absent on its own day off.
+
+    There is no listings floor here, unlike the carrier test: one listing a
+    day is exactly what a daily route looks like.
+    """
+    if not day:
+        row = conn.execute("SELECT MAX(day) d FROM board_probe").fetchone()
+        day = row["d"] if row else None
+    env = {"day": day, "comparable_since": own_metal_since(conn), "findings": [],
+           "readable_days": 0, "required_days": config.MIN_SIGNAL_HISTORY_DAYS,
+           "routes_watched": 0, "withheld_reason": None}
+    if not day:
+        env["withheld_reason"] = "no_source"
+        return env
+
+    healthy = {a["airport"] for a in airport_operation(conn, day)
+               if a["state"] == "normal"}
+    if not healthy:
+        env["withheld_reason"] = "no_source"
+        return env
+    tracked = set(config.tracked_carriers())
+    icao_of = {cfg["iata"]: code for code, cfg in config.airports().items()}
+
+    reach = 0
+    watched = 0
+    for icao in sorted(healthy):
+        days = _readable_days(conn, icao, day, window)
+        reach = max(reach, len(days))
+        if len(days) <= config.MIN_SIGNAL_HISTORY_DAYS:
+            continue
+        seen: dict[tuple, set] = {}
+        for r in conn.execute(
+                """SELECT carrier, other_iata, day FROM board_flight
+                   WHERE airport = ? AND operated_by IS NULL
+                     AND other_iata IS NOT NULL AND day BETWEEN ? AND ?
+                   GROUP BY carrier, other_iata, day""",
+                (icao, days[0], days[-1])):
+            if r["carrier"] in tracked:
+                seen.setdefault((r["carrier"], r["other_iata"]), set()).add(r["day"])
+
+        for (carrier, far), on_days in seen.items():
+            gone = 0
+            for d in reversed(days):
+                if d in on_days:
+                    break
+                gone += 1
+            base = days[:len(days) - gone]
+            if len(base) < config.MIN_SIGNAL_HISTORY_DAYS:
+                continue
+            if not all(d in on_days for d in base):
+                continue
+            watched += 1
+            if not gone:
+                continue
+            first_absent = days[len(days) - gone]
+            far_icao = icao_of.get(far)
+            if far_icao:
+                # A sighting outranks a listing. Only checkable when the far
+                # end is an airport we monitor -- the board names it by IATA
+                # and `flight` by ICAO -- so where it is not, this route rests
+                # on the board alone and says so by having no veto available.
+                flew = conn.execute(
+                    """SELECT 1 FROM flight WHERE carrier = ? AND dep_date >= ?
+                       AND ((dep_icao = ? AND arr_icao = ?)
+                         OR (dep_icao = ? AND arr_icao = ?)) LIMIT 1""",
+                    (carrier, first_absent, icao, far_icao, far_icao, icao)
+                ).fetchone()
+                if flew:
+                    continue
+            env["findings"].append({
+                "airport": icao, "carrier": carrier, "other_iata": far,
+                "last_listed": base[-1], "days": gone,
+                "provisional": gone < COLLAPSE_DAYS,
+                "baseline_days": len(base),
+                "adsb_checked": bool(far_icao),
+            })
+
+    env["readable_days"] = reach
+    env["routes_watched"] = watched
+    if reach <= config.MIN_SIGNAL_HISTORY_DAYS:
+        env["withheld_reason"] = "below_min_observed_days"
+    env["findings"].sort(key=lambda r: (-r["days"], r["airport"], r["carrier"]))
+    return env
+
+
 def by_airport(conn, day: str | None = None) -> list[dict]:
     """What the boards say, with the verdict attached so a reader can weigh it."""
     if not day:

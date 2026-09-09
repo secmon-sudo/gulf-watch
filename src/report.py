@@ -922,6 +922,7 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "blind_news": blind_news(conn, news_days) if with_news else [],
         "boards": flightboard.by_airport(conn),
         "board_absence": flightboard.carrier_absence(conn),
+        "board_route_absence": flightboard.route_absence(conn),
         "board_frequency": flightboard.carrier_frequency(conn),
         # The detected stops, with the day each went silent and whatever the
         # press said back. The front page is built around these now, so they
@@ -1362,6 +1363,7 @@ def _boards_section(data: dict) -> str:
     <tbody>{"".join(rows)}</tbody>
   </table></div>
   {_absence_block(data)}
+  {_route_absence_block(data)}
   {_frequency_block(data)}
 </section>
 """
@@ -1430,6 +1432,51 @@ def _absence_block(data: dict) -> str:
         '<th class="num">Son görüldüğü gün</th>'
         '<th class="num">Öncesinde</th></tr></thead>'
         f'<tbody>{"".join(rows)}</tbody></table></div>')
+
+
+def _route_absence_block(data: dict) -> str:
+    """Routes that stopped being listed, one level finer than the carrier."""
+    a = data.get("board_route_absence") or {}
+    if not a:
+        return ""
+    head = ('<h3 class="sub-h">Tahtadan kaybolan hatlar</h3>'
+            '<p class="sub prose">Bir havayolunun <b>her gün</b> listelediği '
+            'bir hat, sağlıklı dönen bir tahtadan düştüyse burada yazar. '
+            '<b>Yalnızca günlük hatlar</b> yargılanabiliyor: haftada üç gün '
+            'uçan bir hat tarifesi gereği dört gün yok ve bunu kesintiden '
+            'ayıracak bir kural yok. Gidiş ya da dönüş, biri bile '
+            'listelendiyse hat ayakta sayılır.</p>')
+    if a.get("withheld_reason"):
+        return head + ('<div class="notice-inline">Bu soru henüz '
+                       f'cevaplanamıyor: karşılaştırılabilir tahta geçmişi '
+                       f'<b>{a["readable_days"]} gün</b>, gereken '
+                       f'{a["required_days"] + 1} gün.</div>')
+    if not a["findings"]:
+        return head + (f'<p class="sub prose">İzlenen <b>{a["routes_watched"]} '
+                       f'günlük hattın</b> hiçbiri tahtadan düşmedi.</p>')
+    rows = []
+    for f in a["findings"]:
+        cfg = data["airports"].get(f["airport"], {})
+        pill = ('<span class="pill s-partial"><span class="dot"></span>'
+                'Tek gün, doğrulanmadı</span>' if f["provisional"] else
+                '<span class="pill s-stopped"><span class="dot"></span>'
+                f'{f["days"]} gündür yok</span>')
+        note = ("" if f["adsb_checked"] else
+                '<div class="meta">uzak uç izlenmiyor — uçuş verisiyle '
+                'çapraz kontrol edilemedi</div>')
+        row_cls = "" if f["provisional"] else ' class="r-stopped"'
+        rows.append(
+            f'<tr{row_cls}><td><span class="code">{_e(f["carrier"])}</span></td>'
+            f'<td><span class="code">{_e(cfg.get("iata", f["airport"]))}</span>'
+            f' → <span class="code">{_e(f["other_iata"])}</span>{note}</td>'
+            f'<td>{pill}</td>'
+            f'<td class="num">{_e(f["last_listed"])}</td></tr>')
+    return head + (
+        f'<p class="sub prose">İzlenen günlük hat sayısı: '
+        f'<b>{a["routes_watched"]}</b>.</p>'
+        '<div class="tablewrap"><table><thead><tr><th>Havayolu</th>'
+        '<th>Hat</th><th>Durum</th><th class="num">Son listelendiği gün</th>'
+        f'</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
 
 
 def _frequency_block(data: dict) -> str:

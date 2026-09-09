@@ -3134,6 +3134,106 @@ class TestCarrierAbsence(unittest.TestCase):
         self.assertIsNone(self._find("SVA"))
 
 
+class TestRouteAbsence(unittest.TestCase):
+    """Which route a carrier stopped listing, not merely which airport.
+
+    The grain the domain moves at: on 2026-09-08 the ledger held 18 suspended
+    routes and 126 reduced ones against zero carriers with a stop.
+    """
+
+    DAYS = [f"2026-09-{d:02d}" for d in range(1, 12)]
+
+    def setUp(self):
+        from src import flightboard
+        self.fb = flightboard
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.conn.execute(
+            "INSERT INTO board_flight (airport, direction, day, carrier, "
+            "flight_no, other_iata, sched_time, fetched_at, operated_by) "
+            "VALUES ('OERK','dep',?,'QTR','MARKER','XXX','01:00','t','Qatar')",
+            (self.DAYS[0],))
+        self.conn.commit()
+        for d in self.DAYS:
+            self._probe("OERK", d)
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _probe(self, airport, day, verdict="ok"):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO board_probe (airport, day, flights, median,"
+            " verdict, fetched_at) VALUES (?,?,800,850.0,?,'t')",
+            (airport, day, verdict))
+        self.conn.commit()
+
+    def _leg(self, day, carrier, far, direction="dep", airport="OERK"):
+        self.conn.execute(
+            "INSERT OR REPLACE INTO board_flight (airport, direction, day, "
+            "carrier, flight_no, other_iata, sched_time, fetched_at, "
+            "operated_by) VALUES (?,?,?,?,?,?,'01:00','t',NULL)",
+            (airport, direction, day, carrier, f"{carrier}{far}", far))
+        self.conn.commit()
+
+    def _find(self, carrier, far, day=None):
+        res = self.fb.route_absence(self.conn, day or self.DAYS[9])
+        return next((r for r in res["findings"]
+                     if r["carrier"] == carrier and r["other_iata"] == far), None)
+
+    def test_a_daily_route_that_stops_being_listed_is_a_finding(self):
+        for d in self.DAYS[:8]:
+            self._leg(d, "SVA", "BEY")
+        r = self._find("SVA", "BEY")
+        self.assertIsNotNone(r)
+        self.assertEqual(r["days"], 2)
+        self.assertFalse(r["provisional"])
+
+    def test_one_missing_day_is_not_yet_a_finding(self):
+        for d in self.DAYS[:9]:
+            self._leg(d, "SVA", "BEY")
+        self.assertTrue(self._find("SVA", "BEY")["provisional"])
+
+    def test_a_route_with_days_off_is_never_judged(self):
+        """Three times a week is absent four days out of seven by design."""
+        for i, d in enumerate(self.DAYS[:8]):
+            if i % 2 == 0:
+                self._leg(d, "SVA", "BEY")
+        self.assertIsNone(self._find("SVA", "BEY"))
+
+    def test_the_return_leg_keeps_the_route_alive(self):
+        """Scheduled service does not run one way, so neither does absence."""
+        for d in self.DAYS[:8]:
+            self._leg(d, "SVA", "BEY")
+        for d in self.DAYS[8:10]:
+            self._leg(d, "SVA", "BEY", direction="arr")
+        self.assertIsNone(self._find("SVA", "BEY"))
+
+    def test_a_sighting_outranks_the_missing_listing(self):
+        for d in self.DAYS[:8]:
+            self._leg(d, "SVA", "BEY")   # BEY is monitored: OLBA
+        self.conn.execute(
+            "INSERT INTO flight (icao24, first_seen, callsign, carrier, "
+            "flight_number, dep_icao, arr_icao, is_freight, dep_date, source, "
+            "ingested_at) VALUES ('abc123',1,'SVA1','SVA',1,'OERK','OLBA',0,?,"
+            "'test',0)", (self.DAYS[8],))
+        self.conn.commit()
+        r = self._find("SVA", "BEY")
+        self.assertIsNone(r, "ADS-B saw the aeroplane fly the route")
+
+    def test_a_route_whose_far_end_we_cannot_name_says_it_was_not_checked(self):
+        for d in self.DAYS[:8]:
+            self._leg(d, "SVA", "SIN")   # Singapore is not monitored
+        r = self._find("SVA", "SIN")
+        self.assertFalse(r["adsb_checked"])
+
+    def test_a_collapsed_board_reports_no_routes(self):
+        for d in self.DAYS[:8]:
+            self._leg(d, "SVA", "BEY")
+        self._probe("OERK", self.DAYS[9], verdict="empty")
+        self.assertIsNone(self._find("SVA", "BEY"))
+
+
 class TestBoardFrequency(unittest.TestCase):
     """A frequency ratio built from the boards, for the carriers ADS-B misses.
 
