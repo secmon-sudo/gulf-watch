@@ -2422,6 +2422,63 @@ class TestScheduleCodeshare(unittest.TestCase):
             "one aircraft, one entry in the denominator")
 
 
+class TestAdsbBlindAirports(unittest.TestCase):
+    """Which airports have no receiver to contradict the boards.
+
+    Measured on the live database 2026-09-09 over the 42 days to 09-07: Dubai
+    318.6 legs a day, Doha 224.8, down to Beirut at 48.5, and then Muscat at
+    0.19 with Kuwait, Riyadh, Jeddah, Abha, Baghdad, Erbil and Tehran flat at
+    zero. The register lets a board finding open a row on this side of the gap
+    and only there, so what the function must get right is the gap itself --
+    not a coverage verdict, and not a baseline.
+    """
+
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.today = metrics.reference_day()
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _fly(self, dep, arr, days, per_day):
+        rows, i = [], 0
+        for off in range(days):
+            d = (self.today - timedelta(days=off)).isoformat()
+            for _ in range(per_day):
+                i += 1
+                rows.append({
+                    "icao24": f"bb{i:05x}", "first_seen": 1700000000 + i * 60,
+                    "last_seen": None, "callsign": f"UAE{i}", "carrier": "UAE",
+                    "flight_number": i, "dep_icao": dep, "arr_icao": arr,
+                    "is_freight": 0, "dep_date": d, "source": "t",
+                    "ingested_at": 0})
+        db.upsert_flights(self.conn, rows)
+
+    def test_an_airport_seen_every_day_is_not_blind(self):
+        self._fly("OMDB", "OERK", 42, 4)
+        blind = metrics.adsb_blind_airports(self.conn, self.today)
+        self.assertNotIn("OMDB", blind)
+        # The far end counts too: a leg into Riyadh proves a receiver reached
+        # it just as well as one out of it.
+        self.assertNotIn("OERK", blind)
+
+    def test_a_handful_of_legs_in_six_weeks_is_still_blind(self):
+        # Muscat's real shape: eight legs in the whole window. It is not zero,
+        # and an airport that produces less than a sighting a day cannot
+        # contradict an absence that lasts a few days.
+        self._fly("OOMS", "OTHH", 7, 1)
+        self._fly("OMDB", "OTHH", 42, 4)
+        blind = metrics.adsb_blind_airports(self.conn, self.today)
+        self.assertIn("OOMS", blind)
+        self.assertNotIn("OMDB", blind,
+                         "the two have to fall either side of the same line")
+
+    def test_an_airport_with_nothing_at_all_is_blind(self):
+        self.assertIn("OERK", metrics.adsb_blind_airports(self.conn, self.today))
+
+
 class TestCarrierVisibility(unittest.TestCase):
     """The gate that can tell a British Airways from an Emirates.
 
@@ -2630,18 +2687,32 @@ class TestRegister(unittest.TestCase):
     """The front page's answer. A row here says a named carrier stopped
     serving a named place, so what may open one is deliberately narrow."""
 
-    def _data(self, news, seen_at=None, state="stopped"):
+    def _data(self, news, seen_at=None, state="stopped",
+              board=(), board_routes=(), blind=("OERK",)):
         return {
             "airports": {"OMDB": {"iata": "DXB", "city": "Dubai"},
-                         "OMAA": {"iata": "AUH", "city": "Abu Dhabi"}},
+                         "OMAA": {"iata": "AUH", "city": "Abu Dhabi"},
+                         "OERK": {"iata": "RUH", "city": "Riyadh"}},
             "carriers_cfg": {"UAE": {"name": "Emirates"},
                              "ETD": {"name": "Etihad Airways"},
                              "FDB": {"name": "flydubai"},
+                             "SVA": {"name": "Saudia"},
                              "FIN": {"name": "Finnair"}},
             "stops": {"active": []},
             "carriers": [{"code": "UAE", "name": "Emirates", "state": state,
                           "seen_at": seen_at or {}, "news": news}],
+            "board_absence": {"findings": list(board)},
+            "board_route_absence": {"findings": list(board_routes)},
+            "adsb_blind": set(blind),
         }
+
+    def _absent(self, carrier="SVA", airport="OERK", days=4, **kw):
+        f = {"carrier": carrier, "airport": airport, "days": days,
+             "provisional": False, "last_listed": "2026-09-02",
+             "first_absent": "2026-09-03", "listings_before": 6.0,
+             "baseline_days": 7}
+        f.update(kw)
+        return f
 
     def _hit(self, title, airports, age=3):
         return {"title": title, "url": "http://x/" + title[:8],
@@ -2708,6 +2779,56 @@ class TestRegister(unittest.TestCase):
         self.assertEqual(row["links"], [])
         self.assertEqual(row["conf"], "observed",
                          "a story about another airline cannot corroborate")
+
+    # --- the board as an opener, added 2026-09-09 --------------------------
+    # The operator's rule: a board finding may open a register row where no
+    # receiver could have contradicted it, and nowhere else.
+
+    def test_a_board_absence_at_a_blind_airport_opens_a_row(self):
+        from src import report
+        reg = report.register(self._data([], board=[self._absent()]))
+        self.assertEqual([(r["carrier"], r["place"], r["kind"], r["conf"],
+                           r["since"], r["days"]) for r in reg["full"]],
+                         [("SVA", "RUH", "istasyon", "boarded",
+                           "2026-09-03", 4)])
+
+    def test_the_same_absence_where_adsb_can_see_opens_nothing(self):
+        from src import report
+        reg = report.register(self._data(
+            [], board=[self._absent(airport="OMDB")]))
+        self.assertEqual(
+            reg["full"], [],
+            "Dubai has three hundred legs a day of ADS-B; an absence there "
+            "is a claim something else was in a position to refuse")
+
+    def test_a_provisional_absence_opens_nothing(self):
+        from src import report
+        reg = report.register(self._data(
+            [], board=[self._absent(days=1, provisional=True)]))
+        self.assertEqual(reg["full"], [])
+
+    def test_a_board_route_absence_opens_a_route_row(self):
+        from src import report
+        reg = report.register(self._data([], board_routes=[
+            self._absent(other_iata="BEY", days=3)]))
+        self.assertEqual([(r["place"], r["kind"], r["conf"])
+                          for r in reg["full"]],
+                         [("RUH\u2194BEY", "hat", "boarded")])
+
+    def test_press_agreeing_with_a_board_row_does_not_demote_it(self):
+        from src import report
+        data = self._data([], board=[self._absent(carrier="UAE")])
+        data["carriers"] = [{
+            "code": "UAE", "name": "Emirates", "state": "stopped",
+            "seen_at": {}, "news": [self._hit(
+                "Emirates suspends Riyadh flights - Reuters", ["RUH"])]}]
+        row = report.register(data)["full"][0]
+        self.assertEqual(
+            row["conf"], "boarded",
+            "'Basına dayalı' would print 'not confirmed by our own "
+            "observation' above the listing evidence that opened the row")
+        self.assertEqual(len(row["links"]), 1)
+
 
 
 class TheAnswerSentence(unittest.TestCase):

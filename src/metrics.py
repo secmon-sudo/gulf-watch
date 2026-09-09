@@ -557,6 +557,36 @@ def carrier_visibility(conn: sqlite3.Connection, day: date,
     return out
 
 
+def adsb_blind_airports(conn: sqlite3.Connection, day: date,
+                        lookback: int | None = None) -> set[str]:
+    """Monitored airports no receiver can answer for, by legs a day.
+
+    This is the gate that lets a board finding open a row in the front page's
+    stop register, and it exists because the register's whole discipline is
+    that a claim may only be published where the instrument making it could
+    have been contradicted and was not. At Riyadh the board is the only
+    witness there is: nothing else will ever say "Saudia is still flying
+    here", so its silence means what it says. At Dubai it is one witness among
+    two, and the other one -- three hundred legs a day of it -- is the one
+    that has caught every false stop this project has published.
+
+    Raw `flight` rows on purpose, not `daily_route` and not a coverage
+    verdict. The question is only whether receivers deliver anything at this
+    airport at all, and an unresolved far end still proves they do.
+    """
+    lookback = lookback or config.CARRIER_VISIBILITY_DAYS
+    since = (day - timedelta(days=lookback - 1)).isoformat()
+    out = set()
+    for icao in config.airports():
+        n = conn.execute(
+            """SELECT COUNT(*) n FROM flight
+               WHERE dep_date >= ? AND (dep_icao = ? OR arr_icao = ?)""",
+            (since, icao, icao)).fetchone()["n"]
+        if n / lookback < config.MIN_ADSB_LEGS_PER_DAY:
+            out.add(icao)
+    return out
+
+
 def disowned_baseline_carriers(conn: sqlite3.Connection, day: date,
                                lookback: int | None = None) -> set[str]:
     """Carriers whose baseline describes an airline other than the one we see.

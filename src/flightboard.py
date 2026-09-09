@@ -475,6 +475,7 @@ def carrier_absence(conn, day: str | None = None, window: int = 21) -> dict:
                 "airport": icao,
                 "carrier": carrier,
                 "last_listed": base[-1],
+                "first_absent": first_absent,
                 "days": gone,
                 "provisional": gone < COLLAPSE_DAYS,
                 "listings_before": round(mean, 1),
@@ -735,7 +736,8 @@ def route_absence(conn, day: str | None = None, window: int = 21) -> dict:
                     continue
             env["findings"].append({
                 "airport": icao, "carrier": carrier, "other_iata": far,
-                "last_listed": base[-1], "days": gone,
+                "last_listed": base[-1], "first_absent": first_absent,
+                "days": gone,
                 "provisional": gone < COLLAPSE_DAYS,
                 "baseline_days": len(base),
                 "adsb_checked": bool(far_icao),

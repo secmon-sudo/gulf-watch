@@ -926,6 +926,9 @@ def collect(days: int, with_news: bool, news_days: int = NEWS_MAX_AGE_DAYS,
         "schedule_drops": {"since": schedules.changes_since(conn),
                            "drops": schedules.drops(conn)},
         "board_frequency": flightboard.carrier_frequency(conn),
+        # Which airports have no ADS-B witness at all. Only the register uses
+        # it, and only to decide whether a board finding may open a row there.
+        "adsb_blind": metrics.adsb_blind_airports(conn, ref),
         # The detected stops, with the day each went silent and whatever the
         # press said back. The front page is built around these now, so they
         # are collected rather than left to publish.py alone.
@@ -1780,9 +1783,13 @@ CONF = {
                      "Uçuşlar gözlemde sustu, basın da durdurduğunu yazıyor."),
     "observed": ("partial", "Gözleme dayalı", 1,
                  "Eşiği aşan sessizlik. Basında teyit eden haber bulunamadı."),
-    "reported": ("scheduled", "Basına dayalı", 2,
+    "boarded": ("partial", "Tahtaya dayalı", 2,
+                "Havalimanı tabelalarında kendi uçağıyla listelenmeyi bıraktı. "
+                "Bu havalimanını hiçbir ADS-B alıcısı görmüyor, yani tabelayı "
+                "yalanlayabilecek bir kaynak yok."),
+    "reported": ("scheduled", "Basına dayalı", 3,
                  "Basın kesinti bildiriyor; kendi gözlemimizle doğrulanamadı."),
-    "contradicted": ("unknown", "Çelişkili", 3,
+    "contradicted": ("unknown", "Çelişkili", 4,
                      "Bir kaynak kesildi diyor, diğeri uçtuğunu gösteriyor. "
                      "Kayıtta tutuluyor ama bir kesinti sayılmıyor."),
 }
@@ -1800,12 +1807,14 @@ STANCE = {"supports": ("stopped", "doğruluyor"),
 def register(data: dict) -> dict:
     """The stop register: one row per carrier and place, ranked by evidence.
 
-    Two inputs, and only two, because only these two name a place in a
+    Three inputs, and only three, because only these name a place in a
     structured field:
 
     * `suspensions.report()` -- a scope whose traffic went silent past its
       threshold, carrying the first silent day and whatever the press said.
     * the classifier's `airports` list on a headline it read as a stop.
+    * `flightboard`'s carrier and route absences, at ADS-B-blind airports
+      only. See the gate below for why that restriction is the whole of it.
 
     The web-search note is **not** merged in. It is a paragraph of model
     prose, and pulling airport codes out of prose would put a claim in the
@@ -1831,6 +1840,7 @@ def register(data: dict) -> dict:
         return rows.setdefault((carrier, place), {
             "carrier": carrier, "name": name, "place": place, "kind": kind,
             "since": None, "days": None, "conf": None, "weekly": None,
+            "days_word": "gün sessiz", "listings": None,
             "reported_age": None, "basis": set(), "links": []})
 
     for st in data["stops"]["active"]:
@@ -1860,6 +1870,46 @@ def register(data: dict) -> dict:
             r["basis"].add("basın")
             r["links"].append({"title": e["title"], "url": e["url"],
                                "stance": e["stance"], "age": None})
+
+    # The board, and only where nothing else can speak. Decided 2026-09-09:
+    # a board finding may open a register row at an ADS-B-blind airport and
+    # nowhere else. The register's discipline is that a claim is published
+    # only where the instrument making it could have been contradicted and was
+    # not -- and at Riyadh or Baghdad there is nothing to do the contradicting,
+    # so the board's silence means what it says. At Dubai there is: three
+    # hundred legs a day of ADS-B, the witness that has caught every false stop
+    # this project ever published. Board absences at those airports still print
+    # in their own sections; they just may not open a row here.
+    #
+    # `flightboard` has already applied its own four guards, and the third of
+    # them -- a sighting outranks a listing -- is the same rule the ADS-B side
+    # follows. What this adds is the airport-level version of it: not "did a
+    # receiver see this aeroplane" but "was a receiver ever in a position to".
+    blind = data["adsb_blind"]
+    for src, kind in ((data["board_absence"], "istasyon"),
+                      (data["board_route_absence"], "hat")):
+        for f in src["findings"]:
+            # One day is provisional here exactly as it is in the boards' own
+            # sections, and a provisional finding is not a register claim.
+            if f["airport"] not in blind or f["provisional"]:
+                continue
+            place = (f'{iata(f["airport"])}\u2194{f["other_iata"]}'
+                     if kind == "hat" else iata(f["airport"]))
+            r = row(f["carrier"], data["carriers_cfg"][f["carrier"]]["name"],
+                    place, kind)
+            r["basis"].add("tahta")
+            # A row an ADS-B stop already opened keeps its own dates: those
+            # come from sightings, and the board is the weaker clock. This can
+            # only happen through the press rows below, since a blind airport
+            # produces no ADS-B stop by construction.
+            if r["since"] is None:
+                # The first readable day the carrier was missing, taken from
+                # the board rather than by adding a day to the last listing --
+                # unreadable days are skipped, so the two are not the same.
+                r["since"] = f["first_absent"]
+                r["days"] = f["days"]
+                r["days_word"] = "gün tabelada yok"
+                r["listings"] = f.get("listings_before")
 
     # How many of our carriers a headline names. The round-up is the trap:
     # "UAE flight update: Emirates, Etihad, flydubai, Air Arabia cancellations
@@ -1924,12 +1974,18 @@ def register(data: dict) -> dict:
         # rendered "Teyitli" above three sources saying the opposite. A label
         # that contradicts the rows beneath it is worse than no label.
         stances = {l["stance"] for l in r["links"]}
+        # A board row that the press happens to support is still a board row.
+        # Letting it fall to "reported" would print "kendi gözlemimizle
+        # doğrulanamadı" directly above the listing evidence that opened it.
         if "contradicts" in stances:
             r["conf"] = "contradicted"
         elif "supports" in stances:
-            r["conf"] = "corroborated" if "gözlem" in r["basis"] else "reported"
+            r["conf"] = ("corroborated" if "gözlem" in r["basis"]
+                         else "boarded" if "tahta" in r["basis"] else "reported")
         elif "gözlem" in r["basis"]:
             r["conf"] = "observed"
+        elif "tahta" in r["basis"]:
+            r["conf"] = "boarded"
         else:
             r["conf"] = r["conf"] or "reported"
     # Evidence first, then how much of the network the stop covers: a whole
@@ -1960,6 +2016,15 @@ def _register_section(reg: dict) -> str:
                + (f' · {_gun(l["age"])}' if l["age"] is not None else "")
                + '</span>')
             + '</div>' for l in r["links"])
+        # The board is evidence, so it prints as evidence. Without this the
+        # column reads "no press found" under a row the press never opened.
+        if "tahta" in r["basis"]:
+            kaynak = ('<div class="head"><span class="tag s-stopped">tahta'
+                      '</span>havalimanı tabelalarında kendi uçağıyla '
+                      'listelenmiyor'
+                      + (f' (öncesinde {r["listings"]} kayıt/gün)'
+                         if r["listings"] else '')
+                      + '</div>') + kaynak
         if not kaynak:
             kaynak = ('<div class="head meta">basında teyit eden haber '
                       'bulunamadı</div>')
@@ -1970,7 +2035,7 @@ def _register_section(reg: dict) -> str:
             f'<td><div class="code big-place">{_e(r["place"])}</div>'
             f'<div class="meta">{_e(r["kind"])}</div></td>'
             + (f'<td class="at">{_e(r["since"])}'
-               f'<div class="meta">{r["days"]} gün sessiz</div></td>'
+               f'<div class="meta">{r["days"]} {r["days_word"]}</div></td>'
                if r["since"] else
                f'<td class="at">—<div class="meta">'
                + (f'basında {_gun(r["reported_age"])}'
@@ -2138,12 +2203,19 @@ def _answer(reg: dict) -> str:
     # `contradicted` leaves the count for the same reason: its own tile says
     # "kayıtta tutuluyor ama bir kesinti sayılmıyor", so counting it here made
     # the headline assert a stop the page then disowned two lines lower.
+    #
+    # The board is a third kind, and it gets its own clause rather than
+    # joining either. It is our own observation, so calling it press would be
+    # false; but suspensions.json is the ADS-B ledger and knows nothing about
+    # it, so counting it under "kendi uçuş gözlemimiz" would re-open exactly
+    # the gap between page and API that this sentence was rewritten to close.
     ours = [r for r in full if r["conf"] in ("corroborated", "observed")]
+    board = [r for r in full if r["conf"] == "boarded"]
     press = [r for r in full if r["conf"] == "reported"]
     tally = lambda rs: (len({r["carrier"] for r in rs}),  # noqa: E731
                         len({r["place"] for r in rs}))
 
-    if not ours and not press:
+    if not ours and not board and not press:
         cevap = ('Şu an <b>kayda geçmiş bir uçuş durdurma yok</b>. Bu, hiçbir '
                  'havayolunun kesmediği anlamına gelmez; yalnızca elimizdeki '
                  'kaynakların bugün kesinti gösteremediği anlamına gelir.')
@@ -2157,6 +2229,12 @@ def _answer(reg: dict) -> str:
         else:
             parts.append('Kendi uçuş gözlemimizde <b>kayda geçmiş bir '
                          'durdurma yok</b>.')
+        if board:
+            c, pl = tally(board)
+            parts.append(f'Havalimanı tabelalarında <b class="big s-partial">{c}</b> '
+                         f'havayolu <b class="big s-partial">{pl}</b> noktada '
+                         f'listelenmeyi bırakmış; bunlar ADS-B alıcımızın hiç '
+                         f'görmediği havalimanları, orada tek tanık tabelalar.')
         if press:
             c, pl = tally(press)
             parts.append(f'Basın ayrıca <b class="big s-scheduled">{c}</b> havayolu '
@@ -2470,13 +2548,19 @@ def render(data: dict) -> str:
 
   <p class="sub prose">Kayıttaki her satırın bir <b>güven</b> rozeti var, ve
   rozet o satırın <b>altında yazan kaynaklardan</b> yeniden hesaplanır — veri
-  tabanındaki eski bir etiketten değil. Dördü şunlar:</p>
+  tabanındaki eski bir etiketten değil. Beşi şunlar:</p>
   <div class="glossary">
     <div><span class="u">Teyitli</span><p>Uçuşlar gözlemde sustu <b>ve</b>
       havayolunu adıyla anan basın durdurduğunu yazıyor. İki bağımsız kaynak
       aynı yönde.</p></div>
     <div><span class="u">Gözleme dayalı</span><p>Yalnızca sessizlik: eşiği aşan
       bir süredir görünmüyor, ama teyit eden haber bulunamadı.</p></div>
+    <div><span class="u">Tahtaya dayalı</span><p>Havayolu, havalimanı
+      tabelalarında <b>kendi uçağıyla</b> listelenmeyi bıraktı — ortak kod
+      sayılmaz. Yalnızca <b>hiçbir ADS-B alıcısının görmediği</b>
+      havalimanlarında bir satır açabilir: orada tabelayı yalanlayabilecek
+      ikinci bir kaynak yoktur, gördüğümüz yerlerde ise vardır ve sözü
+      onundur.</p></div>
     <div><span class="u">Basına dayalı</span><p>Yalnızca duyuru. Sessizlik
       eşiği dolmamış ya da o nokta zaten gözlenemiyor. Tarih sütununda ilk
       silent gün değil, <b>haberin yayım tarihi</b> yazar.</p></div>

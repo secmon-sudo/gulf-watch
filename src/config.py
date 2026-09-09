@@ -143,6 +143,26 @@ MIN_SIGNAL_HISTORY_DAYS = 7
 # only spent credits.
 BASELINE_BLIND_AIRPORTS = {"OOMS"}
 
+# The line between an airport ADS-B can answer for and one it cannot, in legs
+# a day averaged over CARRIER_VISIBILITY_DAYS. It exists because the board is
+# allowed to open a register row only where no receiver could have contradicted
+# it -- see report.register. Measured 2026-09-09 over the 42 days to 09-07:
+# Dubai 318.6/day, Doha 224.8, Sharjah 106.6, Amman 103.1, Abu Dhabi 93.8,
+# Bahrain 55.2, Beirut 48.5, and then nothing until Muscat at 0.19 (8 legs in
+# the whole window) with Kuwait, Riyadh, Jeddah, Abha, Baghdad, Erbil and
+# Tehran at a flat zero. The gap either side of this number is a factor of
+# 250, so it is a boundary rather than a tuning knob -- and an airport that
+# starts producing daily sightings leaves the blind set on its own, which is
+# the point of deriving it instead of listing it.
+#
+# Deliberately NOT metrics.airport_side_coverage: that asks whether a fetch
+# delivered against its own baseline, and it withholds Abu Dhabi, Amman and
+# Beirut for having a sliver of a reference period. Those three are seen by
+# receivers every day -- 94 to 103 legs of it -- so an absence there can be
+# contradicted, and calling them blind would hand the board a claim ADS-B was
+# in a position to refuse.
+MIN_ADSB_LEGS_PER_DAY = 1.0
+
 # How many routes we must currently see a carrier flying before its total
 # disagreement with its own baseline is allowed to mean anything. The guard
 # this feeds is the dangerous kind, so the number is the safety catch rather
