@@ -3537,6 +3537,67 @@ class TestBoardFrequency(unittest.TestCase):
                                  c["withheld_reason"] is not None)
 
 
+class TestBoardRatioLeadsTheCarrierTable(unittest.TestCase):
+    """The board ratio is the primary frequency column, the ADS-B one follows.
+
+    Measured 2026-09-10 and the reason the order is what it is: the winter
+    ADS-B baseline covers four carriers and cannot be made to cover more --
+    OpenSky's archive holds 115 legs for Amman and 101 for Beirut across the
+    whole reference quarter against a hundred a day seen there now, and eight
+    of the fifteen airports were never harvested because there is nothing
+    there to harvest. The boards reach thirteen carriers.
+    """
+
+    def _data(self, board_carriers):
+        return {
+            "airports": {},
+            "board_frequency": {"carriers": board_carriers},
+            "carriers": [{
+                "code": "SVA", "iata": "SV", "country": "SA", "name": "Saudia",
+                "state": "flying", "legs": 0, "seen_at": {}, "news": [],
+                "why": "", "ratio": {},
+            }],
+        }
+
+    def _cell(self, **kw):
+        base = {"carrier": "SVA", "listings": 563, "baseline": 589.0,
+                "airports": 4, "board_share": 0.933, "ratio": 0.956,
+                "withheld_reason": None}
+        return {**base, **kw}
+
+    def test_a_published_board_ratio_reaches_the_carrier_row(self):
+        from src import report
+        html = report._rows(self._data([self._cell()]))
+        self.assertIn("%95", html)
+        self.assertIn("563 / 589 kayıt/gün", html)
+
+    def test_a_withheld_board_ratio_says_why_rather_than_showing_a_number(self):
+        from src import report
+        # A second carrier keeps the column open; without one the whole
+        # column is dropped, which the next test covers.
+        html = report._rows(self._data([
+            self._cell(ratio=None,
+                       withheld_reason="below_min_comparable_share"),
+            self._cell(carrier="KNE")]))
+        self.assertIn("ağının küçük bir parçası kapsanıyor", html)
+        self.assertNotIn("%95", html)
+
+    def test_the_column_is_not_drawn_when_no_carrier_has_a_board_ratio(self):
+        """The same rule the ADS-B column already follows: no readable
+        column at all beats a column of empty cells."""
+        from src import report
+        html = report._rows(self._data([self._cell(
+            ratio=None, withheld_reason="no_source")]))
+        self.assertNotIn("kayıt/gün", html)
+        self.assertNotIn("yayınlanmadı", html)
+
+    def test_a_carrier_absent_from_the_boards_gets_a_dash_not_a_zero(self):
+        from src import report
+        data = self._data([self._cell(carrier="KNE")])
+        html = report._rows(data)
+        self.assertIn("<td class=\"num\">—</td>", html)
+
+
 class TestAirportViewUsesTheBoard(unittest.TestCase):
     """The page's airport row must spend the board it already collects.
 

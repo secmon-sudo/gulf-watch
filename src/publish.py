@@ -67,6 +67,14 @@ def _envelope(report: dict) -> dict:
             # reader whether anything was published at all.
             "ratios_published": report["ratios_published"],
             "carriers_with_ratio": None,
+            # The same count for the board series, because that one is now
+            # the primary frequency indicator and a health claim made from
+            # `carriers_with_ratio` alone would understate what was
+            # published: the winter ADS-B baseline exists for four carriers
+            # and cannot be extended -- eight of the fifteen airports are not
+            # in OpenSky's archive at all, and Amman and Beirut are in it with
+            # 115 and 101 legs for the whole quarter.
+            "carriers_with_board_ratio": None,
         },
         # What the ratios divide by, stated because it is not season-neutral.
         # The window is fixed IATA *winter* and the present day is usually not,
@@ -270,6 +278,9 @@ def build(out: Path | None = None) -> dict:
     # scored subset clears the share floor -- which the envelope cannot know.
     env["observation"]["carriers_with_ratio"] = sum(
         1 for c in by_carrier.values() if c["ratio"] is not None)
+    board = flightboard.carrier_frequency(conn)
+    env["observation"]["carriers_with_board_ratio"] = sum(
+        1 for c in board["carriers"] if c["ratio"] is not None)
 
     _write(out / "status.json", {
         **env,
@@ -288,7 +299,7 @@ def build(out: Path | None = None) -> dict:
                     "reference is each airport's first full week of "
                     "comparable board days, frozen, so a carrier that cuts "
                     "and stays cut keeps reading as cut.",
-            **flightboard.carrier_frequency(conn),
+            **board,
         },
         "summary": {
             "carriers_tracked": len(by_carrier),

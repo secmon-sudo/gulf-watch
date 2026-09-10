@@ -101,6 +101,21 @@ sağlamaz — o yalnızca eşzamanlılığı sıraya alır, kota harcamasını d
 
 Sağlık iddiası şu göstergeye dayanır: **`carriers_with_ratio > 0` ve `comparable_share ≥ 0.6`.**
 
+**2026-09-10'dan itibaren birincil gösterge tahta serisidir: `carriers_with_board_ratio`.**
+ADS-B oranı ikincil doğrulama olarak kalır ve tek başına sağlık iddiasına dayanak sayılmaz.
+Gerekçe ölçüldü, tercih değil: kış ADS-B temeli dört-beş taşıyıcıdan ibarettir ve
+**genişletilemez**. On beş havalimanının sekizi (OEJN, OERK, OEAB, OIIE, OKBK, OOMS, ORBI,
+ORER) OpenSky arşivinde hiç yok; Amman ve Beyrut arşivde var ama bütün referans çeyreğinde
+115 ve 101 leg ile — bugün oralarda günde ~103 ve ~48 leg görülüyor. Yani backfill'i yeniden
+koşmak bu üçünü kurtarmaz, kaynakta veri yok. Tahta serisi ise 2026-09-12'den sonra 24
+taşıyıcının 13'üne ulaşır (`MIN_BOARD_CARRIER_LISTINGS = 20`).
+
+Tahta oranının kendi kırılganlığı: `carrier_frequency`'nin `ready` testi o havalimanının
+**bugün de** `ok` dönmesini şart koşar, dolayısıyla bir merkez taşıyıcısının oranı tek bir
+tahtaya bağlıdır — OMDB bir gün `thin` dönerse Emirates'in payı 0.033'e düşer ve oran o gün
+geri çekilir. Bu bilinen ve kabul edilmiş bir davranıştır; sessiz bir sıfır değil,
+`withheld_reason` ile birlikte geri çekilir.
+
 ## 7. `legs=0` sessiz bir başarı değildir
 
 Kotanın reddettiği bir çalışma ile trafiğin olmadığı bir gün aynı şey değildir. `recent_runs`

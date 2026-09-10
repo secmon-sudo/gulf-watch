@@ -1681,6 +1681,29 @@ def _blind_news_section(data: dict) -> str:
 """
 
 
+def _board_ratios(data: dict) -> dict[str, dict]:
+    """The board frequency table, keyed by carrier, for the row builder.
+
+    The board ratio leads the carrier table and the observed/scheduled one
+    follows it. That ordering is a measurement, not a preference: measured
+    2026-09-10 the right-hand column reached five carriers and this one three,
+    with no carrier in both, because that column needs the operator inside our
+    ADS-B feed and counts only city pairs with BOTH ends monitored -- nineteen
+    pairs of Emirates' three hundred routes. The boards count whatever the
+    fifteen airports publish, including the seven where no receiver has ever
+    seen anything, and reach thirteen carriers once every airport has a
+    reference week of its own.
+
+    Not the same reasoning as the API's, where `carriers[].ratio` divides by
+    the fixed winter baseline and this page divides by today's timetable. The
+    API's case is in `publish._envelope`.
+
+    The two are still never added together, and the units stay on the cells.
+    """
+    f = data.get("board_frequency") or {}
+    return {c["carrier"]: c for c in f.get("carriers", [])}
+
+
 def _ratio_ready(data: dict) -> bool:
     """Does the observed/scheduled column have anything to say yet?
 
@@ -1697,6 +1720,8 @@ def _ratio_ready(data: dict) -> bool:
 def _rows(data: dict) -> str:
     ap = data["airports"]
     show_ratio = _ratio_ready(data)
+    boards = _board_ratios(data)
+    show_board = any(b["ratio"] is not None for b in boards.values())
     out = []
     order = {"stopped": 0, "partial": 1, "unknown": 2, "scheduled": 3, "flying": 4}
     for c in sorted(data["carriers"], key=lambda r: (order[r["state"]], -r["legs"])):
@@ -1730,6 +1755,23 @@ def _rows(data: dict) -> str:
                  if c.get("news_failed") else 'basında ilgili haber yok')
         heads = f'<div class="heads">{heads}</div>' if heads else (
             f'<div class="heads"><div class="head meta">{empty}</div></div>')
+        board_cell = ""
+        if show_board:
+            b = boards.get(c["code"])
+            if b is None:
+                cell = "—"
+            elif b["ratio"] is None:
+                cell = ('<span class="meta">yayınlanmadı — '
+                        + ("ağının küçük bir parçası kapsanıyor"
+                           if b["withheld_reason"] == "below_min_comparable_share"
+                           else "seri sayılacak kadar kayıt yok") + '</span>')
+            else:
+                pct = int(b["ratio"] * 100)
+                cls = ("flying" if pct >= 80 else "partial" if pct >= 30 else "stopped")
+                cell = (f'<b class="s-{cls}">%{pct}</b>'
+                        f'<div class="meta">{b["listings"]} / {b["baseline"]:g} '
+                        f'kayıt/gün, {b["airports"]} havalimanında</div>')
+            board_cell = f'<td class="num">{cell}</td>'
         ratio_cell = ""
         if show_ratio:
             rt = c.get("ratio") or {}
@@ -1763,6 +1805,7 @@ def _rows(data: dict) -> str:
             + ('<div class="meta">sefer</div>' if c["legs"] else "")
             + '</td>'
             f'<td class="at">{_e(at)}</td>'
+            f'{board_cell}'
             f'{ratio_cell}'
             f'</tr>')
     return "".join(out)
@@ -2314,14 +2357,49 @@ def render(data: dict) -> str:
     # every monitored airport over the window, this one is scaled to a week and
     # restricted to the city pairs both sources cover. Emirates read 332 and 35
     # side by side with nothing saying why.
+    # The board ratio leads and the observed/scheduled one follows. The two
+    # reach disjoint sets of carriers -- measured 2026-09-10, five against
+    # three with no overlap -- and the reason they are disjoint is that the
+    # column on the right needs the carrier in our ADS-B feed and counts only
+    # city pairs with BOTH ends monitored, which for Emirates is nineteen
+    # pairs of a three-hundred-route network. The board counts whatever the
+    # fifteen airports list.
+    boards = _board_ratios(data)
+    n_board = sum(1 for b in boards.values() if b["ratio"] is not None)
+    n_adsb = sum(1 for c in data["carriers"]
+                 if (c.get("ratio") or {}).get("ratio") is not None)
+    if n_board:
+        tahta_th = ('<th class="num">Tahtadan bugün / kendi haftası'
+                    '<div class="meta">kayıt/gün; kaynağı ve böleni sağdaki '
+                    'sütundan başka</div></th>')
+        tahta_aciklama = (
+            f'<p class="sub prose"><b>Tahtadan bugün / kendi haftası</b> '
+            f'sütunu bu raporun <b>birincil</b> frekans göstergesidir: '
+            f'havayolunun bugün tahtalarda görünen <b>kendi</b> seferi (ortak '
+            f'kod hariç), aynı havalimanlarındaki ilk tam haftasına bölünmüş. '
+            f'Sağındaki <b>Gözlenen / tarifeli</b> sütunu onu doğrular ama '
+            f'yerini alamaz, çünkü iki şartı var: havayolunun ADS-B '
+            f'beslememizde görünmesi, ve yalnızca <b>iki ucu da izlenen</b> '
+            f'şehir çiftlerinin sayılması — Emirates için bu, üç yüz rotalık '
+            f'bir ağın on dokuz çifti demektir. Tahta ise alıcının hiç '
+            f'göremediği havalimanlarını da sayar; bugün sağdaki sütun '
+            f'{n_adsb}, bu sütun {n_board} havayoluna ulaşıyor. '
+            f'İki oran <b>toplanmaz ve karşılaştırılmaz</b>: '
+            f'biri sefer/hafta\u2019yı bugünkü tarifeye, diğeri '
+            f'kayıt/gün\u2019ü kendi ilk haftasına böler.</p>')
+    else:
+        tahta_th = ""
+        tahta_aciklama = ""
+
     if _ratio_ready(data):
         oran_th = ('<th class="num">Gözlenen / tarifeli'
                    '<div class="meta">Sefer sütunuyla aynı şey değil: haftaya '
                    'ölçeklenmiş, ve yalnızca ölçülebilen şehir '
                    'çiftleri</div></th>')
         oran_aciklama = (
-            '<p class="sub prose"><b>Gözlenen / tarifeli</b> sütunu asıl cevabı '
-            'verir: havayolunun izlenen havalimanları arasında gerçekten uçtuğu '
+            '<p class="sub prose"><b>Gözlenen / tarifeli</b> sütunu aynı soruyu '
+            'ikinci bir kaynaktan sorar: havayolunun izlenen havalimanları '
+            'arasında gerçekten uçtuğu '
             'haftalık sefer sayısı, tarifesinde planladığı sayıya bölünmüş. '
             "%100'e yakınsa tarifesini uyguluyor; düşükse fiilen kesmiş "
             'demektir. İki taraf da <b>aynı şehir çiftlerini</b> sayar, yoksa '
@@ -2482,12 +2560,13 @@ def render(data: dict) -> str:
   kesenler, sonra hakkında bilgi olmayanlar. <b>Sefer</b> sütunu gözlem
   penceresinde izlenen havalimanlarında sayılan iniş/kalkış sayısı;
   <b>Nerede</b> sütunu bunun havalimanlarına dağılımı.</p>
+  {tahta_aciklama}
   {oran_aciklama}
   <div class="scroll"><table>
     <thead><tr><th>Kod</th><th>Havayolu ve basında çıkanlar</th><th>Durum</th>
       <th class="num">Sefer<div class="meta">uçuş verisi</div></th>
       <th>Nerede görüldü<div class="meta">havalimanı·sefer</div></th>
-      {oran_th}</tr></thead>
+      {tahta_th}{oran_th}</tr></thead>
     <tbody>{_rows(data)}</tbody>
   </table></div>
 </section>
