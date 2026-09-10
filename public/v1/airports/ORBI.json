@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-09T16:25:06+00:00",
-  "as_of_day": "2026-09-07",
+  "generated_at": "2026-09-10T16:15:54+00:00",
+  "as_of_day": "2026-09-08",
   "coverage": {
-    "day": "2026-09-07",
-    "control_flights": 1851,
-    "median_28d": 1811.5,
-    "score": 1.022,
+    "day": "2026-09-08",
+    "control_flights": 1807,
+    "median_28d": 1851,
+    "score": 0.976,
     "verdict": "ok"
   },
   "observation": {
@@ -13,7 +13,8 @@
     "observed_days": 7,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 4
+    "carriers_with_ratio": 5,
+    "carriers_with_board_ratio": 3
   },
   "baseline": {
     "window": "2025-11-01..2026-01-31",
@@ -37,9 +38,9 @@
   "city": "Baghdad",
   "country": "IQ",
   "operation": {
-    "day": "2026-09-08",
-    "flights": 54,
-    "median": 49.5,
+    "day": "2026-09-09",
+    "flights": 48,
+    "median": 50.0,
     "verdict": "ok",
     "state": "normal",
     "provisional": false,

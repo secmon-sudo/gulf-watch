@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-09T16:25:06+00:00",
-  "as_of_day": "2026-09-07",
+  "generated_at": "2026-09-10T16:15:54+00:00",
+  "as_of_day": "2026-09-08",
   "coverage": {
-    "day": "2026-09-07",
-    "control_flights": 1851,
-    "median_28d": 1811.5,
-    "score": 1.022,
+    "day": "2026-09-08",
+    "control_flights": 1807,
+    "median_28d": 1851,
+    "score": 0.976,
     "verdict": "ok"
   },
   "observation": {
@@ -13,7 +13,8 @@
     "observed_days": 7,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 4
+    "carriers_with_ratio": 5,
+    "carriers_with_board_ratio": 3
   },
   "baseline": {
     "window": "2025-11-01..2026-01-31",
@@ -75,7 +76,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -92,7 +93,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -109,7 +110,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -160,7 +161,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -176,8 +177,8 @@
       "scored": true,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 6
+      "silent_days": 10,
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -211,7 +212,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -262,7 +263,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -279,7 +280,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -296,7 +297,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 3
     },
     {
       "carrier": "KNE",
@@ -313,7 +314,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -330,7 +331,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -364,7 +365,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -381,7 +382,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -398,7 +399,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -414,8 +415,8 @@
       "scored": true,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 9,
-      "observed_days": 6
+      "silent_days": 10,
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -432,7 +433,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -449,7 +450,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -466,7 +467,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -483,7 +484,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -500,7 +501,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -517,7 +518,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -534,7 +535,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -568,7 +569,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -585,7 +586,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KNE",
@@ -619,7 +620,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 5
+      "observed_days": 6
     },
     {
       "carrier": "KNE",
@@ -636,7 +637,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     }
   ],
   "stop_events": [],

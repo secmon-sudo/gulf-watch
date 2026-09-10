@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-09T16:25:06+00:00",
-  "as_of_day": "2026-09-07",
+  "generated_at": "2026-09-10T16:15:54+00:00",
+  "as_of_day": "2026-09-08",
   "coverage": {
-    "day": "2026-09-07",
-    "control_flights": 1851,
-    "median_28d": 1811.5,
-    "score": 1.022,
+    "day": "2026-09-08",
+    "control_flights": 1807,
+    "median_28d": 1851,
+    "score": 0.976,
     "verdict": "ok"
   },
   "observation": {
@@ -13,7 +13,8 @@
     "observed_days": 7,
     "min_observed_days": 5,
     "ratios_published": true,
-    "carriers_with_ratio": 4
+    "carriers_with_ratio": 5,
+    "carriers_with_board_ratio": 3
   },
   "baseline": {
     "window": "2025-11-01..2026-01-31",
@@ -104,7 +105,7 @@
   "board_absence": {
     "source": "published airport boards, own metal only (codeshare listings excluded)",
     "note": "Not part of `active`. An absence here is a carrier missing from a board that answered normally on every day of the absence; one day is provisional, two is a finding.",
-    "day": "2026-09-08",
+    "day": "2026-09-09",
     "comparable_since": "2026-09-01",
     "findings": [
       {
@@ -112,20 +113,20 @@
         "carrier": "RJA",
         "last_listed": "2026-09-07",
         "first_absent": "2026-09-08",
-        "days": 1,
-        "provisional": true,
+        "days": 2,
+        "provisional": false,
         "listings_before": 2.0,
         "baseline_days": 7
       }
     ],
-    "readable_days": 8,
+    "readable_days": 9,
     "required_days": 7,
     "withheld_reason": null
   },
   "board_route_absence": {
     "source": "published airport boards, own metal only (codeshare listings excluded)",
     "note": "A route counts as absent only when neither leg is listed. `adsb_checked` is false where the far end is not an airport we monitor, so no sighting could have contradicted the board.",
-    "day": "2026-09-08",
+    "day": "2026-09-09",
     "comparable_since": "2026-09-01",
     "findings": [
       {
@@ -134,8 +135,8 @@
         "other_iata": "SSH",
         "last_listed": "2026-09-07",
         "first_absent": "2026-09-08",
-        "days": 1,
-        "provisional": true,
+        "days": 2,
+        "provisional": false,
         "baseline_days": 7,
         "adsb_checked": false
       },
@@ -145,13 +146,57 @@
         "other_iata": "AMM",
         "last_listed": "2026-09-07",
         "first_absent": "2026-09-08",
-        "days": 1,
-        "provisional": true,
+        "days": 2,
+        "provisional": false,
         "baseline_days": 7,
         "adsb_checked": true
+      },
+      {
+        "airport": "OEJN",
+        "carrier": "SVA",
+        "other_iata": "KAN",
+        "last_listed": "2026-09-08",
+        "first_absent": "2026-09-09",
+        "days": 1,
+        "provisional": true,
+        "baseline_days": 8,
+        "adsb_checked": false
+      },
+      {
+        "airport": "OEJN",
+        "carrier": "SVA",
+        "other_iata": "MAD",
+        "last_listed": "2026-09-08",
+        "first_absent": "2026-09-09",
+        "days": 1,
+        "provisional": true,
+        "baseline_days": 8,
+        "adsb_checked": false
+      },
+      {
+        "airport": "OERK",
+        "carrier": "SVA",
+        "other_iata": "CCJ",
+        "last_listed": "2026-09-08",
+        "first_absent": "2026-09-09",
+        "days": 1,
+        "provisional": true,
+        "baseline_days": 8,
+        "adsb_checked": false
+      },
+      {
+        "airport": "OERK",
+        "carrier": "SVA",
+        "other_iata": "LGG",
+        "last_listed": "2026-09-08",
+        "first_absent": "2026-09-09",
+        "days": 1,
+        "provisional": true,
+        "baseline_days": 8,
+        "adsb_checked": false
       }
     ],
-    "readable_days": 8,
+    "readable_days": 9,
     "required_days": 7,
     "routes_watched": 196,
     "withheld_reason": null
@@ -159,7 +204,7 @@
   "schedule_drops": {
     "source": "AirLabs published timetable, marketing codeshares excluded",
     "note": "Recording began on `since`; a drop before that day was not missed, it was not watched. Only drops to zero, and only where other carriers on the same airport pair survived the same refresh.",
-    "since": null,
+    "since": "2026-09-10",
     "window_days": 30,
     "drops": []
   }
