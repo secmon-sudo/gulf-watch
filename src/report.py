@@ -1581,8 +1581,11 @@ def _schedule_drops_section(data: dict) -> str:
                 f'<span class="name">{_e(cfg.get("name", ""))}</span></td>'
                 f'<td><span class="code">{_e(r["dep_iata"])}</span> → '
                 f'<span class="code">{_e(r["arr_iata"])}</span>'
-                f'<div class="meta">{_e(dep.get("city", ""))} — '
-                f'{_e(arr.get("city", ""))}</div></td>'
+                f'<div class="meta">{_e(dep.get("city") or r["dep_iata"])} — '
+                f'{_e(arr.get("city") or r["arr_iata"])}'
+                + ('' if dep and arr else
+                   ' · uzak uç izlediğimiz havalimanlarının dışında')
+                + '</div></td>'
                 f'<td class="num">{r["weekly_before"]}'
                 f'<div class="meta">sefer/hafta idi</div></td>'
                 f'<td class="num">{_e(r["day"])}</td></tr>')
@@ -1603,7 +1606,11 @@ def _schedule_drops_section(data: dict) -> str:
   sayılmaz. Yalnızca <b>sıfıra düşen</b> hatlar ve yalnızca aynı tazelemede
   o havalimanı çiftindeki <b>başka havayollarının kaldığı</b> durumlar
   listelenir: bir çiftin tamamının birden boşalması havayollarının değil,
-  kaynağın davranışıdır.</p>
+  kaynağın davranışıdır. Sorulan çiftlerin çoğunda iki uç da izlediğimiz on
+  beş havalimanından biridir; tahtaların oran yayımlayamadığı havayolları
+  için (kendi metaliyle neredeyse hiç listelenmeyen British Airways, JAL,
+  Royal Air Maroc gibi) <b>uzak uçlu</b> hatlar da sorulur — onlar için
+  başka hiçbir kaynağın söyleyecek sözü yok.</p>
   {body}
 </section>
 """

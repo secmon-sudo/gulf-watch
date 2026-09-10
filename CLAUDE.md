@@ -87,6 +87,12 @@ sonucu:
 **eklenmez**. Eklendiği dönemde (2026-08-25..09-02) beş ingest'in üçü sıfır leg ile döndü ve
 `observed_days` gerekli 5'in 2'sine düştü.
 
+**AirLabs bütçesinde boşluk yok (2026-09-10'da ölçüldü).** Temel tarama 210 sıralı çift × 7
+günde bir ≈ **910/1000 istek/ay**. Kalan ~90 isteğin 11'i dış uçlu çiftlere gidiyor
+(`schedules.FOREIGN_MAX_PAIRS = 30` tavanı, 30 günlük kadans). Yeni çift eklemek serbest
+değildir: aritmetiği yeniden yap. `refresh()` içinde **temel çiftler önce** sorulur, çünkü kota
+biterse kaybedilecek şey kör havalimanlarının tarifesi değil, dış uçlu ekler olmalıdır.
+
 **Tek tüketici kuralı.** OpenSky kimlik bilgisini kullanan her iş ortak bir kota kaydından geçer:
 son harcamanın zaman damgası + bilinen sıfırlama penceresi. Kayıt "harcanmış" diyorsa iş
 **başlamadan** biter ve bunu çalışma detayı olarak bildirir. `concurrency: group: ingest` bunu

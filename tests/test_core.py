@@ -3255,6 +3255,128 @@ class TestCarrierAbsence(unittest.TestCase):
         self.assertIsNone(self._find("SVA"))
 
 
+class TestForeignPairs(unittest.TestCase):
+    """Timetable pairs with one end outside the monitored fifteen.
+
+    Measured 2026-09-10: all 722 rows in `route_schedule` had BOTH ends
+    monitored, so eleven tracked carriers -- British Airways, JAL, Royal Air
+    Maroc, Air Algerie and the rest, whose Gulf presence on the boards is
+    somebody else's metal wearing their number -- could drop a Gulf route
+    without any surface here noticing. These pairs are the third witness for
+    exactly that set, and for nobody else, because the free tier has about a
+    hundred requests a month of headroom.
+    """
+
+    def setUp(self):
+        from src import schedules, flightboard
+        self.sch = schedules
+        self.fb = flightboard
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+        self.conn = db.connect(self.tmp.name)
+        self.days = [f"2026-09-{d:02d}" for d in range(1, 9)]
+
+    def tearDown(self):
+        self.conn.close()
+        os.unlink(self.tmp.name)
+
+    def _listing(self, airport, carrier, other, days, n=1, operated_by=None):
+        for d in days:
+            for i in range(n):
+                self.conn.execute(
+                    "INSERT OR REPLACE INTO board_flight (airport, direction,"
+                    " day, carrier, flight_no, other_iata, sched_time,"
+                    " fetched_at, operated_by) VALUES (?,'dep',?,?,?,?,"
+                    "'01:00','t',?)",
+                    (airport, d, carrier, f"{carrier}{other}{i}", other,
+                     operated_by))
+        self.conn.commit()
+
+    def _floor(self):
+        """One codeshare row so own_metal_since() has a day to start from."""
+        self._listing("OERK", "QTR", "XXX", self.days[:1], operated_by="Q")
+
+    def test_a_dark_carriers_foreign_route_is_asked_about(self):
+        self._floor()
+        self._listing("OTHH", "BAW", "LHR", self.days)
+        self.assertIn(("DOH", "LHR"), self.sch.foreign_pairs(self.conn))
+
+    def test_a_carrier_the_boards_can_rate_is_not_asked_about(self):
+        """Saudia has a board ratio; spending a request on it buys nothing."""
+        self._floor()
+        self._listing("OERK", "SVA", "CMN", self.days,
+                      n=self.fb.MIN_BOARD_CARRIER_LISTINGS + 5)
+        self.assertEqual(self.sch.foreign_pairs(self.conn), [])
+
+    def test_a_route_seen_once_is_not_a_service(self):
+        self._floor()
+        self._listing("OTHH", "BAW", "LHR", self.days[:1])
+        self.assertEqual(self.sch.foreign_pairs(self.conn), [])
+
+    def test_a_monitored_far_end_is_left_to_the_base_sweep(self):
+        self._floor()
+        self._listing("OTHH", "BAW", "DXB", self.days)
+        self.assertEqual(self.sch.foreign_pairs(self.conn), [])
+
+    def test_a_codeshare_listing_does_not_earn_a_request(self):
+        """The whole reason these carriers are dark: their Gulf listings are
+        somebody else's aeroplane."""
+        self._floor()
+        self._listing("OTHH", "BAW", "LHR", self.days, operated_by="Qatar")
+        self.assertEqual(self.sch.foreign_pairs(self.conn), [])
+
+    def test_the_pair_count_is_capped(self):
+        # Three days each, the floor exactly: a carrier listed often enough
+        # to fill the cap on every one of these would clear the board's own
+        # publishing floor and stop being dark.
+        self._floor()
+        for i in range(self.sch.FOREIGN_MAX_PAIRS + 5):
+            start = i % (len(self.days) - self.sch.FOREIGN_MIN_DAYS)
+            self._listing("OTHH", "BAW", f"X{i:02d}",
+                          self.days[start:start + self.sch.FOREIGN_MIN_DAYS])
+        self.assertEqual(len(self.sch.foreign_pairs(self.conn)),
+                         self.sch.FOREIGN_MAX_PAIRS)
+
+    def test_the_base_sweep_is_never_starved_by_the_extras(self):
+        """A quota that runs out mid-sweep must lose the foreign pairs, not
+        the timetable the blind airports depend on."""
+        self._floor()
+        self._listing("OTHH", "BAW", "LHR", self.days)
+        asked = []
+        with mock.patch.object(self.sch, "_key", lambda: "k"), \
+             mock.patch.object(self.sch, "pairs", lambda: [("RUH", "BEY")]), \
+             mock.patch.object(self.sch, "_fetch",
+                               lambda d, a, k: asked.append((d, a)) or []):
+            self.sch.refresh(self.conn, max_age_days=0)
+        self.assertEqual(asked, [("RUH", "BEY"), ("DOH", "LHR")])
+
+    def test_a_foreign_end_renders_as_itself_and_says_it_is_outside(self):
+        """The drops table looked its ends up in the monitored airports and
+        printed an empty city for anything else."""
+        from src import report
+        data = {"airports": {"OTHH": {"iata": "DOH", "city": "Doha"}},
+                "carriers_cfg": {"BAW": {"name": "British Airways"}},
+                "schedule_drops": {"since": "2026-09-10", "window_days": 30,
+                                   "drops": [{"dep_iata": "DOH",
+                                              "arr_iata": "LHR",
+                                              "carrier": "BAW",
+                                              "day": "2026-09-20",
+                                              "weekly_before": 14}]}}
+        html = report._schedule_drops_section(data)
+        self.assertIn("Doha — LHR", html)
+        self.assertIn("izlediğimiz havalimanlarının dışında", html)
+
+    def test_a_foreign_row_stays_out_of_the_scheduled_denominator(self):
+        """`by_carrier` counts what the page prints beside observed legs, and
+        those legs are counted at monitored airports only."""
+        now = "2026-09-10T00:00:00+00:00"
+        self.conn.executemany(
+            "INSERT INTO route_schedule (dep_iata, arr_iata, carrier, weekly,"
+            " flights, codeshare, fetched_at) VALUES (?,?,?,?,1,0,?)",
+            [("DOH", "DXB", "BAW", 7, now), ("DOH", "LHR", "BAW", 14, now)])
+        self.conn.commit()
+        self.assertEqual(self.sch.by_carrier(self.conn)["BAW"]["weekly"], 7)
+
+
 class TestScheduleChanges(unittest.TestCase):
     """A route leaving the timetable is the airline saying so.
 

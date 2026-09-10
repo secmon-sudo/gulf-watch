@@ -40,6 +40,37 @@ SEEING = ["DXB", "DOH", "SHJ", "AMM", "AUH", "BAH", "BEY", "MCT"]
 
 DEFAULT_MAX_AGE_DAYS = 7
 
+# Pairs with one end outside the monitored fifteen, asked about for the
+# carriers no other surface can speak for. Measured 2026-09-10: eleven tracked
+# carriers -- British Airways, Finnair, Iberia, JAL, American, Air China,
+# China Eastern and Southern, EgyptAir, Royal Air Maroc, Air Algerie -- carry
+# no board ratio (their Gulf presence is somebody else's metal wearing their
+# number) and no usable ADS-B baseline. The timetable was the last hope for
+# them and it could not reach them either: every one of the 722 rows in
+# `route_schedule` had BOTH ends monitored, so British Airways' London-Doha
+# was never asked about and could be dropped without a trace here.
+#
+# What this is NOT: a second observation. A timetable is a statement of
+# intent, and `drops()` already says so. It is the only statement available
+# for these carriers.
+#
+# The quota arithmetic, because there is no headroom to be casual with. The
+# base sweep is 210 ordered pairs every 7 days, ~910 of the free tier's 1000
+# monthly requests. These pairs are asked monthly and capped, so the worst
+# case adds 30 and lands near 940. Two consequences, both deliberate: the
+# cap is a constant rather than "whatever the query returns", and the base
+# pairs go FIRST in the refresh, so a quota that runs out drops these and
+# never the timetable the blind airports depend on.
+FOREIGN_MAX_AGE_DAYS = 30
+FOREIGN_MAX_PAIRS = 30
+
+# A pair has to be a service before it can be a drop. Both floors are read
+# off the boards, which is where the IATA codes come from -- `daily_route`
+# holds ICAO and there is no ICAO-to-IATA map for airports outside the
+# monitored fifteen.
+FOREIGN_WINDOW_DAYS = 30
+FOREIGN_MIN_DAYS = 3
+
 
 def _key() -> str | None:
     key = os.environ.get("AIRLABS_API_KEY")
@@ -67,6 +98,58 @@ def pairs() -> list[tuple[str, str]]:
     return [(a, b) for a in every for b in every if a != b]
 
 
+def foreign_pairs(conn) -> list[tuple[str, str]]:
+    """Routes with one foreign end, for the carriers the boards cannot rate.
+
+    The carrier gate is the board's own publishing floor: below
+    `MIN_BOARD_CARRIER_LISTINGS` a day the board withholds that carrier's
+    ratio, which is precisely the set that needs a third surface. Deriving it
+    rather than listing eleven codes keeps it true when a carrier crosses the
+    floor in either direction.
+
+    Direction is the monitored end outbound. A carrier removing a route
+    removes both legs, so one is enough to notice, and asking both would
+    double a cost that has no room to double.
+    """
+    from . import flightboard
+
+    monitored = {v["iata"] for v in config.airports().values()}
+    iata_of = {k: v["iata"] for k, v in config.airports().items()}
+    floor = flightboard.own_metal_since(conn)
+    if not floor:
+        return []
+    since = max(floor, (datetime.now(tz=timezone.utc)
+                        - timedelta(days=FOREIGN_WINDOW_DAYS)).date().isoformat())
+    days = conn.execute(
+        "SELECT COUNT(DISTINCT day) d FROM board_flight WHERE day >= ?",
+        (since,)).fetchone()["d"] or 1
+
+    # Tracked carriers only. Air France clears the same floor and is a
+    # control carrier -- it exists to measure the network, not to be reported
+    # on -- and two of thirteen pairs went to Paris before this line.
+    tracked = set(config.tracked_carriers())
+    dark = {r["carrier"] for r in conn.execute(
+        "SELECT carrier, COUNT(*) n FROM board_flight "
+        "WHERE operated_by IS NULL AND day >= ? GROUP BY carrier", (since,))
+        if r["carrier"] in tracked
+        and r["n"] / days < flightboard.MIN_BOARD_CARRIER_LISTINGS}
+
+    out = []
+    for r in conn.execute(
+            """SELECT airport, carrier, other_iata, COUNT(DISTINCT day) d
+               FROM board_flight
+               WHERE operated_by IS NULL AND day >= ? AND other_iata IS NOT NULL
+               GROUP BY airport, carrier, other_iata
+               ORDER BY d DESC, COUNT(*) DESC""", (since,)):
+        if (r["carrier"] not in dark or r["d"] < FOREIGN_MIN_DAYS
+                or r["other_iata"] in monitored):
+            continue
+        pair = (iata_of[r["airport"]], r["other_iata"])
+        if pair not in out:
+            out.append(pair)
+    return out[:FOREIGN_MAX_PAIRS]
+
+
 def _fetch(dep: str, arr: str, key: str) -> list[dict] | None:
     try:
         resp = requests.get(API, params={"dep_iata": dep, "arr_iata": arr,
@@ -90,16 +173,24 @@ def refresh(conn, max_age_days: int = DEFAULT_MAX_AGE_DAYS,
         LOG.warning("no AIRLABS_API_KEY -- skipping the schedule refresh")
         return {"fetched": 0, "skipped": 0, "no_key": True}
 
-    cutoff = (datetime.now(tz=timezone.utc)
-              - timedelta(days=max_age_days)).isoformat(timespec="seconds")
-    fresh = {(r["dep_iata"], r["arr_iata"]) for r in conn.execute(
-        "SELECT dep_iata, arr_iata FROM schedule_probe WHERE fetched_at > ?",
-        (cutoff,))}
+    def stale(candidates, age_days):
+        cutoff = (datetime.now(tz=timezone.utc)
+                  - timedelta(days=age_days)).isoformat(timespec="seconds")
+        fresh = {(r["dep_iata"], r["arr_iata"]) for r in conn.execute(
+            "SELECT dep_iata, arr_iata FROM schedule_probe WHERE fetched_at > ?",
+            (cutoff,))}
+        return [p for p in candidates if p not in fresh], len(fresh)
 
-    todo = [p for p in pairs() if p not in fresh]
+    # Monitored pairs first. They are the timetable the blind airports depend
+    # on, and if the month's quota runs out mid-sweep the foreign extras are
+    # what should be missing from the end of the list.
+    todo, fresh = stale(pairs(), max_age_days)
+    extra, _ = stale(foreign_pairs(conn), FOREIGN_MAX_AGE_DAYS)
+    todo += [p for p in extra if p not in todo]
     if limit:
         todo = todo[:limit]
-    LOG.info("%s pairs to refresh (%s still fresh)", len(todo), len(fresh))
+    LOG.info("%s pairs to refresh, %s of them foreign (%s still fresh)",
+             len(todo), len(extra), fresh)
 
     now = datetime.now(tz=timezone.utc).isoformat(timespec="seconds")
     fetched = 0
@@ -188,7 +279,7 @@ def refresh(conn, max_age_days: int = DEFAULT_MAX_AGE_DAYS,
         fetched += 1
         LOG.info("%s-%s: %s routes, %s carriers", dep, arr, len(rows), len(agg))
 
-    return {"fetched": fetched, "skipped": len(fresh), "no_key": False}
+    return {"fetched": fetched, "skipped": fresh, "no_key": False}
 
 
 def drops(conn, days: int = 30) -> list[dict]:
@@ -228,10 +319,17 @@ def changes_since(conn) -> str | None:
 
 def by_carrier(conn) -> dict[str, dict]:
     """carrier -> {airports: {iata: weekly}, weekly: total, codeshare: bool}."""
+    # Monitored-to-monitored only. `weekly` here is a denominator the page
+    # prints beside observed legs, and those legs are counted at monitored
+    # airports; letting a foreign-end row into the sum would compare a wider
+    # timetable against a narrower observation and read as a cut.
+    monitored = {v["iata"] for v in config.airports().values()}
     out: dict[str, dict] = {}
     for r in conn.execute(
             "SELECT carrier, dep_iata, arr_iata, weekly, codeshare "
             "FROM route_schedule WHERE weekly > 0"):
+        if r["dep_iata"] not in monitored or r["arr_iata"] not in monitored:
+            continue
         e = out.setdefault(r["carrier"], {"airports": {}, "weekly": 0,
                                           "codeshare": False})
         # Credit the blind airport -- that is the one we could not otherwise
@@ -247,5 +345,6 @@ def by_carrier(conn) -> dict[str, dict]:
 def coverage(conn) -> dict:
     probes = conn.execute(
         "SELECT COUNT(*) n, MAX(fetched_at) last FROM schedule_probe").fetchone()
-    return {"pairs_probed": probes["n"], "pairs_total": len(pairs()),
+    return {"pairs_probed": probes["n"],
+            "pairs_total": len(pairs()) + len(foreign_pairs(conn)),
             "last_fetched": probes["last"]}
