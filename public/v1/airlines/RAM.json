@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T16:15:54+00:00",
-  "as_of_day": "2026-09-08",
+  "generated_at": "2026-09-11T16:19:15+00:00",
+  "as_of_day": "2026-09-09",
   "coverage": {
-    "day": "2026-09-08",
-    "control_flights": 1807,
-    "median_28d": 1851,
-    "score": 0.976,
+    "day": "2026-09-09",
+    "control_flights": 2021,
+    "median_28d": 1829.0,
+    "score": 1.105,
     "verdict": "ok"
   },
   "observation": {
@@ -36,7 +36,7 @@
   "name": "Royal Air Maroc",
   "iata": "AT",
   "country": "MA",
-  "weekly_frequency": 8,
+  "weekly_frequency": 7,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
@@ -100,7 +100,7 @@
       "carrier_name": "Royal Air Maroc",
       "origin": "GMMN",
       "destination": "OTHH",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -127,7 +127,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 2
+      "observed_days": 1
     },
     {
       "carrier": "RAM",
@@ -280,7 +280,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "RAM",
@@ -297,7 +297,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "RAM",
@@ -314,7 +314,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "RAM",
@@ -331,7 +331,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     }
   ],
   "stop_events": [],

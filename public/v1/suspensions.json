@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T16:15:54+00:00",
-  "as_of_day": "2026-09-08",
+  "generated_at": "2026-09-11T16:19:15+00:00",
+  "as_of_day": "2026-09-09",
   "coverage": {
-    "day": "2026-09-08",
-    "control_flights": 1807,
-    "median_28d": 1851,
-    "score": 0.976,
+    "day": "2026-09-09",
+    "control_flights": 2021,
+    "median_28d": 1829.0,
+    "score": 1.105,
     "verdict": "ok"
   },
   "observation": {
@@ -105,100 +105,34 @@
   "board_absence": {
     "source": "published airport boards, own metal only (codeshare listings excluded)",
     "note": "Not part of `active`. An absence here is a carrier missing from a board that answered normally on every day of the absence; one day is provisional, two is a finding.",
-    "day": "2026-09-09",
+    "day": "2026-09-10",
     "comparable_since": "2026-09-01",
-    "findings": [
-      {
-        "airport": "OKBK",
-        "carrier": "RJA",
-        "last_listed": "2026-09-07",
-        "first_absent": "2026-09-08",
-        "days": 2,
-        "provisional": false,
-        "listings_before": 2.0,
-        "baseline_days": 7
-      }
-    ],
-    "readable_days": 9,
+    "findings": [],
+    "readable_days": 10,
     "required_days": 7,
     "withheld_reason": null
   },
   "board_route_absence": {
     "source": "published airport boards, own metal only (codeshare listings excluded)",
     "note": "A route counts as absent only when neither leg is listed. `adsb_checked` is false where the far end is not an airport we monitor, so no sighting could have contradicted the board.",
-    "day": "2026-09-09",
+    "day": "2026-09-10",
     "comparable_since": "2026-09-01",
     "findings": [
       {
-        "airport": "OERK",
-        "carrier": "SVA",
-        "other_iata": "SSH",
-        "last_listed": "2026-09-07",
-        "first_absent": "2026-09-08",
-        "days": 2,
-        "provisional": false,
-        "baseline_days": 7,
-        "adsb_checked": false
-      },
-      {
-        "airport": "OKBK",
-        "carrier": "RJA",
-        "other_iata": "AMM",
-        "last_listed": "2026-09-07",
-        "first_absent": "2026-09-08",
-        "days": 2,
-        "provisional": false,
-        "baseline_days": 7,
-        "adsb_checked": true
-      },
-      {
         "airport": "OEJN",
         "carrier": "SVA",
-        "other_iata": "KAN",
-        "last_listed": "2026-09-08",
-        "first_absent": "2026-09-09",
+        "other_iata": "YYZ",
+        "last_listed": "2026-09-09",
+        "first_absent": "2026-09-10",
         "days": 1,
         "provisional": true,
-        "baseline_days": 8,
-        "adsb_checked": false
-      },
-      {
-        "airport": "OEJN",
-        "carrier": "SVA",
-        "other_iata": "MAD",
-        "last_listed": "2026-09-08",
-        "first_absent": "2026-09-09",
-        "days": 1,
-        "provisional": true,
-        "baseline_days": 8,
-        "adsb_checked": false
-      },
-      {
-        "airport": "OERK",
-        "carrier": "SVA",
-        "other_iata": "CCJ",
-        "last_listed": "2026-09-08",
-        "first_absent": "2026-09-09",
-        "days": 1,
-        "provisional": true,
-        "baseline_days": 8,
-        "adsb_checked": false
-      },
-      {
-        "airport": "OERK",
-        "carrier": "SVA",
-        "other_iata": "LGG",
-        "last_listed": "2026-09-08",
-        "first_absent": "2026-09-09",
-        "days": 1,
-        "provisional": true,
-        "baseline_days": 8,
+        "baseline_days": 9,
         "adsb_checked": false
       }
     ],
-    "readable_days": 9,
+    "readable_days": 10,
     "required_days": 7,
-    "routes_watched": 196,
+    "routes_watched": 190,
     "withheld_reason": null
   },
   "schedule_drops": {

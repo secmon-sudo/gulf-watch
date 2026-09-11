@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T16:15:54+00:00",
-  "as_of_day": "2026-09-08",
+  "generated_at": "2026-09-11T16:19:15+00:00",
+  "as_of_day": "2026-09-09",
   "coverage": {
-    "day": "2026-09-08",
-    "control_flights": 1807,
-    "median_28d": 1851,
-    "score": 0.976,
+    "day": "2026-09-09",
+    "control_flights": 2021,
+    "median_28d": 1829.0,
+    "score": 1.105,
     "verdict": "ok"
   },
   "observation": {
@@ -93,7 +93,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -120,6 +120,23 @@
       "weekly_frequency": 4,
       "weekly_scaled": null,
       "baseline_weekly": 0.3,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "carrier": "SVA",
+      "carrier_name": "Saudia",
+      "origin": "HKJK",
+      "destination": "OMDB",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": false,
@@ -254,16 +271,16 @@
       "origin": "LTFM",
       "destination": "OMDB",
       "weekly_frequency": 2,
-      "weekly_scaled": 2.3,
+      "weekly_scaled": 2.0,
       "baseline_weekly": 2.0,
       "baseline_days": 88,
       "baseline_trusted": true,
       "comparable": true,
       "scored": true,
-      "ratio": 1.138,
+      "ratio": 0.976,
       "status": "NORMAL",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "SVA",
@@ -348,7 +365,24 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
+    },
+    {
+      "carrier": "SVA",
+      "carrier_name": "Saudia",
+      "origin": "OMDB",
+      "destination": "HE15",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 7
     },
     {
       "carrier": "SVA",
@@ -382,7 +416,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 4
+      "observed_days": 3
     },
     {
       "carrier": "SVA",
@@ -450,7 +484,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 2
     },
     {
       "carrier": "SVA",
@@ -517,8 +551,8 @@
       "scored": true,
       "ratio": 0.0,
       "status": "SUSPENDED",
-      "silent_days": 10,
-      "observed_days": 6
+      "silent_days": 11,
+      "observed_days": 7
     },
     {
       "carrier": "SVA",
@@ -541,23 +575,6 @@
       "carrier": "SVA",
       "carrier_name": "Saudia",
       "origin": "OMDB",
-      "destination": "OMAF",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 3
-    },
-    {
-      "carrier": "SVA",
-      "carrier_name": "Saudia",
-      "origin": "OMDB",
       "destination": "UUEE",
       "weekly_frequency": 0,
       "weekly_scaled": null,
@@ -575,23 +592,6 @@
       "carrier": "SVA",
       "carrier_name": "Saudia",
       "origin": "OTHH",
-      "destination": "HEBA",
-      "weekly_frequency": 1,
-      "weekly_scaled": null,
-      "baseline_weekly": 0.0,
-      "baseline_days": 88,
-      "baseline_trusted": true,
-      "comparable": false,
-      "scored": false,
-      "ratio": null,
-      "status": "NEW",
-      "silent_days": 0,
-      "observed_days": 6
-    },
-    {
-      "carrier": "SVA",
-      "carrier_name": "Saudia",
-      "origin": "OTHH",
       "destination": "LTFM",
       "weekly_frequency": 0,
       "weekly_scaled": null,
@@ -603,7 +603,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     }
   ],
   "stop_events": [],

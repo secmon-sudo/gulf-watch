@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T16:15:54+00:00",
-  "as_of_day": "2026-09-08",
+  "generated_at": "2026-09-11T16:19:15+00:00",
+  "as_of_day": "2026-09-09",
   "coverage": {
-    "day": "2026-09-08",
-    "control_flights": 1807,
-    "median_28d": 1851,
-    "score": 0.976,
+    "day": "2026-09-09",
+    "control_flights": 2021,
+    "median_28d": 1829.0,
+    "score": 1.105,
     "verdict": "ok"
   },
   "observation": {
@@ -36,17 +36,17 @@
   "name": "Kuwait Airways",
   "iata": "KU",
   "country": "KW",
-  "weekly_frequency": 9,
+  "weekly_frequency": 10,
   "weekly_frequency_baselined": 0,
   "weekly_scaled": null,
   "baseline_weekly": 0.0,
-  "routes_total": 36,
+  "routes_total": 39,
   "routes_baselined": 0,
   "routes_suspended": 0,
   "routes_reduced": 0,
   "observed_days": 7,
   "comparable_share": 0.0,
-  "baselined_share": 0.682,
+  "baselined_share": 0.669,
   "ratio": null,
   "status": "UNKNOWN",
   "withheld_reason": "below_min_comparable_share",
@@ -82,6 +82,23 @@
       "carrier": "KAC",
       "carrier_name": "Kuwait Airways",
       "origin": "EGLL",
+      "destination": "OMDB",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": true,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 7
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "EGLL",
       "destination": "OTHH",
       "weekly_frequency": 0,
       "weekly_scaled": null,
@@ -94,6 +111,23 @@
       "status": "UNKNOWN",
       "silent_days": 0,
       "observed_days": 7
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "HECA",
+      "destination": "OLBA",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 20,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
     },
     {
       "carrier": "KAC",
@@ -178,14 +212,14 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KAC",
       "carrier_name": "Kuwait Airways",
       "origin": "OBBI",
       "destination": "OEAA",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 88,
@@ -235,8 +269,25 @@
       "carrier": "KAC",
       "carrier_name": "Kuwait Airways",
       "origin": "OJAI",
+      "destination": "VGZR",
+      "weekly_frequency": 1,
+      "weekly_scaled": null,
+      "baseline_weekly": 0.0,
+      "baseline_days": 88,
+      "baseline_trusted": false,
+      "comparable": false,
+      "scored": false,
+      "ratio": null,
+      "status": "NEW",
+      "silent_days": 0,
+      "observed_days": 0
+    },
+    {
+      "carrier": "KAC",
+      "carrier_name": "Kuwait Airways",
+      "origin": "OJAI",
       "destination": "VIDP",
-      "weekly_frequency": 2,
+      "weekly_frequency": 1,
       "weekly_scaled": null,
       "baseline_weekly": 0.0,
       "baseline_days": 87,
@@ -365,7 +416,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KAC",
@@ -450,7 +501,7 @@
       "ratio": null,
       "status": "NEW",
       "silent_days": 0,
-      "observed_days": 3
+      "observed_days": 4
     },
     {
       "carrier": "KAC",
@@ -484,7 +535,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KAC",
@@ -501,7 +552,7 @@
       "ratio": null,
       "status": "UNKNOWN",
       "silent_days": 0,
-      "observed_days": 6
+      "observed_days": 7
     },
     {
       "carrier": "KAC",

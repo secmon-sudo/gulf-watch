@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T16:15:54+00:00",
-  "as_of_day": "2026-09-08",
+  "generated_at": "2026-09-11T16:19:15+00:00",
+  "as_of_day": "2026-09-09",
   "coverage": {
-    "day": "2026-09-08",
-    "control_flights": 1807,
-    "median_28d": 1851,
-    "score": 0.976,
+    "day": "2026-09-09",
+    "control_flights": 2021,
+    "median_28d": 1829.0,
+    "score": 1.105,
     "verdict": "ok"
   },
   "observation": {
@@ -38,9 +38,9 @@
   "city": "Erbil",
   "country": "IQ",
   "operation": {
-    "day": "2026-09-09",
-    "flights": 40,
-    "median": 37.0,
+    "day": "2026-09-10",
+    "flights": 43,
+    "median": 37.5,
     "verdict": "ok",
     "state": "normal",
     "provisional": false,
