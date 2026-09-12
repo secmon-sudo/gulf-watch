@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-11T16:19:15+00:00",
-  "as_of_day": "2026-09-09",
+  "generated_at": "2026-09-12T15:25:52+00:00",
+  "as_of_day": "2026-09-10",
   "coverage": {
-    "day": "2026-09-09",
-    "control_flights": 2021,
-    "median_28d": 1829.0,
-    "score": 1.105,
+    "day": "2026-09-10",
+    "control_flights": 2134,
+    "median_28d": 1851,
+    "score": 1.153,
     "verdict": "ok"
   },
   "observation": {
@@ -14,7 +14,7 @@
     "min_observed_days": 5,
     "ratios_published": true,
     "carriers_with_ratio": 5,
-    "carriers_with_board_ratio": 3
+    "carriers_with_board_ratio": 13
   },
   "baseline": {
     "window": "2025-11-01..2026-01-31",
@@ -38,9 +38,9 @@
   "city": "Abha",
   "country": "SA",
   "operation": {
-    "day": "2026-09-10",
-    "flights": 110,
-    "median": 89.5,
+    "day": "2026-09-11",
+    "flights": 78,
+    "median": 90.0,
     "verdict": "ok",
     "state": "normal",
     "provisional": false,

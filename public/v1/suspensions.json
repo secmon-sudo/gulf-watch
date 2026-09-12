@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-11T16:19:15+00:00",
-  "as_of_day": "2026-09-09",
+  "generated_at": "2026-09-12T15:25:52+00:00",
+  "as_of_day": "2026-09-10",
   "coverage": {
-    "day": "2026-09-09",
-    "control_flights": 2021,
-    "median_28d": 1829.0,
-    "score": 1.105,
+    "day": "2026-09-10",
+    "control_flights": 2134,
+    "median_28d": 1851,
+    "score": 1.153,
     "verdict": "ok"
   },
   "observation": {
@@ -14,7 +14,7 @@
     "min_observed_days": 5,
     "ratios_published": true,
     "carriers_with_ratio": 5,
-    "carriers_with_board_ratio": 3
+    "carriers_with_board_ratio": 13
   },
   "baseline": {
     "window": "2025-11-01..2026-01-31",
@@ -105,34 +105,34 @@
   "board_absence": {
     "source": "published airport boards, own metal only (codeshare listings excluded)",
     "note": "Not part of `active`. An absence here is a carrier missing from a board that answered normally on every day of the absence; one day is provisional, two is a finding.",
-    "day": "2026-09-10",
+    "day": "2026-09-11",
     "comparable_since": "2026-09-01",
     "findings": [],
-    "readable_days": 10,
+    "readable_days": 11,
     "required_days": 7,
     "withheld_reason": null
   },
   "board_route_absence": {
     "source": "published airport boards, own metal only (codeshare listings excluded)",
     "note": "A route counts as absent only when neither leg is listed. `adsb_checked` is false where the far end is not an airport we monitor, so no sighting could have contradicted the board.",
-    "day": "2026-09-10",
+    "day": "2026-09-11",
     "comparable_since": "2026-09-01",
     "findings": [
       {
-        "airport": "OEJN",
-        "carrier": "SVA",
-        "other_iata": "YYZ",
-        "last_listed": "2026-09-09",
-        "first_absent": "2026-09-10",
+        "airport": "OMSJ",
+        "carrier": "ABY",
+        "other_iata": "KRK",
+        "last_listed": "2026-09-10",
+        "first_absent": "2026-09-11",
         "days": 1,
         "provisional": true,
-        "baseline_days": 9,
+        "baseline_days": 7,
         "adsb_checked": false
       }
     ],
-    "readable_days": 10,
+    "readable_days": 11,
     "required_days": 7,
-    "routes_watched": 190,
+    "routes_watched": 809,
     "withheld_reason": null
   },
   "schedule_drops": {
